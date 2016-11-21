@@ -1,0 +1,29 @@
+\select@language {bahasa}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces \textit {Simple Recurrent Neural Network}\relax }}{8}{figure.caption.18}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Contoh Perhitungan Sebuah Vektor SDCC\relax }}{12}{figure.caption.19}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Prosedur LCS-Length\relax }}{13}{figure.caption.20}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Tabel $c$ dan $b$ yang Dihasilkan oleh Prosedur LCS-Length\relax }}{14}{figure.caption.21}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Ilustrasi Data dalam Dimensi 2\relax }}{16}{figure.caption.22}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Ilustrasi Data dalam Dimensi 3\relax }}{17}{figure.caption.23}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces \textit {Gaussian Mixture Distribution} dengan 7 Komponen\relax }}{19}{figure.caption.24}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Rancangan Arsitektur Sistem\relax }}{22}{figure.caption.26}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Distribusi \textit {Gaussian} Terhadap Nilai Jarak \textit {Mahalanobis}\relax }}{33}{figure.caption.32}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Alur Ekstraksi Fitur MFCC\relax }}{36}{figure.caption.34}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Alur Ekstraksi Fitur SDCC\relax }}{38}{figure.caption.36}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi SVM\relax }}{44}{figure.caption.41}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi GMM\relax }}{46}{figure.caption.44}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi Gabungan\relax }}{47}{figure.caption.47}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi SVM\relax }}{49}{figure.caption.50}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi GMM\relax }}{50}{figure.caption.53}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi Gabungan\relax }}{52}{figure.caption.56}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Perbandingan Metode Klasifikasi untuk Fitur MFCC\relax }}{53}{figure.caption.57}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Perbandingan Metode Klasifikasi untuk Fitur SDCC\relax }}{54}{figure.caption.58}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Perbandingan Fitur untuk Metode Klasifikasi SVM\relax }}{55}{figure.caption.59}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Perbandingan Fitur untuk Metode Klasifikasi GMM\relax }}{56}{figure.caption.60}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Perbandingan Fitur untuk Metode Klasifikasi Gabungan\relax }}{57}{figure.caption.61}
+\addvspace {10\p@ }

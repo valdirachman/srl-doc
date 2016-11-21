@@ -1,0 +1,118 @@
+%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+\chapter{\babSatu}
+%-----------------------------------------------------------------------------%
+
+
+%-----------------------------------------------------------------------------%
+\section{Latar Belakang}
+%-----------------------------------------------------------------------------%
+	
+	Saat ini berbagai kegiatan manusia semakin dimudahkan dengan adanya teknologi. Salah satu kegiatan tersebut yaitu melakukan konsultasi terkait masalah kesehatan kepada dokter. Teknologi yang dapat membantu seseorang dalam hal ini yaitu  forum kesehatan \textit{online}. Melalui forum tersebut, seseorang hanya perlu menuliskan keluhan dan pertanyaan di formulir yang tersedia. Kemudian, dokter yang memiliki akun di forum kesehatan \textit{online} tersebut dapat memberikan jawaban atas pertanyaan orang tersebut.
+	
+	Dari forum kesehatan \textit{online}, banyak informasi yang dapat diambil. Informasi tersebut misalnya informasi keluhan yang dialami pasien, obat yang sebaiknya digunakan atau langkah penyembuhan yang dapat dilakukan. Orang lain dapat mencari obat atau langkah penyembuhan dari forum tersebut melalui pertanyaan yang sudah ada. Yang menjadi permasalahan adalah \textit{post} yang ditulis oleh pelapor kurang struktur. Dokumen \textit{post} tidak dibagi menjadi beberapa bagian seperti bagian keluhan, penyakit, obat dll, namun hanya menjadi 1 bagian saja. Misalnya seseorang menanyakan tentang keluhannya, orang tersebut hanya diberikan 2 buah isian berupa judul dan isi pertanyaan. Jawaban yang diberikan oleh dokter juga sama, hanya menjadi 1 bagian saja. Jawaban yang diberikan tidak terstruktur seperti memiliki bagian langkah penyembuhan, nama penyakit dan obat secara terpisah. Hal ini menyebabkan orang sulit melakukan ekstraksi informasi dari dokumen tersebut.
+	
+	Dari permasalahan tersebut, terdapat sebuah solusi untuk melakukan ektraksi informasi penyakit dalam suatu dokumen. Solusi tersebut yaitu dengan menggunakan sistem \mer. Sistem ini dapat mengenali entitas kesejatan dalam sebuah dokumen. Diberikan sebuah dokumen, sistem ini akan mengembalikan dokumen dengan entitas kesehatan yang sudah diberi label di dalamnya. Sistem ini udah banyak dikembangkan oleh beberapa peneliti. Salah satu penelitian yang mengembangkan sistem \mer~dilakukan oleh \cite{abacha2011medical}. Pebelitian tersebut menggunakan dokumen medis rumah sakit berbahasa Inggris. 
+		
+	Saat ini, pengembangan sistem \mer~pada dokumen berbahasa Indonesia masih belum banyak. Ada beberapa penelitian terkait sistem \mer~, namun hasil yang diberikan belum memuaskan. Salah satu penelitian terkait \mer~dilakukan oleh \cite{skripsiKakRadit}. \mer~yang dikembangkan menggunakan dokumen forum kesehatan \textit{online} berbahasa Indonesia dari beberapa situs. \cite{skripsiKakRadit} menggunakan algoritma \textit{Conditional Random Field}. Penelitian yang dilakukan bertujuan untuk mencari kombinasi fitur yang dapat menghasilkan akurasi terbaik. Hasil akhir yang didapatkan yaitu \textit{precission}~70.97\%, \textit{recall}~57.83\% dan \textit{f-measure}~63.69\%. Fitur-fitur yang digunakan yaitu fitur kata itu sendiri, frasa, kamus: \textit{symptom, disease, treatment, drug}, kata pertama sebelumnya dan panjang kata.
+
+	Dalam penelitian ini, \saya~mengusulkan \textit{framework} lain untuk mengembangkan sistem \mer. \Saya mengusulkan sebuah sistem \mer~dengan menggunakan \rnn. Berdasarkan penelitian terkait \mer~dengan menggunakan \rnn~pada dokumen Bahasa Inggris yang dilakukan oleh \textbf{SIAPA}, hasil yang didapatkan sangat baik, yaitu \textit{precission}~70.97\%, \textit{recall}~57.83\% dan \textit{f-measure}~63.69\%. Oleh karena itu, \saya~menerapkan \rnn~pada penelitian ini.
+		
+	\Saya~berharap bahwa penelitian ini akan memberikan banyak manfaat. Model \mer~yang dihasilkan dapat digunakan untuk membuat aplikasi lain. Misalnya dengan adanya \mer~pada dokumen bahasa Indonesia, dapat dibuat sistem untuk melakukan \textit{indexing} dokumen forum sehingga pencarian dokumen kesehatan dapat dilakukan dengan lebih efisien. Selain itu, keluaran dari \mer~juga dapat digunakan untuk mengidentifikasi tren penyakit pada waktu tertentu dari suatu sumber, sehingga pihak terkait mampu melakukan langkah dan kebijakan yang tepat. \Saya~berharap bahwa penelitian \mer~pada dokumen berbahasa Indonesia ini dapat dilanjutkan sehingga dapat menghasilkan model yang lebih baik dan membuat suatu aplikasi yang memanfaatkan keluaran dari penelitian ini. Masih banyak manfaat lain yang didapatkan dengan adanya sistem \mer~yang memiliki hasil akurat. 
+
+%-----------------------------------------------------------------------------%
+\section{Perumusan Masalah}
+%-----------------------------------------------------------------------------%
+Berdasarkan latar belakang di atas, dalam penelitian ini \saya~ mengajukan rumusan masalah sebagai berikut:
+\begin{enumerate}
+	% Bagaimana --- %
+	\item Bagaimana fitur yang membuat sistem \mer~memiliki performa terbaik?
+	\item Bagaimana kendala dalam melakukan penelitian ini?
+\end{enumerate}
+
+%-----------------------------------------------------------------------------%
+\section{Tujuan dan Manfaat Penelitian}
+%-----------------------------------------------------------------------------%
+Penelitian ini bertujuan untuk membangun sistem yang mampu melakukan ekstraksi entitas kesehatan dari forum \textit{online}. Sebenarnya, pada penelitan yang dilakukan oleh \cite{skripsiKakRadit} sudah menghasilkan sebuah sistem yang sama. Namun, fokus penelitian ini yaitu mencoba menggunakan metode yang berbeda. Metode tersebut yaitu dengan menggunakan \rnn~dengan harapan mampu meberikan hasil yang lebih baik. Penelitian ini juga bertujuan untuk mendapatkan fitur-fitur yang membuat sistem memiliki performa terbaik. Selain itu, penelitian ini juga bertujuan untuk mendapatkan informasi baru terkait pembuatan sistem \mer~berbahasa Indonesia.
+
+Manfaat dari penelitian ini adalah menghasilkan rancangan sistem dan metode yang dapat digunakan sebagai bahan penelitian lanjutan. Saat ini, sistem dan metode yang dihasilkan hanya mampu mengenali entitas kesehatan saja. Selain itu, model yang dihasilkan dapat digunakan untuk melakukan pengindeksan dokumen kesehatan sehingga pencarian dokumen dapat dilakukan dengan lebih efisien. Hal ini dapat digunakan untuk membuat sistem informasi tentang suatu jenis penyakit lengkap dengan gejala, obat dan cara penyembuhannya. Selama ini, masyarakat yang menanyakan suatu penyakit melalui forum \ol~tidak membaca terlebih dahulu riwayat pertanyaan yang telah ditanyakan oleh orang lain. Oleh karena itu, diharapkan dengan sistem informai tersebut, penanya hanya perlu mencari penyakit yang akan ditanyakan pada sistem informasi tersebut. Apabila tidak ada, penanya dapat mengajukan pertanyaan, kemudian pertanyaan dan jawaban yang diberikan akan terindeks oleh sistem dan menambah informasi. 
+
+Selain itu, hasil penelitian ini juga dapat digunakan untuk membangun sistem yang mengenali tren penyakit pada masyarakat, sehingga pihak terkait mampu menentukan langkah strategis yang tepat.
+
+%-----------------------------------------------------------------------------%
+\section{Metodologi Penelitian}
+%-----------------------------------------------------------------------------%
+Berikut merupakan metode penelitian yang \saya~lakukan.
+\begin{enumerate}
+	\item Studi Literatur\\
+	Pada tahapan ini \saya~mencari literatur yang terkait dengan penelitian ini. Literatur ini digunakan sebagai bahan pemelajaran dan untuk mendukung penelitian yang \saya~lakukan. Literatur yang \saya~gunakan memiliki keterkaitan terhadap kasus \mer~, \textit{Sequence Labelling} dan \rnn.
+	
+	\item Perumusan Masalah \\
+	Pada tahapan ini \saya~membuat rumusan masalah yang akan dijawab melalui serangkaian penelitian ini. \saya~membuat rumusan masalah setelah melakukan studi literatur dan mempelajari penelitian sebelumnya yang telah dilakukan oleh []
+	
+	\item Perancangan Sistem \\
+	Pada tahapan ini, \saya~membuat rancangan sistem yang akan \saya~gunakan dalam penelitian ini. Tujuan dibuatnya perancangan sistem ini yaitu untuk memudahkan \saya~dalam melakukan penelitian dari awal sampai akhir.
+	
+	\item Pengumpulan Data \\
+	Pada tahapan ini, \saya~mengumpulkan data percobaan yang diperlukan. Data tersebut \saya~dapatkan dari penelitan sebelumnya ditambah dengan data dari forum \ol~yang lebih baru.
+	
+	\item Pengolahan Data \\
+	Pada tahapan ini, \saya~melakukan pengolahan data supaya data dapat dengan mudah dibaca oleh sistem. Selain itu, pengolahan data dilakukan juga untuk membuat korpus.
+		
+	\item Eksperimen \\
+	Tahapan ini merupakan bagian inti dari penelitian. \saya~melakukan langkag eksperimen dengan tujuan mendapatkan jawaban dari pertanyaan yang telah dirumuskan pada rumusan masalah.
+	
+	\item Evaluasi dan Analisis Hasil \\
+	Pada tahapan ini \saya~melakukan evaluasi dan analisis dari hasil eksperimen.
+		
+	\item Penarikan Kesimpulan \\
+	Tahap ini merupakan tahap terakhir dari penelitian. Setelah melakukan serangkaian eksperimen, evaluasi dan analisis, \saya~memberikan kesimpulan dan informasi penting terkait penelitian ini. Selain itu \saya~juga memberikan saran untuk penelitian selanjutnya.
+\end{enumerate}
+
+%-----------------------------------------------------------------------------%
+\section{Ruang Lingkup Penelitian}
+Pada penelitian ini terdapat beberapa batasan yang \saya~tentukan, yaitu:
+\begin{enumerate}
+\item{\bf Kriteria Data}\\
+Data yang digunakan dalam penelitian ini merupakan data penelitian \cite{skripsiKakRadit} dan data dari forum kesehatan \ol~berbahasa Indonesia di internet.
+	
+\item{\bf Penerapan Metode}\\
+Penelitian ini berfokus pada kombinasi pemilihan fitur dan metode yang memberikan hasil terbaik.
+	
+\item{\bf Aplikasi}\\
+Penelitian ini hanya dilakukan sampai tahap metode, tidak sampai ke tahap pembuatan aplikasi. Karena penelitian ini hanya memberikan output pelabelan pada dokumen teks kesehatan, belum sampai pada pembuatan sistem informasi kesehatan.
+
+\item{\bf Entitas Kesehatan}\\
+Pengenalan entitas kesehatan pada penelitian ini berfokus pada pengenalan nama penyakit (\disease), gejala-gejala penyakit (\symptom), nama obat (\drug) dan langkah pengobatan (\treatment),
+
+\item{\bf Domain Pengenalan}\\
+Pengenalan entitas kesehatan dilakukan pada bagian judul pertanyaan, isi pertanyaan/keluhan dan isi jawaban dari dokter.
+\end{enumerate}
+
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+\section{Sistematika Penulisan}
+%-----------------------------------------------------------------------------%
+Sistematika penulisan dalam laporan penelitian ini sebagai berikut:
+\begin{itemize}
+
+	\item Bab 1 \babSatu \\
+	Pada bab ini \saya~menjelaskan latar belakang, perumusan masalah, tujuan dan manfaat penelitian, metodologi penelitian, ruang lingkup penelitian dan sistematika penulisan.
+	
+	\item Bab 2 \babDua \\
+	Pada bab ini \saya~menjelaskan teori-teori yang terkait dengan penelitian ini. Teori-teori tersbut \saya~dapatkan dari studi literatur dari berbagai sumber.
+		
+	\item Bab 3 \babTiga \\
+	Pada bab ini \saya~menjelaskan rancangan arsitektur sistem yang akan dikembangkan dalam penelitian ini.
+		
+	\item Bab 4 \babEmpat \\
+	Pada bab ini \saya~menjelaskan proses implementasi sistem dan eksperimen berdasarkan rancangan yang telah \penulis~tentukan pada bab sebelumnya.
+		
+	\item Bab 5 \babLima \\
+	Pada bab ini \saya~menjelaskan analisis dari hasil eksperimen yang telah \saya~kerjakan pada tahap sebelumnya.
+	
+	\item Bab 6 \babEnam \\
+	Pada bab ini \saya~memberikan kesimpulan berdasarkan hasil eksperimen dan analisis yang telah dilakukan pada penelitian ini. Selain itu \saya~juga memberikan saran dan masukan untuk penelitian dan pengembangan sistem mengenai \mer~berbahasa Indonesia selanjutnya.
+	
+\end{itemize}

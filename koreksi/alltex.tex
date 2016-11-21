@@ -1,0 +1,2418 @@
+%!TEX root = skripsi.tex
+%
+% Halaman Abstract
+%
+% @author  Andreas Febrian
+% @version 1.00
+%
+
+	\chapter*{ABSTRACT}
+
+\vspace*{0.2cm}
+
+\noindent \begin{tabular}{l l p{11.0cm}}
+	Name&: & \penulis \\
+	Program&: & \programEng \\
+	Title&: & \judulInggris \\
+\end{tabular} \\ 
+
+\vspace*{0.5cm}
+
+\noindent 
+Many of Moslems want to recite \quran. Unfortunatelly, someone who is reciting \quran~needs a partner to help evaluating the recitation. To help that process, this research develops a speech recognition system that is able to automatically evaluate \quran~recitation. The system uses mel frequency cepstral coefficient (MFCC) and shifted delta cepstral coefficient (SDCC) feature, and uses support vector machine (SVM) and Gaussian mixture model (GMM) classification method. The experiment is applied to every ayah in juz 30 of \quran, and gives a result that the best combination to use in the system is SDCC feature with GMM classification method. \\
+
+% \quran~adalah kitab suci bagi umat Muslim. Di dalam \quran~terkandung berbagai macam hakikat kehidupan. Banyak umat Muslim yang ingin belajar membaca \quran~serta menghafalkannya. Orang yang belajar membaca atau menghafalkan \quran~membutuhkan rekan yang mengerti cara membacanya, agar dapat membantu mengevaluasi bacaan \quran. Namun rekan tersebut tidak setiap waktu dapat membantu mengevaluasi. Oleh karena itu, penelitian ini dilakukan dalam rangka membangun sistem pengenalan suara yang mampu mengevaluasi pembacaan \quran~secara otomatis, guna membantu proses evaluasi tersebut. Sistem yang dikembangkan dalam penelitian ini mengekstrak fitur \f{mel frequency cepstral coefficient} (MFCC) dan \f{shifted delta cepstral coefficient} (SDCC) dari audio. Fitur tersebut diklasifikasi menggunakan metode klasifikasi \f{support vector machine} (SVM) dan \f{Gaussian mixture model} GMM. Eksperimen dilakukan terhadap ayat-ayat di juz 30 \quran. Hasil eksperimen dalam penelitian ini menunjukkan bahwa kombinasi yang paling tepat untuk digunakan dalam sistem ini adalah penggunaan fitur SDCC dan metode klasifikasi GMM. \\
+
+% \\ Quran is a holy book for Moslems. It contains much nature in this life. Therefore many of Moslems wants to memorize quran. Quran is originally delivered in Arabic, and it is memorized in Arabic also. The are some ways to memorize quran. One of them is to get help with the second person for heeding the recitation. Whenever the recitation of the first person is wrong, then the second person gives a sign to the first person. Unfortunatelly it cannot be done if there is no second person. Another way is to recite some ayahs, then match them to the original text in quran. That way may slow down memorizing process and also it gives a chance to the reciter to see the next part of quran that should not be seen by him. To make the memorizing process more practical, then a computer system that can cover the second person to match quran recitation to the original quran text, is developed. This system uses Automatic Speech Recognition (ASR).
+
+\vspace*{0.2cm}
+
+\noindent Keywords: \\ 
+\noindent Quran, evaluation, speech recognition system, MFCC, SDCC, SVM, GMM \\
+
+\newpage%!TEX root = skripsi.tex
+%
+% Halaman Abstrak
+%
+% @author  Andreas Febrian
+% @version 1.00
+%
+
+\chapter*{Abstrak}
+
+\vspace*{0.2cm}
+
+\noindent \begin{tabular}{l l p{10cm}}
+	Nama&: & \penulis \\
+	Program Studi&: & \program \\
+	Judul&: & \judul \\
+\end{tabular} \\ 
+
+\vspace*{0.5cm}
+
+\noindent
+Banyak umat Muslim yang ingin menghafalkan \quran. Namun orang yang menghafalkan \quran~membutuhkan rekan untuk membantu mengevaluasi hafalannya. Untuk membantu proses tersebut, penelitian ini mengembangkan sistem pengenalan suara yang mampu mengevaluasi pembacaan \quran~secara otomatis. Sistem tersebut menggunakan fitur \f{mel frequency cepstral coefficient} (MFCC) dan \f{shifted delta cepstral coefficient} (SDCC), serta menggunakan metode klasifikasi \f{support vector machine} (SVM) dan \f{Gaussian mixture model} (GMM). Eksperimen dalam penelitian ini dilakukan terhadap setiap ayat di juz 30 \quran, dan memberikan hasil bahwa kombinasi yang paling tepat untuk digunakan dalam sistem tersebut adalah fitur SDCC dengan metode klasifikasi GMM. \\
+
+% \quran~adalah kitab suci bagi umat Muslim yang diturunkan dalam Bahasa Arab. Di dalam \quran~terkandung berbagai macam hakikat kehidupan. Banyak umat Muslim yang ingin belajar membaca \quran~serta menghafalkan \quran. Orang yang baru belajar membaca \quran~atau orang yang sedang menghafalkannya membutuhkan rekan yang mengerti cara membaca \quran. Peran rekan tersebut adalah untuk mengevaluasi bacaan orang yang sedang belajar \quran~atau yang sedang menghafalkan \quran. Namun rekan untuk mengevaluasi tidak setiap saat ada. Oleh karena itu, penelitian ini dilakukan dalam rangka membangun sistem pengenalan suara yang mampu mengevaluasi pembacaan \quran~secara otomatis, guna membantu proses evaluasi tersebut. Sistem yang dikembangkan dalam penelitian ini mengekstrak fitur MFCC dan SDCC dari audio. Fitur tersebut diklasifikasi menggunakan metode klasifikasi SVM dan GMM. Eksperimen dilakukan terhadap ayat-ayat di juz 30 \quran. Hasil eksperimen menunjukkan bahwa kombinasi yang paling tepat untuk digunakan dalam sistem ini adalah penggunaan fitur SDCC dan metode klasifikasi GMM. \\
+
+% \\ \quran~adalah kitab suci bagi umat islam. Di dalamnya terkandung berbagai macam hakikat kehidupan. Oleh karena itu, banyak umat islam yang ingin menghafalkan \quran. \quran~diturunkan dalam Bahasa Arab, dan dalam Bahasa Arab pula dihafalkan. Cara menghafalkan \quran~ada berbagai macam. Salah satunya adalah dengan meminta bantuan orang kedua untuk menyimak hafalannya. Ketika ada bacaan yang salah dari orang pertama, maka orang kedua mengingatkan atau memberi tanda kepada orang pertama. Namun hal itu tidak dapat dilakukan jika tidak ada orang kedua. Cara lain adalah dengan membaca beberapa ayat, lalu mencocokkan yang dibaca dengan yang ada di \quran. Hal itu selain menghambat proses menghafal karena harus sering melihat ke teks \quran, juga memberi peluang orang yang menghafal melihat bagian selanjutnya yang seharusnya tidak boleh dia lihat. Kemudian untuk membuat proses menghafal lebih praktis, maka dikembangkan sistem komputer yang mampu menggantikan peran sebagai orang kedua, yaitu mencocokkan bacaan yang dibaca oleh penghafal dengan teks \quran~yang benar. Sistem ini menggunakan Pengenalan Suara Otomatis (PSO), atau dalam Bahasa Inggris dikenal sebagai {\em Automatic Speech Recognition} (ASR).
+
+
+
+\vspace*{0.2cm}
+
+\noindent Kata Kunci: \\ 
+\noindent \quran, evaluasi, sistem pengenalan suara, MFCC, SDCC, SVM, GMM \\ 
+
+\newpage%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+\chapter{\babSatu}
+%-----------------------------------------------------------------------------%
+
+
+%-----------------------------------------------------------------------------%
+\section{Latar Belakang}
+%-----------------------------------------------------------------------------%
+	\quran~adalah kitab suci bagi umat Islam yang diturunkan dalam Bahasa Arab. Di dalamnya terkandung segala macam hakikat kehidupan. Walaupun banyak terjemahan \quran~dalam berbagai bahasa, namun keaslian \quran~dalam Bahasa Arab tetap dijaga. Salah satunya adalah karena makna \quran~yang begitu luas, sehingga tidak ada padanan kata yang mampu menerjemahkan bahasa \quran~secara sempurna. Bahkan dalam bahasa aslinya pun, makna yang dapat diambil dari satu ayat \quran~bisa bervariasi. Oleh karena itu, banyak umat Islam yang ingin menghafalkan \quran~dalam Bahasa Arab.
+	
+	Ada berbagai macam cara dalam menghafal Al-Qur'an. Salah satunya adalah dengan cara berpasangan. Orang pertama membacakan \quran~yang dihafalnya dan orang kedua mendengarkannya. Tugas orang kedua cukup sederhana, yaitu mendengarkan bacaan orang pertama, lalu mengevaluasi kebenaran pelafalan bacaannya. Namun cara seperti ini tidak dapat dilakukan jika tidak ada orang kedua atau orang kedua tidak mengerti bacaan yang benar. Alternatif solusi dari masalah tersebut adalah dengan memanfaatkan teknologi yang ada saat ini.
+	
+	Teknologi Sains dan Komputasi yang berkembang beberapa tahun terakhir mampu mengakomodir sebagian besar kebutuhan manusia sehari-hari. Salah satunya adalah sistem Pengenalan Suara Otomatis, atau lebih umum dikenal dengan nama \textit{Automatic Speech Recognition} (ASR).  ASR adalah proses yang dilakukan komputer untuk menafsirkan ucapan manusia \citep{forsberg2003speech}. Menurut \cite{IJIR37}, ASR adalah teknologi yang memungkinkan sebuah komputer untuk mengidentifikasi kata-kata yang diucapkan oleh manusia dan mengubahnya menjadi teks tertulis.
+	
+	Melihat kendala menghafal \quran~di atas dan teknologi yang berkembang saat ini, maka dimungkinkan untuk membuat alternatif solusi. Sistem ASR dapat dikembangkan untuk mengenali pelafalan bacaan Al-Qur'an, sehingga diharapkan akan ada peran komputer dalam membantu proses menghafal. Tugas komputer sebagai pengganti orang yang menyimak hafalan, yaitu mengevaluasi pelafalan bacaan \quran~oleh penghafal dalam bentuk suara digital dengan suara pelafalan bacaan \quran~yang benar.
+	
+	Hal lain yang menjadi dasar dilakukannya penelitian ini adalah kedudukan \quran~yang istimewa. Walaupun naskah asli \quran~dalam Bahasa Arab, namun gaya bahasa \quran~tidak seperti gaya bahasa yang digunakan masyarakat Arab pada umumnya. Begitu pula cara membaca \quran~yang memiliki aturan-aturan tersendiri. Aturan-aturan tersebut dinamakan \textit{tajwid}, di mana dalam Bahasa Arab sehari-hari tidak dijumpai adanya \textit{tajwid}. Penjelasan lebih lanjut mengenai \textit{tajwid} akan dijelaskan di Bab \ref{bacaan quran}. Hal ini mengakibatkan perlakuan dalam mengolah audio pelafalan bacaan \quran~menjadi berbeda dengan pengolahan sistem ASR Bahasa Arab. Maka dengan keistimewaan ini dimungkinkan adanya hal-hal menarik yang dapat ditemukan selama proses penelitian.
+
+%-----------------------------------------------------------------------------%
+\section{Perumusan Masalah}
+%-----------------------------------------------------------------------------%
+Berdasarkan latar belakang permasalahan yang ada, terdapat tiga pertanyaan yang akan diselesaikan dalam penelitian ini.
+\begin{enumerate}
+	\item Bagaimana membangun sistem komputasi yang dapat mengenali kebenaran pelafalan bacaan Al-Qur'an?
+	\item Metode seperti apa yang menghasilkan akurasi terbaik dari sistem yang dibangun?
+	\item Apa saja fakta-fakta baru yang dapat diambil dari proses pengolahan audio yang berupa bacaan Al-Qur'an?
+\end{enumerate}
+
+%-----------------------------------------------------------------------------%
+\section{Tujuan dan Manfaat Penelitian}
+%-----------------------------------------------------------------------------%
+Penelitian ini bertujuan untuk membangun sistem yang mampu mengenali kebenaran pelafalan bacaan Al-Qur'an. Penelitian ini mencakup rancangan sistem sampai dengan implementasi metode yang menghasilkan akurasi terbaik. Diharapkan dengan adanya teknologi ini, komputer akan mampu melakukan evaluasi pelafalan bacaan \quran~kapan pun dan di mana pun. Selain itu, penelitian ini juga bertujuan untuk mencari hal-hal menarik dalam dunia \textit{speech recognition} di mana domain penelitiannya berupa ayat-ayat Al-Qur'an.
+
+Manfaat dari penelitian ini adalah menghasilkan rancangan suatu sistem dan metode yang dapat dibungkus menjadi sebuah \textit{software} untuk membantu pengguna dalam memantau hafalan Al-Qur'an. Selama ini, penghafalan bacaan \quran~memerlukan rekan untuk menyimak dan memperbaiki bacaan hafalan tersebut. Namun jika ada \textit{software} yang dapat membantu menjalankan tugas tersebut, tentunya proses menghafal \quran~akan sangat terbantu dari segi evaluasinya. Penghafal tidak perlu lagi berulang-kali melihat ke teks \quran~untuk memeriksa apakah yang dilafalkan sudah benar atau belum. Kemudian metode evaluasi pelafalan bacaan \quran~dapat digunakan sebagai metode pencarian dalam Al-Qur'an. Caranya adalah dengan mencocokkan ayat demi ayat hingga ditemukan ayat yang cocok. Lebih jauh lagi, penelitian ini juga dapat dimanfaatkan sebagai bahan acuan untuk penelitian selanjutnya yang terkait dengan bidang dan domain yang sama.
+
+
+%-----------------------------------------------------------------------------%
+\section{Metodologi Penelitian}
+%-----------------------------------------------------------------------------%
+Berikut ini adalah metode penelitian yang \saya~lakukan.
+\begin{enumerate}
+	\item Studi Literatur\\
+	Pada tahapan ini \saya~mempelajari literatur yang dapat mendukung terselesaikannya penelitian ini. Literatur yang digunakan bersumber dari makalah, jurnal, buku, dan  artikel yang ada di internet. Bahan-bahan yang \saya~jadikan literatur semuanya memiliki kaitan dengan topik ASR, audio, maupun Al-Qur'an.
+	
+	\item Perumusan Masalah \\
+	Pada tahapan ini \saya~merumuskan permasalahan yang akan dijawab melalui penelitian ini. Rumusan masalah ini didapatkan setelah \saya~mempelajari literatur yang ada dan penerapannya dalam konteks pelafalan bacaan Al-Qur'an. 
+	
+	\item Perancangan Sistem \\
+	Pada tahapan ini, \saya~merancang suatu sistem yang dapat menjadi pedoman \saya~dalam melakukan penelitian ini. Tahapan ini dilakukan untuk memudahkan \saya~dalam melakukan eksperimen dan usaha menyelesaikan masalah pada penelitian ini.
+		
+	\item Eksperimen \\
+	Tahap ini merupakan bagian inti dari penelitian. Dengan melakukan serangkaian eksperimen, \saya~berusaha memperoleh jawaban dari pertanyaan-pertanyaan yang ada pada bagian perumusan masalah.
+	
+	\item Analisis Hasil \\
+	Pada tahapan ini \saya~melakukan analisis dari hasil eksperimen pada tahap sebelumnya.
+		
+	\item Penarikan Kesimpulan \\
+	Tahap ini merupakan tahap terakhir dari penelitian, di mana \saya~memberikan kesimpulan dari hasil analisis di tahap sebelumnya. Selain itu \saya~juga memberikan saran sebagai bahan pertimbangan untuk penelitian selanjutnya.
+\end{enumerate}
+
+%-----------------------------------------------------------------------------%
+\section{Ruang Lingkup Penelitian}
+Pada penelitian ini terdapat beberapa batasan yang \saya~tentukan, yaitu sebagai berikut:
+\begin{enumerate}
+\item{\bf Batasan Sistem}\\
+Sistem melakukan pengenalan per satu ayat secara utuh, bukan potongan ayat, dan hanya melibatkan ayat-ayat yang terdapat di juz 30 Al-Qur'an. Hal ini dikarenakan ayat-ayat dalam juz 30 merupakan ayat yang berdurasi singkat, dengan rata-rata durasi 5,5109 detik. Audio dengan durasi itu dapat langsung diolah oleh sistem tanpa perlu disegmentasi terlebih dahulu.
+	
+\item{\bf Kriteria Data}\\
+Data yang digunakan dalam penelitian ini merupakan audio bebas \textit{noise}. Untuk memastikan data audio tersebut bebas \f{noise} dan layak digunakan dalam penelitian, maka data tersebut perlu diuji secara manual, dengan cara didengarkan langsung. Penelitian ini hanya berfokus pada metode, tidak termasuk proses pembersihan audio dari \f{noise}. Sampel yang digunakan merupakan sampel yang sesuai standar, yaitu sampel dari orang yang cara melafalkan bacaan Al-Qur'annya sudah benar. Karena jika sampel merupakan bacaan yang kurang benar atau tidak sesuai standar, maka hal tersebut akan membuat hasil eksperimen sulit untuk dianalisis dengan tepat. Bacaan standar diperoleh dari para pembaca \quran~tingkat internasional, yang akan dijelaskan lebih lanjut cara memperolehnya di Bab \ref{pengambilan data}.
+	
+\item{\bf Penerapan Metode}\\
+Penelitian ini difokuskan pada kombinasi pemilihan fitur dan metode klasifikasi terbaik. Metode klasifikasi yang digunakan merupakan metode klasifikasi umum, dengan parameter yang akan dibahas detil pada Bab \ref{eksperimen}, dan tidak sampai pada optimasi metode klasifikasi untuk menghasilkan akurasi terbaik. Optimasi dapat dilakukan di penelitian selanjutnya, jika arsitektur sistem dan fitur yang digunakan dengan metode klasifikasi tersebut sudah menghasilkan akurasi yang baik.
+	
+\item{\bf Aplikasi}\\
+Penelitian ini hanya dibataskan sampai metode, tidak sampai ke tahap pembuatan aplikasi. Karena keterbatasan waktu penelitian, maka tidak dimungkinkan penelitian ini dilakukan sampai ke tahap pembuatan aplikasi. Pembuatan aplikasi dapat dilakukan oleh pihak ketiga setelah metode yang dipilih untuk pengenalan pelafalan bacaan \quran~sudah menghasilkan akurasi yang baik.
+\end{enumerate}
+
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+\section{Sistematika Penulisan}
+%-----------------------------------------------------------------------------%
+Sistematika penulisan yang ada dalam laporan penelitian ini sebagai berikut:
+\begin{itemize}
+
+	\item Bab 2 \babDua \\
+	Pada bab ini \saya~menjelaskan teori-teori terkait topik yang \saya~dapatkan melalui studi literatur untuk melakukan penelitian ini.
+		
+	\item Bab 3 \babTiga \\
+	Pada bab ini \saya~menjelaskan rancangan dari sistem yang akan \saya~kembangkan dalam penelitian ini.
+		
+	\item Bab 4 \babEmpat \\
+	Pada bab ini \saya~menjelaskan proses implementasi sistem berdasarkan rancangan sistem yang sudah dilakukan pada bab sebelumnya, sampai dengan tahap pengujian.
+		
+	\item Bab 5 \babLima \\
+	Pada bab ini \saya~menjelaskan mengenai analisis dari hasil pengujian sistem yang sudah \saya~kerjakan pada tahap sebelumnya. Pada bab ini juga dipaparkan hal-hal menarik yang ditemukan selama penelitian.
+	
+	\item Bab 6 \babEnam \\
+	Pada bab ini \saya~memberikan kesimpulan berdasarkan hasil pengujian dan analisis sistem yang sudah dilakukan pada bab sebelumnya. Selain itu terdapat pula saran-saran untuk penelitian selanjutnya.
+	
+\end{itemize}%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+\chapter{\babDua}
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+\section{Bacaan Al-Qur'an} \label{bacaan quran}
+%-----------------------------------------------------------------------------%
+\quran~adalah kitab suci umat muslim yang istimewa dan memiliki banyak nama. Dalam bukunya yang berjudul \f{Holy Quran}, \cite{ali2011holy} menjelaskan bahwa nama \f{Al-Qur'an} (\<القرآن>) adalah nama asli dari kitab suci ini. Nama ini disebut beberapa kali di dalam \quran~itu sendiri. Kata \f{Al-Qur'an} berasal dari kata dasar \f{qara'a} (\<قرأ>) yang berarti membaca. Alasan kenapa dinamakan \quran~adalah karena di dalamnya berisi bacaan-bacaan pelajaran religi yang baik dan karena kitab ini diturunkan untuk dibaca. Adapun nama lain dari \quran~adalah \f{Al-Kitab} (\<الكتاب>) yang berarti tulisan, \f{Al-Furqon} (\<الفرقان>) yang berarti pembeda, dan \f{Al-Dzikr} (\<الذكر>) yang berarti pengingat.
+
+\quran~diturunkan dalam Bahasa Arab, begitu pula cara membacanya atau pun menghafalkannya. Cara membaca teks \quran~mirip dengan cara membaca teks bahasa Arab, namun ada kaidah-kaidah tambahan yang harus diikuti, yang disebut \f{tajwid}. Karena itu bacaan \quran~menjadi istimewa dan berbeda dengan ucapan Bahasa Arab sehari-hari. Adapun orang yang membaca \quran~disebut \f{qari} dan rekaman bacaan \quran~dari qari disebut \f{murotal}.
+
+Satu \quran~dibagi sama rata ke dalam 30 bagian, yang masing-masing disebut dengan \f{juz}. Dalam \quran~terdapat 114 \f{surat}, di mana setiap surat terdiri dari beberapa \f{ayat}, bervariasi mulai dari 3 ayat sampai 286 ayat. Total seluruh ayat dalam \quran~ada sebanyak 6,236 ayat. Ayat-ayat \quran~tidak seluruhnya unik, karena ada beberapa pasang ayat yang sama dan ada beberapa pasang ayat yang mirip. Hal ini bisa dideteksi menggunakan algoritma yang akan dijelaskan di Bab \ref{lcs}.
+
+%-----------------------------------------------------------------------------%
+\section{Pengenalan Suara Otomatis}
+%-----------------------------------------------------------------------------%
+Pengenalan Suara Otomatis atau yang lebih umum dikenal dengan \f{Automatic Speech Recognition} (ASR) memiliki beberapa definisi dari sumber yang berbeda. Menurut \cite{forsberg2003speech}, ASR adalah proses yang dilakukan komputer untuk menafsirkan ucapan manusia. Definisi lebih teknis diberikan oleh \cite{Jurafsky:2009:SLP:1214993}, yaitu ASR adalah sebuah sistem untuk memetakan sinyal akustik ke dalam untaian kata. Selain definisi-definisi yang telah disebutkan sebelumnya, \cite{chigier1997automatic} menambahkan bahwa ASR merupakan proses komputasi yang bertujuan untuk menangkap sinyal akustik yang merepresentasikan ucapan dan menentukan kata-kata yang diucapkan menggunakan pencocokan pola.
+
+Teknik dalam membangun sistem ASR berbeda-beda, namun secara garis besar ada kesamaan. Sistem pengenalan suara umumnya memiliki sekumpulan model akustik dan bahasa yang direpresentasikan sebagai pola, dan disimpan dalam sebuah basis data komputer. Model-model ini kemudian dibandingkan dengan sinyal yang ditangkap. Untuk sistem ASR yang mengandung sedikit kosakata (kurang dari 50 kata), sebuah model dapat merepresentasikan sebuah kata. Namun untuk kosakata yang lebih dari 50 kata, proses pemodelan dan algoritma pengenalan membutuhkan komputasi yang banyak dan tidak praktis. Oleh karena itu, sistem dengan kosakata yang banyak (lebih dari 1000 kata) membuat sebuah model yang merepresentasikan komponen yang lebih kecil dari kata, sebagai contoh adalah \f{fonem}. Deretan fonem dapat dirangkai untuk menghasilkan sebuah model kata.
+
+\cite{juang2005automatic} dalam artikelnya yang berjudul \f{Automatic Speech Recognition -- A Brief History of the Technology Development} menjelaskan bahwa saat ini teknologi ASR sudah tersedia secara komersial, walaupun hanya mampu menjalankan tugas-tugas yang terbatas. Teknologi ini memungkinkan mesin untuk menanggapi perintah manusia melalui suara dengan baik. Namun teknologi tersebut masih jauh dari kemampuan untuk bercakap-cakap dengan manusia dalam berbagai topik bebas. Perkembangan dalam bidang sains dan teknologi semakin mendorong sistem ASR untuk menjadi sistem yang mampu mengenali dan memahami ucapan manusia dengan baik.
+
+Sejarah singkat mengenai perkembangan ASR dapat dikelompokkan ke dalam beberapa era. Dimulai pada sekitar tahun 1960, di mana pada saat itu telah berhasil dikembangkan teknologi yang mampu mengenali kosakata dalam skala kecil (10 sampai 100 kata). Pengenalan ini dilakukan dengan mengenali kata demi kata secara terpisah berdasarkan sifat-sifat \f{acoustic-phonetic} yang terdapat dalam suara. \f{Acoustic-phonetic} adalah ilmu tentang karakteristik akustik dari suara. Kunci dari keberhasilan teknologi ASR di era ini adalah analisis \f{filter-bank}, metode normalisasi \f{simple time}, dan permulaan dari metodologi \f{dynamic programming} yang canggih. \f{Filter-bank} adalah pembagian sinyal \f{input} $x(n)$ ke dalam himpunan sinyal analisis  $x_1(n), x_2(n), \ldots$, yang masing-masing berkorespondensi terhadap wilayahnya di dalam spektrum $x(n)$.
+
+Sekitar tahun 1970, teknologi yang berkembang mampu untuk mengenali kosakata dalam skala sedang (100 sampai 1000 kata). Kunci perkembangan teknologi di era ini adalah model pengenalan pola (\f{pattern recognition}), permulaan metode \f{Linear Predictive Coding} (LPC) untuk merepresentasikan spektrum, metode \f{pattern clustering} untuk \f{speaker-independent recognizers}, dan permulaan metode \f{dynamic programming} untuk menyelesaikan permasalahan \f{connected word recognition}. Sekitar tahun 1980, teknologi ASR mampu menangani kosakata dalam skala besar (1000 kata atau lebih). Kunci dari keberhasilan di era ini adalah model statistik \f{Hidden Markov Model} (HMM) dan model bahasa \f{stochastic}.
+
+Teknologi semakin maju pada sekitar tahun 1990. Sistem ASR dengan kosakata berskala besar yang lebih canggih dari era sebelumnya telah berhasil dikembangkan pada era ini, dengan adanya \f{continuous speech recognition and understanding}. Adapun keberhasilan teknologi ASR di era ini berkat metode untuk melakukan \f{stochastic language understanding}, pembelajaran statistik dari model akustik dan model bahasa, permulaan \f{finite state transducer framework} (dan juga \f{FSM Library}), serta metode untuk determinasi dan minimalisasi untuk implementasi sistem \f{speech understanding} yang efisien dengan kosakata berskala besar. Akhirnya sekitar tahun 2000, muncul permulaan dari sistem ASR dengan kosakata berskala sangat besar disertai model semantik penuh, terintegrasi dengan sistem sintesis \f{text-to-speech} (TTS), dan \f{multi-modal inputs}.
+
+
+
+%-----------------------------------------------------------------------------%
+\section{Fitur}
+%-----------------------------------------------------------------------------%
+Informasi tertentu yang diambil dari data disebut \f{fitur}. Proses pengambilan fitur dari data dinamakan proses \f{ekstraksi fitur}. Dalam sistem ASR, fitur yang populer digunakan antara lain adalah \f{Mel Frequency Cepstral Coefficients} dan \f{Shifted Delta Cepstral Coefficients}.
+
+	\subsection{Mel Frequency Cepstral Coefficients (MFCCs)} \label{teorimfcc}
+	\f{Mel frequency cepstral coefficients} (MFCCs) adalah salah satu fitur modern dalam teknologi \f{speech}, yang diperkenalkan oleh \cite{1163420}. Fitur ini sudah banyak digunakan dalam ASR \citep{young2002htk}, verifikasi \f{speaker} \citep{ganchev2005comparative}, dan juga di dalam identifikasi bahasa lisan \citep{yin2006combining}. MFCCs adalah fitur yang berbasis spektrum \f{short-term}. Dalam penelitian tentang \f{speech}, \f{short term} sering dipilih sebagai fitur dengan asumsi bahwa secara statistik sinyal bersifat stasioner dalam periode waktu singkat. Namun jika terlalu singkat, banyaknya sampel tidak akan cukup untuk menghasilkan estimasi spektrum tepat. Umumnya interval waktu untuk sebuah \fr~adalah 20 ms sampai dengan 40 ms \citep{zahra2013unique}.
+
+  \cite{hitungmfcc} menjelaskan secara garis besar cara menghitung nilai MFCCs dari sebuah data audio. Langkah-langkahnya adalah sebagai berikut.
+  \begin{enumerate}
+    \item Bagi sebuah sinyal ke dalam beberapa \fr~singkat.
+    \item Hitung estimasi \f{periodogram} dari \f{power spectrum} pada setiap \fr.
+    \item Terapkan \f{mel filter-bank} ke setiap \f{power spectrum}, lalu jumlahkan energi di setiap \f{filter}.
+    \item Hitung nilai logaritma dari seluruh energi \f{filter-bank}.
+    \item Hitung nilai \f{discrete cosine transform} (DCT) dari logaritma energi \f{filter-bank}.
+    \item Pertahankan koefisien ke-2 sampai ke-13 saja dari DCT.
+  \end{enumerate}
+
+
+
+	\subsection{Shifted Delta Cepstral Coefficients (SDCCs)}  \label{teorisdcc}
+  \f{Shifted delta cepstral coefficients (SDCCs)} adalah pengembangan dari MFCCs \citep{torres2002approaches}. Untuk menghitung SDCCs diperlukan nilai MFCCs sebagai salah satu parameter dalam komputasi SDCCs. Vektor fitur SDCCs diperoleh dengan cara menumpuk \f{delta cepstral} yang dihitung dari beberapa \fr. Selain nilai MFCCs, fitur SDCCs membutuhkan 4 parameter tambahan sebagai berikut.
+  \begin{enumerate}
+    \item N: banyaknya koefisien-koefisien \f{cepstral} yang dihitung pada setiap \fr
+    \item \f{d}: waktu untuk \f{advance} dan \f{delay} untuk komputasi \f{delta}
+    \item \f{P}: pergeseran waktu antarblok berurutan
+    \item \f{k}: banyaknya blok di mana koefisien \f{delta} disambungkan untuk membentuk vektor fitur akhir
+  \end{enumerate}
+  
+  Menurut \cite{zahra2013unique}, ide dari perhitungan ini adalah menghitung jarak antara pasangan N koefisien \f{cepstral} paralel yang dipisahkan oleh waktu \f{advance} dan \f{delay} \f{t}, dilakukan pada \f{k} blok dengan waktu geser \f{P} antarblok yang berurutan. Semua nilai jarak ini kemudian disatukan menjadi sebuah vektor. Langkah ini dilakukan secara iteratif dari awal sampai akhir \fr~pada \f{speech}, sehingga diperoleh kumpulan vektor yang menjadi nilai SDCCs. Gambar \ref{fig:hitungsdcc} mengilustrasikan bagaimana cara menghitung sebuah vektor SDCC.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/hitung_sdcc}
+    \caption{Contoh Perhitungan Sebuah Vektor SDCC}{Sumber gambar: \cite{zahra2013unique}}
+    \label{fig:hitungsdcc}
+  \end{figure}
+
+
+
+%-----------------------------------------------------------------------------%
+\section{Longest Common Subsequence (LCS)}\label{lcs}
+%-----------------------------------------------------------------------------%
+\cite{Cormen:2009:IAT:1614191} menjelaskan tentang algoritma untuk menyelesaikan permasalahan \f{longest common subsequence} (LCS) dalam bukunya yang berjudul \f{Introduction to Algorithms}. Diberikan sebuah barisan (\f{sequence}) $X=\langle x_1,x_2,...,x_m\rangle$. Barisan $Z=\langle z_1,z_2,...,z_k\rangle$ disebut \textbf{\f{subsequence}} dari $X$ jika terdapat barisan menaik $\langle i_1,i_2,...,i_k\rangle$ berupa indeks dari $X$ sedemikian hingga untuk semua $j=1,2,...,k$, terpenuhi $x_{i_j}=z_j$. Sebagai contoh, $Z=\langle B,C,D,B\rangle$ adalah \f{subsequence} dari $X=\langle A,B,C,B,D,A,B\rangle$ dengan barisan indeks yang berkorespondensi adalah $Z=\langle 2,3,5,7\rangle$.
+
+Diberikan dua buah barisan $X$ dan $Y$. $Z$ disebut \textbf{\f{common subsequence}} dari $X$ dan $Y$ jika Z merupakan \f{subsequence} dari $X$ dan $Y$ sekaligus. Sebagai contoh,  jika $X=\langle A,B,C,B,D,A,B\rangle$, dan $Y=\langle B,D,C,A,B,A\rangle$, barisan $\langle B,C,A\rangle$ adalah \f{common subsequence} dari $X$ dan $Y$ sekaligus. Barisan $\langle B,C,A\rangle$ bukan merupakan \f{common subsequence} terpanjang dari $X$ dan $Y$ karena hanya memiliki panjang 3, sedangkan terdapat barisan $\langle B,C,B,A\rangle$ yang memiliki panjang 4 dan juga merupakan \f{common subsequence} dari $X$ dan $Y$. Karena tidak ada \f{common subsequence} dari $X$ dan $Y$ dengan panjang 5, maka barisan $\langle B,C,B,A\rangle$ merupakan \f{common subsequence} terpanjang atau \textbf{\f{longest common subsequence}} (LCS) dari $X$ dan $Y$.
+
+LCS dapat diselesaikan menggunakan \f{dynamic programming}. Prosedur pada gambar \ref{fig:prosedurlcs} menjelaskan cara untuk menghitung nilai LCS. Prosedur tersebut membutuhkan dua buah barisan sebagai \f{input}, yaitu $X=\langle x_1,x_2,...,x_m\rangle$ dan $Y=\langle y_1,y_2,...,y_n\rangle$, dan memberikan tabel $b$ dan $c$ sebagai \f{output}. Nilai LCS terdapat pada $c[m,n]$.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{pics/prosedur_lcs}
+  \caption{Prosedur LCS-Length}{Sumber gambar: \cite{Cormen:2009:IAT:1614191}}
+  \label{fig:prosedurlcs}
+\end{figure}
+
+Gambar \ref{fig:tabellcs} memperlihatkan bagaimana isi tabel yang dihasilkan dari prosedur LCS-Length pada barisan $X=\langle A,B,C,B,D,A,B\rangle$ dan $Y=\langle B,D,C,A,B,A\rangle$.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.55\linewidth]{pics/tabel_lcs}
+  \caption{Tabel $c$ dan $b$ yang Dihasilkan oleh Prosedur LCS-Length}{Sumber gambar: \cite{Cormen:2009:IAT:1614191}}
+  \label{fig:tabellcs}
+\end{figure}
+
+
+%-----------------------------------------------------------------------------%
+\section{Metode \f{Clustering} dan Klasifikasi}
+%-----------------------------------------------------------------------------%
+Metode \f{clustering} dan klasifikasi adalah dua hal yang mirip. \f{Clustering} mengelompokkan data tanpa diketahui labelnya, sedangkan klasifikasi mengelompokkan data dengan diketahui labelnya.
+
+  %-----------------------------------------------------------------------------%
+  \subsection{K-Means Clustering}
+  %-----------------------------------------------------------------------------%
+  \f{Clustering} adalah proses mengelompokkan data menurut kemiripannya. Ada beberapa metode \f{clustering} yang dikembangkan oleh peneliti, salah satunya adalah \f{k-means clustering}. Metode ini mengelompokkan data menurut kedekatannya ke dalam \f{k} kelompok. Data dalam \f{k-means clustering} berupa sebuah vektor, sehingga kedekatan dua buah vektor ditentukan oleh jarak dari dua buah vektor tersebut. Jarak dua buah vektor salah satunya dihitung menggunakan \f{euclidean distance}. \cite{anton2010elementary} menjelaskan tentang \f{euclidean distance} dalam bukunya yang berjudul \f{Elementary Linear Algebra} sebagai berikut. Jika $\mathbf{u} = (u_1,u_2,...,u_n)$ dan $\mathbf{v} = (v_1,v_2,...,v_n)$ adalah dua buah titik di dalam $\mathbb{R}^n$, maka \f{euclidean distance} antara $\mathbf{u}$ dan $\mathbf{v}$ didefinisikan sebagai
+  \begin{equation} \label{equ:euclideandistance}
+    d(\mathbf{u},\mathbf{v})=||\mathbf{u}-\mathbf{v}||=\sqrt{(u_1-v_1)^2+(u_2-v_2)^2+\dots+(u_n-v_n)^2}.
+  \end{equation}
+  
+  \cite{kanungo2002efficient} menjelaskan cara kerja \f{k-means} sebagai berikut. Diberikan himpunan $n$ titik dalam dimensi $d$, $\mathbb{R}^d$, dan sebuah bilangan bulat $K$. Tugas dari \f{k-means} adalah menentukan himpunan $K$ titik dalam $\mathbb{R}^d$, yang disebut \f{centers}, untuk meminimalkan nilai \f{mean squared distance} dari setiap titik ke \f{center} terdekat. \f{Center} dalam istilah lain disebut \f{centroid}. Secara matematis, untuk himpunan \f{disjoint} $S_j$ yang berisi $N_j$ titik, \f{k-means} bekerja dengan cara meminimalkan nilai $J$ pada persamaan
+  \begin{equation}
+    J = \sum_{j=1}^{K}{\sum_{n\in S_j}{|x_n-\mu_j|^2}},
+  \end{equation}
+  di mana $x_n$ adalah vektor yang merepresentasikan titik ke-$n$ dan $\mu_j$ merepresentasikan \f{centroid} dari titik-titik dalam himpunan $S_j$ \citep{kmeans}. Walaupun algoritma \f{k-means clustering} tidak menghasilkan solusi \f{global optimum} untuk $J$, namun algoritma ini sering digunakan oleh banyak praktisi karena mudah untuk diimplementasikan.
+
+  Metode \f{k-means clustering} secara singkat terdiri dari langkah-langkah sebagai berikut.
+  \begin{enumerate}
+    \item Masukkan seluruh titik ke dalam $K$ himpunan secara acak.
+    \item \label{hitung_centroid} Hitung \f{centroid} pada setiap himpunan.
+    \item \label{kelompokkan} Kelompokkan ulang setiap titik ke kelompok yang memiliki \f{centroid} terdekat dengan titik tersebut.
+    \item Ulangi langkah \ref{hitung_centroid} sampai \ref{kelompokkan} hingga syarat berhenti terpenuhi, misalnya tidak adanya perubahan kelompok pada setiap titik.
+  \end{enumerate}
+
+
+
+  \subsection{Support Vector Machine (SVM)}
+  \f{Support Vector Machine} (SVM) adalah metode pembelajaran mesin yang relatif baru untuk klasifikasi biner, yaitu klasifikasi yang hanya terdiri dari dua kelas \citep{svm}. Ide dasar dari SVM adalah mencari \f{hyperplane} yang memisahkan data $d$-dimensi secara linier menjadi dua kelas. Namun data sampel terkadang tidak dapat dipisahkan secara linier, sehingga SVM memperkenalkan konsep \f{kernel induced feature space}, yaitu memetakan data ke dimensi ruang yang lebih tinggi supaya data dapat dipisahkan secara linier. Gambar \ref{fig:svm2d} mengilustrasikan data dalam dimensi 2 yang tidak dapat dipisahkan secara linier. Gambar \ref{fig:svm3d} mengilustrasikan data tersebut setelah dipetakan ke dimensi 3 dengan fungsi $\phi(x,y)=(x,y,x^2+y^2)$, sehingga dapat dipisahkan secara linier menggunakan \f{hyperplane}.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/svm_2db}
+    \caption{Ilustrasi Data dalam Dimensi 2}
+    \label{fig:svm2d}
+  \end{figure}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/svm_3db}
+    \caption{Ilustrasi Data dalam Dimensi 3}
+    \label{fig:svm3d}
+  \end{figure}
+
+  Secara matematis, cara kerja SVM dalam melakukan klasifikasi adalah sebagai berikut. Diberikan $l$ sampel \f{training}, $\{\vec x_i,y_i\}$ untuk $i=1,2,\dots,l$; $\vec x_i\in\mathbb{R}^d$; dan $y_i\in\{-1,1\}$. Semua \f{hyperplane} di $\mathbb{R}^d$ memiliki parameter berupa sebuah vektor $\vec w$ dan sebuah konstanta $b$, yang dinyatakan dalam bentuk persamaan
+  \begin{equation}
+    \vec w\cdot\vec x+b=0.
+  \end{equation}
+  Diberikan sebuah \f{hyperplane} $(\vec w,b)$ yang memisahkan data, maka terdapat fungsi
+  \begin{equation}
+    f(\vec x) = sign(\vec w\cdot\vec x+b)
+  \end{equation}
+  yang mengklasifikasi data \f{training} dengan benar. Syarat data terklasifikasi dengan benar adalah $\forall_i(f(\vec x_i)y_i \geq 1)$.
+
+  Pemetaan ke dimensi ruang yang lebih tinggi membutuhkan proses komputasi yang lebih banyak, serta dapat membuat proses klasifikasi mengalami \f{overfitting}. Karena itu pemetaan vektor tidak dilakukan dalam SVM secara langsung. Pemetaan terjadi secara tidak langsung di dalam \f{kernel function}. \f{Kernel function} adalah fungsi yang digunakan untuk menghitung nilai perkalian dua buah vektor dalam SVM. \f{Kernel function} $K(\vec{x_a},\vec{x_b})$ menerima \f{input} berupa dua buah vektor dan memberikan \f{output} berupa sebuah nilai skalar. Salah satu contoh \f{kernel function} adalah $K(\vec{x_a},\vec{x_b}) = (\vec{x_a}\cdot\vec{x_b}+1)^2$.
+
+
+
+  \subsection{Gaussian Mixture Model (GMM)}
+  Menurut \cite{6235282}, \f{Gaussian mixture distribution} atau \f{Gaussian mixture model} (GMM) adalah gabungan dari $L$ komponen \f{Gaussian distribution}. Untuk \f{random variable} satu dimensi, $Y$, \f{probability density function (PDF)} dari $Y$ didefinisikan sebagai
+  \begin{equation}
+    f_Y(y) = \sum_{i=1}^{L}{\omega_i f_{N(\mu_i,\sigma^2_i)}(y)},
+  \end{equation}
+  di mana $\omega_i$, $\mu_i$, dan $\sigma^2_i$ secara berurutan menyatakan proporsi, rata-rata, dan varian dari komponen ke-i di \f{Gaussian mixture} \citep{4643623}. PDF adalah fungsi pada suatu distribusi \f{random variable} kontinu yang menyatakan probabilitas suatu nilai berada pada interval distribusi tersebut.
+
+  Untuk mempertahankan karakteristik dari \f{probability distribution}, parameter memiliki batasan yaitu, $0<\omega_i\leq1$~dan~$\sum_{i=1}^{L}{\omega_i=1}$. Menurut buku \f{Applied Statistics and Probability for Engineers} yang ditulis oleh \cite{montgomery2013applied}, cara menghitung distribusi dari komponen \f{Gaussian} ke-i, $f_{N(\mu_i,\sigma^2_i)}$, adalah sebagai berikut.
+  \begin{equation}
+    f_{N(\mu_i,\sigma^2_i)}(x) = \frac{1}{\sqrt{2\pi\sigma^2_i}} e^{(\frac{-(x-\mu_i)^2}{2\sigma^2_i})}.
+  \end{equation}
+
+  \cite{5089549} menjelaskan cara menghitung rata-rata ($\mu$) dan varian ($\sigma^2$) dari \f{random variable} $Y$ adalah sebagai berikut.
+  \begin{align}
+    \mu_Y      &= \sum_{i=1}^{L}{\omega_i\mu_i}\\
+    \sigma^2_Y &= \sum_{i=1}^{L}{\omega_i(\sigma^2_i+(\mu_i-\mu_Y)^2)}.
+  \end{align}
+
+  Gambar \ref{fig:gmm} menunjukkan \f{probability density} dari \f{random variable} $Y$ yang dimodelkan menggunakan \f{Gaussian distribution} dengan 7 komponen. Jumlah setiap komponen berbobot \f{Gaussian} menghasilkan \f{Gaussian mixture distribution}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/gmm}
+    \caption{\f{Gaussian Mixture Distribution} dengan 7 Komponen}{Sumber gambar: \cite{6235282}}
+    \label{fig:gmm}
+  \end{figure}
+
+  Keuntungan menggunakan GMM adalah GMM dapat mendekati sembarang PDF selama banyak komponennya terbatas. Biasanya semakin banyak komponen yang ada pada GMM, maka pendekatan tersebut semakin akurat. Metode paling efektif untuk menentukan GMM yang paling mendekati distribusi sampel \f{random variable} $Y$ adalah menggunakan algoritma \f{expectation maximization} \citep{singh2010statistical}.
+
+
+\section{Evaluasi} \label{chap:evaluasi}
+Pada klasifikasi biner, hasil klasifikasi dapat dikategorikan menjadi dua, yaitu \f{true} (+) dan \f{false} (-). Perbandingan hasil klasifikasi dengan hasil yang diharapkan dapat dilihat pada tabel \ref{table:kontingensi}.
+
+\begin{table}
+  \centering
+  \caption{Kontingensi}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \multirow{2}{7em}{\textbf{Hasil Klasifikasi}} & \multicolumn{2}{c|}{\textbf{Hasil yang Diharapkan}} \\
+    \cline{2-3}
+    & + & - \\
+    \hline
+    + & True Positive (TP) & False Positive (FP) \\
+    \hline
+    - & False Negative (FN) & True Negative (TN) \\
+    \hline
+  \end{tabular}
+  \label{table:kontingensi}
+\end{table}
+
+Dari tabel \ref{table:kontingensi} dapat dihitung beberapa metrik evaluasi, yang dapat digunakan untuk melihat dan menganalisis hasil eksperimen. Beberapa contoh metrik evaluasi antara lain sebagai berikut.
+
+\begin{align}
+  Accuracy &= \frac{TP+FN}{TP+FN+FP+TN} \label{equ:accuracy} \\
+  Precision &= \frac{TP}{TP+FP} \label{equ:precision} \\
+  Recall &= \frac{TP}{TP+FN} \label{equ:recall} \\
+  F-measure &= \frac{2 \cdot Precision \cdot Recall}{Precision + Recall} \label{equ:fmeasure}
+\end{align}
+
+Nilai-nilai pada metrik evaluasi memiliki makna yang berbeda-beda. \f{Accuracy} (persamaan \ref{equ:accuracy}) menyatakan rasio antara banyaknya hasil klasifikasi yang sesuai dengan hasil yang diharapkan dengan seluruh data yang ada. Dari hasil klasifikasi yang positif (+), rasio antara banyaknya hasil positif yang sesuai dengan yang diharapkan dengan banyaknya hasil klasifikasi yang positif disebut \f{precision} (persamaan \ref{equ:precision}). Kemudian \f{recall} (persamaan \ref{equ:recall}) menyatakan rasio antara banyaknya data yang diklasifikasi positif dengan banyaknya data yang diharapkan positif. Namun terkadang nilai \f{precision} bersaing dengan nilai \f{recall}. Semakin tinggi nilai \f{precision} biasanya membuat nilai \f{recall} semakin rendah, begitu juga sebaliknya, semakin tinggi nilai \f{recall} biasanya membuat nilai \f{precision} semakin rendah. Oleh karena itu dibuatlah nilai \f{F-measure} (persamaan \ref{equ:fmeasure}) yang menyatakan perbandingan nilai \f{precision} dengan \f{recall}.
+
+
+
+%-----------------------------------------------------------------------------%
+\section{Penelitian Terkait}
+%-----------------------------------------------------------------------------%
+Penelitian ini membahas sistem \f{automatic speech recognition} (ASR) dalam domain bacaan Al-Qur'an. Beberapa pekerjaan yang sudah dilakukan oleh peneliti sebelumnya terkait bidang ASR dengan domain \quran~antara lain, yang \f{pertama} adalah penelitian yang dilakukan oleh \cite{Muhammad:2010:VCM:1934908.1935467}. Penelitiannya membahas tentang pencocokan suara bacaan Al-Qur'an. Tujuannya adalah membangun sistem yang dapat memberitahukan kesalahan pada pelafalan bacaan \quran~yang tidak sesuai dengan pelafalan yang seharusnya. Penelitiannya menggunakan MFCC sebagai fitur. Namun tidak dijelaskan secara menyeluruh bagaimana proses pencocokan itu dilakukan dalam penelitiannya. Selain itu, terdapat parameter yang ditentukan sendiri oleh penulisnya tanpa penjelasan, seperti penentuan $threshold\_value = 2,6$ dan $matched \geq 3$. Dalam penelitiannya juga tidak dijelaskan mengenai cakupan data yang digunakan.
+
+Penelitian \f{kedua} dilakukan oleh \cite{putra2012developing} yang dimuat dalam jurnalnya, \f{Developing Speech Recognition System for Quranic Verse Recitation Learning Software}. Jurnal tersebut membahas mengenai pengembangan perangkat lunak untuk membantu pembelajaran dalam membaca Al-Qur'an. Penelitian dalam jurnal tersebut menggunakan MFCC sebagai fitur dan GMM sebagai model. Walaupun jurnalnya membahas sampai pada tahap pembuatan perangkat lunak, namun penjelasan mengenai ekstraksi fitur dan teknik pemodelannya masih kurang.
+
+Penelitian \f{ketiga} dilakukan oleh \cite{mohammed2015quranic}. Penelitiannya bertujuan untuk mencegah pengubahan suara bacaan \quran~yang banyak tersebar di \f{internet} dan media sosial secara otomatis. Pengubahan yang dimaksud adalah penambahan, pengurangan, atau kesalahan dalam melafalkan bacaan ayat-ayat Al-Qur'an. Penelitian tersebut menggunakan teks sebagai fitur. Proses ekstraksi teks dari audio lebih kompleks dibandingkan dengan proses ekstraksi MFCC. Untuk mengekstrak teks dari suara setidaknya diperlukan model akustik dan model bahasa. Proses ini menggunakan \f{Hidden Markov Model} (HMM) sebagai model untuk mencari tahu teks mana yang paling memungkinkan untuk menjadi \f{output}. Kekurangan dalam penelitian tersebut adalah laporan penelitiannya hanya mencantumkan hasil yang diharapkan, dan memberikan kesimpulan bahwa untuk Bahasa Arab, fitur yang tepat digunakan adalah MFCC dengan model HMM, berdasarkan teknologi yang berkembang saat ini.%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+\chapter{\babTiga}
+%-----------------------------------------------------------------------------%
+
+
+%-----------------------------------------------------------------------------%
+\section{Rancangan Arsitektur Sistem}
+%-----------------------------------------------------------------------------%
+Sistem ASR yang dikembangkan diharapkan dapat memberikan hasil dalam hitungan detik. Karena jika terlalu lama dalam memberikan hasil, maka hal itu akan menghambat pengguna dalam menghafal Al-Qur'an. Selain itu, sistem diharapkan dapat diimplementasikan ke berbagai \f{platform} seperti Windows, Linux, Android, dan lain-lain. Dengan begitu model komputasi yang dihasilkan dalam penelitian ini dapat diaplikasikan dalam berbagai bidang.
+
+Sistem yang akan dibuat dalam penelitian ini sesuai dengan rancangan arsitektur sistem pada gambar \ref{fig:arsitektur_sistem}.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{pics/arsitektur_sistemc}
+  \caption{Rancangan Arsitektur Sistem}
+  \label{fig:arsitektur_sistem}
+\end{figure}
+
+Rancangan arsitektur sistem terbagi menjadi 2 bagian utama, yaitu bagian pemodelan dan bagian pelatihan. Pemodelan adalah proses membuat model dari audio-audio sampel. Pengujian adalah proses memeriksa kebenaran \f{output} yang dihasilkan oleh sistem dengan hasil yang seharusnya. Proses pengujian membutuhkan model dari proses pemodelan.
+
+Alur dari proses pemodelan adalah sebagai berikut.
+\begin{enumerate}
+  \item Proses normalisasi diterapkan ke setiap audio. Normalisasi yang dilakukan dalam penelitian ini adalah pembuangan \f{silence} atau suara senyap pada audio. Hasil dari proses ini disebut \f{audio normal}.
+  \item Proses ekstraksi diterapkan ke setiap audio yang sudah dinormalisasi untuk memperoleh \f{fitur} dari audio tersebut. Penelitian ini menggunakan dua macam fitur, yaitu MFCC dan SDCC. Proses detil ekstraksi fitur akan dijelaskan di Bab \ref{chap:ekstraksi fitur}.
+  \item Fitur-fitur hasil proses ekstraksi dijadikan suatu model menggunakan metode klasifikasi, yang akan dijelaskan lebih detil pada Bab \ref{chap:pemodelan}. Satu model digunakan untuk merepresentasikan satu ayat Al-Qur'an.
+\end{enumerate}
+
+Alur dari proses pengujian adalah sebagai berikut.
+\begin{enumerate}
+  \item Proses normalisasi diterapkan ke suatu audio. Normalisasi yang dilakukan pada tahap ini sama dengan normalisasi pada proses pemodelan.
+  \item Proses ekstraksi diterapkan ke audio yang sudah dinormalisasi untuk memperoleh \f{fitur} dari audio tersebut. Ekstraksi yang dilakukan pada tahap ini sama dengan ekstraksi pada proses pemodelan.
+  \item Fitur hasil proses ekstraksi, ditambah dengan model yang dihasilkan pada proses pemodelan, dimasukkan sebagai \f{input} untuk metode klasifikasi. \f{Output} dari metode klasifikasi berupa label \f{benar} atau \f{salah}. Benar jika audio yang diuji berupa pelafalan bacaan \quran~yang benar menurut sistem dan salah jika selain itu.
+\end{enumerate}
+
+
+
+%-----------------------------------------------------------------------------%
+\section{Data}
+%-----------------------------------------------------------------------------%
+Penelitian ini memerlukan data berupa berkas audio bacaan seluruh ayat \quran~di juz 30 dari berbagai qari. Karena sistem yang dikembangkan adalah pengenalan suara per ayat, maka data yang diperlukan berupa bacaan \quran~yang sudah dipotong per ayat. Dengan kata lain, satu \f{instance} data merepresentasikan satu ayat \quran~yang dibaca oleh seorang qari. Berikut adalah langkah-langkah untuk memperoleh data tersebut dan memilih data yang tepat untuk digunakan dalam eksperimen.
+
+  \subsection{Pengambilan Data} \label{pengambilan data}
+  Data diperoleh dengan cara mengunduh dari beberapa sumber, yaitu \url{http://everyayah.com}, \url{http://tanzil.net}, dan \url{http://recitequran.com}. Tiga sumber tersebut memberi penomoran yang urut pada datanya. Penomoran berkas yang urut memudahkan proses pengunduhan untuk dilakukan secara otomatis menggunakan bantuan program. Nama berkas untuk surat ke-\f{s} dan ayat ke-\f{a} adalah \f{sssaaa.mp3}. Contoh untuk surat ke-78 ayat pertama adalah \f{078001.mp3} dan surat ke-114 ayat ke-6 adalah \f{114006.mp3}. Data yang diambil adalah seluruh surat mulai dari surat ke-78 sampai dengan surat ke-114 (seluruh surat dalam \quran~di juz 30). Total ayat dari surat-surat yang diambil adalah 564 ayat untuk masing-masing qari.
+
+  Di dalam tiga \f{website} yang telah disebutkan sebelumnya tersedia data berupa berkas mp3, di mana satu berkas merepresentasikan satu ayat. Masing-masing berkas memiliki informasi detil yang berbeda-beda, terutama pada \f{duration}, \br, dan \f{channel}. Tabel \ref{table:format berkas 078007 alafasy} menyajikan informasi detil salah satu berkas, yaitu surat An-Naba' ayat 7 dengan qari Mishary Rashid Alafasy.
+
+  \begin{table}
+    \centering
+    \caption{Informasi Detil Surat An-Naba' Ayat 7 dengan Qari Mishary Rashid Alafasy}
+    \begin{tabular}{|c|c|}
+      \hline
+      Format                         & MPEG Audio \\ \hline
+      Format version                 & Version 1 \\ \hline
+      Format profile                 & Layer 3 \\ \hline
+      Mode                           & Joint stereo \\ \hline
+      Mode extension                 & MS Stereo \\ \hline
+      Duration                       & 3.866 s \\ \hline
+      Bit rate mode                  & Constant \\ \hline
+      Bit rate                       & 128 Kbps \\ \hline
+      Channel(s)                     & 2 channels \\ \hline
+      Sampling rate                  & 44.1 KHz \\ \hline
+      Compression mode               & Lossy \\ \hline
+      Stream size                    & 60.4 KiB (99\%) \\ \hline
+      Writing library                & LAME3.96r \\ \hline
+      Encoding settings              & -m j -V 4 -q 3 -lowpass 17.5 -b 128 \\ \hline
+    \end{tabular}
+    \label{table:format berkas 078007 alafasy}
+  \end{table}
+
+
+
+  \subsection{Pembuangan Data Duplikat}
+  Dari tiga sumber yang telah disebutkan pada Bab \ref{pengambilan data}, diperoleh data bacaan \quran~lebih dari 50 qari berbeda. Namun di antara data-data tersebut, ada beberapa data yang duplikat, yaitu data dengan nama berkas berbeda tetapi sebenarnya memiliki suara yang sama persis. Hal ini dikarenakan ada sedikit perbedaan dari masing-masing sumber data dalam menamai qari. Misalnya dalam \url{http://everyayah.com} terdapat qari dengan nama ``Alafasy\_128kbps'' dan dalam \url{http://tanzil.net} terdapat qari dengan nama ``afasy''. Dua nama tersebut merujuk ke orang yang sama. Untuk mengetahui bahwa dua berkas memiliki konten audio yang sama tidak dilihat dari nama berkasnya, tetapi menggunakan teknik lain. Dalam penelitian ini teknik yang digunakan adalah perbandingan nilai MFCC. Langkah-langkah dari teknik tersebut adalah sebagai berikut.
+
+  \begin{enumerate}
+    \item \label{step:pilih ayat} \textbf{Menentukan satu ayat yang akan menjadi acuan}\\
+    Ayat yang dipilih boleh yang mana saja, tetapi disarankan bukan ayat pertama dari setiap surat. Ayat pertama dari setiap surat terkadang mengandung bacaan \f{basmalah}\footnote{sebutan untuk bacaan ``\<بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ>''.} yang sebenarnya bukan merupakan bagian dari ayat tersebut, karena bacaan tersebut sifatnya opsional untuk dibaca di awal surat. Ayat yang digunakan pada langkah selanjutnya hanya ayat yang terpilih pada langkah ini. Dalam penelitian ini ayat yang digunakan sebagai acuan adalah ayat ke-6 dari surat ke-114.
+    
+  	\item \label{step:hitung mfcc} \textbf{Ekstraksi MFCC dari semua qari}\\
+  	Dengan mengacu pada ayat yang ditentukan di langkah \ref{step:pilih ayat}, audio bacaan \quran~masing-masing qari diekstrak nilai MFCC-nya. Dalam penelitian ini, parameter koefisien MFCC yang digunakan adalah 13. Hasil dari ekstraksi nilai MFCC berupa matriks berukuran $13\times K$, di mana $K$ merepresentasikan banyaknya \fr. Nilai $K$ bervariasi, bergantung pada durasi audio yang diekstrak. Kemudian, nilai rata-rata dari matriks $13\times K$ pada setiap barisnya dihitung, sehingga terbentuk vektor kolom dengan panjang 13. Vektor kolom adalah matriks yang memiliki tepat 1 kolom. Penghitungan rata-rata dilakukan per baris supaya panjang vektor dari hasil perhitungan ini konstan, yaitu 13. Karena jika yang dihitung nilai rata-rata per \fr, maka hasilnya tentu bervariasi sesuai dengan banyak \fr~dari masing-masing nilai MFCC, yang dipengaruhi oleh durasi audio. Panjang setiap vektor dari langkah ini haruslah sama supaya masing-masing vektor dapat dihitung nilai jaraknya.
+  	
+  	\item \label{step:hitung jarak} \textbf{Menghitung jarak dari setiap pasang data}\\
+    Setiap pasang vektor yang terbentuk dari langkah \ref{step:hitung mfcc} kemudian dihitung nilai jaraknya. Sehingga akan terbentuk matriks D berukuran $N\times N$ yang berisi nilai-nilai jarak tersebut, di mana $N$ adalah banyaknya qari. Baris ke-i dan kolom ke-j menyatakan nilai jarak dari qari ke-i dengan qari ke-j. Penelitian ini menggunakan nilai jarak \f{euclidean distance}\footnote{persamaan \ref{equ:euclideandistance}}.
+  	
+  	\item \label{step:clustering} \textbf{Mengelompokkan matriks D}\\
+    Kumpulan sel di matriks D hasil dari langkah \ref{step:hitung jarak} kemudian dikelompokkan ke dalam 4 kelompok menggunakan teknik \f{k-means clustering}. Pembagian ke dalam 4 kelompok ini dimaksudkan supaya data terbagi ke dalam kelompok \f{mirip}, \f{sedikit mirip}, \f{tidak terlalu mirip}, dan \f{tidak mirip}. Kelompok yang mengandung nilai terendah adalah kelompok \f{mirip} yang ditetapkan sebagai pasangan data yang duplikat. Jika pembagiannya hanya 3 atau 2 kelompok saja, maka akan ada pasangan-pasangan data yang hanya \f{sedikit mirip}, yang jika diamati secara manual berbeda (tidak duplikat), tetapi masuk ke dalam kelompok \f{mirip}, sehingga dianggap duplikat. Dari langkah ini akan dihasilkan matriks C yang berukuran sama dengan matriks D, di mana setiap sel pada matriks C berisi label kelompok. Nilai sel pada baris ke-i dan kolom ke-j menyatakan level kemiripan qari ke-i dengan qari ke-j.
+  	
+  	\item \textbf{Membuang data mirip}\\
+    Dengan mengacu pada matriks C yang diperoleh pada langkah \ref{step:clustering}, setiap pasangan data yang memiliki hubungan \f{mirip}, salah satu dari keduanya dihilangkan dari himpunan data eksperimen pada penelitian ini.
+  \end{enumerate}
+
+  \subsection{Penyaringan Data}
+  Setelah data yang terkumpul dipastikan tidak mengandung data yang duplikat, maka langkah selanjutnya adalah menyaring data. Proses ini dilakukan secara manual. Adapun kriteria data yang lolos saringan adalah sebagai berikut:
+  \begin{enumerate}
+    \item \textbf{Terdengar jelas dan bacaannya benar}.\\
+    Suara bacaan \quran~harus terdengar jelas oleh pendengaran manusia. Data yang tidak jelas menurut pendengaran manusia tidak sesuai standar dalam penelitian ini, sehingga tidak disertakan dalam eksperimen. Di samping itu, bacaan dalam data tersebut juga harus sesuai dengan cara membaca \quran~yang benar.
+
+    \item \textbf{Tidak mengandung bacaan \f{basmalah}}.\\
+    Sebagian qari mengawali pembacaan ayat pertama di setiap surat dengan \f{basmalah}. Karena bacaan ini bukan bagian dari ayat pertama dan sifatnya opsional, ada qari yang membacanya dan ada juga yang tidak. Baik membaca \f{basmalah} maupun tidak, keduanya benar menurut aturan membaca Al-Qur'an. Oleh karena itu, dalam penelitian ini perlu diterapkan standar, yaitu data yang digunakan hanya data yang tidak mengandung bacaan \f{basmalah}.
+
+    \item \textbf{Tidak mengandung pantulan suara}.\\
+    Beberapa suara bacaan \quran~mengandung pantulan suara atau \f{echo}. \f{Echo} dalam rekaman bacaan \quran~disebabkan oleh efek audio digital yang sengaja ditambahkan untuk memberikan kesan bagus. Namun hal itu justru akan mengganggu proses klasifikasi. Maka data yang mengandung \f{echo} tidak disertakan dalam eksperimen dalam penelitian ini.
+  \end{enumerate}
+
+  Informasi mengenai data yang tersisa setelah proses pembuangan data duplikat dan penyaringan, dapat dilihat pada tabel \ref{table:data yang tersisa}.
+  
+  \begin{table}
+    \centering
+    \caption{Data yang Tersisa}
+    \begin{tabular}{|c|c|}
+      \hline
+      Banyak Qari & 40 qari \\ \hline
+      Surat Mulai & An-Naba' (surat ke-78) \\ \hline
+      Surat Selesai & An-Nas (surat ke-114) \\ \hline
+      Banyak Surat & 37 surat \\ \hline
+      Banyak Ayat & 564 ayat \\ \hline
+      Total Seluruh \f{Instance} & 22,560 \f{instance} \\ \hline
+    \end{tabular}
+    \label{table:data yang tersisa}
+  \end{table}
+
+
+
+\section{Perangkat dan Fungsi Pendukung}
+  \subsection{Perangkat Pendukung}
+  Perangkat pendukung dalam eksperimen ini terdiri dari dua komponen, yaitu \f{hardware} dan \f{software}. Spesifikasi \f{hardware} komputer yang digunakan dapat dilihat pada tabel \ref{table:spesifikasi hardware}.
+
+  \begin{table}
+    \centering
+    \caption{Spesifikasi \f{Hardware}}
+    \begin{tabular}{|c|c|}
+      \hline
+      Processor & i7-4770S \\ \hline
+      Banyak Core & 8 core \\ \hline
+      Frekuensi Processor & 3.1 GHz per core \\ \hline
+      RAM & 8 GB \\ \hline
+    \end{tabular}
+    \label{table:spesifikasi hardware}
+  \end{table}
+
+   \f{Software} yang digunakan untuk membantu eksperimen ini adalah MATLAB\footnote{http://mathworks.com} versi R2013b. \f{Software} ini dipilih karena menyediakan banyak fungsi yang dapat membantu jalannya eksperimen, seperti fungsi \f{plot} untuk menampilkan grafik dari suatu data, fungsi \f{mean} untuk menghitung rata-rata, dan lain-lain.
+
+  \subsection{Fungsi Pendukung} \label{fungsipendukung}
+  MATLAB menyediakan banyak fungsi yang dapat digunakan untuk membantu eksperimen. Namun selain fungsi-fungsi yang sudah disediakan MATLAB, diperlukan fungsi tambahan untuk menjalankan eksperimen ini, antara lain sebagai berikut.
+  \begin{enumerate}
+    \item audioread\\
+    \f{audioread} adalah fungsi untuk membaca berkas mp3 yang sudah tersedia di MATLAB mulai dari versi R2012b\footnote{http://www.mathworks.com/help/matlab/ref/audioread.html}. Jika fungsi \f{audioread} belum ada di MATLAB, maka fungsi alternatifnya adalah fungsi \f{wavread}. Fungsi \f{audioread} menerima \ioa~berupa \f{string} yang menyatakan lokasi penyimpanan berkas, lalu memberikan \iob~berupa matriks sinyal $N \times C$ dan \br. $N$ menyatakan panjang sinyal, sedangkan $C$ menyatakan banyaknya \f{channel}.
+
+    \item mfcc\\
+    \f{mfcc} adalah fungsi untuk menghitung MFCC. Implementasi fungsi \f{mfcc} menggunakan \f{source code} dari \href{http://www.mathworks.com/matlabcentral/fileexchange/32849-htk-mfcc-matlab}{HTK MFCC MATLAB}\footnote{http://www.mathworks.com/matlabcentral/fileexchange/32849-htk-mfcc-matlab}. Fungsi \f{mfcc} membutuhkan parameter seperti yang tercantum dalam tabel \ref{table:parametermfcc}.
+
+    \begin{table}
+      \centering
+      \caption{Parameter Fungsi \f{mfcc}}
+      \begin{tabular}{|l|l|}
+        % mfcc( speech, fs, Tw, Ts, alpha, window, R, M, N, L )
+        \hline
+        \textbf{Nama Parameter} & \textbf{Keterangan} \\ \hline
+        Speech & Data audio dalam bentuk matriks $nx1$ \\ \hline
+        Fs & \f{Bit rate} \\ \hline
+        Tw & \f{Analysis frame duration} (ms) \\ \hline
+        Ts & \f{Analysis frame shift} (ms) \\ \hline
+        Alpha & \f{Preemphasis coefficient} \\ \hline
+        Window & \f{Windowing function} \\ \hline
+        R & \f{Frequency range} \\ \hline
+        M & Banyaknya \f{filterbank channels} \\ \hline
+        C & Banyaknya \f{cepstral coefficients} \\ \hline
+        L & Parameter \f{cepstral sine lifter} \\ \hline
+      \end{tabular}
+      \label{table:parametermfcc}
+    \end{table}
+
+    \item mfcc2sdc\\
+    \f{mfcc2sdc} adalah fungsi untuk menghitung SDCC. Implementasi fungsi tersebut diperoleh dari \f{source code} di \href{http://www.mathworks.com/matlabcentral/fileexchange/31478-shifted-delta-coefficients--sdc--computation-from-mel-frequency-cepstral-coefficients--mfcc-}{HTK MFCC MATLAB}\footnote{http://www.mathworks.com/matlabcentral/fileexchange/31478-shifted-delta-coefficients--sdc--computation-from-mel-frequency-cepstral-coefficients--mfcc-}. Fungsi \f{mfcc2sdc} membutuhkan parameter seperti yang tercantum pada tabel \ref{table:parametersdcc}.
+
+    \begin{table}
+      \centering
+      \caption{Parameter Fungsi \f{mfcc2sdc}}
+      \begin{tabular}{|l|l|}
+        % mfcc2sdc(CepCoeff,d,P,K)
+        \hline
+        \textbf{Nama Parameter} & \textbf{Keterangan} \\ \hline
+        CepCoeff & Matriks MFCC dalam bentuk KxC, di mana K menyatakan \\
+        &~ banyaknya \fr~dan C menyatakan banyaknya koefisien MFCC \\ \hline
+        D & Nilai \f{shift} untuk \f{delta computation} \\ \hline
+        P & Nilai \f{shift} untuk \fr~selanjutnya \\ \hline
+        K & Banyaknya blok di mana koefisien \f{delta} disambungkan \\ \hline
+      \end{tabular}
+      \label{table:parametersdcc}
+    \end{table}
+
+    % \item kmeans\\
+    % \item svmtrain\\
+    % \item gmdistribution.fit\\
+
+  \end{enumerate}%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+\chapter{\babEmpat} \label{eksperimen}
+%-----------------------------------------------------------------------------%
+
+\section{Normalisasi Data}
+Data yang sudah diperoleh perlu dinormalisasi terlebih dahulu untuk membuang \f{noise} yang dapat mengganggu jalannya eksperimen. Normalisasi dilakukan dengan cara membuang suara senyap atau \f{silence}. Ada beberapa teknik yang digunakan untuk membuang \f{silence}. Salah satu teknik klasik dan populer yang digunakan untuk membuang \f{silence} pada suara adalah kombinasi \f{short term energy} (STE) dengan \f{zero crossing rate} (ZCR) \citep{rabiner1978digital}. \cite{saha2005new} memaparkan pendekatan lain yang lebih baik akurasinya dalam membuang \f{silence} jika dibandingkan dengan STE maupun kombinasi ZCR dengan STE, yaitu dengan memodelkan sinyal audio menggunakan distribusi \f{Gaussian}.
+
+Penelitian ini menggunakan pendekatan yang dipaparkan oleh \cite{saha2005new} dalam membuang \f{silence}, dengan langkah-langkah sebagai berikut.
+
+\begin{enumerate}
+	\item \label{satu} Hitung rata-rata ($\mu$) dan standar deviasi ($\sigma$) dari 10 ms sampel pertama pada audio. Jika $fs$ menyatakan \br~dari audio, maka terdapat sebanyak $s$ sampel dalam 10 ms.
+	\begin{align}
+    s &= 0.01\cdot fs \\
+		\mu &= \frac{\sum_{i=1}^{s}x(i)}{s} \\
+		\sigma &= \sqrt{\frac{\sum_{i=1}^{s}(x(i)-\mu)^2}{s}}
+	\end{align}
+	\f{Background noise} juga dikenali dari berdasarkan nilai rata-rata ($\mu$) dan standar deviasinya ($\sigma$).
+
+	\item Periksa apakah jarak \f{Mahalanobis} mulai dari sampel pertama sampai dengan sampel terakhir pada audio lebih dari $3$ atau tidak. Jarak \f{Mahalanobis} dihitung menggunakan fungsi $f$ sebagai berikut.
+	\begin{equation}
+		d(x) = \frac{|x-\mu|}{\sigma}
+	\end{equation}
+	Nilai $3$ dipilih karena pada distribusi \f{Gaussian}, 99.7\% data memiliki nilai jarak \f{Mahalanobis} $\leq3$. Gambar \ref{fig:distribusinormal} menunjukkan persebaran data pada distribusi \f{Gaussian}.
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{pics/distribusi_normal}
+		\caption{Distribusi \f{Gaussian} Terhadap Nilai Jarak \f{Mahalanobis}}{Sumber gambar: \cite{saha2005new}}
+		\label{fig:distribusinormal}
+	\end{figure}
+
+	\item Tandai sampel yang dianggap bukan sebagai \f{silence} (selanjutnya disebut \f{voiced}) dengan 1 dan sampel yang dianggap sebagai \f{silence} dengan 0. Bagi keseluruhan sinyal audio ke dalam beberapa bagian yang tidak saling \f{overlap}, dengan durasi pada setiap bagian adalah 10 ms.
+
+	\item \label{empat} Asumsikan ada $M$ sampel yang bernilai 0 dan $N$ sampel yang bernilai 1. Jika $M \geq N$, maka ubah setiap tanda 1 menjadi tanda 0, dan sebaliknya.
+
+	\item Kumpulkan seluruh bagian yang dianggap sebagai \f{voiced}, yaitu bagian-bagian yang bertanda 1 hasil dari langkah \ref{satu} sampai langkah \ref{empat}.
+\end{enumerate}
+
+
+	
+\section{Ekstraksi Fitur} \label{chap:ekstraksi fitur}
+Ekstraksi fitur adalah proses mengubah data \f{input} menjadi himpunan fitur-fitur yang dapat merepresentasikan data \f{input} dengan baik. Ekstraksi fitur merupakan bentuk istimewa dari \f{dimensionality reduction} \citep{Soft-Computational}. \cite{wyse1980critical} menjelaskan bahwa ekstraksi fitur adalah proses yang mengekstrak himpunan fitur-fitur baru dari fitur asli melalui serangkaian fungsi pemetaan. Penelitian ini menggunakan dua jenis fitur, yaitu \f{mel frequency cepstral coefficient} (MFCC) dan \f{shifted delta cepstral coefficient} (SDCC).
+
+% Data jenis mp3 terlalu kompleks untuk diklasifikasi secara langsung menggunakan metode-metode yang ada saat ini. Selain itu, banyak informasi tidak perlu atau \f{noise} yang terdapat pada sebuah berkas mp3. Untuk itu diperlukan proses ekstraksi fitur. Dengan proses ini diharapkan hanya informasi penting saja yang terambil dari sebuah berkas mp3 dan memiliki bentuk yang tidak terlalu kompleks.
+
+\subsection{Ekstraksi Fitur MFCC} \label{chap:ekstrak fitur mfcc}
+Ekstraksi fitur MFCC menggunakan fungsi \f{mfcc} yang telah dijelaskan di Bab \ref{fungsipendukung}. Fungsi \f{mfcc} pada eksperimen ini dipanggil dengan parameter fungsi yang dijelaskan pada tabel \ref{table:pemanggilanmfcc}.
+\begin{table}
+	\centering
+  \caption{Parameter Pemanggilan Fungsi \f{mfcc}}
+  \begin{tabular}{|l|l|}
+    % mfcc( speech, fs, Tw, Ts, alpha, window, R, M, N, L )
+    \hline
+    \textbf{Nama Parameter} & \textbf{Nilai Parameter} \\ \hline
+    Tw & 25 ms \\ \hline
+    Ts & 10 ms \\ \hline
+    Alpha & 0.97 \\ \hline
+    Window & \f{hamming window}  \\ \hline
+    R & [300 3700] \\ \hline
+    M & 20 \\ \hline
+    C & 13 \\ \hline
+    L & 22 \\ \hline
+  \end{tabular}
+  \label{table:pemanggilanmfcc}
+ \end{table}
+
+Berikut adalah langkah-langkah untuk memproses fitur MFCC.
+\begin{enumerate}
+  \item Tentukan nilai \br~untuk dimasukkan dalam perhitungan MFCC, yang akan mempengaruhi durasi audio. Durasi sebuah audio (dalam detik), $d$, dapat dihitung dengan rumus
+  \begin{equation}
+    d = \frac{L}{fs}, 
+  \end{equation}
+  di mana $L$ adalah panjang \fr~audio dan $fs$ adalah \br. Banyaknya \fr~(panjang kolom) pada hasil ekstraksi nilai MFCC dipengaruhi oleh durasi audionya. Maka untuk menyamakan panjang kolom hasil ekstraksi MFCC, durasi audio-audio yang akan diproses harus disamakan terlebih dahulu. Durasi yang digunakan untuk mengekstrak nilai MFCC pada satu ayat tertentu adalah \f{nilai rata-rata durasi} keseluruhan audio dari berbagai qari pada ayat tersebut. Setelah diperoleh nilai rata-rata durasi, $\bar{d}$, langkah selanjutnya adalah membuat masing-masing audio memiliki durasi yang sama, dengan cara mengubah nilai $fs$ masing-masing audio. Jika diberikan nilai $\bar{d}$ dan $L$, maka nilai $fs$ yang baru, $\widehat{fs}$, dihitung menggunakan rumus
+  \begin{equation}
+    \widehat{fs} = \frac{L}{\bar{d}}.
+  \end{equation}
+
+
+	\item Panggil fungsi \f{mfcc} dengan parameter yang telah disebutkan pada tabel \ref{table:pemanggilanmfcc} dan nilai \br~sama dengan $\widehat{fs}$, sehingga memberikan \f{output} berupa matriks MFCC 13x$K$, di mana $K$ menyatakan banyaknya \fr.
+
+	\item Buang matriks MFCC pada baris pertama, karena nilai tersebut merupakan log energi yang bukan merupakan bagian dari fitur dalam eksperimen ini. Sehingga matriks MFCC yang tersisa berukuran $12\times K$.
+
+	\item Hitung nilai rata-rata pada setiap \fr~matriks MFCC. Perhitungan tersebut akan menghasilkan vektor kolom, $\vec v$, dengan panjang $K$. Vektor kolom adalah matriks yang hanya memiliki satu baris.
+
+	\item Selanjutnya vektor tersebut dipendekkan dengan cara sebagai berikut.
+	\begin{enumerate}[label*=\arabic*.]
+		\item Tentukan nilai $s$ (\f{shift}). $s = \left\lceil\frac{K}{30}\right\rceil$.
+		\item Tentukan nilai $w$ (\f{width}). $w = \left\lceil1.5 \times s\right\rceil$.
+		\item Setiap $s$ elemen sekali, hitung nilai rata-rata dari $w$ elemen berurutan pada vektor $\vec{v}$.
+	\end{enumerate}
+	Hasil pemendekan tersebut berupa vektor $\widehat{\vec{v}}$ dengan panjang $\widehat K$, di mana \[ \widehat{K} = \left\lceil \frac{K-w+1}{s} \right\rceil = \left\lceil \frac{K-1.5\left\lceil\frac{K}{30}\right\rceil+1}{\left\lceil\frac{K}{30}\right\rceil} \right\rceil \leq 29. \] Tujuan dari pemendekan vektor ini adalah untuk mengurangi kompleksitas fitur sehingga diharapkan hasil klasifikasi akan lebih akurat.
+  
+  Gambar \ref{fig:alurekstraksifiturmfcc} menunjukkan alur proses ekstraksi fitur MFCC.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/ekstraksi_mfcc_v3}
+    \caption{Alur Ekstraksi Fitur MFCC}
+    \label{fig:alurekstraksifiturmfcc}
+  \end{figure}
+\end{enumerate}
+
+
+
+\subsection{Ekstraksi Fitur SDCC}
+Ekstraksi fitur SDCC menggunakan fungsi \f{mfcc2sdc} yang telah dijelaskan di Bab \ref{fungsipendukung}. Fungsi \f{mfcc2sdc} pada eksperimen ini dipanggil dengan parameter fungsi yang dijelaskan pada tabel \ref{table:pemanggilansdcc}.
+\begin{table}
+	\centering
+  \caption{Parameter Pemanggilan Fungsi \f{mfcc2sdc}}
+  \begin{tabular}{|l|l|}
+    % mfcc2sdc(CepCoeff,d,P,K)
+    \hline
+    \textbf{Nama Parameter} & \textbf{Nilai Parameter} \\ \hline
+    D (nilai \f{shift} untuk \f{delta computation}) & 1 \\ \hline
+    P (nilai \f{shift} untuk \fr~selanjutnya) & 3 \\ \hline
+    K (banyaknya blok di mana koefisien \f{delta} disambungkan) & 3 \\ \hline
+  \end{tabular}
+  \label{table:pemanggilansdcc}
+ \end{table}
+
+Berikut adalah langkah-langkah untuk memproses fitur SDCC.
+\begin{enumerate}
+  \item Hitung nilai MFCC menggunakan fungsi \f{mfcc} seperti sudah dijelaskan di Bab \ref{chap:ekstrak fitur mfcc}, langkah 1 sampai 3, sehingga diperoleh nilai MFCC berupa matriks berukuran $12\times K$. Nilai MFCC berukuran $12\times K$ perlu di-\f{transpose} terlebih dahulu menjadi ukuran $K\times12$ untuk menyesuaikan kebutuhan fungsi \f{mfcc2sdc}, yaitu baris sebagai \fr~dan kolom sebagai koefisien.
+
+	\item Panggil fungsi \f{mfcc2sdc} dengan parameter yang telah disebutkan pada tabel \ref{table:pemanggilansdcc}, sehingga memberikan \f{output} berupa matriks SDCC $36\times L$, di mana $L$ menyatakan banyaknya \fr.
+
+	\item Hitung nilai rata-rata pada setiap \fr~matriks SDCC. Perhitungan tersebut akan menghasilkan vektor kolom, $w$, dengan panjang $L$.
+
+	\item Selanjutnya vektor tersebut dipendekkan dengan cara sebagai berikut.
+	\begin{enumerate}[label*=\arabic*.]
+		\item Tentukan nilai $s$ (\f{shift}). $s = \left\lceil\frac{L}{30}\right\rceil$.
+		\item Tentukan nilai $w$ (\f{width}). $w = \left\lceil1.5\times s\right\rceil$.
+		\item Setiap $s$ elemen sekali, hitung nilai rata-rata dari $w$ elemen berurutan pada vektor $\vec{w}$.
+	\end{enumerate}
+	Hasil pemendekan tersebut berupa vektor $\widehat{\vec{w}}$ dengan panjang $\widehat L$, di mana \[ \widehat L = \left\lceil \frac{L-w+1}{s} \right\rceil = \left\lceil \frac{L-1.5\left\lceil\frac{L}{30}\right\rceil+1}{\left\lceil\frac{L}{30}\right\rceil} \right\rceil \leq 29. \] Tujuan dari pemendekan vektor ini adalah untuk mengurangi kompleksitas fitur sehingga diharapkan hasil klasifikasi akan lebih akurat.
+
+  Gambar \ref{fig:alurekstraksifitursdcc} menunjukkan alur proses ekstraksi fitur SDCC.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/ekstraksi_sdcc_v2}
+    \caption{Alur Ekstraksi Fitur SDCC}
+    \label{fig:alurekstraksifitursdcc}
+  \end{figure}
+\end{enumerate}
+
+
+
+\section{Pemodelan} \label{chap:pemodelan}
+Penelitian ini menggunakan tiga variasi metode klasifikasi untuk mengenali pola dari fitur-fitur yang dihasilkan melalui proses pada Bab \ref{chap:ekstraksi fitur}, yaitu \f{support vector machine} (SVM), \f{Gaussian mixture model} (GMM), serta gabungan SVM dengan GMM. Satu ayat dari berbagai qari dimodelkan menjadi sebuah model klasifikasi. Ayat-ayat yang sama dari para qari akan dijadikan data sampel dengan label \f{benar}. Ayat-ayat selain ayat tersebut yang tidak mirip secara tekstual akan dijadikan data sampel dengan label \f{salah}. Cara mengetahui dua buat ayat mirip secara tekstual adalah menggunakan pendekatan algoritma \f{dynamic programming} yang sudah dijelaskan pada Bab \ref{lcs}.
+
+	\subsection{Pemodelan dengan Support Vector Machine (SVM)}
+	SVM dipilih untuk digunakan dalam eksperimen ini karena memiliki kemampuan yang terbukti kuat dalam melakukan klasifikasi pola. Hal tersebut dijelaskan oleh \cite{campbell2006support} dalam jurnalnya yang berjudul \f{Support Vector Machines for Speaker and Language Recognition}. SVM didasari oleh teori-teori matematika yang kuat, antara lain dengan adalah pemetaan data ke dimensi ruang yang lebih tinggi, pencarian \f{margin} terbesar, dan generalisasi. Alasan lain yang memperkuat penggunaan SVM dalam penelitian ini adalah bahwa SVM merupakan metode klasifikasi dua kelas, sesuai dengan kebutuhan sistem untuk mengklasifikasi data ke dalam dua kelas juga, yaitu kelas \f{benar} dan kelas \f{salah}.
+
+  Metode klasifikasi SVM dalam eksperimen ini menggunakan fungsi MATLAB \f{svmtrain}\footnote{http://www.mathworks.com/help/stats/svmtrain.html} dalam proses pemodelan dan \f{svmclassify}\footnote{http://www.mathworks.com/help/stats/svmclassify.html} dalam proses pengujian, dengan parameter yang dijelaskan pada Tabel \ref{table:parametersvm} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Parameter SVM dalam Eksperimen}
+    \begin{tabular}{|c|c|}
+      \hline
+      \textbf{Nama Parameter} & \textbf{Nilai Parameter} \\ \hline
+      kernel\_function & linear \\ \hline
+      method & Sequential Minimal Optimization (SMO) \\ \hline
+      MaxIter & 15000 \\ \hline
+    \end{tabular}
+    \label{table:parametersvm}
+  \end{table}
+
+
+
+  \subsection{Pemodelan dengan Gaussian Mixture Model (GMM)}
+  GMM dipilih dalam eksperimen ini karena banyak penelitian yang menyatakan bahwa GMM dapat memodelkan fitur-fitur \f{speech recognition} dengan baik, salah satunya adalah penelitian yang dilakukan oleh \cite{zahra2013unique}. Ayat-ayat yang berlabel \f{benar} dimodelkan menjadi sebuah GMM, sedangkan ayat-ayat yang berlabel \f{salah} dimodelkan menjadi sebuah GMM lain, sehingga untuk satu ayat terdapat dua GMM yang menjadi model dalam melakukan klasifikasi. Cara menentukan apakah satu data uji masuk ke dalam kelas \f{benar} atau \f{salah} adalah dengan membandingkan nilai PDF dari kedua model tersebut. Jika nilai PDF pada GMM yang memodelkan kelas \f{benar} lebih besar atau sama dengan nilai PDF pada GMM yang memodelkan kelas \f{salah}, maka data uji tersebut diklasifikasikan sebagai data \f{benar}. Selain itu maka data uji tersebut diklasifikasikan sebagai data \f{salah}.
+
+  Metode klasifikasi GMM dalam eksperimen ini menggunakan fungsi MATLAB \f{gmdistribution.fit}\footnote{http://www.mathworks.com/help/stats/gmdistribution.fit.html} dalam proses pemodelan dengan parameter yang dijelaskan pada Tabel \ref{table:parametergmm} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Parameter GMM dalam Eksperimen}
+    \begin{tabular}{|c|c|}
+      \hline
+      \textbf{Nama Parameter} & \textbf{Nilai Parameter} \\ \hline
+      k & 8 \\ \hline
+      CovType & diagonal \\ \hline
+      SharedCov & true \\ \hline
+      MaxIter & 100 \\ \hline
+    \end{tabular}
+    \label{table:parametergmm}
+  \end{table}
+
+
+
+  \subsection{Pemodelan dengan Gabungan SVM dan GMM}
+	Kemampuan SVM maupun GMM untuk menjadi model sistem ASR sudah teruji baik oleh beberapa penelitian \citep{zahra2013unique}. Maka dalam eksperimen ini dicoba pula gabungan dari dua metode klasifikasi tersebut. Cara menggabungkan dua metode tersebut dalam proses pemodelan adalah sebagai berikut.
+	\begin{enumerate}
+    \item Buat model pertama, $M_{SVM}$ menggunakan metode klasifikasi SVM dan data sampel.
+    \item Buat model kedua, $M_0$ menggunakan GMM dengan sampel data berlabel \f{salah} dan data sampel.
+    \item Buat model ketiga, $M_1$ menggunakan GMM dengan sampel data berlabel \f{benar} dan data sampel.
+  \end{enumerate}
+  Sedangkan cara menggabungkan dua metode tersebut dalam proses pengujian adalah sebagai berikut.
+  \begin{enumerate}
+    \item Hitung nilai PDF dari data uji pada $M_0$, $P_0$, sebagai nilai probabilitas \f{salah}.
+    \item Hitung nilai PDF dari data uji pada $M_1$, $P_1$, sebagai nilai probabilitas \f{benar}.
+    \item Klasifikasikan data uji menggunakan metode klasifikasi SVM. dengan model $M_{SVM}$ Jika hasil klasifikasinya bernilai \f{salah}, tambahkan nilai 1 pada $P_0$, dan jika hasil klasifikasinya bernilai \f{benar}, tambahkan nilai 1 pada $P_1$.
+    \item Jika nilai $P_1$ lebih besar atau sama dengan $P_0$, maka data uji tersebut diklasifikasikan sebagai data \f{benar}. Selain itu maka data uji tersebut diklasifikasikan sebagai data \f{salah}.
+  \end{enumerate}
+
+
+
+\section{Pengujian}
+Pengujian dilakukan per ayat menggunakan teknik \f{$k$-fold cross validation}, dengan nilai $k$ yang umum digunakan, yaitu $k = 10$. Langkah-langkah dalam melakukan \f{$k$-fold cross validation} adalah sebagai berikut.
+\begin{enumerate}
+  \item \label{step:pisahkan data} Dari 40 qari yang ada dalam koleksi data eksperimen, gunakan 10\% qari (4 qari) \f{secara acak} sebagai data uji, sedangkan qari-qari lainnya digunakan sebagai data model. Pengacakan tersebut bertujuan untuk membuat proses pengujian menjadi \f{fair} karena tidak ada beberapa qari yang selalu berada kelompok yang sama, baik sebagai kelompok data uji maupun kelompok data model.
+
+  \item \label{step:bangun model} Bangun model sesuai penjelasan pada Bab \ref{chap:pemodelan} menggunakan data model yang diperoleh pada langkah \ref{step:pisahkan data}.
+
+  \item \label{step:klasifikasi} Lakukan proses klasifikasi menggunakan model yang dibangun pada langkah \ref{step:bangun model} terhadap dua kelompok data berikut.
+  \begin{enumerate}
+    \item Data berlabel \f{benar} diperoleh dari ayat-ayat yang sama. Terdapat 4 \f{instance} berlabel \f{benar} dari 4 qari yang dijadikan data uji.
+    \item Data berlabel \f{salah} diperoleh dari ayat-ayat yang tidak mirip secara tekstual. Ambil 4 \f{instance} berlabel \f{salah} secara acak dari 4 qari yang dijadikan data uji.
+  \end{enumerate}
+
+  \item \label{step:evaluasi} Lakukan evaluasi terhadap hasil klasifikasi pada langkah \ref{step:klasifikasi}. Evaluasi tersebut akan menghasilkan \f{confusion matrix}, $C$, berukuran $2\times2$ yang merepresentasikan Tabel \ref{table:kontingensi}.
+
+  \item \label{step:ulangi} Ulangi langkah \ref{step:pisahkan data} sampai langkah \ref{step:evaluasi} sebanyak 10 kali. Qari yang sudah menjadi data uji diganti dengan qari lainnya yang belum pernah menjadi data uji. Sehingga seluruh data qari akan mendapat giliran menjadi data uji. Langkah tersebut akan menghasilkan 10 \f{confusion matrix}, $\{C_1, C_2, \dots, C_{10}\}$.
+
+  \item Jumlahkan 10 \f{confusion matrix} yang diperoleh pada langkah \ref{step:ulangi}, sehingga menghasilkan satu \f{confusion matrix} baru, $C_{total} = \sum_{i=1}^{10}{C_i}$. Nilai akurasi, presisi, \f{recall}, serta \f{f-measure} diperoleh dari perhitungan yang sudah dijelaskan pada Bab \ref{chap:evaluasi} dengan mengacu pada matriks $C_{total}$.
+\end{enumerate}
+%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+\chapter{\babLima}
+%-----------------------------------------------------------------------------%
+
+Sistem pengenalan suara otomatis pada penelitian ini adalah sistem pengenalan per ayat. Bab \ref{eksperimen} menjelaskan bagaimana eksperimen dilakukan terhadap satu ayat. Setiap ayat mendapat perlakuan sama dalam eksperimen. Pengujian suatu ayat akan menghasilkan sebuah \f{confusion matrix}, lalu dari \f{confusion matrix} diperoleh metrik evaluasi berupa nilai akurasi, presisi, \f{recall}, dan \f{f-measure}. Banyaknya ayat yang diproses dalam eksperimen yang sudah dilakukan adalah 564 ayat, sehingga akan dihasilkan pula 564 metrik evaluasi tersebut.
+
+Untuk menampilkan keseluruhan data hasil eksperimen secara ringkas, data tersebut disajikan dalam bentuk histogram. Sumbu X pada histogram menyatakan interval persentase, sedangkan sumbu Y pada histogram menyatakan banyaknya hasil eksperimen yang berada pada interval tersebut. Contoh interval dalam histogram yang disajikan adalah (90\%,95\%]. Interval tersebut merepresentasikan rentang \f{lebih dari} 90\% dan \f{kurang dari atau sama dengan} 95\%. Semakin tinggi \f{bar} histogram akurasi pada interval (90\%,95\%], artinya semakin banyak ayat yang berhasil diklasifikasikan oleh sistem dengan $90\%<\text{akurasi}\leq95\%$. Jadi jika pada suatu metode, \f{bar} histogram tinggi berkumpul pada interval tinggi, menunjukkan bahwa metode tersebut baik. Sebaliknya, jika \f{bar} histogram tinggi berkumpul pada interval rendah, menunjukkan bahwa metode tersebut kurang baik.
+
+%-----------------------------------------------------------------------------%
+\section{Hasil dengan Fitur MFCC}
+%-----------------------------------------------------------------------------%
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Hasil dengan Fitur MFCC dan Metode Klasifikasi SVM}
+  %-----------------------------------------------------------------------------%
+  Eksperimen menggunakan fitur MFCC dan menggunakan metode klasifikasi SVM, memberikan hasil yang dirangkum pada Tabel \ref{table:mfccsvm} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi SVM}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+      Minimal         & 41.3\% & 42.2\% & 42.5\% & 44.4\% \\ \hline
+      Maksimal        & 87.5\% & 96.2\% & 82.5\% & 86.8\% \\ \hline
+      Rata-rata       & 63.1\% & 63.7\% & 63.0\% & 63.1\% \\ \hline
+      Standar Deviasi & 0.072  & 0.081  & 0.078  & 0.069  \\ \hline
+    \end{tabular}
+    \label{table:mfccsvm}
+  \end{table}
+
+  Tabel \ref{table:datahistogram00} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi SVM}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 6   & 5   & 8   & 2   \\ \hline
+(45\%,50\%{]}  & 16  & 17  & 33  & 15  \\ \hline
+(50\%,55\%{]}  & 55  & 51  & 67  & 51  \\ \hline
+(55\%,60\%{]}  & 120 & 112 & 120 & 114 \\ \hline
+(60\%,65\%{]}  & 167 & 148 & 141 & 171 \\ \hline
+(65\%,70\%{]}  & 122 & 130 & 121 & 126 \\ \hline
+(70\%,75\%{]}  & 52  & 51  & 42  & 58  \\ \hline
+(75\%,80\%{]}  & 21  & 30  & 29  & 22  \\ \hline
+(80\%,85\%{]}  & 4   & 15  & 3   & 4   \\ \hline
+(85\%,90\%{]}  & 1   & 2   & 0   & 1   \\ \hline
+(90\%,95\%{]}  & 0   & 2   & 0   & 0   \\ \hline
+(95\%,100\%{]} & 0   & 1   & 0   & 0   \\ \hline
+    \end{tabular}
+    \label{table:datahistogram00}
+  \end{table}
+
+  Gambar \ref{fig:histogram00} merepresentasikan Tabel \ref{table:datahistogram00} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram00}
+    \caption{Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi SVM}
+    \label{fig:histogram00}
+  \end{figure}
+
+  Dari Gambar \ref{fig:histogram00} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (60\%,65\%].
+
+
+
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Hasil dengan Fitur MFCC dan Metode Klasifikasi GMM}
+  %-----------------------------------------------------------------------------%
+  Eksperimen menggunakan fitur MFCC dan menggunakan metode klasifikasi GMM, memberikan hasil yang dirangkum pada Tabel \ref{table:mfccgmm} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi GMM}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+      Minimal         & 43.8\% & 43.9\% & 42.5\% & 44.4\% \\ \hline
+      Maksimal        & 85.0\% & 93.3\% & 90.0\% & 85.0\% \\ \hline
+      Rata-rata       & 65.8\% & 66.3\% & 65.1\% & 65.4\% \\ \hline
+      Standar Deviasi & 0.065  & 0.072  & 0.086  & 0.067  \\ \hline
+    \end{tabular}
+    \label{table:mfccgmm}
+  \end{table}
+
+  Tabel \ref{table:datahistogram01} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi GMM}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 2   & 1   & 6   & 1   \\ \hline
+(45\%,50\%{]}  & 3   & 4   & 16  & 7   \\ \hline
+(50\%,55\%{]}  & 27  & 21  & 54  & 22  \\ \hline
+(55\%,60\%{]}  & 89  & 92  & 115 & 97  \\ \hline
+(60\%,65\%{]}  & 144 & 116 & 137 & 146 \\ \hline
+(65\%,70\%{]}  & 169 & 181 & 111 & 151 \\ \hline
+(70\%,75\%{]}  & 94  & 91  & 63  & 95  \\ \hline
+(75\%,80\%{]}  & 31  & 38  & 37  & 40  \\ \hline
+(80\%,85\%{]}  & 5   & 15  & 19  & 5   \\ \hline
+(85\%,90\%{]}  & 0   & 4   & 6   & 0   \\ \hline
+(90\%,95\%{]}  & 0   & 1   & 0   & 0   \\ \hline
+(95\%,100\%{]} & 0   & 0   & 0   & 0   \\ \hline
+    \end{tabular}
+    \label{table:datahistogram01}
+  \end{table}
+  
+  Gambar \ref{fig:histogram01} merepresentasikan Tabel \ref{table:datahistogram01} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram01}
+    \caption{Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi GMM}
+    \label{fig:histogram01}
+  \end{figure}
+
+  Dari Gambar \ref{fig:histogram01} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (65\%,70\%]. Hasil tersebut sedikit lebih tinggi jika dibandingkan dengan hasil pada eksperimen yang menggunakan fitur MFCC dan metode klasifikasi SVM. Hal itu mengindikasikan bahwa metode klasifikasi GMM lebih tepat untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam penelitian ini.
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Hasil dengan Fitur MFCC dan Metode Klasifikasi Gabungan}
+  %-----------------------------------------------------------------------------%
+  Eksperimen menggunakan fitur MFCC dengan metode klasifikasi gabungan antara SVM dan GMM, memberikan hasil yang dirangkum pada Tabel \ref{table:mfccgabungan} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi Gabungan}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+      Minimal         & 41.3\% & 42.2\% & 37.5\% & 43.9\% \\ \hline
+      Maksimal        & 85.0\% & 90.0\% & 85.0\% & 84.2\% \\ \hline
+      Rata-rata       & 63.5\% & 64.1\% & 63.1\% & 63.4\% \\ \hline
+      Standar Deviasi & 0.076  & 0.087  & 0.080  & 0.073  \\ \hline
+    \end{tabular}
+    \label{table:mfccgabungan}
+  \end{table}
+
+  Tabel \ref{table:datahistogram02} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi Gabungan}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 5   & 3   & 10  & 4   \\ \hline
+(45\%,50\%{]}  & 19  & 21  & 25  & 14  \\ \hline
+(50\%,55\%{]}  & 64  & 60  & 84  & 57  \\ \hline
+(55\%,60\%{]}  & 115 & 116 & 109 & 116 \\ \hline
+(60\%,65\%{]}  & 145 & 128 & 132 & 143 \\ \hline
+(65\%,70\%{]}  & 104 & 100 & 119 & 119 \\ \hline
+(70\%,75\%{]}  & 83  & 73  & 55  & 85  \\ \hline
+(75\%,80\%{]}  & 24  & 39  & 26  & 21  \\ \hline
+(80\%,85\%{]}  & 5   & 16  & 4   & 5   \\ \hline
+(85\%,90\%{]}  & 0   & 8   & 0   & 0   \\ \hline
+(90\%,95\%{]}  & 0   & 0   & 0   & 0   \\ \hline
+(95\%,100\%{]} & 0   & 0   & 0   & 0   \\ \hline
+    \end{tabular}
+    \label{table:datahistogram02}
+  \end{table}
+  
+  Gambar \ref{fig:histogram02} merepresentasikan Tabel \ref{table:datahistogram02} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram02}
+    \caption{Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi Gabungan}
+    \label{fig:histogram02}
+  \end{figure}
+
+  Dari Gambar \ref{fig:histogram02} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (60\%,65\%]. Hasil tersebut sedikit lebih rendah jika dibandingkan dengan hasil pada eksperimen yang menggunakan fitur MFCC dan metode klasifikasi GMM. Hal itu mengindikasikan bahwa gabungan dua metode klasifikasi, yaitu SVM dengan GMM, tidak lebih tepat untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam eksperimen ini jika dibandingkan dengan metode klasifikasi GMM.
+
+
+
+
+
+%-----------------------------------------------------------------------------%
+\section{Hasil dengan Fitur SDCC}
+%-----------------------------------------------------------------------------%
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Hasil dengan Fitur SDCC dan Metode Klasifikasi SVM}
+  %-----------------------------------------------------------------------------%
+  Eksperimen menggunakan fitur SDCC dan menggunakan metode klasifikasi SVM, memberikan hasil yang dirangkum pada Tabel \ref{table:sdccsvm} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+      Minimal         & 51.3\% & 51.2\%  & 30.0\%  & 43.6\% \\ \hline
+      Maksimal        & 96.3\% & 100.0\% & 100.0\% & 96.4\% \\ \hline
+      Rata-rata       & 77.3\% & 76.6\%  & 79.5\%  & 77.8\% \\ \hline
+      Standar Deviasi & 0.075  & 0.082   & 0.087   & 0.074  \\ \hline
+    \end{tabular}
+    \label{table:sdccsvm}
+  \end{table}
+
+  Tabel \ref{table:datahistogram10} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 0   & 0   & 3   & 1   \\ \hline
+(45\%,50\%{]}  & 0   & 0   & 1   & 1   \\ \hline
+(50\%,55\%{]}  & 2   & 2   & 6   & 1   \\ \hline
+(55\%,60\%{]}  & 3   & 8   & 6   & 4   \\ \hline
+(60\%,65\%{]}  & 28  & 25  & 14  & 16  \\ \hline
+(65\%,70\%{]}  & 73  & 96  & 44  & 65  \\ \hline
+(70\%,75\%{]}  & 129 & 122 & 113 & 117 \\ \hline
+(75\%,80\%{]}  & 132 & 132 & 131 & 142 \\ \hline
+(80\%,85\%{]}  & 120 & 93  & 120 & 136 \\ \hline
+(85\%,90\%{]}  & 58  & 55  & 86  & 57  \\ \hline
+(90\%,95\%{]}  & 17  & 25  & 35  & 22  \\ \hline
+(95\%,100\%{]} & 2   & 6   & 5   & 2   \\ \hline
+    \end{tabular}
+    \label{table:datahistogram10}
+  \end{table}
+  
+  Gambar \ref{fig:histogram10} merepresentasikan Tabel \ref{table:datahistogram10} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram10}
+    \caption{Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi SVM}
+    \label{fig:histogram10}
+  \end{figure}
+
+  Dari Gambar \ref{fig:histogram10} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (75\%,80\%]. Hasil tersebut secara signifikan lebih tinggi jika dibandingkan dengan beberapa hasil pada eksperimen yang menggunakan fitur MFCC. Hal itu mengindikasikan bahwa penggunaan fitur SDCC lebih tepat daripada fitur MFCC, untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam penelitian ini.
+
+
+
+
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Hasil dengan Fitur SDCC dan Metode Klasifikasi GMM}
+  %-----------------------------------------------------------------------------%
+  Eksperimen menggunakan fitur SDCC dan menggunakan metode klasifikasi GMM, memberikan hasil yang dirangkum pada Tabel \ref{table:sdccgmm} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+      Minimal         & 67.5\% & 64.6\%  & 55.0\%  & 63.8\% \\ \hline
+      Maksimal        & 98.8\% & 100.0\% & 100.0\% & 98.8\% \\ \hline
+      Rata-rata       & 83.4\% & 89.0\%  & 76.4\%  & 82.0\% \\ \hline
+      Standar Deviasi & 0.056  & 0.064   & 0.082   & 0.063  \\ \hline
+    \end{tabular}
+    \label{table:sdccgmm}
+  \end{table}
+
+  Tabel \ref{table:datahistogram11} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi GMM}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 0   & 0   & 0   & 0   \\ \hline
+(45\%,50\%{]}  & 0   & 0   & 0   & 0   \\ \hline
+(50\%,55\%{]}  & 0   & 0   & 3   & 0   \\ \hline
+(55\%,60\%{]}  & 0   & 0   & 11  & 0   \\ \hline
+(60\%,65\%{]}  & 0   & 1   & 45  & 5   \\ \hline
+(65\%,70\%{]}  & 10  & 1   & 94  & 12  \\ \hline
+(70\%,75\%{]}  & 36  & 10  & 130 & 56  \\ \hline
+(75\%,80\%{]}  & 128 & 41  & 129 & 141 \\ \hline
+(80\%,85\%{]}  & 193 & 96  & 83  & 171 \\ \hline
+(85\%,90\%{]}  & 138 & 161 & 48  & 119 \\ \hline
+(90\%,95\%{]}  & 53  & 155 & 18  & 54  \\ \hline
+(95\%,100\%{]} & 6   & 99  & 3   & 6   \\ \hline
+    \end{tabular}
+    \label{table:datahistogram11}
+  \end{table}
+  
+  Gambar \ref{fig:histogram11} merepresentasikan Tabel \ref{table:datahistogram11} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram11}
+    \caption{Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi GMM}
+    \label{fig:histogram11}
+  \end{figure}
+
+  Dari Gambar \ref{fig:histogram11} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (80\%,85\%]. Hasil tersebut sedikit lebih tinggi jika dibandingkan dengan hasil pada eksperimen yang menggunakan fitur SDCC dan metode klasifikasi SVM. Hal itu semakin mengindikasikan bahwa metode klasifikasi GMM lebih tepat untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam eksperimen ini.
+
+
+
+
+
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Hasil dengan Fitur SDCC dan Metode Klasifikasi Gabungan}
+  %-----------------------------------------------------------------------------%
+  Eksperimen menggunakan fitur SDCC dan menggunakan metode klasifikasi gabungan SVM dengan GMM, memberikan hasil yang dirangkum pada Tabel \ref{table:sdccgabungan} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+      Minimal         & 57.5\% & 56.5\%  & 65.0\%  & 60.5\% \\ \hline
+      Maksimal        & 96.3\% & 100.0\% & 100.0\% & 96.4\% \\ \hline
+      Rata-rata       & 79.4\% & 77.3\%  & 84.2\%  & 80.4\% \\ \hline
+      Standar Deviasi & 0.069  & 0.078   & 0.065   & 0.062  \\ \hline
+    \end{tabular}
+    \label{table:sdccgabungan}
+  \end{table}
+
+  Tabel \ref{table:datahistogram12} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi Gabungan}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 0   & 0   & 0   & 0   \\ \hline
+(45\%,50\%{]}  & 0   & 0   & 0   & 0   \\ \hline
+(50\%,55\%{]}  & 0   & 0   & 0   & 0   \\ \hline
+(55\%,60\%{]}  & 2   & 6   & 0   & 0   \\ \hline
+(60\%,65\%{]}  & 13  & 23  & 3   & 2   \\ \hline
+(65\%,70\%{]}  & 49  & 76  & 14  & 26  \\ \hline
+(70\%,75\%{]}  & 96  & 123 & 47  & 80  \\ \hline
+(75\%,80\%{]}  & 161 & 144 & 119 & 171 \\ \hline
+(80\%,85\%{]}  & 137 & 98  & 152 & 154 \\ \hline
+(85\%,90\%{]}  & 83  & 60  & 150 & 98  \\ \hline
+(90\%,95\%{]}  & 21  & 29  & 71  & 29  \\ \hline
+(95\%,100\%{]} & 2   & 5   & 8   & 4   \\ \hline
+    \end{tabular}
+    \label{table:datahistogram12}
+  \end{table}
+
+  Gambar \ref{fig:histogram12} merepresentasikan Tabel \ref{table:datahistogram12} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram12}
+    \caption{Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi Gabungan}
+    \label{fig:histogram12}
+  \end{figure}
+
+  Dari Gambar \ref{fig:histogram12} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (75\%,80\%]. Hasil tersebut sedikit lebih rendah jika dibandingkan dengan hasil pada eksperimen yang menggunakan fitur SDCC dan metode klasifikasi GMM. Hal itu semakin mengindikasikan bahwa gabungan dua metode klasifikasi, yaitu SVM dengan GMM, tidak lebih tepat untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam eksperimen ini jika dibandingkan dengan metode klasifikasi GMM.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%-----------------------------------------------------------------------------%
+\section{Perbandingan Hasil}
+%-----------------------------------------------------------------------------%
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Perbandingan Metode Klasifikasi pada Fitur MFCC}
+  %-----------------------------------------------------------------------------%
+  Eksperimen menggunakan fitur MFCC dengan berbagai metode klasifikasi, memberikan hasil yang nilai akurasinya dirangkum pada Tabel \ref{table:perbandinganmfcc} berikut.
+  
+  \begin{table}
+    \centering
+    \caption{Perbandingan Hasil Eksperimen dengan Fitur MFCC}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+       & Akurasi SVM & Akurasi GMM & Akurasi Gabungan \\ \hline
+      Minimal         & 41.3\% & 43.8\% & 41.3\% \\ \hline
+      Maksimal        & 87.5\% & 85.0\% & 85.0\% \\ \hline
+      Rata-rata       & 63.1\% & 65.8\% & 63.5\% \\ \hline
+      Standar Deviasi & 0.072  & 0.065  & 0.076  \\ \hline
+    \end{tabular}
+    \label{table:perbandinganmfcc}
+  \end{table}
+
+  Tabel \ref{table:datahistogramakurasimfcc} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi SVM\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi GMM\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi Gabungan\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 6   & 2   & 5   \\ \hline
+(45\%,50\%{]}  & 16  & 3   & 19  \\ \hline
+(50\%,55\%{]}  & 55  & 27  & 64  \\ \hline
+(55\%,60\%{]}  & 120 & 89  & 115 \\ \hline
+(60\%,65\%{]}  & 167 & 144 & 145 \\ \hline
+(65\%,70\%{]}  & 122 & 169 & 104 \\ \hline
+(70\%,75\%{]}  & 52  & 94  & 83  \\ \hline
+(75\%,80\%{]}  & 21  & 31  & 24  \\ \hline
+(80\%,85\%{]}  & 4   & 5   & 5   \\ \hline
+(85\%,90\%{]}  & 1   & 0   & 0   \\ \hline
+(90\%,95\%{]}  & 0   & 0   & 0   \\ \hline
+(95\%,100\%{]} & 0   & 0   & 0   \\ \hline
+    \end{tabular}
+    \label{table:datahistogramakurasimfcc}
+  \end{table}
+
+  Gambar \ref{fig:histogramakurasimfcc} merepresentasikan Tabel \ref{table:datahistogramakurasimfcc} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram_akurasi_mfcc}
+    \caption{Histogram Akurasi dengan Fitur MFCC}
+    \label{fig:histogramakurasimfcc}
+  \end{figure}
+
+  Berdasarkan Gambar \ref{table:datahistogramakurasimfcc}, metode klasifikasi GMM mendominasi akurasi pada interval yang lebih tinggi jika dibandingkan dengan dua metode klasifikasi lainnya, walaupun tidak signifikan.
+
+
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Perbandingan Metode Klasifikasi pada Fitur SDCC}
+  %-----------------------------------------------------------------------------%
+  Eksperimen menggunakan fitur SDCC dengan berbagai metode klasifikasi, memberikan hasil yang nilai akurasinya dirangkum pada Tabel \ref{table:perbandingansdcc} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Perbandingan Hasil Eksperimen dengan Fitur SDCC}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+       & Akurasi SVM & Akurasi GMM & Akurasi Gabungan \\ \hline
+      Minimal         & 51.3\% & 67.5\% & 57.5\% \\ \hline
+      Maksimal        & 96.3\% & 98.8\% & 96.3\% \\ \hline
+      Rata-rata       & 77.3\% & 83.4\% & 79.4\% \\ \hline
+      Standar Deviasi & 0.075  & 0.056  & 0.069  \\ \hline
+    \end{tabular}
+    \label{table:perbandingansdcc}
+  \end{table}
+
+  Tabel \ref{table:datahistogramakurasisdcc} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi SVM\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi GMM\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi Gabungan\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 0   & 0   & 0   \\ \hline
+(45\%,50\%{]}  & 0   & 0   & 0   \\ \hline
+(50\%,55\%{]}  & 2   & 0   & 0   \\ \hline
+(55\%,60\%{]}  & 3   & 0   & 2   \\ \hline
+(60\%,65\%{]}  & 28  & 0   & 13  \\ \hline
+(65\%,70\%{]}  & 73  & 10  & 49  \\ \hline
+(70\%,75\%{]}  & 129 & 36  & 96  \\ \hline
+(75\%,80\%{]}  & 132 & 128 & 161 \\ \hline
+(80\%,85\%{]}  & 120 & 193 & 137 \\ \hline
+(85\%,90\%{]}  & 58  & 138 & 83  \\ \hline
+(90\%,95\%{]}  & 17  & 53  & 21  \\ \hline
+(95\%,100\%{]} & 2   & 6   & 2   \\ \hline
+    \end{tabular}
+    \label{table:datahistogramakurasisdcc}
+  \end{table}
+
+  Gambar \ref{fig:histogramakurasisdcc} merepresentasikan Tabel \ref{table:datahistogramakurasisdcc} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram_akurasi_sdcc}
+    \caption{Histogram Akurasi dengan Fitur SDCC}
+    \label{fig:histogramakurasisdcc}
+  \end{figure}
+
+  Berdasarkan Gambar \ref{table:datahistogramakurasisdcc}, metode klasifikasi GMM mendominasi akurasi pada interval yang lebih tinggi jika dibandingkan dengan dua metode klasifikasi lainnya, dan perbedaannya terlihat secara signifikan. Hal itu semakin memperkuat pernyataan bahwa metode klasifikasi GMM lebih tepat untuk digunakan dalam sistem ini daripada dua metode klasifikasi lainnya.
+
+  
+
+
+
+
+
+
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Perbandingan Fitur pada Metode Klasifikasi SVM}
+  %-----------------------------------------------------------------------------%
+  Eksperimen yang menggunakan metode klasifikasi SVM dengan berbagai pengambilan fitur, memberikan hasil yang nilai akurasinya dirangkum pada Tabel \ref{table:perbandingansvm} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Perbandingan Hasil Eksperimen dengan Metode Klasifikasi SVM}
+    \begin{tabular}{|c|c|c|}
+      \hline
+       & Akurasi MFCC & Akurasi SDCC \\ \hline
+      Minimal         & 41.3\% & 51.3\% \\ \hline
+      Maksimal        & 87.5\% & 96.3\% \\ \hline
+      Rata-rata       & 63.1\% & 77.3\% \\ \hline
+      Standar Deviasi & 0.072  & 0.075  \\ \hline
+    \end{tabular}
+    \label{table:perbandingansvm}
+  \end{table}
+
+  Tabel \ref{table:datahistogramakurasisvm} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Metode Klasifikasi SVM}
+    \begin{tabular}{|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi MFCC\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi SDCC\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 6   & 0   \\ \hline
+(45\%,50\%{]}  & 16  & 0   \\ \hline
+(50\%,55\%{]}  & 55  & 2   \\ \hline
+(55\%,60\%{]}  & 120 & 3   \\ \hline
+(60\%,65\%{]}  & 167 & 28  \\ \hline
+(65\%,70\%{]}  & 122 & 73  \\ \hline
+(70\%,75\%{]}  & 52  & 129 \\ \hline
+(75\%,80\%{]}  & 21  & 132 \\ \hline
+(80\%,85\%{]}  & 4   & 120 \\ \hline
+(85\%,90\%{]}  & 1   & 58  \\ \hline
+(90\%,95\%{]}  & 0   & 17  \\ \hline
+(95\%,100\%{]} & 0   & 2   \\ \hline
+    \end{tabular}
+    \label{table:datahistogramakurasisvm}
+  \end{table}
+
+
+  Gambar \ref{fig:histogramakurasisvm} merepresentasikan Tabel \ref{table:datahistogramakurasisvm} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram_akurasi_svm}
+    \caption{Histogram Akurasi dengan Metode Klasifikasi SVM}
+    \label{fig:histogramakurasisvm}
+  \end{figure}
+
+  Berdasarkan Gambar \ref{table:datahistogramakurasisvm}, penggunaan fitur SDCC mendominasi akurasi pada interval yang lebih tinggi jika dibandingkan dengan penggunaan fitur MFCC, dan perbedaannya terlihat secara signifikan.
+
+
+
+
+
+
+
+  %-----------------------------------------------------------------------------%
+  \subsection{Perbandingan Fitur pada Metode Klasifikasi GMM}
+  %-----------------------------------------------------------------------------%
+  Eksperimen yang menggunakan metode klasifikasi GMM dengan berbagai pengambilan fitur, memberikan hasil yang nilai akurasinya dirangkum pada Tabel \ref{table:perbandingangmm} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Perbandingan Hasil Eksperimen dengan Metode Klasifikasi GMM}
+    \begin{tabular}{|c|c|c|}
+      \hline
+       & Akurasi MFCC & Akurasi SDCC \\ \hline
+      Minimal         & 43.8\% & 67.5\% \\ \hline
+      Maksimal        & 85.0\% & 98.8\% \\ \hline
+      Rata-rata       & 65.8\% & 83.4\% \\ \hline
+      Standar Deviasi & 0.065  & 0.056  \\ \hline
+    \end{tabular}
+    \label{table:perbandingangmm}
+  \end{table}
+
+  Tabel \ref{table:datahistogramakurasigmm} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Metode Klasifikasi GMM}
+    \begin{tabular}{|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi MFCC\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi SDCC\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 2   & 0   \\ \hline
+(45\%,50\%{]}  & 3   & 0   \\ \hline
+(50\%,55\%{]}  & 27  & 0   \\ \hline
+(55\%,60\%{]}  & 89  & 0   \\ \hline
+(60\%,65\%{]}  & 144 & 0   \\ \hline
+(65\%,70\%{]}  & 169 & 10  \\ \hline
+(70\%,75\%{]}  & 94  & 36  \\ \hline
+(75\%,80\%{]}  & 31  & 128 \\ \hline
+(80\%,85\%{]}  & 5   & 193 \\ \hline
+(85\%,90\%{]}  & 0   & 138 \\ \hline
+(90\%,95\%{]}  & 0   & 53  \\ \hline
+(95\%,100\%{]} & 0   & 6   \\ \hline
+    \end{tabular}
+    \label{table:datahistogramakurasigmm}
+  \end{table}
+
+  Gambar \ref{fig:histogramakurasigmm} merepresentasikan Tabel \ref{table:datahistogramakurasigmm} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram_akurasi_gmm}
+    \caption{Histogram Akurasi dengan Metode Klasifikasi GMM}
+    \label{fig:histogramakurasigmm}
+  \end{figure}
+
+  Berdasarkan Gambar \ref{table:datahistogramakurasigmm}, penggunaan fitur SDCC mendominasi akurasi pada interval yang lebih tinggi jika dibandingkan dengan penggunaan fitur MFCC, dan perbedaannya juga terlihat secara signifikan.
+
+
+
+
+
+  
+  %-----------------------------------------------------------------------------%
+  \subsection{Perbandingan Fitur pada Metode Klasifikasi Gabungan}
+  %-----------------------------------------------------------------------------%
+  Eksperimen yang menggunakan metode klasifikasi gabungan antara SVM dan GMM dengan berbagai pengambilan fitur, memberikan hasil yang nilai akurasinya dirangkum pada Tabel \ref{table:perbandingangabungan} berikut.
+
+  \begin{table}
+    \centering
+    \caption{Perbandingan Hasil Eksperimen dengan Metode Klasifikasi Gabungan}
+    \begin{tabular}{|c|c|c|}
+      \hline
+       & Akurasi MFCC & Akurasi SDCC \\ \hline
+      Minimal         & 41.3\% & 57.5\% \\ \hline
+      Maksimal        & 85.0\% & 96.3\% \\ \hline
+      Rata-rata       & 63.5\% & 79.4\% \\ \hline
+      Standar Deviasi & 0.076  & 0.069  \\ \hline
+    \end{tabular}
+    \label{table:perbandingangabungan}
+  \end{table}
+
+  Tabel \ref{table:datahistogramakurasigabungan} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
+  \begin{table}
+    \centering
+    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Metode Klasifikasi Gabungan}
+    \begin{tabular}{|c|c|c|}
+      \hline
+\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi MFCC\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi Nilai\\ Akurasi SDCC\end{tabular}} \\ \hline
+(40\%,45\%{]}  & 5   & 0   \\ \hline
+(45\%,50\%{]}  & 19  & 0   \\ \hline
+(50\%,55\%{]}  & 64  & 0   \\ \hline
+(55\%,60\%{]}  & 115 & 2   \\ \hline
+(60\%,65\%{]}  & 145 & 13  \\ \hline
+(65\%,70\%{]}  & 104 & 49  \\ \hline
+(70\%,75\%{]}  & 83  & 96  \\ \hline
+(75\%,80\%{]}  & 24  & 161 \\ \hline
+(80\%,85\%{]}  & 5   & 137 \\ \hline
+(85\%,90\%{]}  & 0   & 83  \\ \hline
+(90\%,95\%{]}  & 0   & 21  \\ \hline
+(95\%,100\%{]} & 0   & 2   \\ \hline
+    \end{tabular}
+    \label{table:datahistogramakurasigabungan}
+  \end{table}
+
+  Gambar \ref{fig:histogramakurasigabungan} merepresentasikan Tabel \ref{table:datahistogramakurasigabungan} dalam bentuk histogram.
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{pics/histogram_akurasi_gabungan}
+    \caption{Histogram Akurasi dengan Metode Klasifikasi Gabungan}
+    \label{fig:histogramakurasigabungan}
+  \end{figure}
+
+  Berdasarkan Gambar \ref{table:datahistogramakurasigabungan}, penggunaan fitur SDCC mendominasi akurasi pada interval yang lebih tinggi jika dibandingkan dengan penggunaan fitur MFCC, dan perbedaannya terlihat secara signifikan. Hal itu semakin memperkuat pernyataan bahwa fitur SDCC lebih tepat untuk digunakan dalam sistem ini daripada fitur MFCC.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Analisis Lanjut}
+
+Penggunaan fitur SDCC dan metode klasifikasi GMM pada eksperimen memberikan hasil terbaik secara rata-rata, baik pada nilai akurasi, presisi, \f{recall}, ataupun \f{f-measure}. Setiap ayat memiliki hasil klasifikasi yang berbeda-beda. Ada ayat-ayat yang diklasifikasikan dengan akurasi tinggi dan ada juga ayat-ayat yang diklasifikasikan dengan akurasi rendah. Beberapa ayat dengan akurasi tertinggi yang lebih dari atau sama dengan 95\% pada penggunaan fitur SDCC dan metode klasifikasi GMM dapat dilihat pada Tabel \ref{table:akurasitinggi}.
+
+\begin{table}
+  \centering
+  \caption{Ayat-Ayat yang Diurutkan dari Akurasi Tertinggi}
+  \label{table:akurasitinggi}
+  \begin{tabular}{|r|r|r|r|r|r|}
+  \hline
+  Surat & Ayat & Akurasi & Presisi & \f{Recall}  & \f{F-Measure} \\ \hline
+  89  & 22 & 98.8\% & 97.6\%  & 100.0\% & 98.8\% \\ \hline
+  91  & 13 & 97.5\% & 100.0\% & 95.0\%  & 97.4\% \\ \hline
+  92  & 19 & 97.5\% & 97.5\%  & 97.5\%  & 97.5\% \\ \hline
+  87  & 7  & 96.3\% & 95.1\%  & 97.5\%  & 96.3\% \\ \hline
+  93  & 7  & 96.3\% & 97.4\%  & 95.0\%  & 96.2\% \\ \hline
+  110 & 3  & 96.3\% & 100.0\% & 92.5\%  & 96.1\% \\ \hline
+  78  & 19 & 95.0\% & 95.0\%  & 95.0\%  & 95.0\% \\ \hline
+  79  & 31 & 95.0\% & 97.4\%  & 92.5\%  & 94.9\% \\ \hline
+  79  & 46 & 95.0\% & 100.0\% & 90.0\%  & 94.7\% \\ \hline
+  80  & 2  & 95.0\% & 100.0\% & 90.0\%  & 94.7\% \\ \hline
+  80  & 25 & 95.0\% & 95.0\%  & 95.0\%  & 95.0\% \\ \hline
+  88  & 21 & 95.0\% & 100.0\% & 90.0\%  & 94.7\% \\ \hline
+  90  & 4  & 95.0\% & 100.0\% & 90.0\%  & 94.7\% \\ \hline
+  \end{tabular}
+\end{table}
+
+
+Beberapa ayat dengan akurasi terendah yang kurang dari atau sama dengan 70\% pada penggunaan fitur SDCC dan metode klasifikasi GMM dapat dilihat pada Tabel \ref{table:akurasirendah}.
+\begin{table}
+  \centering
+  \caption{Ayat-Ayat yang Diurutkan dari Akurasi Terendah}
+  \label{table:akurasirendah}
+  \begin{tabular}{|r|r|r|r|r|r|}
+  \hline
+  Surat & Ayat & Akurasi & Presisi & \f{Recall}  & \f{F-Measure} \\ \hline
+  78    & 4    & 67.5\%  & 71.9\%  & 57.5\% & 63.9\%    \\ \hline
+  83    & 4    & 67.5\%  & 64.6\%  & 77.5\% & 70.5\%    \\ \hline
+  85    & 21   & 67.5\%  & 69.4\%  & 62.5\% & 65.8\%    \\ \hline
+  101   & 10   & 67.5\%  & 71.9\%  & 57.5\% & 63.9\%    \\ \hline
+  80    & 24   & 68.8\%  & 75.9\%  & 55.0\% & 63.8\%    \\ \hline
+  106   & 1    & 68.8\%  & 75.9\%  & 55.0\% & 63.8\%    \\ \hline
+  106   & 3    & 68.8\%  & 74.2\%  & 57.5\% & 64.8\%    \\ \hline
+  106   & 4    & 68.8\%  & 71.4\%  & 62.5\% & 66.7\%    \\ \hline
+  82    & 12   & 70.0\%  & 73.5\%  & 62.5\% & 67.6\%    \\ \hline
+  85    & 6    & 70.0\%  & 76.7\%  & 57.5\% & 65.7\%    \\ \hline
+  \end{tabular}
+\end{table}
+
+Suatu ayat dapat diklasifikasikan dengan akurasi tinggi dikarenakan ayat tersebut memiliki ciri khusus dalam pelafalannya jika dibandingkan dengan ayat-ayat lainnya. Ciri tersebut antara lain adalah bacaan \f{mad wajib} (bacaan panjang 3 huruf), \f{ghunnah} (bacaan dengung), serta irama panjang pendek dalam pembacaan ayat. Contoh beberapa ayat yang dapat diklasifikasikan dengan akurasi tinggi antara lain sebagai berikut.
+\begin{itemize}
+  \item Surat ke-89 ayat 22, yaitu ``\<وَجَاءَ رَبُّكَ وَالْمَلَكُ صَفًّا صَفًّا>''. Ayat tersebut mengandung \f{mad wajib} pada kata \<وَجَاءَ> serta \f{ghunnah} pada dua kata \<صَفًّا>.
+
+  \item Surat ke-92 ayat 19, yaitu ``\<وَمَا لِأَحَدٍ عِندَهُ مِن نِّعْمَةٍ تُجْزَىٰ>''. Ayat tersebut mengandung \f{ghunnah} pada kata \<مِن نِّعْمَةٍ>.
+
+  \item Surat ke-110 ayat 3, yaitu ``\<فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا>''. Ayat tersebut mengandung \f{ghunnah} pada kata \<إِنَّهُ> dan \<تَوَّابًا>.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \section{Ayat-Ayat dengan Akurasi Tinggi}
+
+% Berikut adalah beberapa tabel yang berisi ayat-ayat dengan nilai akurasi terbaik.
+
+% \begin{enumerate}
+%   \item Tabel \ref{table:topmfccsvm} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur MFCC dan metode klasifikasi SVM.
+%   \begin{table}
+%     \centering
+%     \caption{}
+%     \label{table:topmfccsvm}
+%     \begin{tabular}{|r|r|r|}
+%       \hline
+%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
+%       99    & 7    & 87.5\%  \\ \hline
+%       89    & 23   & 85.0\%  \\ \hline
+%       91    & 14   & 82.5\%  \\ \hline
+%       96    & 11   & 82.5\%  \\ \hline
+%       79    & 16   & 81.3\%  \\ \hline
+%       78    & 40   & 80.0\%  \\ \hline
+%       79    & 45   & 80.0\%  \\ \hline
+%       83    & 32   & 80.0\%  \\ \hline
+%       84    & 10   & 80.0\%  \\ \hline
+%       84    & 11   & 78.8\%  \\ \hline
+%       99    & 8    & 78.8\%  \\ \hline
+%       102   & 8    & 78.8\%  \\ \hline
+%     \end{tabular}
+%   \end{table}
+
+%   \item Tabel \ref{table:topmfccgmm} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur MFCC dan metode klasifikasi GMM.
+%   \begin{table}
+%     \centering
+%     \caption{}
+%     \label{table:topmfccgmm}
+%     \begin{tabular}{|r|r|r|}
+%       \hline
+%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
+%       89    & 1    & 85.0\%  \\ \hline
+%       84    & 17   & 82.5\%  \\ \hline
+%       79    & 45   & 81.3\%  \\ \hline
+%       88    & 3    & 81.3\%  \\ \hline
+%       106   & 2    & 81.3\%  \\ \hline
+%       80    & 41   & 80.0\%  \\ \hline
+%       83    & 32   & 80.0\%  \\ \hline
+%       110   & 3    & 80.0\%  \\ \hline
+%       79    & 46   & 78.8\%  \\ \hline
+%       89    & 3    & 78.8\%  \\ \hline
+%       89    & 18   & 78.8\%  \\ \hline
+%       91    & 10   & 78.8\%  \\ \hline
+%     \end{tabular}
+%   \end{table}
+
+%   \item Tabel \ref{table:topmfccgabungan} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur MFCC dan metode klasifikasi gabungan.
+%   \begin{table}
+%     \centering
+%     \caption{}
+%     \label{table:topmfccgabungan}
+%     \begin{tabular}{|r|r|r|}
+%       \hline
+%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
+%       91 & 14 & 85.0\% \\ \hline
+%       99 & 7  & 83.8\% \\ \hline
+%       98 & 1  & 82.5\% \\ \hline
+%       79 & 10 & 81.3\% \\ \hline
+%       89 & 1  & 81.3\% \\ \hline
+%       78 & 37 & 80.0\% \\ \hline
+%       79 & 25 & 80.0\% \\ \hline
+%       89 & 16 & 80.0\% \\ \hline
+%       89 & 22 & 80.0\% \\ \hline
+%       96 & 11 & 80.0\% \\ \hline
+%     \end{tabular}
+%   \end{table}
+
+%   \item Tabel \ref{table:topsdccsvm} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur SDCC dan metode klasifikasi SVM.
+%   \begin{table}
+%     \centering
+%     \caption{}
+%     \label{table:topsdccsvm}
+%     \begin{tabular}{|r|r|r|}
+%       \hline
+%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
+%       81  & 11 & 96.3\% \\ \hline
+%       110 & 3  & 96.3\% \\ \hline
+%       79  & 27 & 95.0\% \\ \hline
+%       89  & 22 & 95.0\% \\ \hline
+%       91  & 13 & 95.0\% \\ \hline
+%       88  & 3  & 93.8\% \\ \hline
+%       95  & 4  & 93.8\% \\ \hline
+%       108 & 1  & 93.8\% \\ \hline
+%       82  & 2  & 92.5\% \\ \hline
+%       86  & 6  & 92.5\% \\ \hline
+%       86  & 7  & 92.5\% \\ \hline
+%       92  & 19 & 92.5\% \\ \hline
+%     \end{tabular}
+%   \end{table}
+
+%   \item Tabel \ref{table:topsdccgmm} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur SDCC dan metode klasifikasi GMM.
+%   \begin{table}
+%     \centering
+%     \caption{}
+%     \label{table:topsdccgmm}
+%     \begin{tabular}{|r|r|r|}
+%       \hline
+%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
+%       89  & 22 & 98.8\% \\ \hline
+%       91  & 13 & 97.5\% \\ \hline
+%       92  & 19 & 97.5\% \\ \hline
+%       87  & 7  & 96.3\% \\ \hline
+%       93  & 7  & 96.3\% \\ \hline
+%       110 & 3  & 96.3\% \\ \hline
+%       78  & 19 & 95.0\% \\ \hline
+%       79  & 31 & 95.0\% \\ \hline
+%       79  & 46 & 95.0\% \\ \hline
+%       80  & 2  & 95.0\% \\ \hline
+%       80  & 25 & 95.0\% \\ \hline
+%       88  & 21 & 95.0\% \\ \hline
+%       90  & 4  & 95.0\% \\ \hline
+%     \end{tabular}
+%   \end{table}
+
+%   \item Tabel \ref{table:topsdccgabungan} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur SDCC dan metode klasifikasi gabungan.
+%   \begin{table}
+%     \centering
+%     \caption{}
+%     \label{table:topsdccgabungan}
+%     \begin{tabular}{|r|r|r|}
+%       \hline
+%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
+%       78  & 19 & 96.3\% \\ \hline
+%       110 & 3  & 96.3\% \\ \hline
+%       78  & 36 & 95.0\% \\ \hline
+%       78  & 39 & 95.0\% \\ \hline
+%       79  & 31 & 95.0\% \\ \hline
+%       93  & 7  & 95.0\% \\ \hline
+%       85  & 12 & 93.8\% \\ \hline
+%       89  & 18 & 93.8\% \\ \hline
+%       89  & 22 & 93.8\% \\ \hline
+%       78  & 14 & 92.5\% \\ \hline
+%       80  & 25 & 92.5\% \\ \hline
+%       87  & 5  & 92.5\% \\ \hline
+%     \end{tabular}
+%   \end{table}
+
+% \end{enumerate}
+
+% Dari Tabel {}, ..., diperoleh matriks kemunculan ayat pada tabel {} berikut.
+% \begin{table}
+%   \centering
+%   \caption{}
+%   \label{table:kemunculanayatpadatabel}
+%   \begin{tabular}{|c|c|c|c|c|c|c|}
+%     \hline
+%     \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
+%     78  & 19 & 96.3\% \\ \hline
+%     110 & 3  & 96.3\% \\ \hline
+%     78  & 36 & 95.0\% \\ \hline
+%     78  & 39 & 95.0\% \\ \hline
+%     79  & 31 & 95.0\% \\ \hline
+%     93  & 7  & 95.0\% \\ \hline
+%     85  & 12 & 93.8\% \\ \hline
+%     89  & 18 & 93.8\% \\ \hline
+%     89  & 22 & 93.8\% \\ \hline
+%     78  & 14 & 92.5\% \\ \hline
+%     80  & 25 & 92.5\% \\ \hline
+%     87  & 5  & 92.5\% \\ \hline
+%   \end{tabular}
+% \end{table}
+
+% \section{Ayat-Ayat dengan Akurasi Rendah}
+%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+\chapter{\babEnam}
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+\section{Kesimpulan}
+%-----------------------------------------------------------------------------%
+Setelah mengimplementasikan rancangan arsitektur sistem, menjalankan eksperimen, serta menganalisis hasil eksperimen, diperoleh kesimpulan sebagai berikut.
+
+\begin{enumerate}
+  \item Penggunaan fitur SDCC lebih baik daripada fitur MFCC. Hal ini dapat diamati dari nilai akurasi pada setiap metode klasifikasi pada Gambar \ref{fig:histogramakurasisvm}, Gambar \ref{fig:histogramakurasigmm}, dan Gambar \ref{fig:histogramakurasigabungan}. Histogram pada ketiga gambar tersebut menunjukkan hasil yang konsisten bahwa fitur SDCC lebih mendominasi akurasi di atas 70\% dibandingkan MFCC. Selain itu, nilai rata-rata akurasi antara fitur MFCC dengan fitur SDCC pada Tabel \ref{table:perbandingansvm}, Tabel \ref{table:perbandingangmm}, serta Tabel \ref{table:perbandingangabungan}, juga secara konsisten menunjukkan bahwa nilai rata-rata fitur SDCC lebih tinggi dari nilai rata-rata fitur MFCC pada berbagai metode klasifikasi. Perbedaan rata-rata akurasi antara fitur MFCC dengan fitur SDCC cukup signifikan, yaitu 14,2\% pada metode klasifikasi SVM, 17,6\% pada metode klasifikasi GMM, dan 15,9\% pada metode klasifikasi gabungan.
+
+  \item Penggunaan metode klasifikasi GMM lebih baik daripada metode klasifikasi SVM maupun metode gabungan SVM dengan GMM. Hal ini dapat diamati dari nilai nilai rata-rata akurasi setiap metode klasifikasi pada Tabel \ref{table:perbandinganmfcc} dan Tabel \ref{table:perbandingansdcc}. Walaupun tidak signifikan, nilai rata-rata akurasi pada kedua tabel tersebut secara konsisten menunjukkan bahwa akurasi dengan metode klasifikasi GMM lebih tinggi daripada kedua metode klasifikasi yang lainnya. Histogram pada Gambar \ref{table:perbandinganmfcc} dan Gambar \ref{table:perbandingansdcc} juga menunjukkan bahwa metode klasifikasi GMM lebih mendominasi nilai-nilai akurasi yang lebih tinggi dari metode klasifikasi lainnya.
+
+  \item Kombinasi pengambilan fitur SDCC dengan metode klasifikasi GMM adalah kombinasi yang memberikan hasil terbaik dalam penelitian ini. Hal ini dapat diamati dari nilai rata-rata akurasi pada Tabel \ref{table:mfccsvm}, Tabel \ref{table:mfccgmm}, Tabel \ref{table:mfccgabungan}, Tabel \ref{table:sdccsvm}, Tabel \ref{table:sdccgmm}, dan Tabel \ref{table:sdccgabungan}. Dari tabel-tabel tersebut kombinasi fitur SDCC dengan metode klasifikasi GMM menghasilkan nilai rata-rata akurasi tertinggi, yaitu sebesar 83,4\%.
+
+  \item Penggabungan dua metode klasifikasi yang sama-sama memiliki kinerja yang baik tidak menjamin akan menghasilkan metode klasifikasi baru yang lebih baik lagi. Hal ini terlihat pada Tabel \ref{table:perbandinganmfcc} dan Tabel \ref{table:perbandingansdcc}. Nilai rata-rata akurasi dari metode klasifikasi GMM turun setelah digabung dengan metode klasifikasi SVM, baik pada pengambilan fitur MFCC maupun pada pengambilan fitur SDCC.
+
+  \item Akurasi dari masing-masing ayat berbeda-beda. Ada beberapa ayat yang dapat diklasifikasikan dengan akurasi tinggi, dan ada juga beberapa ayat yang hanya diklasifikasikan dengan akurasi rendah.
+\end{enumerate}
+
+%-----------------------------------------------------------------------------%
+\section{Saran}
+%-----------------------------------------------------------------------------%
+Setelah melakukan eksperimen, menganalisis hasil eksperimen, serta mengamati kesimpulan, ada beberapa saran untuk penelitian selanjutnya, antara lain sebagai berikut.
+
+\begin{enumerate}
+  \item Fitur MFCC dan fitur SDCC memungkinkan untuk dikombinasikan. Kombinasi ini layak untuk dicoba dalam penelitian selanjutnya karena ada peluang akurasi dari sistem akan akan meningkat.
+
+  \item Sistem dalam penelitian ini dapat dikembangkan lebih lanjut supaya dapat memproses ayat-ayat \quran~yang panjang seperti di Surat Al-Baqarah, di mana terdapat ayat sepanjang satu halaman Al-Qur'an.
+
+  \item Banyaknya data sampel dapat ditingkatkan, tidak hanya 40 sampel qari, untuk membangun sistem yang lebih \f{robust}.
+
+  \item Banyak metode klasifikasi yang belum dicoba dalam penelitian ini. Ada kemungkinan metode klasifikasi lain menghasilkan akurasi yang lebih baik.
+
+  \item Metode klasifikasi yang dilakukan dalam penelitian ini masih menggunakan parameter yang konstan. Ada potensi untuk meningkatkan akurasi sistem dengan memilih parameter yang lebih tepat pada setiap metode klasifikasi.
+\end{enumerate}%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+\begin{center}
+\textbf{DAFTAR SINGKATAN}
+\end{center}
+%-----------------------------------------------------------------------------%%!TEX root = skripsi.tex
+%
+% Hyphenation untuk Indonesia 
+%
+% @author  Andreas Febrian
+% @version 1.00
+% 
+% Tambahkan cara pemenggalan kata-kata yang salah dipenggal secara otomatis 
+% oleh LaTeX. Jika kata tersebut dapat dipenggal dengan benar, maka tidak 
+% perlu ditambahkan dalam berkas ini. Tanda pemenggalan kata menggunakan 
+% tanda '-'; contoh:
+% menarik
+%   --> pemenggalan: me-na-rik
+%
+
+\hyphenation{
+    % alphabhet A
+    a-na-li-sa a-tur 
+    a-pli-ka-si 
+    % alphabhet B
+    ba-ngun-an 
+    be-be-ra-pa 
+    ber-ge-rak
+    ber-ke-lan-jut-an 
+    ber-pe-nga-ruh 
+    % alphabhet C
+    ca-ri
+    % alphabhet D
+    di-ban-ding-kan
+    di-de-fi-ni-si-kan
+    di-ha-rap-kan
+    di-ka-te-go-ri-kan
+    di-mi-li-ki-nya
+    di-se-rah-kan
+    di-sim-pan di-pim-pin de-ngan da-e-rah di-ba-ngun da-pat di-nya-ta-kan 
+    di-sim-bol-kan di-pi-lih di-li-hat de-fi-ni-si
+    di-se-su-ai-kan
+    % alphabhet E
+    e-le-men
+    e-ner-gi eks-klu-sif
+    % alphabhet F
+    fa-si-li-tas
+    % alphabhet G
+    ga-bung-an ge-rak
+    % alphabhet H
+    ha-lang-an
+    he-te-ro-gen
+    % alphabhet I
+    i-ngin
+    % alphabhet J
+    % alphabhet K
+    ke-hi-lang-an
+    ku-ning 
+    kua-li-tas ka-me-ra ke-mung-kin-an ke-se-pa-ham-an
+    ke-te-pat-an
+    kon-fi-gu-ra-si
+    % alphabhet L
+    ling-kung-an
+    % alphabhet M
+    me-min-ta
+    me-mo-del-kan
+    me-mo-ri
+    men-de-fi-ni-si-kan
+    me-neng-ah
+    meng-a-tas-i me-mung-kin-kan me-nge-na-i me-ngi-rim-kan 
+    meng-u-bah meng-a-dap-ta-si me-nya-ta-kan mo-di-fi-ka-si
+    meng-a-tur
+    meng-au-to-ma-si
+    meng-a-ko-mo-da-si
+    me-ngo-rek-si
+    % alphabhet N
+    nya-ta non-eks-klu-sif
+    % alphabhet O
+    % alphabhet P
+    pa-ra-lel
+    peng-ala-mat-an
+    pen-ting
+    penga-da-an
+		pe-nye-rap-an 
+		pe-ngon-trol
+    pe-mo-del-an
+    pe-ran  pe-ran-an-nya
+    pe-rin-tah
+    pem-ba-ngun-an pre-si-den pe-me-rin-tah prio-ri-tas peng-am-bil-an 
+    peng-ga-bung-an pe-nga-was-an pe-ngem-bang-an 
+    pe-nga-ruh pa-ra-lel-is-me per-hi-tung-an per-ma-sa-lah-an 
+    pen-ca-ri-an peng-struk-tur-an
+    pe-ner-bang-an
+    pro-se-sor
+    % alphabhet Q
+    % alphabhet R
+    ran-cang-an
+    % alphabhet S
+    se-dang-kan
+    se-ring
+    si-mu-la-si sa-ngat    
+    % alphabhet T
+    te-ngah
+    ter-da-pat
+    % alphabhet U
+    u-sa-ha
+    % alphabhet V
+    % alphabhet W
+    % alphabhet X
+    % alphabhet Y
+    % alphabhet Z
+    % special
+    MATLAB
+    basmalah
+    sam-ping
+    hardware
+    software
+    mem-ba-ca
+    teks-tual
+    automatically
+}%!TEX root = skripsi.tex
+%
+% @author  Andreas Febrian
+% @version 1.00
+% 
+% Mendaftar seluruh istilah yang mungkin akan perlu dijadikan 
+% italic atau bold pada setiap kemunculannya dalam dokumen. 
+% 
+
+\var{\license}{\f{Creative Common License 1.0 Generic}}
+\var{\bslash}{$\setminus$}
+\var{\ioa}{\f{input}}
+\var{\iob}{\f{output}}
+\var{\br}{\f{bit rate}}
+\var{\fr}{\f{frame}}
+\var{\quran}{Al-Qur'an}%!TEX root = skripsi.tex
+%
+% Halaman Judul Laporan 
+%
+% @author  unknown
+% @version 1.01
+% @edit by Andreas Febrian
+%
+
+\begin{titlepage}
+    \begin{center}\begin{figure}
+            \begin{center}
+                \includegraphics[width=2.5cm]{pics/makara.png}
+            \end{center}
+        \end{figure}    
+        \vspace*{0cm}
+        \bo{
+        	UNIVERSITAS INDONESIA\\
+        }
+        
+        \vspace*{1.0cm}
+        % judul thesis harus dalam 14pt Times New Roman
+        \bo{\Judul} \\[1.0cm]
+
+        \vspace*{2.5 cm}    
+        % harus dalam 14pt Times New Roman
+        \bo{\Type} \\
+        % keterangan prasyarat
+        \bo{Diajukan sebagai salah satu syarat untuk memperoleh gelar \\
+        \gelar}\\
+
+        \vspace*{3 cm}       
+        % penulis dan npm
+        \bo{\Penulis} \\
+        \bo{\npm} \\
+
+        \vspace*{5.0cm}
+
+        % informasi mengenai fakultas dan program studi
+        \bo{
+        	FAKULTAS \Fakultas\\
+        	PROGRAM STUDI \Program \\
+        	DEPOK \\
+        	\bulanTahun
+        }
+    \end{center}
+\end{titlepage}%!TEX root = skripsi.tex
+%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+% Informasi Mengenai Dokumen
+%-----------------------------------------------------------------------------%
+% 
+% Judul laporan. 
+\var{\judul}{Evaluasi Pembacaan Al-Qur'an Otomatis menggunakan Sistem Pengenalan Suara}
+% 
+% Tulis kembali judul laporan, kali ini akan diubah menjadi huruf kapital
+\Var{\Judul}{Evaluasi Pembacaan Al-Qur'an Otomatis menggunakan Sistem Pengenalan Suara}
+% 
+% Tulis kembali judul laporan namun dengan bahasa Ingris
+\var{\judulInggris}{Automatic Quran Recitation Evaluation using Speech Recognition System}
+
+% 
+% Tipe laporan, dapat berisi Skripsi, Tugas Akhir, Thesis, atau Disertasi
+\var{\type}{Skripsi}
+% 
+% Tulis kembali tipe laporan, kali ini akan diubah menjadi huruf kapital
+\Var{\Type}{Skripsi}
+% 
+% Tulis nama penulis 
+\var{\penulis}{Alfan Nur Fauzan}
+% 
+% Tulis kembali nama penulis, kali ini akan diubah menjadi huruf kapital
+\Var{\Penulis}{Alfan Nur Fauzan}
+% 
+% Tulis NPM penulis
+\var{\npm}{1206219086}
+% 
+% Tuliskan Fakultas dimana penulis berada
+\Var{\Fakultas}{Ilmu Komputer}
+\var{\fakultas}{Ilmu Komputer}
+% 
+% Tuliskan Program Studi yang diambil penulis
+\Var{\Program}{Ilmu Komputer}
+\var{\program}{Ilmu Komputer}
+\var{\programEng}{Computer Science}
+% 
+% Tuliskan tahun publikasi laporan
+\Var{\bulanTahun}{Juni 2015}
+% 
+% Tuliskan gelar yang akan diperoleh dengan menyerahkan laporan ini
+\var{\gelar}{Sarjana Ilmu Komputer}
+% 
+% Tuliskan tanggal pengesahan laporan, waktu dimana laporan diserahkan ke 
+% penguji/sekretariat
+\var{\tanggalPengesahan}{20 Juni 2015} 
+% 
+% Tuliskan tanggal keputusan sidang dikeluarkan dan penulis dinyatakan 
+% lulus/tidak lulus
+\var{\tanggalLulus}{20 Juni 2015}
+% 
+% Tuliskan pembimbing 
+\var{\pembimbing}{Dra. Mirna Adriani, Ph.D.}
+\var{\pembimbingdua}{Dr. Amalia Zahra}
+% 
+% Alias untuk memudahkan alur penulisan paa saat menulis laporan
+\var{\saya}{penulis}
+\var{\Saya}{Penulis}
+
+%-----------------------------------------------------------------------------%
+% Judul Setiap Bab
+%-----------------------------------------------------------------------------%
+% 
+% Berikut ada judul-judul setiap bab. 
+% Silahkan diubah sesuai dengan kebutuhan. 
+% 
+\Var{\kataPengantar}{Kata Pengantar}
+\Var{\babSatu}{Pendahuluan}
+\Var{\babDua}{Landasan Teori}
+\Var{\babTiga}{Perancangan Sistem}
+\Var{\babEmpat}{Eksperimen}
+\Var{\babLima}{Hasil Eksperimen dan Analisis}
+\Var{\babEnam}{Kesimpulan dan Saran}
+%!TEX root = skripsi.tex
+%
+% @author  Andreas Febrian
+% @version 1.00 
+% 
+% Hanya sebuah pembatas bertuliskan LAMPIRAN ditengah halaman. 
+% 
+
+\begin{titlepage}
+	\centering 
+	\vspace*{6cm}
+	\noindent \Huge{LAMPIRAN}
+	\addChapter{LAMPIRAN}
+\end{titlepage}%!TEX root = skripsi.tex
+%
+% Halaman Orisinalitas
+%
+% @author  Andreas Febrian
+% @version 1.01
+%
+
+\chapter*{\uppercase{halaman pernyataan orisinalitas}}
+\vspace*{2cm}
+
+\begin{center}
+	\bo{\type~ini adalah hasil karya saya sendiri, \\ 
+	dan semua sumber baik yang dikutip maupun dirujuk \\
+	telah saya nyatakan dengan benar.} \\
+	\vspace*{2.6cm}
+	
+	\begin{tabular}{l c l}
+	\bo{Nama} & : & \bo{\penulis} \\
+	\bo{NPM} & : & \bo{\npm} \\ 
+	\bo{Tanda Tangan} & : & \\
+	& & \\
+	& & \\
+	\bo{Tanggal} & : & \bo{\tanggalPengesahan} \\	
+	\end{tabular}
+\end{center}
+
+\newpage%!TEX root = skripsi.tex
+%-----------------------------------------------------------------------------%
+\chapter*{\kataPengantar}
+%-----------------------------------------------------------------------------%
+
+\begin{arabtex}الْحَمْدُ لِلَّـهِ الَّذِي هَدَانَا لِهَـٰذَا وَمَا كُنَّا لِنَهْتَدِيَ لَوْلَا أَنْ هَدَانَا اللَّـهُ\end{arabtex} \f{Segala puji bagi Allah yang telah menunjuki kami kepada (surga) ini. Dan kami sekali-kali tidak akan mendapat petunjuk kalau Allah tidak memberi kami petunjuk. [Al-A'raf:43]}\begin{arabtex}الْحَمْدُ للهِ رَبِّ الْعَالَمِيْنَ، وَالصَّلاَةُ وَالسَّلاَمُ عَلَى سَيِّدِنَا مُحَمَّدٍ سَيِّدِ اْلأَوَّلِيْنَ وَالآخِرِيْنَ، وَعَلَى آلِهِ وَصَحْبِهِ وَمَنِ اهْتَدَى بِهَدْيِهِ إِلَى يَوْمِ الدَّيْنِ\end{arabtex} \f{Segala puji bagi Allah, Tuhan sekalian alam, semoga keselamatan dan kesejahteraan tetap terlimpahkan atas junjungan kita Nabi Muhammad SAW, penghulu manusia, baik yang dahulu maupun yang belakangan, begitu juga kepada segenap keluarga dan semua orang yang mengikuti petunjuk, sampai saat Hari Kemudian.} Segala puji dan syukur kehadirat Allah SWT, Tuhan Yang Maha Esa, yang senantiasa memberikan ramhat dan hidayah-Nya, sehingga \saya~dapat menyelesaikan skripsi ini.
+
+Penulisan skripsi ini ditujukan untuk memenuhi salah satu syarat untuk menyelesaikan pendidikan pada Program \gelar, Universitas Indonesia. \Saya~sadar bahwa dalam perjalanan menuntut ilmu di universitas hingga dalam menyelesaikan skripsi ini, \saya~tidak sendiri. \Saya~ingin berterima kasih kepada pihak-pihak yang selalu peduli, mendampingi, dan mendukung \saya, yaitu:
+
+\begin{enumerate}
+	\item Kedua Orang Tua \saya~yang selalu memberikan dukungan dan do'a kepada \saya.
+	\item Dra. Mirna Adriani, Ph.D. dan Dr. Amalia Zahra selaku dosen pembimbing yang banyak memberikan arahan, masukan, dan bantuan dalam menyelesaikan skripsi ini.
+  \item Alfan Farizki Wicaksono, ST., M.Sc. dan Rahmad Mahendra, S.Kom., M.Sc. yang memberi dukungan dari awal sampai akhir pengerjaan skripsi ini, dan juga memberikan tips-tips dalam mengerjakan skripsi.
+  \item Andreas Febrian yang telah membuat \f{template} dokumen skripsi ini, sehingga \saya~menjadi terbantu dalam menulis skripsi.
+  \item Erik Dominikus yang telah mempublikasikan dan mempopulerkan \f{template} dokumen skripsi ini, sehingga \saya~menjadi tahu bahwa ada \f{template} tersebut.
+	\item Mohammad Syahid Wildan dan Abid Nurul Hakim, sebagai rekan yang banyak memberi masukan dan berbagi ide dengan \saya.
+  \item Teman-teman Lab Information Retrieval yang memberi dukungan dan semangat kepada \saya~untuk menyelesaikan skripsi ini.
+  \item Teman-teman Forum Remaja Masjid UI yang memberi dukungan serta do'a kepada \saya~untuk menyelesaikan skripsi ini.
+	\item Pihak-pihak lain yang tidak dapat \saya~sebutkan satu-persatu yang sudah memberikan bantuan dan dukungannya kepada \saya.
+\end{enumerate}
+\vspace*{0.1cm}
+\begin{flushright}
+Depok, Juni 2016\\[0.1cm]
+\vspace*{1cm}
+\penulis
+
+\end{flushright}%!TEX root = skripsi.tex
+%
+% Halaman Pengesahan Sidang
+%
+% @author  Andreas Febrian, Andre Tampubolon 
+% @version 1.02
+%
+
+\chapter*{HALAMAN PENGESAHAN}
+
+\vspace*{0.4cm}
+\noindent 
+
+\noindent
+\begin{tabular}{ll p{9cm}}
+	\type~ini diajukan oleh&: & \\
+	Nama&: & \penulis \\
+	NPM&: & \npm \\
+	Program Studi&: & \program \\
+	Judul \type&: & \judul \\
+\end{tabular} \\
+
+\vspace*{1.0cm}
+
+\noindent \bo{Telah berhasil dipertahankan di hadapan Dewan Penguji 
+dan diterima sebagai bagian persyaratan yang diperlukan untuk 
+memperoleh gelar \gelar~pada Program Studi \program, Fakultas 
+\fakultas, Universitas Indonesia.}\\[0.2cm]
+
+\begin{center}
+	\bo{DEWAN PENGUJI}
+\end{center}
+
+\vspace*{0.3cm}
+
+\begin{tabular}{l l l l }
+	& & & \\
+	Pembimbing&: & \pembimbing & (\hspace*{3.0cm}) \\
+	& & & \\
+	Penguji&: &  & (\hspace*{3.0cm}) \\
+	& & & \\
+	Penguji&: &  & (\hspace*{3.0cm}) \\
+\end{tabular}\\
+
+\vspace*{2.0cm}
+
+\begin{tabular}{ll l}
+	Ditetapkan di&: & Depok\\
+	Tanggal&: & \tanggalLulus \\
+\end{tabular}
+
+
+\newpage%!TEX root = skripsi.tex
+%
+% Halaman Pengesahan
+%
+% @author  Andreas Febrian
+% @author  Ardhi Putra Pratama
+% @version 1.1
+%
+
+\chapter*{HALAMAN PERSETUJUAN}
+
+\vspace*{0.2cm}
+\noindent 
+
+\noindent
+\begin{tabular}{l l p{11cm}}
+	\bo{Judul}&: & \judul \\ 
+	\bo{Nama}&: & \penulis \\
+	\bo{NPM}&: & \npm \\
+\end{tabular} \\
+
+\vspace*{1.2cm}
+
+
+\noindent\begin{minipage}[b]{0.6\hsize}
+  \raggedright
+  Laporan \type~ini telah diperiksa dan disetujui.\\[0.3cm]
+  
+  \tanggalPengesahan \\[2cm]
+  
+  \underline{\pembimbing}\\[0.1cm]
+  Pembimbing \type
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.4\hsize}
+  \raggedleft
+  .\\[2cm]
+  \underline{\pembimbingdua}\\[0.1cm]
+  Pembimbing \type
+\end{minipage}
+
+\newpage%!TEX root = skripsi.tex
+% 
+% @author  Andre Tampubolon, Andreas Febrian
+% @version 1.01
+% 
+
+\chapter*{\uppercase{Halaman Pernyataan Persetujuan Publikasi Tugas Akhir untuk Kepentingan Akademis}}
+
+\vspace*{0.2cm}
+\noindent 
+Sebagai sivitas akademik Universitas Indonesia, saya yang bertanda 
+tangan di bawah ini:
+\vspace*{0.4cm}
+
+
+\begin{tabular}{p{4.2cm} l p{6cm}}
+	\bo{Nama} & : & \penulis \\ 	
+	\bo{NPM} & : & \npm \\
+	\bo{Program Studi} & : & \program\\	
+	\bo{Fakultas} & : & \fakultas\\
+	\bo{Jenis Karya} & : & \type \\
+\end{tabular}
+
+\vspace*{0.6cm}
+\noindent demi pengembangan ilmu pengetahuan, menyetujui untuk memberikan 
+kepada Universitas Indonesia \bo{Hak Bebas Royalti Noneksklusif 
+(Non-exclusive Royalty Free Right)} atas karya ilmiah saya yang berjudul:
+\begin{center}
+	\judul
+\end{center}
+beserta perangkat yang ada (jika diperlukan). Dengan Hak Bebas Royalti 
+Noneksklusif ini Universitas Indonesia berhak menyimpan, 
+mengalihmedia/formatkan, mengelola dalam bentuk pangkalan data 
+(\f{database}), merawat, dan memublikasikan tugas akhir saya selama 
+tetap mencantumkan nama saya sebagai penulis/pencipta dan sebagai 
+pemilik Hak Cipta. \\
+
+\noindent Demikian pernyatan ini saya buat dengan sebenarnya.
+
+\begin{center}
+	\vspace*{0.8cm}
+	\begin{tabular}{lll}
+		Dibuat di&: & Depok \\
+		Pada tanggal&: & \tanggalPengesahan \\
+	\end{tabular}\\
+
+	\vspace*{0.2cm}
+	Yang menyatakan \\
+	\vspace*{2cm}
+	(\penulis)
+\end{center}
+
+\newpage
+
+%!TEX root = skripsi.tex
+%
+% Sampul Laporan
+
+%
+% @author  unknown
+% @version 1.01
+% @edit by Andreas Febrian
+%
+
+\begin{titlepage}
+    \begin{center}    
+        \begin{figure}
+            \begin{center}
+                \includegraphics[width=2.5cm]{pics/makara.png}
+            \end{center}
+        \end{figure}    
+        \vspace*{0cm}
+        \bo{
+        	UNIVERSITAS INDONESIA\\
+        }
+        
+        \vspace*{1.0cm}
+        % judul thesis harus dalam 14pt Times New Roman
+        \bo{\Judul} \\[1.0cm]
+
+        \vspace*{2.5 cm}    
+        % harus dalam 14pt Times New Roman
+        \bo{\Type}
+
+        \vspace*{3 cm}       
+        % penulis dan npm
+        \bo{\Penulis} \\
+        \bo{\npm} \\
+
+        \vspace*{5.0cm}
+
+        % informasi mengenai fakultas dan program studi
+        \bo{
+        	FAKULTAS \Fakultas\\
+        	PROGRAM STUDI \Program \\
+        	DEPOK \\
+        	\bulanTahun
+        }
+    \end{center}
+\end{titlepage}
+%!TEX root = skripsi.tex
+%
+% Template Laporan Skripsi/Thesis 
+%
+% @author  Andreas Febrian, Lia Sadita 
+% @version 1.03
+%
+% Dokumen ini dibuat berdasarkan standar IEEE dalam membuat class untuk 
+% LaTeX dan konfigurasi LaTeX yang digunakan Fahrurrozi Rahman ketika 
+% membuat laporan skripsi. Konfigurasi yang lama telah disesuaikan dengan 
+% aturan penulisan thesis yang dikeluarkan UI pada tahun 2008.
+%
+
+%
+% Tipe dokumen adalah report dengan satu kolom. 
+%
+\documentclass[12pt, a4paper, onecolumn, oneside, final]{report}
+
+\usepackage{arabtex}
+\usepackage{utf8}
+\setcode{utf8}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+
+\usepackage{natbib}
+% Load konfigurasi LaTeX untuk tipe laporan thesis
+\usepackage{uithesis}
+
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% Load konfigurasi khusus untuk laporan yang sedang dibuat
+\input{laporan_setting}
+% Daftar pemenggalan suku kata dan istilah dalam LaTeX
+\include{hype.indonesia}
+% Daftar istilah yang mungkin perlu ditandai 
+\input{istilah}
+
+%\usepackage[backend=bibtex]{biblatex}
+%\addbibresource{bib.bib}
+
+% Awal bagian penulisan laporan
+\begin{document}
+%
+% Sampul Laporan
+\include{sampul}
+
+%
+% Gunakan penomeran romawi
+\pagenumbering{roman}
+
+%
+% load halaman judul dalam
+\addChapter{HALAMAN JUDUL}
+\include{judul_dalam}
+
+%
+% setelah bagian ini, halaman dihitung sebagai halaman ke 2
+\setcounter{page}{2}
+
+% sementara ga usah
+% load halaman pengesahan
+%\addChapter{LEMBAR PERSETUJUAN}
+%\include{pengesahan}
+%
+% load halaman orisinalitas 
+\addChapter{LEMBAR PERNYATAAN ORISINALITAS}
+\include{orisinal}
+%
+%
+\addChapter{LEMBAR PENGESAHAN}
+\include{pengesahan_sidang}
+%
+%
+\addChapter{\kataPengantar}
+\include{pengantar}
+%
+%
+\addChapter{LEMBAR PERSETUJUAN PUBLIKASI ILMIAH}
+\include{persetujuan_publikasi}
+%
+% 
+\singlespacing
+\addChapter{ABSTRAK}
+\include{abstrak}
+%
+%
+\include{abstract}
+
+%
+% Daftar isi, gambar, dan tabel
+%
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+% \lstlistoflistings
+% \clearpage
+
+%
+% Gunakan penomeran Arab (1, 2, 3, ...) setelah bagian ini.
+%
+\pagenumbering{arabic}
+
+%
+%
+%
+\onehalfspacing
+\include{bab1}
+\include{bab2}
+\include{bab3}
+\include{bab4}
+\include{bab5}
+\include{bab6}
+
+%\printbibliography
+%
+% Daftar Pustaka
+%\include{pustaka}
+%biblama (bukan biblatex)
+\bibliography{skripsi}{}
+%\bibliography{references}{}
+%biblama (bukan biblatex)
+\bibliographystyle{apalikerd}
+%\bibliographystyle{ieeetr} 
+
+%
+% Lampiran 
+%
+% \begin{appendix}
+% 	\include{markLampiran}
+% 	\setcounter{page}{2}
+% 	\include{lampiran}
+% \end{appendix}
+
+\end{document}

@@ -1,0 +1,79 @@
+\BOOKMARK [0][-]{section*.2}{HALAMAN JUDUL}{}% 1
+\BOOKMARK [0][-]{section*.4}{LEMBAR PERNYATAAN ORISINALITAS}{}% 2
+\BOOKMARK [0][-]{section*.6}{LEMBAR PENGESAHAN}{}% 3
+\BOOKMARK [0][-]{section*.8}{Kata Pengantar}{}% 4
+\BOOKMARK [0][-]{section*.10}{LEMBAR PERSETUJUAN PUBLIKASI ILMIAH}{}% 5
+\BOOKMARK [0][-]{section*.12}{ABSTRAK}{}% 6
+\BOOKMARK [0][-]{chapter*.15}{Daftar Isi}{}% 7
+\BOOKMARK [0][-]{chapter*.16}{Daftar Gambar}{}% 8
+\BOOKMARK [0][-]{chapter*.17}{Daftar Tabel}{}% 9
+\BOOKMARK [0][-]{chapter.1}{1 Pendahuluan}{}% 10
+\BOOKMARK [1][-]{section.1.1}{1.1 Latar Belakang}{chapter.1}% 11
+\BOOKMARK [1][-]{section.1.2}{1.2 Perumusan Masalah}{chapter.1}% 12
+\BOOKMARK [1][-]{section.1.3}{1.3 Tujuan dan Manfaat Penelitian}{chapter.1}% 13
+\BOOKMARK [1][-]{section.1.4}{1.4 Metodologi Penelitian}{chapter.1}% 14
+\BOOKMARK [1][-]{section.1.5}{1.5 Ruang Lingkup Penelitian}{chapter.1}% 15
+\BOOKMARK [1][-]{section.1.6}{1.6 Sistematika Penulisan}{chapter.1}% 16
+\BOOKMARK [0][-]{chapter.2}{2 Landasan Teori}{}% 17
+\BOOKMARK [1][-]{section.2.1}{2.1 Pengenalan Entitas Kesehatan}{chapter.2}% 18
+\BOOKMARK [1][-]{section.2.2}{2.2 Recurrent Neural Networks}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.2.1}{2.2.1 Deep Learning}{section.2.2}% 20
+\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 Vanilla RNNs}{section.2.2}% 21
+\BOOKMARK [2][-]{subsection.2.2.3}{2.2.3 Long Short Term Memory}{section.2.2}% 22
+\BOOKMARK [2][-]{subsection.2.2.4}{2.2.4 Penerapan RNNs untuk MER}{section.2.2}% 23
+\BOOKMARK [1][-]{section.2.3}{2.3 Word Embedding}{chapter.2}% 24
+\BOOKMARK [1][-]{section.2.4}{2.4 Pengenalan Suara Otomatis}{chapter.2}% 25
+\BOOKMARK [1][-]{section.2.5}{2.5 Fitur}{chapter.2}% 26
+\BOOKMARK [2][-]{subsection.2.5.1}{2.5.1 Mel Frequency Cepstral Coefficients \(MFCCs\)}{section.2.5}% 27
+\BOOKMARK [2][-]{subsection.2.5.2}{2.5.2 Shifted Delta Cepstral Coefficients \(SDCCs\)}{section.2.5}% 28
+\BOOKMARK [1][-]{section.2.6}{2.6 Longest Common Subsequence \(LCS\)}{chapter.2}% 29
+\BOOKMARK [1][-]{section.2.7}{2.7 Metode Clustering dan Klasifikasi}{chapter.2}% 30
+\BOOKMARK [2][-]{subsection.2.7.1}{2.7.1 K-Means Clustering}{section.2.7}% 31
+\BOOKMARK [2][-]{subsection.2.7.2}{2.7.2 Support Vector Machine \(SVM\)}{section.2.7}% 32
+\BOOKMARK [2][-]{subsection.2.7.3}{2.7.3 Gaussian Mixture Model \(GMM\)}{section.2.7}% 33
+\BOOKMARK [1][-]{section.2.8}{2.8 Evaluasi}{chapter.2}% 34
+\BOOKMARK [1][-]{section.2.9}{2.9 Penelitian Terkait}{chapter.2}% 35
+\BOOKMARK [0][-]{chapter.3}{3 Perancangan Sistem}{}% 36
+\BOOKMARK [1][-]{section.3.1}{3.1 Rancangan Arsitektur Sistem}{chapter.3}% 37
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Pengumpulan Data}{section.3.1}% 38
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Proses Normalisasi}{section.3.1}% 39
+\BOOKMARK [2][-]{subsection.3.1.3}{3.1.3 Pembuatan Model Word Embedding}{section.3.1}% 40
+\BOOKMARK [2][-]{subsection.3.1.4}{3.1.4 Ekstrasi Fitur}{section.3.1}% 41
+\BOOKMARK [2][-]{subsection.3.1.5}{3.1.5 Eksperimen}{section.3.1}% 42
+\BOOKMARK [1][-]{section.3.2}{3.2 Data}{chapter.3}% 43
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Pengambilan Data}{section.3.2}% 44
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Pembuangan Data Duplikat}{section.3.2}% 45
+\BOOKMARK [2][-]{subsection.3.2.3}{3.2.3 Penyaringan Data}{section.3.2}% 46
+\BOOKMARK [1][-]{section.3.3}{3.3 Perangkat dan Fungsi Pendukung}{chapter.3}% 47
+\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 Perangkat Pendukung}{section.3.3}% 48
+\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Fungsi Pendukung}{section.3.3}% 49
+\BOOKMARK [0][-]{chapter.4}{4 Eksperimen}{}% 50
+\BOOKMARK [1][-]{section.4.1}{4.1 Normalisasi Data}{chapter.4}% 51
+\BOOKMARK [1][-]{section.4.2}{4.2 Ekstraksi Fitur}{chapter.4}% 52
+\BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Ekstraksi Fitur MFCC}{section.4.2}% 53
+\BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 Ekstraksi Fitur SDCC}{section.4.2}% 54
+\BOOKMARK [1][-]{section.4.3}{4.3 Pemodelan}{chapter.4}% 55
+\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Pemodelan dengan Support Vector Machine \(SVM\)}{section.4.3}% 56
+\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 Pemodelan dengan Gaussian Mixture Model \(GMM\)}{section.4.3}% 57
+\BOOKMARK [2][-]{subsection.4.3.3}{4.3.3 Pemodelan dengan Gabungan SVM dan GMM}{section.4.3}% 58
+\BOOKMARK [1][-]{section.4.4}{4.4 Pengujian}{chapter.4}% 59
+\BOOKMARK [0][-]{chapter.5}{5 Hasil Eksperimen dan Analisis}{}% 60
+\BOOKMARK [1][-]{section.5.1}{5.1 Hasil dengan Fitur MFCC}{chapter.5}% 61
+\BOOKMARK [2][-]{subsection.5.1.1}{5.1.1 Hasil dengan Fitur MFCC dan Metode Klasifikasi SVM}{section.5.1}% 62
+\BOOKMARK [2][-]{subsection.5.1.2}{5.1.2 Hasil dengan Fitur MFCC dan Metode Klasifikasi GMM}{section.5.1}% 63
+\BOOKMARK [2][-]{subsection.5.1.3}{5.1.3 Hasil dengan Fitur MFCC dan Metode Klasifikasi Gabungan}{section.5.1}% 64
+\BOOKMARK [1][-]{section.5.2}{5.2 Hasil dengan Fitur SDCC}{chapter.5}% 65
+\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 Hasil dengan Fitur SDCC dan Metode Klasifikasi SVM}{section.5.2}% 66
+\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 Hasil dengan Fitur SDCC dan Metode Klasifikasi GMM}{section.5.2}% 67
+\BOOKMARK [2][-]{subsection.5.2.3}{5.2.3 Hasil dengan Fitur SDCC dan Metode Klasifikasi Gabungan}{section.5.2}% 68
+\BOOKMARK [1][-]{section.5.3}{5.3 Perbandingan Hasil}{chapter.5}% 69
+\BOOKMARK [2][-]{subsection.5.3.1}{5.3.1 Perbandingan Metode Klasifikasi pada Fitur MFCC}{section.5.3}% 70
+\BOOKMARK [2][-]{subsection.5.3.2}{5.3.2 Perbandingan Metode Klasifikasi pada Fitur SDCC}{section.5.3}% 71
+\BOOKMARK [2][-]{subsection.5.3.3}{5.3.3 Perbandingan Fitur pada Metode Klasifikasi SVM}{section.5.3}% 72
+\BOOKMARK [2][-]{subsection.5.3.4}{5.3.4 Perbandingan Fitur pada Metode Klasifikasi GMM}{section.5.3}% 73
+\BOOKMARK [2][-]{subsection.5.3.5}{5.3.5 Perbandingan Fitur pada Metode Klasifikasi Gabungan}{section.5.3}% 74
+\BOOKMARK [1][-]{section.5.4}{5.4 Analisis Lanjut}{chapter.5}% 75
+\BOOKMARK [0][-]{chapter.6}{6 Kesimpulan dan Saran}{}% 76
+\BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 77
+\BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 78
+\BOOKMARK [0][-]{chapter*.64}{Daftar Referensi}{}% 79

@@ -1,0 +1,233 @@
+\begin{thebibliography}{}
+
+\bibitem[Abacha dan Zweigenbaum, 2011]{abacha2011medical}
+Abacha, A.~B. dan Zweigenbaum, P. (2011).
+\newblock Medical entity recognition: A comparison of semantic and statistical
+  methods.
+\newblock In {\em Proceedings of BioNLP 2011 Workshop}, pages 56--64.
+  Association for Computational Linguistics.
+
+\bibitem[Anton dan Rorres, 2010]{anton2010elementary}
+Anton, H. dan Rorres, C. (2010).
+\newblock {\em Elementary Linear Algebra: Applications Version}.
+\newblock John Wiley \& Sons.
+
+\bibitem[Bishop, 2006]{bishop2006pattern}
+Bishop, C. (2006).
+\newblock {\em Pattern Recognition and Machine Learning}.
+\newblock Springer-Verlag New York.
+
+\bibitem[Boswell, 2016]{svm}
+Boswell, D. (2016).
+\newblock Introduction to support vector machines.
+\newblock http://dustwell.com/PastWork/IntroToSVM.pdf.
+\newblock [Diakses 7 Juni 2016].
+
+\bibitem[Campbell et~al., 2006]{campbell2006support}
+Campbell, W.~M., Campbell, J.~P., Reynolds, D.~A., Singer, E., dan
+  Torres-Carrasquillo, P.~A. (2006).
+\newblock Support vector machines for speaker and language recognition.
+\newblock {\em Computer Speech \& Language}, 20(2):210--229.
+
+\bibitem[Chigier, 1997]{chigier1997automatic}
+Chigier, B. (1997).
+\newblock Automatic speech recognition.
+\newblock US Patent 5,638,487.
+
+\bibitem[Cormen et~al., 2009]{Cormen:2009:IAT:1614191}
+Cormen, T.~H., Leiserson, C.~E., Rivest, R.~L., dan Stein, C. (2009).
+\newblock {\em Introduction to Algorithms, Third Edition}.
+\newblock The MIT Press, 3rd edition.
+
+\bibitem[Davis dan Mermelstein, 1980]{1163420}
+Davis, S. dan Mermelstein, P. (1980).
+\newblock Comparison of parametric representations for monosyllabic word
+  recognition in continuously spoken sentences.
+\newblock {\em IEEE Transactions on Acoustics, Speech, and Signal Processing},
+  28(4):357--366.
+
+\bibitem[Elman, 1990]{elman1990finding}
+Elman, J.~L. (1990).
+\newblock Finding structure in time.
+\newblock {\em Cognitive science}, 14(2):179--211.
+
+\bibitem[Forsberg, 2003]{forsberg2003speech}
+Forsberg, M. (2003).
+\newblock Why is speech recognition difficult?
+\newblock {\em Chalmers University of Technology}.
+
+\bibitem[Ganchev et~al., 2005]{ganchev2005comparative}
+Ganchev, T., Fakotakis, N., dan Kokkinakis, G. (2005).
+\newblock Comparative evaluation of various mfcc implementations on the speaker
+  verification task.
+\newblock {\em Proceedings of the SPECOM}, 1:191--194.
+
+\bibitem[Graves et~al., 2013]{graves2013speech}
+Graves, A., Mohamed, A.-r., dan Hinton, G. (2013).
+\newblock Speech recognition with deep recurrent neural networks.
+\newblock In {\em 2013 IEEE international conference on acoustics, speech and
+  signal processing}, pages 6645--6649. IEEE.
+
+\bibitem[Haykin et~al., 2009]{haykin2009neural}
+Haykin, S.~S., Haykin, S.~S., Haykin, S.~S., dan Haykin, S.~S. (2009).
+\newblock {\em Neural networks and learning machines}, volume~3.
+\newblock Pearson Upper Saddle River, NJ, USA:.
+
+\bibitem[Herwando, 2016]{skripsiKakRadit}
+Herwando, R. (2016).
+\newblock Pengenalan entitas kesehatan pada forum kesehatan \textit{Online}
+  berbahasa indonesia menggunakan algoritma textit{Conditional Random Fields}.
+\newblock An optional note.
+
+\bibitem[Juang dan Rabiner, 2005]{juang2005automatic}
+Juang, B.-H. dan Rabiner, L.~R. (2005).
+\newblock Automatic speech recognition--a brief history of the technology
+  development.
+\newblock {\em Encyclopedia of Language and Linguistics}.
+
+\bibitem[Jurafsky dan Martin, 2009]{Jurafsky:2009:SLP:1214993}
+Jurafsky, D. dan Martin, J.~H. (2009).
+\newblock {\em Speech and Language Processing (2nd Edition)}.
+\newblock Prentice-Hall, Inc., Upper Saddle River, NJ, USA.
+
+\bibitem[Kanungo et~al., 2002]{kanungo2002efficient}
+Kanungo, T., Mount, D.~M., Netanyahu, N.~S., Piatko, C.~D., Silverman, R., dan
+  Wu, A.~Y. (2002).
+\newblock An efficient k-means clustering algorithm: Analysis and
+  implementation.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 24(7):881--892.
+
+\bibitem[Lyons, 2016]{hitungmfcc}
+Lyons, J. (2016).
+\newblock Mel frequency cepstral coefficient (mfcc) tutorial.
+\newblock
+  http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/.
+\newblock [Diakses 12 Juni 2016].
+
+\bibitem[Mikolov et~al., 2010]{mikolov2010recurrent}
+Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.
+  (2010).
+\newblock Recurrent neural network based language model.
+\newblock In {\em Interspeech}, volume~2, page~3.
+
+\bibitem[Mohammed et~al., 2015]{mohammed2015quranic}
+Mohammed, A., Sunar, M.~S., dan Salam, M. S.~H. (2015).
+\newblock Quranic verses verification using speech recognition techniques.
+\newblock {\em Jurnal Teknologi}, 73(2).
+
+\bibitem[Montgomery, 2013]{montgomery2013applied}
+Montgomery, D. (2013).
+\newblock {\em Applied Statistics and Probability for Engineers, 6th Edition}.
+\newblock John Wiley \& Sons.
+
+\bibitem[Muhammad et~al., 2010]{Muhammad:2010:VCM:1934908.1935467}
+Muhammad, W.~M., Muhammad, R., Muhammad, A., dan Martinez-Enriquez, A.~M.
+  (2010).
+\newblock Voice content matching system for quran readers.
+\newblock In {\em Proceedings of the 2010 Ninth Mexican International
+  Conference on Artificial Intelligence}, MICAI '10, pages 148--153,
+  Washington, DC, USA. IEEE Computer Society.
+
+\bibitem[Putra et~al., 2012]{putra2012developing}
+Putra, B., Atmaja, B., dan Prananto, D. (2012).
+\newblock Developing speech recognition system for quranic verse recitation
+  learning software.
+\newblock {\em International Journal on Informatics for Development}, 1(2).
+
+\bibitem[Rabiner dan Schafer, 1978]{rabiner1978digital}
+Rabiner, L. dan Schafer, R. (1978).
+\newblock {\em Digital Processing of Speech Signals}.
+\newblock Prentice-Hall signal processing series. Prentice-Hall.
+
+\bibitem[{\v R}eh{\r u}{\v r}ek dan Sojka, 2010]{rehurek_lrec}
+{\v R}eh{\r u}{\v r}ek, R. dan Sojka, P. (2010).
+\newblock {Software Framework for Topic Modelling with Large Corpora}.
+\newblock In {\em {Proceedings of the LREC 2010 Workshop on New Challenges for
+  NLP Frameworks}}, pages 45--50, Valletta, Malta. ELRA.
+\newblock \url{http://is.muni.cz/publication/884893/en}.
+
+\bibitem[Reynolds et~al., 2000]{reynolds2000speaker}
+Reynolds, D.~A., Quatieri, T.~F., dan Dunn, R.~B. (2000).
+\newblock Speaker verification using adapted gaussian mixture models.
+\newblock {\em Digital signal processing}, 10(1):19--41.
+
+\bibitem[Saha et~al., 2005]{saha2005new}
+Saha, G., Chakroborty, S., dan Senapati, S. (2005).
+\newblock A new silence removal and endpoint detection algorithm for speech and
+  speaker recognition applications.
+\newblock {\em Proceedings of the 11th National Conference on Communications
+  (NCC)}, pages 291--295.
+
+\bibitem[Salmond, 2009]{5089549}
+Salmond, D.~J. (2009).
+\newblock Mixture reduction algorithms for point and extended object tracking
+  in clutter.
+\newblock {\em IEEE Transactions on Aerospace and Electronic Systems},
+  45(2):667--686.
+
+\bibitem[Sharma dan Sarma, 2016]{Soft-Computational}
+Sharma, M. dan Sarma, K.~K. (2016).
+\newblock {\em Soft-Computational Techniques and Spectro-Temporal Features for
+  Telephonic Speech Recognition: An Overview and Review of Current State of the
+  Art}.
+\newblock IGI Global.
+
+\bibitem[Singh et~al., 2010]{singh2010statistical}
+Singh, R., Pal, B.~C., dan Jabr, R.~A. (2010).
+\newblock Statistical representation of distribution system loads using
+  gaussian mixture model.
+\newblock {\em Power Systems, IEEE Transactions on}, 25(1):29--37.
+
+\bibitem[Sirisena dan Brown, 1983]{4643623}
+Sirisena, H.~R. dan Brown, E. P.~M. (1983).
+\newblock Representation of non-gaussian probability distributions in
+  stochastic load-flow studies by the method of gaussian sum approximations.
+\newblock {\em IEE Proceedings C - Generation, Transmission and Distribution},
+  130(4):165--171.
+
+\bibitem[Torres-Carrasquillo et~al., 2002]{torres2002approaches}
+Torres-Carrasquillo, P.~A., Singer, E., Kohler, M.~A., Greene, R.~J., Reynolds,
+  D.~A., dan Deller~Jr, J.~R. (2002).
+\newblock Approaches to language identification using gaussian mixture models
+  and shifted delta cepstral features.
+\newblock In {\em INTERSPEECH}.
+
+\bibitem[Valverde et~al., 2012]{6235282}
+Valverde, G., Saric, A.~T., dan Terzija, V. (2012).
+\newblock Probabilistic load flow with non-gaussian correlated random variables
+  using gaussian mixture models.
+\newblock {\em IET Generation, Transmission Distribution}, 6(7):701--709.
+
+\bibitem[Weisstein, 2016]{kmeans}
+Weisstein, E.~W. (2016).
+\newblock K-means clustering algorithm.
+\newblock MathWorld--A Wolfram Web Resource.
+  http://mathworld.wolfram.com/K-MeansClusteringAlgorithm.html.
+\newblock [Diakses 7 Juni 2016].
+
+\bibitem[Wyse et~al., 1980]{wyse1980critical}
+Wyse, N., Dubes, R., dan Jain, A.~K. (1980).
+\newblock A critical evaluation of intrinsic dimensionality algorithms.
+\newblock {\em Pattern recognition in practice}, pages 415--425.
+
+\bibitem[Yin et~al., 2006]{yin2006combining}
+Yin, B., Ambikairajah, E., dan Chen, F. (2006).
+\newblock Combining cepstral and prosodic features in language identification.
+\newblock In {\em Pattern Recognition, 2006. ICPR 2006. 18th International
+  Conference on}, volume~4, pages 254--257. IEEE.
+
+\bibitem[Young et~al., 2002]{young2002htk}
+Young, S., Evermann, G., Kershaw, D., Moore, G., Odell, J., Ollason, D.,
+  Valtchev, V., dan Woodland, P. (2002).
+\newblock The htk book.
+\newblock {\em Cambridge University Engineering Department}, 3.
+
+\bibitem[Zahra dan Carson-Berndsen, 2013]{zahra2013unique}
+Zahra, A. dan Carson-Berndsen, J. (2013).
+\newblock Unique n-phone ranking based spoken language identification.
+\newblock In {\em Computational Intelligence, Communication Systems and
+  Networks (CICSyN), 2013 Fifth International Conference on}, pages 239--244.
+  IEEE.
+
+\end{thebibliography}

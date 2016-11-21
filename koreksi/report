@@ -1,0 +1,147 @@
+../abstract.tex
+the recitation. Whenever the
+the recitation of the
+to the reciter to
+
+
+../abstrak.tex
+orang pertama, maka orang
+yang dibaca dengan yang
+
+
+../bab1.tex
+orang kedua atau orang
+kedua atau orang kedua
+suara digital dengan suara
+klasifikasi terbaik. Metode klasifikasi
+sampai metode, tidak sampai
+
+
+../bab2.tex
+kata demi kata
+yang harus diikuti, yang
+yang merepresentasikan komponen yang
+dari suara. Kunci dari
+model akustik dan model
+klasifikasi biner, yaitu klasifikasi
+hasil klasifikasi dengan hasil
+nilai \f{precision} dengan nilai
+model akustik dan model
+
+
+../bab3.tex
+Pendukung} \subsection{Perangkat Pendukung}
+bagian utama, yaitu bagian
+bagian pemodelan dan bagian
+surat ke-114 (seluruh surat
+satu berkas merepresentasikan satu
+nama ``afasy''. Dua nama
+yang dipilih boleh yang
+bacaan \f{basmalah}\footnote{sebutan untuk bacaan
+pasang data}\\ Setiap pasang
+qari ke-i dengan qari
+mirip}, \f{tidak terlalu mirip},
+qari ke-i dengan qari
+dari keduanya dihilangkan dari
+
+
+../bab4.tex
+dengan STE, yaitu dengan
+tanda 1 menjadi tanda
+langkah \ref{satu} sampai langkah
+fitur mfcc} Ekstraksi fitur
+Parameter} & \textbf{Nilai Parameter}
+Parameter} & \textbf{Nilai Parameter}
+sebagai \fr~dan kolom sebagai
+kelas \f{benar} dan kelas
+Parameter} & \textbf{Nilai Parameter}
+Parameter} & \textbf{Nilai Parameter}
+
+
+../bab5.tex
+interval tersebut. Contoh interval
+Akurasi SVM & Akurasi
+Akurasi GMM & Akurasi
+Akurasi SVM & Akurasi
+Akurasi GMM & Akurasi
+Akurasi MFCC & Akurasi
+Akurasi MFCC & Akurasi
+Akurasi MFCC & Akurasi
+
+
+../bab6.tex
+Gambar \ref{fig:histogramakurasisvm}, Gambar
+Tabel \ref{table:perbandingansvm}, Tabel
+Tabel \ref{table:mfccsvm}, Tabel
+Tabel \ref{table:mfccgmm}, Tabel
+Tabel \ref{table:mfccgabungan}, Tabel
+Tabel \ref{table:sdccsvm}, Tabel
+Gambar \ref{fig:histogramakurasigmm}, dan Gambar
+fitur MFCC dengan fitur
+Tabel \ref{table:perbandingangmm}, serta Tabel
+fitur MFCC dengan fitur
+Tabel \ref{table:perbandinganmfcc} dan Tabel
+Gambar \ref{table:perbandinganmfcc} dan Gambar
+Tabel \ref{table:sdccgmm}, dan Tabel
+Tabel \ref{table:perbandinganmfcc} dan Tabel
+yang panjang, seperti yang
+sampel qari. Data sampel
+
+
+../daftarsingkatan.tex
+
+
+../hype.indonesia.tex
+alphabhet J % alphabhet
+alphabhet O % alphabhet
+alphabhet Q % alphabhet
+alphabhet V % alphabhet
+alphabhet W % alphabhet
+alphabhet X % alphabhet
+alphabhet Y % alphabhet
+
+
+../istilah.tex
+
+
+../judul_dalam.tex
+
+
+../lampiran.tex
+
+
+../laporan_setting.tex
+Komputer} \var{\fakultas}{Ilmu Komputer}
+Komputer} \var{\program}{Ilmu Komputer}
+dan Analisis} \Var{\babEnam}{Kesimpulan dan
+
+
+../markLampiran.tex
+
+
+../orisinal.tex
+
+
+../pengantar.tex
+yang dahulu maupun yang
+skripsi ini. Penulisan skripsi
+
+
+../pengesahan_sidang.tex
+
+
+../pengesahan.tex
+
+
+../persetujuan_publikasi.tex
+sebagai penulis/pencipta dan sebagai
+
+
+../sampul.tex
+
+
+../skripsi.tex
+LaTeX dan konfigurasi LaTeX
+halaman dihitung sebagai halaman
+
+
