@@ -56,25 +56,11 @@ Banyak variasi RNNs yang telah diusulkan oleh beberapa peneliti, seperti Elman \
 \end{figure}
 
 Dari gambar \ref{fig:simple_rnn}, sebuah jaringan pada RNNs memiliki \textit{input layer} $ x $, \textit{hidden layer} $ h $ dan \textit{output layer} $ y $. Terdapat 3 buah parameter yang ingin dicari dalam tahap \textit{learning}, yaitu $ {U, V, W} $ yang masing-masing parameter tersebut di-\textit{share} untuk semua \textit{timestep} $ t $ dengan:
-\begin{equation}
-U \in \R
-V \in \R
-W \in \R
+\begin{equation}\label{equ:euclideandistance}
+d(\mathbf{u},\mathbf{v})=||\mathbf{u}-\mathbf{v}||=\sqrt{(u_1-v_1)^2+(u_2-v_2)^2+\dots+(u_n-v_n)^2}.
 \end{equation}
 
-Untuk suatu \textit{timestep} $ t $, \textit{input} RNNs dinotasikan sebagai $ x(t) $, \textit{timestep} dinotasikan sebagai $ h(t) $ dan \textit{output} dinotasikan sebagai $ y(t) $, dengan:
 
-\begin{equation}
-y(t) = f(V \doteq h(t))
-h(t) = f(U \doteq x(t) + W \doteq h(t-1))
-\end{equation}
-
-dimana
-
-\begin{equation}
-h(0) = f(W \doteq x(0))
-\end{equation}
-dengan $ f $ sebagai \textit{activation function}
 
 \subsection{Long Short Term Memory}
 \subsection{Penerapan RNNs untuk MER}
