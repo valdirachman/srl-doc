@@ -29,41 +29,36 @@
 \contentsline {subsection}{\numberline {3.1.3}Pelabelan}{13}{subsection.3.1.3}
 \contentsline {subsection}{\numberline {3.1.4}Pengembangan Model}{14}{subsection.3.1.4}
 \contentsline {subsubsection}{\numberline {3.1.4.1}Ekstrasi Fitur}{14}{subsubsection.3.1.4.1}
-\contentsline {subsection}{\numberline {3.1.5}Eksperimen}{15}{subsection.3.1.5}
-\contentsline {section}{\numberline {3.2}Data}{15}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Pengambilan Data}{16}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Pembuangan Data Duplikat}{17}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Penyaringan Data}{18}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Perangkat dan Fungsi Pendukung}{19}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Perangkat Pendukung}{19}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Fungsi Pendukung}{20}{subsection.3.3.2}
-\contentsline {chapter}{\numberline {4}\uppercase {Eksperimen}}{22}{chapter.4}
-\contentsline {section}{\numberline {4.1}Normalisasi Data}{22}{section.4.1}
-\contentsline {section}{\numberline {4.2}Ekstraksi Fitur}{23}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Ekstraksi Fitur MFCC}{24}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Ekstraksi Fitur SDCC}{26}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Pemodelan}{28}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Pemodelan dengan Support Vector Machine (SVM)}{29}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Pemodelan dengan Gaussian Mixture Model (GMM)}{30}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Pemodelan dengan Gabungan SVM dan GMM}{30}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Pengujian}{31}{section.4.4}
-\contentsline {chapter}{\numberline {5}\uppercase {Hasil Eksperimen dan Analisis}}{33}{chapter.5}
-\contentsline {section}{\numberline {5.1}Hasil dengan Fitur MFCC}{33}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Hasil dengan Fitur MFCC dan Metode Klasifikasi SVM}{33}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Hasil dengan Fitur MFCC dan Metode Klasifikasi GMM}{35}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Hasil dengan Fitur MFCC dan Metode Klasifikasi Gabungan}{36}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}Hasil dengan Fitur SDCC}{38}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Hasil dengan Fitur SDCC dan Metode Klasifikasi SVM}{38}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Hasil dengan Fitur SDCC dan Metode Klasifikasi GMM}{39}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Hasil dengan Fitur SDCC dan Metode Klasifikasi Gabungan}{41}{subsection.5.2.3}
-\contentsline {section}{\numberline {5.3}Perbandingan Hasil}{42}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Perbandingan Metode Klasifikasi pada Fitur MFCC}{42}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Perbandingan Metode Klasifikasi pada Fitur SDCC}{43}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Perbandingan Fitur pada Metode Klasifikasi SVM}{44}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Perbandingan Fitur pada Metode Klasifikasi GMM}{45}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Perbandingan Fitur pada Metode Klasifikasi Gabungan}{46}{subsection.5.3.5}
-\contentsline {section}{\numberline {5.4}Analisis Lanjut}{47}{section.5.4}
-\contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{50}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{50}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{51}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{52}{chapter*.59}
+\contentsline {subsubsection}{\numberline {3.1.4.2}Pengusulan Arsitektur RNNs}{16}{subsubsection.3.1.4.2}
+\contentsline {subsection}{\numberline {3.1.5}Eksperimen}{17}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.6}Evaluasi}{17}{subsection.3.1.6}
+\contentsline {chapter}{\numberline {4}\uppercase {Eksperimen}}{18}{chapter.4}
+\contentsline {section}{\numberline {4.1}Normalisasi Data}{18}{section.4.1}
+\contentsline {section}{\numberline {4.2}Ekstraksi Fitur}{19}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Ekstraksi Fitur MFCC}{20}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Ekstraksi Fitur SDCC}{22}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Pemodelan}{24}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Pemodelan dengan Support Vector Machine (SVM)}{25}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Pemodelan dengan Gaussian Mixture Model (GMM)}{26}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Pemodelan dengan Gabungan SVM dan GMM}{26}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Pengujian}{27}{section.4.4}
+\contentsline {chapter}{\numberline {5}\uppercase {Hasil Eksperimen dan Analisis}}{29}{chapter.5}
+\contentsline {section}{\numberline {5.1}Hasil dengan Fitur MFCC}{29}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Hasil dengan Fitur MFCC dan Metode Klasifikasi SVM}{29}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Hasil dengan Fitur MFCC dan Metode Klasifikasi GMM}{31}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Hasil dengan Fitur MFCC dan Metode Klasifikasi Gabungan}{32}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}Hasil dengan Fitur SDCC}{34}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Hasil dengan Fitur SDCC dan Metode Klasifikasi SVM}{34}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Hasil dengan Fitur SDCC dan Metode Klasifikasi GMM}{35}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Hasil dengan Fitur SDCC dan Metode Klasifikasi Gabungan}{37}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Perbandingan Hasil}{38}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Perbandingan Metode Klasifikasi pada Fitur MFCC}{38}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Perbandingan Metode Klasifikasi pada Fitur SDCC}{39}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Perbandingan Fitur pada Metode Klasifikasi SVM}{40}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Perbandingan Fitur pada Metode Klasifikasi GMM}{41}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Perbandingan Fitur pada Metode Klasifikasi Gabungan}{42}{subsection.5.3.5}
+\contentsline {section}{\numberline {5.4}Analisis Lanjut}{43}{section.5.4}
+\contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{46}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{46}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{47}{section.6.2}
+\contentsline {chapter}{Daftar Referensi}{48}{chapter*.54}

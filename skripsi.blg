@@ -15,10 +15,5 @@ A level-1 auxiliary file: bab5.aux
 A level-1 auxiliary file: bab6.aux
 The style file: apalikerd.bst
 Database file #1: skripsi.bib
-Repeated entry---line 174 of file skripsi.bib
- : @inproceedings{suwarningsih2014imner
- :                                     ,
-I'm skipping whatever remains of this entry
 Warning--empty journal in jordan1986attractor
-Warning--empty year in shiel
-(There was 1 error message)
+(There was 1 warning)

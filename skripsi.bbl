@@ -35,6 +35,13 @@ Graves, A., Mohamed, A.-r., dan Hinton, G. (2013).
 \newblock In {\em 2013 IEEE international conference on acoustics, speech and
   signal processing}, pages 6645--6649. IEEE.
 
+\bibitem[Graves dan Schmidhuber, 2009]{graves2009offline}
+Graves, A. dan Schmidhuber, J. (2009).
+\newblock Offline handwriting recognition with multidimensional recurrent
+  neural networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  545--552.
+
 \bibitem[Hachey et~al., 2013]{hachey2013evaluating}
 Hachey, B., Radford, W., Nothman, J., Honnibal, M., dan Curran, J.~R. (2013).
 \newblock Evaluating entity linking with wikipedia.
@@ -50,6 +57,17 @@ Herwando, R. (2016).
 \newblock Pengenalan entitas kesehatan pada forum kesehatan online berbahasa
   indonesia menggunakan algoritma conditional random fields.
 \newblock Master's thesis, Universitas Indonesia, Kampus UI Depok.
+
+\bibitem[Hs, 2005]{hs2005bahasa}
+Hs, W. (2005).
+\newblock {\em Bahasa Indonesia: mata kuliah pengembangan kepribadian di
+  perguruan tinggi}.
+\newblock Gramedia Widiasarana Indonesia.
+
+\bibitem[Huang et~al., 2015]{huang2015bidirectional}
+Huang, Z., Xu, W., dan Yu, K. (2015).
+\newblock Bidirectional lstm-crf models for sequence tagging.
+\newblock {\em arXiv preprint arXiv:1508.01991}.
 
 \bibitem[Jordan, 1986]{jordan1986attractor}
 Jordan, M.~I. (1986).
@@ -87,13 +105,6 @@ Rabiner, L. dan Schafer, R. (1978).
 \newblock {\em Digital Processing of Speech Signals}.
 \newblock Prentice-Hall signal processing series. Prentice-Hall.
 
-\bibitem[{\v R}eh{\r u}{\v r}ek dan Sojka, 2010]{rehurek_lrec}
-{\v R}eh{\r u}{\v r}ek, R. dan Sojka, P. (2010).
-\newblock {Software Framework for Topic Modelling with Large Corpora}.
-\newblock In {\em {Proceedings of the LREC 2010 Workshop on New Challenges for
-  NLP Frameworks}}, pages 45--50, Valletta, Malta. ELRA.
-\newblock \url{http://is.muni.cz/publication/884893/en}.
-
 \bibitem[Reynolds et~al., 2000]{reynolds2000speaker}
 Reynolds, D.~A., Quatieri, T.~F., dan Dunn, R.~B. (2000).
 \newblock Speaker verification using adapted gaussian mixture models.
@@ -112,6 +123,13 @@ Sharma, M. dan Sarma, K.~K. (2016).
   Telephonic Speech Recognition: An Overview and Review of Current State of the
   Art}.
 \newblock IGI Global.
+
+\bibitem[Sutskever et~al., 2014]{NIPS2014_5346}
+Sutskever, I., Vinyals, O., dan Le, Q.~V. (2014).
+\newblock Sequence to sequence learning with neural networks.
+\newblock In Ghahramani, Z., Welling, M., Cortes, C., Lawrence, N.~D., dan
+  Weinberger, K.~Q., editors, {\em Advances in Neural Information Processing
+  Systems 27}, pages 3104--3112. Curran Associates, Inc.
 
 \bibitem[Suwarningsih et~al., 2014]{suwarningsih2014imner}
 Suwarningsih, W., Supriana, I., dan Purwarianti, A. (2014).
