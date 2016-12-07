@@ -20,7 +20,7 @@ Pengenalan Entitas Kesehatan (\mer) merupakan salah satu cabang dari Pengenalan 
 Dari ilustrasi di atas, sebuah sistem MER akan diberikan \textit{input} berupa dokumen kesehatan, kemudian sistem diharapkan dapat memberikan \textit{output} berupa dokumen yang mendapatkan pelabelan dengan benar. Dokumen kesehatan yang menjadi \textit{input} dapat berupa dokumen formal seperti dokumen suatu rumah sakit atau dokumen non-formal seperti dokumen forum kesehatan \textit{online}.
 
 % Manfaat MER %
-Implementasi sistem \mer~dapat memberikan manfaat pada beberapa bidang, seperti pada aplikasi \textit{Question Answering} (\cite{abacha2011medical}) yang hasil pelabelan dari sistem \mer~dapat mempermudah identifikasi entitas yang ditanyakan. Selain itu, hasil pelabelan sistem \mer~juga dapat dimanfaatkan untuk pembuatan sistem \textit{indexing} dokumen forum sehingga pencarian dokumen kesehatan dapat dilakukan dengan lebih efisien. Sistem \mer~juga dapat digunakan untuk mendukung aplikasi \textit{entity linking} yang memungkinkan seseorang untuk mengetahui hubungan antar entitas (\cite{hachey2013evaluating}). Misalnya dengan adanya aplikasi \textit{entity linking}, kita dapat mengetahui obat dari suatu penyakit dengan berdasarkan dokumen-dokumen kesehatan yang telah mendapatkan pelabelan dari sistem \mer. Masih banyak manfaat lain dari implementasi sistem \mer~ini.
+Implementasi sistem \mer~dapat memberikan manfaat pada beberapa bidang, seperti pada aplikasi \textit{Question Answering} \citep{abacha2011medical} yang hasil pelabelan dari sistem \mer~dapat mempermudah identifikasi entitas yang ditanyakan. Selain itu, hasil pelabelan sistem \mer~juga dapat dimanfaatkan untuk pembuatan sistem \textit{indexing} dokumen forum sehingga pencarian dokumen kesehatan dapat dilakukan dengan lebih efisien. Sistem \mer~juga dapat digunakan untuk mendukung aplikasi \textit{entity linking} yang memungkinkan seseorang untuk mengetahui hubungan antar entitas \citep{hachey2013evaluating}. Misalnya dengan adanya aplikasi \textit{entity linking}, kita dapat mengetahui obat apabila hanya diberikan \textit{query} nama penyakit dengan berdasarkan dokumen-dokumen kesehatan yang telah mendapatkan pelabelan dari sistem \mer. Masih banyak manfaat lain dari implementasi sistem \mer~ini.
 
 % Cerita MER Bahasa Inggris %
 Sebelumnya \cite{abacha2011medical} telah melakukan penelitian terkait sistem \mer~pada dokumen berbahasa Inggris. Sistem \mer~yang dibuat bertujuan untuk melabeli entitas \textit{treatment}, \textit{problem} dan \textit{test} dengan menggunakan 3 metode, yaitu (i) metode semantik dengan menggunakan \textit{tools} MetaMap (\textit{domain knowledge}), (ii) ekstraksi frasa berdasarkan \textit{chunker} dan klasifikasi dengan SVM (\textit{machine learning based}) dan (iii) gabungan 2 metode sebelumnya dengan menggunakan CRF (\textit{hybrid}). Hasil yang terbaik didapatkan dengan menggunakan metode \textit{hybrid} yang menggabungkan 2 metode sebelumnya (\textit{domain knowledge} dan \textit{machine learning}) dan dengan \textit{precision} $ 72.18\% $, \textit{recall} $ 83.78\% $ dan \textit{f-measures} $ 77.55\% $.
@@ -35,7 +35,7 @@ Selain itu, \cite{suwarningsih2014imner} juga melakukan penelitian terkait \mer~
 \section{Deep Learning}
 
 
-\section{Recurrent Neural Networks}
+\section{Recurrent Neural Networks}\label{sec:rnns}
 
 \textit{Recurrent neural networks} (RNNs) merupakan \textit{Artificial Neural Networks} (ANNs) yang memiliki koneksi siklik \citep{graves2012neural}. RNNs memiliki \textit{neuron} yang terkoneksi dengan \textit{neuron} lain sehingga membentuk \textit{loop} umpan balik (\cite{haykin2009neural}), tidak seperti \textit{feedforward neural network} (FNNs) dimana aliran informasi hanya berjalan searah. RNNs memungkinkan \iob~yang dihasilkan akan menjadi \ioa~untuk menghasilkan \iob~yang lain. Hal ini menyebabkan perilaku RNNs tidak hanya bergantung pada \ioa~saat ini saja, namun juga bergantung pada \iob~sebelumya. Oleh karena itu, RNNs memiliki kemampuan yang sangat bagus sebagai model dalam permasalahan \textit{sequence data} dibandingkan dengan FNNs. RNNs sendiri memiliki kemampuan yang sangat bagus dalam beberapa \textit{task}, seperti \textit{language model} (\cite{mikolov2010recurrent}) dan \textit{speech recognition} (\cite{graves2013speech}).
 
@@ -51,18 +51,37 @@ Banyak variasi RNNs yang telah diusulkan oleh beberapa peneliti, seperti Elman \
 \begin{figure}
 	\centering
 	\includegraphics[width=0.80\linewidth]{images/simple_rnn}
-	\caption{\textit{Recurrent Neural Network} sederhana}
+	\caption{\textit{Recurrent Neural Networks} sederhana}
 	\label{fig:simple_rnn}
 \end{figure}
 
-Dari gambar \ref{fig:simple_rnn}, sebuah jaringan pada RNNs memiliki \textit{input layer} $ x $, \textit{hidden layer} $ h $ dan \textit{output layer} $ y $. Terdapat 3 buah parameter yang ingin dicari dalam tahap \textit{learning}, yaitu $ {U, V, W} $ yang masing-masing parameter tersebut di-\textit{share} untuk semua \textit{timestep} $ t $ dengan:
+Dari gambar \ref{fig:simple_rnn}, sebuah jaringan pada RNNs memiliki \textit{input layer} $ x $, \textit{hidden layer} $ h $ dan \textit{output layer} $ y $. Terdapat 3 buah parameter yang dicari dalam tahap \textit{learning}, yaitu $ {U, V, W} $ yang masing-masing parameter tersebut di-\textit{share} untuk semua \textit{timestep} $ t $ dengan:
 \begin{equation}\label{equ:euclideandistance}
-d(\mathbf{u},\mathbf{v})=||\mathbf{u}-\mathbf{v}||=\sqrt{(u_1-v_1)^2+(u_2-v_2)^2+\dots+(u_n-v_n)^2}.
+U, V, W \in {\rm I\!R}
 \end{equation}
 
-
+Untuk suatu \textit{timestep} $ t $, \textit{input} RNNs dinotasikan sebagai $ x(t) $, \textit{timestep} dinotasikan sebagai $ h(t) $ dan \textit{output} dinotasikan sebagai $ y(t) $, dengan:
+\begin{equation}
+y(t) = f(V \cdot h(t))
+\end{equation}
+\begin{equation}
+h(t) = f(U \cdot x(t) + W \cdot h(t-1))
+\end{equation}
+dimana
+\begin{equation}
+h(0) = f(W \cdot x(0))
+\end{equation}
+dengan $ f $ sebagai \textit{activation function}. Untuk lebih jelasnya, berikut merupakan gambar dari satu buah \textit{timestep} di dalam RNNs
+\begin{figure}
+	\centering
+	\includegraphics[width=0.80\linewidth]{images/nodes_rnn}
+	\caption{1 buah \textit{timestep} dalam RNNs}
+	\label{fig:nodes_rnn}
+\end{figure}
 
 \subsection{Long Short Term Memory}
+Pada penjelasan di atas, RNNs memiliki kelebihan mempertimbangkan konteks untuk mengolah \textit{input} menjadi \textit{output}. Sayangnya, \textit{range} konteks yang dapat digunakan dalam satu blok terbatas \citep{graves2012neural}. Efek dari keterbatasan ini yaitu informasi pada suatu blok akan hilang atau terganggu dengan konteks sebelumnya sehingga \textit{output} yang dihasilkan tidak sesuai harapan. Ilustrasi masalah yang disebut \textit{vanishing gradient problem} ini dapat dilihat di FIGUREX. Banyak upaya untuk mengatasi masalah ini, seperti dengan menggunakan \textit{simulated annealing} dan \textit{discrete error propagation}, menggunakan \textit{time delays} atau \textit{time constant}, dan \textit{hierarchical sequence compression}. Namun sejauh ini solusi yang paling bagus yaitu dengan arsitektur \textit{Long Short Term Memory} (LSTM).
+
 \subsection{Penerapan RNNs untuk MER}
 
 \section{Word Embedding}

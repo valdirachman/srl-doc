@@ -3,67 +3,115 @@
 \chapter{\babTiga}
 %-----------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------%
-\section{Rancangan Arsitektur Sistem}
+\section{Rancangan Sistem}
 %-----------------------------------------------------------------------------%
 % Ide, model matematik, rumus, fitur, jangan m=ngomongin teknologi (java, keras, dll), word2vec boleh %
 Sistem yang akan \saya~buat dalam penelitian ini sesuai dengan rancangan arsitektur sistem pada gambar \ref{fig:arsitektur_sistem}.
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{pics/arsitektur_sistemc}
+  \includegraphics[width=\linewidth]{images/arsitektur}
   \caption{Rancangan Arsitektur Sistem}
   \label{fig:arsitektur_sistem}
 \end{figure}
 
 Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
 	\subsection{Pengumpulan Data}
-	\Saya~mengumpulkan data dari beberapa situs forum kesehatan \ioa. Forum tersebut yaitu:
+	Pengumpulan data dilakukan dengan tujuan untuk mendapatkan data \textit{training} dan \textit{testing} sebagai \textit{input} sistem \mer~yang diusulkan. Data yang dimaksud merupakan teks dari forum kesehatan \textit{online} dari berbagai sumber. 
+	
+	\subsection{Pra-Pemrosesan}
+	Pra-pemrosesan dilakukan dengan tujuan supaya teks yang diberikan mampu dibaca oleh sistem \mer. Dalam tahap ini, ada dua pekerjaan utama yang perlu dilakukan, yaitu:
 	\begin{enumerate}
-		\item lala
-		\item lili
+		\item Pembersihan data\\
+		Langkah ini dilakukan dengan tujuan untuk membersihkan dokumen dari berbagai karakter yang tidak terdapat dalam karakter ASCII. Selain itu, perlu juga pengubahan beberapa tanda baca/token menjadi 1 token tersendiri. Misalnya sebuah token tautan (\textit{www.alodokter.com/asma/pengobatan}) diganti menjadi token "url".
+		\item Tokenisasi\\
+		Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai satu buah kata. Hal ini perlu dilakukan untuk menghindari beberapa kelompok token berbeda yang tergabung. Misalnya karakter abjad dengan karakter angka atau karakter abjad dengan karakter tanda baca dipisahkan berdasarkan kelompoknya.
+		\item Pemotongan kalimat\\
+		Untuk menghindari jumlah token yang timpang dalam kalimat yang berbeda dan data yang \textit{sparse}, diperlukan pemotongan kata yang tepat. Langkah-langkah yang diperlukan untuk melakukan pemotongan kata yaitu:
+		\begin{enumerate}
+			\item memisahkan kalimat berdasarkan tanda baca (.!?,),
+			\item apabila suatu kalimat memiliki jumlah kata yang sedikit (misal diberikan batasan minimal 10 kata dalam satu kalimat), kalimat tersebut digabungkan dengan kalimat setelahnya.
+		\end{enumerate}
 	\end{enumerate}
-	Dalam proses pengumpulan data, \saya~menggunakan data yang digunakan \skripsiRadit~dalam penelitiannya, ditambah dengan data dari forum terbaru. \Saya~menggunakan program untuk melakukan otomasi. Program pertama merupakan program untuk mengumpulkan data \ioa~untuk model \we~dan program kedua merupakan program untuk mengumpulkan data forum kesehatan \ol~di situs di atas. Program kedua merupakan program hasil modifikasi dari \skripsiRadit.
 	
-	\subsection{Proses Normalisasi}
-	Proses normalisasi \saya~lakukan untuk setiap data, baik data dari penelitian \cite{skripsiKakRadit} maupun data yang \saya~dapatkan dari forum kesehatan terbaru. Pada tahap ini, \saya~melakukan normalisasi 2 data, yaitu data untuk membuat model \we~dan data sebagai \ioa~sistem. Normalisasi yang dilakukan dalam penelitian ini adalah:
+	\subsection{Pelabelan}
+	Pada tahap ini, \saya~melakukan pelabelan pada dokumen teks yang merupakan hasil pada tahap sebelumnya dengan label \disease, \symptom, \drug~dan \treatment. Berikut merupakan penjelasan dari masing-masing label:
 	\begin{enumerate}
-		\item Penghapusan karakter yang tidak ada di dalam daftar ASCII
-		\item Perbaikan karakter spasi dalam dokumen
-		\item Pengubahan beberapa tanda baca/token menjadi 1 token tersendiri. Misalnya sebuah token url diganti menjadi kata"url".
+		\item \Disease\\
+		Entitas \disease~yang dimaksud pada penelitian ini yaitu nama dari suatu penyakit. Penyakit merupakan keadaan abnormal yang timbul pada tubuh manusia. Contoh dari entitas \disease~yaitu:
+		\begin{description}
+			\item[$\bullet$] Skizofrenia
+			\item[$\bullet$] Trikotilomania
+			\item[$\bullet$] Diabetes melitus
+		\end{description}
+	
+		\item \Symptom\\
+		Entitas \symptom~yang dimaksud pada penelitian ini yaitu fenomena yang dialami oleh seseorang yang terkena suatu penyakit. Contoh dari entitas \symptom~yaitu:
+		\begin{description}
+			\item[$\bullet$] Napas berbunyi
+			\item[$\bullet$] Benjolan di daerah perut
+			\item[$\bullet$] Nyeri saat BAK
+		\end{description}
+	
+		\item \Drug\\
+		Entitas \drug~merupakan entitas nama obat dari suatu penyakit yang memiliki fungsi untuk mengurangi atau menyembuhkan penyakit tersebut. Contoh dari entitas \drug~yaitu:
+		\begin{description}
+			\item[$\bullet$] Paracetamol
+			\item[$\bullet$] Diltiazem
+			\item[$\bullet$] eritropoetin-alfa
+		\end{description}
+	
+		\item \Treatment\\
+		Entitas \treatment~merupakan cara atau langkah penyembuhan dari suatu penyakit. Contoh dari entitas \treatment~yaitu:
+		\begin{description}
+			\item[$\bullet$] Pemeriksaan darah rutin
+			\item[$\bullet$] Penilaian denyut kapiler
+			\item[$\bullet$] Terapi inhalasi
+		\end{description}
 	\end{enumerate}
+		
+	\subsection{Pengembangan Model}
+	Pada tahap ini, \saya~melakukan pengusulan dan perancangan model yang nantinya akan \saya~evaluasi pada tahap eksperimen. Dalam mengembangkan model, terdapat dua pekerjaan yang\saya~lakukan, yaitu:
 	
-	Setelah \saya~melakukan proses di atas, sama seperti yang dilakukan \skripsiRadit, \saya~menggabung masing-masing data menjadi 2 kelompok besar, yaitu data sebagai \ioa~model \we~dan data sebagai \ioa~sistem. Untuk data sebagai \ioa~model \we, setiap baris merupakan 1 buah kalimat yang masing-masing kata dipisahkan dengan karakter spasi. Selain itu, setiap tanda baca juga dipisahkan dengan karakter spasi. Untuk data sebagai \ioa~sistem, \saya mengubah format data menjadi format yang dipakai oleh \radit~dalam penelitiannya:
-	
-	FOOOORRRMMMAAATTT
-	
-	Setelah proses pemformatan selesai, \saya~memberikan label secara manual pada data yang baru (karena data dari \radit~sudah diberikan label sebelumnya). Label yang \saya~gunakan sama dengan label yang \radit~gunakan dalam penelitiannya, yaitu:
-	\begin{enumerate}
-		\item \symptom: gejala penyakit,
-		\item \disease: nama penyakit,
-		\item \treatment: pengobatan penyakit, dan
-		\item \drug: nama obat.
-	\end{enumerate}
-	Format pelabelan yang \saya~gunakan adalah format format xml. Satu buah entitas yang  masuk dalam kategori entitas kesehatan akan diberikan tag. Entitas yang terdiri dari lebih dari 1 kata akan diberikan 1 buah tag saja. Berikut merupakan contoh teks yang sudah diberikan label:
-	
-	CCOOONNNTTTOOOHHH
-	
-	Setelah pelabelan seara menual selesai dilakukan, \saya~akan membuat statistik dari data yang ada. Statistik ini bertujuan untuk mengetahui informasi dari masing-masing kategori yang \saya~definisikan di atas. Selain itu, \saya~juga ingin mengetahui distribusi penyakit yang ada dalam data sehingga \saya~dapat membagi data yang seimbang dalam melakukan eksperimen nantinya.
-	
-	\subsection{Pembuatan Model \textit{Word Embedding}}
-	Model \we~digunakan untuk mendapatkan representasi vektor dari kata dalam data.
-	
-	\subsection{Ekstrasi Fitur}
-	Sebelum masuk tahap eksperimen, \saya~melakukan ekstraksi fitur. Ada beberapa fitur yang \saya~usulkan dalam penelitian ini. Fitur-fitur tersebut \saya~kombinasikan supaya mendapatkan hasil terbaik. Fitur-fitur tersebut yaitu:
+	\subsubsection{Ekstrasi Fitur}
+	Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi label entitas. Ada beberapa fitur yang \saya~usulkan dalam penelitian ini yang nantinya \saya~kombinasikan supaya mendapatkan hasil terbaik. Fitur-fitur tersebut yaitu:
 	\begin{enumerate}
 		\item Fitur 1: Kata itu sendiri\\
-		Fitur ini merupakan fitur kata dalam representasi vektor. Dalam mengubah kata menjadi vektor, \saya~menggunakan \textit{tools} \we~yang merupakan hasil penelitian \cite{rehurek_lrec}. KENAPA?
+		Fitur ini merupakan fitur kata dalam representasi vektor. Untuk mendapatkan representasi vektor dari masing-masing kata, penulis menggunakan \textit{word embedding}. Terdapat beberapa langkah yang perlu \saya~lakukan dalam memanfaatkan \textit{word embedding} ini, yaitu:
+		\begin{enumerate}
+			\item Pengumpulan data \textit{training} untuk \textit{word embedding}
+			\item \textit{Training} untuk mendapatkan model \textit{word embedding}
+			\item Pengubahan kata menjadi vektor dari model yang didapatkan
+		\end{enumerate}
 		
-		\item Fitur 2: \textit{Part of Speech Stanford postagger}\\
-		Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata. Dalam mengubah setiap kata menjadi \textit{tag} dalam POS Tag, \saya~menggunakan \textit{tools Stanford POS Tagger} yang menggunakan bahasa pemrograman Java. \Saya~membuat sebuah kelas yang mengubah setiap baris kalimat menjadi baris \textit{tag}. Kemudian, \saya~mengubah masing-masing kalimat menjadi kumpulan vektor \textit{tag}. KENAPA?
+		\item Fitur 2: \textit{Part of Speech Tag} (POS-Tag)\\
+		Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Model yang digunakan merupakan model POS-Tag berbahasa Indonesia.
 		
 		\item Fitur 3: \textit{Stopword}\\
-		Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. KENAPA?
+		Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan.
 		
-		\item Fitur 4: Kamus kata\\
+		\item Fitur 4: Kamus kesehatan\\
+		Fitur kamus kata merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Pada penelitian ini, kamus kesehatan yang dipakai ada sejumlah entitas yang akan dikenali, yaitu kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment.\
+		
+		\item Fitur 5: Frasa kata benda\\
+		Menurut \cite{hs2005bahasa}, frasa kata benda sendiri merupakan kelompok kata benda yang dibentuk dengan memperluas kata benda ke sekelilingnya. Fitur frasa kata benda yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa kata benda atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
+		\begin{description}
+		 	\item[$\bullet$] NP : NN
+		 	\item[$\bullet$] NP : NNP
+		 	\item[$\bullet$] NP : PR
+		 	\item[$\bullet$] NP : PRP
+		 	\item[$\bullet$] NP : NN + NN
+		 	\item[$\bullet$] NP : NN + NNP
+		 	\item[$\bullet$] NP : NN + PR
+		 	\item[$\bullet$] NP : NN + PRP
+		 	\item[$\bullet$] NP : NN + JJ
+		 	\item[$\bullet$] NP : DT + NN
+		 	\item[$\bullet$] NP : RB + NN
+		 	\item[$\bullet$] NP : CD + NN
+		 	\item[$\bullet$] NP : NND + NN
+		 \end{description}
+	 
+		 \item Fitur 6: Frasa verbal\\
+		 Fitur frasa kata kerja merupakan fi
 	\end{enumerate}
 	
 	\subsection{Eksperimen}

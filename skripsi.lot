@@ -2,29 +2,29 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Informasi Detil Surat An-Naba' Ayat 7 dengan Qari Mishary Rashid Alafasy\relax }}{15}{table.caption.21}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Informasi Data Eksperimen\relax }}{18}{table.caption.22}
-\contentsline {table}{\numberline {3.3}{\ignorespaces Spesifikasi \textit {Hardware}\relax }}{18}{table.caption.23}
-\contentsline {table}{\numberline {3.4}{\ignorespaces Parameter Fungsi \textit {mfcc}\relax }}{19}{table.caption.24}
-\contentsline {table}{\numberline {3.5}{\ignorespaces Parameter Fungsi \textit {mfcc2sdc}\relax }}{20}{table.caption.25}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Informasi Detil Surat An-Naba' Ayat 7 dengan Qari Mishary Rashid Alafasy\relax }}{16}{table.caption.22}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Informasi Data Eksperimen\relax }}{19}{table.caption.23}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Spesifikasi \textit {Hardware}\relax }}{19}{table.caption.24}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Parameter Fungsi \textit {mfcc}\relax }}{21}{table.caption.25}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Parameter Fungsi \textit {mfcc2sdc}\relax }}{21}{table.caption.26}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Parameter Pemanggilan Fungsi \textit {mfcc}\relax }}{23}{table.caption.27}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Parameter Pemanggilan Fungsi \textit {mfcc2sdc}\relax }}{26}{table.caption.29}
-\contentsline {table}{\numberline {4.3}{\ignorespaces Parameter SVM dalam Eksperimen\relax }}{28}{table.caption.31}
-\contentsline {table}{\numberline {4.4}{\ignorespaces Parameter GMM dalam Eksperimen\relax }}{29}{table.caption.32}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Parameter Pemanggilan Fungsi \textit {mfcc}\relax }}{24}{table.caption.28}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Parameter Pemanggilan Fungsi \textit {mfcc2sdc}\relax }}{27}{table.caption.30}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Parameter SVM dalam Eksperimen\relax }}{29}{table.caption.32}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Parameter GMM dalam Eksperimen\relax }}{30}{table.caption.33}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi SVM\relax }}{32}{table.caption.33}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi SVM\relax }}{33}{table.caption.34}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi GMM\relax }}{34}{table.caption.36}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi GMM\relax }}{34}{table.caption.37}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi Gabungan\relax }}{35}{table.caption.39}
-\contentsline {table}{\numberline {5.6}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi Gabungan\relax }}{36}{table.caption.40}
-\contentsline {table}{\numberline {5.7}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM\relax }}{37}{table.caption.42}
-\contentsline {table}{\numberline {5.8}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM\relax }}{37}{table.caption.43}
-\contentsline {table}{\numberline {5.9}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi GMM\relax }}{38}{table.caption.45}
-\contentsline {table}{\numberline {5.10}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi GMM\relax }}{39}{table.caption.46}
-\contentsline {table}{\numberline {5.11}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi Gabungan\relax }}{40}{table.caption.48}
-\contentsline {table}{\numberline {5.12}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi Gabungan\relax }}{40}{table.caption.49}
-\contentsline {table}{\numberline {5.13}{\ignorespaces Ayat-Ayat yang Diurutkan dari Akurasi Tertinggi\relax }}{47}{table.caption.56}
-\contentsline {table}{\numberline {5.14}{\ignorespaces Ayat-Ayat yang Diurutkan dari Akurasi Terendah\relax }}{47}{table.caption.57}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi SVM\relax }}{33}{table.caption.34}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi SVM\relax }}{34}{table.caption.35}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi GMM\relax }}{35}{table.caption.37}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi GMM\relax }}{35}{table.caption.38}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi Gabungan\relax }}{36}{table.caption.40}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi Gabungan\relax }}{37}{table.caption.41}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM\relax }}{38}{table.caption.43}
+\contentsline {table}{\numberline {5.8}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM\relax }}{38}{table.caption.44}
+\contentsline {table}{\numberline {5.9}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi GMM\relax }}{39}{table.caption.46}
+\contentsline {table}{\numberline {5.10}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi GMM\relax }}{40}{table.caption.47}
+\contentsline {table}{\numberline {5.11}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi Gabungan\relax }}{41}{table.caption.49}
+\contentsline {table}{\numberline {5.12}{\ignorespaces Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi Gabungan\relax }}{41}{table.caption.50}
+\contentsline {table}{\numberline {5.13}{\ignorespaces Ayat-Ayat yang Diurutkan dari Akurasi Tertinggi\relax }}{48}{table.caption.57}
+\contentsline {table}{\numberline {5.14}{\ignorespaces Ayat-Ayat yang Diurutkan dari Akurasi Terendah\relax }}{48}{table.caption.58}
 \addvspace {10\p@ }

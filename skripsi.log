@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.6)  7 DEC 2016 08:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.6)  7 DEC 2016 19:03
 entering extended mode
 **./skripsi.tex
 (skripsi.tex
@@ -731,7 +731,7 @@ LaTeX Info: Redefining \nameref on input line 48.
 \openout2 = `sampul.aux'.
 
  (sampul.tex
-<pics/makara.png, id=271, 154.86429pt x 154.34807pt>
+<pics/makara.png, id=275, 154.86429pt x 154.34807pt>
 File: pics/makara.png Graphic file (type png)
  <use pics/makara.png>
 Package pdftex.def Info: pics/makara.png used on input line 15.
@@ -1148,7 +1148,7 @@ tm/m/it/12 sympton\T1/ptm/m/n/12 ), obat (\T1/ptm/m/it/12 drug\T1/ptm/m/n/12 )
 dan langkah penyembuhan
  []
 
-<images/mer_ilustration.png, id=569, 1407.75937pt x 442.65375pt>
+<images/mer_ilustration.png, id=576, 1407.75937pt x 442.65375pt>
 File: images/mer_ilustration.png Graphic file (type png)
 
 <use images/mer_ilustration.png>
@@ -1200,20 +1200,41 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9] <images/simple_rnn.png, id=627, 1095.3422pt x 642.90187pt>
+[9] <images/simple_rnn.png, id=634, 1095.3422pt x 642.90187pt>
 File: images/simple_rnn.png Graphic file (type png)
 
 <use images/simple_rnn.png>
 Package pdftex.def Info: images/simple_rnn.png used on input line 53.
 (pdftex.def)             Requested size: 318.67209pt x 187.04498pt.
-)
+
+Underfull \hbox (badness 1681) in paragraph at lines 63--64
+[]\T1/ptm/m/n/12 Untuk suatu \T1/ptm/m/it/12 timestep $\OML/ptmcm/m/it/12 t$\T1
+/ptm/m/n/12 , \T1/ptm/m/it/12 input \T1/ptm/m/n/12 RNNs dinotasikan sebagai $\O
+ML/ptmcm/m/it/12 x\OT1/ptmcm/m/n/12 (\OML/ptmcm/m/it/12 t\OT1/ptmcm/m/n/12 )$\T
+1/ptm/m/n/12 , \T1/ptm/m/it/12 timestep
+ []
+
+<images/nodes_rnn.png, id=636, 1078.0275pt x 682.80093pt>
+File: images/nodes_rnn.png Graphic file (type png)
+
+<use images/nodes_rnn.png>
+Package pdftex.def Info: images/nodes_rnn.png used on input line 77.
+(pdftex.def)             Requested size: 318.67209pt x 201.84126pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10 <./images/simple_rnn.png>]
+[10 <./images/simple_rnn.png>])
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11 <./images/nodes_rnn.png>]
 \openout2 = `bab3.aux'.
 
  (bab3.tex
@@ -1222,55 +1243,19 @@ Bab 3.
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\uppercase' on input line 3.
 
-<pics/arsitektur_sistemc.png, id=641, 1176.0738pt x 727.0362pt>
-File: pics/arsitektur_sistemc.png Graphic file (type png)
+<images/arsitektur.png, id=658, 1069.74657pt x 484.05844pt>
+File: images/arsitektur.png Graphic file (type png)
 
-<use pics/arsitektur_sistemc.png>
-Package pdftex.def Info: pics/arsitektur_sistemc.png used on input line 12.
-(pdftex.def)             Requested size: 398.3386pt x 246.24608pt.
-
-Underfull \hbox (badness 3460) in paragraph at lines 24--25
-[]\T1/ptm/m/n/12 Herwando[] ([]2016[]) dalam peneli-tiannya, ditambah dengan da
-ta dari forum
- []
-
-[11
+<use images/arsitektur.png>
+Package pdftex.def Info: images/arsitektur.png used on input line 12.
+(pdftex.def)             Requested size: 398.3386pt x 180.25105pt.
+ [12
 
 
 
- <./pics/arsitektur_sistemc.png
-
-pdfTeX warning: pdflatex.exe (file ./pics/arsitektur_sistemc.png): large interl
-aced PNG might cause out of memory (use non-interlaced PNG to fix this)
->]
-Underfull \hbox (badness 1616) in paragraph at lines 34--35
-[]\T1/ptm/m/n/12 Setelah penulis melakukan proses di atas, sama seperti yang di
-lakukan
- []
-
-
-Underfull \hbox (badness 2726) in paragraph at lines 34--35
-\T1/ptm/m/n/12 besar, yaitu data sebagai \T1/ptm/m/it/12 input \T1/ptm/m/n/12 m
-odel \T1/ptm/m/it/12 word embedding \T1/ptm/m/n/12 dan data sebagai
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[12]
-LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 51.
-
-Underfull \hbox (badness 1931) in paragraph at lines 60--62
-\T1/ptm/m/n/12 sebuah kelas yang mengubah setiap baris kalimat menjadi baris \T
-1/ptm/m/it/12 tag\T1/ptm/m/n/12 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 66--67
+ <./images/arsitektur.png>]
+Underfull \hbox (badness 2326) in paragraph at lines 32--33
+[]\T1/ptm/m/n/12 apabila suatu kalimat memiliki jumlah kata yang sedikit (misal
 
  []
 
@@ -1281,25 +1266,49 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [13]
-Underfull \hbox (badness 1629) in paragraph at lines 70--74
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[14]
+Underfull \hbox (badness 1931) in paragraph at lines 86--88
+\T1/ptm/m/n/12 sebuah kelas yang mengubah setiap baris kalimat menjadi baris \T
+1/ptm/m/it/12 tag\T1/ptm/m/n/12 .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
+
+ []
+
+
+Underfull \hbox (badness 1629) in paragraph at lines 96--100
 \T1/ptm/m/it/12 Tools \T1/ptm/m/n/12 yang penulis gunakan yaitu Keras. Keras me
 rupakan \T1/ptm/m/it/12 library \T1/ptm/m/n/12 untuk
  []
 
 
-Underfull \hbox (badness 2096) in paragraph at lines 70--74
+Underfull \hbox (badness 2096) in paragraph at lines 96--100
 \T1/ptm/m/n/12 Keras yang penulis gunakan berjalan di atas Theano. Sebelum memu
 lai
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 76--77
+Underfull \hbox (badness 1701) in paragraph at lines 102--103
 \T1/ptm/m/n/12 pengenalan suara per ayat, maka data yang diperlukan berupa baca
 an Al-
  []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 79--80
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[15]
+Underfull \hbox (badness 1342) in paragraph at lines 105--106
 \T1/ptm/m/n/12 Data diperoleh dengan cara mengunduh dari beberapa sumber, yaitu
  []$http : / /
  []
@@ -1310,30 +1319,16 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[14]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 113.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 113.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 113.
-LaTeX Font Info:    Font shape `U/xnsh/m/n' will be
-(Font)              scaled to size 14.40002pt on input line 113.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[15]
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
 [16]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 139.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 139.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 139.
+LaTeX Font Info:    Font shape `U/xnsh/m/n' will be
+(Font)              scaled to size 14.40002pt on input line 139.
+
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -1341,22 +1336,8 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [17]
-Underfull \hbox (badness 1484) in paragraph at lines 177--178
-\T1/ptm/m/n/12 dan pengembangan sistem dan Ruby untuk pengambilan data dari int
-ernet.
- []
-
-
-Underfull \hbox (badness 1681) in paragraph at lines 177--178
-\T1/ptm/m/it/12 Framework Recurrent Neural Network \T1/ptm/m/n/12 yang penulis 
-gunakan adalah Keras.
- []
-
-
-Underfull \hbox (badness 1097) in paragraph at lines 180--182
-\T1/ptm/m/n/12 eksperimen. Namun selain fungsi-fungsi yang sudah disediakan MAT
-LAB,
- []
+LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 160.
 
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
@@ -1365,26 +1346,15 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [18]
-Underfull \hbox (badness 1325) in paragraph at lines 185--187
-\T1/ptm/m/n/12 menggunakan \T1/ptm/m/it/12 source code \T1/ptm/m/n/12 dari []HT
-K MFCC MATLAB[][][][]. Fungsi \T1/ptm/m/it/12 mfcc
+Underfull \hbox (badness 1484) in paragraph at lines 203--204
+\T1/ptm/m/n/12 dan pengembangan sistem dan Ruby untuk pengambilan data dari int
+ernet.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
-[][][]\T1/ptm/m/n/10 http://www.mathworks.com/matlabcentral/fileexchange/31478-
-shifted-delta-coefficients--sdc--
- []
-
-
-Underfull \hbox (badness 1052) in paragraph at lines 209--211
-\T1/ptm/m/it/12 mfcc2sdc \T1/ptm/m/n/12 adalah fungsi untuk menghitung SDCC. Im
-ple-mentasi fungsi
- []
-
-
-Overfull \hbox (32.79526pt too wide) in paragraph at lines 215--226
- [][] 
+Underfull \hbox (badness 1681) in paragraph at lines 203--204
+\T1/ptm/m/it/12 Framework Recurrent Neural Network \T1/ptm/m/n/12 yang penulis 
+gunakan adalah Keras.
  []
 
 
@@ -1393,7 +1363,18 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[19])
+[19]
+Underfull \hbox (badness 1097) in paragraph at lines 206--208
+\T1/ptm/m/n/12 eksperimen. Namun selain fungsi-fungsi yang sudah disediakan MAT
+LAB,
+ []
+
+
+Underfull \hbox (badness 1325) in paragraph at lines 211--213
+\T1/ptm/m/n/12 menggunakan \T1/ptm/m/it/12 source code \T1/ptm/m/n/12 dari []HT
+K MFCC MATLAB[][][][]. Fungsi \T1/ptm/m/it/12 mfcc
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -1401,6 +1382,30 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [20]
+Underfull \hbox (badness 10000) in paragraph at lines 236--236
+[][][]\T1/ptm/m/n/10 http://www.mathworks.com/matlabcentral/fileexchange/31478-
+shifted-delta-coefficients--sdc--
+ []
+
+
+Underfull \hbox (badness 1052) in paragraph at lines 235--237
+\T1/ptm/m/it/12 mfcc2sdc \T1/ptm/m/n/12 adalah fungsi untuk menghitung SDCC. Im
+ple-mentasi fungsi
+ []
+
+
+Overfull \hbox (32.79526pt too wide) in paragraph at lines 241--252
+ [][] 
+ []
+
+)
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[21]
 \openout2 = `bab4.aux'.
 
  (bab4.tex
@@ -1409,13 +1414,13 @@ Bab 4.
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\uppercase' on input line 3.
 
-<pics/distribusi_normal.png, id=759, 606.76688pt x 525.46312pt>
+<pics/distribusi_normal.png, id=767, 606.76688pt x 525.46312pt>
 File: pics/distribusi_normal.png Graphic file (type png)
 
 <use pics/distribusi_normal.png>
 Package pdftex.def Info: pics/distribusi_normal.png used on input line 28.
 (pdftex.def)             Requested size: 338.59023pt x 293.22302pt.
- [21
+ [22
 
 
 
@@ -1426,14 +1431,14 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[22 <./pics/distribusi_normal.png>]
+[23 <./pics/distribusi_normal.png>]
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[23] <pics/ekstraksi_mfcc_v3.png, id=808, 1386.1386pt x 1558.1412pt>
+[24] <pics/ekstraksi_mfcc_v3.png, id=819, 1386.1386pt x 1558.1412pt>
 File: pics/ekstraksi_mfcc_v3.png Graphic file (type png)
 
 <use pics/ekstraksi_mfcc_v3.png>
@@ -1446,18 +1451,18 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[24]
+[25]
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[25 <./pics/ekstraksi_mfcc_v3.png
+[26 <./pics/ekstraksi_mfcc_v3.png
 
 pdfTeX warning: pdflatex.exe (file ./pics/ekstraksi_mfcc_v3.png): large interla
 ced PNG might cause out of memory (use non-interlaced PNG to fix this)
->] <pics/ekstraksi_sdcc_v2.png, id=832, 1401.5562pt x 1922.8638pt>
+>] <pics/ekstraksi_sdcc_v2.png, id=842, 1401.5562pt x 1922.8638pt>
 File: pics/ekstraksi_sdcc_v2.png Graphic file (type png)
 
 <use pics/ekstraksi_sdcc_v2.png>
@@ -1470,28 +1475,21 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[26]
+[27]
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[27 <./pics/ekstraksi_sdcc_v2.png
+[28 <./pics/ekstraksi_sdcc_v2.png
 
 pdfTeX warning: pdflatex.exe (file ./pics/ekstraksi_sdcc_v2.png): large interla
 ced PNG might cause out of memory (use non-interlaced PNG to fix this)
 >]
 
-LaTeX Warning: Reference `lcs' on page 28 undefined on input line 151.
+LaTeX Warning: Reference `lcs' on page 29 undefined on input line 151.
 
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[28]
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -1500,7 +1498,14 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
 
 [29]
 
-LaTeX Warning: Reference `table:kontingensi' on page 30 undefined on input line
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[30]
+
+LaTeX Warning: Reference `table:kontingensi' on page 31 undefined on input line
  224.
 
 
@@ -1509,9 +1514,9 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[30]
+[31]
 
-LaTeX Warning: Reference `chap:evaluasi' on page 31 undefined on input line 228
+LaTeX Warning: Reference `chap:evaluasi' on page 32 undefined on input line 228
 .
 
 
@@ -1527,7 +1532,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[31]
+[32]
 \openout2 = `bab5.aux'.
 
  (bab5.tex
@@ -1542,11 +1547,11 @@ Underfull \hbox (badness 3158) in paragraph at lines 33--34
 entu yang
  []
 
-[32
+[33
 
 
 
-] <pics/histogram00.png, id=926, 578.91281pt x 289.08pt>
+] <pics/histogram00.png, id=936, 578.91281pt x 289.08pt>
 File: pics/histogram00.png Graphic file (type png)
 
 <use pics/histogram00.png>
@@ -1559,13 +1564,13 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[33 <./pics/histogram00.png>]
+[34 <./pics/histogram00.png>]
 Underfull \hbox (badness 3158) in paragraph at lines 89--90
 []\T1/ptm/m/n/12 Tabel []5.4[] menunjukkan frekuensi kemunculan persentase tert
 entu yang
  []
 
-<pics/histogram01.png, id=936, 578.16pt x 289.08pt>
+<pics/histogram01.png, id=946, 578.16pt x 289.08pt>
 File: pics/histogram01.png Graphic file (type png)
  <use pics/histogram01.png>
 Package pdftex.def Info: pics/histogram01.png used on input line 116.
@@ -1577,7 +1582,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[34]
+[35]
 Underfull \hbox (badness 3158) in paragraph at lines 142--143
 []\T1/ptm/m/n/12 Tabel []5.6[] menunjukkan frekuensi kemunculan persentase tert
 entu yang
@@ -1589,8 +1594,8 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[35 <./pics/histogram01.png>]
-<pics/histogram02.png, id=950, 578.16pt x 289.08pt>
+[36 <./pics/histogram01.png>]
+<pics/histogram02.png, id=961, 578.16pt x 289.08pt>
 File: pics/histogram02.png Graphic file (type png)
  <use pics/histogram02.png>
 Package pdftex.def Info: pics/histogram02.png used on input line 169.
@@ -1602,13 +1607,13 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[36 <./pics/histogram02.png>]
+[37 <./pics/histogram02.png>]
 Underfull \hbox (badness 3158) in paragraph at lines 203--204
 []\T1/ptm/m/n/12 Tabel []5.8[] menunjukkan frekuensi kemunculan persentase tert
 entu yang
  []
 
-<pics/histogram10.png, id=962, 578.16pt x 289.08pt>
+<pics/histogram10.png, id=972, 578.16pt x 289.08pt>
 File: pics/histogram10.png Graphic file (type png)
  <use pics/histogram10.png>
 Package pdftex.def Info: pics/histogram10.png used on input line 230.
@@ -1620,7 +1625,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[37]
+[38]
 Underfull \hbox (badness 1939) in paragraph at lines 260--261
 []\T1/ptm/m/n/12 Tabel []5.10[] menunjukkan frekuensi kemunculan persentase ter
 tentu yang
@@ -1632,8 +1637,8 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[38 <./pics/histogram10.png>]
-<pics/histogram11.png, id=976, 578.91281pt x 289.08pt>
+[39 <./pics/histogram10.png>]
+<pics/histogram11.png, id=986, 578.91281pt x 289.08pt>
 File: pics/histogram11.png Graphic file (type png)
 
 <use pics/histogram11.png>
@@ -1651,13 +1656,13 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[39 <./pics/histogram11.png>]
+[40 <./pics/histogram11.png>]
 Underfull \hbox (badness 1939) in paragraph at lines 318--319
 []\T1/ptm/m/n/12 Tabel []5.12[] menunjukkan frekuensi kemunculan persentase ter
 tentu yang
  []
 
-<pics/histogram12.png, id=986, 578.16pt x 289.08pt>
+<pics/histogram12.png, id=996, 578.16pt x 289.08pt>
 File: pics/histogram12.png Graphic file (type png)
  <use pics/histogram12.png>
 Package pdftex.def Info: pics/histogram12.png used on input line 345.
@@ -1669,13 +1674,13 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[40]
+[41]
 Underfull \hbox (badness 2426) in paragraph at lines 375--376
 \T1/ptm/m/n/12 Eksperimen menggunakan fitur MFCC dengan berbagai metode klasifi
 kasi,
  []
 
-<pics/piefeat0.png, id=993, 361.35pt x 217.2918pt>
+<pics/piefeat0.png, id=1003, 361.35pt x 217.2918pt>
 File: pics/piefeat0.png Graphic file (type png)
  <use pics/piefeat0.png>
 Package pdftex.def Info: pics/piefeat0.png used on input line 379.
@@ -1687,13 +1692,13 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[41 <./pics/histogram12.png>]
+[42 <./pics/histogram12.png>]
 Underfull \hbox (badness 2846) in paragraph at lines 391--392
 \T1/ptm/m/n/12 Eksperimen menggunakan fitur SDCC dengan berbagai metode klasifi
 kasi,
  []
 
-<pics/piefeat1.png, id=1000, 361.35pt x 217.2918pt>
+<pics/piefeat1.png, id=1011, 361.35pt x 217.2918pt>
 File: pics/piefeat1.png Graphic file (type png)
  <use pics/piefeat1.png>
 Package pdftex.def Info: pics/piefeat1.png used on input line 395.
@@ -1705,7 +1710,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[42 <./pics/piefeat0.png>]
+[43 <./pics/piefeat0.png>]
 Underfull \hbox (badness 1292) in paragraph at lines 402--403
 \T1/ptm/m/n/12 hampir benar, dan lain sebagainya. Nilai kebenaran suatu pembaca
 an Al-
@@ -1717,7 +1722,7 @@ Underfull \hbox (badness 4341) in paragraph at lines 416--417
 tur,
  []
 
-<pics/pieclass0.png, id=1009, 361.35pt x 217.2918pt>
+<pics/pieclass0.png, id=1019, 361.35pt x 217.2918pt>
 File: pics/pieclass0.png Graphic file (type png)
  <use pics/pieclass0.png>
 Package pdftex.def Info: pics/pieclass0.png used on input line 420.
@@ -1729,13 +1734,13 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[43 <./pics/piefeat1.png>]
+[44 <./pics/piefeat1.png>]
 Underfull \hbox (badness 3271) in paragraph at lines 437--438
 \T1/ptm/m/n/12 Eksperimen menggunakan metode klasifikasi GMM dengan berbagai fi
 tur,
  []
 
-<pics/pieclass1.png, id=1017, 361.35pt x 217.2918pt>
+<pics/pieclass1.png, id=1027, 361.35pt x 217.2918pt>
 File: pics/pieclass1.png Graphic file (type png)
  <use pics/pieclass1.png>
 Package pdftex.def Info: pics/pieclass1.png used on input line 441.
@@ -1747,8 +1752,8 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[44 <./pics/pieclass0.png>]
-<pics/pieclass2.png, id=1025, 361.35pt x 217.2918pt>
+[45 <./pics/pieclass0.png>]
+<pics/pieclass2.png, id=1035, 361.35pt x 217.2918pt>
 File: pics/pieclass2.png Graphic file (type png)
  <use pics/pieclass2.png>
 Package pdftex.def Info: pics/pieclass2.png used on input line 459.
@@ -1760,7 +1765,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[45 <./pics/pieclass1.png>]
+[46 <./pics/pieclass1.png>]
 Underfull \hbox (badness 5578) in paragraph at lines 480--481
 \T1/ptm/m/n/12 Penggunaan fitur SDCC dan metode klasifikasi GMM pada eksperimen
 
@@ -1772,7 +1777,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[46 <./pics/pieclass2.png>]
+[47 <./pics/pieclass2.png>]
 Underfull \hbox (badness 1112) in paragraph at lines 527--529
 []\T1/ptm/m/n/12 Suatu ayat dapat dikla-si-fi-kasikan dengan akurasi tinggi dik
 arenakan ayat
@@ -1784,14 +1789,14 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[47])
+[48])
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[48]
+[49]
 \openout2 = `bab6.aux'.
 
  (bab6.tex
@@ -1806,7 +1811,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 alankan
  []
 
-[49
+[50
 
 
 
@@ -1823,7 +1828,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[50] (skripsi.bbl [51
+[51] (skripsi.bbl [52
 
 
 ]
@@ -1833,7 +1838,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[52])
+[53])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 145.
 
 
@@ -1842,7 +1847,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[53]
+[54]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 145.
  (skripsi.aux (sampul.aux) (judul_dalam.aux) (orisinal.aux)
 (pengesahan_sidang.aux) (pengantar.aux) (persetujuan_publikasi.aux)
@@ -2000,8 +2005,9 @@ abstract.tex
     bab2.tex
 images/mer_ilustration.png
 images/simple_rnn.png
+images/nodes_rnn.png
     bab3.tex
-pics/arsitektur_sistemc.png
+images/arsitektur.png
     bab4.tex
 pics/distribusi_normal.png
 pics/ekstraksi_mfcc_v3.png
@@ -2024,20 +2030,20 @@ pics/pieclass2.png
 
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 145.
 Package rerunfilecheck Info: File `skripsi.out' has not changed.
-(rerunfilecheck)             Checksum: 9F54AF9555C78A830658BEEB4D684A75;5137.
+(rerunfilecheck)             Checksum: 86894303048A9F597FC66399CDFCB02A;5192.
 
 LaTeX Warning: There were undefined references.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 145.
  ) 
 Here is how much of TeX's memory you used:
- 15563 strings out of 493333
- 213507 string characters out of 3139197
- 355010 words of memory out of 3000000
- 18180 multiletter control sequences out of 15000+200000
+ 15584 strings out of 493333
+ 213815 string characters out of 3139197
+ 355133 words of memory out of 3000000
+ 18191 multiletter control sequences out of 15000+200000
  62736 words of font info for 103 fonts, out of 3000000 for 9000
  1266 hyphenation exceptions out of 8191
- 44i,16n,51p,1430b,507s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,16n,51p,1430b,588s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
@@ -2048,9 +2054,9 @@ ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri
 8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/arabtex/xnsh14.pfb>
-Output written on skripsi.pdf (66 pages, 1283187 bytes).
+Output written on skripsi.pdf (67 pages, 1218656 bytes).
 PDF statistics:
- 1197 PDF objects out of 1200 (max. 8388607)
- 317 named destinations out of 1000 (max. 500000)
- 627 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1212 PDF objects out of 1440 (max. 8388607)
+ 326 named destinations out of 1000 (max. 500000)
+ 640 words of extra memory for PDF output out of 10000 (max. 10000000)
 
