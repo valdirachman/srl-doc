@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.6)  6 DEC 2016 23:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.6)  7 DEC 2016 08:06
 entering extended mode
 **./skripsi.tex
 (skripsi.tex
@@ -1165,29 +1165,19 @@ Underfull \hbox (badness 1412) in paragraph at lines 26--27
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--31
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 37--38
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
 \T1/ptm/m/n/12 menggunakan CRF (\T1/ptm/m/it/12 Conditional Random Fields\T1/pt
 m/m/n/12 ) dengan tujuan untuk
  []
 
 
-Underfull \hbox (badness 2671) in paragraph at lines 37--38
+Underfull \hbox (badness 2671) in paragraph at lines 31--32
 \T1/ptm/m/n/12 mendapatkan kombinasi fitur yang menghasilkan akurasi terbaik. E
 ntitas
  []
 
 
-Underfull \hbox (badness 1242) in paragraph at lines 39--40
+Underfull \hbox (badness 1242) in paragraph at lines 33--34
 []\T1/ptm/m/n/12 Selain itu, []Suwar-ningsih et al.[] ([]2014[]) juga melakukan
  penelitian terkait
  []
@@ -1199,7 +1189,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [8]
-Underfull \hbox (badness 2027) in paragraph at lines 49--50
+Underfull \hbox (badness 2027) in paragraph at lines 44--45
 []\T1/ptm/m/n/12 Pada RNNs, kata-kata sebelumnya direp-re-sen-tasikan dengan \T
 1/ptm/m/it/12 recurrent
  []
@@ -1210,13 +1200,198 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9] <images/simple_rnn.png, id=623, 711.4078pt x 624.08156pt>
+[9] <images/simple_rnn.png, id=627, 1095.3422pt x 642.90187pt>
 File: images/simple_rnn.png Graphic file (type png)
 
 <use images/simple_rnn.png>
-Package pdftex.def Info: images/simple_rnn.png used on input line 57.
-(pdftex.def)             Requested size: 219.08743pt x 192.19676pt.
+Package pdftex.def Info: images/simple_rnn.png used on input line 53.
+(pdftex.def)             Requested size: 318.67209pt x 187.04498pt.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.64 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Display math should end with $$.
+<to be read again> 
+                   \a@RLpar 
+l.64 
+     
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+! Undefined control sequence.
+<recently read> \a@RLpar 
+                         
+l.64 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\par ->\a@RLpar \let \par \a@RLpar \a@lslimit 
+                                              \aRLfalse 
+l.64 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.66 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.71 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.73 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.78 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\@startsection ...@noskipsec \leavevmode \fi \par 
+                                                  \@tempskipa #4\relax \@aft...
+l.79 \subsection
+                {Long Short Term Memory}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.79 \subsection
+                {Long Short Term Memory}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.79 \subsection
+                {Long Short Term Memory}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Undefined control sequence.
+\@xsect ... #1\relax \ifdim \@tempskipa >\z@ \par 
+                                                  \nobreak \vskip \@tempskip...
+l.79 \subsection{Long Short Term Memory}
+                                        
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\@startsection ...@noskipsec \leavevmode \fi \par 
+                                                  \@tempskipa #4\relax \@aft...
+l.80 \subsection
+                {Penerapan RNNs untuk MER}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\@xsect ... #1\relax \ifdim \@tempskipa >\z@ \par 
+                                                  \nobreak \vskip \@tempskip...
+l.80 \subsection{Penerapan RNNs untuk MER}
+                                          
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.81 
+     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\@startsection ...@noskipsec \leavevmode \fi \par 
+                                                  \@tempskipa #4\relax \@aft...
+l.82 \section
+             {Word Embedding}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\@xsect ... #1\relax \ifdim \@tempskipa >\z@ \par 
+                                                  \nobreak \vskip \@tempskip...
+l.82 \section{Word Embedding}
+                             
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 )
+! Undefined control sequence.
+\newpage ...k \@nobreakfalse \everypar {}\fi \par 
+                                                  \vfil \penalty -\@M 
+l.119 \include{bab2}
+                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -1224,847 +1399,1116 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [10 <./images/simple_rnn.png>]
+! Undefined control sequence.
+\newpage ...k \@nobreakfalse \everypar {}\fi \par 
+                                                  \vfil \penalty -\@M 
+l.120 \include{bab3}
+                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 \openout2 = `bab3.aux'.
 
- (bab3.tex
+(bab3.tex
+! Undefined control sequence.
+\newpage ...k \@nobreakfalse \everypar {}\fi \par 
+                                                  \vfil \penalty -\@M 
+l.3 \chapter
+            {\babTiga}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 Bab 3.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\uppercase' on input line 3.
 
-<pics/arsitektur_sistemc.png, id=634, 1176.0738pt x 727.0362pt>
-File: pics/arsitektur_sistemc.png Graphic file (type png)
-
-<use pics/arsitektur_sistemc.png>
-Package pdftex.def Info: pics/arsitektur_sistemc.png used on input line 14.
-(pdftex.def)             Requested size: 398.3386pt x 246.24608pt.
-
-Underfull \hbox (badness 3460) in paragraph at lines 26--27
-[]\T1/ptm/m/n/12 Herwando[] ([]2016[]) dalam peneli-tiannya, ditambah dengan da
-ta dari forum
- []
-
-[11
-
-
-
- <./pics/arsitektur_sistemc.png
-
-pdfTeX warning: pdflatex.exe (file ./pics/arsitektur_sistemc.png): large interl
-aced PNG might cause out of memory (use non-interlaced PNG to fix this)
->]
-Underfull \hbox (badness 1616) in paragraph at lines 36--37
-[]\T1/ptm/m/n/12 Setelah penulis melakukan proses di atas, sama seperti yang di
-lakukan
- []
-
-
-Underfull \hbox (badness 2726) in paragraph at lines 36--37
-\T1/ptm/m/n/12 besar, yaitu data sebagai \T1/ptm/m/it/12 input \T1/ptm/m/n/12 m
-odel \T1/ptm/m/it/12 word embedding \T1/ptm/m/n/12 dan data sebagai
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[12]
-LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 53.
-
-Underfull \hbox (badness 1931) in paragraph at lines 62--64
-\T1/ptm/m/n/12 sebuah kelas yang mengubah setiap baris kalimat menjadi baris \T
-1/ptm/m/it/12 tag\T1/ptm/m/n/12 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
-
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[13]
-Underfull \hbox (badness 1629) in paragraph at lines 72--76
-\T1/ptm/m/it/12 Tools \T1/ptm/m/n/12 yang penulis gunakan yaitu Keras. Keras me
-rupakan \T1/ptm/m/it/12 library \T1/ptm/m/n/12 untuk
- []
-
-
-Underfull \hbox (badness 2096) in paragraph at lines 72--76
-\T1/ptm/m/n/12 Keras yang penulis gunakan berjalan di atas Theano. Sebelum memu
-lai
- []
-
-
-Underfull \hbox (badness 1701) in paragraph at lines 78--79
-\T1/ptm/m/n/12 pengenalan suara per ayat, maka data yang diperlukan berupa baca
-an Al-
- []
-
-
-Underfull \hbox (badness 1342) in paragraph at lines 81--82
-\T1/ptm/m/n/12 Data diperoleh dengan cara mengunduh dari beberapa sumber, yaitu
- []$http : / /
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[14]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 115.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 115.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 115.
-LaTeX Font Info:    Font shape `U/xnsh/m/n' will be
-(Font)              scaled to size 14.40002pt on input line 115.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[15]
-
-LaTeX Warning: Reference `equ:euclideandistance' on page 16 undefined on input 
-line 121.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[16]
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[17]
-Underfull \hbox (badness 1484) in paragraph at lines 179--180
-\T1/ptm/m/n/12 dan pengembangan sistem dan Ruby untuk pengambilan data dari int
-ernet.
- []
-
-
-Underfull \hbox (badness 1681) in paragraph at lines 179--180
-\T1/ptm/m/it/12 Framework Recurrent Neural Network \T1/ptm/m/n/12 yang penulis 
-gunakan adalah Keras.
- []
-
-
-Underfull \hbox (badness 1097) in paragraph at lines 182--184
-\T1/ptm/m/n/12 eksperimen. Namun selain fungsi-fungsi yang sudah disediakan MAT
-LAB,
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[18]
-Underfull \hbox (badness 1325) in paragraph at lines 187--189
-\T1/ptm/m/n/12 menggunakan \T1/ptm/m/it/12 source code \T1/ptm/m/n/12 dari []HT
-K MFCC MATLAB[][][][]. Fungsi \T1/ptm/m/it/12 mfcc
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-[][][]\T1/ptm/m/n/10 http://www.mathworks.com/matlabcentral/fileexchange/31478-
-shifted-delta-coefficients--sdc--
- []
-
-
-Underfull \hbox (badness 1052) in paragraph at lines 211--213
-\T1/ptm/m/it/12 mfcc2sdc \T1/ptm/m/n/12 adalah fungsi untuk menghitung SDCC. Im
-ple-mentasi fungsi
- []
-
-
-Overfull \hbox (32.79526pt too wide) in paragraph at lines 217--228
- [][] 
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[19])
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[20]
-\openout2 = `bab4.aux'.
-
- (bab4.tex
-Bab 4.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\uppercase' on input line 3.
-
-<pics/distribusi_normal.png, id=751, 606.76688pt x 525.46312pt>
-File: pics/distribusi_normal.png Graphic file (type png)
-
-<use pics/distribusi_normal.png>
-Package pdftex.def Info: pics/distribusi_normal.png used on input line 28.
-(pdftex.def)             Requested size: 338.59023pt x 293.22302pt.
- [21
-
-
-
-]
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[22 <./pics/distribusi_normal.png>]
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[23] <pics/ekstraksi_mfcc_v3.png, id=801, 1386.1386pt x 1558.1412pt>
-File: pics/ekstraksi_mfcc_v3.png Graphic file (type png)
-
-<use pics/ekstraksi_mfcc_v3.png>
-Package pdftex.def Info: pics/ekstraksi_mfcc_v3.png used on input line 97.
-(pdftex.def)             Requested size: 398.3386pt x 447.76004pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[24]
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[25 <./pics/ekstraksi_mfcc_v3.png
-
-pdfTeX warning: pdflatex.exe (file ./pics/ekstraksi_mfcc_v3.png): large interla
-ced PNG might cause out of memory (use non-interlaced PNG to fix this)
->] <pics/ekstraksi_sdcc_v2.png, id=825, 1401.5562pt x 1922.8638pt>
-File: pics/ekstraksi_sdcc_v2.png Graphic file (type png)
-
-<use pics/ekstraksi_sdcc_v2.png>
-Package pdftex.def Info: pics/ekstraksi_sdcc_v2.png used on input line 140.
-(pdftex.def)             Requested size: 398.3386pt x 546.49619pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[26]
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[27 <./pics/ekstraksi_sdcc_v2.png
-
-pdfTeX warning: pdflatex.exe (file ./pics/ekstraksi_sdcc_v2.png): large interla
-ced PNG might cause out of memory (use non-interlaced PNG to fix this)
->]
-
-LaTeX Warning: Reference `lcs' on page 28 undefined on input line 151.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[28]
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[29]
-
-LaTeX Warning: Reference `table:kontingensi' on page 30 undefined on input line
- 224.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[30]
-
-LaTeX Warning: Reference `chap:evaluasi' on page 31 undefined on input line 228
-.
-
-
-Underfull \hbox (badness 1448) in paragraph at lines 228--229
-\T1/ptm/m/n/12 presisi, \T1/ptm/m/it/12 recall\T1/ptm/m/n/12 , serta \T1/ptm/m/
-it/12 f-measure \T1/ptm/m/n/12 diperoleh dari perhitungan yang sudah
- []
-
-)
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[31]
-\openout2 = `bab5.aux'.
-
- (bab5.tex
-Bab 5.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\uppercase' on input line 3.
-
-
-Underfull \hbox (badness 3158) in paragraph at lines 33--34
-[]\T1/ptm/m/n/12 Tabel []5.2[] menunjukkan frekuensi kemunculan persentase tert
-entu yang
- []
-
-[32
-
-
-
-] <pics/histogram00.png, id=919, 578.91281pt x 289.08pt>
-File: pics/histogram00.png Graphic file (type png)
-
-<use pics/histogram00.png>
-Package pdftex.def Info: pics/histogram00.png used on input line 60.
-(pdftex.def)             Requested size: 398.3386pt x 198.90962pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[33 <./pics/histogram00.png>]
-Underfull \hbox (badness 3158) in paragraph at lines 89--90
-[]\T1/ptm/m/n/12 Tabel []5.4[] menunjukkan frekuensi kemunculan persentase tert
-entu yang
- []
-
-<pics/histogram01.png, id=929, 578.16pt x 289.08pt>
-File: pics/histogram01.png Graphic file (type png)
- <use pics/histogram01.png>
-Package pdftex.def Info: pics/histogram01.png used on input line 116.
-(pdftex.def)             Requested size: 398.3386pt x 199.16986pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[34]
-Underfull \hbox (badness 3158) in paragraph at lines 142--143
-[]\T1/ptm/m/n/12 Tabel []5.6[] menunjukkan frekuensi kemunculan persentase tert
-entu yang
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[35 <./pics/histogram01.png>]
-<pics/histogram02.png, id=943, 578.16pt x 289.08pt>
-File: pics/histogram02.png Graphic file (type png)
- <use pics/histogram02.png>
-Package pdftex.def Info: pics/histogram02.png used on input line 169.
-(pdftex.def)             Requested size: 398.3386pt x 199.16986pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[36 <./pics/histogram02.png>]
-Underfull \hbox (badness 3158) in paragraph at lines 203--204
-[]\T1/ptm/m/n/12 Tabel []5.8[] menunjukkan frekuensi kemunculan persentase tert
-entu yang
- []
-
-<pics/histogram10.png, id=955, 578.16pt x 289.08pt>
-File: pics/histogram10.png Graphic file (type png)
- <use pics/histogram10.png>
-Package pdftex.def Info: pics/histogram10.png used on input line 230.
-(pdftex.def)             Requested size: 398.3386pt x 199.16986pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[37]
-Underfull \hbox (badness 1939) in paragraph at lines 260--261
-[]\T1/ptm/m/n/12 Tabel []5.10[] menunjukkan frekuensi kemunculan persentase ter
-tentu yang
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[38 <./pics/histogram10.png>]
-<pics/histogram11.png, id=969, 578.91281pt x 289.08pt>
-File: pics/histogram11.png Graphic file (type png)
-
-<use pics/histogram11.png>
-Package pdftex.def Info: pics/histogram11.png used on input line 287.
-(pdftex.def)             Requested size: 398.3386pt x 198.90962pt.
-
-Underfull \hbox (badness 1742) in paragraph at lines 302--303
-\T1/ptm/m/n/12 Eksperimen menggunakan fitur SDCC dan menggunakan metode klasifi
-kasi
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[39 <./pics/histogram11.png>]
-Underfull \hbox (badness 1939) in paragraph at lines 318--319
-[]\T1/ptm/m/n/12 Tabel []5.12[] menunjukkan frekuensi kemunculan persentase ter
-tentu yang
- []
-
-<pics/histogram12.png, id=979, 578.16pt x 289.08pt>
-File: pics/histogram12.png Graphic file (type png)
- <use pics/histogram12.png>
-Package pdftex.def Info: pics/histogram12.png used on input line 345.
-(pdftex.def)             Requested size: 398.3386pt x 199.16986pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[40]
-Underfull \hbox (badness 2426) in paragraph at lines 375--376
-\T1/ptm/m/n/12 Eksperimen menggunakan fitur MFCC dengan berbagai metode klasifi
-kasi,
- []
-
-<pics/piefeat0.png, id=986, 361.35pt x 217.2918pt>
-File: pics/piefeat0.png Graphic file (type png)
- <use pics/piefeat0.png>
-Package pdftex.def Info: pics/piefeat0.png used on input line 379.
-(pdftex.def)             Requested size: 358.50229pt x 215.58038pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[41 <./pics/histogram12.png>]
-Underfull \hbox (badness 2846) in paragraph at lines 391--392
-\T1/ptm/m/n/12 Eksperimen menggunakan fitur SDCC dengan berbagai metode klasifi
-kasi,
- []
-
-<pics/piefeat1.png, id=993, 361.35pt x 217.2918pt>
-File: pics/piefeat1.png Graphic file (type png)
- <use pics/piefeat1.png>
-Package pdftex.def Info: pics/piefeat1.png used on input line 395.
-(pdftex.def)             Requested size: 358.50229pt x 215.58038pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[42 <./pics/piefeat0.png>]
-Underfull \hbox (badness 1292) in paragraph at lines 402--403
-\T1/ptm/m/n/12 hampir benar, dan lain sebagainya. Nilai kebenaran suatu pembaca
-an Al-
- []
-
-
-Underfull \hbox (badness 4341) in paragraph at lines 416--417
-\T1/ptm/m/n/12 Eksperimen menggunakan metode klasifikasi SVM dengan berbagai fi
-tur,
- []
-
-<pics/pieclass0.png, id=1002, 361.35pt x 217.2918pt>
-File: pics/pieclass0.png Graphic file (type png)
- <use pics/pieclass0.png>
-Package pdftex.def Info: pics/pieclass0.png used on input line 420.
-(pdftex.def)             Requested size: 358.50229pt x 215.58038pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[43 <./pics/piefeat1.png>]
-Underfull \hbox (badness 3271) in paragraph at lines 437--438
-\T1/ptm/m/n/12 Eksperimen menggunakan metode klasifikasi GMM dengan berbagai fi
-tur,
- []
-
-<pics/pieclass1.png, id=1010, 361.35pt x 217.2918pt>
-File: pics/pieclass1.png Graphic file (type png)
- <use pics/pieclass1.png>
-Package pdftex.def Info: pics/pieclass1.png used on input line 441.
-(pdftex.def)             Requested size: 358.50229pt x 215.58038pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[44 <./pics/pieclass0.png>]
-<pics/pieclass2.png, id=1018, 361.35pt x 217.2918pt>
-File: pics/pieclass2.png Graphic file (type png)
- <use pics/pieclass2.png>
-Package pdftex.def Info: pics/pieclass2.png used on input line 459.
-(pdftex.def)             Requested size: 358.50229pt x 215.58038pt.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[45 <./pics/pieclass1.png>]
-Underfull \hbox (badness 5578) in paragraph at lines 480--481
-\T1/ptm/m/n/12 Penggunaan fitur SDCC dan metode klasifikasi GMM pada eksperimen
-
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[46 <./pics/pieclass2.png>]
-Underfull \hbox (badness 1112) in paragraph at lines 527--529
-[]\T1/ptm/m/n/12 Suatu ayat dapat dikla-si-fi-kasikan dengan akurasi tinggi dik
-arenakan ayat
- []
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[47])
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[48]
-\openout2 = `bab6.aux'.
-
- (bab6.tex
-Bab 6.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\uppercase' on input line 3.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--10
-\T1/ptm/m/n/12 Setelah mengim-ple-men-tasikan rancangan arsitektur sistem, menj
-alankan
- []
-
-[49
-
-
-
-]
-Underfull \hbox (badness 3460) in paragraph at lines 29--30
-[]\T1/ptm/m/n/12 Fitur MFCC dan fitur SDCC memungkinkan untuk dikom-bi-nasikan.
-
- []
-
-)
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[50] (skripsi.bbl [51
-
-
-]
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[52])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 145.
-
-
-Package Fancyhdr Warning: \headheight is too small (0.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[53]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 145.
- (skripsi.aux (sampul.aux) (judul_dalam.aux) (orisinal.aux)
-(pengesahan_sidang.aux) (pengantar.aux) (persetujuan_publikasi.aux)
-(abstrak.aux) (abstract.aux) (bab1.aux) (bab2.aux) (bab3.aux) (bab4.aux)
-(bab5.aux) (bab6.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 145.
-
-
- *File List*
-  report.cls    2014/09/29 v1.4h Standard LaTeX document class
-  size12.clo    2014/09/29 v1.4h Standard LaTeX file (size option)
- arabtex.sty    2003/08/22  3.11 ArabTeX main module
- arabaux.sty    2003/05/21  3.11 auxiliary macros for ArabTeX
-    acmd.sty    2003/08/20  3.11 Arabic command processing 
-  afonts.sty    1995/11/16  3.04 define Naskh font 
- afonts2.sty    1998/10/19  3.10 define Naskh fonts for LaTeX2e
-   ascan.sty    2003/08/22  3.11 standard ZDMG input encoding 
-  aparse.sty    2003/05/26  3.11 get syllables 
-  awrite.sty    2003/06/05  3.11 build output word 
-xarbsymb.sty    1998/07/15  3.07 symbolic output encoding 
-arabskel.sty    2000/06/04  3.10 character skeleton definitions 
-xarbskel.sty    1999/07/17  3.09 character skeleton definitions 
-  aboxes.sty    2003/05/28  3.11 build output boxes
-arabtoks.sty    1999/07/17  3.09 ArabTeX CS token definitions 
-arabchrs.sty    1998/07/11  3.07 letter token definitions 
-   aligs.sty    2003/05/26  3.11 compute ligatures
- aoutput.sty    2000/06/04  3.10 build output lines
-  abidir.sty    2003/08/22  3.11 bidirectional linebreaking
-  atrans.sty    2003/06/14  3.11 generate the transliteration 
-  alatex.sty    2003/05/04  3.11 ArabTeX extensions for LaTeX 
-   afoot.sty    2003/05/12  3.11 ArabTeX footnotes
-   abjad.sty    2003/04/26  3.11 abjad numerals 
-  apatch.sty    2006/07/02  3.11s last minute patches 
-  alists.sty    2003/04/26  3.11 inverted list macros
-   asect.sty    2003/04/26  3.11 section macros for Arabic
-   atabg.sty    1997/01/21  3.05 LaTeX tabbing macros for Arabic
-    utf8.sty    2000/06/13  3.10 UTF-8 input encoding 
- utfcode.sty    2002/03/07  3.10a Arabic+Hebrew segment of UTF-8
- amsmath.sty    2016/06/28 v2.15d AMS math features
- amstext.sty    2000/06/29 v2.01 AMS text
-  amsgen.sty    1999/11/30 v2.0 generic functions
-  amsbsy.sty    1999/11/29 v1.2d Bold Symbols
-  amsopn.sty    2016/03/08 v2.02 operator names
- amssymb.sty    2013/01/14 v3.01 AMS font symbols
-amsfonts.sty    2013/01/14 v3.01 Basic AMSFonts support
-enumitem.sty    2011/09/28 v3.5.2 Customized lists
-  natbib.sty    2010/09/13 8.31b (PWD, AO)
-uithesis.sty    
-tocbibind.sty    2010/10/13 v1.5k extra ToC listings
-     url.sty    2013/09/16  ver 3.4  Verb mode for urls, etc.
-multirow.sty    
-graphicx.sty    2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
-  keyval.sty    2014/10/28 v1.15 key=value parser (DPC)
-graphics.sty    2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
-    trig.sty    2016/01/03 v1.10 sin cos tan (DPC)
-graphics.cfg    2016/06/04 v1.11 sample graphics configuration
-  pdftex.def    2016/07/10 v0.06j Graphics/color for pdfTeX
-infwarerr.sty    2016/05/16 v1.4 Providing info/warning/error messages (HO)
- ltxcmds.sty    2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-setspace.sty    2011/12/19 v6.7a set line spacing
-geometry.sty    2010/09/12 v5.6 Page Geometry
-   ifpdf.sty    2016/05/14 v3.1 Provides the ifpdf switch
-  ifvtex.sty    2016/05/16 v1.6 Detect VTeX and its facilities (HO)
- ifxetex.sty    2010/09/12 v0.6 Provides ifxetex conditional
-geometry.cfg
- caption.sty    2016/02/21 v3.3-144 Customizing captions (AR)
-caption3.sty    2016/05/22 v1.7-166 caption3 kernel (AR)
-subfloat.sty    2003/08/21 version 2.14
- pslatex.sty    1996/07/24 v1.2 pslatex emulation (DPC)
-pdfpages.sty    2016/04/19 v0.5f Insert pages of external PDF documents (AM)
-  ifthen.sty    2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-    calc.sty    2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
- eso-pic.sty    2015/07/21 v2.0g eso-pic (RN)
-atbegshi.sty    2016/06/09 v1.18 At begin shipout hook (HO)
-  xcolor.sty    2016/05/11 v2.12 LaTeX color extensions (UK)
-   color.cfg    2016/01/02 v1.6 sample color configuration
-pppdftex.def    2016/04/19 v0.5f Pdfpages driver for pdfTeX (AM)
-fncychap.sty    2007/07/30 v1.34 LaTeX package (Revised chapters)
-colortbl.sty    2012/02/13 v1.0a Color table columns (DPC)
-   array.sty    2014/10/28 v2.4c Tabular extension package (FMi)
-   float.sty    2001/11/08 v1.3d Float enhancements (AL)
- fontenc.sty
-   t1enc.def    2016/06/19 v1.99m Standard LaTeX file
-fancyhdr.sty    2016/09/06 3.8 Extensive control of page headers and footers
-listings.sty    2015/06/04 1.6 (Carsten Heinz)
- lstmisc.sty    2015/06/04 1.6 (Carsten Heinz)
-listings.cfg    2015/06/04 1.6 listings configuration
-lstlang1.sty    2015/06/04 1.6 listings language file
- lstmisc.sty    2015/06/04 1.6 (Carsten Heinz)
-fancyvrb.sty    2008/02/07
-  hhline.sty    2014/10/28 v2.03 Table rule package (DPC)
-pdflscape.sty    2016/05/14 v0.11 Display of landscape pages in PDF (HO)
-  lscape.sty    2000/10/22 v3.01 Landscape Pages (DPC)
-longtable.sty    2014/10/28 v4.11 Multi-page Table package (DPC)
-hyperref.sty    2016/06/24 v6.83q Hypertext links for LaTeX
-hobsub-hyperref.sty    2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
-hobsub-generic.sty    2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
-  hobsub.sty    2016/05/16 v1.14 Construct package bundles (HO)
-ifluatex.sty    2016/05/16 v1.4 Provides the ifluatex switch (HO)
- intcalc.sty    2016/05/16 v1.2 Expandable calculations with integers (HO)
-etexcmds.sty    2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-kvsetkeys.sty    2016/05/16 v1.17 Key value parser (HO)
-kvdefinekeys.sty    2016/05/16 v1.4 Define keys (HO)
-pdftexcmds.sty    2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO)
-pdfescape.sty    2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
-bigintcalc.sty    2016/05/16 v1.4 Expandable calculations on big integers (HO)
-  bitset.sty    2016/05/16 v1.2 Handle bit-vector datatype (HO)
-uniquecounter.sty    2016/05/16 v1.3 Provide unlimited unique counter (HO)
-letltxmacro.sty    2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
- hopatch.sty    2016/05/16 v1.3 Wrapper for package hooks (HO)
-xcolor-patch.sty    2016/05/16 xcolor patch
-atveryend.sty    2016/05/16 v1.9 Hooks at the very end of document (HO)
-refcount.sty    2016/05/16 v3.5 Data extraction from label references (HO)
- hycolor.sty    2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
- auxhook.sty    2016/05/16 v1.4 Hooks for auxiliary files (HO)
-kvoptions.sty    2016/05/16 v3.12 Key value format for package options (HO)
-  pd1enc.def    2016/06/24 v6.83q Hyperref: PDFDocEncoding definition (HO)
-hyperref.cfg    2002/06/06 v1.2 hyperref configuration of TeXLive
- hpdftex.def    2016/06/24 v6.83q Hyperref driver for pdfTeX
-rerunfilecheck.sty    2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
-laporan_setting.tex
-   babel.sty    2016/04/23 3.9r The Babel package
- bblopts.cfg    2005/09/08 v0.1 add Arabic and Farsi to "declared" options of b
-abel
- bahasai.ldf
-    hype.indonesia
- istilah.tex
-omspzccm.fd    2000/01/03 Fontinst v1.801 font definitions for OMS/pzccm.
-supp-pdf.mkii
-epstopdf-base.sty    2016/05/15 v2.6 Base part for package epstopdf
-  grfext.sty    2016/05/16 v1.2 Manage graphics extensions (HO)
-ltcaption.sty    2013/06/09 v1.4-94 longtable captions (AR)
- nameref.sty    2016/05/21 v2.44 Cross-referencing by name of section
-gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
- skripsi.out
- skripsi.out
-  apatch.sty    2006/07/02  3.11s last minute patches 
-  sampul.tex
-pics/makara.png
-judul_dalam.tex
-pics/makara.png
-orisinal.tex
-ot1ptmcm.fd    2000/01/03 Fontinst v1.801 font definitions for OT1/ptmcm.
-omlptmcm.fd    2000/01/03 Fontinst v1.801 font definitions for OML/ptmcm.
-omxpsycm.fd    2000/01/03 Fontinst v1.801 font definitions for OMX/psycm.
-    umsa.fd    2013/01/14 v3.01 AMS symbols A
-    umsb.fd    2013/01/14 v3.01 AMS symbols B
-pengesahan_sidang.tex
-pengantar.tex
-   uxnsh.fd     1999/10/19 v3.10 ArabTeX Naskh extd. font definitions
-persetujuan_publikasi.tex
- abstrak.tex
-abstract.tex
-    bab1.tex
-    bab2.tex
-images/mer_ilustration.png
-images/simple_rnn.png
-    bab3.tex
-pics/arsitektur_sistemc.png
-    bab4.tex
-pics/distribusi_normal.png
-pics/ekstraksi_mfcc_v3.png
-pics/ekstraksi_sdcc_v2.png
-    bab5.tex
-pics/histogram00.png
-pics/histogram01.png
-pics/histogram02.png
-pics/histogram10.png
-pics/histogram11.png
-pics/histogram12.png
-pics/piefeat0.png
-pics/piefeat1.png
-pics/pieclass0.png
-pics/pieclass1.png
-pics/pieclass2.png
-    bab6.tex
- skripsi.bbl
- ***********
-
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 145.
-Package rerunfilecheck Info: File `skripsi.out' has not changed.
-(rerunfilecheck)             Checksum: 9F54AF9555C78A830658BEEB4D684A75;5137.
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 145.
- ) 
+! Undefined control sequence.
+\DOCH ...\@chapapp }\space \CNoV \thechapter \par 
+                                                  \nobreak 
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\DOTI #1->\CTV \FmTi {#1}\par 
+                              \nobreak \vskip 20\p@ 
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<inserted text> \par 
+                     
+l.3 \chapter{\babTiga}
+                      
+(That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 15553 strings out of 493333
- 213239 string characters out of 3139197
- 354869 words of memory out of 3000000
- 18171 multiletter control sequences out of 15000+200000
- 62736 words of font info for 103 fonts, out of 3000000 for 9000
+ 15169 strings out of 493333
+ 207316 string characters out of 3139197
+ 351954 words of memory out of 3000000
+ 17988 multiletter control sequences out of 15000+200000
+ 40391 words of font info for 64 fonts, out of 3000000 for 9000
  1266 hyphenation exceptions out of 8191
- 44i,16n,51p,1430b,507s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic
-/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/symbol/usyr.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri
-8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/arabtex/xnsh14.pfb>
-Output written on skripsi.pdf (66 pages, 1263964 bytes).
-PDF statistics:
- 1190 PDF objects out of 1200 (max. 8388607)
- 316 named destinations out of 1000 (max. 500000)
- 627 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 44i,11n,51p,1430b,481s stack positions out of 5000i,500n,10000p,200000b,50000s
 
+!  ==> Fatal error occurred, no output PDF file produced!

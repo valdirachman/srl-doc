@@ -23,6 +23,12 @@ Elman, J.~L. (1990).
 \newblock Finding structure in time.
 \newblock {\em Cognitive science}, 14(2):179--211.
 
+\bibitem[Graves, 2012]{graves2012neural}
+Graves, A. (2012).
+\newblock Neural networks.
+\newblock In {\em Supervised Sequence Labelling with Recurrent Neural
+  Networks}, pages 15--35. Springer.
+
 \bibitem[Graves et~al., 2013]{graves2013speech}
 Graves, A., Mohamed, A.-r., dan Hinton, G. (2013).
 \newblock Speech recognition with deep recurrent neural networks.
@@ -44,6 +50,17 @@ Herwando, R. (2016).
 \newblock Pengenalan entitas kesehatan pada forum kesehatan online berbahasa
   indonesia menggunakan algoritma conditional random fields.
 \newblock Master's thesis, Universitas Indonesia, Kampus UI Depok.
+
+\bibitem[Jordan, 1986]{jordan1986attractor}
+Jordan, M.~I. (1986).
+\newblock Attractor dynamics and parallellism in a connectionist sequential
+  machine.
+
+\bibitem[Lang et~al., 1990]{lang1990time}
+Lang, K.~J., Waibel, A.~H., dan Hinton, G.~E. (1990).
+\newblock A time-delay neural network architecture for isolated word
+  recognition.
+\newblock {\em Neural networks}, 3(1):23--43.
 
 \bibitem[Mikolov et~al., 2010]{mikolov2010recurrent}
 Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.

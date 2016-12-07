@@ -36,33 +36,46 @@ Selain itu, \cite{suwarningsih2014imner} juga melakukan penelitian terkait \mer~
 
 
 \section{Recurrent Neural Networks}
-\textit{Recurrent neural networks} (RNNs) merupakan salah satu arsitektur dalam \textit{deep learning}. RNNS memiliki \textit{neuron} yang terkoneksi dengan \textit{neuron} lain sehingga membentuk \textit{loop} umpan balik (\cite{haykin2009neural}), tidak seperti \textit{feedforward neural network} (FNNs) dimana aliran informasi hanya berjalan searah. RNNs memungkinkan \iob~yang dihasilkan akan menjadi \ioa~untuk menghasilkan \iob~yang lain. Hal ini menyebabkan perilaku RNNs tidak hanya bergantung pada \ioa~saat ini saja, namun juga bergantung pada \iob~sebelumya. Oleh karena itu, RNNs memiliki kemampuan yang sangat bagus sebagai model dalam permasalahan \textit{sequence data} dibandingkan dengan FNNs. RNNs sendiri memiliki kemampuan yang sangat bagus dalam beberapa \textit{task}, seperti \textit{language model} (\cite{mikolov2010recurrent}) dan \textit{speech recognition} (\cite{graves2013speech}).
 
-Dibandingkan dengan FNNs, RNNs memiliki beberapa kelebihan (\cite{mikolov2010recurrent}), yaitu:
+\textit{Recurrent neural networks} (RNNs) merupakan \textit{Artificial Neural Networks} (ANNs) yang memiliki koneksi siklik \citep{graves2012neural}. RNNs memiliki \textit{neuron} yang terkoneksi dengan \textit{neuron} lain sehingga membentuk \textit{loop} umpan balik (\cite{haykin2009neural}), tidak seperti \textit{feedforward neural network} (FNNs) dimana aliran informasi hanya berjalan searah. RNNs memungkinkan \iob~yang dihasilkan akan menjadi \ioa~untuk menghasilkan \iob~yang lain. Hal ini menyebabkan perilaku RNNs tidak hanya bergantung pada \ioa~saat ini saja, namun juga bergantung pada \iob~sebelumya. Oleh karena itu, RNNs memiliki kemampuan yang sangat bagus sebagai model dalam permasalahan \textit{sequence data} dibandingkan dengan FNNs. RNNs sendiri memiliki kemampuan yang sangat bagus dalam beberapa \textit{task}, seperti \textit{language model} (\cite{mikolov2010recurrent}) dan \textit{speech recognition} (\cite{graves2013speech}).
+
+Dibandingkan dengan FNNs, RNNs memiliki beberapa kelebihan \citep{mikolov2010recurrent}, yaitu:
 \begin{enumerate}
 	\item Pada RNNs, kata-kata sebelumnya direpresentasikan dengan \textit{recurrent connections}, sehingga RNNs dapat menyimpan informasi kata sebelumnya dalam jumlah tak hingga. Pada FNNss, representasi kata sebelumnya berupa konteks dari n-1 kata. Oleh karena itu, FNNs terbatas dalam penyimpanan informasi kata sebelumnya terbatas seperti pada model n-gram.
 	\item RNNs dapat melakukan kompresi keseluruhan riwayat kata menjadi ruang dimensi yang lebih kecil, sedangkan FNNs melakukan kompresi/proyeksi hanya dengan sebuah kata saja.
-	\item RNNs memiliki kemampuan membentuk \textit{short term memory}, sehingga dapat dapat posisi invarian sebuah kata dapat ditangani. Hal ini tidak dapat dilakukan pada FNNs,
+	\item RNNs memiliki kemampuan membentuk \textit{short term memory}, sehingga dapat posisi invarian sebuah kata dapat ditangani. Hal ini tidak dapat dilakukan pada FNNs,
 \end{enumerate}
 
-Berikut merupakan gambar struktur RNNs yang diusulkan oleh \cite{elman1990finding}.
+Banyak variasi RNNs yang telah diusulkan oleh beberapa peneliti, seperti Elman \textit{networks} \citep{elman1990finding}, Jordan \textit{networks} \citep{jordan1986attractor}, \textit{time delay neural networks} \citep{lang1990time} dll. Gambar berikut merupakan conroh  dari RNNs sederhana
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.55\linewidth]{images/simple_rnn}
-	\caption{\textit{Simple Recurrent Neural Network}} {Sumber gambar: \cite{mikolov2010recurrent}}
-	\label{fig:simplernn}
+	\includegraphics[width=0.80\linewidth]{images/simple_rnn}
+	\caption{\textit{Recurrent Neural Network} sederhana}
+	\label{fig:simple_rnn}
 \end{figure}
 
-Sebuah jaringan pada RNNs memiliki \textit{input layer} $ x $, \textit{hidden layer} $ s $ dan \textit{output layer} $ y $. Untuk suatu waktu $ t $, \textit{input} RNNs dinotasikan sebagai $ x(t) $, \textit{state} dinotasikan sebagai $ s(t) $ dan \textit{output} dinotasikan sebagai $ y(t) $.
+Dari gambar \ref{fig:simple_rnn}, sebuah jaringan pada RNNs memiliki \textit{input layer} $ x $, \textit{hidden layer} $ h $ dan \textit{output layer} $ y $. Terdapat 3 buah parameter yang ingin dicari dalam tahap \textit{learning}, yaitu $ {U, V, W} $ yang masing-masing parameter tersebut di-\textit{share} untuk semua \textit{timestep} $ t $ dengan:
+\begin{equation}
+U \in \R
+V \in \R
+W \in \R
+\end{equation}
 
-RNNs have demonstrated great success
-in sequence labeling and prediction tasks such as handwriting
-recognition and language modeling. In acoustic modeling
-for speech recognition, however, where deep neural networks
-(DNNs) are the established state-of-the-art, recently RNNs have
-received little attention beyond small scale phone recognition
-tasks, notable exceptions being the work of Robinson [1],
-Graves [2], and Sak [3].
+Untuk suatu \textit{timestep} $ t $, \textit{input} RNNs dinotasikan sebagai $ x(t) $, \textit{timestep} dinotasikan sebagai $ h(t) $ dan \textit{output} dinotasikan sebagai $ y(t) $, dengan:
+
+\begin{equation}
+y(t) = f(V \doteq h(t))
+h(t) = f(U \doteq x(t) + W \doteq h(t-1))
+\end{equation}
+
+dimana
+
+\begin{equation}
+h(0) = f(W \doteq x(0))
+\end{equation}
+dengan $ f $ sebagai \textit{activation function}
+
 \subsection{Long Short Term Memory}
 \subsection{Penerapan RNNs untuk MER}
 
