@@ -117,10 +117,10 @@ Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
 		 	\item[$\bullet$] VP : VB + NP
 		 \end{description}
 	 
-		 \item Fitur 7: 1 kata sebelum
+		 \item Fitur 7: 1 kata sebelum\\
 		 Fitur ini merupakan fitur yang berisi informasi kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata.
 		 
-		 \item Fitur 8: 1 kata sesudah
+		 \item Fitur 8: 1 kata sesudah\\
 		 Fitur ini merupakan fitur yang berisi informasi kata sesudah kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata.
 		 
 		 \item Fitur 9: 2 kata sebelum
@@ -144,7 +144,7 @@ Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
 		\item LSTM layer bertingkat
 		Pada LSTM 2 layer, penulis mendefinisikan 2 layer, dimana layer terbawah merupakan layer dengan jumlah LSTM sebanyak n kelompok fitur. Pertama-tama fitur dikelompokkan terlebih dahulu, kemudian dijadikan input untuk LSTM layer pertama. Setelah itu, hasil dari layer pertama tersebut akan digabung menjadi satu, dengan menggunakan layer penggabung. \textit{Output} dari layer penggabung kemudian dimasukkan ke dalam LSTM layer kedua, yang \textit{output}-nya merupakan hasil klasifikasi label. Berikut merupakan ilustrasi dari LSTM layer bertingkat yang \saya~gunakan.
 		
-		\textbf{Gambar LSTM 2}
+		\textbf{Gambar LSTM 2}(Belum)
 		
 	\end{enumerate}
 	
@@ -214,8 +214,8 @@ Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
 		
 		\fbox{%
 			\parbox{1.0\linewidth}{%
-			Contoh 2
-			True : <Symptom>Badan terasa pegal</Symptom>, sepertinya akan <Disease>\textbf{demam}</Disease>.
+			Contoh 2\\
+			True : <Symptom>Badan terasa pegal</Symptom>, sepertinya akan <Disease>\textbf{demam}</Disease>.\\
 			Predicted : <Symptom>Badan terasa pegal</Symptom>, sepertinya akan <Symptom>\textbf{demam}</Symptom>.
 			}
 		}

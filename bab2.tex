@@ -80,8 +80,30 @@ dengan $ f $ sebagai \textit{activation function}. Untuk lebih jelasnya, berikut
 \end{figure}
 
 \subsection{Long Short Term Memory}
-Pada penjelasan di atas, RNNs memiliki kelebihan mempertimbangkan konteks untuk mengolah \textit{input} menjadi \textit{output}. Sayangnya, \textit{range} konteks yang dapat digunakan dalam satu blok terbatas \citep{graves2012neural}. Efek dari keterbatasan ini yaitu informasi pada suatu blok akan hilang atau terganggu dengan konteks sebelumnya sehingga \textit{output} yang dihasilkan tidak sesuai harapan. Ilustrasi masalah yang disebut \textit{vanishing gradient problem} ini dapat dilihat di FIGUREX. Banyak upaya untuk mengatasi masalah ini, seperti dengan menggunakan \textit{simulated annealing} dan \textit{discrete error propagation}, menggunakan \textit{time delays} atau \textit{time constant}, dan \textit{hierarchical sequence compression}. Namun sejauh ini solusi yang paling bagus yaitu dengan arsitektur \textit{Long Short Term Memory} (LSTM).
+Pada penjelasan di atas, RNNs memiliki kelebihan mempertimbangkan konteks untuk mengolah \textit{input} menjadi \textit{output}. Sayangnya, \textit{range} konteks yang dapat digunakan dalam satu blok terbatas \citep{graves2012neural}. Efek dari keterbatasan ini yaitu informasi pada suatu blok akan hilang atau terganggu dalam perjalanan \textit{timestep} sehingga \textit{output} yang dihasilkan tidak sesuai harapan. Oleh karena itu RNNs tidak dapat menangani permasalahan dependensi jangka panjang. Permasalahan ini disebut dengan \textit{vanishing gradient problem}. Banyak upaya untuk mengatasi masalah ini, seperti dengan menggunakan \textit{simulated annealing} dan \textit{discrete error propagation}, menggunakan \textit{time delays} atau \textit{time constant}, dan \textit{hierarchical sequence compression}. Namun sejauh ini solusi yang paling bagus yaitu dengan arsitektur \textit{Long Short Term Memory} (LSTM).
 
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\linewidth]{images/lstm}
+	\caption{1 buah blok memori dalam LSTM}
+	\label{fig:lstm}
+\end{figure}
+
+LSTM diperkenalkan oleh \cite{hochreiter1997long} dan saat ini banyak digunakan dalam berbagai \textit{task}. Gambar \ref{fig:lstm} merupakan ilustrasi satu buah blok memori di dalam LSTM. Pada dasarnya, arsitektur LSTM mirip dengan RNNs, namun unit \textit{nonlinear} pada \textit{hidden layer} di dalam RNNs diganti menjadi blok memori. Sebuah blok memori memiliki gerbang \textit{multiplicative} yang berfungsi untuk menyimpan dan mengakses informasi dari blok sebelumnya namun dengan batasan yang jauh lebih besar dibanding RNNs, sehingga mampu menghindari \textit{vanishing gradient problem}. Apabila \textit{input gate} selalu tertutup, maka memori tidak akan perah ditimpa sehingga isi memori tidak berubah.
+
+Pada gambar \ref{fig:lstm}, kita dapat melihat bahwa 1 blok memori pada LSTM tersebut memiliki 3 buah gerbang, yang berfungsi untuk sebagai pengatur suatu informasi apakah ditambahkan, dipertahankan atau dihapus di dalam sebuah sel. Masing-masing gerbang terdiri dari komponen \textit{sigmoid layer} dan komponen untuk melakukan operasi penjumlahan atau perkalian untuk masing-masing \textit{element-wise}. \textit{Sigmoid layer} tersebut memiliki nilai antara nol sampai dengan satu, yang mendeskripsikan perilaku gerbang dalam menerima \textit{input}. Semakin kecil nilai dari layer tersebut maka semakin kecil pula informasi masuk ke gerbang terkait dan sebaliknya. 
+
+\begin{enumerate}
+	\item \textit{Forget Gate}\\
+	Gerbang ini memiliki fungsi untuk menentukan informasi yang akan disimpan di dalam memori dengan formula berikut
+	\begin{equation}\label{eq:forget_lstm}
+	\alpha_{t}=\tau(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~h_{t-1})
+	\end{equation}
+	
+	\item \textit{Input Gate}
+	
+	\item \textit{Output Gate}
+\end{enumerate}
 \subsection{Penerapan RNNs untuk MER}
 -- Belum
 

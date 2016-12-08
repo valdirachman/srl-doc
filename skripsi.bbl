@@ -58,6 +58,11 @@ Herwando, R. (2016).
   indonesia menggunakan algoritma conditional random fields.
 \newblock Master's thesis, Universitas Indonesia, Kampus UI Depok.
 
+\bibitem[Hochreiter dan Schmidhuber, 1997]{hochreiter1997long}
+Hochreiter, S. dan Schmidhuber, J. (1997).
+\newblock Long short-term memory.
+\newblock {\em Neural computation}, 9(8):1735--1780.
+
 \bibitem[Hs, 2005]{hs2005bahasa}
 Hs, W. (2005).
 \newblock {\em Bahasa Indonesia: mata kuliah pengembangan kepribadian di
