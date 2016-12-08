@@ -117,6 +117,13 @@ Saha, G., Chakroborty, S., dan Senapati, S. (2005).
 \newblock {\em Proceedings of the 11th National Conference on Communications
   (NCC)}, pages 291--295.
 
+\bibitem[Seki dan Mostafa, 2003]{seki2003probabilistic}
+Seki, K. dan Mostafa, J. (2003).
+\newblock A probabilistic model for identifying protein names and their name
+  boundaries.
+\newblock In {\em Bioinformatics Conference, 2003. CSB 2003. Proceedings of the
+  2003 IEEE}, pages 251--258. IEEE.
+
 \bibitem[Sharma dan Sarma, 2016]{Soft-Computational}
 Sharma, M. dan Sarma, K.~K. (2016).
 \newblock {\em Soft-Computational Techniques and Spectro-Temporal Features for

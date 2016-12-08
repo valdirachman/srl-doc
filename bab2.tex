@@ -30,10 +30,10 @@ Selain penelitian di atas, \cite{mujiono2016new} juga melakukan penelitian terka
 % Cerita MER Bahasa Indonesia (Kak Radit, Performa, Tabel) %
 Penelitian terkait \mer~pada dokumen berbahasa Indonesia sudah dilakukan sebelumnya oleh \cite{skripsiKakRadit}. Dalam penelitiannya, \cite{skripsiKakRadit} menggunakan CRF (\textit{Conditional Random Fields}) dengan tujuan untuk mendapatkan kombinasi fitur yang menghasilkan akurasi terbaik. Entitas yang akan diberi label yaitu nama penyakit (\textit{disease}), gejala penyakit (\textit{sympton}), obat (\textit{drug}) dan langkah penyembuhan \textit{treatment}. Dokumen yang menjadi input penelitian merupakan hasil \textit{crawling} dari  forum kesehatan \textit{online} dari berbagai situs yang berisi tanya jawab. Hasil yang didapatkan yaitu \textit{precision} $ 70.97\% $, \textit{recall} $ 57.83\% $ dan \textit{f-measeure} $ 63.69\% $ dengan fitur \textit{its own word}, frasa, kamus (\textit{symptom}, \textit{disease}, \textit{treatment} dan \textit{drug}), kata pertama sebelum dan panjang kata.
 
-Selain itu, \cite{suwarningsih2014imner} juga melakukan penelitian terkait \mer~pada dokumen berbahasa Indonesia dengan menggunakan SVM (\textit{Support Vector Machine}). Entitas yang akan dikenali yaitu \textit{location}, \textit{facility}, \textit{diagnosis}, \textit{definition} dan \textit{person}. Data yang digunakan sebagai korpus merupakan data dari situs http:\\health.detik.com, detikhealth.com dan health.kompas.com/konsultasi dengan total keseluruhan sebanyak 1000 kalimat. AKurasi yang dihasilkan yaitu $ 90\% $ dengan menggunakan fitur \textit{baseline}, \textit{word level (morphology, POS-Tag, dll)} dan fitur dari dalam dokumen tersebut.
+Selain itu, \cite{suwarningsih2014imner} juga melakukan penelitian terkait \mer~pada dokumen berbahasa Indonesia dengan menggunakan SVM (\textit{Support Vector Machine}). Entitas yang akan dikenali yaitu \textit{location}, \textit{facility}, \textit{diagnosis}, \textit{definition} dan \textit{person}. Data yang digunakan sebagai korpus merupakan data dari situs \textit{health.detik.com}, \textit{detikhealth.com} dan \textit{health.kompas.com/konsultasi} dengan total keseluruhan sebanyak 1000 kalimat. AKurasi yang dihasilkan yaitu $ 90\% $ dengan menggunakan fitur \textit{baseline}, \textit{word level (morphology, POS-Tag, dll)} dan fitur dari dalam dokumen tersebut.
 
 \section{Deep Learning}
-
+--Belum
 
 \section{Recurrent Neural Networks}\label{sec:rnns}
 
@@ -83,8 +83,10 @@ dengan $ f $ sebagai \textit{activation function}. Untuk lebih jelasnya, berikut
 Pada penjelasan di atas, RNNs memiliki kelebihan mempertimbangkan konteks untuk mengolah \textit{input} menjadi \textit{output}. Sayangnya, \textit{range} konteks yang dapat digunakan dalam satu blok terbatas \citep{graves2012neural}. Efek dari keterbatasan ini yaitu informasi pada suatu blok akan hilang atau terganggu dengan konteks sebelumnya sehingga \textit{output} yang dihasilkan tidak sesuai harapan. Ilustrasi masalah yang disebut \textit{vanishing gradient problem} ini dapat dilihat di FIGUREX. Banyak upaya untuk mengatasi masalah ini, seperti dengan menggunakan \textit{simulated annealing} dan \textit{discrete error propagation}, menggunakan \textit{time delays} atau \textit{time constant}, dan \textit{hierarchical sequence compression}. Namun sejauh ini solusi yang paling bagus yaitu dengan arsitektur \textit{Long Short Term Memory} (LSTM).
 
 \subsection{Penerapan RNNs untuk MER}
+-- Belum
 
 \section{Word Embedding}
+-- Belum
 %-----------------------------------------------------------------------------%
 % Cerita umum Word Embedding terlepas dari, kenapa bukan %
 % Salah satunya adalah word2vc%

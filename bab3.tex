@@ -70,7 +70,7 @@ Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
 	\end{enumerate}
 		
 	\subsection{Pengembangan Model}
-	Pada tahap ini, \saya~melakukan pengusulan dan perancangan model yang nantinya akan \saya~evaluasi pada tahap eksperimen. Dalam mengembangkan model, terdapat dua pekerjaan yang\saya~lakukan, yaitu:
+	Pada tahap ini, \saya~melakukan pengusulan dan perancangan model yang nantinya akan \saya~evaluasi pada tahap eksperimen. Dalam mengembangkan model, terdapat dua pekerjaan yang \saya~lakukan, yaitu:
 	
 	\subsubsection{Ekstrasi Fitur}
 	Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi label entitas. Ada beberapa fitur yang \saya~usulkan dalam penelitian ini yang nantinya \saya~kombinasikan supaya mendapatkan hasil terbaik. Fitur-fitur tersebut yaitu:
@@ -133,8 +133,19 @@ Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
 	\begin{enumerate}
 		\item LSTM 1 layer\\
 		Pada LSTM 1 layer, semua fitur yang menjadi input digabung menjadi satu. Misalnya .... Berikut merupakan ilustrasi LSTM 1 layer yang \saya~gunakan dalam penelitian ini.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.8\linewidth]{images/single_layer_rnn}
+			\caption{LSTM 1 layer}
+			\label{fig:single_layer_rnn}
+		\end{figure}
+	
 		\item LSTM layer bertingkat
 		Pada LSTM 2 layer, penulis mendefinisikan 2 layer, dimana layer terbawah merupakan layer dengan jumlah LSTM sebanyak n kelompok fitur. Pertama-tama fitur dikelompokkan terlebih dahulu, kemudian dijadikan input untuk LSTM layer pertama. Setelah itu, hasil dari layer pertama tersebut akan digabung menjadi satu, dengan menggunakan layer penggabung. \textit{Output} dari layer penggabung kemudian dimasukkan ke dalam LSTM layer kedua, yang \textit{output}-nya merupakan hasil klasifikasi label. Berikut merupakan ilustrasi dari LSTM layer bertingkat yang \saya~gunakan.
+		
+		\textbf{Gambar LSTM 2}
+		
 	\end{enumerate}
 	
 	\subsection{Eksperimen}
@@ -145,12 +156,80 @@ Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
 	Setelah melakukan pembagian dan pengelompokan data berdasarkan nomor iterasi, penulis membuat model dari data \textit{training} tersebut. Setelah \saya~mendapatkan model, \saya~melakukan testing terhadap masing-masing model dengan data \textit{testing} yang telah disediakan sebelumnya. Hasil dari pelabelan data \textit{testing} ini akan \saya~evaluasi di tahap selanjutnya. Setelah itu \saya~kembali melakukan pembuatan model dengan fitur yang berbeda, atau dengan tambahan fitur lain. Dalam perjalanan melakukan pengujian, apabila fitur yang diuji memberikan hasil yang bagus atau menambah akurasi, \saya~menggabungkan fitur ini ke percobaan selanjutnya. Namun apabila fitur pada saat ini memberikan akurasi yang lebih jelek, \saya~tidak menggunakan fitur tersebut di percobaan selanjutnya.
 	
 	\subsection{Evaluasi}
-	Pada tahap ini, \saya~melakukan serangkaian evaluasi dari data \textit{testing} yang telah dilabeli dengan model yang dihasilkan pada tahap eksperimen. \Saya~melakukan evaluasi dengan menggunakan metode \textit{partial evaluation} dengan aturan sebagai berikut:
+	Pada tahap ini, \saya~melakukan serangkaian evaluasi dari data \textit{testing} yang telah dilabeli dengan model yang dihasilkan pada tahap eksperimen. \Saya~melakukan evaluasi dengan menggunakan metode \textit{partial evaluation} di mana sebuah token yang diprediksi entitas oleh model dihitung benar apabila terdapat fragmen yang menyusun entitas bernama tersebut \citep{seki2003probabilistic}. Aturan yang \saya~gunakan dalam melakukan evaluasi adalah sebagai berikut: 
 	
 	\begin{enumerate}
-		\item 
+		\item Perhitungan nilai \textit{True Positive} (TP)\\
+		Untuk masing-masing kata yang mendapat label entitas benar, nilai $ TP $ bertambah sejumlah kata yang diprediksi benar.\\
+		Misal:
+		
+		\fbox{%
+			\parbox{1.0\linewidth}{%
+			Contoh 1\\
+			True: Bu Ani <Disease>\textbf{sakit kepala} sebelah</Disease>\\
+			Predicted: Bu Ani <Disease>\textbf{sakit kepala}</Disease> sebelah
+			}%
+		}
+		
+		Dari contoh di atas, nilai $ TP = 2 $, karena ada 2 kata yang mendapatkan label entitas yang benar.
+		
+		\fbox{%
+			\parbox{1.0\linewidth}{%	
+			Contoh 2\\
+			True : <Disease>Masuk angin</Disease> dan <Sympton>\textbf{suhu badan tinggi}</Symptom>\\
+			Predicted : <Sympton>Masuk angin</Sympton> dan <Sympton>\textbf{suhu badan tinggi}</Symptom>\\
+			}%
+		}
+	
+		Dari contoh di atas, nilai $ TP = 3 $, karena ada 3 kata yang mendapatkan label entitas yang benar
+		
+		\item Perhitungan nilai \textit{False Positive} (FP)\\
+		Untuk masing-masing kata yang mendapat label entitas namun seharusnya tidak berentitas,  nilai $ FP $ bertambah sejumlah kata yang diprediksi salah.\\
+		Misal:
+		
+		\fbox{%
+			\parbox{1.0\linewidth}{%	
+			Contoh 1\\
+			True : <Disease>Sakit kepala</Disease> sudah \textbf{beberapa hari istirahat}\\
+			Predicted : <Disease>Sakit kepala</Disease> sudah <Treatment>\textbf{beberapa hari istirahat}</Treatment>
+			}
+		}
+	
+		Dari contoh di atas, nilai $ FP = 3 $, karena ada 3 kata yang mendapat label entitas yang seharusnya tidak berlabel, yaitu "beberapa hari istirahat".
+				
+		\item Perhitungan nilai \textit{False Negative} (FN)\\
+		Untuk masing-masing kata yang mendapat label entitas salah,  nilai $ FP $ bertambah sejumlah kata yang diprediksi salah.\\
+		Misal:
+		
+		\fbox{%
+			\parbox{1.0\linewidth}{%
+			Contoh 1\\
+			True : Bu Ani <Disease>sakit kepala sebelah</Disease>\\
+			Predicted : Bu Ani <Disease>sakit kepala</Disease> sebelah
+	
+			}
+		}
+	
+		Dari contoh di atas, nilai $ FN = 0 $, karena tidak ada kata yang mendapat label entitas salah (kata "sebelah" tidak mendapat label).
+		
+		\fbox{%
+			\parbox{1.0\linewidth}{%
+			Contoh 2
+			True : <Symptom>Badan terasa pegal</Symptom>, sepertinya akan <Disease>\textbf{demam}</Disease>.
+			Predicted : <Symptom>Badan terasa pegal</Symptom>, sepertinya akan <Symptom>\textbf{demam}</Symptom>.
+			}
+		}
+	
+		Dari contoh di atas, nilai $ FN = 1 $, karena ada 1 kata yang mendapat label entitas salah, yaitu kata "demam".
+		
 	\end{enumerate}
 	
+	Setelah mendapatkan angka $ TP, FP $ dan $ FN $, \saya~menghitung \textit{f-measure}, \textit{precission} dan \textit{recall} untuk masing-masing entitas dengan menggunakan formula:
+	\begin{align}
+		Precission &= \frac{TP}{TP+FP}\\
+		Recall &= \frac{TP}{TP+FN}\\
+		F-Measeure &= 2 \cdot \frac{Precission \cdot Recall}{Precission + Recall}
+	\end{align}
 	
-	Dalam melakukan evaluasi, \saya~menghitung \textit{f-measure}, \textit{precission} dan \textit{recall} untuk masing-masing entitas yang kemudian akan dihitung rata-ratanya baik dari masing-masing entitas maupun rata-rata keseluruhan. Angka-angka hasil evaluasi ini akan menjadi pertimbangan untuk penggunaan fitur pada saat ini di eksperimen selanjutnya. Apabila akurasi dari penggunaan fitur saat ini lebih baik atau meningkat dari eksperimen sebelumnya, \saya~menggunakan fitur ini pada eksperimen selanjutnya. Selain itu, \saya~juga mengevaluasi arsitektur RNNs yang \saya~gunakan.
+	Angka-angka hasil evaluasi ini akan menjadi pertimbangan untuk penggunaan fitur pada saat ini di eksperimen selanjutnya. Apabila akurasi dari penggunaan fitur saat ini lebih baik atau meningkat dari eksperimen sebelumnya, \saya~menggunakan fitur ini pada eksperimen selanjutnya. Selain itu, \saya~juga mengevaluasi arsitektur RNNs yang \saya~gunakan.
 	
