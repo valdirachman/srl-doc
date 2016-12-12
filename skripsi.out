@@ -22,15 +22,15 @@
 \BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Penerapan RNNs untuk MER}{section.2.3}% 22
 \BOOKMARK [1][-]{section.2.4}{2.4 Word Embedding}{chapter.2}% 23
 \BOOKMARK [0][-]{chapter.3}{3 Metodologi}{}% 24
-\BOOKMARK [1][-]{section.3.1}{3.1 Rancangan Sistem}{chapter.3}% 25
-\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Pengumpulan Data}{section.3.1}% 26
-\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Pra-Pemrosesan}{section.3.1}% 27
-\BOOKMARK [2][-]{subsection.3.1.3}{3.1.3 Pelabelan}{section.3.1}% 28
-\BOOKMARK [2][-]{subsection.3.1.4}{3.1.4 Pengembangan Model}{section.3.1}% 29
-\BOOKMARK [3][-]{subsubsection.3.1.4.1}{3.1.4.1 Ekstrasi Fitur}{subsection.3.1.4}% 30
-\BOOKMARK [3][-]{subsubsection.3.1.4.2}{3.1.4.2 Pengusulan Arsitektur RNNs}{subsection.3.1.4}% 31
-\BOOKMARK [2][-]{subsection.3.1.5}{3.1.5 Eksperimen}{section.3.1}% 32
-\BOOKMARK [2][-]{subsection.3.1.6}{3.1.6 Evaluasi}{section.3.1}% 33
+\BOOKMARK [1][-]{section.3.1}{3.1 Gambaran Umum Pengenalan Entitas Kesehatan pada Dokumen Forum Online}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.2}{3.2 Pengumpulan Data}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.3}{3.3 Pra-Pemrosesan}{chapter.3}% 27
+\BOOKMARK [1][-]{section.3.4}{3.4 Pelabelan}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.5}{3.5 Pengembangan Model}{chapter.3}% 29
+\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 Ekstrasi Fitur}{section.3.5}% 30
+\BOOKMARK [2][-]{subsection.3.5.2}{3.5.2 Pengusulan Arsitektur RNNs}{section.3.5}% 31
+\BOOKMARK [1][-]{section.3.6}{3.6 Eksperimen}{chapter.3}% 32
+\BOOKMARK [2][-]{subsection.3.6.1}{3.6.1 Evaluasi}{section.3.6}% 33
 \BOOKMARK [0][-]{chapter.4}{4 Eksperimen}{}% 34
 \BOOKMARK [1][-]{section.4.1}{4.1 Normalisasi Data}{chapter.4}% 35
 \BOOKMARK [1][-]{section.4.2}{4.2 Ekstraksi Fitur}{chapter.4}% 36
