@@ -3,20 +3,27 @@
 \chapter{\babTiga}
 %-----------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------%
-\section{Rancangan Sistem}
-%-----------------------------------------------------------------------------%
 % Ide, model matematik, rumus, fitur, jangan m=ngomongin teknologi (java, keras, dll), word2vec boleh %
-Sistem yang akan \saya~buat dalam penelitian ini sesuai dengan rancangan arsitektur sistem pada gambar \ref{fig:arsitektur_sistem}.
+Pada bab ini \saya~akan menjelaskan metodologi penelitian yang \saya~gunakan. Metodologi penelitian yang dilakukan meliputi tahap pengumpulan data, pra-pemrosesan data, pelabelan data, pengembangan model, eksperimen dan evaluasi. Pada bab ini, \saya~juga akan menjelaskan mengenai permasalahan yang muncul pada setiap tahap penelitian.
+
+\section{Gambaran Umum Pengenalan Entitas Kesehatan pada Dokumen Forum \textit{Online}}
+Penelitian ini bertujuan untuk membuat sebuah model yang mampu memberikan label entitas kesehatan pada suatu dokumen. Seperti yang telah dijelaskan pada bab sebelumnya, terdapat banyak entitas kesehatan yang dapat digunakan sebagai target pelabelan. Oleh karena itu, untuk mempermudah penelitian ini \saya~menggunakan entitas-entitas yang diusulkan oleh \cite{skripsiKakRadit} dalam penelitiannya,  nama penyakit (\textit{disease}), gejala penyakit (\textit{symptom}), obat (\textit{drug}) dan langkah penyembuhan \textit{treatment}.
+
+Penelitian ini menggunakan dua buah korpus, yaitu korpus dari data dokumen teks kesehatan yang digunakan \cite{skripsiKakRadit} dan dokumen teks hasil pengumpulan yang dilakukan oleh \saya~pada situs kesehatan \textit{online}. Setelah itu \saya~melakukan pra-pemrosesan pada kedua data sebelum melakukan tahap selanjutnya. Untuk dokumen hasil pengumpulan dari forum, \saya~memberi label kesehatan secara manual dengan ketentuan pelabelan pada penelitian \cite{skripsiKakRadit}
+
+Setelah tahap pengusulan model, terdapat 2 eksperimen \saya~lakukan, yaitu eksperimen untuk mendapatkan fitur diskriminatif yang mampu membuat model memiliki akurasi terbaik dan eksperimen untuk mendapatkan arsitektur RNNs yang membuat model menghasilkan akurasi tertinggi. Pada eksperimen pertama, \saya~mencoba beberapa fitur, seperti fitur yang diusulkan oleh \cite{skripsiKakRadit} (fitur \textit{its own word}, frasa, kamus (\textit{symptom}, \textit{disease}, \textit{treatment} dan \textit{drug}), kata pertama sebelum) dan fitur kata setelah. Pada eksperimen kedua, \saya~mencoba dua arsitektur RNNs, yaitu RNNs yang setiap \textit{input} digabung terlebih dahulu dengan meng-\textit{append} semua vektor fitur. Sedangkan RNNs yang kedua yaitu RNNs yang setiap kelompok fitur menjadi \textit{input} bagi masing-masing LSTM, baru kemudian \textit{output} dari layer tersebut digabung.
+
+Setelah melakukan eksperimen, \saya~melakukan evaluasi dari hasil yang didapatkan dengan menghitung nilai \textit{precission}, \textit{recall} dan \textit{F-measure} dari masing-masing entitas dan entitas secara keseluruhan. Untuk mendapatkan rata-rata akurasi dari setiap eksperimen, \saya~melakukan \textit{ten-fold cross validation} dengan cara membagi semua data menjadi 10 bagian, 9 bagian menjadi data \textit{training} dan 1 \textit{bagian} menjadi data \textit{testing}. Proses tersebut diulang sebanyak sepuluh kali sehingga masing-masing bagian data menjadi data \textit{testing}.
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{images/arsitektur}
-  \caption{Rancangan Arsitektur Sistem}
-  \label{fig:arsitektur_sistem}
+  \caption{Diagram Gambaran Umum Metodologi yang Dilakukan}
+  \label{fig:metodologi_penelitian}
 \end{figure}
 
-Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
+Berikut merupakan penjelasan masing-masing tahap dalam penelitian yang \saya~lakukan:
 	\subsection{Pengumpulan Data}
-	Pengumpulan data dilakukan dengan tujuan untuk mendapatkan data \textit{training} dan \textit{testing} sebagai \textit{input} sistem \mer~yang diusulkan. Data yang dimaksud merupakan teks dari forum kesehatan \textit{online} dari berbagai sumber. 
+	Pengumpulan data dilakukan dengan tujuan untuk mendapatkan data \textit{training} dan \textit{testing} yang akan digunakan sebagai \textit{resource} dalam melakukan \textit{training} dan evaluasi model \mer~yang diusulkan. Data yang dimaksud merupakan teks dari forum kesehatan \textit{online} dari berbagai sumber.
 	
 	\subsection{Pra-Pemrosesan}
 	Pra-pemrosesan dilakukan dengan tujuan supaya teks yang diberikan mampu dibaca oleh sistem \mer. Dalam tahap ini, ada dua pekerjaan utama yang perlu dilakukan, yaitu:
@@ -76,7 +83,7 @@ Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
 	Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi label entitas. Ada beberapa fitur yang \saya~usulkan dalam penelitian ini yang nantinya \saya~kombinasikan supaya mendapatkan hasil terbaik. Fitur-fitur tersebut yaitu:
 	\begin{enumerate}
 		\item Fitur 1: Kata itu sendiri\\
-		Fitur ini merupakan fitur kata dalam representasi vektor. Untuk mendapatkan representasi vektor dari masing-masing kata, penulis menggunakan \textit{word embedding}. Terdapat beberapa langkah yang perlu \saya~lakukan dalam memanfaatkan \textit{word embedding} ini, yaitu:
+		Fitur ini merupakan fitur kata dalam representasi vektor. Untuk mendapatkan representasi vektor dari masing-masing kata, penulis menggunakan \textit{word embedding}. Dalam penelitian ini \saya~menggunakan fitur ini karena Terdapat beberapa langkah yang perlu \saya~lakukan dalam memanfaatkan \textit{word embedding} ini, yaitu:
 		\begin{enumerate}
 			\item Pengumpulan data \textit{training} untuk \textit{word embedding}
 			\item \textit{Training} untuk mendapatkan model \textit{word embedding}
