@@ -1,12 +1,12 @@
 %!TEX root = skripsi.tex
 %-----------------------------------------------------------------------------%
-\chapter{\babTiga}
+\chapter{\babTiga}\label{bab:tiga}
 %-----------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------%
 % Ide, model matematik, rumus, fitur, jangan m=ngomongin teknologi (java, keras, dll), word2vec boleh %
 Pada bab ini \saya~akan menjelaskan metodologi penelitian yang \saya~gunakan. Metodologi penelitian yang dilakukan meliputi tahap pengumpulan data, pra-pemrosesan data, pelabelan data, pengembangan model, eksperimen dan evaluasi.
 
-\section{Gambaran Umum Pengenalan Entitas Kesehatan pada Dokumen Forum \textit{Online}}
+\section{Gambaran Umum Pengembangan Metodologi yang Digunakan untuk }
 Penelitian ini bertujuan untuk membuat sebuah model yang mampu memberikan label entitas kesehatan pada suatu dokumen. Seperti yang telah dijelaskan pada bab sebelumnya, terdapat banyak entitas kesehatan yang dapat digunakan sebagai target pelabelan. Oleh karena itu, untuk mempermudah penelitian ini \saya~menggunakan entitas-entitas yang diusulkan oleh \cite{skripsiKakRadit} dalam penelitiannya,  nama penyakit (\textit{disease}), gejala penyakit (\textit{symptom}), obat (\textit{drug}) dan langkah penyembuhan \textit{treatment}.
 
 Penelitian ini menggunakan dua buah korpus, yaitu korpus dari data dokumen teks kesehatan yang digunakan \cite{skripsiKakRadit} dan dokumen teks hasil pengumpulan yang dilakukan oleh \saya~pada situs kesehatan \textit{online}. Setelah itu \saya~melakukan pra-pemrosesan pada kedua data sebelum melakukan tahap selanjutnya. Untuk dokumen hasil pengumpulan dari forum, \saya~memberi label kesehatan secara manual dengan ketentuan pelabelan pada penelitian \cite{skripsiKakRadit}
@@ -25,31 +25,36 @@ Setelah melakukan eksperimen, \saya~melakukan evaluasi dari hasil yang didapatka
 Pengumpulan data dilakukan dengan tujuan untuk mendapatkan data \textit{training} dan \textit{testing} yang akan digunakan sebagai \textit{resource} dalam melakukan \textit{training} dan evaluasi model \mer. Data yang dimaksud merupakan teks dari forum kesehatan \textit{online} dari berbagai sumber. Pada penelitian ini, \saya~menggunakan data penelitian \cite{skripsiKakRadit} dan data yang \saya~dapatkan dari hasil \textit{crawling} di forum kesehatan \textit{online}. Data yang \cite{skripsiKakRadit} diambil dari beberapa situs forim kesehatan \textit{online} dan sedangakn data yang \saya~unduh bersumber dari forum kesehatan \textit{online}.
 
 \section{Pra-Pemrosesan}
-Pra-pemrosesan dilakukan dengan tujuan supaya teks yang diberikan mampu dibaca oleh sistem \mer. Dalam tahap ini, ada dua pekerjaan utama yang perlu dilakukan, yaitu:
+Pra-pemrosesan dilakukan dengan tujuan supaya teks yang diberikan mampu dibaca oleh sistem \mer. Dalam tahap ini, ada tiga pekerjaan utama yang perlu dilakukan, yaitu:
+
+\subsection{Pembersihan data}
+Langkah ini dilakukan dengan tujuan untuk mempermudah proses POS \textit{tagging}. Selain itu, terdapat beberapa token yang berbeda sintaks namun memiliki jenis kata yang sama, misalnya token \textit{email}. Model hanya perlu tahu token tersebut merupakan email, tidak peduli pemilik email tersebut. Berikut merupakan beberapa langkah yang \saya~lakukan:
+	
 \begin{enumerate}
-	\item Pembersihan data\\
-	Langkah ini dilakukan dengan tujuan untuk mempermudah proses POS \textit{tagging}. Selain itu, terdapat beberapa token yang berbeda sintaks namun memiliki jenis kata yang sama, misalnya token \textit{email}. Model hanya perlu tahu token tersebut merupakan email, tidak peduli pemilik email tersebut. Berikut merupakan beberapa langkah yang \saya~lakukan:
+	\item menghapus karakter yang bukan merupakan karakter ASCII,
+	\item mengganti token url menjadi kata "url", misalnya token tautan (\textit{www.alodokter.com/asma/pengobatan}) diganti menjadi token "url",
+	\item mengganti token \textit{email} menjadi kata "email", misalnya sebuah alamat \textit{email} (\textit{wahid@domain.com}) diganti menjadi token "email",
+	\item mengganti karakter "\_" menjadi token "underscore",
+	\item mengganti karakter "\&" menjadi token "dan",
+	\item mengganti karakter "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari" dan
+	\item mengganti karakter "/" menjadi token "atau".
+\end{enumerate}
+Pada langkah ini, \saya~tidak menghapus karakter tanda baca karena karakter tersebut memiliki fungsi pada sistem POS \textit{tagging} yang \saya~gunakan.
 	
-	\begin{enumerate}
-		\item menghapus karakter yang bukan merupakan karakter ASCII,
-		\item mengganti token url menjadi kata "url", misalnya token tautan (\textit{www.alodokter.com/asma/pengobatan}) diganti menjadi token "url",
-		\item mengganti token \textit{email} menjadi kata "email", misalnya sebuah alamat \textit{email} (\textit{wahid@domain.com}) diganti menjadi token "email",
-		\item mengganti karakter "\_" menjadi token "underscore",
-		\item mengganti karakter "\&" menjadi token "dan",
-		\item mengganti karakter "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari" dan
-		\item mengganti karakter "/" menjadi token "atau".
-	\end{enumerate}
-	Pada langkah ini, \saya~tidak menghapus karakter tanda baca karena karakter tersebut memiliki fungsi pada sistem POS \textit{tagging} yang \saya~gunakan.
+\subsection{Tokenisasi}
+Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah kata. Hal ini perlu dilakukan untuk menghindari beberapa kelompok token berbeda yang tergabung. Karakter abjad dengan karakter angka atau karakter abjad dengan karakter tanda baca dipisahkan berdasarkan kelompoknya. Misalnya token "pusing2" diubah menjadi "pusing 2". Pada tahap ini, \saya~melakukan pemisahan terhadap beberapa kelompok token, yaitu:
+\begin{enumerate}
+	\item <alfabet><numeric> menjadi <alfabet><spasi><numeric>
+	\item <numerik><alfabet> menjadi <numerik><spasi><alfabet>
+	\item <alfanumerik><non-alfanumerik> menjadi <alfanumerik><spasi><non-alfanumerik>
+	\item <alfanumerik><non-alfanumerik> menjadi <alfanumerik><spasi><non-alfanumerik>
+\end{enumerate}
 	
-	\item Tokenisasi\\
-	Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah kata. Hal ini perlu dilakukan untuk menghindari beberapa kelompok token berbeda yang tergabung. Karakter abjad dengan karakter angka atau karakter abjad dengan karakter tanda baca dipisahkan berdasarkan kelompoknya. Misalnya token "pusing2" diubah menjadi "pusing 2".
-	
-	\item Pemotongan kalimat\\
-	Untuk menghindari jumlah token yang timpang dalam kalimat yang berbeda dan data yang \textit{sparse}, \saya~melakukan pemotongan kata dengan langkah-langkah sebagai berikut:
-	\begin{enumerate}
-		\item memisahkan kalimat berdasarkan tanda baca (.!?,),
-		\item apabila suatu kalimat memiliki jumlah kata yang sedikit (misal diberikan batasan minimal 10 kata dalam satu kalimat), kalimat tersebut digabungkan dengan kalimat setelahnya.
-	\end{enumerate}
+\subsection{Pemotongan kalimat}
+Untuk menghindari jumlah token yang timpang dalam kalimat yang berbeda dan data yang \textit{sparse}, \saya~melakukan pemotongan kata dengan langkah-langkah sebagai berikut:
+\begin{enumerate}
+	\item memisahkan kalimat berdasarkan tanda baca (.!?,),
+	\item apabila suatu kalimat memiliki jumlah kata yang sedikit (misal diberikan batasan minimal 10 kata dalam satu kalimat), kalimat tersebut digabungkan dengan kalimat setelahnya.
 \end{enumerate}
 
 \section{Pelabelan}
@@ -108,13 +113,19 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 	\end{enumerate}
 	
 	\item Fitur 2: \textit{Part of Speech Tag} (POS-Tag)\\
-	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya untuk entitas obat dan penyakit memiliki tag "NNP", sehingga diharapkan fitur ini memberikan hasil yang baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia.
+	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia.
+	
+	Perlihatkan Statistik
 	
 	\item Fitur 3: \textit{Stopword}\\
-	Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan.
+	Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. Fitur ini \saya~gunakan dalam penelitian ini untuk membantu sistem dalam menghindari kesalahan pelabelan suatu kata yang bukan entitas namun dilabeli sebagai entitas.
+	
+	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila men
 	
 	\item Fitur 4: Kamus kesehatan\\
-	Fitur kamus kata merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Pada penelitian ini, kamus kesehatan yang dipakai ada sejumlah entitas yang akan dikenali, yaitu kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment.\
+	Fitur kamus kata merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment.
+	
+	ALASAN?
 	
 	\item Fitur 5: Frasa kata benda\\
 	Menurut \cite{hs2005bahasa}, frasa kata benda sendiri merupakan kelompok kata benda yang dibentuk dengan memperluas kata benda ke sekelilingnya. Fitur frasa kata benda yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa kata benda atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
@@ -144,10 +155,12 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
  \item Fitur 7: 1 kata sebelum\\
  Fitur ini merupakan fitur yang berisi informasi kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata.
  
+ Kata sebelum dapat membantu evidence kata setelahnya. Misalnya kata "kepala", sebelumnya "sakit".
+ 
  \item Fitur 8: 1 kata sesudah\\
  Fitur ini merupakan fitur yang berisi informasi kata sesudah kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata.
  
- \item Fitur 9: 2 kata sebelum
+ \item Fitur 9: 2 kata sebelum\\
  Fitur ini merupakan fitur yang berisi informasi 2 kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata.
  
 \end{enumerate}

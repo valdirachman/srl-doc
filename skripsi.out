@@ -22,42 +22,57 @@
 \BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Penerapan RNNs untuk MER}{section.2.3}% 22
 \BOOKMARK [1][-]{section.2.4}{2.4 Word Embedding}{chapter.2}% 23
 \BOOKMARK [0][-]{chapter.3}{3 Metodologi}{}% 24
-\BOOKMARK [1][-]{section.3.1}{3.1 Gambaran Umum Pengenalan Entitas Kesehatan pada Dokumen Forum Online}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.1}{3.1 Gambaran Umum Pengembangan Metodologi yang Digunakan untuk }{chapter.3}% 25
 \BOOKMARK [1][-]{section.3.2}{3.2 Pengumpulan Data}{chapter.3}% 26
 \BOOKMARK [1][-]{section.3.3}{3.3 Pra-Pemrosesan}{chapter.3}% 27
-\BOOKMARK [1][-]{section.3.4}{3.4 Pelabelan}{chapter.3}% 28
-\BOOKMARK [1][-]{section.3.5}{3.5 Pengembangan Model}{chapter.3}% 29
-\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 Ekstrasi Fitur}{section.3.5}% 30
-\BOOKMARK [2][-]{subsection.3.5.2}{3.5.2 Pengusulan Arsitektur RNNs}{section.3.5}% 31
-\BOOKMARK [1][-]{section.3.6}{3.6 Eksperimen}{chapter.3}% 32
-\BOOKMARK [2][-]{subsection.3.6.1}{3.6.1 Evaluasi}{section.3.6}% 33
-\BOOKMARK [0][-]{chapter.4}{4 Eksperimen}{}% 34
-\BOOKMARK [1][-]{section.4.1}{4.1 Normalisasi Data}{chapter.4}% 35
-\BOOKMARK [1][-]{section.4.2}{4.2 Ekstraksi Fitur}{chapter.4}% 36
-\BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Ekstraksi Fitur MFCC}{section.4.2}% 37
-\BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 Ekstraksi Fitur SDCC}{section.4.2}% 38
-\BOOKMARK [1][-]{section.4.3}{4.3 Pemodelan}{chapter.4}% 39
-\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Pemodelan dengan Support Vector Machine \(SVM\)}{section.4.3}% 40
-\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 Pemodelan dengan Gaussian Mixture Model \(GMM\)}{section.4.3}% 41
-\BOOKMARK [2][-]{subsection.4.3.3}{4.3.3 Pemodelan dengan Gabungan SVM dan GMM}{section.4.3}% 42
-\BOOKMARK [1][-]{section.4.4}{4.4 Pengujian}{chapter.4}% 43
-\BOOKMARK [0][-]{chapter.5}{5 Hasil Eksperimen dan Analisis}{}% 44
-\BOOKMARK [1][-]{section.5.1}{5.1 Hasil dengan Fitur MFCC}{chapter.5}% 45
-\BOOKMARK [2][-]{subsection.5.1.1}{5.1.1 Hasil dengan Fitur MFCC dan Metode Klasifikasi SVM}{section.5.1}% 46
-\BOOKMARK [2][-]{subsection.5.1.2}{5.1.2 Hasil dengan Fitur MFCC dan Metode Klasifikasi GMM}{section.5.1}% 47
-\BOOKMARK [2][-]{subsection.5.1.3}{5.1.3 Hasil dengan Fitur MFCC dan Metode Klasifikasi Gabungan}{section.5.1}% 48
-\BOOKMARK [1][-]{section.5.2}{5.2 Hasil dengan Fitur SDCC}{chapter.5}% 49
-\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 Hasil dengan Fitur SDCC dan Metode Klasifikasi SVM}{section.5.2}% 50
-\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 Hasil dengan Fitur SDCC dan Metode Klasifikasi GMM}{section.5.2}% 51
-\BOOKMARK [2][-]{subsection.5.2.3}{5.2.3 Hasil dengan Fitur SDCC dan Metode Klasifikasi Gabungan}{section.5.2}% 52
-\BOOKMARK [1][-]{section.5.3}{5.3 Perbandingan Hasil}{chapter.5}% 53
-\BOOKMARK [2][-]{subsection.5.3.1}{5.3.1 Perbandingan Metode Klasifikasi pada Fitur MFCC}{section.5.3}% 54
-\BOOKMARK [2][-]{subsection.5.3.2}{5.3.2 Perbandingan Metode Klasifikasi pada Fitur SDCC}{section.5.3}% 55
-\BOOKMARK [2][-]{subsection.5.3.3}{5.3.3 Perbandingan Fitur pada Metode Klasifikasi SVM}{section.5.3}% 56
-\BOOKMARK [2][-]{subsection.5.3.4}{5.3.4 Perbandingan Fitur pada Metode Klasifikasi GMM}{section.5.3}% 57
-\BOOKMARK [2][-]{subsection.5.3.5}{5.3.5 Perbandingan Fitur pada Metode Klasifikasi Gabungan}{section.5.3}% 58
-\BOOKMARK [1][-]{section.5.4}{5.4 Analisis Lanjut}{chapter.5}% 59
-\BOOKMARK [0][-]{chapter.6}{6 Kesimpulan dan Saran}{}% 60
-\BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 61
-\BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 62
-\BOOKMARK [0][-]{chapter*.56}{Daftar Referensi}{}% 63
+\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 Pembersihan data}{section.3.3}% 28
+\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Tokenisasi}{section.3.3}% 29
+\BOOKMARK [2][-]{subsection.3.3.3}{3.3.3 Pemotongan kalimat}{section.3.3}% 30
+\BOOKMARK [1][-]{section.3.4}{3.4 Pelabelan}{chapter.3}% 31
+\BOOKMARK [1][-]{section.3.5}{3.5 Pengembangan Model}{chapter.3}% 32
+\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 Ekstrasi Fitur}{section.3.5}% 33
+\BOOKMARK [2][-]{subsection.3.5.2}{3.5.2 Pengusulan Arsitektur RNNs}{section.3.5}% 34
+\BOOKMARK [1][-]{section.3.6}{3.6 Eksperimen}{chapter.3}% 35
+\BOOKMARK [2][-]{subsection.3.6.1}{3.6.1 Evaluasi}{section.3.6}% 36
+\BOOKMARK [0][-]{chapter.4}{4 Implementasi}{}% 37
+\BOOKMARK [1][-]{section.4.1}{4.1 Pengumpulan Data}{chapter.4}% 38
+\BOOKMARK [1][-]{section.4.2}{4.2 Pra-Pemrosesan}{chapter.4}% 39
+\BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Pembersihan Data}{section.4.2}% 40
+\BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 Tokenisasi}{section.4.2}% 41
+\BOOKMARK [2][-]{subsection.4.2.3}{4.2.3 Pemotongan Kalimat}{section.4.2}% 42
+\BOOKMARK [1][-]{section.4.3}{4.3 Pelabelan}{chapter.4}% 43
+\BOOKMARK [1][-]{section.4.4}{4.4 Pengembangan Model}{chapter.4}% 44
+\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 Ekstraksi Fitur}{section.4.4}% 45
+\BOOKMARK [3][-]{subsubsection.4.4.1.1}{4.4.1.1 Fitur Kata Itu Sendiri}{subsection.4.4.1}% 46
+\BOOKMARK [3][-]{subsubsection.4.4.1.2}{4.4.1.2 Ekstraksi Fitur Part of Speech Tag}{subsection.4.4.1}% 47
+\BOOKMARK [3][-]{subsubsection.4.4.1.3}{4.4.1.3 Ekstraksi Fitur Stop Word}{subsection.4.4.1}% 48
+\BOOKMARK [3][-]{subsubsection.4.4.1.4}{4.4.1.4 Ekstraksi Fitur Kamus Kesehatan}{subsection.4.4.1}% 49
+\BOOKMARK [3][-]{subsubsection.4.4.1.5}{4.4.1.5 Ekstraksi Frasa Kata Benda}{subsection.4.4.1}% 50
+\BOOKMARK [3][-]{subsubsection.4.4.1.6}{4.4.1.6 Ekstraksi Frasa Kata Kerja}{subsection.4.4.1}% 51
+\BOOKMARK [3][-]{subsubsection.4.4.1.7}{4.4.1.7 Ekstraksi Fitur 1 Kata Sebelum}{subsection.4.4.1}% 52
+\BOOKMARK [3][-]{subsubsection.4.4.1.8}{4.4.1.8 Ekstraksi Fitur 1 Kata Sesudah}{subsection.4.4.1}% 53
+\BOOKMARK [3][-]{subsubsection.4.4.1.9}{4.4.1.9 Ekstraksi Fitur 2 Kata Sebelum}{subsection.4.4.1}% 54
+\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 Pengusulan Arsitektur RNNs}{section.4.4}% 55
+\BOOKMARK [3][-]{subsubsection.4.4.2.1}{4.4.2.1 LSTM 1 layer}{subsection.4.4.2}% 56
+\BOOKMARK [3][-]{subsubsection.4.4.2.2}{4.4.2.2 LSTM Layer Bertingkat}{subsection.4.4.2}% 57
+\BOOKMARK [1][-]{section.4.5}{4.5 Eksperimen}{chapter.4}% 58
+\BOOKMARK [0][-]{chapter.5}{5 Hasil Eksperimen dan Analisis}{}% 59
+\BOOKMARK [1][-]{section.5.1}{5.1 Hasil dengan Fitur MFCC}{chapter.5}% 60
+\BOOKMARK [2][-]{subsection.5.1.1}{5.1.1 Hasil dengan Fitur MFCC dan Metode Klasifikasi SVM}{section.5.1}% 61
+\BOOKMARK [2][-]{subsection.5.1.2}{5.1.2 Hasil dengan Fitur MFCC dan Metode Klasifikasi GMM}{section.5.1}% 62
+\BOOKMARK [2][-]{subsection.5.1.3}{5.1.3 Hasil dengan Fitur MFCC dan Metode Klasifikasi Gabungan}{section.5.1}% 63
+\BOOKMARK [1][-]{section.5.2}{5.2 Hasil dengan Fitur SDCC}{chapter.5}% 64
+\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 Hasil dengan Fitur SDCC dan Metode Klasifikasi SVM}{section.5.2}% 65
+\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 Hasil dengan Fitur SDCC dan Metode Klasifikasi GMM}{section.5.2}% 66
+\BOOKMARK [2][-]{subsection.5.2.3}{5.2.3 Hasil dengan Fitur SDCC dan Metode Klasifikasi Gabungan}{section.5.2}% 67
+\BOOKMARK [1][-]{section.5.3}{5.3 Perbandingan Hasil}{chapter.5}% 68
+\BOOKMARK [2][-]{subsection.5.3.1}{5.3.1 Perbandingan Metode Klasifikasi pada Fitur MFCC}{section.5.3}% 69
+\BOOKMARK [2][-]{subsection.5.3.2}{5.3.2 Perbandingan Metode Klasifikasi pada Fitur SDCC}{section.5.3}% 70
+\BOOKMARK [2][-]{subsection.5.3.3}{5.3.3 Perbandingan Fitur pada Metode Klasifikasi SVM}{section.5.3}% 71
+\BOOKMARK [2][-]{subsection.5.3.4}{5.3.4 Perbandingan Fitur pada Metode Klasifikasi GMM}{section.5.3}% 72
+\BOOKMARK [2][-]{subsection.5.3.5}{5.3.5 Perbandingan Fitur pada Metode Klasifikasi Gabungan}{section.5.3}% 73
+\BOOKMARK [1][-]{section.5.4}{5.4 Analisis Lanjut}{chapter.5}% 74
+\BOOKMARK [0][-]{chapter.6}{6 Kesimpulan dan Saran}{}% 75
+\BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 76
+\BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 77
+\BOOKMARK [0][-]{chapter*.65}{Daftar Referensi}{}% 78

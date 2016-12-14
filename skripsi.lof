@@ -7,21 +7,18 @@
 \contentsline {figure}{\numberline {2.4}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{12}{figure.caption.21}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram Gambaran Umum Metodologi yang Dilakukan\relax }}{15}{figure.caption.22}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces LSTM 1 layer\relax }}{20}{figure.caption.23}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces LSTM 1 layer\relax }}{22}{figure.caption.23}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Distribusi \textit {Gaussian} Terhadap Nilai Jarak \textit {Mahalanobis}\relax }}{25}{figure.caption.24}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Alur Ekstraksi Fitur MFCC\relax }}{28}{figure.caption.26}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Alur Ekstraksi Fitur SDCC\relax }}{30}{figure.caption.28}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi SVM\relax }}{36}{figure.caption.33}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi GMM\relax }}{38}{figure.caption.36}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi Gabungan\relax }}{39}{figure.caption.39}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi SVM\relax }}{41}{figure.caption.42}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi GMM\relax }}{42}{figure.caption.45}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi Gabungan\relax }}{44}{figure.caption.48}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Perbandingan Metode Klasifikasi untuk Fitur MFCC\relax }}{45}{figure.caption.49}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Perbandingan Metode Klasifikasi untuk Fitur SDCC\relax }}{46}{figure.caption.50}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Perbandingan Fitur untuk Metode Klasifikasi SVM\relax }}{47}{figure.caption.51}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Perbandingan Fitur untuk Metode Klasifikasi GMM\relax }}{48}{figure.caption.52}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Perbandingan Fitur untuk Metode Klasifikasi Gabungan\relax }}{49}{figure.caption.53}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi SVM\relax }}{39}{figure.caption.42}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi GMM\relax }}{41}{figure.caption.45}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi Gabungan\relax }}{42}{figure.caption.48}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi SVM\relax }}{44}{figure.caption.51}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi GMM\relax }}{45}{figure.caption.54}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi Gabungan\relax }}{47}{figure.caption.57}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Perbandingan Metode Klasifikasi untuk Fitur MFCC\relax }}{48}{figure.caption.58}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Perbandingan Metode Klasifikasi untuk Fitur SDCC\relax }}{49}{figure.caption.59}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Perbandingan Fitur untuk Metode Klasifikasi SVM\relax }}{50}{figure.caption.60}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Perbandingan Fitur untuk Metode Klasifikasi GMM\relax }}{51}{figure.caption.61}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Perbandingan Fitur untuk Metode Klasifikasi Gabungan\relax }}{52}{figure.caption.62}
 \addvspace {10\p@ }

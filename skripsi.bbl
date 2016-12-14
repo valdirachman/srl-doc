@@ -7,16 +7,11 @@ Abacha, A.~B. dan Zweigenbaum, P. (2011).
 \newblock In {\em Proceedings of BioNLP 2011 Workshop}, pages 56--64.
   Association for Computational Linguistics.
 
-\bibitem[Bishop, 2006]{bishop2006pattern}
-Bishop, C. (2006).
-\newblock {\em Pattern Recognition and Machine Learning}.
-\newblock Springer-Verlag New York.
-
-\bibitem[Campbell et~al., 2006]{campbell2006support}
-Campbell, W.~M., Campbell, J.~P., Reynolds, D.~A., Singer, E., dan
-  Torres-Carrasquillo, P.~A. (2006).
-\newblock Support vector machines for speaker and language recognition.
-\newblock {\em Computer Speech \& Language}, 20(2):210--229.
+\bibitem[Dinakaramani et~al., 2014]{dinakaramani2014designing}
+Dinakaramani, A., Rashel, F., Luthfi, A., dan Manurung, R. (2014).
+\newblock Designing an indonesian part of speech tagset and manually tagged
+  indonesian corpus.
+\newblock In {\em IALP}, pages 66--69.
 
 \bibitem[Elman, 1990]{elman1990finding}
 Elman, J.~L. (1990).
@@ -91,36 +86,11 @@ Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.
 \newblock Recurrent neural network based language model.
 \newblock In {\em Interspeech}, volume~2, page~3.
 
-\bibitem[Muhammad et~al., 2010]{Muhammad:2010:VCM:1934908.1935467}
-Muhammad, W.~M., Muhammad, R., Muhammad, A., dan Martinez-Enriquez, A.~M.
-  (2010).
-\newblock Voice content matching system for quran readers.
-\newblock In {\em Proceedings of the 2010 Ninth Mexican International
-  Conference on Artificial Intelligence}, MICAI '10, pages 148--153,
-  Washington, DC, USA. IEEE Computer Society.
-
 \bibitem[Mujiono et~al., 2016]{mujiono2016new}
 Mujiono, S., Fanany, M.~I., dan Basaruddin, C. (2016).
 \newblock A new data representation based on training data characteristics to
   extract drug named-entity in medical text.
 \newblock {\em arXiv preprint arXiv:1610.01891}.
-
-\bibitem[Rabiner dan Schafer, 1978]{rabiner1978digital}
-Rabiner, L. dan Schafer, R. (1978).
-\newblock {\em Digital Processing of Speech Signals}.
-\newblock Prentice-Hall signal processing series. Prentice-Hall.
-
-\bibitem[Reynolds et~al., 2000]{reynolds2000speaker}
-Reynolds, D.~A., Quatieri, T.~F., dan Dunn, R.~B. (2000).
-\newblock Speaker verification using adapted gaussian mixture models.
-\newblock {\em Digital signal processing}, 10(1):19--41.
-
-\bibitem[Saha et~al., 2005]{saha2005new}
-Saha, G., Chakroborty, S., dan Senapati, S. (2005).
-\newblock A new silence removal and endpoint detection algorithm for speech and
-  speaker recognition applications.
-\newblock {\em Proceedings of the 11th National Conference on Communications
-  (NCC)}, pages 291--295.
 
 \bibitem[Seki dan Mostafa, 2003]{seki2003probabilistic}
 Seki, K. dan Mostafa, J. (2003).
@@ -128,13 +98,6 @@ Seki, K. dan Mostafa, J. (2003).
   boundaries.
 \newblock In {\em Bioinformatics Conference, 2003. CSB 2003. Proceedings of the
   2003 IEEE}, pages 251--258. IEEE.
-
-\bibitem[Sharma dan Sarma, 2016]{Soft-Computational}
-Sharma, M. dan Sarma, K.~K. (2016).
-\newblock {\em Soft-Computational Techniques and Spectro-Temporal Features for
-  Telephonic Speech Recognition: An Overview and Review of Current State of the
-  Art}.
-\newblock IGI Global.
 
 \bibitem[Sutskever et~al., 2014]{NIPS2014_5346}
 Sutskever, I., Vinyals, O., dan Le, Q.~V. (2014).
@@ -148,31 +111,6 @@ Suwarningsih, W., Supriana, I., dan Purwarianti, A. (2014).
 \newblock Imner indonesian medical named entity recognition.
 \newblock In {\em Technology, Informatics, Management, Engineering, and
   Environment (TIME-E), 2014 2nd International Conference on}, pages 184--188.
-  IEEE.
-
-\bibitem[Torres-Carrasquillo et~al., 2002]{torres2002approaches}
-Torres-Carrasquillo, P.~A., Singer, E., Kohler, M.~A., Greene, R.~J., Reynolds,
-  D.~A., dan Deller~Jr, J.~R. (2002).
-\newblock Approaches to language identification using gaussian mixture models
-  and shifted delta cepstral features.
-\newblock In {\em INTERSPEECH}.
-
-\bibitem[Wyse et~al., 1980]{wyse1980critical}
-Wyse, N., Dubes, R., dan Jain, A.~K. (1980).
-\newblock A critical evaluation of intrinsic dimensionality algorithms.
-\newblock {\em Pattern recognition in practice}, pages 415--425.
-
-\bibitem[Young et~al., 2002]{young2002htk}
-Young, S., Evermann, G., Kershaw, D., Moore, G., Odell, J., Ollason, D.,
-  Valtchev, V., dan Woodland, P. (2002).
-\newblock The htk book.
-\newblock {\em Cambridge University Engineering Department}, 3.
-
-\bibitem[Zahra dan Carson-Berndsen, 2013]{zahra2013unique}
-Zahra, A. dan Carson-Berndsen, J. (2013).
-\newblock Unique n-phone ranking based spoken language identification.
-\newblock In {\em Computational Intelligence, Communication Systems and
-  Networks (CICSyN), 2013 Fifth International Conference on}, pages 239--244.
   IEEE.
 
 \end{thebibliography}
