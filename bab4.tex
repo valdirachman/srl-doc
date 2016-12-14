@@ -104,15 +104,26 @@ Implementasi yang \saya~lakukan tahap ini bertujuan untuk mendapatkan sebuah \te
 	\SetKwInOut{Output}{Output}
 	
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{sentenceSplitting(post)}{
-		\Input{post}
+	\Fn{sentenceSplitting(post, limit)}{
+		\Input{post, minimal limit number of word in a sentence}
 		\Output{array of sentence}
 		\BlankLine
 		
 		arrSentence = post.splitByRegex([?\.!,])\;
+		temp = []\;
+		arrResult = []\;
+		\ForEach{sentence in arrSentence}{
+			\uIf{len(temp) > limit}{
+				arrResult.append(temp)\;
+				temp = []\;
+			}
+			\Else{
+				temp += sentence
+			}
+		}
 		\BlankLine
 		
-		\Return arrSentence;
+		\Return arrResult;
 	}
 	
 	\caption{\textit{Pseudocode} untuk melakukan pembersihan data}	
@@ -552,7 +563,7 @@ Pada tahap ini \saya~melakukan eksperimen model yang dikembangkan pada tahap seb
 	\caption{\textit{Pseudocode} untuk memecah \textit{data} menjadi 10 bagian}	
 \end{kode}
 
-Setelah masing-masing fitur dipecah menjadi 10 bagian, hasil pemecahan tersebut menjadi input untuk melakukan eksperimen. Seperti yang dijelaskan pada tahap sebelumnya, \saya~menggunakan dua arsitektur RNNs. Berikut merupakan implementasi eksperimen dengan masing-masing arsitektur tersebut.
+Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabungan antar fitur sebagai \textit{input} untuk melakukan eksperimen. Seperti yang dijelaskan pada tahap sebelumnya, \saya~menggunakan dua arsitektur RNNs. Hasil dari eksperimen tersebut ditulis dalam sebuah file dengan format JSON yang nantinya akan menjadi \textit{input} pada tahap evaluasi. Berikut merupakan implementasi eksperimen dengan masing-masing arsitektur tersebut.
 
 \begin{kode}
 	\label{kode:eksperimen}
@@ -560,25 +571,87 @@ Setelah masing-masing fitur dipecah menjadi 10 bagian, hasil pemecahan tersebut 
 	\SetKwInOut{Output}{Output}
 	
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{splitting(featureArr)}{
-		\Input{array of feature}
-		\Output{splitted array of feature}
-		\BlankLine
-		
-		lenSplit = len(featureArr)/10\;
-		arrSplitted = []\;
-		\For{i=0; i<10;i++}{
-			start = i * lenSplit\;
-			end = (i+1) * lenSplit\;
-			arrSplitted.append[start:end]\;
-		}
-		\BlankLine
-		
-		\Return arrSplitted;
+	arrAllFeature = []\;
+	\ForEach{feature in arrSplitted}{
+		arrAllFeature.join(feature)\;
 	}
+	\BlankLine
 	
-	\caption{\textit{Pseudocode} untuk memecah \textit{data} menjadi 10 bagian}	
+	\For{i=0; i<10;i++}{
+		training = arrSplitted[0:i] + arrSplitted[i+1:10]
+		testing = arrSplitted[i]\;
+		
+		\BlankLine
+		result1 = lstm1(training, testing)\;
+		result2 = lstm2(training, testing)\;
+		
+		\BlankLine
+		writeToJSON(result1)\;
+		writeToJSON(result2)\;
+	}
+	\caption{\textit{Pseudocode} untuk melakukan eksperimen}	
 \end{kode}
 
 
+\section{Evaluasi}
+Dalam melakukan implementasi pada tahap evaluasi, \saya~menghitung nilai \textit{prescission, recall} dan \textit{F-Measures} untuk mengukur tingkat keakuratan model yang dikembangkan pada tahap sebelumnya. \Saya~menggunakan aturan yang telah dijelaskan pada Bab 3. Berikut merupakan implementasi kode untuk melakukan evaluasi.
 
+\begin{kode}
+	\label{kode:evaluasi}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	resultTag = load(resultRNN)\;
+	originalTag = load(originalTag)\;
+	\BlankLine
+	
+	TP = newHash()\;
+	FP = newHash()\;
+	FN = newHash()\;
+	\For{i = 0; i < len(resultTag); i++}{
+		sentenceResult = resultTag[i]\;
+		sentenceOriginal = originalTag[i]\;
+		\For{j = 0; j < len(sentenceOriginal); i++}{
+			wordResult = sentenceResult[j]\;
+			wordOri = sentenceOriginal[j]\;
+			\uIf{wordOri != O}{
+				\uIf{wordResult != O}{
+					\uIf{wordOri == wordResult}{
+						TP[wordOri] += 1\;
+					}
+					\Else{
+						FN[wordOri] += 1\;
+					}
+				}
+				\Else{
+					FN[wordOri] += 1\;
+				}
+			}
+			\Else{
+				\uIf{wordResult != O}{
+					FP[wordOri] += 1\;
+				}
+			}
+		}
+	}
+	\BlankLine
+
+	prec = newHash()\;
+	rec = newHash()\;
+	fMeas = newHash()\;
+	\ForEach{label in TP}{
+		prec[label] = TP[label] / (TP[label] + FP[label])\;
+		rec[label] = TP[label] / (TP[label] + FN[label])\;
+		fMeas[label] = 2 * 	(prec[label] * rec[label]) / (prec[label] + rec[label])\;
+	}
+	\BlankLine
+	
+	\ForEach{label in prec}{
+		print "Precission", label, prec[label]\;
+		print "Recall", label, rec[label]\;
+		print "F-Measure", label, fmeas[label]\;
+	}
+	\BlankLine
+	\caption{\textit{Pseudocode} untuk melakukan evaluasi}	
+	\end{kode}
