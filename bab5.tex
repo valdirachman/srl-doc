@@ -3,718 +3,363 @@
 \chapter{\babLima}
 %-----------------------------------------------------------------------------%
 
-Sistem pengenalan suara otomatis pada penelitian ini adalah sistem pengenalan per ayat. Bab \ref{eksperimen} menjelaskan bagaimana eksperimen dilakukan terhadap satu ayat. Setiap ayat mendapat perlakuan sama dalam eksperimen. Pengujian suatu ayat akan menghasilkan sebuah \f{confusion matrix}, lalu dari \f{confusion matrix} diperoleh metrik evaluasi berupa nilai akurasi, presisi, \f{recall}, dan \f{f-measure}. Banyaknya ayat yang diproses dalam eksperimen yang sudah dilakukan adalah 564 ayat, sehingga akan dihasilkan pula 564 metrik evaluasi tersebut.
-
-Untuk menampilkan keseluruhan data hasil eksperimen secara ringkas, data tersebut disajikan dalam bentuk histogram. Sumbu X pada histogram menyatakan interval persentase, sedangkan sumbu Y pada histogram menyatakan banyaknya hasil eksperimen yang berada pada interval tersebut. Contoh interval dalam histogram yang disajikan adalah (90\%,95\%]. Interval tersebut merepresentasikan rentang \f{lebih dari} 90\% dan \f{kurang dari atau sama dengan} 95\%. Semakin tinggi \f{bar} histogram akurasi pada interval (90\%,95\%], artinya semakin banyak ayat yang berhasil diklasifikasikan oleh sistem dengan $90\%<\text{akurasi}\leq95\%$. Jadi jika pada suatu metode, \f{bar} histogram tinggi berkumpul pada interval tinggi, menunjukkan bahwa metode tersebut baik. Sebaliknya, jika \f{bar} histogram tinggi berkumpul pada interval rendah, menunjukkan bahwa metode tersebut kurang baik.
+Pada bab ini \saya~akan menjelaskan mengenai skeanrio, hasil dan analisis dari eksperimen yang telah dilakukan.
 
 %-----------------------------------------------------------------------------%
-\section{Hasil dengan Fitur MFCC}
+\section{Matriks Evaluasi}
+Pada eksperimen ini, untuk mendapatkan nilai akurasi dari masing-masing eksperimen \saya~menggunakan \textit{precission}, \textit{recall} dan \textit{f-measure}. \Saya~menggunakan \textit{10-cross fold validation} dalam menjalankan eksperimen. Terkait dengan penjelasan mengenai cara penghitungan dan evaluasi sudah dijelaskan pada Bab 3.
+
 %-----------------------------------------------------------------------------%
+\section{Skenario Eksperimen}
+Pada penelitian ini, \saya~melakukan 2 buah skenario utama, yaitu skenario untuk menguji fitur yang memiliki kontribusi untuk meningkatkan akurasi dari setiap eksperimen dan skenario untuk menguji arsitektur RNNs yang \saya~usulkan. Berikut merupakan skenario yang \saya~rancang dalam penelitian ini:
+\begin{enumerate}
+	\item Skenario untuk menguji fitur\\
+	Skenario ini bertujuan untuk mendapatkan kombinasi fitur terbaik sehingga memberikan akurasi terbaik. \Saya~mencoba masing-masing fitur dengan menggunakan model arsitektur LSTM biasa. Apabila penggunaan fitur memberikan hasil yang lebih dari pada hasil eksperimen sebelumnya, fitur tersebut akan dipertahankan untuk eksperimen yang selanjutnya. Skenario ini memiliki 9 sub-skenario, yaitu:
+	\begin{enumerate}
+		\item Sub-skenario menguji fitur kata itu sendiri
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur kamus
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur stop word
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur POS Tag
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur Frasa kata
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur kata sebelum
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur kata sesudah
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur 2 kata sebelum
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur POS-Tag yang direpresentasikan dengan vektor dari \textit{word embedding}
+	\end{enumerate}
+	\item Skenario untuk menguji arsitektur RNNs\\
+	Skenario ini bertujuan untuk melihat pengaruh arsitektur RNNs pada penelitian ini. \Saya~mencoba kedua arsitektur RNNs yang telah diusulkan sebelumnya dengan menggunakan kombinasi fitur terbaik dari eksperimen di skenario pengujian fitur di atas. Pada skenario ini, terdapat 2 sub-skenario, yaitu:
+	\begin{enumerate}
+		\item Sub-skenario untuk menguji arsitektur 1 layer
+		\item Sub-skenario untuk menguji arsitektur 2 layer
+	\end{enumerate}
+	
+\end{enumerate}
 
+\section{Hasil Eksperimen dan Analisis}
+%-----------------------------------------------------------------------------%
+Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang sesuai dengan skenario sebelumnya beserta analisisnya. 
+	%-----------------------------------------------------------------------------%
+	\subsection{Hasil Ekperimen Pengujian Fitur Beserta Analisis}
+	
+	Hasil eksperimen ini adalah laporan dari pengujian kombinasi fitur kata itu sendiri, kamus, \textit{stop word}, POS-Tag, frasa kata (frasa kata benda dan kata kerja), 1 kata sebelum,dan 1 kata sesudah.
+	  
+	\subsubsection{Sub-Eksperimen Menguji Fitur Kata itu Sendiri}
+	%-----------------------------------------------------------------------------%
+	Merujuk pada penelitian \cite{mujiono2016new}, penelitian tersebut bertujuan untuk mendapatkan \textit{non-handcrafted feature}, yaitu fitur kata itu sendiri dengan menggunakan \textit{tools Word Embedding}. Oleh karena itu, \saya~menguji fitur ini untuk mengetahui pengaruhnya pada program \mer~di penelitian ini. Tabel \ref{table:own1} menampilkan hasil pelabelan otomatis dengan menggunakan fitur kata itu sendiri yang direpresentasikan dengan menggunakan vektor \textit{word embedding}.
+	
+	\begin{table}
+	    \centering
+	    \caption{Tabel Hasil Eksperimen dengan Fitur Kata Itu Sendiri}
+	    \begin{tabular}{|c|c|c|c|c|}
+	      \hline
+						      & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+	      \textit{Disease}    & 61.38\%             & 60.42\%        & 60.37\%           \\ \hline
+	      \textit{Symptom}    & 57.05\%             & 56.13\%        & 56.19\%           \\ \hline
+	      \textit{Treatment}  & 49.92\%             & 47.17\%        & 46.96\%           \\ \hline
+	      \textit{Drug}		  & 62.86\%             & 53.32\%        & 57.28\%           \\ \hline
+	    \end{tabular}
+	    \label{table:own1}
+	\end{table}
+	
+	Pada tabel tersebut, dengan menggunakan fitur kata itu sendiri terlihat bahwa entitas \textit{Disease} memiliki \textit{recall} dan \textit{f-measure} tertinggi, yaitu 60.42\%, dan 60.37\%. Sedangkan entitas \textit{drug} memiliki \textit{precission} tertinggi, yaitu 62.86\%. Grafik \ref{fig:own1} menunjukkan perbandingan \textit{precission}, \textit{recall} dan \textit{f-measure} untuk masing-masing entitas.
+	
+	\begin{figure}
+	  \centering
+	  \includegraphics[width=0.85\linewidth]{images/histogram00}
+	  \caption{Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri}
+	  \label{fig:own1}
+	\end{figure}
+
+	Pada eksperimen ini, hasil yang dicapai masih lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena pada eksperimen ini hanya menggunakan fitur kata itu sendiri tanpa melibatkan informasi lain seperti pada penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Oleh karena itu perlu adanya informasi lain, misalnya seperti apakah suatu kata terdapat dalam sebuah kamus kesehatan, informasi POS-Tag atau informasi yang lain. Oleh karena itu, \saya~mencoba menggunakan tambahan fitur lain untuk meningkatkan akurasi pada penelitian ini, yaitu pada sub-eksperimen \ref{eks:subeksdict}.
+	
+	%-----------------------------------------------------------------------------%
+	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan (\textit{Disease, Symptom, Treatment} dan \textit{Drug})}\label{eks:subeksdict}
+	%-----------------------------------------------------------------------------%
+	Pada sub-eksperimen ini, \saya~menggunakan tambahan fitur Kamus Kesehatan karena berdasarkan penelitian \cite{skripsiKakRadit} fitur ini memiliki konribusi untuk menambah akurasi pada sistem \mer. Selain itu, menurut \saya, informasi suatu kata terdapat dalam sebuah kamus kesehatan mungkin akan memberikan kontribusi untuk meningkatkan akurasi. Oleh karena itu, \saya~mencoba untuk menambahkan fitur ini ke dalam model RNNs.
+	
+	Tabel \ref{table:owndict2} merupkan tabel hasil eksperimen yang didapatkan dengan menggunakan fitur ini.
+	
+	\begin{table}
+		\centering
+		\caption{Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			                      & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+			\textit{Disease}      & 67.32\%             & 61.78\%        & 64.10\%           \\ \hline
+			\textit{Symptom}      & 60.55\%             & 55.12\%        & 57.41\%           \\ \hline
+			\textit{Treatment}    & 52.21\%             & 44.18\%        & 47.02\%           \\ \hline
+			\textit{Drug}		  & 59.42\%             & 59.71\%        & 57.90\%           \\ \hline
+		\end{tabular}
+		\label{table:owndict2}
+	\end{table}
+	
+	Berikut merupakan grafik yang merepresentasikan Tabel \ref{table:owndict2} dalam bentuk histogram.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/histogram2}
+		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan}
+		\label{fig:owndict2}
+	\end{figure}
+
+	Dari tabel dan grafik tersebut, didapatkan informasi bahwa dengan menggunakan tambahan fitur kamus kesehatan terlihat bahwa entitas \textit{Disease} mengalami kenaikan nilai \textit{precission}, \textit{recall}, dan \textit{f-measure}. Selain itu, entitas \textit{Symptom} dan \textit{tratment} mengalami kenaikan nilai \textit{precission} dan \textit{f-measure}. Entitas \textit{drug} mengalami penurunan pada nilai \textit{precission} namun mengalami kenaikan pada nilai \textit{recall} dan \textit{f-measure}-nya. Secara keseluruhan,  Sedangkan entitas \textit{drug} memiliki \textit{precission} tertinggi, yaitu 62.86\%. Grafik \ref{fig:owndict2} menunjukkan perbandingan \textit{precission}, \textit{recall} dan \textit{f-measure} untuk masing-masing entitas.
+
+	Dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}, hasil yang dicapai pada eksperimen ini masih lebih rendah. Menurut \saya~perlu ada informasi tambahan untuk meningkatkan akurasi. Seperti yang kita ketahui bahwa eksperimen \cite{skripsiKakRadit} tidak hanya menggunakan fitur kata itu sendiri dan kamus kesehatan saja. Oleh karena itu, \saya~mencoba melakukan eksperimen kembali dengan menggunakan tambahan fitur lain pada sub-eksperimen \ref{eks:subekstopword};
+	
+	%-----------------------------------------------------------------------------%
+	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}\label{eks:subekstopword}
+	%-----------------------------------------------------------------------------%
+	Pada sub-eksperimen ini. \saya~mencoba menambahkan informasi lain berupa fitur yang berisi sebuah kata apakah terdapat di dalam kamus \textit{stop word} atau tidak. \Saya~berpendapat bahwa dengan adanya informasi \textit{stop word}, adanya kesalahan suatu kata tidak berentitas yang dilabeli sebagai kata berentitas oleh model dapat dikurangi.
+	
+	Rangkuman hasil sub-eksperimen ini dapat dilihat di Tabel \ref{table:owndict3} dan Gambar \ref{fig:owndict3}.
+	
+	\begin{table}
+		\centering
+		\caption{Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+							      & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+			\textit{Disease}      & 65.97\%             & 59.81\%        & 62.28\%           \\ \hline
+			\textit{Symptom}      & 63.08\%             & 55.20\%        & 58.68\%           \\ \hline
+			\textit{Treatment}    & 54.73\%             & 46.27\%        & 49.69\%           \\ \hline
+			\textit{Drug}		  & 61.88\%             & 58.99\%        & 59.57\%           \\ \hline
+		\end{tabular}
+		\label{table:owndict3}
+	\end{table}
+		
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/histogram3}
+		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}
+		\label{fig:owndict3}
+	\end{figure}
+	
+	Dari Tabel \ref{table:owndict3} dan Gambar \ref{fig:owndict3} dapat diamati bahwa secara umum, penggunaan fitur Kamus \textit{Stop Word} dapat meningkatkan \textit{precission, recall,} dan \textit{f-measure}. Untuk lebih detailnya, entitas \textit{disease} mengalami penurunan nilai \textit{precission} dan \textit{f-measure} tetapi mengalami kenaikan nilai \textit{recall}. Entitas \textit{symptom} dan \textit{treatment} mengalami kenaikan untuk nilai \textit{precission, recall} dan \textit{f-measure}. Sedangkan entitas \textit{drug} mengalami kenaikan pada nilai \textit{precission} dan \textit{f-measure} teteapi mengalami penurunan pada nilai \textit{recall}.
+	
+	Menurut analisis \saya~entitas \textit{symptom} dan \textit{treatment} mengalami kenaikan akurasi karena pada sebagian besar entitas tersebut memiliki susunan kata yang sama dengan kalimat pada umumnya. \textbf{KASIH CONTOH}
+	
+	Pada sub-eksperimen ini, walaupun secara umum akurasi lebih baik dibandingkan dengan sub-eksperimen sebelumnya, hasil sub-eksperimen ini masih lebih rendah apabila dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}. Oleh karena \saya~mengusulkan fitur tambahan lain yaitu fitur POS-Tag yang akan dijelaskan pada sub-eksperimen \ref{eks:subekspostag}.
+	
+	%-----------------------------------------------------------------------------%
+	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}\label{eks:subekspostag}
+	%-----------------------------------------------------------------------------%
+	Pada sub-eksperimen ini, \saya~menambahkan informasi baru pada \textit{resource} yang akan digunakan untuk \textit{training} model yang berupa fitur POS-Tag. Sebelumnya fitur ini telah digunakan pada penelitian \cite{abacha2011medical} pada dokumen berbahasa Inggris dan memberikan kontribusi meningkatkan akurasi dari model \mer~yang dibangun. Oleh karena itu pada eksperimen ini \saya~mencoba menggunakan fitur tersebut dan ingin mengetahui apakah fitur POS-Tag memiliki kontribusi untuk meningkatkan akurasi pada \mer~dengan dokumen berbahasa Indonesia. 
+	
+	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict4} dan Gambar \ref{fig:owndict4}.
+	
+	\begin{table}
+		\centering
+		\caption{Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+								  & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+			\textit{Disease}      & 69.10\%             & 58.67\%        & 63.22\%           \\ \hline
+			\textit{Symptom}      & 61.09\%             & 54.43\%        & 57.00\%           \\ \hline
+			\textit{Treatment}    & 59.73\%             & 44.10\%        & 49.87\%           \\ \hline
+			\textit{Drug}		  & 62.00\%             & 55.74\%        & 57.87\%           \\ \hline
+		\end{tabular}
+		\label{table:owndict4}
+	\end{table}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/histogram4}
+		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}
+		\label{fig:owndict4}
+	\end{figure}
+	
+	Dari tabel dan grafik di atas, entitas \textit{disease} dan \textit{treatment} memiliki nilai \textit{precission} dan \textit{f-measure} yang meningkat, tetapi dengan nilai \textit{recall} yang turun. Untuk entitas \textit{symptom}, nilai \textit{precission, recall}, dan \textit{f-measure} mengalami penurunan. Sedangkan entitas \textit{drug} mengalami kenaikan hanya pada \textit{precission}-nya saja. Hal ini terjadi karena model POS-Tagger yang digunakan menghasilkan tag yang terkadang tidak konsisten. Sebagai contoh, \textbf{BERI CONTOH}. Selain itu, fitur POS-Tag juga tidak dapat membedakan entitas obat, nama penyakit dan nama orang. Sebagai contoh, \textbf{KASIH CONTOH}. Kemudian untuk POS-Tag pada entitas \textit{treatment}juga tidak dapat dibedakan dengan POS-Tag pada kalimat yang lebih umum. Sebagai contoh \textbf{KASIH CONTOH}.
+	
+	Oleh karena itu pada sub-eksperimen selanjutnya, \saya~mencoba menambahkan fitur lain yang lebih spesifik dibandingkan dengan fitur POS-Tag, yaitu fitur Frasa Kata. Penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subeksfrasa}.
+	
+	%-----------------------------------------------------------------------------%
+	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}\label{eks:subeksfrasa}
+	%-----------------------------------------------------------------------------%
+	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur Frasa Kata. Seperti yang telah dijelaskan pada Bab 3, entitas \textit{symptom} dan \textit{treatment} diharapkan akan lebih mudah dikenali karena pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} diharapkan juga akan lebih mudah dikenali karena pada umumnya merupakan frasa kata benda. Alasan lain yaitu karena pada umumnya entitas yang akan dikenali pada penelitian ini merupakan frasa kata, hal ini dibuktikan dengan \textbf{KASIH BUKTI}.
+	
+	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict4} dan Gambar \ref{fig:owndict4}.
+	
+	\begin{table}
+		\centering
+		\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			                      & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+			\textit{Disease}      & 67.49\%             & 61.56\%        & 63.81\%           \\ \hline
+			\textit{Symptom}      & 62.89\%             & 52.27\%        & 56.72\%           \\ \hline
+			\textit{Treatment}    & 54.87\%             & 44.92\%        & 49.06\%           \\ \hline
+			\textit{Drug}		  & 59.77\%             & 53.37\%        & 55.66\%           \\ \hline
+		\end{tabular}
+		\label{table:owndict5}
+	\end{table}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/histogram5}
+		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}
+		\label{fig:owndict5}
+	\end{figure}
+
+	Dari tabel dan grafik di atas, entitas \textit{drug} mengalami penurunan untuk nilai \textit{precission, recall} dan \textit{f-measure}. Selain itu, entitas \textit{disease} mengalami penurunan pada nilai \textit{precission} tetapi mengalami kenaikan pada nilai \textit{recall} dan \textit{f-measure}. Entitas \textit{symptom} mengalami kenaikan pada nilai \textit{precission} tetapi mengalami penurunan pada nilai \textit{recall} dan \textit{f-measure}. Sedangkan pada entitas \textit{treatment}, terjadi kenaikan nilai \textit{recall} tetapi nilai \textit{precission} dan \textit{f-measure} mengalami penurunan. 
+	
+	Dari hasil eksperimen ini, menurut \saya~hal ini terjadi karena informasi frasa bersifat redundan apabila bergabung dengan fitur POS-Tag. Pada fitur POS-Tag, tidak ada perbedaan antara kata yang merupakan frasa maupun kata yang bukan frasa. Padahal, mayoritas entitas merupakan frasa. Oleh karena itu, pada sub-eksperimen \ref{eks:subeksminpostag}, penulis menghilangkan fitur POS-Tag dan tetap mempertahankan fitur Frasa Kata untuk mengetahui hal tersebut. 
+	
+	%-----------------------------------------------------------------------------%
+	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}\label{eks:subeksminpostag}
+	%-----------------------------------------------------------------------------%
+	Pada sub-eksperimen ini \saya~menghilangkan fitur POS-Tag berdasarkan hasil dan analisis pada sub-eksperimen \ref{subeksfrasa}. Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}.
+	
+	\begin{table}
+		\centering
+		\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			                      & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+			\textit{Disease}      & 68.67\%             & 61.80\%        & 64.78\%           \\ \hline
+			\textit{Symptom}      & 63.79\%             & 56.10\%        & 59.23\%           \\ \hline
+			\textit{Treatment}    & 54.47\%             & 46.72\%        & 49.58\%           \\ \hline
+			\textit{Drug}		  & 60.08\%             & 56.70\%        & 57.00\%           \\ \hline
+		\end{tabular}
+		\label{table:owndict6}
+	\end{table}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/histogram6}
+		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}
+		\label{fig:owndict6}
+	\end{figure}
+	
+	Dari Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}, terlihat bahwa semua entitas (\textit{disease, symptom, treatment,}) dan \textit{drug} mengalami kenaikan pada nilai \textit{precission, recall,} dan \textit{f-measure}. Seperti yang telah dijelaskan pada sub-eksperimen \ref{eks:subeksfrasa}, penggabunagn fitur POS-Tag dan Frasa akan memberikan hasil yang lebih rendah. Oleh karena itu, sebaiknya fitur POS-Tag tidak digabung dengan fitur Frasa. Selain itu, \saya~lebih memilih fitur Frasa untuk dipertahankan karena fitur ini lebih diskriminatif dibandingkan dengan fitur POS-Tag, dengan melihat bahwa mayoritas kata berentitas merupakan frasa.
+	
+	Walaupun pada sub-eksperimen ini hasil yang dicapai lebih baik dari sub-eksperimen sebelumnya, hasilnya tetap lebih rendah dari hasil eksperimen \cite{skripsiKakRadit}. Oleh karena itu \saya~mencoba fitur yang lain, yaitu fitur Kata Sebelum. Untuk penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subekswbef1}.
+	
+	%-----------------------------------------------------------------------------%
+	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}\label{eks:subekswbef1}
+	%-----------------------------------------------------------------------------%
+	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur 1 Kata Sebelum. Fitur ini digunakan pada penelitian \cite{abacha2011medical} dan berkontribusi menaikkan akurasi serta pada penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan. Oleh karena itu, pada sub-eksperimen ini saya mencoba menambahkan fitur tersebut.
+	
+	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}.
+	
+	\begin{table}
+		\centering
+		\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+		                          & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+			\textit{Disease}      & 69.49\%             & 61.60\%        & 64.68\%           \\ \hline
+			\textit{Symptom}      & 64.78\%             & 57.15\%        & 60.23\%           \\ \hline
+			\textit{Treatment}    & 56.58\%             & 44.71\%        & 49.54\%           \\ \hline
+			\textit{Drug}		  & 62.22\%             & 57.28\%        & 58.76\%           \\ \hline
+		\end{tabular}
+		\label{table:owndict7}
+	\end{table}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/histogram7}
+		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}
+		\label{fig:owndict7}
+	\end{figure}
+	
+	Melihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}, dapat diketahui bahwa entitas \textit{disease} dan \textit{treatment} mengalami kenaikan pada nilai \textit{precission}, tetapi mengalami penurunan pada nilai \textit{recall} dan \textit{f-measure}. Sedangkan entitas \textit{symptom} dan \textit{drug} mengalami kenaikan pada nilai \textit{precission, recall,} dan \textit{f-measure}.
+	
+	Hasil sub-eksperimen ini masih lebih rendah dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}. Oleh karena itu, \saya~mencoba menambahkan fitur yang lain yaitu fitur 1 Kata Sesudah, yang akan dibahas lebih lanjut pada sub-eksperimen \ref{eks:subekswaf1}.
+	
+	
+	%-----------------------------------------------------------------------------%
+	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}\label{eks:subekswaf1}
+	%-----------------------------------------------------------------------------%
+	Pada sub-eksperimen ini \saya~menambahkan fitur lain yaitu fitur 1 Kata Setelah. Hal ini karena ada beberapa kasus yang mana apabila suatu kata merupakan sebuah entitas, akan lebih mudah dikenali apabila melihat kata atau konteks setelahnya. Sama seperti contoh pada Fitur 1 Kata Sebelum, misal diberikan kata "masuk angin", apabila hanya diberikan informasi "masuk" tanpa "angin", akan lebih sulit mengenali apakah kata tersebut termasuk entitas \textit{disease} atau bukan. Selain itu, fitur ini juga dapat membedakan kata berentitas dengan kata yang bukan, misalnya kata "masuk angin" dengan "masuk rumah". Apabila informasi pada saat tersebut hanya diberikan kata "masuk" saja tanpa kata setelahnya, akan lebih sulit mengenali kata tersebut termasuk kata berentitas atau bukan.
+	
+	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict8} dan Gambar \ref{fig:owndict8}.
+	
+	\begin{table}
+		\centering
+		\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			& \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+			\textit{Disease}      & 70.68\%             & 66.18\%        & 68.17\%           \\ \hline
+			\textit{Symptom}      & 64.16\%             & 59.55\%        & 61.42\%           \\ \hline
+			\textit{Treatment}    & 61.02\%             & 51.13\%        & 54.03\%           \\ \hline
+			\textit{Drug}		  & 70.85\%             & 70.33\%        & 69.82\%           \\ \hline
+		\end{tabular}
+		\label{table:owndict8}
+	\end{table}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/histogram8}
+		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}
+		\label{fig:owndict8}
+	\end{figure}
+	
+	Melihat pada Tabel \ref{table:owndict8} dan Gambar \ref{fig:owndict8}, dapat diketahui bahwa hanya entitas \textit{symptom} yang mengalami penurunan tetapi nilai \textit{recall} dan \textit{f-measure}-nya naik. Sedangkan entitas lain mengalami kenaikan pada nilai \textit{precission, recall} dan \textit{f-measure}. Akan tetapi hasil sub-eksperimen ini masih lebih rendah dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}. Oleh karena itu, setelah \saya~mencoba kemungkinan fitur yang memberikan kontribusi dalam penelitian ini, \penulis~mencoba arsitektur untuk model RNNs yang lain. Penjelasan lebih lanjut akan dibahas pada eksperimen \ref{eks:eks2}.
+	
+	
+	
   %-----------------------------------------------------------------------------%
-  \subsection{Hasil dengan Fitur MFCC dan Metode Klasifikasi SVM}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan fitur MFCC dan menggunakan metode klasifikasi SVM, memberikan hasil yang dirangkum pada Tabel \ref{table:mfccsvm} berikut.
-
-  \begin{table}
-    \centering
-    \caption{Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi SVM}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-      Minimal         & 41.3\% & 42.2\% & 42.5\% & 44.4\% \\ \hline
-      Maksimal        & 87.5\% & 96.2\% & 82.5\% & 86.8\% \\ \hline
-      Rata-rata       & 63.1\% & 63.7\% & 63.0\% & 63.1\% \\ \hline
-      Standar Deviasi & 7.24\% & 8.09\% & 7.75\% & 6.86\%  \\ \hline
-    \end{tabular}
-    \label{table:mfccsvm}
-  \end{table}
-
-  Tabel \ref{table:datahistogram00} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
-
-  \begin{table}
-    \centering
-    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi SVM}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
-(40\%,45\%{]}  & 6   & 5   & 8   & 2   \\ \hline
-(45\%,50\%{]}  & 16  & 17  & 33  & 15  \\ \hline
-(50\%,55\%{]}  & 55  & 51  & 67  & 51  \\ \hline
-(55\%,60\%{]}  & 120 & 112 & 120 & 114 \\ \hline
-(60\%,65\%{]}  & 167 & 148 & 141 & 171 \\ \hline
-(65\%,70\%{]}  & 122 & 130 & 121 & 126 \\ \hline
-(70\%,75\%{]}  & 52  & 51  & 42  & 58  \\ \hline
-(75\%,80\%{]}  & 21  & 30  & 29  & 22  \\ \hline
-(80\%,85\%{]}  & 4   & 15  & 3   & 4   \\ \hline
-(85\%,90\%{]}  & 1   & 2   & 0   & 1   \\ \hline
-(90\%,95\%{]}  & 0   & 2   & 0   & 0   \\ \hline
-(95\%,100\%{]} & 0   & 1   & 0   & 0   \\ \hline
-    \end{tabular}
-    \label{table:datahistogram00}
-  \end{table}
-
-  Gambar \ref{fig:histogram00} merepresentasikan Tabel \ref{table:datahistogram00} dalam bentuk histogram.
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/histogram00}
-    \caption{Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi SVM}
-    \label{fig:histogram00}
-  \end{figure}
-
-  Dari Gambar \ref{fig:histogram00} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (60\%,65\%].
-
-
-
-
-  %-----------------------------------------------------------------------------%
-  \subsection{Hasil dengan Fitur MFCC dan Metode Klasifikasi GMM}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan fitur MFCC dan menggunakan metode klasifikasi GMM, memberikan hasil yang dirangkum pada Tabel \ref{table:mfccgmm} berikut.
-
-  \begin{table}
-    \centering
-    \caption{Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi GMM}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-      Minimal         & 43.8\% & 43.9\% & 42.5\% & 44.4\% \\ \hline
-      Maksimal        & 85.0\% & 93.3\% & 90.0\% & 85.0\% \\ \hline
-      Rata-rata       & 65.8\% & 66.3\% & 65.1\% & 65.4\% \\ \hline
-      Standar Deviasi & 6.50\% & 7.19\% & 8.56\% & 6.72\%  \\ \hline
-    \end{tabular}
-    \label{table:mfccgmm}
-  \end{table}
-
-  Tabel \ref{table:datahistogram01} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
-
-  \begin{table}
-    \centering
-    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi GMM}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
-(40\%,45\%{]}  & 2   & 1   & 6   & 1   \\ \hline
-(45\%,50\%{]}  & 3   & 4   & 16  & 7   \\ \hline
-(50\%,55\%{]}  & 27  & 21  & 54  & 22  \\ \hline
-(55\%,60\%{]}  & 89  & 92  & 115 & 97  \\ \hline
-(60\%,65\%{]}  & 144 & 116 & 137 & 146 \\ \hline
-(65\%,70\%{]}  & 169 & 181 & 111 & 151 \\ \hline
-(70\%,75\%{]}  & 94  & 91  & 63  & 95  \\ \hline
-(75\%,80\%{]}  & 31  & 38  & 37  & 40  \\ \hline
-(80\%,85\%{]}  & 5   & 15  & 19  & 5   \\ \hline
-(85\%,90\%{]}  & 0   & 4   & 6   & 0   \\ \hline
-(90\%,95\%{]}  & 0   & 1   & 0   & 0   \\ \hline
-(95\%,100\%{]} & 0   & 0   & 0   & 0   \\ \hline
-    \end{tabular}
-    \label{table:datahistogram01}
-  \end{table}
   
-  Gambar \ref{fig:histogram01} merepresentasikan Tabel \ref{table:datahistogram01} dalam bentuk histogram.
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/histogram01}
-    \caption{Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi GMM}
-    \label{fig:histogram01}
-  \end{figure}
-
-  Dari Gambar \ref{fig:histogram01} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (65\%,70\%]. Hasil tersebut sedikit lebih tinggi jika dibandingkan dengan hasil pada eksperimen yang menggunakan fitur MFCC dan metode klasifikasi SVM. Hal tersebut mengindikasikan bahwa metode klasifikasi GMM lebih tepat untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam penelitian ini.
-
-  %-----------------------------------------------------------------------------%
-  \subsection{Hasil dengan Fitur MFCC dan Metode Klasifikasi Gabungan}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan fitur MFCC dengan metode klasifikasi gabungan antara SVM dan GMM, memberikan hasil yang dirangkum pada Tabel \ref{table:mfccgabungan} berikut.
-
-  \begin{table}
-    \centering
-    \caption{Rangkuman Hasil Eksperimen dengan Fitur MFCC dan Metode Klasifikasi Gabungan}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-      Minimal         & 41.3\% & 42.2\% & 37.5\% & 43.9\% \\ \hline
-      Maksimal        & 85.0\% & 90.0\% & 85.0\% & 84.2\% \\ \hline
-      Rata-rata       & 63.5\% & 64.1\% & 63.1\% & 63.4\% \\ \hline
-      Standar Deviasi & 7.64\% & 8.71\% & 8.00\% & 7.26\%  \\ \hline
-    \end{tabular}
-    \label{table:mfccgabungan}
-  \end{table}
-
-  Tabel \ref{table:datahistogram02} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
-
-  \begin{table}
-    \centering
-    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur MFCC dan Metode Klasifikasi Gabungan}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
-(40\%,45\%{]}  & 5   & 3   & 10  & 4   \\ \hline
-(45\%,50\%{]}  & 19  & 21  & 25  & 14  \\ \hline
-(50\%,55\%{]}  & 64  & 60  & 84  & 57  \\ \hline
-(55\%,60\%{]}  & 115 & 116 & 109 & 116 \\ \hline
-(60\%,65\%{]}  & 145 & 128 & 132 & 143 \\ \hline
-(65\%,70\%{]}  & 104 & 100 & 119 & 119 \\ \hline
-(70\%,75\%{]}  & 83  & 73  & 55  & 85  \\ \hline
-(75\%,80\%{]}  & 24  & 39  & 26  & 21  \\ \hline
-(80\%,85\%{]}  & 5   & 16  & 4   & 5   \\ \hline
-(85\%,90\%{]}  & 0   & 8   & 0   & 0   \\ \hline
-(90\%,95\%{]}  & 0   & 0   & 0   & 0   \\ \hline
-(95\%,100\%{]} & 0   & 0   & 0   & 0   \\ \hline
-    \end{tabular}
-    \label{table:datahistogram02}
-  \end{table}
   
-  Gambar \ref{fig:histogram02} merepresentasikan Tabel \ref{table:datahistogram02} dalam bentuk histogram.
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/histogram02}
-    \caption{Histogram Metrik Evaluasi dengan Fitur MFCC dan Metode Klasifikasi Gabungan}
-    \label{fig:histogram02}
-  \end{figure}
-
-  Dari Gambar \ref{fig:histogram02} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (60\%,65\%]. Hasil tersebut sedikit lebih rendah jika dibandingkan dengan hasil pada eksperimen yang menggunakan fitur MFCC dan metode klasifikasi GMM. Hal tersebut mengindikasikan bahwa gabungan dua metode klasifikasi, yaitu SVM dengan GMM, tidak lebih tepat untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam eksperimen ini jika dibandingkan dengan metode klasifikasi GMM.
-
-
-
-
-
-%-----------------------------------------------------------------------------%
-\section{Hasil dengan Fitur SDCC}
-%-----------------------------------------------------------------------------%
-
-  %-----------------------------------------------------------------------------%
-  \subsection{Hasil dengan Fitur SDCC dan Metode Klasifikasi SVM}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan fitur SDCC dan menggunakan metode klasifikasi SVM, memberikan hasil yang dirangkum pada Tabel \ref{table:sdccsvm} berikut.
-
-  \begin{table}
-    \centering
-    \caption{Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-      Minimal         & 51.3\% & 51.2\%  & 30.0\%  & 43.6\% \\ \hline
-      Maksimal        & 96.3\% & 100.0\% & 100.0\% & 96.4\% \\ \hline
-      Rata-rata       & 77.3\% & 76.6\%  & 79.5\%  & 77.8\% \\ \hline
-      Standar Deviasi & 7.47\% & 8.18\% & 8.74\% & 7.41\%  \\ \hline
-    \end{tabular}
-    \label{table:sdccsvm}
-  \end{table}
-
-  Tabel \ref{table:datahistogram10} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
-
-  \begin{table}
-    \centering
-    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi SVM}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
-(40\%,45\%{]}  & 0   & 0   & 3   & 1   \\ \hline
-(45\%,50\%{]}  & 0   & 0   & 1   & 1   \\ \hline
-(50\%,55\%{]}  & 2   & 2   & 6   & 1   \\ \hline
-(55\%,60\%{]}  & 3   & 8   & 6   & 4   \\ \hline
-(60\%,65\%{]}  & 28  & 25  & 14  & 16  \\ \hline
-(65\%,70\%{]}  & 73  & 96  & 44  & 65  \\ \hline
-(70\%,75\%{]}  & 129 & 122 & 113 & 117 \\ \hline
-(75\%,80\%{]}  & 132 & 132 & 131 & 142 \\ \hline
-(80\%,85\%{]}  & 120 & 93  & 120 & 136 \\ \hline
-(85\%,90\%{]}  & 58  & 55  & 86  & 57  \\ \hline
-(90\%,95\%{]}  & 17  & 25  & 35  & 22  \\ \hline
-(95\%,100\%{]} & 2   & 6   & 5   & 2   \\ \hline
-    \end{tabular}
-    \label{table:datahistogram10}
-  \end{table}
-  
-  Gambar \ref{fig:histogram10} merepresentasikan Tabel \ref{table:datahistogram10} dalam bentuk histogram.
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/histogram10}
-    \caption{Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi SVM}
-    \label{fig:histogram10}
-  \end{figure}
-
-  Dari Gambar \ref{fig:histogram10} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (75\%,80\%]. Hasil tersebut secara signifikan lebih tinggi jika dibandingkan dengan beberapa hasil pada eksperimen yang menggunakan fitur MFCC. Hal tersebut mengindikasikan bahwa penggunaan fitur SDCC lebih tepat daripada fitur MFCC, untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam penelitian ini.
-
-
-
-
-
-  %-----------------------------------------------------------------------------%
-  \subsection{Hasil dengan Fitur SDCC dan Metode Klasifikasi GMM}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan fitur SDCC dan menggunakan metode klasifikasi GMM, memberikan hasil yang dirangkum pada Tabel \ref{table:sdccgmm} berikut.
-
-  \begin{table}
-    \centering
-    \caption{Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi GMM}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-      Minimal         & 67.5\% & 64.6\%  & 55.0\%  & 63.8\% \\ \hline
-      Maksimal        & 98.8\% & 100.0\% & 100.0\% & 98.8\% \\ \hline
-      Rata-rata       & 83.4\% & 89.0\%  & 76.4\%  & 82.0\% \\ \hline
-      Standar Deviasi & 5.61\% & 6.39\% & 8.18\% & 6.33\%  \\ \hline
-    \end{tabular}
-    \label{table:sdccgmm}
-  \end{table}
-
-  Tabel \ref{table:datahistogram11} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
-
-  \begin{table}
-    \centering
-    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi GMM}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
-(40\%,45\%{]}  & 0   & 0   & 0   & 0   \\ \hline
-(45\%,50\%{]}  & 0   & 0   & 0   & 0   \\ \hline
-(50\%,55\%{]}  & 0   & 0   & 3   & 0   \\ \hline
-(55\%,60\%{]}  & 0   & 0   & 11  & 0   \\ \hline
-(60\%,65\%{]}  & 0   & 1   & 45  & 5   \\ \hline
-(65\%,70\%{]}  & 10  & 1   & 94  & 12  \\ \hline
-(70\%,75\%{]}  & 36  & 10  & 130 & 56  \\ \hline
-(75\%,80\%{]}  & 128 & 41  & 129 & 141 \\ \hline
-(80\%,85\%{]}  & 193 & 96  & 83  & 171 \\ \hline
-(85\%,90\%{]}  & 138 & 161 & 48  & 119 \\ \hline
-(90\%,95\%{]}  & 53  & 155 & 18  & 54  \\ \hline
-(95\%,100\%{]} & 6   & 99  & 3   & 6   \\ \hline
-    \end{tabular}
-    \label{table:datahistogram11}
-  \end{table}
-  
-  Gambar \ref{fig:histogram11} merepresentasikan Tabel \ref{table:datahistogram11} dalam bentuk histogram.
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/histogram11}
-    \caption{Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi GMM}
-    \label{fig:histogram11}
-  \end{figure}
-
-  Dari Gambar \ref{fig:histogram11} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (80\%,85\%]. Hasil tersebut sedikit lebih tinggi jika dibandingkan dengan hasil pada eksperimen yang menggunakan fitur SDCC dan metode klasifikasi SVM. Hal tersebut semakin mengindikasikan bahwa metode klasifikasi GMM lebih tepat untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam eksperimen ini.
-
-
-
-
-
-
-  %-----------------------------------------------------------------------------%
-  \subsection{Hasil dengan Fitur SDCC dan Metode Klasifikasi Gabungan}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan fitur SDCC dan menggunakan metode klasifikasi gabungan SVM dengan GMM, memberikan hasil yang dirangkum pada Tabel \ref{table:sdccgabungan} berikut.
-
-  \begin{table}
-    \centering
-    \caption{Rangkuman Hasil Eksperimen dengan Fitur SDCC dan Metode Klasifikasi Gabungan}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-       & Akurasi & Presisi & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-      Minimal         & 57.5\% & 56.5\%  & 65.0\%  & 60.5\% \\ \hline
-      Maksimal        & 96.3\% & 100.0\% & 100.0\% & 96.4\% \\ \hline
-      Rata-rata       & 79.4\% & 77.3\%  & 84.2\%  & 80.4\% \\ \hline
-      Standar Deviasi & 6.86\% & 7.80\% & 6.48\% & 6.16\%  \\ \hline
-    \end{tabular}
-    \label{table:sdccgabungan}
-  \end{table}
-
-  Tabel \ref{table:datahistogram12} menunjukkan frekuensi kemunculan persentase tertentu yang dikelompokkan ke dalam interval 5\%.
-
-  \begin{table}
-    \centering
-    \caption{Frekuensi Kemunculan Interval Persentase pada Eksperimen dengan Fitur SDCC dan Metode Klasifikasi Gabungan}
-    \begin{tabular}{|c|c|c|c|c|}
-      \hline
-\multicolumn{1}{|c|}{Persentase} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Akurasi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai Presisi\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{Recall}\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frekuensi\\ Nilai \f{F-Measure}\end{tabular}} \\ \hline
-(40\%,45\%{]}  & 0   & 0   & 0   & 0   \\ \hline
-(45\%,50\%{]}  & 0   & 0   & 0   & 0   \\ \hline
-(50\%,55\%{]}  & 0   & 0   & 0   & 0   \\ \hline
-(55\%,60\%{]}  & 2   & 6   & 0   & 0   \\ \hline
-(60\%,65\%{]}  & 13  & 23  & 3   & 2   \\ \hline
-(65\%,70\%{]}  & 49  & 76  & 14  & 26  \\ \hline
-(70\%,75\%{]}  & 96  & 123 & 47  & 80  \\ \hline
-(75\%,80\%{]}  & 161 & 144 & 119 & 171 \\ \hline
-(80\%,85\%{]}  & 137 & 98  & 152 & 154 \\ \hline
-(85\%,90\%{]}  & 83  & 60  & 150 & 98  \\ \hline
-(90\%,95\%{]}  & 21  & 29  & 71  & 29  \\ \hline
-(95\%,100\%{]} & 2   & 5   & 8   & 4   \\ \hline
-    \end{tabular}
-    \label{table:datahistogram12}
-  \end{table}
-
-  Gambar \ref{fig:histogram12} merepresentasikan Tabel \ref{table:datahistogram12} dalam bentuk histogram.
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/histogram12}
-    \caption{Histogram Metrik Evaluasi dengan Fitur SDCC dan Metode Klasifikasi Gabungan}
-    \label{fig:histogram12}
-  \end{figure}
-
-  Dari Gambar \ref{fig:histogram12} dapat diamati bahwa mayoritas ayat dalam eksperimen terklasifikasi dengan rentang akurasi (75\%,80\%]. Hasil tersebut sedikit lebih rendah jika dibandingkan dengan hasil pada eksperimen yang menggunakan fitur SDCC dan metode klasifikasi GMM. Hal tersebut semakin mengindikasikan bahwa gabungan dua metode klasifikasi, yaitu SVM dengan GMM, tidak lebih tepat untuk digunakan dalam sistem evaluasi pembacaan \quran~dalam eksperimen ini jika dibandingkan dengan metode klasifikasi GMM.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%-----------------------------------------------------------------------------%
-\section{Perbandingan Hasil}
-%-----------------------------------------------------------------------------%
-
-  %-----------------------------------------------------------------------------%
-  \subsection{Perbandingan Metode Klasifikasi pada Fitur MFCC}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan fitur MFCC dengan berbagai metode klasifikasi, memberikan nilai akurasi yang berbeda-beda pada setiap ayat. Gambar \ref{fig:piefeat0} menunjukkan perbandingan metode klasifikasi yang memiliki nilai akurasi paling tinggi di antara metode-metode yang digunakan dalam eksperimen.
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{pics/piefeat0}
-    \caption{Perbandingan Metode Klasifikasi untuk Fitur MFCC}
-    \label{fig:piefeat0}
-  \end{figure}
-
-  Berdasarkan Gambar \ref{fig:piefeat0}, terlihat bahwa pada 48\% ayat dalam eksperimen, metode klasifikasi GMM menghasilkan akurasi tertinggi jika dibandingkan dengan dua metode klasifikasi lainnya. Nilai tersebut mendominasi perolehan akurasi tertinggi pada ketiga metode klasifikasi. Sehingga dapat dikatakan bahwa metode klasifikasi GMM memiliki peluang paling besar untuk menjadi metode yang menghasilkan akurasi tertinggi.
-
-
-
-  %-----------------------------------------------------------------------------%
-  \subsection{Perbandingan Metode Klasifikasi pada Fitur SDCC}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan fitur SDCC dengan berbagai metode klasifikasi, memberikan nilai akurasi yang berbeda-beda pada setiap ayat. Gambar \ref{fig:piefeat1} menunjukkan perbandingan metode klasifikasi yang memiliki nilai akurasi paling tinggi di antara metode-metode yang digunakan dalam eksperimen.
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{pics/piefeat1}
-    \caption{Perbandingan Metode Klasifikasi untuk Fitur SDCC}
-    \label{fig:piefeat1}
-  \end{figure}
-
-  Berdasarkan Gambar \ref{fig:piefeat1}, terlihat bahwa pada 66\% ayat dalam eksperimen, metode klasifikasi GMM menghasilkan akurasi tertinggi jika dibandingkan dengan dua metode klasifikasi lainnya. Nilai tersebut mendominasi perolehan akurasi tertinggi pada ketiga metode klasifikasi. Sehingga dapat dikatakan bahwa metode klasifikasi GMM memiliki peluang paling besar untuk menjadi metode yang menghasilkan akurasi tertinggi. Hal tersebut juga konsisten pada eksperimen yang menggunakan fitur MFCC.
-
-  Suatu pembacaan ayat \quran~dapat dinilai benar, salah, jauh dari benar, hampir benar, dan lain sebagainya. Nilai kebenaran suatu pembacaan \quran~tidak bersifat diskrit. Dalam penelitian ini metode klasifikasi GMM lebih banyak menghasilkan akurasi yang lebih tinggi daripada metode klasifikasi SVM karena klasifikasi pembacaan ayat \quran~merupakan klasifikasi yang tidak diskrit, sehingga GMM yang bersifat generatif dapat memodelkan data dengan lebih baik daripada SVM yang bersifat diskriminatif.
-
-
-
-
-
-
-
-
-
-
-  %-----------------------------------------------------------------------------%
-  \subsection{Perbandingan Fitur pada Metode Klasifikasi SVM}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan metode klasifikasi SVM dengan berbagai fitur, memberikan nilai akurasi yang berbeda-beda pada setiap ayat. Gambar \ref{fig:pieclass0} menunjukkan perbandingan fitur yang memiliki nilai akurasi paling tinggi di antara fitur-fitur yang digunakan dalam eksperimen.
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{pics/pieclass0}
-    \caption{Perbandingan Fitur untuk Metode Klasifikasi SVM}
-    \label{fig:pieclass0}
-  \end{figure}
-
-  Berdasarkan Gambar \ref{fig:pieclass0}, terlihat bahwa pada 93\% ayat dalam eksperimen, fitur SDCC menghasilkan akurasi yang lebih tinggi jika dibandingkan dengan fitur MFCC. Nilai tersebut mendominasi perolehan akurasi tertinggi pada kedua fitur. Sehingga dapat dikatakan bahwa fitur SDCC memiliki peluang paling besar untuk menjadi fitur yang menghasilkan akurasi tertinggi.
-
-
-
-
-
-
-
-
-  %-----------------------------------------------------------------------------%
-  \subsection{Perbandingan Fitur pada Metode Klasifikasi GMM}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan metode klasifikasi GMM dengan berbagai fitur, memberikan nilai akurasi yang berbeda-beda pada setiap ayat. Gambar \ref{fig:pieclass1} menunjukkan perbandingan fitur yang memiliki nilai akurasi paling tinggi di antara fitur-fitur yang digunakan dalam eksperimen.
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{pics/pieclass1}
-    \caption{Perbandingan Fitur untuk Metode Klasifikasi GMM}
-    \label{fig:pieclass1}
-  \end{figure}
-
-  Berdasarkan Gambar \ref{fig:pieclass1}, terlihat bahwa pada 99\% ayat dalam eksperimen, fitur SDCC menghasilkan akurasi yang lebih tinggi jika dibandingkan dengan fitur MFCC. Nilai tersebut mendominasi perolehan akurasi tertinggi pada kedua fitur. Hal tersebut memperkuat pernyataan bahwa fitur SDCC memiliki peluang paling besar untuk menjadi fitur yang menghasilkan akurasi tertinggi dibandingkan fitur MFCC.
-
-
-
-
-  
-  %-----------------------------------------------------------------------------%
-  \subsection{Perbandingan Fitur pada Metode Klasifikasi Gabungan}
-  %-----------------------------------------------------------------------------%
-  Eksperimen menggunakan metode klasifikasi Gabungan dengan berbagai fitur, memberikan nilai akurasi yang berbeda-beda pada setiap ayat. Gambar \ref{fig:pieclass2} menunjukkan perbandingan fitur yang memiliki nilai akurasi paling tinggi di antara fitur-fitur yang digunakan dalam eksperimen.
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=0.9\linewidth]{pics/pieclass2}
-    \caption{Perbandingan Fitur untuk Metode Klasifikasi Gabungan}
-    \label{fig:pieclass2}
-  \end{figure}
-
-  Berdasarkan Gambar \ref{fig:pieclass2}, terlihat bahwa pada 96\% ayat dalam eksperimen, fitur SDCC menghasilkan akurasi yang lebih tinggi jika dibandingkan dengan fitur MFCC. Nilai tersebut mendominasi perolehan akurasi tertinggi pada kedua fitur. Hal tersebut konsisten dengan hasil pada metode klasifikasi SVM maupun GMM, dan semakin memperkuat pernyataan bahwa fitur SDCC memiliki peluang paling besar untuk menjadi fitur yang menghasilkan akurasi tertinggi dibandingkan fitur MFCC.
-
-  Nilai SDCC pada setiap \f{frame} merupakan kombinasi dari beberapa nilai MFCC yang berdekatan. Dalam penelitian ini penggunaan fitur SDCC lebih banyak akurat daripada penggunaan fitur MFCC karena SDCC memuat lebih banyak konteks dalam setiap \f{frame}-nya jika dibandingkan dengan MFCC.
-
-
-
-
-
-
-
-
-
-
-
-\section{Analisis Lanjut}
-
-Penggunaan fitur SDCC dan metode klasifikasi GMM pada eksperimen memberikan hasil terbaik secara rata-rata, baik pada nilai akurasi, presisi, \f{recall}, ataupun \f{f-measure}. Setiap ayat memiliki hasil klasifikasi yang berbeda-beda. Ada ayat-ayat yang diklasifikasikan dengan akurasi tinggi dan ada juga ayat-ayat yang diklasifikasikan dengan akurasi rendah. Beberapa ayat dengan akurasi tertinggi yang lebih dari atau sama dengan 95\% pada penggunaan fitur SDCC dan metode klasifikasi GMM dapat dilihat pada Tabel \ref{table:akurasitinggi}.
-
-\begin{table}
-  \centering
-  \caption{Ayat-Ayat yang Diurutkan dari Akurasi Tertinggi}
-  \label{table:akurasitinggi}
-  \begin{tabular}{|r|r|r|r|r|r|}
-  \hline
-  Surat & Ayat & Akurasi & Presisi & \f{Recall}  & \f{F-Measure} \\ \hline
-  89  & 22 & 98.8\% & 97.6\%  & 100.0\% & 98.8\% \\ \hline
-  91  & 13 & 97.5\% & 100.0\% & 95.0\%  & 97.4\% \\ \hline
-  92  & 19 & 97.5\% & 97.5\%  & 97.5\%  & 97.5\% \\ \hline
-  87  & 7  & 96.3\% & 95.1\%  & 97.5\%  & 96.3\% \\ \hline
-  93  & 7  & 96.3\% & 97.4\%  & 95.0\%  & 96.2\% \\ \hline
-  110 & 3  & 96.3\% & 100.0\% & 92.5\%  & 96.1\% \\ \hline
-  78  & 19 & 95.0\% & 95.0\%  & 95.0\%  & 95.0\% \\ \hline
-  79  & 31 & 95.0\% & 97.4\%  & 92.5\%  & 94.9\% \\ \hline
-  79  & 46 & 95.0\% & 100.0\% & 90.0\%  & 94.7\% \\ \hline
-  80  & 2  & 95.0\% & 100.0\% & 90.0\%  & 94.7\% \\ \hline
-  80  & 25 & 95.0\% & 95.0\%  & 95.0\%  & 95.0\% \\ \hline
-  88  & 21 & 95.0\% & 100.0\% & 90.0\%  & 94.7\% \\ \hline
-  90  & 4  & 95.0\% & 100.0\% & 90.0\%  & 94.7\% \\ \hline
-  \end{tabular}
-\end{table}
-
-
-Beberapa ayat dengan akurasi terendah yang kurang dari atau sama dengan 70\% pada penggunaan fitur SDCC dan metode klasifikasi GMM dapat dilihat pada Tabel \ref{table:akurasirendah}.
-\begin{table}
-  \centering
-  \caption{Ayat-Ayat yang Diurutkan dari Akurasi Terendah}
-  \label{table:akurasirendah}
-  \begin{tabular}{|r|r|r|r|r|r|}
-  \hline
-  Surat & Ayat & Akurasi & Presisi & \f{Recall}  & \f{F-Measure} \\ \hline
-  78    & 4    & 67.5\%  & 71.9\%  & 57.5\% & 63.9\%    \\ \hline
-  83    & 4    & 67.5\%  & 64.6\%  & 77.5\% & 70.5\%    \\ \hline
-  85    & 21   & 67.5\%  & 69.4\%  & 62.5\% & 65.8\%    \\ \hline
-  101   & 10   & 67.5\%  & 71.9\%  & 57.5\% & 63.9\%    \\ \hline
-  80    & 24   & 68.8\%  & 75.9\%  & 55.0\% & 63.8\%    \\ \hline
-  106   & 1    & 68.8\%  & 75.9\%  & 55.0\% & 63.8\%    \\ \hline
-  106   & 3    & 68.8\%  & 74.2\%  & 57.5\% & 64.8\%    \\ \hline
-  106   & 4    & 68.8\%  & 71.4\%  & 62.5\% & 66.7\%    \\ \hline
-  82    & 12   & 70.0\%  & 73.5\%  & 62.5\% & 67.6\%    \\ \hline
-  85    & 6    & 70.0\%  & 76.7\%  & 57.5\% & 65.7\%    \\ \hline
-  \end{tabular}
-\end{table}
-
-Suatu ayat dapat diklasifikasikan dengan akurasi tinggi dikarenakan ayat tersebut memiliki ciri khusus dalam pelafalannya jika dibandingkan dengan ayat-ayat lainnya. Ciri tersebut antara lain adalah bacaan \f{mad wajib} (bacaan panjang 3 huruf), \f{ghunnah} (bacaan dengung), serta irama panjang pendek dalam pembacaan ayat. Contoh beberapa ayat yang dapat diklasifikasikan dengan akurasi tinggi antara lain sebagai berikut.
-\begin{itemize}
-  \item Surat ke-89 ayat 22, yaitu ``\<وَجَاءَ رَبُّكَ وَالْمَلَكُ صَفًّا صَفًّا>''. Ayat tersebut mengandung \f{mad wajib} pada kata \<وَجَاءَ> serta \f{ghunnah} pada dua kata \<صَفًّا>.
-
-  \item Surat ke-92 ayat 19, yaitu ``\<وَمَا لِأَحَدٍ عِندَهُ مِن نِّعْمَةٍ تُجْزَىٰ>''. Ayat tersebut mengandung \f{ghunnah} pada kata \<مِن نِّعْمَةٍ>.
-
-  \item Surat ke-110 ayat 3, yaitu ``\<فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ ۚ إِنَّهُ كَانَ تَوَّابًا>''. Ayat tersebut mengandung \f{ghunnah} pada kata \<إِنَّهُ> dan \<تَوَّابًا>.
-\end{itemize}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% \section{Ayat-Ayat dengan Akurasi Tinggi}
-
-% Berikut adalah beberapa tabel yang berisi ayat-ayat dengan nilai akurasi terbaik.
-
-% \begin{enumerate}
-%   \item Tabel \ref{table:topmfccsvm} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur MFCC dan metode klasifikasi SVM.
-%   \begin{table}
-%     \centering
-%     \caption{}
-%     \label{table:topmfccsvm}
-%     \begin{tabular}{|r|r|r|}
-%       \hline
-%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
-%       99    & 7    & 87.5\%  \\ \hline
-%       89    & 23   & 85.0\%  \\ \hline
-%       91    & 14   & 82.5\%  \\ \hline
-%       96    & 11   & 82.5\%  \\ \hline
-%       79    & 16   & 81.3\%  \\ \hline
-%       78    & 40   & 80.0\%  \\ \hline
-%       79    & 45   & 80.0\%  \\ \hline
-%       83    & 32   & 80.0\%  \\ \hline
-%       84    & 10   & 80.0\%  \\ \hline
-%       84    & 11   & 78.8\%  \\ \hline
-%       99    & 8    & 78.8\%  \\ \hline
-%       102   & 8    & 78.8\%  \\ \hline
-%     \end{tabular}
-%   \end{table}
-
-%   \item Tabel \ref{table:topmfccgmm} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur MFCC dan metode klasifikasi GMM.
-%   \begin{table}
-%     \centering
-%     \caption{}
-%     \label{table:topmfccgmm}
-%     \begin{tabular}{|r|r|r|}
-%       \hline
-%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
-%       89    & 1    & 85.0\%  \\ \hline
-%       84    & 17   & 82.5\%  \\ \hline
-%       79    & 45   & 81.3\%  \\ \hline
-%       88    & 3    & 81.3\%  \\ \hline
-%       106   & 2    & 81.3\%  \\ \hline
-%       80    & 41   & 80.0\%  \\ \hline
-%       83    & 32   & 80.0\%  \\ \hline
-%       110   & 3    & 80.0\%  \\ \hline
-%       79    & 46   & 78.8\%  \\ \hline
-%       89    & 3    & 78.8\%  \\ \hline
-%       89    & 18   & 78.8\%  \\ \hline
-%       91    & 10   & 78.8\%  \\ \hline
-%     \end{tabular}
-%   \end{table}
-
-%   \item Tabel \ref{table:topmfccgabungan} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur MFCC dan metode klasifikasi gabungan.
-%   \begin{table}
-%     \centering
-%     \caption{}
-%     \label{table:topmfccgabungan}
-%     \begin{tabular}{|r|r|r|}
-%       \hline
-%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
-%       91 & 14 & 85.0\% \\ \hline
-%       99 & 7  & 83.8\% \\ \hline
-%       98 & 1  & 82.5\% \\ \hline
-%       79 & 10 & 81.3\% \\ \hline
-%       89 & 1  & 81.3\% \\ \hline
-%       78 & 37 & 80.0\% \\ \hline
-%       79 & 25 & 80.0\% \\ \hline
-%       89 & 16 & 80.0\% \\ \hline
-%       89 & 22 & 80.0\% \\ \hline
-%       96 & 11 & 80.0\% \\ \hline
-%     \end{tabular}
-%   \end{table}
-
-%   \item Tabel \ref{table:topsdccsvm} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur SDCC dan metode klasifikasi SVM.
-%   \begin{table}
-%     \centering
-%     \caption{}
-%     \label{table:topsdccsvm}
-%     \begin{tabular}{|r|r|r|}
-%       \hline
-%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
-%       81  & 11 & 96.3\% \\ \hline
-%       110 & 3  & 96.3\% \\ \hline
-%       79  & 27 & 95.0\% \\ \hline
-%       89  & 22 & 95.0\% \\ \hline
-%       91  & 13 & 95.0\% \\ \hline
-%       88  & 3  & 93.8\% \\ \hline
-%       95  & 4  & 93.8\% \\ \hline
-%       108 & 1  & 93.8\% \\ \hline
-%       82  & 2  & 92.5\% \\ \hline
-%       86  & 6  & 92.5\% \\ \hline
-%       86  & 7  & 92.5\% \\ \hline
-%       92  & 19 & 92.5\% \\ \hline
-%     \end{tabular}
-%   \end{table}
-
-%   \item Tabel \ref{table:topsdccgmm} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur SDCC dan metode klasifikasi GMM.
-%   \begin{table}
-%     \centering
-%     \caption{}
-%     \label{table:topsdccgmm}
-%     \begin{tabular}{|r|r|r|}
-%       \hline
-%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
-%       89  & 22 & 98.8\% \\ \hline
-%       91  & 13 & 97.5\% \\ \hline
-%       92  & 19 & 97.5\% \\ \hline
-%       87  & 7  & 96.3\% \\ \hline
-%       93  & 7  & 96.3\% \\ \hline
-%       110 & 3  & 96.3\% \\ \hline
-%       78  & 19 & 95.0\% \\ \hline
-%       79  & 31 & 95.0\% \\ \hline
-%       79  & 46 & 95.0\% \\ \hline
-%       80  & 2  & 95.0\% \\ \hline
-%       80  & 25 & 95.0\% \\ \hline
-%       88  & 21 & 95.0\% \\ \hline
-%       90  & 4  & 95.0\% \\ \hline
-%     \end{tabular}
-%   \end{table}
-
-%   \item Tabel \ref{table:topsdccgabungan} menampilkan beberapa ayat yang diurutkan berdasarkan akurasi tertinggi pada eksperimen dengan fitur SDCC dan metode klasifikasi gabungan.
-%   \begin{table}
-%     \centering
-%     \caption{}
-%     \label{table:topsdccgabungan}
-%     \begin{tabular}{|r|r|r|}
-%       \hline
-%       \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
-%       78  & 19 & 96.3\% \\ \hline
-%       110 & 3  & 96.3\% \\ \hline
-%       78  & 36 & 95.0\% \\ \hline
-%       78  & 39 & 95.0\% \\ \hline
-%       79  & 31 & 95.0\% \\ \hline
-%       93  & 7  & 95.0\% \\ \hline
-%       85  & 12 & 93.8\% \\ \hline
-%       89  & 18 & 93.8\% \\ \hline
-%       89  & 22 & 93.8\% \\ \hline
-%       78  & 14 & 92.5\% \\ \hline
-%       80  & 25 & 92.5\% \\ \hline
-%       87  & 5  & 92.5\% \\ \hline
-%     \end{tabular}
-%   \end{table}
-
-% \end{enumerate}
-
-% Dari Tabel {}, ..., diperoleh matriks kemunculan ayat pada tabel {} berikut.
-% \begin{table}
-%   \centering
-%   \caption{}
-%   \label{table:kemunculanayatpadatabel}
-%   \begin{tabular}{|c|c|c|c|c|c|c|}
-%     \hline
-%     \textbf{Surat} & \textbf{Ayat} & \textbf{Akurasi} \\ \hline
-%     78  & 19 & 96.3\% \\ \hline
-%     110 & 3  & 96.3\% \\ \hline
-%     78  & 36 & 95.0\% \\ \hline
-%     78  & 39 & 95.0\% \\ \hline
-%     79  & 31 & 95.0\% \\ \hline
-%     93  & 7  & 95.0\% \\ \hline
-%     85  & 12 & 93.8\% \\ \hline
-%     89  & 18 & 93.8\% \\ \hline
-%     89  & 22 & 93.8\% \\ \hline
-%     78  & 14 & 92.5\% \\ \hline
-%     80  & 25 & 92.5\% \\ \hline
-%     87  & 5  & 92.5\% \\ \hline
-%   \end{tabular}
-% \end{table}
-
-% \section{Ayat-Ayat dengan Akurasi Rendah}
+    \subsection{Hasil Ekperimen Pengujian Arsitektur RNNs}\label{eks:eks2}
+    
+    Pada eksperimen ini, \saya~mencoba dua buah arsitektur RNNs yang telah \saya~usulkan pada Bab3 yaitu RNNs dengan 1 layer dan RNNs dengan 2 layer. Fitur yang digunakan dalam pengujian ini yaitu kombinasi fitur yang menghasilkan akurasi terbaik pada eksperimen pertama, yaitu fitur Kata itu Sendiri, Kamus Kesehatan, \textit{Stop Word}, Frasa Kata, 1 Kata Sebelum dan 1 Kata Sesudah.
+    
+    \subsubsection{Sub-Eksperimen Menguji Arsitektur RNNs 1 layer}\label{eks2:subeksrnn1}
+    %-----------------------------------------------------------------------------%
+    Pada sub-eksperimen ini, \saya~menggunakan struktur RNNs yang mana semua fitur digabung menjadi satu dalam sebuah \textit{timestep}.
+    Artinya fitur-fitur yang berbeda tersebut akan digabung atau di-\textit{concat} menjadi sebuah vektor yang akan menjadi \textit{input} bagi RNNs ini. RNNs inilah yang digunakan pada eksperimen pertama, sehingga hasilnya sama dengan sub-eksperimen \ref{eks:subekswaf1}.
+    
+    \begin{table}
+    	\centering
+    	\caption{Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 1 layer}
+    	\begin{tabular}{|c|c|c|c|c|}
+    		\hline
+    		& \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+    		\textit{Disease}      & 70.68\%             & 66.18\%        & 68.17\%           \\ \hline
+    		\textit{Symptom}      & 64.16\%             & 59.55\%        & 61.42\%           \\ \hline
+    		\textit{Treatment}    & 61.02\%             & 51.13\%        & 54.03\%           \\ \hline
+    		\textit{Drug}		  & 70.85\%             & 70.33\%        & 69.82\%           \\ \hline
+    	\end{tabular}
+    	\label{table:owndict9}
+    \end{table}
+    
+    \begin{figure}
+    	\centering
+    	\includegraphics[width=0.85\linewidth]{images/histogram9}
+    	\caption{Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 layer}
+    	\label{fig:owndict9}
+    \end{figure}
+    
+    Pada eksperimen ini, hasil yang dicapai masih lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena informasi fitur yang berbeda-beda dijadikan satu, sehingga ada kemungkinan hilangnya informasi dari masing-masing fitur tersebut. Oleh karena itu, untuk mengatasi permasalahan tersebut \saya~mengusulkan arsitektur yang mana masing-masng kelompok fitur yang berbeda dipisahkan dan menjadi \textit{input} bagi masing-masing LSTMs. Untuk penjelasan eksperimen ini akan dijelaskan pada sub-eksperimen \ref{eks2:subeksrnn2}
+    
+    
+    \subsubsection{Sub-Eksperimen Menguji Arsitektur RNNs 2 layer}\label{eks2:subeksrnn2}
+    %-----------------------------------------------------------------------------%
+    Pada sub-eksperimen sebelumnya, fitur-fitur yang berbeda digabung menjadi satu, sehingga ada kemungkinan hilangnya informasi dari fitur tersebut. Oleh karena itu, \saya~mengusulkan adanya layer tambahan setelah masing-masing fitur tersebut masuk ke dalam model. \Saya~mengusulkan bahwa masing-masing kelompok fitur menjadi \textit{input} RNNs secara terpisah. Setelah masuk di RNNs, \textit{output} dari masing-masing RNNs tersebut di-\textit{merge} ke dalam sebuah layer, lalu masuk kembali ke RNNs untuk melihat konteks fitur-fitur sebelumnya. Dengan diusulkannya arsitektur RNNs ini \saya~berharap bahwa masing-masing fitur terjaga informasinya dan tidak terganggu dengan informasi lain.
+    
+    Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict10} dan Gambar \ref{fig:owndict10}.
+    
+    \begin{table}
+    	\centering
+    	\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}
+    	\begin{tabular}{|c|c|c|c|c|}
+    		\hline
+    		& \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+    		\textit{Disease}      & 70.68\%             & 66.18\%        & 68.17\%           \\ \hline
+    		\textit{Symptom}      & 64.16\%             & 59.55\%        & 61.42\%           \\ \hline
+    		\textit{Treatment}    & 61.02\%             & 51.13\%        & 54.03\%           \\ \hline
+    		\textit{Drug}		  & 70.85\%             & 70.33\%        & 69.82\%           \\ \hline
+    	\end{tabular}
+    	\label{table:owndict10}
+    \end{table}
+    
+    \begin{figure}
+    	\centering
+    	\includegraphics[width=\linewidth]{images/histogram8}
+    	\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}
+    	\label{fig:owndict10}
+    \end{figure}
+    
+    Pada eksperimen ini, hasil yang dicapai masih lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena informasi fitur yang berbeda-beda dijadikan satu, sehingga ada kemungkinan hilangnya informasi dari masing-masing fitur tersebut. Oleh karena itu, untuk mengatasi permasalahan tersebut \saya~mengusulkan arsitektur yang mana masing-masng kelompok fitur yang berbeda dipisahkan dan menjadi \textit{input} bagi masing-masing LSTMs. Untuk penjelasan eksperimen ini akan dijelaskan pada sub-eksperimen \ref{eks2:subeksrnn2}

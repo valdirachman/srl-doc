@@ -57,23 +57,23 @@
 \BOOKMARK [3][-]{subsubsection.4.4.2.2}{4.4.2.2 LSTM Layer Bertingkat}{subsection.4.4.2}% 57
 \BOOKMARK [1][-]{section.4.5}{4.5 Eksperimen}{chapter.4}% 58
 \BOOKMARK [1][-]{section.4.6}{4.6 Evaluasi}{chapter.4}% 59
-\BOOKMARK [0][-]{chapter.5}{5 Hasil Eksperimen dan Analisis}{}% 60
-\BOOKMARK [1][-]{section.5.1}{5.1 Hasil dengan Fitur MFCC}{chapter.5}% 61
-\BOOKMARK [2][-]{subsection.5.1.1}{5.1.1 Hasil dengan Fitur MFCC dan Metode Klasifikasi SVM}{section.5.1}% 62
-\BOOKMARK [2][-]{subsection.5.1.2}{5.1.2 Hasil dengan Fitur MFCC dan Metode Klasifikasi GMM}{section.5.1}% 63
-\BOOKMARK [2][-]{subsection.5.1.3}{5.1.3 Hasil dengan Fitur MFCC dan Metode Klasifikasi Gabungan}{section.5.1}% 64
-\BOOKMARK [1][-]{section.5.2}{5.2 Hasil dengan Fitur SDCC}{chapter.5}% 65
-\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 Hasil dengan Fitur SDCC dan Metode Klasifikasi SVM}{section.5.2}% 66
-\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 Hasil dengan Fitur SDCC dan Metode Klasifikasi GMM}{section.5.2}% 67
-\BOOKMARK [2][-]{subsection.5.2.3}{5.2.3 Hasil dengan Fitur SDCC dan Metode Klasifikasi Gabungan}{section.5.2}% 68
-\BOOKMARK [1][-]{section.5.3}{5.3 Perbandingan Hasil}{chapter.5}% 69
-\BOOKMARK [2][-]{subsection.5.3.1}{5.3.1 Perbandingan Metode Klasifikasi pada Fitur MFCC}{section.5.3}% 70
-\BOOKMARK [2][-]{subsection.5.3.2}{5.3.2 Perbandingan Metode Klasifikasi pada Fitur SDCC}{section.5.3}% 71
-\BOOKMARK [2][-]{subsection.5.3.3}{5.3.3 Perbandingan Fitur pada Metode Klasifikasi SVM}{section.5.3}% 72
-\BOOKMARK [2][-]{subsection.5.3.4}{5.3.4 Perbandingan Fitur pada Metode Klasifikasi GMM}{section.5.3}% 73
-\BOOKMARK [2][-]{subsection.5.3.5}{5.3.5 Perbandingan Fitur pada Metode Klasifikasi Gabungan}{section.5.3}% 74
-\BOOKMARK [1][-]{section.5.4}{5.4 Analisis Lanjut}{chapter.5}% 75
+\BOOKMARK [0][-]{chapter.5}{5 Eksperimen}{}% 60
+\BOOKMARK [1][-]{section.5.1}{5.1 Matriks Evaluasi}{chapter.5}% 61
+\BOOKMARK [1][-]{section.5.2}{5.2 Skenario Eksperimen}{chapter.5}% 62
+\BOOKMARK [1][-]{section.5.3}{5.3 Hasil Eksperimen dan Analisis}{chapter.5}% 63
+\BOOKMARK [2][-]{subsection.5.3.1}{5.3.1 Hasil Ekperimen Pengujian Fitur Beserta Analisis}{section.5.3}% 64
+\BOOKMARK [3][-]{subsubsection.5.3.1.1}{5.3.1.1 Sub-Eksperimen Menguji Fitur Kata itu Sendiri}{subsection.5.3.1}% 65
+\BOOKMARK [3][-]{subsubsection.5.3.1.2}{5.3.1.2 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan \(Disease, Symptom, Treatment dan Drug\)}{subsection.5.3.1}% 66
+\BOOKMARK [3][-]{subsubsection.5.3.1.3}{5.3.1.3 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}{subsection.5.3.1}% 67
+\BOOKMARK [3][-]{subsubsection.5.3.1.4}{5.3.1.4 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}{subsection.5.3.1}% 68
+\BOOKMARK [3][-]{subsubsection.5.3.1.5}{5.3.1.5 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}{subsection.5.3.1}% 69
+\BOOKMARK [3][-]{subsubsection.5.3.1.6}{5.3.1.6 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}{subsection.5.3.1}% 70
+\BOOKMARK [3][-]{subsubsection.5.3.1.7}{5.3.1.7 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}{subsection.5.3.1}% 71
+\BOOKMARK [3][-]{subsubsection.5.3.1.8}{5.3.1.8 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}{subsection.5.3.1}% 72
+\BOOKMARK [2][-]{subsection.5.3.2}{5.3.2 Hasil Ekperimen Pengujian Arsitektur RNNs}{section.5.3}% 73
+\BOOKMARK [3][-]{subsubsection.5.3.2.1}{5.3.2.1 Sub-Eksperimen Menguji Arsitektur RNNs 1 layer}{subsection.5.3.2}% 74
+\BOOKMARK [3][-]{subsubsection.5.3.2.2}{5.3.2.2 Sub-Eksperimen Menguji Arsitektur RNNs 2 layer}{subsection.5.3.2}% 75
 \BOOKMARK [0][-]{chapter.6}{6 Kesimpulan dan Saran}{}% 76
 \BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 77
 \BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 78
-\BOOKMARK [0][-]{chapter*.67}{Daftar Referensi}{}% 79
+\BOOKMARK [0][-]{chapter*.62}{Daftar Referensi}{}% 79
