@@ -7,7 +7,7 @@
 Pada bab ini \saya~akan menjelaskan metodologi penelitian yang \saya~gunakan. Metodologi penelitian yang dilakukan meliputi tahap pengumpulan data, pra-pemrosesan data, pelabelan data, pengembangan model, eksperimen dan evaluasi.
 
 \section{Gambaran Umum Pengembangan Metodologi yang Digunakan untuk }
-Penelitian ini bertujuan untuk membuat sebuah model yang mampu memberikan label entitas kesehatan pada suatu dokumen. Seperti yang telah dijelaskan pada bab sebelumnya, terdapat banyak entitas kesehatan yang dapat digunakan sebagai target pelabelan. Oleh karena itu, untuk mempermudah penelitian ini \saya~menggunakan entitas-entitas yang diusulkan oleh \cite{skripsiKakRadit} dalam penelitiannya,  nama penyakit (\textit{disease}), gejala penyakit (\textit{symptom}), obat (\textit{drug}) dan langkah penyembuhan \textit{treatment}.
+Penelitian ini bertujuan untuk membuat sebuah model yang mampu memberikan label entitas kesehatan pada suatu dokumen. Seperti yang telah dijelaskan pada bab sebelumnya, terdapat banyak entitas kesehatan yang dapat digunakan sebagai target pelabelan. Oleh karena itu, untuk mempermudah penelitian ini \saya~menggunakan entitas-entitas yang diusulkan oleh \cite{skripsiKakRadit} dalam penelitiannya,  nama penyakit (\textit{disease}), gejala penyakit (\textit{symptom}), obat (\textit{drug}) dan langkah penyembuhan (\textit{treatment}).
 
 Penelitian ini menggunakan dua buah korpus, yaitu korpus dari data dokumen teks kesehatan yang digunakan \cite{skripsiKakRadit} dan dokumen teks hasil pengumpulan yang dilakukan oleh \saya~pada situs kesehatan \textit{online}. Setelah itu \saya~melakukan pra-pemrosesan pada kedua data sebelum melakukan tahap selanjutnya. Untuk dokumen hasil pengumpulan dari forum, \saya~memberi label kesehatan secara manual dengan ketentuan pelabelan pada penelitian \cite{skripsiKakRadit}
 
@@ -115,61 +115,58 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 	\item Fitur 2: \textit{Part of Speech Tag} (POS-Tag)\\
 	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia.
 	
-	Perlihatkan Statistik
-	
 	\item Fitur 3: \textit{Stopword}\\
 	Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. Fitur ini \saya~gunakan dalam penelitian ini untuk membantu sistem dalam menghindari kesalahan pelabelan suatu kata yang bukan entitas namun dilabeli sebagai entitas.
 	
-	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila men
+	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila mempertahankan fitur ini, oleh karena intu, \saya~mengusulkan untuk menggunakan fitur ini. Untuk pembahasan lebih lanjut dibahas pada Bab 5.
 	
 	\item Fitur 4: Kamus kesehatan\\
-	Fitur kamus kata merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment.
+	Fitur kamus kata merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment. Dengan menggunakan fitur ini diharapkan mampu berkontribusi dalam meningkatkan akurasi karena model akan mempertimbangkan apakah suatu kata termasuk di dalam kamus atau tidak. 
 	
-	ALASAN?
+	\item Fitur 5: Frasa Kata\\
+	Pada penelitian ini, \saya~mengusulkan fitur Frasa Kata karena entitas \textit{symptom} dan \textit{treatment}  pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} pada umumnya entitas yang akan dikenali pada penelitian ini merupakan frasa kata benda. Oleh karena itu, \saya~berharap bahwa dengan diusulkannya fitur ini akan mampu menambah akurasi dari model yang diusulkan.
 	
-	\item Fitur 5: Frasa kata benda\\
-	Menurut \cite{hs2005bahasa}, frasa kata benda sendiri merupakan kelompok kata benda yang dibentuk dengan memperluas kata benda ke sekelilingnya. Fitur frasa kata benda yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa kata benda atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
-	\begin{description}
-	 	\item[$\bullet$] NP : NN
-	 	\item[$\bullet$] NP : NNP
-	 	\item[$\bullet$] NP : PR
-	 	\item[$\bullet$] NP : PRP
-	 	\item[$\bullet$] NP : NN + NN
-	 	\item[$\bullet$] NP : NN + NNP
-	 	\item[$\bullet$] NP : NN + PR
-	 	\item[$\bullet$] NP : NN + PRP
-	 	\item[$\bullet$] NP : NN + JJ
-	 	\item[$\bullet$] NP : DT + NN
-	 	\item[$\bullet$] NP : RB + NN
-	 	\item[$\bullet$] NP : CD + NN
-	 	\item[$\bullet$] NP : NND + NN
- \end{description}
+	Pada penelitian ini ada dua frasa yang diuji-cobakan, yaitu:
+	\begin{enumerate}
+		\item Frasa Kata Benda (Nomina)
+		Menurut \cite{hs2005bahasa}, frasa kata benda sendiri merupakan kelompok kata benda yang dibentuk dengan memperluas kata benda ke sekelilingnya. Fitur frasa kata benda yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa kata benda atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
+		\begin{description}
+			\item[$\bullet$] NP : NN
+			\item[$\bullet$] NP : NNP
+			\item[$\bullet$] NP : PR
+			\item[$\bullet$] NP : PRP
+			\item[$\bullet$] NP : NN + NN
+			\item[$\bullet$] NP : NN + NNP
+			\item[$\bullet$] NP : NN + PR
+			\item[$\bullet$] NP : NN + PRP
+			\item[$\bullet$] NP : NN + JJ
+			\item[$\bullet$] NP : DT + NN
+			\item[$\bullet$] NP : RB + NN
+			\item[$\bullet$] NP : CD + NN
+			\item[$\bullet$] NP : NND + NN
+		\end{description}
+		
+		\item Frasa Kata Kerja (Verbal)\\
+		Menurut \cite{hs2005bahasa}, frasa verbal merupakan kelompok kata benda yang dibentuk dengan mkata kerja. Fitur frasa verbal yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa verbal atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
+		\begin{description}
+			\item[$\bullet$] VP : VB
+			\item[$\bullet$] VP : VB + NP
+		\end{description}
+	\end{enumerate}
 
- \item Fitur 6: Frasa verbal\\
- Menurut \cite{hs2005bahasa}, frasa verbal merupakan kelompok kata benda yang dibentuk dengan mkata kerja. Fitur frasa verbal yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa verbal atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
- \begin{description}
-	 	\item[$\bullet$] VP : VB
-	 	\item[$\bullet$] VP : VB + NP
- \end{description}
-
- \item Fitur 7: 1 kata sebelum\\
- Fitur ini merupakan fitur yang berisi informasi kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata.
- 
- Kata sebelum dapat membantu evidence kata setelahnya. Misalnya kata "kepala", sebelumnya "sakit".
- 
- \item Fitur 8: 1 kata sesudah\\
- Fitur ini merupakan fitur yang berisi informasi kata sesudah kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata.
- 
- \item Fitur 9: 2 kata sebelum\\
- Fitur ini merupakan fitur yang berisi informasi 2 kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata.
- 
+ \item Fitur 6: 1 Kata Sebelum\\
+ Fitur ini merupakan fitur yang berisi informasi kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Fitur ini digunakan pada penelitian penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan.
+  
+ \item Fitur 7: 1 Kata Sesudah\\
+ Fitur ini merupakan fitur yang berisi informasi kata sesudah kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Sama seperti pada fitur 1 Kata Sebelum, ada beberapa kasus yang mana apabila suatu kata merupakan sebuah entitas, akan lebih mudah dikenali apabila melihat kata atau konteks setelahnya. Sama seperti contoh pada Fitur 1 Kata Sebelum, misal diberikan kata "masuk angin", apabila hanya diberikan informasi "masuk" tanpa "angin", akan lebih sulit mengenali apakah kata tersebut termasuk entitas \textit{disease} atau bukan. Selain itu, fitur ini juga dapat membedakan kata berentitas dengan kata yang bukan, misalnya kata "masuk angin" dengan "masuk rumah". Apabila informasi pada saat tersebut hanya diberikan kata "masuk" saja tanpa kata setelahnya, akan lebih sulit mengenali kata tersebut termasuk kata berentitas atau bukan.
+  
 \end{enumerate}
 
 \subsection{Pengusulan Arsitektur RNNs}
 Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap eksperimen. Ada dua arsitektur yang \saya~gunakan dalam penelitian ini, yaitu
 \begin{enumerate}
 	\item LSTM 1 layer\\
-	Pada LSTM 1 layer, semua fitur yang menjadi input digabung menjadi satu. Misalnya .... Berikut merupakan ilustrasi LSTM 1 layer yang \saya~gunakan dalam penelitian ini.
+	Pada LSTM 1 layer, semua fitur yang menjadi input pada sebuah \textit{timestep} digabung menjadi satu. Berikut merupakan ilustrasi LSTM 1 layer yang \saya~gunakan dalam penelitian ini.
 	
 	\begin{figure}
 		\centering

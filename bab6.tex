@@ -6,19 +6,11 @@
 %-----------------------------------------------------------------------------%
 \section{Kesimpulan}
 %-----------------------------------------------------------------------------%
-Setelah mengimplementasikan rancangan arsitektur sistem, menjalankan eksperimen, serta menganalisis hasil eksperimen, diperoleh kesimpulan sebagai berikut.
+Peneitian ini bertujuan untuk membangun sistem yang mampu melakukan ekstraksi entitas kesehatan dari forum \textit{online} secara otomatis. Fitur yang digunakan pada penelitian ini yaitu fitur Kata itu Sendiri, Kamus Kesehatan, \textit{Stop Word}, POS-Tag, Frasa kata,  1 kata sebelum dan 1 kata sesudah. Penelitian ini juga menggunakan dua arsitektur RNNs yang diusulkan, yaitu RNNs dengan 1 layer dan RNNs dengan 2 layer.
 
-\begin{enumerate}
-  \item Penggunaan fitur SDCC berpeluang lebih baik daripada fitur MFCC. Hal ini dapat diamati dari Gambar \ref{fig:pieclass0}, Gambar \ref{fig:pieclass1}, dan Gambar \ref{fig:pieclass2}. Ketiga gambar tersebut menunjukkan hasil yang konsisten bahwa fitur SDCC lebih mendominasi dalam memberikan hasil yang lebih akurat daripada fitur MFCC.
+Setelah dilakukan penelitian, secara garis besar didapatkan bahwa fitur Kata itu Sendiri, Kamus Kesehatan, \textit{Stop Word}, Frasa Kata,  1 Kata Sebelum dan 1 Kata Sesudah memberikan hasil yang terbaik, yaitu \textbf{angka yang manakah yang perlu ditampilkan? Secara overall atau diperici bagian terbaik untuk entitas \textit{disease}, \textit{symptom}, \textit{treatment}, \textit{drug}, atau \textit{overall}}.
 
-  \item Penggunaan metode klasifikasi GMM berpeluang lebih baik daripada metode klasifikasi SVM maupun metode gabungan SVM dengan GMM. Hal ini dapat diamati dari \ref{fig:piefeat0} dan Gambar \ref{fig:piefeat1}. Kedua gambar tersebut menunjukkan bahwa metode klasifikasi GMM lebih mendominasi dalam memberikan hasil yang paling akurat dibandingkan metode klasifikasi lainnya.
-
-  \item Kombinasi pengambilan fitur SDCC dengan metode klasifikasi GMM adalah kombinasi yang memberikan hasil paling akurat secara rata-rata dalam penelitian ini. Hal ini dapat diamati dari nilai rata-rata akurasi pada Tabel \ref{table:mfccsvm}, Tabel \ref{table:mfccgmm}, Tabel \ref{table:mfccgabungan}, Tabel \ref{table:sdccsvm}, Tabel \ref{table:sdccgmm}, dan Tabel \ref{table:sdccgabungan}. Kombinasi fitur SDCC dengan metode klasifikasi GMM menghasilkan nilai rata-rata akurasi tertinggi, yaitu sebesar 83,4\%.
-
-  \item Penggabungan dua metode klasifikasi yang sama-sama memiliki kinerja yang baik tidak menjamin akan menghasilkan metode klasifikasi baru yang lebih akurat secara rata-rata. Nilai rata-rata akurasi dari metode klasifikasi GMM turun setelah digabung dengan metode klasifikasi SVM, baik pada pengambilan fitur MFCC maupun pada pengambilan fitur SDCC.
-
-  \item Akurasi dari masing-masing ayat berbeda-beda. Ada beberapa ayat yang dapat diklasifikasikan dengan akurasi tinggi, dan ada juga beberapa ayat yang hanya diklasifikasikan dengan akurasi rendah.
-\end{enumerate}
+Selain itu, arsitektur yang \saya~usaulkan dalam penelitian ini, yaitu arsitektur RNNs dengan 2 layer memberikan hasil yang terbaik pada penelitian ini. Selain itu, hasil yang diberikan juga lebih baik dibandingkan dengan hasil penelitian \cite{skripsiKakRadit}. \textbf{angka yang manakah yang perlu ditampilkan? Secara overall atau diperici bagian terbaik untuk entitas \textit{disease}, \textit{symptom}, \textit{treatment}, \textit{drug}, atau \textit{overall}}.
 
 %-----------------------------------------------------------------------------%
 \section{Saran}
@@ -26,15 +18,8 @@ Setelah mengimplementasikan rancangan arsitektur sistem, menjalankan eksperimen,
 Setelah melakukan eksperimen dan menganalisis hasilnya, ada beberapa saran untuk penelitian selanjutnya, antara lain sebagai berikut.
 
 \begin{enumerate}
-  \item Fitur MFCC dan fitur SDCC memungkinkan untuk dikombinasikan. Kombinasi tersebut layak untuk dicoba dalam penelitian selanjutnya karena ada peluang akurasi dari sistem akan meningkat.
+  \item Penelitian ini hanya menggunakan 305 \textit{post} forum kesehatan \textit{online} sehingga perlu penambahan data \textit{training} dan \textit{testing} mengingat \textit{deep learning} membutuhkan data yang besar dalam melakukan \textit{training}.
 
-  \item Sistem dalam penelitian ini dapat dikembangkan lebih lanjut dengan cara mensegmentasi ayat-ayat yang panjang, seperti yang ada dalam Surat Al-Baqarah. Dalam surat tersebut terdapat ayat sepanjang satu halaman \quran. Dengan cara disegmentasi, ayat-ayat yang panjang dapat diperlakukan seperti ayat-ayat yang pendek di juz 30. Sehingga sistem yang dikembangkan dalam penelitian ini dapat digunakan untuk seluruh ayat dalam \quran.
+  \item Perlu dibuat korpus dengan jumlah masing-masing entitas yang seimbang, sehingga hasil yang diberikan tidak bias.
 
-  \item Banyaknya data sampel dapat ditingkatkan, tidak hanya 40 sampel qari. Data sampel yang semakin banyak diharapakan akan menghasilkan sistem yang semakin akurat dan presisi.
-
-  \item Masih ada metode-metode klasifikasi lain yang layak untuk dicoba dalam penelitian selanjutnya, seperti \f{deep learning}, \f{i-vector}, dan \f{Gaussian process}. Ada kemungkinan metode klasifikasi lain akan menghasilkan sistem yang lebih akurat dan presisi.
-
-  \item Metode klasifikasi yang dilakukan dalam penelitian ini masih menggunakan parameter yang konstan. Ada potensi untuk meningkatkan akurasi sistem dengan memilih parameter yang lebih tepat pada setiap metode klasifikasi.
-
-  \item Penelitian ini dapat dikembangkan untuk mencari tahu qari mana yang pelafalannya paling sering diidentifikasi dengan benar.
 \end{enumerate}

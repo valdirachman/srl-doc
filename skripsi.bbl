@@ -7,6 +7,24 @@ Abacha, A.~B. dan Zweigenbaum, P. (2011).
 \newblock In {\em Proceedings of BioNLP 2011 Workshop}, pages 56--64.
   Association for Computational Linguistics.
 
+\bibitem[Bakker, 2001]{bakker2001reinforcement}
+Bakker, B. (2001).
+\newblock Reinforcement learning with long short-term memory.
+\newblock In {\em NIPS}, pages 1475--1482.
+
+\bibitem[Bengio et~al., 1994]{bengio1994learning}
+Bengio, Y., Simard, P., dan Frasconi, P. (1994).
+\newblock Learning long-term dependencies with gradient descent is difficult.
+\newblock {\em IEEE transactions on neural networks}, 5(2):157--166.
+
+\bibitem[conference on neural information~processing systems et~al.,
+  1997]{ieee1997advances}
+conference on neural information~processing systems, I., Mozer, M.~C., Jordan,
+  M.~I., dan Petsche, T. (1997).
+\newblock {\em Advances in Neural Information Processing Systems 9: Proceedings
+  of the 1996 Conference}.
+\newblock Mit Press.
+
 \bibitem[Dinakaramani et~al., 2014]{dinakaramani2014designing}
 Dinakaramani, A., Rashel, F., Luthfi, A., dan Manurung, R. (2014).
 \newblock Designing an indonesian part of speech tagset and manually tagged
@@ -53,6 +71,16 @@ Herwando, R. (2016).
   indonesia menggunakan algoritma conditional random fields.
 \newblock Master's thesis, Universitas Indonesia, Kampus UI Depok.
 
+\bibitem[Hochreiter, 1991]{hochreiter1991untersuchungen}
+Hochreiter, S. (1991).
+\newblock Untersuchungen zu dynamischen neuronalen netzen.
+\newblock {\em Diploma, Technische Universit{\"a}t M{\"u}nchen}, page~91.
+
+\bibitem[Hochreiter et~al., 2001]{hochreiter2001gradient}
+Hochreiter, S., Bengio, Y., Frasconi, P., dan Schmidhuber, J. (2001).
+\newblock Gradient flow in recurrent nets: the difficulty of learning long-term
+  dependencies.
+
 \bibitem[Hochreiter dan Schmidhuber, 1997]{hochreiter1997long}
 Hochreiter, S. dan Schmidhuber, J. (1997).
 \newblock Long short-term memory.
@@ -91,6 +119,11 @@ Mujiono, S., Fanany, M.~I., dan Basaruddin, C. (2016).
 \newblock A new data representation based on training data characteristics to
   extract drug named-entity in medical text.
 \newblock {\em arXiv preprint arXiv:1610.01891}.
+
+\bibitem[Schmidhuber et~al., 2007]{schmidhuber2007training}
+Schmidhuber, J., Wierstra, D., Gagliolo, M., dan Gomez, F. (2007).
+\newblock Training recurrent networks by evolino.
+\newblock {\em Neural computation}, 19(3):757--779.
 
 \bibitem[Seki dan Mostafa, 2003]{seki2003probabilistic}
 Seki, K. dan Mostafa, J. (2003).

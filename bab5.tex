@@ -9,6 +9,32 @@ Pada bab ini \saya~akan menjelaskan mengenai skeanrio, hasil dan analisis dari e
 \section{Matriks Evaluasi}
 Pada eksperimen ini, untuk mendapatkan nilai akurasi dari masing-masing eksperimen \saya~menggunakan \textit{precission}, \textit{recall} dan \textit{f-measure}. \Saya~menggunakan \textit{10-cross fold validation} dalam menjalankan eksperimen. Terkait dengan penjelasan mengenai cara penghitungan dan evaluasi sudah dijelaskan pada Bab 3.
 
+\section{\textit{Baseline} Eksperimen}
+Pada penelitian ini, \saya~mencoba melakukan implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Implementasi dan eksperimen ini bertujuan sebagai \textit{baselaine} eksperimen dan penelitian yang \saya~lakukan. Selain itu, juga untuk mengetahui secara singkat fitur yang diskriminatif dalam melakukan \textit{sequence labelling} pada \mer~ini.
+
+Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}.
+	
+\begin{table}
+	\centering
+	\caption{Tabel Hasil Eksperimen dengan Fitur Kata Itu Sendiri}
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+							& \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+		\textit{Disease}    & 71.80\%             & 61.74\%        & 66.21\%           \\ \hline
+		\textit{Symptom}    & 72.90\%             & 65.38\%        & 68.72\%           \\ \hline
+		\textit{Treatment}  & 67.06\%             & 55.95\%        & 60.52\%           \\ \hline
+		\textit{Drug}		& 70.21\%             & 50.06\%        & 57.71\%           \\ \hline
+	    \end{tabular}
+\label{table:radit}
+\end{table}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.85\linewidth]{images/radit}
+	\caption{Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri}
+	\label{fig:radit}
+\end{figure}
+
 %-----------------------------------------------------------------------------%
 \section{Skenario Eksperimen}
 Pada penelitian ini, \saya~melakukan 2 buah skenario utama, yaitu skenario untuk menguji fitur yang memiliki kontribusi untuk meningkatkan akurasi dari setiap eksperimen dan skenario untuk menguji arsitektur RNNs yang \saya~usulkan. Berikut merupakan skenario yang \saya~rancang dalam penelitian ini:
@@ -19,12 +45,11 @@ Pada penelitian ini, \saya~melakukan 2 buah skenario utama, yaitu skenario untuk
 		\item Sub-skenario menguji fitur kata itu sendiri
 		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur kamus
 		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur stop word
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur POS Tag
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur POS-Tag
 		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur Frasa kata
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur kata sebelum
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur kata sesudah
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur 2 kata sebelum
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur POS-Tag yang direpresentasikan dengan vektor dari \textit{word embedding}
+		\item Sub-skenario menguji fitur terbaik sebelumnya dikurang fitur POS-Tag
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur 1 kata sebelum
+		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur 1 kata sesudah
 	\end{enumerate}
 	\item Skenario untuk menguji arsitektur RNNs\\
 	Skenario ini bertujuan untuk melihat pengaruh arsitektur RNNs pada penelitian ini. \Saya~mencoba kedua arsitektur RNNs yang telah diusulkan sebelumnya dengan menggunakan kombinasi fitur terbaik dari eksperimen di skenario pengujian fitur di atas. Pada skenario ini, terdapat 2 sub-skenario, yaitu:
@@ -237,7 +262,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}\label{eks:subekswbef1}
 	%-----------------------------------------------------------------------------%
-	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur 1 Kata Sebelum. Fitur ini digunakan pada penelitian \cite{abacha2011medical} dan berkontribusi menaikkan akurasi serta pada penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan. Oleh karena itu, pada sub-eksperimen ini saya mencoba menambahkan fitur tersebut.
+	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur 1 Kata Sebelum. Fitur ini digunakan pada penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan. Oleh karena itu, pada sub-eksperimen ini saya mencoba menambahkan fitur tersebut.
 	
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}.
 	
@@ -306,14 +331,14 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     
     Pada eksperimen ini, \saya~mencoba dua buah arsitektur RNNs yang telah \saya~usulkan pada Bab3 yaitu RNNs dengan 1 layer dan RNNs dengan 2 layer. Fitur yang digunakan dalam pengujian ini yaitu kombinasi fitur yang menghasilkan akurasi terbaik pada eksperimen pertama, yaitu fitur Kata itu Sendiri, Kamus Kesehatan, \textit{Stop Word}, Frasa Kata, 1 Kata Sebelum dan 1 Kata Sesudah.
     
-    \subsubsection{Sub-Eksperimen Menguji Arsitektur RNNs 1 layer}\label{eks2:subeksrnn1}
+    \subsubsection{Sub-Eksperimen Menguji Arsitektur RNNs 1 Layer}\label{eks2:subeksrnn1}
     %-----------------------------------------------------------------------------%
     Pada sub-eksperimen ini, \saya~menggunakan struktur RNNs yang mana semua fitur digabung menjadi satu dalam sebuah \textit{timestep}.
     Artinya fitur-fitur yang berbeda tersebut akan digabung atau di-\textit{concat} menjadi sebuah vektor yang akan menjadi \textit{input} bagi RNNs ini. RNNs inilah yang digunakan pada eksperimen pertama, sehingga hasilnya sama dengan sub-eksperimen \ref{eks:subekswaf1}.
     
     \begin{table}
     	\centering
-    	\caption{Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 1 layer}
+    	\caption{Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 1 Layer}
     	\begin{tabular}{|c|c|c|c|c|}
     		\hline
     		& \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
@@ -328,14 +353,14 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     \begin{figure}
     	\centering
     	\includegraphics[width=0.85\linewidth]{images/histogram9}
-    	\caption{Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 layer}
+    	\caption{Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 Layer}
     	\label{fig:owndict9}
     \end{figure}
     
     Pada eksperimen ini, hasil yang dicapai masih lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena informasi fitur yang berbeda-beda dijadikan satu, sehingga ada kemungkinan hilangnya informasi dari masing-masing fitur tersebut. Oleh karena itu, untuk mengatasi permasalahan tersebut \saya~mengusulkan arsitektur yang mana masing-masng kelompok fitur yang berbeda dipisahkan dan menjadi \textit{input} bagi masing-masing LSTMs. Untuk penjelasan eksperimen ini akan dijelaskan pada sub-eksperimen \ref{eks2:subeksrnn2}
     
     
-    \subsubsection{Sub-Eksperimen Menguji Arsitektur RNNs 2 layer}\label{eks2:subeksrnn2}
+    \subsubsection{Sub-Eksperimen Menguji Arsitektur RNNs 2 Layer}\label{eks2:subeksrnn2}
     %-----------------------------------------------------------------------------%
     Pada sub-eksperimen sebelumnya, fitur-fitur yang berbeda digabung menjadi satu, sehingga ada kemungkinan hilangnya informasi dari fitur tersebut. Oleh karena itu, \saya~mengusulkan adanya layer tambahan setelah masing-masing fitur tersebut masuk ke dalam model. \Saya~mengusulkan bahwa masing-masing kelompok fitur menjadi \textit{input} RNNs secara terpisah. Setelah masuk di RNNs, \textit{output} dari masing-masing RNNs tersebut di-\textit{merge} ke dalam sebuah layer, lalu masuk kembali ke RNNs untuk melihat konteks fitur-fitur sebelumnya. Dengan diusulkannya arsitektur RNNs ini \saya~berharap bahwa masing-masing fitur terjaga informasinya dan tidak terganggu dengan informasi lain.
     
@@ -343,23 +368,21 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     
     \begin{table}
     	\centering
-    	\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}
+    	\caption{Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 2 Layer}
     	\begin{tabular}{|c|c|c|c|c|}
     		\hline
     		& \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-    		\textit{Disease}      & 70.68\%             & 66.18\%        & 68.17\%           \\ \hline
-    		\textit{Symptom}      & 64.16\%             & 59.55\%        & 61.42\%           \\ \hline
-    		\textit{Treatment}    & 61.02\%             & 51.13\%        & 54.03\%           \\ \hline
-    		\textit{Drug}		  & 70.85\%             & 70.33\%        & 69.82\%           \\ \hline
+    		\textit{Disease}      & 73.71\%             & 69.79\%        & 71.47\%           \\ \hline
+    		\textit{Symptom}      & 71.60\%             & 67.26\%        & 67.24\%           \\ \hline
+    		\textit{Treatment}    & 72.70\%             & 57.25\%        & 63.70\%           \\ \hline
+    		\textit{Drug}		  & 75.60\%             & 65.35\%        & 69.80\%           \\ \hline
     	\end{tabular}
     	\label{table:owndict10}
     \end{table}
     
     \begin{figure}
     	\centering
-    	\includegraphics[width=\linewidth]{images/histogram8}
-    	\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}
+    	\includegraphics[width=\linewidth]{images/best_old}
+    	\caption{Histogram Metrik Evaluasi dengan Arsitektur RNNs 2 Layer}
     	\label{fig:owndict10}
     \end{figure}
-    
-    Pada eksperimen ini, hasil yang dicapai masih lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena informasi fitur yang berbeda-beda dijadikan satu, sehingga ada kemungkinan hilangnya informasi dari masing-masing fitur tersebut. Oleh karena itu, untuk mengatasi permasalahan tersebut \saya~mengusulkan arsitektur yang mana masing-masng kelompok fitur yang berbeda dipisahkan dan menjadi \textit{input} bagi masing-masing LSTMs. Untuk penjelasan eksperimen ini akan dijelaskan pada sub-eksperimen \ref{eks2:subeksrnn2}
