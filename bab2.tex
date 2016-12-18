@@ -4,7 +4,7 @@
 %-----------------------------------------------------------------------------%
 
 %-----------------------------------------------------------------------------%
-\section{Pengenalan Entitas Kesehatan}
+\section{Pengenalan Entitas Kesehatan}\label{aboutmer}
 %-----------------------------------------------------------------------------%
 % Apa itu MER
 Pengenalan Entitas Kesehatan atau disebut juga dengan \textit{Medical Entity Recognition} (\mer) merupakan salah satu cabang dari Pengenalan Entitas Bernama (NER) dengan dokumen sumber berupa teks kesehatan. NER sendiri merupakan suatu sistem/aplikasi yang memanfaatkan teknik pada \textit{Natural Language Processing} dan \textit{Information Extraction} untuk mengenali entitas yang telah dikategorikan sebelumnya seperti nama, lokasi, organisasi, waktu dan sebagainya. Sedangkan pada sistem MER, entitas yang akan dikenali yaitu nama penyakit (\textit{disease}), gejala penyakit (\textit{symptom}), obat (\textit{drug}) dan langkah penyembuhan (\textit{treatment}), nama protein, DNA, RNA dll. Gambar \ref{fig:mer_ilustration} merupakan ilustrasi dari sebuah sistem \mer.
@@ -30,11 +30,12 @@ Selain penelitian di atas, \cite{mujiono2016new} juga melakukan penelitian terka
 % Cerita MER Bahasa Indonesia (Kak Radit, Performa, Tabel) %
 Penelitian terkait \mer~pada dokumen berbahasa Indonesia sudah dilakukan sebelumnya oleh \cite{skripsiKakRadit}. Dalam penelitiannya, \cite{skripsiKakRadit} menggunakan CRF (\textit{Conditional Random Fields}) untuk proses pelabelan. Kemudian, pada pekerjaan yang Herwando (2006) lakukan, sebagian besar digunakan untuk mencari fitur-fitur yang memang diskriminatif untuk masalah \textit{sequence labelling} yang menghasilkan akurasi terbaik. Entitas yang akan diberi label yaitu nama penyakit (\textit{disease}), gejala penyakit (\textit{sympton}), obat (\textit{drug}) dan langkah penyembuhan \textit{treatment}. Dokumen yang menjadi input penelitian merupakan hasil \textit{crawling} dari  forum kesehatan \textit{online} dari berbagai situs yang berisi tanya jawab. Hasil yang didapatkan yaitu \textit{precision} $ 70.97\% $, \textit{recall} $ 57.83\% $ dan \textit{f-measeure} $ 63.69\% $ dengan fitur \textit{its own word}, frasa, kamus (\textit{symptom}, \textit{disease}, \textit{treatment} dan \textit{drug}), kata pertama sebelum dan panjang kata.
 
-Selain itu, \cite{suwarningsih2014imner} juga melakukan penelitian terkait \mer~pada dokumen berbahasa Indonesia dengan menggunakan SVM (\textit{Support Vector Machine}), dengan SVM yang digunakan untuk klasifikasi per-kata. Entitas yang akan dikenali yaitu \textit{location}, \textit{facility}, \textit{diagnosis}, \textit{definition} dan \textit{person}. Data yang digunakan sebagai korpus merupakan data dari situs \textit{health.detik.com}, \textit{detikhealth.com} dan \textit{health.kompas.com/konsultasi} dengan total keseluruhan sebanyak 1000 kalimat. AKurasi yang dihasilkan yaitu $ 90\% $ dengan menggunakan fitur \textit{baseline}, \textit{word level (morphology, POS-Tag, dll)} dan fitur dari dalam dokumen tersebut.
+Selain itu, \cite{suwarningsih2014imner} juga melakukan penelitian terkait \mer~pada dokumen berbahasa Indonesia dengan menggunakan SVM (\textit{Support Vector Machine}), dengan SVM yang digunakan untuk klasifikasi per-kata. Entitas yang akan dikenali yaitu \textit{location}, \textit{facility}, \textit{diagnosis}, \textit{definition} dan \textit{person}. Data yang digunakan sebagai korpus merupakan data dari situs \textit{health.detik.com}, \textit{detikhealth.com} dan \textit{health.kompas.com/konsultasi} dengan total keseluruhan sebanyak 1000 kalimat. Akurasi yang dihasilkan yaitu $ 90\% $ dengan menggunakan fitur \textit{baseline}, \textit{word level (morphology, POS-Tag, dll)} dan fitur dari dalam dokumen tersebut.
 
 \section{Deep Learning}
-Apa itu DeepLearning//
-How it works
+\textit{Deep Learning}, atau disebut juga \textit{deep structured learning, hierarchical learning,} dan \textit{deep machine learning} merupakan salah satu cabang dalam \textit{machine learning} dimana model komputasinya yang terdiri dari beberapa layer mampu mempelajari dan mengekstrak representasi data/fitur secara otomatis pada abtraksi tingkat tinggi \citep{lecun2015deep}. Model tersebut memberikan hasil yang sangat baik dalam penelitan di berbagai bidang seperti \textit{speech recognition}, \textit{object detection}, \textit{sequence labelling} dan lain sebagainya.  Struktur pembelajaran hierarki pada \textit{deep learning} termotivasi dari bagaimana neokorteks pada otak maunusia bekerja secara mendalam. Neokorteks tersebut melakukan proses pemelajaran berlayer dan secara otomatis mampu mengketrak fitur dan melakukan abstraksi dari \textit{resource} yang diberikan \citep{bengio2007scaling}.
+
+Dalam proses pembelajarannya \textit{deep learning} mampu menemukan struktur intrinsik dalam dataset yang besar dengan cara menerapkan \textit{backpropagation} untuk menentukan parameter internal di dalam model. Berbeda dengan 
 
 
 \section{Recurrent Neural Networks}\label{sec:rnns}
@@ -58,23 +59,20 @@ Banyak variasi RNNs yang telah diusulkan oleh beberapa peneliti, seperti Elman \
 
 \textbf{Bagian Matematis ini masih belum saya perbaiki, karena masih mempelajari dari beberapa sumber}
 
-Dari gambar \ref{fig:simple_rnn}, sebuah jaringan pada RNNs memiliki \textit{input layer} $ x $, \textit{hidden layer} $ h $ dan \textit{output layer} $ y $. Terdapat 3 buah parameter yang dicari dalam tahap \textit{learning}, yaitu $ {U, V, W} $ yang masing-masing parameter tersebut di-\textit{share} untuk semua \textit{timestep} $ t $ dengan:
-\begin{equation}\label{equ:euclideandistance}
-U, V, W \in {\rm I\!R}
-\end{equation}
+Dari gambar \ref{fig:simple_rnn}, sebuah jaringan pada RNNs memiliki 3 layer pada setiap \textit{timestep}, yaitu \textit{input layer}, \textit{hidden layer} dan \textit{output layer}. \textit{Input layer} merupakan layer sebagai tempat masuk \textit{resource}. Di dalam \textit{hidden layer} tersebut terdapat beberapa unit untuk menyimpan informasi dari \textit{timestep} sebelumnya. Sedangkan pada \textit{output layer} merupakan layer yang memberikan \textit{output} dari model. Pada setiap \textit{timestep} $ t $, RNNs di atas memiliki sebuah \textit{input layer} $ \vec{x(t)} \in {\rm I\!R^{N}} $, \textit{hidden layer} $ \vec{h(t)} \in {\rm I\!R^{H}} $, dan \textit{output layer} $ \vec{y(t)} \in {\rm I\!R^{M}} $. Nilai $ N $, $ H $, dan $ M $ merupakan panjang vektor \textit{input}, jumlah unit di dalam \textit{hidden layer} tersebut, dan panjang vektor \textit{output} yang diinginkan. Terdapat tiga parameter yang akan diestimasi, yaitu $ U \in {\rm I\!R^{H \times N }} $, $ V \in {\rm I\!R^{M \times H}}$, dan $ W \in {\rm I\!R^{H \times H}}$. Tiga parameter tersebut bersifat \textit{shared}, yang artinya masing-masing \textit{timestep} menggunakaan dan mengestimasi tiga parameter tersebut.
 
-Untuk suatu \textit{timestep} $ t $, \textit{input} RNNs dinotasikan sebagai $ x(t) $, \textit{timestep} dinotasikan sebagai $ h(t) $ dan \textit{output} dinotasikan sebagai $ y(t) $, dengan:
+Apabila tiga parameter di atas sudah diketahui, $ \vec{h(t)} $ dan $ \vec{y(t)} $ dapat dihitung dengan persamaan:
 \begin{equation}
-y(t) = f(V \cdot h(t))
+\vec{y(t)} = f(V \cdot \vec{(t)})
 \end{equation}
 \begin{equation}
-h(t) = f(U \cdot x(t) + W \cdot h(t-1))
+\vec{h(t)} = f(U \cdot \vec{x(t)} + W \cdot \vec{h(t-1)})
 \end{equation}
 dimana
 \begin{equation}
-h(0) = f(W \cdot x(0))
+\vec{h(0)} = f(W \cdot \vec{x(0)})
 \end{equation}
-dengan $ f $ sebagai \textit{activation function}. Untuk lebih jelasnya, berikut merupakan gambar dari satu buah \textit{timestep} di dalam RNNs
+dengan $ f $ sebagai \textit{activation function}, misalnya $ tanh $ atau $ softmax $. Untuk lebih jelasnya, berikut merupakan gambar dari satu buah \textit{timestep} di dalam RNNs.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.80\linewidth]{images/nodes_rnn}
@@ -100,18 +98,46 @@ Pada gambar \ref{fig:lstm}, kita dapat melihat bahwa 1 blok memori pada LSTM ter
 	\item \textit{Forget Gate}\\
 	Gerbang ini memiliki fungsi untuk menentukan informasi yang akan disimpan di dalam memori dengan formula berikut
 	\begin{equation}\label{eq:forget_lstm}
-	\alpha_{t}=\tau(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~h_{t-1})
+	\alpha_{t}=\tau(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1})
 	\end{equation}
 	
-	\item \textit{Input Gate}
+	\item \textit{Input Gate}\\
+	Gerbang ini berfungsi untuk menentukan apakah informasi baru $ x(t) $ akan disimpan dalam \textit{cell state} atau tidak. 
+	\begin{equation}\label{eq:input_lstm}
+	\beta_{t}=\tau(W_{x\beta}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1})
+	\end{equation}
 	
-	\item \textit{Output Gate}
+	\item \textit{Output Gate}\\
+	Gerbang ini berfungsi untuk menendukan \textit{output} dari sebuah \textit{timestep} berdasarkan \textit{cell state} saat ini.
+	\begin{equation}\label{eq:output_lstm}
+	\gamma_{t}=\tau(W_{x\gamma}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1})
+	\end{equation}
+	
 \end{enumerate}
+
+Dalam setiap \textit{timestep} $ t $, berikut merupakan formula untuk menghitung $ m(t) $ dan $ h(t) $:
+\begin{equation}\label{eq:mt}
+m_{t}=\alpha_{t} (\times) m_{t-1} + \beta_{t} (\times) f(x_{t},{t-1})
+\end{equation}
+\begin{equation}\label{eq:ht}
+h_{t}=\gamma_{t} (\times) tanh(m_{t})
+\end{equation}
+dimana
+\begin{equation}\label{eq:hf}
+f(x_{t},{t-1})=tanh(W_{xm} \cdot x_{t} + W_{hm} \cdot h_{t-1})
+\end{equation}
+
 \subsection{Penerapan RNNs untuk MER}
--- Belum
+Terdapat beberapa penelitian terkait \mer~yang dikembangkan menggunakan RNNs, seperti \textit{drug entity recognition} \citep{mujiono2016new}, \textit{medical event detection on EHR} \citep{jagannatha2016bidirectional}, \textit{biomedical entity recognition} \citep{limsopatham2016learning}, dan \textit{Named Entity Recognition in Swedish Health Records} \citep{almgren2016named}. Penelitian \textit{drug entity recognition} oleh \cite{mujiono2016new} sudah dijelaskan pada subbab \ref{aboutmer}.
+
+Dalam penelitiannya, \cite{jagannatha2016bidirectional} menggunakan LSTMs untuk memprediksi label entitasnya. Penelitian tersebut bertujuan untuk mendeteksi kejadian klinik pada \textit{Electronic Health Records} seperti \textit{ medication, diagnosis (Indication), adverse drug events (ADEs) severity, other SSD, frequency, drugname} dan \textit{duration}. Sebagai pembanding, penulis tersebut juga mengimplementasikan CRF dan GRU. Ada beberapa kesulitan yang dihadapi dalam mengolah EHR tersebut, yaitu EHR lebih \textit{noisy} dibandingkan dengan teks biasa, banyak kalimat yang tidak komplet dan penggunaan frasa. Hasil dari penelitian tersebut menunjukkan bahwa semua model RNNs (LSTMs dan GRU) memiliki akurasi yang lebih baik daripada CRF. Apabila dibandingkan dengan \textit{baseline} yang digunakan, GRU mampu meningkatkan \textit{recall} (0.8126), \textit{precision} (0.7938) dan \textit{F-score} (0.8031) sebesar 19\%, 2\% dan 11\%.
+
+\cite{limsopatham2016learning} menggunakan \textit{Bidirectional-LSTMs} untuk mengidentifikasi kalimat dengan menggunakan karakter dan kata yang diubah menjadi vektor menggunakan \textit{word embedding}. Untuk setiap kalimatnya, peneliti tersebut mengusulkan adanya \textit{ortographic feature} supaya modelnya dapat mempelajari fitur tersebut secara eksplisit. Evaluasi yangh digunakan menggunakan tiga buah koleksi \textit{biomedical test}, yaitu \textit{Gene Mention task corpus}, \textit{BioNLP 2009} dan \textit{NCBI disease corpus}, dengan perhitungan \textit{F1-score}. ada empat \textit{baseline} yang digunakan sebagai pembanding, yaitu \textit{feedforward}, \textit{bidirectional-LSTM}, \textit{CNN-Bidirectional LSTM} yang hanya menggunakan karakter dan \textit{CNN-Bidirectional LSTM}. Hasil yang didapatkan mengatakan bahwa penggunaan Bidirectional LSTM yang dikombinasikan dengan CNN dengan diberikan \textit{word embedding} dan \textit{orthographic} merupakan model yang paling bagus. Penulis tersebut juga menyimpulkan bahwa penggunaan fitur \textit{hand-crafted} tersebut mampu memberikan akurasi yang lebih tinggi.
+
+\cite{almgren2016named} menggunakan \textit{deep bidirectional LSTM} dalam mengembangkan NER di bidang medis. Entitas yang akan diidentifikasi adalah \textit{disorders and findings}, \textit{pharmaceutical drugs}, \textit{body structure} dan \textit{non-entity term}. Model menggunakan teks medis berbahasa Swedia sebagai \textit{dataset}, di-\textit{train} dengan menggunakan \textit{end-to-end backpropagation} dan Adam \textit{optimizer} dan \textit{input} yang diberikan berbentuk urutan karakter. \textit{Baseline} yang digunakan yaitu \textit{Stockholm EPR corpus}, yang mana mendapatkan \textit{precision} 0.67, \textit{recall} 0.12 dan \textit{f-measure} 0.20. Hasil yang didapatkan adalah Char-BiLSTM pada Stockholm EPR corpus memiliki \textit{precision} tyang lebih tinggi (0.67), dan \textit{recall} yang juga lebih tinggi (0.24) dibandingkan dengan \textit{baseline}.
 
 \section{Word Embedding}
--- Belum
+
 %-----------------------------------------------------------------------------%
 % Cerita umum Word Embedding terlepas dari, kenapa bukan %
 % Salah satunya adalah word2vc%

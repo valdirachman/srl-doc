@@ -7,10 +7,21 @@ Abacha, A.~B. dan Zweigenbaum, P. (2011).
 \newblock In {\em Proceedings of BioNLP 2011 Workshop}, pages 56--64.
   Association for Computational Linguistics.
 
+\bibitem[Almgren et~al., 2016]{almgren2016named}
+Almgren, S., Pavlov, S., dan Mogren, O. (2016).
+\newblock Named entity recognition in swedish health records with
+  character-based deep bidirectional lstms.
+\newblock {\em BioTxtM 2016}, page~30.
+
 \bibitem[Bakker, 2001]{bakker2001reinforcement}
 Bakker, B. (2001).
 \newblock Reinforcement learning with long short-term memory.
 \newblock In {\em NIPS}, pages 1475--1482.
+
+\bibitem[Bengio et~al., 2007]{bengio2007scaling}
+Bengio, Y., LeCun, Y., et~al. (2007).
+\newblock Scaling learning algorithms towards ai.
+\newblock {\em Large-scale kernel machines}, 34(5).
 
 \bibitem[Bengio et~al., 1994]{bengio1994learning}
 Bengio, Y., Simard, P., dan Frasconi, P. (1994).
@@ -97,6 +108,14 @@ Huang, Z., Xu, W., dan Yu, K. (2015).
 \newblock Bidirectional lstm-crf models for sequence tagging.
 \newblock {\em arXiv preprint arXiv:1508.01991}.
 
+\bibitem[Jagannatha dan Yu, 2016]{jagannatha2016bidirectional}
+Jagannatha, A.~N. dan Yu, H. (2016).
+\newblock Bidirectional rnn for medical event detection in electronic health
+  records.
+\newblock In {\em Proceedings of the conference. Association for Computational
+  Linguistics. North American Chapter. Meeting}, volume 2016, page 473. NIH
+  Public Access.
+
 \bibitem[Jordan, 1986]{jordan1986attractor}
 Jordan, M.~I. (1986).
 \newblock Attractor dynamics and parallellism in a connectionist sequential
@@ -107,6 +126,17 @@ Lang, K.~J., Waibel, A.~H., dan Hinton, G.~E. (1990).
 \newblock A time-delay neural network architecture for isolated word
   recognition.
 \newblock {\em Neural networks}, 3(1):23--43.
+
+\bibitem[LeCun et~al., 2015]{lecun2015deep}
+LeCun, Y., Bengio, Y., dan Hinton, G. (2015).
+\newblock Deep learning.
+\newblock {\em Nature}, 521(7553):436--444.
+
+\bibitem[Limsopatham dan Collier, 2016]{limsopatham2016learning}
+Limsopatham, N. dan Collier, N. (2016).
+\newblock Learning orthographic features in bi-directional lstm for biomedical
+  named entity recognition.
+\newblock {\em BioTxtM 2016}, page~10.
 
 \bibitem[Mikolov et~al., 2010]{mikolov2010recurrent}
 Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.

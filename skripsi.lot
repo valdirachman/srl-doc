@@ -4,15 +4,15 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Kata Itu Sendiri\relax }}{40}{table.caption.42}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Kata Itu Sendiri\relax }}{43}{table.caption.44}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan\relax }}{44}{table.caption.46}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword\relax }}{45}{table.caption.48}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{47}{table.caption.50}
-\contentsline {table}{\numberline {5.6}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata\relax }}{48}{table.caption.52}
-\contentsline {table}{\numberline {5.7}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{50}{table.caption.54}
-\contentsline {table}{\numberline {5.8}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{51}{table.caption.56}
-\contentsline {table}{\numberline {5.9}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{52}{table.caption.58}
-\contentsline {table}{\numberline {5.10}{\ignorespaces Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 1 Layer\relax }}{54}{table.caption.60}
-\contentsline {table}{\numberline {5.11}{\ignorespaces Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 2 Layer\relax }}{55}{table.caption.62}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Tabel Hasil Eksperimen dari Penelitian \cite {skripsiKakRadit}\relax }}{42}{table.caption.42}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Kata Itu Sendiri\relax }}{45}{table.caption.44}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan\relax }}{46}{table.caption.46}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword\relax }}{47}{table.caption.48}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{49}{table.caption.50}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata\relax }}{50}{table.caption.52}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{52}{table.caption.54}
+\contentsline {table}{\numberline {5.8}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{53}{table.caption.56}
+\contentsline {table}{\numberline {5.9}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{54}{table.caption.58}
+\contentsline {table}{\numberline {5.10}{\ignorespaces Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 1 Layer\relax }}{56}{table.caption.60}
+\contentsline {table}{\numberline {5.11}{\ignorespaces Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 2 Layer\relax }}{57}{table.caption.62}
 \addvspace {10\p@ }
