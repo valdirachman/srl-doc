@@ -210,6 +210,7 @@ FUNCTION {bbl.series}{ "ser." }
 FUNCTION {bbl.standard}{ "Std." }
 FUNCTION {bbl.techrep}{ "Tech. Rep." }
 FUNCTION {bbl.mthesis}{ "Master's thesis" }
+FUNCTION {bbl.bthesis}{ "Bachelor's thesis" }
 FUNCTION {bbl.phdthesis}{ "Ph.D. dissertation" }
 FUNCTION {bbl.urlprefix}{ "[Online]. Available:" }
 FUNCTION {bbl.st}{ "st" }
@@ -1866,6 +1867,20 @@ FUNCTION {format.master.thesis.type}
 cap.status.std
 }
 
+FUNCTION {format.bachelor.thesis.type}
+{ this.to.prev.status
+  this.status.std
+  type empty$
+    {
+      bbl.bthesis
+    }
+    { 
+      type "type" bibinfo.check
+    }
+  if$
+cap.status.std
+}
+
 FUNCTION {format.phd.thesis.type}
 { this.to.prev.status
   this.status.std
@@ -2083,6 +2098,23 @@ FUNCTION {mastersthesis}
   name.or.dash
   format.article.title "title" output.warn
   format.master.thesis.type output.nonnull
+  format.school "school" bibinfo.warn output
+  format.address "address" bibinfo.check output
+  format.date "year" output.warn
+  format.note output
+  format.url output
+  fin.entry
+  if.url.std.interword.spacing
+}
+
+FUNCTION {bachelorsthesis}
+{ std.status.using.comma
+  start.entry
+  if.url.alt.interword.spacing
+  format.authors "author" output.warn
+  name.or.dash
+  format.article.title "title" output.warn
+  format.bachelor.thesis.type output.nonnull
   format.school "school" bibinfo.warn output
   format.address "address" bibinfo.check output
   format.date "year" output.warn

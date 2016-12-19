@@ -52,6 +52,11 @@ Elman, J.~L. (1990).
 \newblock Finding structure in time.
 \newblock {\em Cognitive science}, 14(2):179--211.
 
+\bibitem[Goodfellow et~al., 2016]{Goodfellow-et-al-2016-Book}
+Goodfellow, I., Bengio, Y., dan Courville, A. (2016).
+\newblock Deep learning.
+\newblock Book in preparation for MIT Press.
+
 \bibitem[Graves, 2012]{graves2012neural}
 Graves, A. (2012).
 \newblock Neural networks.
@@ -85,7 +90,12 @@ Haykin, S.~S., Haykin, S.~S., Haykin, S.~S., dan Haykin, S.~S. (2009).
 Herwando, R. (2016).
 \newblock Pengenalan entitas kesehatan pada forum kesehatan online berbahasa
   indonesia menggunakan algoritma conditional random fields.
-\newblock Master's thesis, Universitas Indonesia, Kampus UI Depok.
+\newblock Bachelor's thesis, Universitas Indonesia, Kampus UI Depok.
+
+\bibitem[Hinton et~al., 2006]{hinton2006fast}
+Hinton, G.~E., Osindero, S., dan Teh, Y.-W. (2006).
+\newblock A fast learning algorithm for deep belief nets.
+\newblock {\em Neural computation}, 18(7):1527--1554.
 
 \bibitem[Hochreiter, 1991]{hochreiter1991untersuchungen}
 Hochreiter, S. (1991).

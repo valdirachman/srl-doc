@@ -6,11 +6,11 @@
 %-----------------------------------------------------------------------------%
 \section{Kesimpulan}
 %-----------------------------------------------------------------------------%
-Peneitian ini bertujuan untuk membangun sistem yang mampu melakukan ekstraksi entitas kesehatan dari forum \textit{online} secara otomatis. Fitur yang digunakan pada penelitian ini yaitu fitur Kata itu Sendiri, Kamus Kesehatan, \textit{Stop Word}, POS-Tag, Frasa kata,  1 kata sebelum dan 1 kata sesudah. Penelitian ini juga menggunakan dua arsitektur RNNs yang diusulkan, yaitu RNNs dengan 1 layer dan RNNs dengan 2 layer.
+Penelitian ini bertujuan untuk membangun sistem yang mampu melakukan ekstraksi entitas kesehatan dari forum \textit{online} secara otomatis. data yang digunakan bersumber dari \textit{oost} pada forum kesehatan \textit{online} yang telah didapatkan oleh \cite{skripsiKakRadit} dan \saya. Fitur yang digunakan pada penelitian ini yaitu fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, POS-Tag, frasa kata,  1 kata sebelum dan 1 kata sesudah. Penelitian ini juga menggunakan dua arsitektur RNNs yang diusulkan, yaitu LSTMs dengan 1 layer dan LSTMs dengan 2 layer.
 
-Setelah dilakukan penelitian, secara garis besar didapatkan bahwa fitur Kata itu Sendiri, Kamus Kesehatan, \textit{Stop Word}, Frasa Kata,  1 Kata Sebelum dan 1 Kata Sesudah memberikan hasil yang terbaik, yaitu \textbf{angka yang manakah yang perlu ditampilkan? Secara overall atau diperici bagian terbaik untuk entitas \textit{disease}, \textit{symptom}, \textit{treatment}, \textit{drug}, atau \textit{overall}}.
+Setelah dilakukan penelitian, secara garis besar didapatkan bahwa fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, frasa Kata,  1 kata sebelum dan 1 kata sesudah memberikan hasil yang terbaik, yaitu dengan rata-rata \textit{f-measure} $ 63.06\% $ (\textit{disease} $ 68.17\% $, \textit{symptom} $ 61.42\% $, \textit{treatment} $ 68.17\% $ dan \textit{drug} $ 68.17\% $).
 
-Selain itu, arsitektur yang \saya~usaulkan dalam penelitian ini, yaitu arsitektur RNNs dengan 2 layer memberikan hasil yang terbaik pada penelitian ini. Selain itu, hasil yang diberikan juga lebih baik dibandingkan dengan hasil penelitian \cite{skripsiKakRadit}. \textbf{angka yang manakah yang perlu ditampilkan? Secara overall atau diperici bagian terbaik untuk entitas \textit{disease}, \textit{symptom}, \textit{treatment}, \textit{drug}, atau \textit{overall}}.
+Dua arsitektur yang diusulkan memiliki kelebihan masing-masing. Untuk arsitektur LSTMs dengan 1 layer, \textit{f-measure} sama dengan percobaan untuk mendapatkan fitur terbaik, karena eksperimen tersebut menggunakn arsitektur LSTMs yang sama. Sedangkan untuk arsitektur kedua (LSTMs 2 layer), rata-rata \textit{f-measure} yang didapatkan adalah $ 62.14\% $. LSTMs pertama memiliki nilai \textit{f-measure} pada entitas \textit{disease} dan \textit{drug} yang lebih bagus, yaitu masing-masing $ 68.17\% $ dan $ 69.82\% $. Sedangkan LSTMs kedua memiliki nilai \textit{f-measure} pada entitas \textit{symptom} $ 62.13\% $ dan \textit{treatment} $ 56.51\% $. Namun, apabila dilihat dari waktu komputasi, LSTMs pertama lebih baik dibandingkan LSTMs kedua.
 
 %-----------------------------------------------------------------------------%
 \section{Saran}
@@ -18,8 +18,12 @@ Selain itu, arsitektur yang \saya~usaulkan dalam penelitian ini, yaitu arsitektu
 Setelah melakukan eksperimen dan menganalisis hasilnya, ada beberapa saran untuk penelitian selanjutnya, antara lain sebagai berikut.
 
 \begin{enumerate}
-  \item Penelitian ini hanya menggunakan 305 \textit{post} forum kesehatan \textit{online} sehingga perlu penambahan data \textit{training} dan \textit{testing} mengingat \textit{deep learning} membutuhkan data yang besar dalam melakukan \textit{training}.
+  \item Penelitian ini hanya menggunakan 305 \textit{post} forum kesehatan \textit{online} sehingga perlu penambahan data \textit{training} dan \textit{testing} mengingat \textit{deep learning} membutuhkan data yang besar dalam melakukan \textit{training} untuk mendapatkan model yang baik.
 
   \item Perlu dibuat korpus dengan jumlah masing-masing entitas yang seimbang, sehingga hasil yang diberikan tidak bias.
+  
+  \item Sebaiknya, pelabelan dokumen secara manual melibatkan pihak yang ahli di bidangnya (dalam hal ini dokter, perawat, apoteker, atau mahasiswa di bidang kesehatan) supaya label yang diberikan lebih tepat.
+  
+  \item Sama seperti pada penelitian \cite{skripsiKakRadit}, sebaiknya dibuat model POS-Tagger yang khusus di bidang kesehatan, sehingga pemberian tag pada dokumen kesehatan lebih tepat.
 
 \end{enumerate}

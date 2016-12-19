@@ -6,7 +6,7 @@
 % @version 1.00
 %
 
-	\chapter*{ABSTRACT}
+\chapter*{ABSTRACT}
 
 \vspace*{0.2cm}
 
@@ -20,7 +20,8 @@
 
 \noindent 
 
-Nowadays, someone can use online health forum to look fot disease without meet with the doctor. Through that forum, someone just need to post his symptom and question on the form given. A lot of information whic we can be retrieved from the forum, such as symptom, disease, or treatment. On this research, we try to extract disease, symptom, tratment and drug automatically. We see that this proble as a sequence labelling problem. We propose Deep Learning technique using Recurrent Neural Networks (RNNs), because RNNs is state-of-the-art for sequence labelling problem. We proposed some features such as its own word, stop word, POS-Tag, word phrase(web and noun), word before and word after. Furthermore  we prpose two RNNs architectures, which are LSTMs in one layer and LSTMs in two layer. The result of this experiment shows that the model proposed can give the good result. Based on the experiment using the combination features of its own word, stop word, word phrase (noun and verb), 1 word before and 1 word after  using the first RNNs architecture achieve f-measure $ 63.06\% $, and using second RNNs architecture achieve f-measure $ 62.14\% $. Thats result is better than the baseline used \citep{skripsiKakRadit}, f-measure $ 54.09\% $.
+Nowadays, someone can use online health forum to look fot disease without meet with the doctor. Through that forum, someone just need to post his symptom and question on the form given. A lot of information whic we can be retrieved from the forum, such as symptom, disease, or treatment. On this research, we try to extract disease, symptom, tratment and drug automatically. We see that this proble as a sequence labelling problem. We propose Deep Learning technique using Recurrent Neural Networks (RNNs), because RNNs is state-of-the-art for sequence labelling problem. We proposed some features such as its own word, medical dictionary, stop word, POS-Tag, word phrase(web and noun), word before and word after. Furthermore  we prpose two RNNs architectures, which are LSTMs in one layer and LSTMs in two layer. The result of this experiment shows that the model proposed can give the good result. Based on the experiment using the combination features of its own word, medical dictionary, stop word, word phrase (noun and verb), 1 word before and 1 word after  using the first RNNs architecture achieve f-measure $ 63.06\% $, and using second RNNs architecture achieve f-measure $ 62.14\% $. Thats result is better than the baseline used \citep{skripsiKakRadit}, f-measure $ 54.09\% $.
+
 
 \vspace*{0.2cm}
 
