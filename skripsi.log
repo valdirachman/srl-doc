@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.6)  19 DEC 2016 11:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.6)  19 DEC 2016 12:06
 entering extended mode
 **./skripsi.tex
 (skripsi.tex
@@ -953,13 +953,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--18
  []
 
 
-Underfull \hbox (badness 1033) in paragraph at lines 21--24
+Underfull \hbox (badness 1033) in paragraph at lines 21--23
 \T1/ptm/m/n/12 Kami mengusulkan penggunaan teknik \T1/ptm/m/it/12 Deep Learning
  \T1/ptm/m/n/12 dengan menggunakan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 30--32
+Underfull \hbox (badness 10000) in paragraph at lines 27--29
 
  []
 
@@ -976,7 +976,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 13--18
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--26
+Underfull \hbox (badness 10000) in paragraph at lines 25--27
 
  []
 
@@ -1141,7 +1141,7 @@ Bab 2.
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\uppercase' on input line 3.
 
-<images/mer_ilustration.png, id=663, 1407.75937pt x 442.65375pt>
+<images/mer_ilustration.png, id=667, 1407.75937pt x 442.65375pt>
 File: images/mer_ilustration.png Graphic file (type png)
 
 <use images/mer_ilustration.png>
@@ -1231,7 +1231,7 @@ Underfull \hbox (badness 1005) in paragraph at lines 47--48
 sisi
  []
 
-<images/simple_rnn.png, id=717, 1095.3422pt x 642.90187pt>
+<images/simple_rnn.png, id=721, 1095.3422pt x 642.90187pt>
 File: images/simple_rnn.png Graphic file (type png)
 
 <use images/simple_rnn.png>
@@ -1244,7 +1244,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10] <images/nodes_rnn.png, id=734, 1078.0275pt x 682.80093pt>
+[10] <images/nodes_rnn.png, id=738, 1078.0275pt x 682.80093pt>
 File: images/nodes_rnn.png Graphic file (type png)
 
 <use images/nodes_rnn.png>
@@ -1258,7 +1258,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [11 <./images/simple_rnn.png>]
-<images/lstm.png, id=764, 1020.81375pt x 727.96968pt>
+<images/lstm.png, id=768, 1020.81375pt x 727.96968pt>
 File: images/lstm.png Graphic file (type png)
  <use images/lstm.png>
 Package pdftex.def Info: images/lstm.png used on input line 86.
@@ -1329,7 +1329,7 @@ Underfull \hbox (badness 1024) in paragraph at lines 146--147
 1/ptm/b/n/12 ? \T1/ptm/m/n/12 dan
  []
 
-<images/word2vec.png, id=831, 1462.71469pt x 791.95876pt>
+<images/word2vec.png, id=835, 1462.71469pt x 791.95876pt>
 File: images/word2vec.png Graphic file (type png)
 
 <use images/word2vec.png>
@@ -1375,7 +1375,7 @@ Underfull \hbox (badness 2229) in paragraph at lines 12--13
 n teks hasil
  []
 
-<images/arsitektur.png, id=856, 1220.30907pt x 642.14906pt>
+<images/arsitektur.png, id=860, 1220.30907pt x 642.14906pt>
 File: images/arsitektur.png Graphic file (type png)
 
 <use images/arsitektur.png>
@@ -1483,7 +1483,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[25] <images/lstm1.png, id=937, 1036.62282pt x 405.01312pt>
+[25] <images/lstm1.png, id=941, 1036.62282pt x 405.01312pt>
 File: images/lstm1.png Graphic file (type png)
 
 <use images/lstm1.png>
@@ -1510,7 +1510,7 @@ Underfull \hbox (badness 1377) in paragraph at lines 205--207
 \T1/ptm/m/n/12 dimasukkan ke dalam LSTM layer kedua. Untuk menentukan label,
  []
 
-<images/lstm2.png, id=946, 3586.39874pt x 1048.66782pt>
+<images/lstm2.png, id=950, 3586.39874pt x 1048.66782pt>
 File: images/lstm2.png Graphic file (type png)
  <use images/lstm2.png>
 Package pdftex.def Info: images/lstm2.png used on input line 210.
@@ -1839,7 +1839,7 @@ i sudah
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <14.4> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 12.
-<images/radit.png, id=1362, 362.3136pt x 217.7736pt>
+<images/radit.png, id=1366, 362.3136pt x 217.7736pt>
 File: images/radit.png Graphic file (type png)
  <use images/radit.png>
 Package pdftex.def Info: images/radit.png used on input line 33.
@@ -1868,7 +1868,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[48] <images/histogram00.png, id=1394, 374.3586pt x 217.7736pt>
+[48] <images/histogram00.png, id=1398, 374.3586pt x 217.7736pt>
 File: images/histogram00.png Graphic file (type png)
 
 <use images/histogram00.png>
@@ -1894,7 +1894,7 @@ Underfull \hbox (badness 5711) in paragraph at lines 105--106
 dengan
  []
 
-<images/histogram2.png, id=1409, 362.3136pt x 217.7736pt>
+<images/histogram2.png, id=1413, 362.3136pt x 217.7736pt>
 File: images/histogram2.png Graphic file (type png)
 
 <use images/histogram2.png>
@@ -1924,7 +1924,7 @@ Underfull \hbox (badness 1496) in paragraph at lines 132--133
 ]) tidak hanya
  []
 
-<images/histogram3.png, id=1423, 362.3136pt x 217.7736pt>
+<images/histogram3.png, id=1427, 362.3136pt x 217.7736pt>
 File: images/histogram3.png Graphic file (type png)
 
 <use images/histogram3.png>
@@ -1945,7 +1945,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [52 <./images/histogram3.png>]
-<images/histogram4.png, id=1443, 362.3136pt x 217.7736pt>
+<images/histogram4.png, id=1447, 362.3136pt x 217.7736pt>
 File: images/histogram4.png Graphic file (type png)
 
 <use images/histogram4.png>
@@ -1971,7 +1971,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [53 <./images/histogram4.png>]
-<images/histogram5.png, id=1452, 362.3136pt x 217.7736pt>
+<images/histogram5.png, id=1456, 362.3136pt x 217.7736pt>
 File: images/histogram5.png Graphic file (type png)
 
 <use images/histogram5.png>
@@ -1985,7 +1985,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [54 <./images/histogram5.png>]
-<images/histogram6.png, id=1462, 362.3136pt x 217.7736pt>
+<images/histogram6.png, id=1466, 362.3136pt x 217.7736pt>
 File: images/histogram6.png Graphic file (type png)
 
 <use images/histogram6.png>
@@ -2004,7 +2004,7 @@ Underfull \hbox (badness 2326) in paragraph at lines 258--259
 sperimen
  []
 
-<images/histogram7.png, id=1478, 362.3136pt x 217.7736pt>
+<images/histogram7.png, id=1482, 362.3136pt x 217.7736pt>
 File: images/histogram7.png Graphic file (type png)
 
 <use images/histogram7.png>
@@ -2036,7 +2036,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [57 <./images/histogram7.png>]
-<images/histogram8.png, id=1495, 362.3136pt x 217.7736pt>
+<images/histogram8.png, id=1499, 362.3136pt x 217.7736pt>
 File: images/histogram8.png Graphic file (type png)
 
 <use images/histogram8.png>
@@ -2061,7 +2061,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [58 <./images/histogram8.png>]
-<images/histogram9.png, id=1506, 362.3136pt x 217.7736pt>
+<images/histogram9.png, id=1510, 362.3136pt x 217.7736pt>
 File: images/histogram9.png Graphic file (type png)
 
 <use images/histogram9.png>
@@ -2092,7 +2092,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [59 <./images/histogram9.png>]
-<images/histogramrnnv2.png, id=1517, 362.3136pt x 217.7736pt>
+<images/histogramrnnv2.png, id=1521, 362.3136pt x 217.7736pt>
 File: images/histogramrnnv2.png Graphic file (type png)
 
 <use images/histogramrnnv2.png>
@@ -2358,11 +2358,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 155.
 Here is how much of TeX's memory you used:
  16957 strings out of 493333
  234455 string characters out of 3139197
- 422395 words of memory out of 3000000
+ 423395 words of memory out of 3000000
  19270 multiletter control sequences out of 15000+200000
  53664 words of font info for 79 fonts, out of 3000000 for 9000
  1269 hyphenation exceptions out of 8191
- 44i,24n,51p,1469b,12520s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,24n,51p,1683b,12520s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
@@ -2373,9 +2373,9 @@ elvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/symbol/usyr.pfb
 s/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fon
 ts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/time
 s/utmri8a.pfb>
-Output written on skripsi.pdf (80 pages, 1059921 bytes).
+Output written on skripsi.pdf (80 pages, 1069777 bytes).
 PDF statistics:
- 1714 PDF objects out of 1728 (max. 8388607)
+ 1718 PDF objects out of 1728 (max. 8388607)
  605 named destinations out of 1000 (max. 500000)
  741 words of extra memory for PDF output out of 10000 (max. 10000000)
 
