@@ -1,16 +1,16 @@
 \select@language {bahasa}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Ilustrasi Sistem MER\relax }}{7}{figure.caption.18}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces \textit {Recurrent Neural Networks} sederhana\relax }}{11}{figure.caption.19}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces 1 buah \textit {timestep} dalam RNNs\relax }}{12}{figure.caption.20}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{13}{figure.caption.21}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Arsitektur Word2Vec\relax }}{17}{figure.caption.22}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Ilustrasi Sistem MER\relax }}{7}{figure.caption.19}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces \textit {Recurrent Neural Networks} sederhana\relax }}{11}{figure.caption.20}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces 1 buah \textit {timestep} dalam RNNs\relax }}{12}{figure.caption.21}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{13}{figure.caption.22}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Arsitektur Word2Vec\relax }}{17}{figure.caption.23}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram Gambaran Umum Metodologi yang Dilakukan\relax }}{19}{figure.caption.23}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces LSTM 1 layer\relax }}{26}{figure.caption.24}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{26}{figure.caption.25}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces LSTM 2 layer\relax }}{27}{figure.caption.26}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram Gambaran Umum Metodologi yang Dilakukan\relax }}{19}{figure.caption.24}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces LSTM 1 layer\relax }}{26}{figure.caption.25}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{26}{figure.caption.26}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces LSTM 2 layer\relax }}{27}{figure.caption.27}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri\relax }}{47}{figure.caption.45}

@@ -23,8 +23,10 @@
 \usepackage{amssymb}
 \usepackage{enumitem}
 \usepackage{amsmath}
-\usepackage[ruled,vlined,linesnumbered,resetcount,algochapter]{algorithm2e}
 
+\usepackage[ruled,vlined,linesnumbered,resetcount,algochapter]{algorithm2e}
+\newcommand{\listofalgorithmes}{\tocfile{\listalgorithmcfname}{loa}}
+\renewcommand{\listalgorithmcfname}{Daftar Kode}
 \newenvironment{kode}[1][htb]
 	{\renewcommand{\algorithmcfname}{Kode}% Update algorithm name
 		\begin{algorithm}[#1]%
@@ -110,9 +112,9 @@
 \clearpage
 \listoftables
 \clearpage
-\clearpage
+\listofalgorithmes
 % \lstlistoflistings
-% \clearpage
+\clearpage
 
 %
 % Gunakan penomeran Arab (1, 2, 3, ...) setelah bagian ini.

@@ -401,7 +401,7 @@ Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fit
 	\label{code:ekstraksi1wordbef}	
 \end{kode}
 
-\begin{kode}
+\begin{lstlisting}
 	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
@@ -427,7 +427,7 @@ Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fit
 	\BlankLine	
 	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sesudah}
 	\label{code:ekstraksi1wordaft}
-\end{kode}
+\end{lstlisting}
 
 \subsection{Pengusulan Arsitektur RNNs}
 Sesuai dengan yang telah dijelaskan pada Bab 3, \saya~mengusulkan dua arsitektur RNNs yang akan digunakan pada tahap eksperimen. Pada bagian ini \saya~akan menjelaskan implementasi dari masing-masing arsitektur tersebut. Dalam melakukan implementasi RNNs, \saya~menggunakan \textit{library} Keras \cite{chollet2015keras} dalam bahasa Python. Keras sendiri dapat berjalan di atas dua \textit{library deep learning} lain, yaitu Theano dan Tensorflow, namun dalam penelitian ini \saya~menggunakan Theano. \Saya~menggunakan \textit{Sequential model} yang merupakan layer \textit{linear stack} dalam mengembangkan model dan jenis RNNs yang \saya~gunakan dalam penelitian ini adalah LSTM.
