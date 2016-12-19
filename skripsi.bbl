@@ -28,6 +28,11 @@ Bengio, Y., Simard, P., dan Frasconi, P. (1994).
 \newblock Learning long-term dependencies with gradient descent is difficult.
 \newblock {\em IEEE transactions on neural networks}, 5(2):157--166.
 
+\bibitem[Chollet, 2015]{chollet2015keras}
+Chollet, F. (2015).
+\newblock Keras.
+\newblock \url{https://github.com/fchollet/keras}.
+
 \bibitem[conference on neural information~processing systems et~al.,
   1997]{ieee1997advances}
 conference on neural information~processing systems, I., Mozer, M.~C., Jordan,
@@ -138,6 +143,10 @@ Limsopatham, N. dan Collier, N. (2016).
   named entity recognition.
 \newblock {\em BioTxtM 2016}, page~10.
 
+\bibitem[Mikolov et~al., 2014]{mikolov2014word2vec}
+Mikolov, T., Chen, K., Corrado, G., dan Dean, J. (2014).
+\newblock word2vec.
+
 \bibitem[Mikolov et~al., 2010]{mikolov2010recurrent}
 Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.
   (2010).
@@ -149,6 +158,18 @@ Mujiono, S., Fanany, M.~I., dan Basaruddin, C. (2016).
 \newblock A new data representation based on training data characteristics to
   extract drug named-entity in medical text.
 \newblock {\em arXiv preprint arXiv:1610.01891}.
+
+\bibitem[Pennington et~al., 2014]{pennington2014glove}
+Pennington, J., Socher, R., dan Manning, C.~D. (2014).
+\newblock Glove: Global vectors for word representation.
+\newblock In {\em EMNLP}, volume~14, pages 1532--43.
+
+\bibitem[{\v R}eh{\r u}{\v r}ek dan Sojka, 2010]{rehurek_lrec}
+{\v R}eh{\r u}{\v r}ek, R. dan Sojka, P. (2010).
+\newblock {Software Framework for Topic Modelling with Large Corpora}.
+\newblock In {\em {Proceedings of the LREC 2010 Workshop on New Challenges for
+  NLP Frameworks}}, pages 45--50, Valletta, Malta. ELRA.
+\newblock \url{http://is.muni.cz/publication/884893/en}.
 
 \bibitem[Schmidhuber et~al., 2007]{schmidhuber2007training}
 Schmidhuber, J., Wierstra, D., Gagliolo, M., dan Gomez, F. (2007).

@@ -15,9 +15,6 @@ A level-1 auxiliary file: bab5.aux
 A level-1 auxiliary file: bab6.aux
 The style file: apalikerd.bst
 Database file #1: skripsi.bib
-Repeated entry---line 306 of file skripsi.bib
- : @article{lang1990time
- :                      ,
-I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "mikolov"
 Warning--empty journal in jordan1986attractor
-(There was 1 error message)
+(There were 2 warnings)

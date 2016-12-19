@@ -30,7 +30,7 @@ Bab ini akan membahas mengenai implementasi pada penelitian yang terdiri atas ta
 			writeToFile(doc.getJawaban)\;
 		}
 	}
-	
+	\label{code:crawl}	
 	\caption{\textit{Pseudocode} untuk melakukan pengumpulan data}	
 \end{kode}
 
@@ -40,11 +40,10 @@ Hasil dari pengumpulan data ini yaitu \saya~mendapatkan 2065 \textit{post} dari 
 Tahap selanjutnya yaitu tahap pra-pemrosesan. Seperti yang telah dijelaskan pada bab metodologi, \saya~melakukan tiga buah pekerjaan di tahap ini, yaitu melakukan pembersihan data, tokenisasi dan pemotongan kalimat. Berikut merupakan penjelasan dari masing-masing pekerjaan tersebut:
 
 \subsection{Pembersihan Data}
-Tahap pembersihan data bertujuan untuk menghilangkan karakter yang bukan merupakan ASCII. Hal ini \saya~lakukan supaya dalam tahap ekstraksi fitur POS Tagging tidak memiliki masalah karena terdapat karakter bukan ASCII. Selain itu, di dalam dokumen terdapat banyak \textit{email} dan \textit{url} yang unik sehingga mengakibatkan sistem akan menganggap token-token tersebut merupakan token yang unik dan berbeda. Untuk menangani hal tersebut \saya~melakukan normalisasi dengan mengubah semua token \textit{email} dan \textit{url} menjadi kata "email" dan "url" sehingga tetap mempertahankan keberadaan kedua token tersebut. Selain itu \saya~juga mengganti beberapa karakter yang bukan alfanumerik menjadi beberapa token dalam representasi kata, seperti karakter "\&" menjadi "dan", "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari". Hal ini \saya~lakukan karena korpus yang \saya~gunakan dalam bentuk berkas \textit{xml} yang tidak mengizinkan adanya ketiga karakter tersebut. Kemudian \saya~juga mengubah karakter "/" menjadi "atau" supaya mudah dalam ekstraksi fitur kata itu sendiri dengan menggunakan \textit{word embedding}. \ref{kode:cleaning} merupakan \textit{pseudocode} untuk melakukan pembersihan data yang \saya~gunakan.
+Tahap pembersihan data bertujuan untuk menghilangkan karakter yang bukan merupakan ASCII. Hal ini \saya~lakukan supaya dalam tahap ekstraksi fitur POS Tagging tidak memiliki masalah karena terdapat karakter bukan ASCII. Selain itu, di dalam dokumen terdapat banyak \textit{email} dan \textit{url} yang unik sehingga mengakibatkan sistem akan menganggap token-token tersebut merupakan token yang unik dan berbeda. Untuk menangani hal tersebut \saya~melakukan normalisasi dengan mengubah semua token \textit{email} dan \textit{url} menjadi kata "email" dan "url" sehingga tetap mempertahankan keberadaan kedua token tersebut. Selain itu \saya~juga mengganti beberapa karakter yang bukan alfanumerik menjadi beberapa token dalam representasi kata, seperti karakter "\&" menjadi "dan", "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari". Hal ini \saya~lakukan karena korpus yang \saya~gunakan dalam bentuk berkas \textit{xml} yang tidak mengizinkan adanya ketiga karakter tersebut. Kemudian \saya~juga mengubah karakter "/" menjadi "atau" supaya mudah dalam ekstraksi fitur kata itu sendiri dengan menggunakan \textit{word embedding}. Kode \ref{code:cleaning} merupakan \textit{pseudocode} untuk melakukan pembersihan data yang \saya~gunakan.
 
 
 \begin{kode}
-	\label{kode:cleaning}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -66,14 +65,14 @@ Tahap pembersihan data bertujuan untuk menghilangkan karakter yang bukan merupak
 		\Return sentence;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan pembersihan data}	
+	\caption{\textit{Pseudocode} untuk melakukan pembersihan data}
+	\label{code:cleaning}
 \end{kode}
 
 \subsection{Tokenisasi}
 Seperti yang dijelaskan pada \ref{bab:tiga}, pada tahap tokenisasi \saya~melakukan pemisahan antar kata dan antar token yang berbeda jenis, seperti token alfabet dengan numerik, alfanumerik dengan non-alfanumerik dan menghilangkan karakter spasi yang berlebih. Dalam mengimplementasikan tahap ini, \saya~menggunakan bahasa Ruby. Berikut merupakan \textit{pseudocode} untuk melakukan tokenisasi.
 
 \begin{kode}
-	\label{kode:tokenisasi}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -92,14 +91,14 @@ Seperti yang dijelaskan pada \ref{bab:tiga}, pada tahap tokenisasi \saya~melakuk
 		
 		\Return sentence;
 	}
-	\caption{\textit{Pseudocode} untuk melakukan pembersihan data}	
+	\caption{\textit{Pseudocode} untuk melakukan tokenisasi}
+	\label{code:tokenisasi}
 \end{kode}
 
 \subsection{Pemotongan Kalimat}
-Implementasi yang \saya~lakukan tahap ini bertujuan untuk mendapatkan sebuah \textit{instance} sebagai \textit{input} dari program RNNs di tahap eksperimen. Pemotongan dilakukan pada masing-masing \textit{post}. Pada pemotongan kalimat ini, penulis menerapkan aturan berbeda yang telah dijelaskan pada bab 3 karena jumlah kata pada sebuah kalimat yang dipisahkan dengan tanda baca ".", "!" dan "?" sangat jauh berbeda. Dengan implementasi pemotongan kalimat ini, \saya~berupaya untuk menghindari kasus kalimat yang \textit{sparse}, yaitu adanya kalimat yang memiliki jumlah token sangat renggang. Berikut merupakan implementasi dari tahap ini.
+Implementasi yang \saya~lakukan tahap ini bertujuan untuk mendapatkan sebuah \textit{instance} sebagai \textit{input} dari program RNNs di tahap eksperimen. Pemotongan dilakukan pada masing-masing \textit{post}. Pada pemotongan kalimat ini, penulis menerapkan aturan berbeda yang telah dijelaskan pada bab 3 karena jumlah kata pada sebuah kalimat yang dipisahkan dengan tanda baca ".", "!" dan "?" sangat jauh berbeda. Dengan implementasi pemotongan kalimat ini, \saya~berupaya untuk menghindari kasus kalimat yang \textit{sparse}, yaitu adanya kalimat yang memiliki jumlah token sangat renggang. Kode \ref{code:potong} merupakan \textit{pseudocode} untuk melakukan pemotongan kalimat.
 
 \begin{kode}
-	\label{kode:potong}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -126,7 +125,8 @@ Implementasi yang \saya~lakukan tahap ini bertujuan untuk mendapatkan sebuah \te
 		\Return arrResult;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan pembersihan data}	
+	\caption{\textit{Pseudocode} untuk melakukan pemotongan kalimat}
+	\label{code:potong}
 \end{kode}
 
 \section{Pelabelan}
@@ -137,10 +137,10 @@ Pada tahap ini \saya~melakukan pelabelan pada data baru yang telah diunduh. Sebe
 Ekstraksi fitur dilakukan dengan menggunakan program yang diimplementasikan dalam bahasa Python. Keluaran dari ekstraksi fitur ini adalah vektor kata untuk masing-masing kalimat yang disimpan dalam format JSON. Masing-masing kalimat dalam sebuah \textit{post} disimpan dalam sebuah \textit{array} yang kemudian keseluruhan \textit{post} disimpan dalam \textit{hash} dengan indeks yang telah didefinisikan pada saat tahap pengumpulan data.
 
 \subsubsection{Fitur Kata Itu Sendiri}
-Dalam melakukan ekstraksi fitur kata itu sendiri, \saya~menggunakan \textit{library} gensim yang disediakan secara gratis. Gensim mengimplementasikan \textit{word embedding} melalui \textit{library} bernama word2vec. Sebelum melakukan ekstraksi fitur, \saya~melakukan \textit{training} model \textit{word embedding} dengan data yang \saya~unduh dari berbagai artikel kesehatan di beberapa situs. Setelah model didapatkan, \saya~melakukan ekstraksi dari masing-masing kata pada korpus.
+Dalam melakukan ekstraksi fitur kata itu sendiri, \saya~menggunakan \textit{library} gensim \citep{rehurek_lrec} yang disediakan secara gratis. Gensim mengimplementasikan \textit{word embedding} melalui \textit{library} bernama word2vec. Sebelum melakukan ekstraksi fitur, \saya~melakukan \textit{training} model \textit{word embedding} dengan data yang \saya~unduh dari berbagai artikel kesehatan di beberapa situs. Setelah model didapatkan, \saya~melakukan ekstraksi dari masing-masing kata pada korpus. Kode \ref{code:ekstraksiownword} merupakan \textit{pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri.
 
 \begin{kode}
-	\label{kode:ekstraksiownword}
+
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	\SetKwProg{Fn}{Function}{ is}{end}
@@ -158,14 +158,14 @@ Dalam melakukan ekstraksi fitur kata itu sendiri, \saya~menggunakan \textit{libr
 		\Return arrVector;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri}	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri}
+	\label{code:ekstraksiownword}
 \end{kode}
 
 \subsubsection{Ekstraksi Fitur Part of Speech Tag}
-Dalam mengimplementasikan ekstraksi fitur POS Tag, \saya~menggunakan \textit{tools} Stanford POS Tagger dan model POS \textit{tagger} yang dikembangkan oleh \cite{dinakaramani2014designing}. Pertama-tama \saya~melakukan pemberian tag pada setiap kaliman di dalam korpus, kemudian mengubah hasil tag tersebut menjadi bentuk \textit{one-hot-vetor}. Berikut merupakan \textit{pseudocode} dalam melakukan ekstraksi fitur POS Tag untuk sebuah kalimat yang \saya~lakukan.
+Dalam mengimplementasikan ekstraksi fitur POS Tag, \saya~menggunakan \textit{tools} Stanford POS Tagger dan model POS \textit{tagger} yang dikembangkan oleh \cite{dinakaramani2014designing}. Pertama-tama \saya~melakukan pemberian tag pada setiap kaliman di dalam korpus, kemudian mengubah hasil tag tersebut menjadi bentuk \textit{one-hot-vetor}. Kode \ref{code:ekstraksipostag} merupakan \textit{pseudocode} dalam melakukan ekstraksi fitur POS Tag untuk sebuah kalimat yang \saya~lakukan.
 
 \begin{kode}
-	\label{kode:ekstraksipostag}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -188,14 +188,16 @@ Dalam mengimplementasikan ekstraksi fitur POS Tag, \saya~menggunakan \textit{too
 		\Return posTagFeature;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri}	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri}
+	\label{code:ekstraksipostag}
 \end{kode}
 
 \subsubsection{Ekstraksi Fitur Stop Word}
 Ekstraksi fitur \textit{stop word} \saya~lakukan dengan menggunakan kamus \textit{stop word} yang digunakan oleh Taufik (2015) dalam melakukan pengenalan entitas bernama. Setiap kata yang merupakan \textit{stop word} memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan bahasa pemrograman Pyhton dalam mengimplementasikan ekstraksi fitur ini.
+\textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksistopword}.
 
 \begin{kode}
-	\label{kode:ekstraksistopword}
+
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -214,14 +216,15 @@ Ekstraksi fitur \textit{stop word} \saya~lakukan dengan menggunakan kamus \texti
 		\Return stopWordFeature;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur \textit{stop word}}	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur \textit{stop word}}
+	\label{code:ekstraksistopword}	
 \end{kode}
 
 \subsubsection{Ekstraksi Fitur Kamus Kesehatan}
-Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implementasi ekstraksi fitur \textit{stop word}. Perbedaanya yaitu pada penggunaan \textit{resource}, yang mana ekstraksi fitur \textit{stop words} \saya~lakukan dengan menggunakan kamus \textit{stop word}, sedangkan pada fitur ini \saya~menggunakan kamus kesehatan. Kamus kesehatan yang saya gunakan sama dengan kamus pada penelitian \cite{skripsiKakRadit}, yang mana terdapat 4 kamus, yaitu kamus \textit{disease}, \textit{symptom}, \textit{treatment} dan \textit{drug}. Setiap kata yang terdaftar di dalam kamus kesehatan memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan bahasa pemrograman Pyhton dalam mengimplementasikan ekstraksi fitur ini.
+Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implementasi ekstraksi fitur \textit{stop word}. Perbedaanya yaitu pada penggunaan \textit{resource}, yang mana ekstraksi fitur \textit{stop words} \saya~lakukan dengan menggunakan kamus \textit{stop word}, sedangkan pada fitur ini \saya~menggunakan kamus kesehatan. Kamus kesehatan yang saya gunakan sama dengan kamus pada penelitian \cite{skripsiKakRadit}, yang mana terdapat 4 kamus, yaitu kamus \textit{disease}, \textit{symptom}, \textit{treatment} dan \textit{drug}. Setiap kata yang terdaftar di dalam kamus kesehatan memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan bahasa pemrograman Pyhton dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksikamus}.
 
 \begin{kode}
-	\label{kode:ekstraksistopword}
+
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -256,14 +259,15 @@ Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implemen
 		
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}
+	\label{code:ekstraksikamus}	
 \end{kode}
 
 \subsubsection{Ekstraksi Frasa Kata Benda}
-Dalam mengimplementasikan ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array of one hot vector} dari masing-masing kata dalam 1 kalimat, dimana apabila suatu kata merupakan bagian dari frasa kata benda akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. Berikut merupakan \textit{pseudocode} dari implementasi ekstraksi fitur frasa kata benda.
+Dalam mengimplementasikan ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array of one hot vector} dari masing-masing kata dalam 1 kalimat, dimana apabila suatu kata merupakan bagian dari frasa kata benda akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. Berikut merupakan \textit{pseudocode} dari implementasi ekstraksi fitur frasa kata benda. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksinp}.
 
 \begin{kode}
-	\label{kode:ekstraksinp}
+
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -307,14 +311,15 @@ Dalam mengimplementasikan ektraksi fitur kata benda, \saya~menggunakan \textit{l
 		writeToFile(corpusChunked)
 	}
 	\BlankLine	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}
+	\label{code:ekstraksinp}	
 \end{kode}
 
 \subsubsection{Ekstraksi Frasa Kata Kerja}
-Sama seperti pada pengimplementasian ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array of one hot vector} dari masing-masing kata dalam 1 kalimat, dimana apabila suatu kata merupakan bagian dari frasa kata kerja akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. Berikut merupakan \textit{pseudocode} dari implementasi ekstraksi fitur frasa kata benda.
+Sama seperti pada pengimplementasian ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array of one hot vector} dari masing-masing kata dalam 1 kalimat, dimana apabila suatu kata merupakan bagian dari frasa kata kerja akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. Berikut merupakan \textit{pseudocode} dari implementasi ekstraksi fitur frasa kata benda. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksivp}.
 
 \begin{kode}
-	\label{kode:ekstraksivp}
+
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -358,19 +363,17 @@ Sama seperti pada pengimplementasian ektraksi fitur kata benda, \saya~menggunaka
 		writeToFile(corpusChunked)
 	}
 	\BlankLine	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}
+	\label{code:ekstraksivp}
 \end{kode}
 
 \subsubsection{Ekstraksi Fitur 1 Kata Sebelum}
-Ekstraksi fitur ini \saya~lakukan dengan menggunakan hasil dari ekstraksi fitur kata itu sendiri, yaitu mengambil vektor kata dengan indeks saat ini dikurangi satu. Untuk awal kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. \ref{kode:ekstraksi1wordbef} merupakan implementasi dari ekstraksi fitur 1 kata sebelum.
+Ekstraksi fitur ini \saya~lakukan dengan menggunakan hasil dari ekstraksi fitur kata itu sendiri, yaitu mengambil vektor kata dengan indeks saat ini dikurangi satu. Untuk awal kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. \ref{code:ekstraksi1wordbef} merupakan implementasi dari ekstraksi fitur 1 kata sebelum.
 
 \subsubsection{Ekstraksi Fitur 1 Kata Sesudah}
-Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fitur 1 kata sebelum, perbedaannya pada indeks yang diambil dalam pada saat ekstraksi. Untuk masing-masing kata, \saya~mengambil vektor kata dengan indeks 1 kata setelahnya. Untuk vektor kata di akhir kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. \ref{kode:ekstraksi1wordaft} merupakan implementasi dari ekstraksi fitur 1 kata sesudah.
+Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fitur 1 kata sebelum, perbedaannya pada indeks yang diambil dalam pada saat ekstraksi. Untuk masing-masing kata, \saya~mengambil vektor kata dengan indeks 1 kata setelahnya. Untuk vektor kata di akhir kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. \ref{code:ekstraksi1wordaft} merupakan implementasi dari ekstraksi fitur 1 kata sesudah.
 
-\begin{kode}
-	\label{kode:ekstraksi1wordbef}
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sebelum}
-	
+\begin{kode}	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -392,11 +395,14 @@ Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fit
 		
 	}
 
-	\BlankLine		
+	\BlankLine
+	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sebelum}
+	\label{code:ekstraksi1wordbef}	
 \end{kode}
 
 \begin{kode}
-	\label{kode:ekstraksi1wordaft}
+	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -419,51 +425,19 @@ Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fit
 	}
 	
 	\BlankLine	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sesudah}	
-\end{kode}
-
-
-\subsubsection{Ekstraksi Fitur 2 Kata Sebelum}
-Ekstraksi fitur ini \saya~lakukan dengan menggunakan hasil dari ekstraksi fitur kata itu sendiri, yaitu mengambil vektor kata dengan indeks saat ini dikurangi satu. Untuk dua kata pertama dalam kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. Berikut merupakan implementasi dari ekstraksi fitur 2 kata sebelum.
-
-\begin{kode}
-	\label{kode:ekstraksi2wordbef}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetAlgoLined
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{oneWordBeforeExtract(sentenceVector)}{
-		\Input{array of vector in a sentence}
-		\Output{array of vector}
-		\BlankLine
-		
-		oneWordBeforeFeature = []\;
-		oneWordBeforeFeature.append(zeroth)\;
-		oneWordBeforeFeature.append(zeroth)\;
-		\For{i in 2...sentenceVector.length}{
-			oneWordBeforeFeature.append(sentenceVector[i-1])\;
-		}
-		\BlankLine
-		
-		\Return oneWordBeforeFeature;
-		
-	}
-	
-	\BlankLine	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 2 kata sebelum}	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sesudah}
+	\label{code:ekstraksi1wordaft}
 \end{kode}
 
 \subsection{Pengusulan Arsitektur RNNs}
-Sesuai dengan yang telah dijelaskan pada Bab 3, \saya~mengusulkan dua arsitektur RNNs yang akan digunakan pada tahap eksperimen. Pada bagian ini \saya~akan menjelaskan implementasi dari masing-masing arsitektur tersebut. Dalam melakukan implementasi RNNs, \saya~menggunakan \textit{library} Keras dalam bahasa Python. Keras sendiri dapat berjalan di atas dua \textit{library deep learning} lain, yaitu Theano dan Tensorflow, namun dalam penelitian ini \saya~menggunakan Theano. \Saya~menggunakan \textit{Sequential model} yang merupakan layer \textit{linear stack} dalam mengembangkan model dan jenis RNNs yang \saya~gunakan dalam penelitian ini adalah LSTM.
+Sesuai dengan yang telah dijelaskan pada Bab 3, \saya~mengusulkan dua arsitektur RNNs yang akan digunakan pada tahap eksperimen. Pada bagian ini \saya~akan menjelaskan implementasi dari masing-masing arsitektur tersebut. Dalam melakukan implementasi RNNs, \saya~menggunakan \textit{library} Keras \cite{chollet2015keras} dalam bahasa Python. Keras sendiri dapat berjalan di atas dua \textit{library deep learning} lain, yaitu Theano dan Tensorflow, namun dalam penelitian ini \saya~menggunakan Theano. \Saya~menggunakan \textit{Sequential model} yang merupakan layer \textit{linear stack} dalam mengembangkan model dan jenis RNNs yang \saya~gunakan dalam penelitian ini adalah LSTM.
 
 \subsubsection{LSTM 1 layer}
 LSTM 1 layer yang dimaksud adalah model yang digunakan memiliki satu layer LSTM saja dan semua fitur yang menjadi input program digabung terlebih dahulu menjadi satu buah \textit{array}. Seperti yang telah dijelaskan pada Bab 3, susunan layer yang \saya~gunakan terdiri dari \textit{Masking Layer}, LSTM Layer, dan \textit{Time Distributed Layer} yang masing-masing \textit{timestep} berisi \textit{Dense Layer}. Untuk \textit{Masking Layer}, dimensi yang menjadi parameter tergantung dari \textit{array} yang menjadi masukan, untuk LSTM Layer, dimensi masukan sama dengan dimensi \textit{Masking Layer} dan dimensi keluaran untuk masing-masing \textit{timesteps} adalah panjang input dalam satu \textit{timestep} dibagi 2. Untuk masing-masing Dense Layer, dimensi masukan yang diminta sama dengan dimensi keluaran pada LSTM Layer dan dimensi keluaran sesuai dengan jumlah kelas yang telah didefinisikan.
 
-Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Berikut merupakan kode untuk mengimplementasikan model ini.
+Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm1} merupakan kode untuk mengimplementasikan model ini.
 
 \begin{kode}
-	\label{kode:lstm1}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -487,17 +461,18 @@ Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan
 		\Return prediction;
 	}
 	
-	\caption{\textit{Pseudocode} untuk arsitektur RNNs pertama}	
+	\caption{\textit{Pseudocode} untuk arsitektur RNNs pertama}
+	\label{code:lstm1}
 \end{kode}
 
 \subsubsection{LSTM Layer Bertingkat}
 LSTM layer bertingkat yang dimaksud yaitu terdapat dua tingkat, tingkat pertama untuk menerima \textit{input} yang setiap kelompok fitur menjadi input bagi LSTM masing-masing. Misalnya terdapat 3 kelompok fitur, masing-masing kelompok tadi akan menjadi input bagi layer LSTM masing-masing. Tingkat kedua sebagai penggabung hasil dari tingkat pertama.
 
 Layer pada tingkat pertama terdiri dari \textit{Masking Layer} dan sebuah Layer LSTM. Untuk dimensi \textit{input} dan \textit{output} \textit{Masking Layer} secara otomatis mengikuti dimensi dari data masukan. Dimensi \textit{output} dari Layer LSTM yaitu dimensi awal dibagi 2.Pada layer tingkat kedua, layer tersebut terdiri dari \textit{Merge Layer}, \textit{Time Distributed} dengan masing-masing \textit{timestep} merupakan \textit{Dense Layer} dan sebuah Layer LSTM. Keluaran dari \textit{Merge Layer} sesuai dengan total dimensi \textit{output} dari masing-masing LSTM di tingkat 1. Dimensi keluaran dari masing-masing \textit{Dense Layer} yaitu 32 dan sesuai jumlah kelas.
-Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Berikut merupakan kode untuk mengimplementasikan model ini.
+Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm2} merupakan kode untuk mengimplementasikan model ini.
 
 \begin{kode}
-	\label{kode:lstm2}
+	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -531,14 +506,15 @@ Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan
 		\Return prediction;
 	}
 	
-	\caption{\textit{Pseudocode} untuk arsitektur RNNs kedua}	
+	\caption{\textit{Pseudocode} untuk arsitektur RNNs kedua}
+	\label{code:lstm2}	
 \end{kode}
 
 \section{Eksperimen}
 Pada tahap ini \saya~melakukan eksperimen model yang dikembangkan pada tahap sebelumnya. Sebelum masuk ke tahap eksperimen, \saya~melakukan beberapa tahap pra-eksperimen seperti melakukan pemecahan data sebagai implementasi \textit{cross-fold validation}. \Saya~memecah data menjadi 10 bagian dan disimpan dalam sebuah \textit{array} untuk masing-masing fitur. Berikut merupakan \textit{pseudocode} untuk melakukan pemecahan data
 
 \begin{kode}
-	\label{kode:split}
+
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -561,12 +537,13 @@ Pada tahap ini \saya~melakukan eksperimen model yang dikembangkan pada tahap seb
 	}
 	
 	\caption{\textit{Pseudocode} untuk memecah \textit{data} menjadi 10 bagian}	
+	\label{code:split}
 \end{kode}
 
 Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabungan antar fitur sebagai \textit{input} untuk melakukan eksperimen. Seperti yang dijelaskan pada tahap sebelumnya, \saya~menggunakan dua arsitektur RNNs. Hasil dari eksperimen tersebut ditulis dalam sebuah file dengan format JSON yang nantinya akan menjadi \textit{input} pada tahap evaluasi. Berikut merupakan implementasi eksperimen dengan masing-masing arsitektur tersebut.
 
 \begin{kode}
-	\label{kode:eksperimen}
+	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -589,7 +566,8 @@ Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabun
 		writeToJSON(result1)\;
 		writeToJSON(result2)\;
 	}
-	\caption{\textit{Pseudocode} untuk melakukan eksperimen}	
+	\caption{\textit{Pseudocode} untuk melakukan eksperimen}
+	\label{code:eksperimen}	
 \end{kode}
 
 
@@ -597,7 +575,7 @@ Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabun
 Dalam melakukan implementasi pada tahap evaluasi, \saya~menghitung nilai \textit{prescission, recall} dan \textit{F-Measures} untuk mengukur tingkat keakuratan model yang dikembangkan pada tahap sebelumnya. \Saya~menggunakan aturan yang telah dijelaskan pada Bab 3. Berikut merupakan implementasi kode untuk melakukan evaluasi.
 
 \begin{kode}
-	\label{kode:evaluasi}
+	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
@@ -654,4 +632,5 @@ Dalam melakukan implementasi pada tahap evaluasi, \saya~menghitung nilai \textit
 	}
 	\BlankLine
 	\caption{\textit{Pseudocode} untuk melakukan evaluasi}	
-	\end{kode}
+	\label{code:evaluasi}
+\end{kode}

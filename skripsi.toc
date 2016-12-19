@@ -21,61 +21,60 @@
 \contentsline {section}{\numberline {2.3}Recurrent Neural Networks}{10}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Long Short Term Memory}{12}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Penerapan RNNs untuk MER}{14}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Word Embedding}{15}{section.2.4}
-\contentsline {chapter}{\numberline {3}\uppercase {Metodologi}}{16}{chapter.3}
-\contentsline {section}{\numberline {3.1}Gambaran Umum Pengembangan Metodologi yang Digunakan untuk }{16}{section.3.1}
-\contentsline {section}{\numberline {3.2}Pengumpulan Data}{17}{section.3.2}
-\contentsline {section}{\numberline {3.3}Pra-Pemrosesan}{17}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Pembersihan data}{18}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Tokenisasi}{18}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Pemotongan kalimat}{19}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}Pelabelan}{19}{section.3.4}
-\contentsline {section}{\numberline {3.5}Pengembangan Model}{20}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Ekstrasi Fitur}{20}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}Pengusulan Arsitektur RNNs}{24}{subsection.3.5.2}
-\contentsline {section}{\numberline {3.6}Eksperimen}{25}{section.3.6}
-\contentsline {subsection}{\numberline {3.6.1}Evaluasi}{25}{subsection.3.6.1}
-\contentsline {chapter}{\numberline {4}\uppercase {Implementasi}}{28}{chapter.4}
-\contentsline {section}{\numberline {4.1}Pengumpulan Data}{28}{section.4.1}
-\contentsline {section}{\numberline {4.2}Pra-Pemrosesan}{28}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Pembersihan Data}{29}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Tokenisasi}{29}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Pemotongan Kalimat}{30}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Pelabelan}{30}{section.4.3}
-\contentsline {section}{\numberline {4.4}Pengembangan Model}{31}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Ekstraksi Fitur}{31}{subsection.4.4.1}
-\contentsline {subsubsection}{\numberline {4.4.1.1}Fitur Kata Itu Sendiri}{31}{subsubsection.4.4.1.1}
-\contentsline {subsubsection}{\numberline {4.4.1.2}Ekstraksi Fitur Part of Speech Tag}{31}{subsubsection.4.4.1.2}
-\contentsline {subsubsection}{\numberline {4.4.1.3}Ekstraksi Fitur Stop Word}{32}{subsubsection.4.4.1.3}
-\contentsline {subsubsection}{\numberline {4.4.1.4}Ekstraksi Fitur Kamus Kesehatan}{32}{subsubsection.4.4.1.4}
-\contentsline {subsubsection}{\numberline {4.4.1.5}Ekstraksi Frasa Kata Benda}{33}{subsubsection.4.4.1.5}
-\contentsline {subsubsection}{\numberline {4.4.1.6}Ekstraksi Frasa Kata Kerja}{34}{subsubsection.4.4.1.6}
-\contentsline {subsubsection}{\numberline {4.4.1.7}Ekstraksi Fitur 1 Kata Sebelum}{35}{subsubsection.4.4.1.7}
-\contentsline {subsubsection}{\numberline {4.4.1.8}Ekstraksi Fitur 1 Kata Sesudah}{36}{subsubsection.4.4.1.8}
-\contentsline {subsubsection}{\numberline {4.4.1.9}Ekstraksi Fitur 2 Kata Sebelum}{37}{subsubsection.4.4.1.9}
-\contentsline {subsection}{\numberline {4.4.2}Pengusulan Arsitektur RNNs}{37}{subsection.4.4.2}
-\contentsline {subsubsection}{\numberline {4.4.2.1}LSTM 1 layer}{37}{subsubsection.4.4.2.1}
-\contentsline {subsubsection}{\numberline {4.4.2.2}LSTM Layer Bertingkat}{38}{subsubsection.4.4.2.2}
-\contentsline {section}{\numberline {4.5}Eksperimen}{39}{section.4.5}
-\contentsline {section}{\numberline {4.6}Evaluasi}{40}{section.4.6}
-\contentsline {chapter}{\numberline {5}\uppercase {Eksperimen}}{42}{chapter.5}
-\contentsline {section}{\numberline {5.1}Matriks Evaluasi}{42}{section.5.1}
-\contentsline {section}{\numberline {5.2}\textit {Baseline} Eksperimen}{42}{section.5.2}
-\contentsline {section}{\numberline {5.3}Skenario Eksperimen}{43}{section.5.3}
-\contentsline {section}{\numberline {5.4}Hasil Eksperimen dan Analisis}{44}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Hasil Ekperimen Pengujian Fitur Beserta Analisis}{44}{subsection.5.4.1}
-\contentsline {subsubsection}{\numberline {5.4.1.1}Sub-Eksperimen Menguji Fitur Kata itu Sendiri}{44}{subsubsection.5.4.1.1}
-\contentsline {subsubsection}{\numberline {5.4.1.2}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan (\textit {Disease, Symptom, Treatment} dan \textit {Drug})}{46}{subsubsection.5.4.1.2}
-\contentsline {subsubsection}{\numberline {5.4.1.3}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}{47}{subsubsection.5.4.1.3}
-\contentsline {subsubsection}{\numberline {5.4.1.4}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}{48}{subsubsection.5.4.1.4}
-\contentsline {subsubsection}{\numberline {5.4.1.5}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}{50}{subsubsection.5.4.1.5}
-\contentsline {subsubsection}{\numberline {5.4.1.6}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}{51}{subsubsection.5.4.1.6}
-\contentsline {subsubsection}{\numberline {5.4.1.7}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}{53}{subsubsection.5.4.1.7}
-\contentsline {subsubsection}{\numberline {5.4.1.8}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}{54}{subsubsection.5.4.1.8}
-\contentsline {subsection}{\numberline {5.4.2}Hasil Ekperimen Pengujian Arsitektur RNNs}{55}{subsection.5.4.2}
-\contentsline {subsubsection}{\numberline {5.4.2.1}Sub-Eksperimen Menguji Arsitektur RNNs 1 Layer}{55}{subsubsection.5.4.2.1}
-\contentsline {subsubsection}{\numberline {5.4.2.2}Sub-Eksperimen Menguji Arsitektur RNNs 2 Layer}{56}{subsubsection.5.4.2.2}
-\contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{58}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{58}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{58}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{59}{chapter*.64}
+\contentsline {section}{\numberline {2.4}Word Embedding}{16}{section.2.4}
+\contentsline {chapter}{\numberline {3}\uppercase {Metodologi}}{18}{chapter.3}
+\contentsline {section}{\numberline {3.1}Gambaran Umum Pengembangan Metodologi yang Digunakan untuk }{18}{section.3.1}
+\contentsline {section}{\numberline {3.2}Pengumpulan Data}{19}{section.3.2}
+\contentsline {section}{\numberline {3.3}Pra-Pemrosesan}{19}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Pembersihan data}{20}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Tokenisasi}{20}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Pemotongan kalimat}{21}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Pelabelan}{21}{section.3.4}
+\contentsline {section}{\numberline {3.5}Pengembangan Model}{22}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Ekstrasi Fitur}{22}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Pengusulan Arsitektur RNNs}{26}{subsection.3.5.2}
+\contentsline {section}{\numberline {3.6}Eksperimen}{29}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Evaluasi}{29}{subsection.3.6.1}
+\contentsline {chapter}{\numberline {4}\uppercase {Implementasi}}{32}{chapter.4}
+\contentsline {section}{\numberline {4.1}Pengumpulan Data}{32}{section.4.1}
+\contentsline {section}{\numberline {4.2}Pra-Pemrosesan}{32}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Pembersihan Data}{33}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Tokenisasi}{33}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Pemotongan Kalimat}{34}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Pelabelan}{34}{section.4.3}
+\contentsline {section}{\numberline {4.4}Pengembangan Model}{35}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Ekstraksi Fitur}{35}{subsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.1.1}Fitur Kata Itu Sendiri}{35}{subsubsection.4.4.1.1}
+\contentsline {subsubsection}{\numberline {4.4.1.2}Ekstraksi Fitur Part of Speech Tag}{36}{subsubsection.4.4.1.2}
+\contentsline {subsubsection}{\numberline {4.4.1.3}Ekstraksi Fitur Stop Word}{36}{subsubsection.4.4.1.3}
+\contentsline {subsubsection}{\numberline {4.4.1.4}Ekstraksi Fitur Kamus Kesehatan}{37}{subsubsection.4.4.1.4}
+\contentsline {subsubsection}{\numberline {4.4.1.5}Ekstraksi Frasa Kata Benda}{37}{subsubsection.4.4.1.5}
+\contentsline {subsubsection}{\numberline {4.4.1.6}Ekstraksi Frasa Kata Kerja}{38}{subsubsection.4.4.1.6}
+\contentsline {subsubsection}{\numberline {4.4.1.7}Ekstraksi Fitur 1 Kata Sebelum}{38}{subsubsection.4.4.1.7}
+\contentsline {subsubsection}{\numberline {4.4.1.8}Ekstraksi Fitur 1 Kata Sesudah}{39}{subsubsection.4.4.1.8}
+\contentsline {subsection}{\numberline {4.4.2}Pengusulan Arsitektur RNNs}{39}{subsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.2.1}LSTM 1 layer}{40}{subsubsection.4.4.2.1}
+\contentsline {subsubsection}{\numberline {4.4.2.2}LSTM Layer Bertingkat}{41}{subsubsection.4.4.2.2}
+\contentsline {section}{\numberline {4.5}Eksperimen}{42}{section.4.5}
+\contentsline {section}{\numberline {4.6}Evaluasi}{43}{section.4.6}
+\contentsline {chapter}{\numberline {5}\uppercase {Eksperimen}}{46}{chapter.5}
+\contentsline {section}{\numberline {5.1}Matriks Evaluasi}{46}{section.5.1}
+\contentsline {section}{\numberline {5.2}\textit {Baseline} Eksperimen}{46}{section.5.2}
+\contentsline {section}{\numberline {5.3}Skenario Eksperimen}{47}{section.5.3}
+\contentsline {section}{\numberline {5.4}Hasil Eksperimen dan Analisis}{48}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Hasil Ekperimen Pengujian Fitur Beserta Analisis}{48}{subsection.5.4.1}
+\contentsline {subsubsection}{\numberline {5.4.1.1}Sub-Eksperimen Menguji Fitur Kata itu Sendiri}{48}{subsubsection.5.4.1.1}
+\contentsline {subsubsection}{\numberline {5.4.1.2}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan (\textit {Disease, Symptom, Treatment} dan \textit {Drug})}{50}{subsubsection.5.4.1.2}
+\contentsline {subsubsection}{\numberline {5.4.1.3}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}{51}{subsubsection.5.4.1.3}
+\contentsline {subsubsection}{\numberline {5.4.1.4}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}{52}{subsubsection.5.4.1.4}
+\contentsline {subsubsection}{\numberline {5.4.1.5}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}{54}{subsubsection.5.4.1.5}
+\contentsline {subsubsection}{\numberline {5.4.1.6}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}{55}{subsubsection.5.4.1.6}
+\contentsline {subsubsection}{\numberline {5.4.1.7}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}{56}{subsubsection.5.4.1.7}
+\contentsline {subsubsection}{\numberline {5.4.1.8}Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}{57}{subsubsection.5.4.1.8}
+\contentsline {subsection}{\numberline {5.4.2}Hasil Ekperimen Pengujian Arsitektur RNNs}{58}{subsection.5.4.2}
+\contentsline {subsubsection}{\numberline {5.4.2.1}Sub-Eksperimen Menguji Arsitektur RNNs 1 Layer}{59}{subsubsection.5.4.2.1}
+\contentsline {subsubsection}{\numberline {5.4.2.2}Sub-Eksperimen Menguji Arsitektur RNNs 2 Layer}{60}{subsubsection.5.4.2.2}
+\contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{62}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{62}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{62}{section.6.2}
+\contentsline {chapter}{Daftar Referensi}{63}{chapter*.66}

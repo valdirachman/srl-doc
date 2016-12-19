@@ -51,30 +51,29 @@
 \BOOKMARK [3][-]{subsubsection.4.4.1.6}{4.4.1.6 Ekstraksi Frasa Kata Kerja}{subsection.4.4.1}% 51
 \BOOKMARK [3][-]{subsubsection.4.4.1.7}{4.4.1.7 Ekstraksi Fitur 1 Kata Sebelum}{subsection.4.4.1}% 52
 \BOOKMARK [3][-]{subsubsection.4.4.1.8}{4.4.1.8 Ekstraksi Fitur 1 Kata Sesudah}{subsection.4.4.1}% 53
-\BOOKMARK [3][-]{subsubsection.4.4.1.9}{4.4.1.9 Ekstraksi Fitur 2 Kata Sebelum}{subsection.4.4.1}% 54
-\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 Pengusulan Arsitektur RNNs}{section.4.4}% 55
-\BOOKMARK [3][-]{subsubsection.4.4.2.1}{4.4.2.1 LSTM 1 layer}{subsection.4.4.2}% 56
-\BOOKMARK [3][-]{subsubsection.4.4.2.2}{4.4.2.2 LSTM Layer Bertingkat}{subsection.4.4.2}% 57
-\BOOKMARK [1][-]{section.4.5}{4.5 Eksperimen}{chapter.4}% 58
-\BOOKMARK [1][-]{section.4.6}{4.6 Evaluasi}{chapter.4}% 59
-\BOOKMARK [0][-]{chapter.5}{5 Eksperimen}{}% 60
-\BOOKMARK [1][-]{section.5.1}{5.1 Matriks Evaluasi}{chapter.5}% 61
-\BOOKMARK [1][-]{section.5.2}{5.2 Baseline Eksperimen}{chapter.5}% 62
-\BOOKMARK [1][-]{section.5.3}{5.3 Skenario Eksperimen}{chapter.5}% 63
-\BOOKMARK [1][-]{section.5.4}{5.4 Hasil Eksperimen dan Analisis}{chapter.5}% 64
-\BOOKMARK [2][-]{subsection.5.4.1}{5.4.1 Hasil Ekperimen Pengujian Fitur Beserta Analisis}{section.5.4}% 65
-\BOOKMARK [3][-]{subsubsection.5.4.1.1}{5.4.1.1 Sub-Eksperimen Menguji Fitur Kata itu Sendiri}{subsection.5.4.1}% 66
-\BOOKMARK [3][-]{subsubsection.5.4.1.2}{5.4.1.2 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan \(Disease, Symptom, Treatment dan Drug\)}{subsection.5.4.1}% 67
-\BOOKMARK [3][-]{subsubsection.5.4.1.3}{5.4.1.3 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}{subsection.5.4.1}% 68
-\BOOKMARK [3][-]{subsubsection.5.4.1.4}{5.4.1.4 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}{subsection.5.4.1}% 69
-\BOOKMARK [3][-]{subsubsection.5.4.1.5}{5.4.1.5 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}{subsection.5.4.1}% 70
-\BOOKMARK [3][-]{subsubsection.5.4.1.6}{5.4.1.6 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}{subsection.5.4.1}% 71
-\BOOKMARK [3][-]{subsubsection.5.4.1.7}{5.4.1.7 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}{subsection.5.4.1}% 72
-\BOOKMARK [3][-]{subsubsection.5.4.1.8}{5.4.1.8 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}{subsection.5.4.1}% 73
-\BOOKMARK [2][-]{subsection.5.4.2}{5.4.2 Hasil Ekperimen Pengujian Arsitektur RNNs}{section.5.4}% 74
-\BOOKMARK [3][-]{subsubsection.5.4.2.1}{5.4.2.1 Sub-Eksperimen Menguji Arsitektur RNNs 1 Layer}{subsection.5.4.2}% 75
-\BOOKMARK [3][-]{subsubsection.5.4.2.2}{5.4.2.2 Sub-Eksperimen Menguji Arsitektur RNNs 2 Layer}{subsection.5.4.2}% 76
-\BOOKMARK [0][-]{chapter.6}{6 Kesimpulan dan Saran}{}% 77
-\BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 78
-\BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 79
-\BOOKMARK [0][-]{chapter*.64}{Daftar Referensi}{}% 80
+\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 Pengusulan Arsitektur RNNs}{section.4.4}% 54
+\BOOKMARK [3][-]{subsubsection.4.4.2.1}{4.4.2.1 LSTM 1 layer}{subsection.4.4.2}% 55
+\BOOKMARK [3][-]{subsubsection.4.4.2.2}{4.4.2.2 LSTM Layer Bertingkat}{subsection.4.4.2}% 56
+\BOOKMARK [1][-]{section.4.5}{4.5 Eksperimen}{chapter.4}% 57
+\BOOKMARK [1][-]{section.4.6}{4.6 Evaluasi}{chapter.4}% 58
+\BOOKMARK [0][-]{chapter.5}{5 Eksperimen}{}% 59
+\BOOKMARK [1][-]{section.5.1}{5.1 Matriks Evaluasi}{chapter.5}% 60
+\BOOKMARK [1][-]{section.5.2}{5.2 Baseline Eksperimen}{chapter.5}% 61
+\BOOKMARK [1][-]{section.5.3}{5.3 Skenario Eksperimen}{chapter.5}% 62
+\BOOKMARK [1][-]{section.5.4}{5.4 Hasil Eksperimen dan Analisis}{chapter.5}% 63
+\BOOKMARK [2][-]{subsection.5.4.1}{5.4.1 Hasil Ekperimen Pengujian Fitur Beserta Analisis}{section.5.4}% 64
+\BOOKMARK [3][-]{subsubsection.5.4.1.1}{5.4.1.1 Sub-Eksperimen Menguji Fitur Kata itu Sendiri}{subsection.5.4.1}% 65
+\BOOKMARK [3][-]{subsubsection.5.4.1.2}{5.4.1.2 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan \(Disease, Symptom, Treatment dan Drug\)}{subsection.5.4.1}% 66
+\BOOKMARK [3][-]{subsubsection.5.4.1.3}{5.4.1.3 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}{subsection.5.4.1}% 67
+\BOOKMARK [3][-]{subsubsection.5.4.1.4}{5.4.1.4 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}{subsection.5.4.1}% 68
+\BOOKMARK [3][-]{subsubsection.5.4.1.5}{5.4.1.5 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}{subsection.5.4.1}% 69
+\BOOKMARK [3][-]{subsubsection.5.4.1.6}{5.4.1.6 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}{subsection.5.4.1}% 70
+\BOOKMARK [3][-]{subsubsection.5.4.1.7}{5.4.1.7 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}{subsection.5.4.1}% 71
+\BOOKMARK [3][-]{subsubsection.5.4.1.8}{5.4.1.8 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}{subsection.5.4.1}% 72
+\BOOKMARK [2][-]{subsection.5.4.2}{5.4.2 Hasil Ekperimen Pengujian Arsitektur RNNs}{section.5.4}% 73
+\BOOKMARK [3][-]{subsubsection.5.4.2.1}{5.4.2.1 Sub-Eksperimen Menguji Arsitektur RNNs 1 Layer}{subsection.5.4.2}% 74
+\BOOKMARK [3][-]{subsubsection.5.4.2.2}{5.4.2.2 Sub-Eksperimen Menguji Arsitektur RNNs 2 Layer}{subsection.5.4.2}% 75
+\BOOKMARK [0][-]{chapter.6}{6 Kesimpulan dan Saran}{}% 76
+\BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 77
+\BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 78
+\BOOKMARK [0][-]{chapter*.66}{Daftar Referensi}{}% 79

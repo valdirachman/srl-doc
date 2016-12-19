@@ -54,7 +54,7 @@ Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah ka
 Untuk menghindari jumlah token yang timpang dalam kalimat yang berbeda dan data yang \textit{sparse}, \saya~melakukan pemotongan kata dengan langkah-langkah sebagai berikut:
 \begin{enumerate}
 	\item memisahkan kalimat berdasarkan tanda baca (.!?,),
-	\item apabila suatu kalimat memiliki jumlah kata yang sedikit (misal diberikan batasan minimal 10 kata dalam satu kalimat), kalimat tersebut digabungkan dengan kalimat setelahnya.
+	\item apabila suatu kalimat memiliki jumlah kata yang sedikit (batasan minimal jumlah kata dalam sebuah kalimat yang \saya~gunakan adalah 10 kata), kalimat tersebut digabungkan dengan kalimat setelahnya.
 \end{enumerate}
 
 \section{Pelabelan}
@@ -92,11 +92,12 @@ Pada tahap ini, \saya~melakukan pelabelan pada dokumen teks yang merupakan hasil
 		\item[$\bullet$] Terapi inhalasi
 	\end{description}
 \end{enumerate}
-	
+Setelah proses di atas selesai, label di dalam korpus diubah menjadi format BIO (\textit{begin inside outside}).
+
 \section{Pengembangan Model}
 Pada tahap ini, \saya~melakukan pengusulan dan perancangan model yang nantinya akan \saya~evaluasi pada tahap eksperimen. Dalam mengembangkan model, terdapat dua pekerjaan yang \saya~lakukan, yaitu:
 
-\subsection{Ekstrasi Fitur}
+\subsection{Ekstrasi Fitur}\label{subbab:fitur}
 Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi label entitas. Ada beberapa fitur yang \saya~usulkan dalam penelitian ini yang nantinya \saya~kombinasikan supaya mendapatkan hasil terbaik. Fitur-fitur tersebut yaitu:
 \begin{enumerate}
 	\item Fitur 1: Kata itu sendiri\\
@@ -106,7 +107,7 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 		\Saya~melakukan pengumpulan data teks sebagai \textit{resource} untuk melakukan \textit{training} model \textit{word embedding}. Data teks yang \saya gunakan merupakan data teks dari artikel-artikel kesehatan dan data teks forum kesehatan di kaskus. \Saya~menggunakan teks berjenis kesehatan supaya \textit{domain word embedding} dengan data \textit{training} untuk model \mer~sama. Selain itu, terdapat beberapa \textit{term} kesehatan yang susah ditemukan di forum umum.
 		 
 		\item \textit{Training} untuk mendapatkan model \textit{word embedding}\\
-		\textit{Training} dilakukan untuk mendapatkan model yang mampu mendapatkan representasi vektor dari sebuah kata.
+		\textit{Training} dilakukan untuk mendapatkan model yang mampu mendapatkan representasi vektor dari sebuah kata. Panjang vektor yang dihasilkan yaitu 1298 dengan besaran \textit{windows} yaitu 5. Arsitektur yang digunakan untuk melakukan \textit{training} ini adalah \textit{skip-gram}.
 		
 		\item Pengubahan kata menjadi vektor dari model yang didapatkan\\
 		Pada langkah ini \saya~mendapatkan suatu kata menjadi representasi vektor dengan model yang telah \saya~dapatkan pada tahap \textit{training} model \textit{word embedding}.
@@ -166,20 +167,94 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap eksperimen. Ada dua arsitektur yang \saya~gunakan dalam penelitian ini, yaitu
 \begin{enumerate}
 	\item LSTM 1 layer\\
-	Pada LSTM 1 layer, semua fitur yang menjadi input pada sebuah \textit{timestep} digabung menjadi satu. Berikut merupakan ilustrasi LSTM 1 layer yang \saya~gunakan dalam penelitian ini.
+	Pada LSTM 1 layer, semua fitur yang menjadi input pada sebuah \textit{timestep} digabung menjadi satu. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Network} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi LSTM 1 layer yang \saya~gunakan dalam penelitian ini.
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.8\linewidth]{images/single_layer_rnn}
+		\includegraphics[width=0.8\linewidth]{images/lstm1}
 		\caption{LSTM 1 layer}
 		\label{fig:single_layer_rnn}
 	\end{figure}
+	Untuk masing-masing \textit{timestep} $ t $, berikut merupakan gambar sebuah \textit{cell}-nya.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/lstm}
+		\caption{1 buah blok memori dalam LSTM}
+		\label{fig:lstm1cell}
+	\end{figure}
+	
+	Dari gambar \ref{fig:lstm1cell}, sebuah \textit{cell} membutuhkan \textit{input} $ x(t) $ dan \textit{output} $ h(t) $. $ x(t) $ merupakan vektor dengan panjang $ N $, dan $ h(t) $ merupakan vektor dengan panjang $ M $. Seperti yang telah dijelaskan pada subbab \ref{subbab:lstm}, berikut merupakan formula untuk mengetahui \textit{output} pada \textit{timestep} $ t $.
+	\begin{equation}\label{eq:lstmm}
+	m_{t}=\alpha_{t} (\times) m_{t-1} + \beta_{t} (\times) f(x_{t},{t-1})
+	\end{equation}
+	\begin{equation}\label{eq:lstmh}
+	h_{t}=\gamma_{t} (\times) tanh(m_{t})
+	\end{equation}
+	dimana
+	\begin{equation}\label{eq:lstmx}
+	f(x_{t},{t-1})=tanh(W_{xm} \cdot x_{t} + W_{hm} \cdot h_{t-1})
+	\end{equation}
+	
+	$ \alpha_t $, $ \beta_t $ dan $ \gamma_t $ merupakan \textit{gates}:
+	\begin{enumerate}
+		\item \textit{Forget gates}: $ \alpha_{t}=\tau(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1}) $
+		\item \textit{Input gates}: $ \beta_{t}=\tau(W_{x\beta}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1}) $
+		\item \textit{Output gates}: $ \gamma_{t}=\tau(W_{x\gamma}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
+	\end{enumerate}
 
 	\item LSTM layer bertingkat
-	Pada LSTM 2 layer, penulis mendefinisikan 2 layer, dimana layer terbawah merupakan layer dengan jumlah LSTM sebanyak n kelompok fitur. Pertama-tama fitur dikelompokkan terlebih dahulu, kemudian dijadikan input untuk LSTM layer pertama. Setelah itu, hasil dari layer pertama tersebut akan digabung menjadi satu, dengan menggunakan layer penggabung. \textit{Output} dari layer penggabung kemudian dimasukkan ke dalam LSTM layer kedua, yang \textit{output}-nya merupakan hasil klasifikasi label. Berikut merupakan ilustrasi dari LSTM layer bertingkat yang \saya~gunakan.
+	Pada LSTM 2 layer, penulis mendefinisikan 2 layer, dimana layer terbawah merupakan layer dengan jumlah LSTM sebanyak n kelompok fitur. Pertama-tama fitur dikelompokkan terlebih dahulu, kemudian dijadikan input untuk LSTM layer pertama. Setelah itu, hasil dari layer pertama tersebut akan digabung menjadi satu, dengan menggunakan layer penggabung. \textit{Output} dari layer penggabung kemudian dimasukkan ke dalam LSTM layer kedua. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Network} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi dari LSTM layer bertingkat yang \saya~gunakan.
 	
-	\textbf{Gambar LSTM 2}(Belum)
+	\begin{figure}
+		\centering
+		\includegraphics[width=1.0\linewidth]{images/lstm2}
+		\caption{LSTM 2 layer}
+		\label{fig:lstm2}
+	\end{figure}
+
+	Masing-masing kelompok fitur menjadi \textit{input} dari LSTMs yang terkait. Nantinya, masing-masing \textit{output} akan digabung melalui \textit{merge layer} dengan metode \textit{concat} dan menjadi \textit{input} bagi LSTMs layer kedua.
+	Di sini, \saya~menotasikan $ k $ sebagai nomor kelompok fitur dan $ t $ sebagai \textit{timestep} saat ini. Untuk masing-masing kelompok fitur, berikut merupakan formulasi \textit{feedforward}-nya:
+	\begin{equation}\label{eq:mt2}
+	m_{k,t}=\alpha_{k,t} (\times) m_{k,t-1} + \beta_{k,t} (\times) f(x_{k,t},{k,t-1})
+	\end{equation}
+	\begin{equation}\label{eq:ht2}
+	h_{k,t}=\gamma_{k,t} (\times) tanh(k,m_{t})
+	\end{equation}
+	dimana
+	\begin{equation}\label{eq:hf2}
+	f(x_{k,t},{k,t-1})=tanh(W_{k,xm} \cdot x_{t} + W_{k,hm} \cdot h_{k,t-1})
+	\end{equation}
+	$ \alpha_{k,t} $, $ \beta_{k,t} $ dan $ \gamma_{k,t} $ merupakan \textit{gates}:
+	\begin{enumerate}
+	\item \textit{Forget gates}: $ \alpha_{k,t}=\tau(W_{k,x\alpha}+W_{k,h\alpha}\cdot~h_{k,t-1}+W_{k,m\alpha}\cdot~m_{k,t-1}) $
+	\item \textit{Input gates}: $ \beta_{k,t}=\tau(W_{k,x\beta}+W_{k,h\beta}\cdot~h_{k,t-1}+W_{k,m\beta}\cdot~m_{k,t-1}) $
+	\item \textit{Output gates}: $ \gamma_{k,t}=\tau(W_{k,x\gamma}+W_{k,h\gamma}\cdot~h_{k,t-1}+W_{k,m\gamma}\cdot~m_{k,t-1}) $
+	\end{enumerate}
+
+	\textit{Merge layer} berfungsi untuk menggabungkan hasil dari \textit{feedforward} pada semua LSTMs layer pertama. Di sini, saya menotasikan $ X_t $ sebagai hasil dari \textit{merge} di \textit{timestep} $ t $ dan $ (\cdot) $ merupakan operasi \textit{merging}.
+	\begin{equation}\label{eq:merge}
+	X_t = h_{1,t} (\cdot) h_{2,t} (\cdot) h_{3,t} (\cdot) .... (\cdot) h_{k,t}
+	\end{equation}
+
+	Hasil dari \textit{merge layer} akan digunakan sebagai \textit{input} bagi LSTMs layer kedua. Untuk memudahkan penggunaan notasi dan membedakan dengan LSTMs pada layer pertama, \saya~menggunakan huruf kapital dalam menotasikan masing-masing nilai di LSTMs layer kedua. Berikut merupakan formulasi \textit{feed-forwarnya}.
 	
+	\begin{equation}\label{eq:mt3}
+	M_{t}=\alpha_{t} (\times) M_{t-1} + \beta_{t} (\times) f(X_{t},{t-1})
+	\end{equation}
+	\begin{equation}\label{eq:ht3}
+	H_{t}=\gamma_{t} (\times) tanh(M_{t})
+	\end{equation}
+	dimana
+	\begin{equation}\label{eq:hf3}
+	f(X_{t},{t-1})=tanh(W_{XM} \cdot X_{t} + W_{HM} \cdot H_{t-1})
+	\end{equation}
+	$ \alpha_{t} $, $ \beta_{t} $ dan $ \gamma_{t} $ merupakan \textit{gates}:
+	\begin{enumerate}
+	\item \textit{Forget gates}: $ \alpha_{t}=\tau(W_{X\alpha}+W_{H\alpha}\cdot~H_{t-1}+W_{M\alpha}\cdot~M_{t-1}) $
+	\item \textit{Input gates}: $ \beta_{t}=\tau(W_{X\beta}+W_{H\beta}\cdot~H_{t-1}+W_{M\beta}\cdot~M_{t-1}) $
+	\item \textit{Output gates}: $ \gamma_{t}=\tau(W_{X\gamma}+W_{H\gamma}\cdot~H_{t-1}+W_{M\gamma}\cdot~M_{t-1}) $
+	\end{enumerate}
+		
 \end{enumerate}
 	
 \section{Eksperimen}

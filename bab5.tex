@@ -10,7 +10,7 @@ Pada bab ini \saya~akan menjelaskan mengenai skeanrio, hasil dan analisis dari e
 Pada eksperimen ini, untuk mendapatkan nilai akurasi dari masing-masing eksperimen \saya~menggunakan \textit{precission}, \textit{recall} dan \textit{f-measure}. \Saya~menggunakan \textit{10-cross fold validation} dalam menjalankan eksperimen. Terkait dengan penjelasan mengenai cara penghitungan dan evaluasi sudah dijelaskan pada Bab 3.
 
 \section{\textit{Baseline} Eksperimen}
-Pada penelitian ini, \saya~mencoba melakukan implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Implementasi dan eksperimen ini bertujuan sebagai \textit{baselaine} eksperimen dan penelitian yang \saya~lakukan. Selain itu, juga untuk mengetahui secara singkat fitur yang diskriminatif dalam melakukan \textit{sequence labelling} pada \mer~ini.
+Pada penelitian ini, \saya~mencoba melakukan implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Data yang digunakan adalah data yang \saya~gunakan dalam penelitian ini.Implementasi dan eksperimen ini bertujuan sebagai \textit{baselaine} eksperimen dan penelitian yang \saya~lakukan. Selain itu, juga untuk mengetahui secara singkat fitur yang diskriminatif dalam melakukan \textit{sequence labelling} pada \mer~ini.
 
 Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}.
 	
@@ -20,10 +20,10 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
 							& \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-		\textit{Disease}    & 71.80\%             & 61.74\%        & 66.21\%           \\ \hline
-		\textit{Symptom}    & 72.90\%             & 65.38\%        & 68.72\%           \\ \hline
-		\textit{Treatment}  & 67.06\%             & 55.95\%        & 60.52\%           \\ \hline
-		\textit{Drug}		& 70.21\%             & 50.06\%        & 57.71\%           \\ \hline
+		\textit{Disease}    & 63.68\%             & 55.45\%        & 59.13\%           \\ \hline
+		\textit{Symptom}    & 61.43\%             & 59.21\%        & 60.18\%           \\ \hline
+		\textit{Treatment}  & 53.10\%             & 45.97\%        & 48.82\%           \\ \hline
+		\textit{Drug}		& 58.99\%             & 44.46\%        & 48.23\%           \\ \hline
 	    \end{tabular}
 \label{table:radit}
 \end{table}
@@ -47,7 +47,7 @@ Pada penelitian ini, \saya~melakukan 2 buah skenario utama, yaitu skenario untuk
 		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur stop word
 		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur POS-Tag
 		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur Frasa kata
-		\item Sub-skenario menguji fitur terbaik sebelumnya dikurang fitur POS-Tag
+		\item Sub-skenario menguji fitur terbaik sebelumnya dikurangi fitur POS-Tag
 		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur 1 kata sebelum
 		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur 1 kata sesudah
 	\end{enumerate}
@@ -66,7 +66,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	%-----------------------------------------------------------------------------%
 	\subsection{Hasil Ekperimen Pengujian Fitur Beserta Analisis}
 	
-	Hasil eksperimen ini adalah laporan dari pengujian kombinasi fitur kata itu sendiri, kamus, \textit{stop word}, POS-Tag, frasa kata (frasa kata benda dan kata kerja), 1 kata sebelum,dan 1 kata sesudah.
+	Hasil eksperimen ini adalah laporan dari pengujian kombinasi fitur kata itu sendiri, kamus, \textit{stop word}, POS-Tag, frasa kata (frasa kata benda dan kata kerja), 1 kata sebelum, dan 1 kata sesudah.
 	  
 	\subsubsection{Sub-Eksperimen Menguji Fitur Kata itu Sendiri}
 	%-----------------------------------------------------------------------------%
@@ -77,7 +77,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	    \caption{Tabel Hasil Eksperimen dengan Fitur Kata Itu Sendiri}
 	    \begin{tabular}{|c|c|c|c|c|}
 	      \hline
-						      & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+						      & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
 	      \textit{Disease}    & 61.38\%             & 60.42\%        & 60.37\%           \\ \hline
 	      \textit{Symptom}    & 57.05\%             & 56.13\%        & 56.19\%           \\ \hline
 	      \textit{Treatment}  & 49.92\%             & 47.17\%        & 46.96\%           \\ \hline
@@ -86,7 +86,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	    \label{table:own1}
 	\end{table}
 	
-	Pada tabel tersebut, dengan menggunakan fitur kata itu sendiri terlihat bahwa entitas \textit{Disease} memiliki \textit{recall} dan \textit{f-measure} tertinggi, yaitu 60.42\%, dan 60.37\%. Sedangkan entitas \textit{drug} memiliki \textit{precission} tertinggi, yaitu 62.86\%. Grafik \ref{fig:own1} menunjukkan perbandingan \textit{precission}, \textit{recall} dan \textit{f-measure} untuk masing-masing entitas.
+	Pada tabel tersebut, dengan menggunakan fitur kata itu sendiri terlihat bahwa entitas \textit{Disease} memiliki \textit{recall} dan \textit{f-measure} tertinggi, yaitu 60.42\%, dan 60.37\%. Sedangkan entitas \textit{drug} memiliki \textit{precision} tertinggi, yaitu 62.86\%. Grafik \ref{fig:own1} menunjukkan perbandingan \textit{precision}, \textit{recall} dan \textit{f-measure} untuk masing-masing entitas.
 	
 	\begin{figure}
 	  \centering
@@ -95,7 +95,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	  \label{fig:own1}
 	\end{figure}
 
-	Pada eksperimen ini, hasil yang dicapai masih lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena pada eksperimen ini hanya menggunakan fitur kata itu sendiri tanpa melibatkan informasi lain seperti pada penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Oleh karena itu perlu adanya informasi lain, misalnya seperti apakah suatu kata terdapat dalam sebuah kamus kesehatan, informasi POS-Tag atau informasi yang lain. Oleh karena itu, \saya~mencoba menggunakan tambahan fitur lain untuk meningkatkan akurasi pada penelitian ini, yaitu pada sub-eksperimen \ref{eks:subeksdict}.
+	Pada eksperimen ini, ada beberapa nilai \textit{precision, recall} dan \textit{f-measure}  yang dicapai masih lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena pada eksperimen ini hanya menggunakan fitur kata itu sendiri tanpa melibatkan informasi lain seperti pada penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Oleh karena itu perlu adanya informasi lain, misalnya seperti apakah suatu kata terdapat dalam sebuah kamus kesehatan, informasi POS-Tag atau informasi yang lain. Oleh karena itu, \saya~mencoba menggunakan tambahan fitur lain untuk meningkatkan akurasi pada penelitian ini, yaitu pada sub-eksperimen \ref{eks:subeksdict}.
 	
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan (\textit{Disease, Symptom, Treatment} dan \textit{Drug})}\label{eks:subeksdict}
@@ -109,7 +109,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 		\caption{Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan}
 		\begin{tabular}{|c|c|c|c|c|}
 			\hline
-			                      & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+			                      & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
 			\textit{Disease}      & 67.32\%             & 61.78\%        & 64.10\%           \\ \hline
 			\textit{Symptom}      & 60.55\%             & 55.12\%        & 57.41\%           \\ \hline
 			\textit{Treatment}    & 52.21\%             & 44.18\%        & 47.02\%           \\ \hline
@@ -127,9 +127,9 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 		\label{fig:owndict2}
 	\end{figure}
 
-	Dari tabel dan grafik tersebut, didapatkan informasi bahwa dengan menggunakan tambahan fitur kamus kesehatan terlihat bahwa entitas \textit{Disease} mengalami kenaikan nilai \textit{precission}, \textit{recall}, dan \textit{f-measure}. Selain itu, entitas \textit{Symptom} dan \textit{tratment} mengalami kenaikan nilai \textit{precission} dan \textit{f-measure}. Entitas \textit{drug} mengalami penurunan pada nilai \textit{precission} namun mengalami kenaikan pada nilai \textit{recall} dan \textit{f-measure}-nya. Secara keseluruhan,  Sedangkan entitas \textit{drug} memiliki \textit{precission} tertinggi, yaitu 62.86\%. Grafik \ref{fig:owndict2} menunjukkan perbandingan \textit{precission}, \textit{recall} dan \textit{f-measure} untuk masing-masing entitas.
+	Dari tabel dan grafik tersebut, didapatkan informasi bahwa dengan menggunakan tambahan fitur kamus kesehatan terlihat bahwa entitas \textit{Disease} mengalami kenaikan nilai \textit{precision}, \textit{recall}, dan \textit{f-measure}. Selain itu, entitas \textit{symptom} dan \textit{tratment} mengalami kenaikan nilai \textit{precision} dan \textit{f-measure}. Entitas \textit{drug} mengalami penurunan pada nilai \textit{precision} namun mengalami kenaikan pada nilai \textit{recall} dan \textit{f-measure}-nya. Secara keseluruhan,  Sedangkan entitas \textit{drug} memiliki \textit{precission} tertinggi, yaitu 62.86\%. Grafik \ref{fig:owndict2} menunjukkan perbandingan \textit{precision}, \textit{recall} dan \textit{f-measure} untuk masing-masing entitas.
 
-	Dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}, hasil yang dicapai pada eksperimen ini masih lebih rendah. Menurut \saya~perlu ada informasi tambahan untuk meningkatkan akurasi. Seperti yang kita ketahui bahwa eksperimen \cite{skripsiKakRadit} tidak hanya menggunakan fitur kata itu sendiri dan kamus kesehatan saja. Oleh karena itu, \saya~mencoba melakukan eksperimen kembali dengan menggunakan tambahan fitur lain pada sub-eksperimen \ref{eks:subekstopword};
+	Dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}, hasil yang dicapai pada eksperimen ini masih lebih rendah pada entitas \textit{symptom} dan \textit{treatment}. Menurut \saya~perlu ada informasi tambahan untuk meningkatkan akurasi. Seperti yang kita ketahui bahwa eksperimen \cite{skripsiKakRadit} tidak hanya menggunakan fitur kata itu sendiri dan kamus kesehatan saja. Oleh karena itu, \saya~mencoba melakukan eksperimen kembali dengan menggunakan tambahan fitur lain pada sub-eksperimen \ref{eks:subekstopword};
 	
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}\label{eks:subekstopword}
@@ -143,7 +143,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 		\caption{Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}
 		\begin{tabular}{|c|c|c|c|c|}
 			\hline
-							      & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+							      & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
 			\textit{Disease}      & 65.97\%             & 59.81\%        & 62.28\%           \\ \hline
 			\textit{Symptom}      & 63.08\%             & 55.20\%        & 58.68\%           \\ \hline
 			\textit{Treatment}    & 54.73\%             & 46.27\%        & 49.69\%           \\ \hline
@@ -159,11 +159,9 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 		\label{fig:owndict3}
 	\end{figure}
 	
-	Dari Tabel \ref{table:owndict3} dan Gambar \ref{fig:owndict3} dapat diamati bahwa secara umum, penggunaan fitur Kamus \textit{Stop Word} dapat meningkatkan \textit{precission, recall,} dan \textit{f-measure}. Untuk lebih detailnya, entitas \textit{disease} mengalami penurunan nilai \textit{precission} dan \textit{f-measure} tetapi mengalami kenaikan nilai \textit{recall}. Entitas \textit{symptom} dan \textit{treatment} mengalami kenaikan untuk nilai \textit{precission, recall} dan \textit{f-measure}. Sedangkan entitas \textit{drug} mengalami kenaikan pada nilai \textit{precission} dan \textit{f-measure} teteapi mengalami penurunan pada nilai \textit{recall}.
-	
-	Menurut analisis \saya~entitas \textit{symptom} dan \textit{treatment} mengalami kenaikan akurasi karena pada sebagian besar entitas tersebut memiliki susunan kata yang sama dengan kalimat pada umumnya. \textbf{KASIH CONTOH}
-	
-	Pada sub-eksperimen ini, walaupun secara umum akurasi lebih baik dibandingkan dengan sub-eksperimen sebelumnya, hasil sub-eksperimen ini masih lebih rendah apabila dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}. Oleh karena \saya~mengusulkan fitur tambahan lain yaitu fitur POS-Tag yang akan dijelaskan pada sub-eksperimen \ref{eks:subekspostag}.
+	Dari Tabel \ref{table:owndict3} dan Gambar \ref{fig:owndict3} dapat diamati bahwa secara umum, penggunaan fitur Kamus \textit{Stop Word} dapat meningkatkan \textit{precission, recall,} dan \textit{f-measure}. Untuk lebih detailnya, entitas \textit{disease} mengalami penurunan nilai \textit{precission} dan \textit{f-measure} tetapi mengalami kenaikan nilai \textit{recall}. Entitas \textit{symptom} dan \textit{treatment} mengalami kenaikan untuk nilai \textit{precision, recall} dan \textit{f-measure}. Sedangkan entitas \textit{drug} mengalami kenaikan pada nilai \textit{precission} dan \textit{f-measure} teteapi mengalami penurunan pada nilai \textit{recall}.
+		
+	Pada sub-eksperimen ini, walaupun secara umum akurasi lebih baik dibandingkan dengan sub-eksperimen sebelumnya, hasil sub-eksperimen ini masih lebih rendah pada entitas \textit{treatment} apabila dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}. Oleh karena \saya~mengusulkan fitur tambahan lain yaitu fitur POS-Tag yang akan dijelaskan pada sub-eksperimen \ref{eks:subekspostag}.
 	
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}\label{eks:subekspostag}
@@ -177,7 +175,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 		\caption{Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}
 		\begin{tabular}{|c|c|c|c|c|}
 			\hline
-								  & \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
+								  & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
 			\textit{Disease}      & 69.10\%             & 58.67\%        & 63.22\%           \\ \hline
 			\textit{Symptom}      & 61.09\%             & 54.43\%        & 57.00\%           \\ \hline
 			\textit{Treatment}    & 59.73\%             & 44.10\%        & 49.87\%           \\ \hline
@@ -193,14 +191,14 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 		\label{fig:owndict4}
 	\end{figure}
 	
-	Dari tabel dan grafik di atas, entitas \textit{disease} dan \textit{treatment} memiliki nilai \textit{precission} dan \textit{f-measure} yang meningkat, tetapi dengan nilai \textit{recall} yang turun. Untuk entitas \textit{symptom}, nilai \textit{precission, recall}, dan \textit{f-measure} mengalami penurunan. Sedangkan entitas \textit{drug} mengalami kenaikan hanya pada \textit{precission}-nya saja. Hal ini terjadi karena model POS-Tagger yang digunakan menghasilkan tag yang terkadang tidak konsisten. Sebagai contoh, \textbf{BERI CONTOH}. Selain itu, fitur POS-Tag juga tidak dapat membedakan entitas obat, nama penyakit dan nama orang. Sebagai contoh, \textbf{KASIH CONTOH}. Kemudian untuk POS-Tag pada entitas \textit{treatment}juga tidak dapat dibedakan dengan POS-Tag pada kalimat yang lebih umum. Sebagai contoh \textbf{KASIH CONTOH}.
+	Dari tabel dan grafik di atas, entitas \textit{disease} dan \textit{treatment} memiliki nilai \textit{precission} dan \textit{f-measure} yang meningkat, tetapi dengan nilai \textit{recall} yang turun. Untuk entitas \textit{symptom}, nilai \textit{precission, recall}, dan \textit{f-measure} mengalami penurunan. Sedangkan entitas \textit{drug} mengalami kenaikan hanya pada \textit{precission}-nya saja. Hal ini terjadi karena model POS-Tagger yang digunakan menghasilkan tag yang terkadang tidak konsisten. Selain itu, fitur POS-Tag juga tidak dapat membedakan entitas obat, nama penyakit dan nama orang. Sebagai contoh, nama orang mendapatkan tag "NN" (intan\_NN lusia\_NN), namun nama penyakit juga mendapatkan tag "NN" (Kanker\_NN Otak\_NN).
 	
 	Oleh karena itu pada sub-eksperimen selanjutnya, \saya~mencoba menambahkan fitur lain yang lebih spesifik dibandingkan dengan fitur POS-Tag, yaitu fitur Frasa Kata. Penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subeksfrasa}.
 	
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}\label{eks:subeksfrasa}
 	%-----------------------------------------------------------------------------%
-	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur Frasa Kata. Seperti yang telah dijelaskan pada Bab 3, entitas \textit{symptom} dan \textit{treatment} diharapkan akan lebih mudah dikenali karena pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} diharapkan juga akan lebih mudah dikenali karena pada umumnya merupakan frasa kata benda. Alasan lain yaitu karena pada umumnya entitas yang akan dikenali pada penelitian ini merupakan frasa kata, hal ini dibuktikan dengan \textbf{KASIH BUKTI}.
+	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur Frasa Kata. Seperti yang telah dijelaskan pada Bab 3, entitas \textit{symptom} dan \textit{treatment} diharapkan akan lebih mudah dikenali karena pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} diharapkan juga akan lebih mudah dikenali karena pada umumnya merupakan frasa kata benda.
 	
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict4} dan Gambar \ref{fig:owndict4}.
 	
@@ -232,7 +230,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}\label{eks:subeksminpostag}
 	%-----------------------------------------------------------------------------%
-	Pada sub-eksperimen ini \saya~menghilangkan fitur POS-Tag berdasarkan hasil dan analisis pada sub-eksperimen \ref{subeksfrasa}. Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}.
+	Pada sub-eksperimen ini \saya~menghilangkan fitur POS-Tag berdasarkan hasil dan analisis pada sub-eksperimen \ref{eks:subeksfrasa}. Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}.
 	
 	\begin{table}
 		\centering
@@ -257,7 +255,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	
 	Dari Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}, terlihat bahwa semua entitas (\textit{disease, symptom, treatment,}) dan \textit{drug} mengalami kenaikan pada nilai \textit{precission, recall,} dan \textit{f-measure}. Seperti yang telah dijelaskan pada sub-eksperimen \ref{eks:subeksfrasa}, penggabunagn fitur POS-Tag dan Frasa akan memberikan hasil yang lebih rendah. Oleh karena itu, sebaiknya fitur POS-Tag tidak digabung dengan fitur Frasa. Selain itu, \saya~lebih memilih fitur Frasa untuk dipertahankan karena fitur ini lebih diskriminatif dibandingkan dengan fitur POS-Tag, dengan melihat bahwa mayoritas kata berentitas merupakan frasa.
 	
-	Walaupun pada sub-eksperimen ini hasil yang dicapai lebih baik dari sub-eksperimen sebelumnya, hasilnya tetap lebih rendah dari hasil eksperimen \cite{skripsiKakRadit}. Oleh karena itu \saya~mencoba fitur yang lain, yaitu fitur Kata Sebelum. Untuk penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subekswbef1}.
+	Walaupun pada sub-eksperimen ini hasil yang dicapai lebih baik dari sub-eksperimen sebelumnya, hasilnya tetap lebih rendah dari hasil eksperimen \cite{skripsiKakRadit} pada nilai \textit{recall} dan \textit{f-measure} entitas \textit{symptom}. Oleh karena itu \saya~mencoba fitur yang lain, yaitu fitur Kata Sebelum. Untuk penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subekswbef1}.
 	
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}\label{eks:subekswbef1}
@@ -289,7 +287,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	
 	Melihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}, dapat diketahui bahwa entitas \textit{disease} dan \textit{treatment} mengalami kenaikan pada nilai \textit{precission}, tetapi mengalami penurunan pada nilai \textit{recall} dan \textit{f-measure}. Sedangkan entitas \textit{symptom} dan \textit{drug} mengalami kenaikan pada nilai \textit{precission, recall,} dan \textit{f-measure}.
 	
-	Hasil sub-eksperimen ini masih lebih rendah dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}. Oleh karena itu, \saya~mencoba menambahkan fitur yang lain yaitu fitur 1 Kata Sesudah, yang akan dibahas lebih lanjut pada sub-eksperimen \ref{eks:subekswaf1}.
+	Hasil sub-eksperimen ini masih lebih rendah dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit} pada \textit{recall} dan \textit{f-measure} entitas \textit{treatment}. Oleh karena itu, \saya~mencoba menambahkan fitur yang lain yaitu fitur 1 Kata Sesudah, yang akan dibahas lebih lanjut pada sub-eksperimen \ref{eks:subekswaf1}.
 	
 	
 	%-----------------------------------------------------------------------------%
@@ -320,7 +318,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 		\label{fig:owndict8}
 	\end{figure}
 	
-	Melihat pada Tabel \ref{table:owndict8} dan Gambar \ref{fig:owndict8}, dapat diketahui bahwa hanya entitas \textit{symptom} yang mengalami penurunan tetapi nilai \textit{recall} dan \textit{f-measure}-nya naik. Sedangkan entitas lain mengalami kenaikan pada nilai \textit{precission, recall} dan \textit{f-measure}. Akan tetapi hasil sub-eksperimen ini masih lebih rendah dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}. Oleh karena itu, setelah \saya~mencoba kemungkinan fitur yang memberikan kontribusi dalam penelitian ini, \penulis~mencoba arsitektur untuk model RNNs yang lain. Penjelasan lebih lanjut akan dibahas pada eksperimen \ref{eks:eks2}.
+	Melihat pada Tabel \ref{table:owndict8} dan Gambar \ref{fig:owndict8}, dapat diketahui bahwa hanya entitas \textit{symptom} yang mengalami penurunan nilai pada \textit{precision}, tetapi nilai \textit{recall} dan \textit{f-measure}-nya naik. Sedangkan entitas lain mengalami kenaikan pada nilai \textit{precission, recall} dan \textit{f-measure}. Oleh karena itu, setelah \saya~mencoba kemungkinan fitur yang memberikan kontribusi dalam penelitian ini, \saya~mencoba arsitektur untuk model RNNs yang lain. Penjelasan lebih lanjut akan dibahas pada eksperimen \ref{eks:eks2}.
 	
 	
 	
@@ -357,7 +355,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     	\label{fig:owndict9}
     \end{figure}
     
-    Pada eksperimen ini, hasil yang dicapai masih lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena informasi fitur yang berbeda-beda dijadikan satu, sehingga ada kemungkinan hilangnya informasi dari masing-masing fitur tersebut. Oleh karena itu, untuk mengatasi permasalahan tersebut \saya~mengusulkan arsitektur yang mana masing-masng kelompok fitur yang berbeda dipisahkan dan menjadi \textit{input} bagi masing-masing LSTMs. Untuk penjelasan eksperimen ini akan dijelaskan pada sub-eksperimen \ref{eks2:subeksrnn2}
+    Pada eksperimen ini, hasil yang sudah lebih baik apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit} di entitas. Namun, dari eksperimen sebelumnya, ada akurasi yang turun, yaitu nilai \textit{precision} untuk entiatas \textit{symptom}. Menurut \saya~hal ini terjadi karena informasi fitur yang berbeda-beda dijadikan satu, sehingga ada kemungkinan hilangnya informasi dari masing-masing fitur tersebut. Oleh karena itu, untuk mengatasi permasalahan tersebut \saya~mengusulkan arsitektur yang mana masing-masng kelompok fitur yang berbeda dipisahkan dan menjadi \textit{input} bagi masing-masing LSTMs. Untuk penjelasan eksperimen ini akan dijelaskan pada sub-eksperimen \ref{eks2:subeksrnn2}
     
     
     \subsubsection{Sub-Eksperimen Menguji Arsitektur RNNs 2 Layer}\label{eks2:subeksrnn2}
@@ -386,3 +384,5 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     	\caption{Histogram Metrik Evaluasi dengan Arsitektur RNNs 2 Layer}
     	\label{fig:owndict10}
     \end{figure}
+
+	Pada eksperimen ini, hasil yang sudah lebih baik apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit} di masing-masing entitas dan lebih baik dibandingkan eksperimem \ref{eks2:subeksrnn1} pada identifikasi entitas \textit{symptom} dan \textit{treatment}. Oleh karena itu, sub-eksperimen ini merupakan eksperimen dengan hasil yang terbaik dari penelitian ini.
