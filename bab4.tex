@@ -188,7 +188,7 @@ Dalam mengimplementasikan ekstraksi fitur POS Tag, \saya~menggunakan \textit{too
 		\Return posTagFeature;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri}
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur POS-Tag}
 	\label{code:ekstraksipostag}
 \end{kode}
 
@@ -221,7 +221,7 @@ Ekstraksi fitur \textit{stop word} \saya~lakukan dengan menggunakan kamus \texti
 \end{kode}
 
 \subsubsection{Ekstraksi Fitur Kamus Kesehatan}
-Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implementasi ekstraksi fitur \textit{stop word}. Perbedaanya yaitu pada penggunaan \textit{resource}, yang mana ekstraksi fitur \textit{stop words} \saya~lakukan dengan menggunakan kamus \textit{stop word}, sedangkan pada fitur ini \saya~menggunakan kamus kesehatan. Kamus kesehatan yang saya gunakan sama dengan kamus pada penelitian \cite{skripsiKakRadit}, yang mana terdapat 4 kamus, yaitu kamus \textit{disease}, \textit{symptom}, \textit{treatment} dan \textit{drug}. Setiap kata yang terdaftar di dalam kamus kesehatan memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan bahasa pemrograman Pyhton dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksikamus}.
+Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implementasi ekstraksi fitur \textit{stop word}. Perbedaanya yaitu pada penggunaan \textit{resource}, yang mana ekstraksi fitur \textit{stop words} \saya~lakukan dengan menggunakan kamus \textit{stop word}, sedangkan pada fitur ini \saya~menggunakan kamus kesehatan. Kamus kesehatan yang saya gunakan sama dengan kamus pada penelitian \cite{skripsiKakRadit}, yang mana terdapat 4 kamus, yaitu kamus \textit{disease}, \textit{symptom}, \textit{treatment} dan \textit{drug}. Setiap kata yang terdaftar di dalam kamus kesehatan memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan bahasa pemrograman Python dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksikamus}.
 
 \begin{kode}
 
@@ -264,7 +264,7 @@ Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implemen
 \end{kode}
 
 \subsubsection{Ekstraksi Frasa Kata Benda}
-Dalam mengimplementasikan ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array of one hot vector} dari masing-masing kata dalam 1 kalimat, dimana apabila suatu kata merupakan bagian dari frasa kata benda akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. Berikut merupakan \textit{pseudocode} dari implementasi ekstraksi fitur frasa kata benda. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksinp}.
+Dalam mengimplementasikan ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK \citep{bird2009nltk} yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS-Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array of one-hot-vector} dari masing-masing kata dalam 1 kalimat, yang apabila suatu kata merupakan bagian dari frasa kata benda akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. Berikut merupakan \textit{pseudocode} dari implementasi ekstraksi fitur frasa kata benda. \textit{Pseudocode} untuk melakukan ekstraksi fitur ini dapat dilihat pada kode \ref{code:ekstraksinp}.
 
 \begin{kode}
 
@@ -311,12 +311,12 @@ Dalam mengimplementasikan ektraksi fitur kata benda, \saya~menggunakan \textit{l
 		writeToFile(corpusChunked)
 	}
 	\BlankLine	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur frasa kata benda}
 	\label{code:ekstraksinp}	
 \end{kode}
 
 \subsubsection{Ekstraksi Frasa Kata Kerja}
-Sama seperti pada pengimplementasian ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array of one hot vector} dari masing-masing kata dalam 1 kalimat, dimana apabila suatu kata merupakan bagian dari frasa kata kerja akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. Berikut merupakan \textit{pseudocode} dari implementasi ekstraksi fitur frasa kata benda. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksivp}.
+Sama seperti pada pengimplementasian ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK \citep{bird2009nltk} yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array of one-hot-vector} dari masing-masing kata dalam 1 kalimat, yang apabila suatu kata merupakan bagian dari frasa kata kerja akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. Berikut merupakan \textit{pseudocode} dari implementasi ekstraksi fitur frasa kata kerja. \textit{Pseudocode} untuk melakukan ekstraksi fitur ini dapat dilihat pada kode \ref{code:ekstraksivp}.
 
 \begin{kode}
 
@@ -363,7 +363,7 @@ Sama seperti pada pengimplementasian ektraksi fitur kata benda, \saya~menggunaka
 		writeToFile(corpusChunked)
 	}
 	\BlankLine	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur frasa kata kerja}
 	\label{code:ekstraksivp}
 \end{kode}
 
@@ -430,10 +430,10 @@ Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fit
 \end{kode}
 
 \subsection{Pengusulan Arsitektur RNNs}
-Sesuai dengan yang telah dijelaskan pada Bab 3, \saya~mengusulkan dua arsitektur RNNs yang akan digunakan pada tahap eksperimen. Pada bagian ini \saya~akan menjelaskan implementasi dari masing-masing arsitektur tersebut. Dalam melakukan implementasi RNNs, \saya~menggunakan \textit{library} Keras \cite{chollet2015keras} dalam bahasa Python. Keras sendiri dapat berjalan di atas dua \textit{library deep learning} lain, yaitu Theano dan Tensorflow, namun dalam penelitian ini \saya~menggunakan Theano. \Saya~menggunakan \textit{Sequential model} yang merupakan layer \textit{linear stack} dalam mengembangkan model dan jenis RNNs yang \saya~gunakan dalam penelitian ini adalah LSTM.
+Sesuai dengan yang telah dijelaskan pada Bab 3, \saya~mengusulkan dua arsitektur RNNs yang akan digunakan pada tahap eksperimen. Pada bagian ini \saya~akan menjelaskan implementasi dari masing-masing arsitektur tersebut. Dalam melakukan implementasi RNNs, \saya~menggunakan \textit{library} Keras \citep{chollet2015keras} dalam bahasa Python. Keras sendiri dapat berjalan di atas dua \textit{library deep learning} lain, yaitu Theano dan Tensorflow, namun dalam penelitian ini \saya~menggunakan Theano. \Saya~menggunakan \textit{Sequential model} yang merupakan layer \textit{linear stack} dalam mengembangkan model dan jenis RNNs yang \saya~gunakan dalam penelitian ini adalah LSTMs.
 
-\subsubsection{LSTM 1 layer}
-LSTM 1 layer yang dimaksud adalah model yang digunakan memiliki satu layer LSTM saja dan semua fitur yang menjadi input program digabung terlebih dahulu menjadi satu buah \textit{array}. Seperti yang telah dijelaskan pada Bab 3, susunan layer yang \saya~gunakan terdiri dari \textit{Masking Layer}, LSTM Layer, dan \textit{Time Distributed Layer} yang masing-masing \textit{timestep} berisi \textit{Dense Layer}. Untuk \textit{Masking Layer}, dimensi yang menjadi parameter tergantung dari \textit{array} yang menjadi masukan, untuk LSTM Layer, dimensi masukan sama dengan dimensi \textit{Masking Layer} dan dimensi keluaran untuk masing-masing \textit{timesteps} adalah panjang input dalam satu \textit{timestep} dibagi 2. Untuk masing-masing Dense Layer, dimensi masukan yang diminta sama dengan dimensi keluaran pada LSTM Layer dan dimensi keluaran sesuai dengan jumlah kelas yang telah didefinisikan.
+\subsubsection{LSTM 1 tingkat}
+LSTMs 1 tingkat yang dimaksud adalah model yang digunakan memiliki satu layer LSTMs saja dan semua fitur yang menjadi input program digabung terlebih dahulu menjadi satu buah \textit{array}. Seperti yang telah dijelaskan pada Bab 3, susunan layer yang \saya~gunakan terdiri dari \textit{Masking Layer}, LSTM Layer, dan \textit{Time Distributed Layer} yang masing-masing \textit{timestep} berisi \textit{Dense Layer}. Untuk \textit{Masking Layer}, dimensi yang menjadi parameter tergantung dari \textit{array} yang menjadi masukan, untuk LSTMs Layer, dimensi masukan sama dengan dimensi \textit{Masking Layer} dan dimensi keluaran untuk masing-masing \textit{timesteps} adalah panjang input dalam satu \textit{timestep} dibagi 2. Untuk masing-masing Dense Layer, dimensi masukan yang diminta sama dengan dimensi keluaran pada LSTMs Layer dan dimensi keluaran sesuai dengan jumlah kelas yang telah didefinisikan.
 
 Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm1} merupakan kode untuk mengimplementasikan model ini.
 
@@ -461,14 +461,14 @@ Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan
 		\Return prediction;
 	}
 	
-	\caption{\textit{Pseudocode} untuk arsitektur RNNs pertama}
+	\caption{\textit{Pseudocode} untuk arsitektur LSTMs 1 tingkat}
 	\label{code:lstm1}
 \end{kode}
 
 \subsubsection{LSTM Layer Bertingkat}
 LSTM layer bertingkat yang dimaksud yaitu terdapat dua tingkat, tingkat pertama untuk menerima \textit{input} yang setiap kelompok fitur menjadi input bagi LSTM masing-masing. Misalnya terdapat 3 kelompok fitur, masing-masing kelompok tadi akan menjadi input bagi layer LSTM masing-masing. Tingkat kedua sebagai penggabung hasil dari tingkat pertama.
 
-Layer pada tingkat pertama terdiri dari \textit{Masking Layer} dan sebuah Layer LSTM. Untuk dimensi \textit{input} dan \textit{output} \textit{Masking Layer} secara otomatis mengikuti dimensi dari data masukan. Dimensi \textit{output} dari Layer LSTM yaitu dimensi awal dibagi 2.Pada layer tingkat kedua, layer tersebut terdiri dari \textit{Merge Layer}, \textit{Time Distributed} dengan masing-masing \textit{timestep} merupakan \textit{Dense Layer} dan sebuah Layer LSTM. Keluaran dari \textit{Merge Layer} sesuai dengan total dimensi \textit{output} dari masing-masing LSTM di tingkat 1. Dimensi keluaran dari masing-masing \textit{Dense Layer} yaitu 32 dan sesuai jumlah kelas.
+Layer pada tingkat pertama terdiri dari \textit{Masking Layer} dan sebuah Layer LSTM. Untuk dimensi \textit{input} dan \textit{output} \textit{Masking Layer} secara otomatis mengikuti dimensi dari data masukan. Dimensi \textit{output} dari Layer LSTM yaitu dimensi awal dibagi 2.Pada layer tingkat kedua, layer tersebut terdiri dari \textit{Merge Layer}, \textit{Time Distributed} dengan masing-masing \textit{timestep} merupakan \textit{Dense Layer} dan sebuah Layer LSTM. Keluaran dari \textit{Merge Layer} sesuai dengan total dimensi \textit{output} dari masing-masing LSTMs di tingkat 1. Dimensi keluaran dari masing-masing \textit{Dense Layer} yaitu sesuai jumlah kelas.
 Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm2} merupakan kode untuk mengimplementasikan model ini.
 
 \begin{kode}
@@ -494,7 +494,6 @@ Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan
 		
 		mainModel = Sequential()\;
 		mainModel.add(Merge(mode='concat', modelArr))]\;
-		mainModel.add(TimeDistributed(Dense(output = 32)))\;
 		mainModel.add(LSTM(output = 32))\;
 		mainModel.add(TimeDistributed(Dense(output = 9)))\;
 		\BlankLine
@@ -506,7 +505,7 @@ Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan
 		\Return prediction;
 	}
 	
-	\caption{\textit{Pseudocode} untuk arsitektur RNNs kedua}
+	\caption{\textit{Pseudocode} untuk arsitektur LSTMs layer bertingkat}
 	\label{code:lstm2}	
 \end{kode}
 
@@ -540,7 +539,7 @@ Pada tahap ini \saya~melakukan eksperimen model yang dikembangkan pada tahap seb
 	\label{code:split}
 \end{kode}
 
-Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabungan antar fitur sebagai \textit{input} untuk melakukan eksperimen. Seperti yang dijelaskan pada tahap sebelumnya, \saya~menggunakan dua arsitektur RNNs. Hasil dari eksperimen tersebut ditulis dalam sebuah file dengan format JSON yang nantinya akan menjadi \textit{input} pada tahap evaluasi. Berikut merupakan implementasi eksperimen dengan masing-masing arsitektur tersebut.
+Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabungan antar fitur sebagai \textit{input} untuk melakukan eksperimen. Seperti yang dijelaskan pada tahap sebelumnya, \saya~menggunakan dua arsitektur RNNs. Hasil dari eksperimen tersebut ditulis dalam sebuah berkas dengan format JSON yang nantinya akan menjadi \textit{input} pada tahap evaluasi. Berikut merupakan implementasi eksperimen dengan masing-masing arsitektur tersebut.
 
 \begin{kode}
 	
@@ -572,7 +571,7 @@ Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabun
 
 
 \section{Evaluasi}
-Dalam melakukan implementasi pada tahap evaluasi, \saya~menghitung nilai \textit{prescission, recall} dan \textit{F-Measures} untuk mengukur tingkat keakuratan model yang dikembangkan pada tahap sebelumnya. \Saya~menggunakan aturan yang telah dijelaskan pada Bab 3. Berikut merupakan implementasi kode untuk melakukan evaluasi.
+Dalam melakukan implementasi pada tahap evaluasi, \saya~menghitung nilai \textit{prescision, recall} dan \textit{F-Measure} untuk mengukur tingkat keakuratan model yang dikembangkan pada tahap sebelumnya. \Saya~menggunakan aturan yang telah dijelaskan pada Bab 3. Berikut merupakan implementasi kode untuk melakukan evaluasi.
 
 \begin{kode}
 	

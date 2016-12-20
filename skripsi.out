@@ -23,7 +23,7 @@
 \BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Penerapan RNNs untuk MER}{section.2.3}% 23
 \BOOKMARK [1][-]{section.2.4}{2.4 Word Embedding}{chapter.2}% 24
 \BOOKMARK [0][-]{chapter.3}{3 Metodologi}{}% 25
-\BOOKMARK [1][-]{section.3.1}{3.1 Gambaran Umum Pengembangan Metodologi yang Digunakan untuk }{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.1}{3.1 Gambaran Umum Pengembangan Metodologi}{chapter.3}% 26
 \BOOKMARK [1][-]{section.3.2}{3.2 Pengumpulan Data}{chapter.3}% 27
 \BOOKMARK [1][-]{section.3.3}{3.3 Pra-Pemrosesan}{chapter.3}% 28
 \BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 Pembersihan data}{section.3.3}% 29
@@ -53,7 +53,7 @@
 \BOOKMARK [3][-]{subsubsection.4.4.1.7}{4.4.1.7 Ekstraksi Fitur 1 Kata Sebelum}{subsection.4.4.1}% 53
 \BOOKMARK [3][-]{subsubsection.4.4.1.8}{4.4.1.8 Ekstraksi Fitur 1 Kata Sesudah}{subsection.4.4.1}% 54
 \BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 Pengusulan Arsitektur RNNs}{section.4.4}% 55
-\BOOKMARK [3][-]{subsubsection.4.4.2.1}{4.4.2.1 LSTM 1 layer}{subsection.4.4.2}% 56
+\BOOKMARK [3][-]{subsubsection.4.4.2.1}{4.4.2.1 LSTM 1 tingkat}{subsection.4.4.2}% 56
 \BOOKMARK [3][-]{subsubsection.4.4.2.2}{4.4.2.2 LSTM Layer Bertingkat}{subsection.4.4.2}% 57
 \BOOKMARK [1][-]{section.4.5}{4.5 Eksperimen}{chapter.4}% 58
 \BOOKMARK [1][-]{section.4.6}{4.6 Evaluasi}{chapter.4}% 59
@@ -72,8 +72,8 @@
 \BOOKMARK [3][-]{subsubsection.5.4.1.7}{5.4.1.7 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}{subsection.5.4.1}% 72
 \BOOKMARK [3][-]{subsubsection.5.4.1.8}{5.4.1.8 Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}{subsection.5.4.1}% 73
 \BOOKMARK [2][-]{subsection.5.4.2}{5.4.2 Hasil Ekperimen Pengujian Arsitektur RNNs}{section.5.4}% 74
-\BOOKMARK [3][-]{subsubsection.5.4.2.1}{5.4.2.1 Sub-Eksperimen Menguji Arsitektur RNNs 1 Layer}{subsection.5.4.2}% 75
-\BOOKMARK [3][-]{subsubsection.5.4.2.2}{5.4.2.2 Sub-Eksperimen Menguji Arsitektur RNNs 2 Layer}{subsection.5.4.2}% 76
+\BOOKMARK [3][-]{subsubsection.5.4.2.1}{5.4.2.1 Sub-Eksperimen Menguji Arsitektur LSTMs 1 tingkat}{subsection.5.4.2}% 75
+\BOOKMARK [3][-]{subsubsection.5.4.2.2}{5.4.2.2 Sub-Eksperimen Menguji Arsitektur LSTMs Layer Bertingkat}{subsection.5.4.2}% 76
 \BOOKMARK [0][-]{chapter.6}{6 Kesimpulan dan Saran}{}% 77
 \BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 78
 \BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 79

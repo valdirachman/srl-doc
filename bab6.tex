@@ -12,13 +12,15 @@ Setelah dilakukan penelitian, secara garis besar didapatkan bahwa fitur kata itu
 
 Dua arsitektur yang diusulkan memiliki kelebihan masing-masing. Untuk arsitektur LSTMs dengan 1 layer, \textit{f-measure} sama dengan percobaan untuk mendapatkan fitur terbaik, karena eksperimen tersebut menggunakn arsitektur LSTMs yang sama. Sedangkan untuk arsitektur kedua (LSTMs 2 layer), rata-rata \textit{f-measure} yang didapatkan adalah $ 62.14\% $. LSTMs pertama memiliki nilai \textit{f-measure} pada entitas \textit{disease} dan \textit{drug} yang lebih bagus, yaitu masing-masing $ 68.17\% $ dan $ 69.82\% $. Sedangkan LSTMs kedua memiliki nilai \textit{f-measure} pada entitas \textit{symptom} $ 62.13\% $ dan \textit{treatment} $ 56.51\% $. Namun, apabila dilihat dari waktu komputasi, LSTMs pertama lebih baik dibandingkan LSTMs kedua.
 
+LSTMs pertama tidak bisa dikatakan lebih baik dibandingkan LSTMs kedua dan begitu pula sebaliknya, karena hasil yang diperoleh mengatakan bahwa masing-masing arsitektur memiliki hasil yang lebih baik di beberapa macam label. Namun, arsitektur ini mampu memberikan hasil yang lebih baik dari hasil penelitian \cite{skripsiKakRadit}.
+
 %-----------------------------------------------------------------------------%
 \section{Saran}
 %-----------------------------------------------------------------------------%
 Setelah melakukan eksperimen dan menganalisis hasilnya, ada beberapa saran untuk penelitian selanjutnya, antara lain sebagai berikut.
 
 \begin{enumerate}
-  \item Penelitian ini hanya menggunakan 305 \textit{post} forum kesehatan \textit{online} sehingga perlu penambahan data \textit{training} dan \textit{testing} mengingat \textit{deep learning} membutuhkan data yang besar dalam melakukan \textit{training} untuk mendapatkan model yang baik.
+  \item Penelitian ini hanya menggunakan 309 \textit{post} forum kesehatan \textit{online} sehingga perlu penambahan data \textit{training} dan \textit{testing} mengingat \textit{deep learning} membutuhkan data yang besar dalam melakukan \textit{training} untuk mendapatkan model yang baik.
 
   \item Perlu dibuat korpus dengan jumlah masing-masing entitas yang seimbang, sehingga hasil yang diberikan tidak bias.
   

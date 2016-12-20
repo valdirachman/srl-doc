@@ -28,18 +28,14 @@ Bengio, Y., Simard, P., dan Frasconi, P. (1994).
 \newblock Learning long-term dependencies with gradient descent is difficult.
 \newblock {\em IEEE transactions on neural networks}, 5(2):157--166.
 
+\bibitem[Bird et~al., 2009]{bird2009nltk}
+Bird, S., Klein, E., dan Loper, E. (2009).
+\newblock Nltk book.
+
 \bibitem[Chollet, 2015]{chollet2015keras}
 Chollet, F. (2015).
 \newblock Keras.
 \newblock \url{https://github.com/fchollet/keras}.
-
-\bibitem[conference on neural information~processing systems et~al.,
-  1997]{ieee1997advances}
-conference on neural information~processing systems, I., Mozer, M.~C., Jordan,
-  M.~I., dan Petsche, T. (1997).
-\newblock {\em Advances in Neural Information Processing Systems 9: Proceedings
-  of the 1996 Conference}.
-\newblock Mit Press.
 
 \bibitem[Dinakaramani et~al., 2014]{dinakaramani2014designing}
 Dinakaramani, A., Rashel, F., Luthfi, A., dan Manurung, R. (2014).
@@ -163,6 +159,12 @@ Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.
 \newblock Recurrent neural network based language model.
 \newblock In {\em Interspeech}, volume~2, page~3.
 
+\bibitem[Mozer et~al., 1997]{ieee1997advances}
+Mozer, M.~C., Jordan, M.~I., dan Petsche, T. (1997).
+\newblock {\em Advances in Neural Information Processing Systems 9: Proceedings
+  of the 1996 Conference}.
+\newblock Mit Press.
+
 \bibitem[Mujiono et~al., 2016]{mujiono2016new}
 Mujiono, S., Fanany, M.~I., dan Basaruddin, C. (2016).
 \newblock A new data representation based on training data characteristics to
@@ -206,5 +208,13 @@ Suwarningsih, W., Supriana, I., dan Purwarianti, A. (2014).
 \newblock In {\em Technology, Informatics, Management, Engineering, and
   Environment (TIME-E), 2014 2nd International Conference on}, pages 184--188.
   IEEE.
+
+\bibitem[Turian et~al., 2010]{turian2010word}
+Turian, J., Ratinov, L., dan Bengio, Y. (2010).
+\newblock Word representations: a simple and general method for semi-supervised
+  learning.
+\newblock In {\em Proceedings of the 48th annual meeting of the association for
+  computational linguistics}, pages 384--394. Association for Computational
+  Linguistics.
 
 \end{thebibliography}

@@ -22,6 +22,6 @@
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{55}{figure.caption.58}
 \contentsline {figure}{\numberline {5.8}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{57}{figure.caption.60}
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{58}{figure.caption.62}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 Layer\relax }}{59}{figure.caption.64}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur RNNs 2 Layer\relax }}{60}{figure.caption.66}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 Tingkat\relax }}{59}{figure.caption.64}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur LSTMs Layer Bertingkat\relax }}{60}{figure.caption.66}
 \addvspace {10\p@ }
