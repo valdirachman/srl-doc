@@ -197,9 +197,9 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 	
 	$ \alpha_t $, $ \beta_t $ dan $ \gamma_t $ merupakan \textit{gates}:
 	\begin{enumerate}
-		\item \textit{Forget gates}: $ \alpha_{t}=\tau(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1}) $
-		\item \textit{Input gates}: $ \beta_{t}=\tau(W_{x\beta}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1}) $
-		\item \textit{Output gates}: $ \gamma_{t}=\tau(W_{x\gamma}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
+		\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1}) $
+		\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{x\beta}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1}) $
+		\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{x\gamma}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
 	\end{enumerate}
 
 	\item LSTMs layer bertingkat\\
@@ -226,9 +226,9 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 	\end{equation}
 	$ \alpha_{k,t} $, $ \beta_{k,t} $ dan $ \gamma_{k,t} $ merupakan \textit{gates}:
 	\begin{enumerate}
-	\item \textit{Forget gates}: $ \alpha_{k,t}=\tau(W_{k,x\alpha}+W_{k,h\alpha}\cdot~h_{k,t-1}+W_{k,m\alpha}\cdot~m_{k,t-1}) $
-	\item \textit{Input gates}: $ \beta_{k,t}=\tau(W_{k,x\beta}+W_{k,h\beta}\cdot~h_{k,t-1}+W_{k,m\beta}\cdot~m_{k,t-1}) $
-	\item \textit{Output gates}: $ \gamma_{k,t}=\tau(W_{k,x\gamma}+W_{k,h\gamma}\cdot~h_{k,t-1}+W_{k,m\gamma}\cdot~m_{k,t-1}) $
+	\item \textit{Forget gates}: $ \alpha_{k,t}=\sigma(W_{k,x\alpha}+W_{k,h\alpha}\cdot~h_{k,t-1}+W_{k,m\alpha}\cdot~m_{k,t-1}) $
+	\item \textit{Input gates}: $ \beta_{k,t}=\sigma(W_{k,x\beta}+W_{k,h\beta}\cdot~h_{k,t-1}+W_{k,m\beta}\cdot~m_{k,t-1}) $
+	\item \textit{Output gates}: $ \gamma_{k,t}=\sigma(W_{k,x\gamma}+W_{k,h\gamma}\cdot~h_{k,t-1}+W_{k,m\gamma}\cdot~m_{k,t-1}) $
 	\end{enumerate}
 
 	\textit{Merge layer} berfungsi untuk menggabungkan hasil dari \textit{feedforward} pada semua LSTMs layer pertama. Di sini, saya menotasikan $ X_t $ sebagai hasil dari \textit{merge} di \textit{timestep} $ t $ dan $ (\cdot) $ merupakan operasi \textit{merging}.
@@ -250,9 +250,9 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 	\end{equation}
 	$ \alpha_{t} $, $ \beta_{t} $ dan $ \gamma_{t} $ merupakan \textit{gates}:
 	\begin{enumerate}
-	\item \textit{Forget gates}: $ \alpha_{t}=\tau(W_{X\alpha}+W_{H\alpha}\cdot~H_{t-1}+W_{M\alpha}\cdot~M_{t-1}) $
-	\item \textit{Input gates}: $ \beta_{t}=\tau(W_{X\beta}+W_{H\beta}\cdot~H_{t-1}+W_{M\beta}\cdot~M_{t-1}) $
-	\item \textit{Output gates}: $ \gamma_{t}=\tau(W_{X\gamma}+W_{H\gamma}\cdot~H_{t-1}+W_{M\gamma}\cdot~M_{t-1}) $
+	\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{X\alpha}+W_{H\alpha}\cdot~H_{t-1}+W_{M\alpha}\cdot~M_{t-1}) $
+	\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{X\beta}+W_{H\beta}\cdot~H_{t-1}+W_{M\beta}\cdot~M_{t-1}) $
+	\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{X\gamma}+W_{H\gamma}\cdot~H_{t-1}+W_{M\gamma}\cdot~M_{t-1}) $
 	\end{enumerate}
 		
 \end{enumerate}

@@ -97,19 +97,19 @@ Pada gambar \ref{fig:lstm}, kita dapat melihat bahwa 1 blok memori pada LSTM ter
 	\item \textit{Forget Gate}\\
 	Gerbang ini memiliki fungsi untuk menentukan informasi yang akan disimpan di dalam memori dengan formula berikut
 	\begin{equation}\label{eq:forget_lstm}
-	\alpha_{t}=\tau(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1})
+	\alpha_{t}=\sigma(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1})
 	\end{equation}
 	
 	\item \textit{Input Gate}\\
 	Gerbang ini berfungsi untuk menentukan apakah informasi baru $ x(t) $ akan disimpan dalam \textit{cell state} atau tidak. 
 	\begin{equation}\label{eq:input_lstm}
-	\beta_{t}=\tau(W_{x\beta}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1})
+	\beta_{t}=\sigma(W_{x\beta}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1})
 	\end{equation}
 	
 	\item \textit{Output Gate}\\
 	Gerbang ini berfungsi untuk menendukan \textit{output} dari sebuah \textit{timestep} berdasarkan \textit{cell state} saat ini.
 	\begin{equation}\label{eq:output_lstm}
-	\gamma_{t}=\tau(W_{x\gamma}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1})
+	\gamma_{t}=\sigma(W_{x\gamma}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1})
 	\end{equation}
 	
 \end{enumerate}

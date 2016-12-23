@@ -17,11 +17,11 @@
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri\relax }}{49}{figure.caption.48}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan\relax }}{50}{figure.caption.50}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword\relax }}{52}{figure.caption.52}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{53}{figure.caption.54}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata\relax }}{54}{figure.caption.56}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{55}{figure.caption.58}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{57}{figure.caption.60}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{58}{figure.caption.62}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 Tingkat\relax }}{59}{figure.caption.64}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur LSTMs Layer Bertingkat\relax }}{60}{figure.caption.66}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{54}{figure.caption.54}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata\relax }}{55}{figure.caption.56}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{57}{figure.caption.58}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{58}{figure.caption.60}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{60}{figure.caption.62}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 Tingkat\relax }}{61}{figure.caption.64}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur LSTMs Layer Bertingkat\relax }}{62}{figure.caption.66}
 \addvspace {10\p@ }
