@@ -163,7 +163,7 @@ Dalam melakukan ekstraksi fitur kata itu sendiri, \saya~menggunakan \textit{libr
 \end{kode}
 
 \subsubsection{Ekstraksi Fitur Part of Speech Tag}
-Dalam mengimplementasikan ekstraksi fitur POS Tag, \saya~menggunakan \textit{tools} Stanford POS Tagger dan model POS \textit{tagger} yang dikembangkan oleh \cite{dinakaramani2014designing}. Pertama-tama \saya~melakukan pemberian tag pada setiap kaliman di dalam korpus, kemudian mengubah hasil tag tersebut menjadi bentuk \textit{one-hot-vetor}. Kode \ref{code:ekstraksipostag} merupakan \textit{pseudocode} dalam melakukan ekstraksi fitur POS Tag untuk sebuah kalimat yang \saya~lakukan.
+Dalam mengimplementasikan ekstraksi fitur POS Tag, \saya~menggunakan \textit{tools} Stanford POS Tagger \citep{toutanova2000enriching} dan model POS \textit{tagger} yang dikembangkan oleh \cite{dinakaramani2014designing}. Pertama-tama \saya~melakukan pemberian tag pada setiap kaliman di dalam korpus, kemudian mengubah hasil tag tersebut menjadi bentuk \textit{one-hot-vector}. Kode \ref{code:ekstraksipostag} merupakan \textit{pseudocode} dalam melakukan ekstraksi fitur POS Tag untuk sebuah kalimat yang \saya~lakukan.
 
 \begin{kode}
 	\SetKwInOut{Input}{Input}
@@ -193,7 +193,7 @@ Dalam mengimplementasikan ekstraksi fitur POS Tag, \saya~menggunakan \textit{too
 \end{kode}
 
 \subsubsection{Ekstraksi Fitur Stop Word}
-Ekstraksi fitur \textit{stop word} \saya~lakukan dengan menggunakan kamus \textit{stop word} yang digunakan oleh Taufik (2015) dalam melakukan pengenalan entitas bernama. Setiap kata yang merupakan \textit{stop word} memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan bahasa pemrograman Pyhton dalam mengimplementasikan ekstraksi fitur ini.
+Ekstraksi fitur \textit{stop word} \saya~lakukan dengan menggunakan kamus \textit{stop word} yang digunakan oleh Taufik (2015) dalam melakukan pengenalan entitas bernama. Setiap kata yang merupakan \textit{stop word} memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan bahasa pemrograman Python dalam mengimplementasikan ekstraksi fitur ini.
 \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksistopword}.
 
 \begin{kode}
@@ -221,7 +221,7 @@ Ekstraksi fitur \textit{stop word} \saya~lakukan dengan menggunakan kamus \texti
 \end{kode}
 
 \subsubsection{Ekstraksi Fitur Kamus Kesehatan}
-Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implementasi ekstraksi fitur \textit{stop word}. Perbedaanya yaitu pada penggunaan \textit{resource}, yang mana ekstraksi fitur \textit{stop words} \saya~lakukan dengan menggunakan kamus \textit{stop word}, sedangkan pada fitur ini \saya~menggunakan kamus kesehatan. Kamus kesehatan yang saya gunakan sama dengan kamus pada penelitian \cite{skripsiKakRadit}, yang mana terdapat 4 kamus, yaitu kamus \textit{disease}, \textit{symptom}, \textit{treatment} dan \textit{drug}. Setiap kata yang terdaftar di dalam kamus kesehatan memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan bahasa pemrograman Python dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksikamus}.
+Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implementasi ekstraksi fitur \textit{stop word}. Perbedaanya yaitu pada penggunaan \textit{resource}, yang mana ekstraksi fitur \textit{stop words} \saya~lakukan dengan menggunakan kamus \textit{stop word}, sedangkan pada fitur ini \saya~menggunakan kamus kesehatan. Kamus kesehatan yang saya gunakan sama dengan kamus pada penelitian \cite{skripsiKakRadit}, yang mana terdapat 4 kamus, yaitu kamus \textit{disease}, \textit{symptom}, \textit{treatment} dan \textit{drug}. Setiap kata yang terdaftar di dalam kamus kesehatan memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan bahasa pemrograman Python dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ini dapat dilihat pada kode \ref{code:ekstraksikamus}.
 
 \begin{kode}
 
@@ -368,7 +368,7 @@ Sama seperti pada pengimplementasian ektraksi fitur kata benda, \saya~menggunaka
 \end{kode}
 
 \subsubsection{Ekstraksi Fitur 1 Kata Sebelum}
-Ekstraksi fitur ini \saya~lakukan dengan menggunakan hasil dari ekstraksi fitur kata itu sendiri, yaitu mengambil vektor kata dengan indeks saat ini dikurangi satu. Untuk awal kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. \ref{code:ekstraksi1wordbef} merupakan implementasi dari ekstraksi fitur 1 kata sebelum.
+Ekstraksi fitur ini \saya~lakukan dengan mengambil vektor kata dengan indeks saat ini dikurangi satu. Untuk awal kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. Kode \ref{code:ekstraksi1wordbef} merupakan implementasi dari ekstraksi fitur 1 kata sebelum.
 
 \subsubsection{Ekstraksi Fitur 1 Kata Sesudah}
 Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fitur 1 kata sebelum, perbedaannya pada indeks yang diambil dalam pada saat ekstraksi. Untuk masing-masing kata, \saya~mengambil vektor kata dengan indeks 1 kata setelahnya. Untuk vektor kata di akhir kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. \ref{code:ekstraksi1wordaft} merupakan implementasi dari ekstraksi fitur 1 kata sesudah.
@@ -432,8 +432,8 @@ Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fit
 \subsection{Pengusulan Arsitektur RNNs}
 Sesuai dengan yang telah dijelaskan pada Bab 3, \saya~mengusulkan dua arsitektur RNNs yang akan digunakan pada tahap eksperimen. Pada bagian ini \saya~akan menjelaskan implementasi dari masing-masing arsitektur tersebut. Dalam melakukan implementasi RNNs, \saya~menggunakan \textit{library} Keras \citep{chollet2015keras} dalam bahasa Python. Keras sendiri dapat berjalan di atas dua \textit{library deep learning} lain, yaitu Theano dan Tensorflow, namun dalam penelitian ini \saya~menggunakan Theano. \Saya~menggunakan \textit{Sequential model} yang merupakan layer \textit{linear stack} dalam mengembangkan model dan jenis RNNs yang \saya~gunakan dalam penelitian ini adalah LSTMs.
 
-\subsubsection{LSTM 1 tingkat}
-LSTMs 1 tingkat yang dimaksud adalah model yang digunakan memiliki satu layer LSTMs saja dan semua fitur yang menjadi input program digabung terlebih dahulu menjadi satu buah \textit{array}. Seperti yang telah dijelaskan pada Bab 3, susunan layer yang \saya~gunakan terdiri dari \textit{Masking Layer}, LSTM Layer, dan \textit{Time Distributed Layer} yang masing-masing \textit{timestep} berisi \textit{Dense Layer}. Untuk \textit{Masking Layer}, dimensi yang menjadi parameter tergantung dari \textit{array} yang menjadi masukan, untuk LSTMs Layer, dimensi masukan sama dengan dimensi \textit{Masking Layer} dan dimensi keluaran untuk masing-masing \textit{timesteps} adalah panjang input dalam satu \textit{timestep} dibagi 2. Untuk masing-masing Dense Layer, dimensi masukan yang diminta sama dengan dimensi keluaran pada LSTMs Layer dan dimensi keluaran sesuai dengan jumlah kelas yang telah didefinisikan.
+\subsubsection{LSTMs 1 layer}
+LSTMs 1 layer yang dimaksud adalah model yang digunakan memiliki satu layer LSTMs saja dan semua fitur yang menjadi input program digabung terlebih dahulu menjadi satu buah \textit{array}. Seperti yang telah dijelaskan pada Bab 3, susunan layer yang \saya~gunakan terdiri dari \textit{Masking Layer}, LSTMs Layer, dan \textit{Time Distributed Layer} yang masing-masing \textit{timestep} berisi \textit{Dense Layer}. Untuk \textit{Masking Layer}, dimensi yang menjadi parameter tergantung dari \textit{array} yang menjadi masukan, untuk LSTMs Layer, dimensi masukan sama dengan dimensi \textit{Masking Layer} dan dimensi keluaran untuk masing-masing \textit{timesteps} adalah panjang input dalam satu \textit{timestep} dibagi 2. Untuk masing-masing Dense Layer, dimensi masukan yang diminta sama dengan dimensi keluaran pada LSTMs Layer dan dimensi keluaran sesuai dengan jumlah kelas yang telah didefinisikan.
 
 Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm1} merupakan kode untuk mengimplementasikan model ini.
 
@@ -465,10 +465,10 @@ Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan
 	\label{code:lstm1}
 \end{kode}
 
-\subsubsection{LSTM Layer Bertingkat}
-LSTM layer bertingkat yang dimaksud yaitu terdapat dua tingkat, tingkat pertama untuk menerima \textit{input} yang setiap kelompok fitur menjadi input bagi LSTM masing-masing. Misalnya terdapat 3 kelompok fitur, masing-masing kelompok tadi akan menjadi input bagi layer LSTM masing-masing. Tingkat kedua sebagai penggabung hasil dari tingkat pertama.
+\subsubsection{LSTMs 2 Layer}
+LSTMs 2 layer yang dimaksud yaitu terdapat dua layer, layer pertama untuk menerima \textit{input} yang setiap kelompok fitur menjadi \textit{input} bagi LSTMs masing-masing. Misalnya terdapat 3 kelompok fitur, masing-masing kelompok tadi akan menjadi input bagi layer LSTMs masing-masing. Layer kedua sebagai penggabung hasil dari tingkat pertama.
 
-Layer pada tingkat pertama terdiri dari \textit{Masking Layer} dan sebuah Layer LSTM. Untuk dimensi \textit{input} dan \textit{output} \textit{Masking Layer} secara otomatis mengikuti dimensi dari data masukan. Dimensi \textit{output} dari Layer LSTM yaitu dimensi awal dibagi 2.Pada layer tingkat kedua, layer tersebut terdiri dari \textit{Merge Layer}, \textit{Time Distributed} dengan masing-masing \textit{timestep} merupakan \textit{Dense Layer} dan sebuah Layer LSTM. Keluaran dari \textit{Merge Layer} sesuai dengan total dimensi \textit{output} dari masing-masing LSTMs di tingkat 1. Dimensi keluaran dari masing-masing \textit{Dense Layer} yaitu sesuai jumlah kelas.
+Layer pada tingkat pertama terdiri dari \textit{Masking Layer} dan sebuah Layer LSTMs. Untuk dimensi \textit{input} dan \textit{output} \textit{Masking Layer} secara otomatis mengikuti dimensi dari data masukan. Dimensi \textit{output} dari Layer LSTMs yaitu dimensi awal dibagi 2. Pada layer tingkat kedua, layer tersebut terdiri dari \textit{Merge Layer}, \textit{Time Distributed} dengan masing-masing \textit{timestep} merupakan \textit{Dense Layer} dan sebuah Layer LSTMs. Keluaran dari \textit{Merge Layer} sesuai dengan total dimensi \textit{output} dari masing-masing LSTMs di tingkat 1. Dimensi keluaran dari masing-masing \textit{Dense Layer} yaitu sesuai jumlah kelas.
 Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm2} merupakan kode untuk mengimplementasikan model ini.
 
 \begin{kode}

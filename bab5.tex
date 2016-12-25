@@ -9,6 +9,122 @@ Pada bab ini \saya~akan menjelaskan mengenai skeanrio, hasil dan analisis dari e
 \section{Matriks Evaluasi}
 Pada eksperimen ini, untuk mendapatkan nilai akurasi dari masing-masing eksperimen \saya~menggunakan \textit{precision}, \textit{recall} dan \textit{f-measure}. \Saya~menggunakan \textit{10-cross fold validation} dalam menjalankan eksperimen. Terkait dengan penjelasan mengenai cara penghitungan dan evaluasi sudah dijelaskan pada Bab 3.
 
+\section{Visualisasi Data}
+Berikut merupakan visualisasi data dari korpus yang \saya~miliki. Dapat dilihat dari grafik \ref{fig:korpus}, bahwa persebaran jumlah entitas tidak seimbang. Hal ini menjadi kendala \saya~dalam melakukan penelitian ini, karena keterbatasan \textit{resource} dan tenaga untuk melakukan pelabelan dokumen secara manual.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.85\linewidth]{images/histogramentitaskorpus}
+	\caption{Histogram Jumlah Entitas pada Korpus}
+	\label{fig:korpus}
+\end{figure}
+
+Tabel \ref{diseasecorpus} menunjukkan 39 daftar entitas \textit{disease} teratas yang terdapat di dalam korpus.
+\begin{table}
+	\caption{Tabel Beberapa Entitas \textit{Disease} pada Korpus dan Jumlahnya}
+	\label{diseasecorpus}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|l|l|l|}
+			\hline
+			asma (20)                                  & isk (20)                         & tbc (18)                             \\ \hline
+			infeksi (17)                               & sinusitis (16)                   & jerawat (15)                         \\ \hline
+			alergi (14)                                & oligomenorea (14)                & maag (12)                            \\ \hline
+			fam (11)                                   & flu (11)                         & kanker serviks (11)                  \\ \hline
+			hiv (11)                                   & penyakit jantung (11)            & varikokel (10)                       \\ \hline
+			wasir (10)                                 & infeksi saluran kemih (9)        & obesitas (9)                         \\ \hline
+			cacar air (9)                              & diabetes (9)                     & albino (9)                           \\ \hline
+			gerd (8)                                   & hepatitis b (8)                  & tth (8)                              \\ \hline
+			liver (8)                                  & sifilis (8)                      & tuberkulosis (7)                     \\ \hline
+			stroke (7)                                 & sakit maag (7)                   & anemia aplastik (7)                  \\ \hline
+			alergi susu sapi (7)                       & hepatitis (7)                    & diare (6)                            \\ \hline
+			scabies (6)                                & kanker otak (6)                  & jengger ayam (6)                     \\ \hline
+			pid (6)                                    & osteoporosis (5)                 & tifus (5)                            \\ \hline
+		\end{tabular}
+	}
+\end{table}
+
+Tabel \ref{symtomcorpus} menunjukkan 39 daftar entitas \textit{symptom} teratas yang terdapat di dalam korpus.
+
+% Please add the following required packages to your document preamble:
+% \usepackage[normalem]{ulem}
+% \useunder{\uline}{\ul}{}
+\begin{table}
+	\caption{Tabel Beberapa Entitas \textit{Symptom} pada Korpus dan Jumlahnya}
+	\label{symtomcorpus}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|l|l|l|}
+			\hline
+			nyeri (60)                                                     & sakit kepala (51)                                       & demam (50)                                                \\ \hline
+			mual (40)                                                      & gatal (30)                                              & batuk (27)                                                \\ \hline
+			pusing (24)                                                    & muntah (23)                                             & diare (16)                                                \\ \hline
+			keputihan (15)                                                 & nyeri dada (14)                                         & sesak nafas (14)                                          \\ \hline
+			kejang (13)                                                    & keringat dingin (13)                                    & pilek (12)                                                \\ \hline
+			nyeri kepala (10)                                              & stres (10)                                              & stress (10)                                               \\ \hline
+			sesak (8)                                                      & jantung berdebar - debar (7)                            & flu (7)                                                   \\ \hline
+			rasa nyeri (7)                                                 & lemas (7)                                               & kesemutan (7)                                             \\ \hline
+			bersin (6)                                                     & sakit gigi (6)                                          & mimisan (6)                                               \\ \hline
+			nyeri pinggang (6)                                             & depresi (5)                                             & perih (5)                                                 \\ \hline
+			sakit perut (5)                                                & anyang - anyangan (4)                                   & bintilan (4)                                              \\ \hline
+			kram perut (4)                                                 & pingsan (4)                                             & susah tidur (4)                                           \\ \hline
+			rasa gatal (4)                                                 & perubahan mood (4)                                      & kelelahan (4)                                             \\ \hline
+			
+		\end{tabular}
+	}
+\end{table}
+
+
+Tabel \ref{treatmentCorpus} menunjukkan 39 daftar entitas \textit{treatment} teratas yang terdapat di dalam korpus.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}
+	\caption{Tabel Beberapa Entitas \textit{Treatment} pada Korpus dan Jumlahnya}
+	\label{treatmentCorpus}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|l|l|l|}
+			\hline
+			operasi (40) & pemeriksaan fisik (34) & terapi (21) \\ \hline
+			usg (15) & pemeriksaan penunjang (11) & tes darah (10) \\ \hline
+			istirahat (9) & pemeriksaan darah (8) & pemeriksaan jantung (7) \\ \hline
+			ct scan (7) & ekg (6) & x - ray (6) \\ \hline
+			foto rontgen (5) & biopsi (5) & imunisasi (5) \\ \hline
+			tes pap (5) & operasi sesar (4) & mri (4) \\ \hline
+			istirahat cukup (4) & kontrasepsi (4) & dinebu (3) \\ \hline
+			tes lbc (3) & minum air putih (3) & rontgen (3) \\ \hline
+			rontgen dada (3) & susu (3) & fisioterapi (3) \\ \hline
+			tes iva (3) & berolahraga (3) & tes penunjang (3) \\ \hline
+			hindari memencet (2) & test pack (2) & terapi obat - obatan (2) \\ \hline
+			makan makanan bergizi (2) & pasang iud (2) & cek darah (2) \\ \hline
+			kompres dingin (2) & tes hpv (2) & gunakan kondom (2) \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
+Tabel \ref{drugCorpus} menunjukkan 39 daftar entitas \textit{drug} teratas yang terdapat di dalam korpus.
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}
+	\caption{Tabel Beberapa Entitas \textit{Drug} pada Korpus dan Jumlahnya}
+	\label{drugCorpus}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|l|l|l|}
+			\hline
+			antibiotik (31) & paracetamol (8) & ibuprofen (7) \\ \hline
+			parasetamol (5) & whey protein (5) & obat tetes mata (5) \\ \hline
+			obat batuk (5) & vitamin c (4) & obat herbal (4) \\ \hline
+			nebulizer (4) & kiranti (4) & salbutamol (4) \\ \hline
+			salep (4) & obat antibiotik (4) & amoxilin (3) \\ \hline
+			metronidazol (3) & obat pelangsing (3) & nitrokaf (3) \\ \hline
+			kortikosteroid (3) & asam mefenamat (3) & tetrahydrolipstatin (3) \\ \hline
+			steroid (3) & ctm (3) & asam valproat (3) \\ \hline
+			rifampicin (3) & obat pereda nyeri (2) & habbatussauda (2) \\ \hline
+			obat depaken (2) & glucovance (2) & obat pereda rasa nyeri (2) \\ \hline
+			obat nyeri (2) & obat penurun panas (2) & probiotik (2) \\ \hline
+			sunblock (2) & obat jerawat (2) & bicrolid (2) \\ \hline
+			plembab (2) & aspirin (2) & acyclovir (2) \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
 \section{\textit{Baseline} Eksperimen}
 Pada penelitian ini, \saya~mencoba melakukan implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Data yang digunakan adalah data yang \saya~gunakan dalam penelitian ini.Implementasi dan eksperimen ini bertujuan sebagai \textit{baselaine} eksperimen dan penelitian yang \saya~lakukan. Selain itu, juga untuk mengetahui secara singkat fitur yang diskriminatif dalam melakukan \textit{sequence labeling} pada \mer~ini.
 
@@ -16,7 +132,7 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	
 \begin{table}
 	\centering
-	\caption{Tabel Hasil Eksperimen dari Penelitian \cite{skripsiKakRadit}}
+	\caption{Tabel Hasil Eksperimen dari Penelitian \cite{skripsiKakRadit} (\textit{Baseline})}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
 							& \textit{Precission} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
@@ -24,6 +140,7 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 		\textit{Symptom}    & 61.43\%             & 59.21\%        & 60.18\%           \\ \hline
 		\textit{Treatment}  & 53.10\%             & 45.97\%        & 48.82\%           \\ \hline
 		\textit{Drug}		& 58.99\%             & 44.46\%        & 48.23\%           \\ \hline
+		\textit{\textbf{Overall}}&\textbf{59.03\%}  & \textbf{51.27\%}& \textbf{54.09\%} \\ \hline
 	    \end{tabular}
 \label{table:radit}
 \end{table}
@@ -31,7 +148,7 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 \begin{figure}
 	\centering
 	\includegraphics[width=0.85\linewidth]{images/radit}
-	\caption{Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri}
+	\caption{Histogram Metrik Evaluasi dari Penelitian \cite{skripsiKakRadit} (\textit{Baseline})}
 	\label{fig:radit}
 \end{figure}
 
@@ -54,8 +171,8 @@ Pada penelitian ini, \saya~melakukan 2 buah skenario utama, yaitu skenario untuk
 	\item Skenario untuk menguji arsitektur RNNs\\
 	Skenario ini bertujuan untuk melihat pengaruh arsitektur RNNs pada penelitian ini. \Saya~mencoba kedua arsitektur RNNs yang telah diusulkan sebelumnya dengan menggunakan kombinasi fitur terbaik dari eksperimen di skenario pengujian fitur di atas. Pada skenario ini, terdapat 2 sub-skenario, yaitu:
 	\begin{enumerate}
-		\item Sub-skenario untuk menguji arsitektur LSTMs 1 tingkat
-		\item Sub-skenario untuk menguji arsitektur LSTMs layer bertingkat
+		\item Sub-skenario untuk menguji arsitektur LSTMs 1 layer
+		\item Sub-skenario untuk menguji arsitektur LSTMs 2 layer
 	\end{enumerate}
 	
 \end{enumerate}
@@ -82,20 +199,19 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	      \textit{Symptom}    & 57.05\%             & 56.13\%        & 56.19\%           \\ \hline
 	      \textit{Treatment}  & 49.92\%             & 47.17\%        & 46.96\%           \\ \hline
 	      \textit{Drug}		  & 62.86\%             & 53.32\%        & 57.28\%           \\ \hline
+	      \textit{\textbf{Overall}}&\textbf{ 57.80\%}& \textbf{54.26\%}& \textbf{55.20\%}\\ \hline
 	    \end{tabular}
 	    \label{table:own1}
 	\end{table}
-	
-	Pada tabel tersebut, dengan menggunakan fitur kata itu sendiri terlihat bahwa entitas \textit{Disease} memiliki \textit{recall} dan \textit{f-measure} tertinggi, yaitu 60.42\%, dan 60.37\%. Sedangkan entitas \textit{drug} memiliki \textit{precision} tertinggi, yaitu 62.86\%. Grafik \ref{fig:own1} menunjukkan perbandingan \textit{precision}, \textit{recall} dan \textit{f-measure} untuk masing-masing entitas.
-	
+
 	\begin{figure}
 	  \centering
 	  \includegraphics[width=0.85\linewidth]{images/histogram00}
 	  \caption{Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri}
 	  \label{fig:own1}
 	\end{figure}
-
-	Pada eksperimen ini, ada beberapa nilai \textit{precision, recall} dan \textit{f-measure}  yang dicapai masih lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena pada eksperimen ini hanya menggunakan fitur kata itu sendiri tanpa melibatkan informasi lain seperti pada penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Oleh karena itu perlu adanya informasi lain, misalnya seperti apakah suatu kata terdapat dalam sebuah kamus kesehatan, informasi POS-Tag atau informasi yang lain. Oleh karena itu, \saya~mencoba menggunakan tambahan fitur lain untuk meningkatkan akurasi pada penelitian ini, yaitu pada sub-eksperimen \ref{eks:subeksdict}.
+		
+	Pada eksperimen ini, ada beberapa entitas masih memiliki nilai \textit{precision, recall} dan \textit{f-measure} lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena pada eksperimen ini hanya menggunakan fitur kata itu sendiri tanpa melibatkan informasi lain seperti pada penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Oleh karena itu perlu adanya informasi lain, misalnya seperti apakah suatu kata terdapat dalam sebuah kamus kesehatan, informasi POS-Tag atau informasi yang lain. Oleh karena itu, \saya~mencoba menggunakan tambahan fitur lain untuk meningkatkan akurasi pada penelitian ini, yaitu pada sub-eksperimen \ref{eks:subeksdict}.
 	
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan (\textit{Disease, Symptom, Treatment} dan \textit{Drug})}\label{eks:subeksdict}
@@ -114,6 +230,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 			\textit{Symptom}      & 60.55\%             & 55.12\%        & 57.41\%           \\ \hline
 			\textit{Treatment}    & 52.21\%             & 44.18\%        & 47.02\%           \\ \hline
 			\textit{Drug}		  & 59.42\%             & 59.71\%        & 57.90\%           \\ \hline
+			\textit{\textbf{Overall}}&\textbf{59.88\%}  & \textbf{55.20\%}& \textbf{56.61\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict2}
 	\end{table}
@@ -173,6 +290,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 			\textit{Symptom}      & 63.08\%             & 55.20\%        & 58.68\%           \\ \hline
 			\textit{Treatment}    & 54.73\%             & 46.27\%        & 49.69\%           \\ \hline
 			\textit{Drug}		  & 61.88\%             & 58.99\%        & 59.57\%           \\ \hline
+			\textit{\textbf{Overall}}&\textbf{61.42\%}  & \textbf{55.07\%}& \textbf{57.56\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict3}
 	\end{table}
@@ -205,6 +323,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 			\textit{Symptom}      & 61.09\%             & 54.43\%        & 57.00\%           \\ \hline
 			\textit{Treatment}    & 59.73\%             & 44.10\%        & 49.87\%           \\ \hline
 			\textit{Drug}		  & 62.00\%             & 55.74\%        & 57.87\%           \\ \hline
+			\textit{\textbf{Overall}}&\textbf{62.98\%}  & \textbf{53.24\%}& \textbf{56.99\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict4}
 	\end{table}
@@ -249,6 +368,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 			\textit{Symptom}      & 62.89\%             & 52.27\%        & 56.72\%           \\ \hline
 			\textit{Treatment}    & 54.87\%             & 44.92\%        & 49.06\%           \\ \hline
 			\textit{Drug}		  & 59.77\%             & 53.37\%        & 55.66\%           \\ \hline
+			\textit{\textbf{Overall}}&\textbf{61.26\%}  & \textbf{53.03\%}& \textbf{56.31\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict5}
 	\end{table}
@@ -269,18 +389,16 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 		\item Untuk entitas \textit{treatment}, sebanyak 338 entitas merupakan frasa kata benda, 76 entitas merupakan bagian dari frasa kata benda dan 401 entitas bukan merupakan frasa.
 		\item Untuk entitas \textit{drug}, sebanyak 152 entitas merupakan frasa kata benda, 8 entitas merupakan bagian dari frasa kata benda dan 194 entitas bukan merupakan frasa.
 	\end{enumerate}
-	
-	
-	Dari korpus yang \saya~miliki, berikut merupakan informasi statistik dari penggunaan fitur frasa kata benda:
+
+	Sedangkan berikut merupakan informasi statistik dari penggunaan fitur frasa kata benda:
 	\begin{enumerate}
 		\item Untuk entitas \textit{disease}, sebanyak 943 entitas merupakan frasa kata benda, 43 entitas merupakan bagian dari frasa kata benda dan 70 entitas bukan merupakan frasa.
 		\item Untuk entitas \textit{symptom}, sebanyak 842 entitas merupakan frasa kata benda, 363 entitas merupakan bagian dari frasa kata benda dan 101 entitas bukan merupakan frasa.
 		\item Untuk entitas \textit{treatment}, sebanyak 561 entitas merupakan frasa kata benda, 201 entitas merupakan bagian dari frasa kata benda dan 53 entitas bukan merupakan frasa.
 		\item Untuk entitas \textit{drug}, sebanyak 318 entitas merupakan frasa kata benda, 14 entitas merupakan bagian dari frasa kata benda dan 22  entitas bukan merupakan frasa.
 	\end{enumerate}
-	Dari informasi di atas, dapat diambil informasi bahwa sebagian besar entitas \textit{disease} dan \textit{drug} merupakan frasa kata benda. Hal ini menjadi seharusnya menjadi informasi pembeda dengan kata lain. Namun apabila dilihat dari hasil eksperimen ini, performa penggunaan fitur ini tidak terlalu bagus atau bahkan turun di kedua entitas tersebut. \Saya~berpendapat hal ini terjadi karena penggunaan fitur ini redundan dengan penggunaan fitur POS-Tag.
 	
-	Dari hasil eksperimen ini, menurut \saya~hal ini terjadi karena informasi frasa bersifat redundan apabila bergabung dengan fitur POS-Tag. Pada fitur POS-Tag, tidak ada perbedaan antara kata yang merupakan frasa maupun kata yang bukan frasa. Padahal, mayoritas entitas merupakan frasa. Oleh karena itu, pada sub-eksperimen \ref{eks:subeksminpostag}, penulis menghilangkan fitur POS-Tag dan tetap mempertahankan fitur frasa Kata untuk mengetahui hal tersebut. 
+	Dari 2 informasi di atas, dapat diambil informasi bahwa sebagian besar entitas \textit{disease} dan \textit{drug} merupakan frasa kata benda dan entitas \textit{symptom} dan \textit{treatment} merupakan frasa kata kerja. Hal ini menjadi seharusnya menjadi informasi pembeda dengan kata lain. Namun apabila dilihat dari hasil eksperimen ini, performa penggunaan fitur ini tidak terlalu bagus atau bahkan turun di entitas \textit{disease} dan \textit{symptom} tersebut. \Saya~berpendapat hal ini terjadi karena penggunaan fitur ini redundan apabila digunakan bersama-sama dengan fitur POS-Tag. Pada fitur POS-Tag, tidak ada perbedaan antara kata yang merupakan frasa maupun kata yang bukan frasa. Padahal, mayoritas entitas seperti yang telah dijelaskan di atas merupakan frasa. Oleh karena itu, pada sub-eksperimen \ref{eks:subeksminpostag}, penulis menghilangkan fitur POS-Tag dan tetap mempertahankan fitur frasa kata untuk mengetahui hal tersebut. 
 	
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}\label{eks:subeksminpostag}
@@ -297,6 +415,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 			\textit{Symptom}      & 63.79\%             & 56.10\%        & 59.23\%           \\ \hline
 			\textit{Treatment}    & 54.47\%             & 46.72\%        & 49.58\%           \\ \hline
 			\textit{Drug}		  & 60.08\%             & 56.70\%        & 57.00\%           \\ \hline
+			\textit{\textbf{Overall}}&\textbf{61.75\%}  & \textbf{55.33\%}& \textbf{57.65\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict6}
 	\end{table}
@@ -310,12 +429,12 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	
 	Dari Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}, terlihat bahwa semua entitas (\textit{disease, symptom, treatment,}) dan \textit{drug} mengalami kenaikan pada nilai \textit{precision, recall,} dan \textit{f-measure}. Seperti yang telah dijelaskan pada sub-eksperimen \ref{eks:subeksfrasa}, penggabungan fitur POS-Tag dan frasa akan memberikan hasil yang lebih rendah. Oleh karena itu, sebaiknya fitur POS-Tag tidak digabung dengan fitur frasa. Selain itu, \saya~lebih memilih fitur frasa untuk dipertahankan karena fitur ini lebih diskriminatif dibandingkan dengan fitur POS-Tag, dengan melihat bahwa mayoritas kata berentitas merupakan frasa.
 	
-	Walaupun pada sub-eksperimen ini hasil yang dicapai lebih baik dari sub-eksperimen sebelumnya, hasilnya tetap lebih rendah dari hasil eksperimen \cite{skripsiKakRadit} pada nilai \textit{recall} dan \textit{f-measure} entitas \textit{symptom}. Oleh karena itu \saya~mencoba fitur yang lain, yaitu fitur Kata Sebelum. Untuk penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subekswbef1}.
+	Walaupun pada sub-eksperimen ini hasil yang dicapai lebih baik dari sub-eksperimen sebelumnya, hasilnya tetap lebih rendah dari hasil eksperimen \cite{skripsiKakRadit} pada nilai \textit{recall} dan \textit{f-measure} pada entitas \textit{symptom}. Oleh karena itu \saya~mencoba fitur yang lain, yaitu fitur Kata Sebelum. Untuk penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subekswbef1}.
 	
 	%-----------------------------------------------------------------------------%
 	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}\label{eks:subekswbef1}
 	%-----------------------------------------------------------------------------%
-	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur 1 Kata Sebelum. Fitur ini digunakan pada penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan. Oleh karena itu, pada sub-eksperimen ini saya mencoba menambahkan fitur tersebut.
+	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur 1 kata sebelum. Fitur ini digunakan pada penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan. Oleh karena itu, pada sub-eksperimen ini saya mencoba menambahkan fitur tersebut.
 	
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}.
 	
@@ -329,6 +448,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 			\textit{Symptom}      & 64.78\%             & 57.15\%        & 60.23\%           \\ \hline
 			\textit{Treatment}    & 56.58\%             & 44.71\%        & 49.54\%           \\ \hline
 			\textit{Drug}		  & 62.22\%             & 57.28\%        & 58.76\%           \\ \hline
+			\textit{\textbf{Overall}}&\textbf{63.27\%}  & \textbf{55.19\%}& \textbf{58.30\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict7}
 	\end{table}
@@ -341,6 +461,14 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	\end{figure}
 	
 	Melihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}, dapat diketahui bahwa entitas \textit{disease} dan \textit{treatment} mengalami kenaikan pada nilai \textit{precission}, tetapi mengalami penurunan pada nilai \textit{recall} dan \textit{f-measure}. Sedangkan entitas \textit{symptom} dan \textit{drug} mengalami kenaikan pada nilai \textit{precision, recall,} dan \textit{f-measure}.
+	
+	Seperti pada penelitian \cite{skripsiKakRadit}, fitur ini berhasil meningkatkan performa dari beberapa entitas, karena fitur ini memberikan informasi tambahan kata sebelumnya, misalnya:
+	\begin{itemize}
+		\item "penyakit", "penderita", "mengalami" dan "mengalami" dapat memberikan informasi mengenai entitas \textit{disease}
+		\item "mengandung", "minum", "pemberian", "obat", "menggunakan" dapat memberikan informasi mengenai entitas \textit{drug}
+		\item "dengan", "melakukan", "dilakukan" dapat memberikan informasi mengenai entitas \textit{treatment}
+		\item "mengalami", "disertai", "sering", "keluhan", "penyebab" dapat memberikan informasi mengenai entitas \textit{symptom}
+	\end{itemize}
 	
 	Hasil sub-eksperimen ini masih lebih rendah dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit} pada \textit{recall} dan \textit{f-measure} entitas \textit{treatment}. Oleh karena itu, \saya~mencoba menambahkan fitur yang lain yaitu fitur 1 Kata sesudah, yang akan dibahas lebih lanjut pada sub-eksperimen \ref{eks:subekswaf1}.
 	
@@ -362,6 +490,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 			\textit{Symptom}      & 64.16\%             & 59.55\%        & 61.42\%           \\ \hline
 			\textit{Treatment}    & 61.02\%             & 51.13\%        & 54.03\%           \\ \hline
 			\textit{Drug}		  & 70.85\%             & 70.33\%        & 69.82\%           \\ \hline
+			\textit{\textbf{Overall}}&\textbf{66.68\%}  & \textbf{61.80\%}& \textbf{63.06\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict8}
 	\end{table}
@@ -399,6 +528,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     		\textit{Symptom}      & 64.16\%             & 59.55\%        & 61.42\%           \\ \hline
     		\textit{Treatment}    & 61.02\%             & 51.13\%        & 54.03\%           \\ \hline
     		\textit{Drug}		  & 70.85\%             & 70.33\%        & 69.82\%           \\ \hline
+    		\textit{\textbf{Overall}}&\textbf{66.68\%}  & \textbf{61.80\%}& \textbf{63.06\%} \\ \hline
     	\end{tabular}
     	\label{table:owndict9}
     \end{table}
@@ -429,6 +559,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     		\textit{Symptom}      & 64.90\%             & 60.63\%        & 62.13\%           \\ \hline
     		\textit{Treatment}    & 63.92\%             & 53.13\%        & 56.51\%           \\ \hline
     		\textit{Drug}		  & 66.39\%             & 62.33\%        & 63.61\%           \\ \hline
+    		\textit{\textbf{Overall}}&\textbf{65.67\%}  & \textbf{60.82\%}& \textbf{62.14\%} \\ \hline
     	\end{tabular}
     	\label{table:owndict10}
     \end{table}

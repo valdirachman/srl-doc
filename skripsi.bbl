@@ -209,6 +209,16 @@ Suwarningsih, W., Supriana, I., dan Purwarianti, A. (2014).
   Environment (TIME-E), 2014 2nd International Conference on}, pages 184--188.
   IEEE.
 
+\bibitem[Toutanova dan Manning, 2000]{toutanova2000enriching}
+Toutanova, K. dan Manning, C.~D. (2000).
+\newblock Enriching the knowledge sources used in a maximum entropy
+  part-of-speech tagger.
+\newblock In {\em Proceedings of the 2000 Joint SIGDAT conference on Empirical
+  methods in natural language processing and very large corpora: held in
+  conjunction with the 38th Annual Meeting of the Association for Computational
+  Linguistics-Volume 13}, pages 63--70. Association for Computational
+  Linguistics.
+
 \bibitem[Turian et~al., 2010]{turian2010word}
 Turian, J., Ratinov, L., dan Bengio, Y. (2010).
 \newblock Word representations: a simple and general method for semi-supervised
