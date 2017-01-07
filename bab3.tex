@@ -11,7 +11,7 @@ Penelitian ini bertujuan untuk membuat sebuah model yang mampu memberikan label 
 
 Penelitian ini menggunakan dua buah korpus, yaitu korpus dari data dokumen teks kesehatan yang digunakan \cite{skripsiKakRadit} dan dokumen teks hasil pengumpulan yang dilakukan oleh \saya~pada situs kesehatan \textit{online}. Setelah itu \saya~melakukan pra-pemrosesan pada kedua data sebelum melakukan tahap selanjutnya. Untuk dokumen hasil pengumpulan dari forum, \saya~memberi label kesehatan secara manual dengan ketentuan pelabelan pada penelitian \cite{skripsiKakRadit}
 
-Setelah tahap pengusulan model, terdapat 2 eksperimen \saya~lakukan, yaitu eksperimen untuk mendapatkan fitur diskriminatif yang mampu membuat model memiliki akurasi terbaik dan eksperimen untuk mendapatkan arsitektur RNNs yang membuat model menghasilkan akurasi tertinggi. Pada eksperimen pertama, \saya~mencoba beberapa fitur, seperti fitur yang diusulkan oleh \cite{skripsiKakRadit} (fitur \textit{its own word}, frasa, kamus (\textit{symptom}, \textit{disease}, \textit{treatment} dan \textit{drug}), kata pertama sebelum, dan fitur kata setelah. Pada eksperimen kedua, \saya~mencoba dua arsitektur RNNs, yaitu RNNs yang setiap \textit{input} digabung terlebih dahulu dengan meng-\textit{append} semua vektor fitur. Sedangkan RNNs yang kedua yaitu RNNs yang setiap kelompok fitur menjadi \textit{input} bagi masing-masing LSTMs, baru kemudian \textit{output} dari layer tersebut digabung.
+Setelah tahap pengusulan model, terdapat 2 eksperimen yang \saya~lakukan, yaitu eksperimen untuk mendapatkan fitur diskriminatif yang mampu membuat model memiliki akurasi terbaik dan eksperimen untuk mendapatkan arsitektur RNNs yang membuat model menghasilkan akurasi tertinggi. Pada eksperimen pertama, \saya~mencoba beberapa fitur, seperti fitur yang diusulkan oleh \cite{skripsiKakRadit} (fitur \textit{its own word}, frasa, kamus (\textit{symptom}, \textit{disease}, \textit{treatment} dan \textit{drug}), kata pertama sebelum, dan fitur kata setelah. Pada eksperimen kedua, \saya~mencoba dua arsitektur RNNs, yaitu RNNs yang setiap \textit{input} digabung terlebih dahulu dengan meng-\textit{append} semua vektor fitur. Sedangkan RNNs yang kedua yaitu RNNs yang setiap kelompok fitur menjadi \textit{input} bagi masing-masing LSTMs, baru kemudian \textit{output} dari layer tersebut digabung.
 
 Setelah melakukan eksperimen, \saya~melakukan evaluasi dari hasil yang didapatkan dengan menghitung nilai \textit{precission}, \textit{recall} dan \textit{F-measure} dari masing-masing entitas secara keseluruhan. Untuk mendapatkan rata-rata akurasi dari setiap eksperimen, \saya~melakukan \textit{10-fold cross validation} dengan cara membagi semua data menjadi 10 bagian, 9 bagian menjadi data \textit{training} dan 1 \textit{bagian} menjadi data \textit{testing}. Proses tersebut diulang sebanyak sepuluh kali sehingga masing-masing bagian data menjadi data \textit{testing}.
 \begin{figure}
@@ -22,7 +22,7 @@ Setelah melakukan eksperimen, \saya~melakukan evaluasi dari hasil yang didapatka
 \end{figure}
 
 \section{Pengumpulan Data}
-Pengumpulan data dilakukan dengan tujuan untuk mendapatkan data \textit{training} dan \textit{testing} yang akan digunakan sebagai \textit{resource} dalam melakukan \textit{training} dan evaluasi model \mer. Data yang dimaksud merupakan teks dari forum kesehatan \textit{online} dari berbagai sumber. Pada penelitian ini, \saya~menggunakan data penelitian \cite{skripsiKakRadit} dan data yang \saya~dapatkan dari hasil \textit{crawling} di forum kesehatan \textit{online}. Data yang \cite{skripsiKakRadit} diambil dari beberapa situs forim kesehatan \textit{online} dan sedangakn data yang \saya~unduh bersumber dari forum kesehatan \textit{online}.
+Pengumpulan data dilakukan dengan tujuan untuk mendapatkan data \textit{training} dan \textit{testing} yang akan digunakan sebagai \textit{resource} dalam melakukan \textit{training} dan evaluasi model \mer. Data yang dimaksud merupakan teks dari forum kesehatan \textit{online} dari berbagai sumber. Pada penelitian ini, \saya~menggunakan data penelitian \cite{skripsiKakRadit} dan data yang \saya~dapatkan dari hasil \textit{crawling} di forum kesehatan \textit{online}. Data yang \cite{skripsiKakRadit} diambil dari beberapa situs forum kesehatan \textit{online} dan sedangkan data yang \saya~unduh bersumber dari forum kesehatan \textit{online}.
 
 \section{Pra-Pemrosesan}
 Pra-pemrosesan dilakukan dengan tujuan supaya teks yang diberikan mampu dibaca oleh sistem \mer. Dalam tahap ini, ada tiga pekerjaan utama yang perlu dilakukan, yaitu:
@@ -39,7 +39,9 @@ Langkah ini dilakukan dengan tujuan untuk mempermudah proses POS \textit{tagging
 	\item mengganti karakter "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari" dan
 	\item mengganti karakter "/" menjadi token "atau".
 \end{enumerate}
-Pada langkah ini, \saya~tidak menghapus karakter tanda baca karena karakter tersebut memiliki fungsi pada sistem POS \textit{tagging} yang \saya~gunakan.
+Pada langkah ini, \saya~tidak menghapus karakter tanda baca karena karakter tersebut memiliki fungsi pada sistem POS \textit{tagging} yang \saya~gunakan. Berikut merupakan contoh pembersihan data pada sebuah teks.
+
+\textbf{CONTOH}
 	
 \subsection{Tokenisasi}
 Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah kata. Hal ini perlu dilakukan untuk menghindari beberapa kelompok token berbeda yang tergabung. Karakter abjad dengan karakter angka atau karakter abjad dengan karakter tanda baca dipisahkan berdasarkan kelompoknya. Misalnya token "pusing2" diubah menjadi "pusing 2". Pada tahap ini, \saya~melakukan pemisahan terhadap beberapa kelompok token, yaitu:
@@ -47,8 +49,11 @@ Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah ka
 	\item <alfabet><numerik> menjadi <alfabet><spasi><numerik>
 	\item <numerik><alfabet> menjadi <numerik><spasi><alfabet>
 	\item <alfanumerik><non-alfanumerik> menjadi <alfanumerik><spasi><non-alfanumerik>
-	\item <alfanumerik><non-alfanumerik> menjadi <alfanumerik><spasi><non-alfanumerik>
+	\item <non-alfanumerik><alfanumerik> menjadi <non-alfanumerik><spasi><alfanumerik>
 \end{enumerate}
+
+Berikut merupakan contoh tokenisasi pada sebuah teks
+\textbf{CONTOH}
 	
 \subsection{Pemotongan kalimat}
 Untuk menghindari jumlah token yang timpang dalam kalimat yang berbeda dan data yang \textit{sparse}, \saya~melakukan pemotongan kata dengan langkah-langkah sebagai berikut:
@@ -56,6 +61,9 @@ Untuk menghindari jumlah token yang timpang dalam kalimat yang berbeda dan data 
 	\item memisahkan kalimat berdasarkan tanda baca (.!?,),
 	\item apabila suatu kalimat memiliki jumlah kata yang sedikit (batasan minimal jumlah kata dalam sebuah kalimat yang \saya~gunakan adalah 10 kata), kalimat tersebut digabungkan dengan kalimat setelahnya.
 \end{enumerate}
+
+Berikut merupakan contoh dari pemotongan kalimat pada sebuah teks
+\textbf{CONTOH}
 
 \section{Pelabelan}
 Pada tahap ini, \saya~melakukan pelabelan pada dokumen teks yang merupakan hasil pada tahap sebelumnya dengan label \disease, \symptom, \drug~dan \treatment. Berikut merupakan penjelasan dari masing-masing label:
@@ -92,7 +100,8 @@ Pada tahap ini, \saya~melakukan pelabelan pada dokumen teks yang merupakan hasil
 		\item[$\bullet$] Terapi inhalasi
 	\end{description}
 \end{enumerate}
-Setelah proses di atas selesai, label di dalam korpus diubah menjadi format BIO (\textit{begin inside outside}).
+Setelah proses di atas selesai, label di dalam korpus diubah menjadi format BIO (\textit{begin inside outside}). Berikut merupakan contoh dari hasil pelabelan dalam suatu dokumen teks.
+\textbf{CONTOH}
 
 \section{Pengembangan Model}
 Pada tahap ini, \saya~melakukan pengusulan dan perancangan model yang nantinya akan \saya~evaluasi pada tahap eksperimen. Dalam mengembangkan model, terdapat dua pekerjaan yang \saya~lakukan, yaitu:
@@ -107,23 +116,23 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 		\Saya~melakukan pengumpulan data teks sebagai \textit{resource} untuk melakukan \textit{training} model \textit{word embedding}. Data teks yang \saya~gunakan merupakan data teks dari artikel-artikel kesehatan dan data teks forum kesehatan di kaskus. \Saya~menggunakan teks berjenis kesehatan supaya \textit{domain word embedding} dengan data \textit{training} untuk model \mer~sama. Selain itu, terdapat beberapa \textit{term} kesehatan yang susah ditemukan di forum umum.
 		 
 		\item \textit{Training} untuk mendapatkan model \textit{word embedding}\\
-		\textit{Training} dilakukan untuk mendapatkan model yang mampu mendapatkan representasi vektor dari sebuah kata. Panjang vektor yang dihasilkan yaitu 1298 dengan besaran \textit{windows} yaitu 5. Arsitektur yang digunakan untuk melakukan \textit{training} ini adalah \textit{skip-gram}.
+		\textit{Training} dilakukan untuk mendapatkan model yang mampu mendapatkan representasi vektor dari sebuah kata. Panjang vektor yang dihasilkan yaitu 128 dengan besaran \textit{window} yaitu 5. Arsitektur yang digunakan untuk melakukan \textit{training} ini adalah \textit{skip-gram}.
 		
 		\item Pengubahan kata menjadi vektor dari model yang didapatkan\\
-		Pada langkah ini \saya~mendapatkan suatu kata menjadi representasi vektor dengan model yang telah \saya~dapatkan pada tahap \textit{training} model \textit{word embedding}.
+		Pada langkah ini \saya~mengubah masing-masing kata dalam kalimat menjadi representasi vektor dengan model yang telah \saya~dapatkan pada tahap \textit{training} model \textit{word embedding}.
 	\end{enumerate}
 	
-	\item Fitur 2: \textit{Part of Speech Tag} (POS-Tag)\\
-	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia.
+	\item Fitur 2: Kamus Kesehatan\\
+	Fitur kamus kesehatan merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Fitur ini digunakan dalam penelitian \cite{skripsiKakRadit} dan memberikan kontribusi dalam hasil terbaik. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment. Dengan menggunakan fitur ini diharapkan mampu berkontribusi dalam meningkatkan akurasi karena model akan mempertimbangkan apakah suatu kata termasuk di dalam kamus atau tidak. 
 	
 	\item Fitur 3: \textit{Stopword}\\
 	Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. Fitur ini \saya~gunakan dalam penelitian ini untuk membantu sistem dalam menghindari kesalahan pelabelan suatu kata yang bukan entitas namun dilabeli sebagai entitas.
 	
 	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila mempertahankan fitur ini, oleh karena intu, \saya~mengusulkan untuk menggunakan fitur ini. Untuk pembahasan lebih lanjut dibahas pada Bab 5.
 	
-	\item Fitur 4: Kamus Kesehatan\\
-	Fitur kamus kesehatan merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Fitur ini digunakan dalam penelitian \cite{skripsiKakRadit} dan memberikan kontribusi dalam hasil terbaik. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment. Dengan menggunakan fitur ini diharapkan mampu berkontribusi dalam meningkatkan akurasi karena model akan mempertimbangkan apakah suatu kata termasuk di dalam kamus atau tidak. 
-	
+	\item Fitur 4: \textit{Part of Speech Tag} (POS-Tag)\\
+	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia.
+		
 	\item Fitur 5: Frasa Kata\\
 	Pada penelitian ini, \saya~mengusulkan fitur frasa kata karena entitas \textit{symptom} dan \textit{treatment}  pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} pada umumnya entitas yang akan dikenali pada penelitian ini merupakan frasa kata benda. Selain itu, pada penelitian \cite{skripsiKakRadit}, fitur ini berkontribusi dalam memberikan hasil terbaik. Oleh karena itu, \saya~berharap bahwa dengan diusulkannya fitur ini akan mampu menambah akurasi dari model yang diusulkan.
 	
@@ -166,13 +175,13 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 \subsection{Pengusulan Arsitektur RNNs}
 Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap eksperimen. Ada dua arsitektur yang \saya~gunakan dalam penelitian ini, yaitu
 \begin{enumerate}
-	\item LSTM 1 layer\\
-	Pada LSTM 1 layer, semua fitur yang menjadi input pada sebuah \textit{timestep} digabung menjadi satu. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Network} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi LSTM 1 layer yang \saya~gunakan dalam penelitian ini.
+	\item LSTMs 1 layer\\
+	Pada LSTMs 1 layer, semua fitur yang menjadi input pada sebuah \textit{timestep} digabung menjadi satu. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Networks} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi LSTM 1 layer yang \saya~gunakan dalam penelitian ini.
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.8\linewidth]{images/lstm1}
-		\caption{LSTM 1 layer}
+		\caption{LSTMs 1 layer}
 		\label{fig:single_layer_rnn}
 	\end{figure}
 	Untuk masing-masing \textit{timestep} $ t $, berikut merupakan gambar sebuah \textit{cell}-nya.
@@ -202,8 +211,8 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 		\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{x\gamma}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
 	\end{enumerate}
 
-	\item LSTMs 2 layer\\
-	Pada LSTMs 2 layer, penulis mendefinisikan 2 tingkat, yang tingkat terbawah merupakan layer dengan jumlah LSTMs sebanyak n kelompok fitur. Pertama-tama fitur dikelompokkan terlebih dahulu, kemudian dijadikan \textit{input} untuk masing-masing LSTMs pada tingkat pertama. Setelah itu, hasil dari tingkat pertama tersebut akan digabung menjadi satu, dengan menggunakan layer penggabung (\textit{Merge Layer}). \textit{Output} dari layer penggabung kemudian dimasukkan ke dalam LSTMs tingkat kedua. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Network} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi dari LSTMs layer bertingkat yang \saya~gunakan.
+	\item LSTMs 2 layer dengan Multi-\textit{Input}\\
+	Pada LSTMs 2 layer dengan multi-\textit{input}, penulis mendefinisikan 2 layer, yang layer terbawah merupakan layer dengan jumlah LSTMs sebanyak n kelompok fitur. Pertama-tama fitur dikelompokkan terlebih dahulu, kemudian dijadikan \textit{input} untuk masing-masing LSTMs pada tingkat pertama. Setelah itu, hasil dari tingkat pertama tersebut akan digabung menjadi satu, dengan menggunakan layer penggabung (\textit{Merge Layer}). \textit{Output} dari layer penggabung kemudian dimasukkan ke dalam LSTMs layer kedua. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Network} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi dari LSTMs layer bertingkat yang \saya~gunakan.
 	
 	\begin{figure}
 		\centering
@@ -231,12 +240,12 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 	\item \textit{Output gates}: $ \gamma_{k,t}=\sigma(W_{k,x\gamma}+W_{k,h\gamma}\cdot~h_{k,t-1}+W_{k,m\gamma}\cdot~m_{k,t-1}) $
 	\end{enumerate}
 
-	\textit{Merge layer} berfungsi untuk menggabungkan hasil dari \textit{feedforward} pada semua LSTMs layer pertama. Di sini, saya menotasikan $ X_t $ sebagai hasil dari \textit{merge} di \textit{timestep} $ t $ dan $ (\cdot) $ merupakan operasi \textit{merging}.
+	\textit{Merge layer} berfungsi untuk menggabungkan hasil dari \textit{feedforward} pada semua LSTMs layer pertama. Di sini, \saya~menotasikan $ X_t $ sebagai hasil dari \textit{merge} di \textit{timestep} $ t $ dan $ (\cdot) $ merupakan operasi \textit{merging}.
 	\begin{equation}\label{eq:merge}
 	X_t = h_{1,t} (\cdot) h_{2,t} (\cdot) h_{3,t} (\cdot) .... (\cdot) h_{k,t}
 	\end{equation}
 
-	Hasil dari \textit{merge layer} akan digunakan sebagai \textit{input} bagi LSTMs tingkat kedua. Untuk memudahkan penggunaan notasi dan membedakan dengan LSTMs pada tingkat pertama, \saya~menggunakan huruf kapital dalam menotasikan masing-masing nilai di LSTMs tingkat kedua. Berikut merupakan formulasi \textit{feed-forwarnya}.
+	Hasil dari \textit{merge layer} akan digunakan sebagai \textit{input} bagi LSTMs layer kedua. Untuk memudahkan penggunaan notasi dan membedakan dengan LSTMs pada layer pertama, \saya~menggunakan huruf kapital dalam menotasikan masing-masing nilai di LSTMs layer kedua. Berikut merupakan formulasi \textit{feed-forwarnya}.
 	
 	\begin{equation}\label{eq:mt3}
 	M_{t}=\alpha_{t} (\times) M_{t-1} + \beta_{t} (\times) f(X_{t},{t-1})
@@ -258,9 +267,9 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 \end{enumerate}
 	
 \section{Eksperimen}
-Dalam melakukan eksperimen, arsitektur \textit{deep learning} yang \saya~gunakan adalah \textit{Recurrent Neural Networks}, dalam hal ini \saya~menggunakan LSTMs. Hal ini \saya~lakukan karena pada penelitian \cite{mujiono2016new}, LSTMs memberikan \textit{output} terbaik dalam \mer~yang dirancang. Selain itu, LSTMs juga sangat baik dalam masalah \textit{sequence labeling} seperti yang dilakukan oleh \cite{graves2013speech} dan merupakan \textit{state-of-the-art} dalam bidang ini. Masih banyak penelitian lain yang membuktikan bahwa LSTMs merupakan arsitektur \textit{deep learning} yang sangat baik dalam masalah \textit{sequence labeling} seperti \textit{Offline Hadwriting Recognition} \citep{graves2009offline}, \textit{sequence tagging} \citep{huang2015bidirectional}, \textit{Sequence to Sequence Learning} \citep{NIPS2014_5346} dan lain lain.
+Dalam melakukan eksperimen, arsitektur \textit{deep learning} yang \saya~gunakan adalah \textit{Recurrent Neural Networks}, dalam hal ini \saya~menggunakan LSTMs. Hal ini \saya~lakukan karena pada penelitian \cite{mujiono2016new}, \cite{jagannatha2016bidirectional}, \cite{limsopatham2016learning} dan \cite{almgren2016named}, penggunaan LSTMs memberikan \textit{output} terbaik dalam \mer~yang dirancang. Selain itu, LSTMs juga sangat baik dalam masalah \textit{sequence labeling} seperti yang dilakukan oleh \cite{graves2013speech} dan merupakan \textit{state-of-the-art} dalam bidang ini. Masih banyak penelitian lain yang membuktikan bahwa LSTMs merupakan arsitektur \textit{deep learning} yang sangat baik dalam masalah \textit{sequence labeling} seperti \textit{Offline Hadwriting Recognition} \citep{graves2009offline}, \textit{sequence tagging} \citep{huang2015bidirectional}, \textit{Sequence to Sequence Learning} \citep{NIPS2014_5346} dan lain lain.
 
-Eksperimen yang \saya~lakukan menggunakan 10-\textit{cross fold validation}, karena keterbatasan data \textit{training} yang \saya~miliki. Sebelum melakukan eksperimen, \saya~membagi data \textit{training} menjadi 10 bagian, kemudian melakukan iterasi sebanyak 10 kali yang pada masing-masing iterasi ke-i, bagian data ke-i menjadi data \textit{testing} dan yang lainnya digabung menjadi data \textit{training}. 
+Eksperimen yang \saya~lakukan menggunakan 10-\textit{cross fold validation}, karena keterbatasan \textit{resource} yang \saya~miliki. Sebelum melakukan eksperimen, \saya~membagi data \textit{training} menjadi 10 bagian, kemudian melakukan iterasi sebanyak 10 kali yang pada masing-masing iterasi ke-i, bagian data ke-i menjadi data \textit{testing} dan yang lainnya digabung menjadi data \textit{training}. 
 
 Setelah melakukan pembagian dan pengelompokan data berdasarkan nomor iterasi, penulis membuat model dari data \textit{training} tersebut. Setelah \saya~mendapatkan model, \saya~melakukan testing terhadap masing-masing model dengan data \textit{testing} yang telah disediakan sebelumnya. Hasil dari pelabelan data \textit{testing} ini akan \saya~evaluasi di tahap selanjutnya. Setelah itu \saya~kembali melakukan pembuatan model dengan fitur yang berbeda, atau dengan tambahan fitur lain. Dalam perjalanan melakukan pengujian, apabila fitur yang diuji memberikan hasil yang bagus atau menambah akurasi, \saya~menggabungkan fitur ini ke percobaan selanjutnya. Namun apabila fitur pada saat ini memberikan akurasi yang lebih jelek, \saya~tidak menggunakan fitur tersebut di percobaan selanjutnya.
 
@@ -275,8 +284,8 @@ Pada tahap ini, \saya~melakukan serangkaian evaluasi dari data \textit{testing} 
 	\fbox{%
 		\parbox{1.0\linewidth}{%
 		Contoh 1\\
-		True: Bu Ani <Disease>\textbf{sakit kepala} sebelah</Disease>\\
-		Predicted: Bu Ani <Disease>\textbf{sakit kepala}</Disease> sebelah
+		True: Anak saya <Disease>\textbf{sakit kepala} sebelah</Disease>\\
+		Predicted: Anak saya <Disease>\textbf{sakit kepala}</Disease> sebelah
 		}%
 	}
 	
@@ -313,8 +322,8 @@ Pada tahap ini, \saya~melakukan serangkaian evaluasi dari data \textit{testing} 
 	\fbox{%
 		\parbox{1.0\linewidth}{%
 		Contoh 1\\
-		True : Bu Ani <Disease>sakit kepala sebelah</Disease>\\
-		Predicted : Bu Ani <Disease>sakit kepala</Disease> sebelah
+		True : Anak saya <Disease>sakit kepala sebelah</Disease>\\
+		Predicted : Anak saya <Disease>sakit kepala</Disease> sebelah
 
 		}
 	}

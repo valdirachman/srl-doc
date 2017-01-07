@@ -8,7 +8,7 @@
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Arsitektur Word2Vec\relax }}{17}{figure.caption.23}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram Gambaran Umum Metodologi yang Dilakukan\relax }}{19}{figure.caption.24}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces LSTM 1 layer\relax }}{26}{figure.caption.25}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces LSTMs 1 layer\relax }}{26}{figure.caption.25}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{27}{figure.caption.26}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces LSTM 2 layer\relax }}{28}{figure.caption.27}
 \addvspace {10\p@ }
@@ -18,11 +18,11 @@
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri\relax }}{53}{figure.caption.53}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan\relax }}{54}{figure.caption.55}
 \contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword\relax }}{56}{figure.caption.57}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{58}{figure.caption.59}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{57}{figure.caption.59}
 \contentsline {figure}{\numberline {5.7}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata\relax }}{59}{figure.caption.61}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{62}{figure.caption.63}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{61}{figure.caption.63}
 \contentsline {figure}{\numberline {5.9}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{63}{figure.caption.65}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{65}{figure.caption.67}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{64}{figure.caption.67}
 \contentsline {figure}{\numberline {5.11}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 Tingkat\relax }}{66}{figure.caption.69}
 \contentsline {figure}{\numberline {5.12}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur LSTMs Layer Bertingkat\relax }}{67}{figure.caption.71}
 \addvspace {10\p@ }

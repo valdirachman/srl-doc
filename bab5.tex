@@ -160,13 +160,13 @@ Pada penelitian ini, \saya~melakukan 2 buah skenario utama, yaitu skenario untuk
 	Skenario ini bertujuan untuk mendapatkan kombinasi fitur terbaik sehingga memberikan akurasi terbaik. \Saya~mencoba masing-masing fitur dengan menggunakan model arsitektur LSTMs biasa. Apabila penggunaan fitur memberikan hasil yang lebih dari pada hasil eksperimen sebelumnya, fitur tersebut akan dipertahankan untuk eksperimen yang selanjutnya. Skenario ini memiliki 9 sub-skenario, yaitu:
 	\begin{enumerate}
 		\item Sub-skenario menguji fitur kata itu sendiri
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur kamus
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur stop word
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur POS-Tag
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur frasa kata
-		\item Sub-skenario menguji fitur terbaik sebelumnya dikurangi fitur POS-Tag
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur 1 kata sebelum
-		\item Sub-skenario menguji fitur terbaik sebelumnya ditambahkan fitur 1 kata sesudah
+		\item Sub-skenario menguji penambahan fitur kamus
+		\item Sub-skenario menguji penambahan fitur stop word
+		\item Sub-skenario menguji penambahan fitur POS-Tag
+		\item Sub-skenario menguji penambahan fitur frasa kata
+		\item Sub-skenario menguji pengurangan fitur POS-Tag
+		\item Sub-skenario menguji penambahan fitur 1 kata sebelum
+		\item Sub-skenario menguji penambahan fitur 1 kata sesudah
 	\end{enumerate}
 	\item Skenario untuk menguji arsitektur RNNs\\
 	Skenario ini bertujuan untuk melihat pengaruh arsitektur RNNs pada penelitian ini. \Saya~mencoba kedua arsitektur RNNs yang telah diusulkan sebelumnya dengan menggunakan kombinasi fitur terbaik dari eksperimen di skenario pengujian fitur di atas. Pada skenario ini, terdapat 2 sub-skenario, yaitu:
@@ -214,7 +214,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	Pada eksperimen ini, ada beberapa entitas masih memiliki nilai \textit{precision, recall} dan \textit{f-measure} lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena pada eksperimen ini hanya menggunakan fitur kata itu sendiri tanpa melibatkan informasi lain seperti pada penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Oleh karena itu perlu adanya informasi lain, misalnya seperti apakah suatu kata terdapat dalam sebuah kamus kesehatan, informasi POS-Tag atau informasi yang lain. Oleh karena itu, \saya~mencoba menggunakan tambahan fitur lain untuk meningkatkan akurasi pada penelitian ini, yaitu pada sub-eksperimen \ref{eks:subeksdict}.
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan (\textit{Disease, Symptom, Treatment} dan \textit{Drug})}\label{eks:subeksdict}
+	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur Kamus Kesehatan (\textit{Disease, Symptom, Treatment} dan \textit{Drug})}\label{eks:subeksdict}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini, \saya~menggunakan tambahan fitur Kamus Kesehatan karena berdasarkan penelitian \cite{skripsiKakRadit} fitur ini memiliki konribusi untuk menambah akurasi pada sistem \mer. Selain itu, menurut \saya, informasi suatu kata terdapat dalam sebuah kamus kesehatan mungkin akan memberikan kontribusi untuk meningkatkan akurasi. Oleh karena itu, \saya~mencoba untuk menambahkan fitur ini ke dalam model RNNs.
 	
@@ -274,7 +274,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	Dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}, hasil yang dicapai pada eksperimen ini masih lebih rendah pada entitas \textit{symptom} dan \textit{treatment}. Menurut \saya~perlu ada informasi tambahan untuk meningkatkan akurasi. Seperti yang kita ketahui bahwa eksperimen \cite{skripsiKakRadit} tidak hanya menggunakan fitur kata itu sendiri dan kamus kesehatan saja. Oleh karena itu, \saya~mencoba melakukan eksperimen kembali dengan menggunakan tambahan fitur lain pada sub-eksperimen \ref{eks:subekstopword};
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}\label{eks:subekstopword}
+	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur Stopword}\label{eks:subekstopword}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini. \saya~mencoba menambahkan informasi lain berupa fitur yang berisi sebuah kata apakah terdapat di dalam kamus \textit{stop word} atau tidak. \Saya~berpendapat bahwa dengan adanya informasi \textit{stop word}, adanya kesalahan suatu kata tidak berentitas yang dilabeli sebagai kata berentitas oleh model dapat dikurangi.
 	
@@ -307,7 +307,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	Pada sub-eksperimen ini, walaupun secara umum akurasi lebih baik dibandingkan dengan sub-eksperimen sebelumnya, hasil sub-eksperimen ini masih lebih rendah pada entitas \textit{treatment} apabila dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}. Oleh karena \saya~mengusulkan fitur tambahan lain yaitu fitur POS-Tag yang akan dijelaskan pada sub-eksperimen \ref{eks:subekspostag}.
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}\label{eks:subekspostag}
+	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur POS-Tag}\label{eks:subekspostag}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini, \saya~menambahkan informasi baru pada \textit{resource} yang akan digunakan untuk \textit{training} model yang berupa fitur POS-Tag. Sebelumnya fitur ini telah digunakan pada penelitian \cite{abacha2011medical} pada dokumen berbahasa Inggris dan memberikan kontribusi meningkatkan akurasi dari model \mer~yang dibangun. Oleh karena itu pada eksperimen ini \saya~mencoba menggunakan fitur tersebut dan ingin mengetahui apakah fitur POS-Tag memiliki kontribusi untuk meningkatkan akurasi pada \mer~dengan dokumen berbahasa Indonesia. 
 	
@@ -352,7 +352,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	Oleh karena itu pada sub-eksperimen selanjutnya, \saya~mencoba menambahkan fitur lain yang lebih spesifik dibandingkan dengan fitur POS-Tag, yaitu fitur Frasa Kata. Penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subeksfrasa}.
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}\label{eks:subeksfrasa}
+	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur Frasa Kata}\label{eks:subeksfrasa}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur Frasa Kata. Seperti yang telah dijelaskan pada Bab 3, entitas \textit{symptom} dan \textit{treatment} diharapkan akan lebih mudah dikenali karena pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} diharapkan juga akan lebih mudah dikenali karena pada umumnya merupakan frasa kata benda.
 	
@@ -401,7 +401,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	Dari 2 informasi di atas, dapat diambil informasi bahwa sebagian besar entitas \textit{disease} dan \textit{drug} merupakan frasa kata benda dan entitas \textit{symptom} dan \textit{treatment} merupakan frasa kata kerja. Hal ini menjadi seharusnya menjadi informasi pembeda dengan kata lain. Namun apabila dilihat dari hasil eksperimen ini, performa penggunaan fitur ini tidak terlalu bagus atau bahkan turun di entitas \textit{disease} dan \textit{symptom} tersebut. \Saya~berpendapat hal ini terjadi karena penggunaan fitur ini redundan apabila digunakan bersama-sama dengan fitur POS-Tag. Pada fitur POS-Tag, tidak ada perbedaan antara kata yang merupakan frasa maupun kata yang bukan frasa. Padahal, mayoritas entitas seperti yang telah dijelaskan di atas merupakan frasa. Oleh karena itu, pada sub-eksperimen \ref{eks:subeksminpostag}, penulis menghilangkan fitur POS-Tag dan tetap mempertahankan fitur frasa kata untuk mengetahui hal tersebut. 
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}\label{eks:subeksminpostag}
+	\subsubsection{Sub-Eksperimen Menguji Pengurangan Fitur POS-Tag}\label{eks:subeksminpostag}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini \saya~menghilangkan fitur POS-Tag berdasarkan hasil dan analisis pada sub-eksperimen \ref{eks:subeksfrasa}. Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}.
 	
@@ -432,9 +432,9 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	Walaupun pada sub-eksperimen ini hasil yang dicapai lebih baik dari sub-eksperimen sebelumnya, hasilnya tetap lebih rendah dari hasil eksperimen \cite{skripsiKakRadit} pada nilai \textit{recall} dan \textit{f-measure} pada entitas \textit{symptom}. Oleh karena itu \saya~mencoba fitur yang lain, yaitu fitur Kata Sebelum. Untuk penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subekswbef1}.
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}\label{eks:subekswbef1}
+	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur 1 Kata Sebelum}\label{eks:subekswbef1}
 	%-----------------------------------------------------------------------------%
-	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur 1 kata sebelum. Fitur ini digunakan pada penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan. Oleh karena itu, pada sub-eksperimen ini saya mencoba menambahkan fitur tersebut.
+	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur 1 kata sebelum. Fitur ini digunakan pada penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan. Oleh karena itu, pada sub-eksperimen ini \saya~mencoba menambahkan fitur tersebut.
 	
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}.
 	
@@ -474,7 +474,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}\label{eks:subekswaf1}
+	\subsubsection{Sub-Eksperimen Menguji Fitur Penambahan Fitur 1 Kata Sesudah}\label{eks:subekswaf1}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini \saya~menambahkan fitur lain yaitu fitur 1 Kata Setelah. Hal ini karena ada beberapa kasus yang mana apabila suatu kata merupakan sebuah entitas, akan lebih mudah dikenali apabila melihat kata atau konteks setelahnya. Sama seperti contoh pada fitur 1 kata sebelum, misal diberikan kata "masuk angin", apabila hanya diberikan informasi "masuk" tanpa "angin", akan lebih sulit mengenali apakah kata tersebut termasuk entitas \textit{disease} atau bukan. Selain itu, fitur ini juga dapat membedakan kata berentitas dengan kata yang bukan, misalnya kata "masuk angin" dengan "masuk rumah". Apabila informasi pada saat tersebut hanya diberikan kata "masuk" saja tanpa kata setelahnya, akan lebih sulit mengenali kata tersebut termasuk kata berentitas atau bukan.
 	
@@ -513,7 +513,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     
     Pada eksperimen ini, \saya~mencoba dua buah arsitektur RNNs yang telah \saya~usulkan pada Bab 3 yaitu RNNs dengan 1 layer dan RNNs dengan 2 layer. Fitur yang digunakan dalam pengujian ini yaitu kombinasi fitur yang menghasilkan akurasi terbaik pada eksperimen pertama, yaitu fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, frasa kata, 1 kata sebelum dan 1 kata sesudah.
     
-    \subsubsection{Sub-Eksperimen Menguji Arsitektur LSTMs 1 tingkat}\label{eks2:subeksrnn1}
+    \subsubsection{Sub-Eksperimen Menguji Arsitektur LSTMs 1 Layer}\label{eks2:subeksrnn1}
     %-----------------------------------------------------------------------------%
     Pada sub-eksperimen ini, \saya~menggunakan struktur RNNs yang mana semua fitur digabung menjadi satu dalam sebuah \textit{timestep}.
     Artinya fitur-fitur yang berbeda tersebut akan digabung atau di-\textit{concat} menjadi sebuah vektor yang akan menjadi \textit{input} bagi LSTMs ini. LSTMs inilah yang digunakan pada eksperimen pertama, sehingga hasilnya sama dengan sub-eksperimen \ref{eks:subekswaf1}.
@@ -543,7 +543,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     Pada eksperimen ini, hasil yang sudah lebih baik apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit} di entitas. Namun, dari eksperimen sebelumnya, terdapat akurasi yang turun, yaitu nilai \textit{precision} untuk entitas \textit{symptom}. Menurut \saya~hal ini terjadi karena informasi fitur yang berbeda-beda dijadikan satu, sehingga ada kemungkinan hilangnya informasi dari masing-masing fitur tersebut. Oleh karena itu, untuk mengatasi permasalahan tersebut \saya~mengusulkan arsitektur yang mana masing-masng kelompok fitur yang berbeda dipisahkan dan menjadi \textit{input} bagi masing-masing LSTMs. Untuk penjelasan eksperimen ini akan dijelaskan pada sub-eksperimen \ref{eks2:subeksrnn2}
     
     
-    \subsubsection{Sub-Eksperimen Menguji Arsitektur LSTMs Layer Bertingkat}\label{eks2:subeksrnn2}
+    \subsubsection{Sub-Eksperimen Menguji Arsitektur LSTMs 2 Layer Multi-Input}\label{eks2:subeksrnn2}
     %-----------------------------------------------------------------------------%
     Pada sub-eksperimen sebelumnya, fitur-fitur yang berbeda digabung menjadi satu, sehingga ada kemungkinan hilangnya informasi dari fitur tersebut. Oleh karena itu, \saya~mengusulkan adanya layer tambahan setelah masing-masing fitur tersebut masuk ke dalam model. \Saya~mengusulkan bahwa masing-masing kelompok fitur menjadi \textit{input} LSTMs secara terpisah. Setelah masuk di RNNs, \textit{output} dari masing-masing LSTMs tersebut di-\textit{merge} ke dalam sebuah layer, lalu masuk kembali ke LSTMs untuk melihat konteks fitur-fitur sebelumnya. Dengan diusulkannya arsitektur RNNs ini \saya~berharap bahwa masing-masing fitur terjaga informasinya dan tidak terganggu dengan informasi lain.
     
