@@ -39,9 +39,14 @@ Langkah ini dilakukan dengan tujuan untuk mempermudah proses POS \textit{tagging
 	\item mengganti karakter "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari" dan
 	\item mengganti karakter "/" menjadi token "atau".
 \end{enumerate}
-Pada langkah ini, \saya~tidak menghapus karakter tanda baca karena karakter tersebut memiliki fungsi pada sistem POS \textit{tagging} yang \saya~gunakan. Berikut merupakan contoh pembersihan data pada sebuah teks.
+Pada langkah ini, \saya~tidak menghapus karakter tanda baca karena karakter tersebut memiliki fungsi pada sistem POS \textit{tagging} yang \saya~gunakan. Gambar \ref{fig:pembersihandata} merupakan contoh pembersihan data pada sebuah teks.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/pembersihandata}
+	\caption{Ilustrasi Pembersihan Data pada Kalimat}
+	\label{fig:pembersihandata}
+\end{figure}
 
-\textbf{CONTOH}
 	
 \subsection{Tokenisasi}
 Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah kata. Hal ini perlu dilakukan untuk menghindari beberapa kelompok token berbeda yang tergabung. Karakter abjad dengan karakter angka atau karakter abjad dengan karakter tanda baca dipisahkan berdasarkan kelompoknya. Misalnya token "pusing2" diubah menjadi "pusing 2". Pada tahap ini, \saya~melakukan pemisahan terhadap beberapa kelompok token, yaitu:
@@ -52,8 +57,14 @@ Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah ka
 	\item <non-alfanumerik><alfanumerik> menjadi <non-alfanumerik><spasi><alfanumerik>
 \end{enumerate}
 
-Berikut merupakan contoh tokenisasi pada sebuah teks
-\textbf{CONTOH}
+Gambar \ref{fig:tokenisasi} berikut merupakan contoh tokenisasi pada sebuah teks.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/tokenisasi}
+	\caption{Ilustrasi Tokenisasi pada Kalimat}
+	\label{fig:tokenisasi}
+\end{figure}
+
 	
 \subsection{Pemotongan kalimat}
 Untuk menghindari jumlah token yang timpang dalam kalimat yang berbeda dan data yang \textit{sparse}, \saya~melakukan pemotongan kata dengan langkah-langkah sebagai berikut:

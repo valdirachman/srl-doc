@@ -3,20 +3,22 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Spesifikasi \textit {Hardware}\relax }}{33}{table.caption.31}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Spesifikasi Sistem Operasi\relax }}{33}{table.caption.32}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Tabel Beberapa Entitas \textit {Disease} pada Korpus dan Jumlahnya\relax }}{48}{table.caption.46}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Tabel Beberapa Entitas \textit {Symptom} pada Korpus dan Jumlahnya\relax }}{49}{table.caption.47}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Tabel Beberapa Entitas \textit {Treatment} pada Korpus dan Jumlahnya\relax }}{49}{table.caption.48}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Tabel Beberapa Entitas \textit {Drug} pada Korpus dan Jumlahnya\relax }}{50}{table.caption.49}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Tabel Hasil Eksperimen dari Penelitian \cite {skripsiKakRadit} (\textit {Baseline})\relax }}{50}{table.caption.50}
-\contentsline {table}{\numberline {5.6}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Kata Itu Sendiri\relax }}{52}{table.caption.52}
-\contentsline {table}{\numberline {5.7}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan\relax }}{54}{table.caption.54}
-\contentsline {table}{\numberline {5.8}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword\relax }}{56}{table.caption.56}
-\contentsline {table}{\numberline {5.9}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{57}{table.caption.58}
-\contentsline {table}{\numberline {5.10}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata\relax }}{59}{table.caption.60}
-\contentsline {table}{\numberline {5.11}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{61}{table.caption.62}
-\contentsline {table}{\numberline {5.12}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{62}{table.caption.64}
-\contentsline {table}{\numberline {5.13}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{64}{table.caption.66}
-\contentsline {table}{\numberline {5.14}{\ignorespaces Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 1 Layer\relax }}{65}{table.caption.68}
-\contentsline {table}{\numberline {5.15}{\ignorespaces Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 2 Layer\relax }}{67}{table.caption.70}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Tabel Beberapa Entitas \textit {Disease} pada Korpus dan Jumlahnya\relax }}{49}{table.caption.51}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Tabel Beberapa Entitas \textit {Symptom} pada Korpus dan Jumlahnya\relax }}{50}{table.caption.52}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Tabel Beberapa Entitas \textit {Treatment} pada Korpus dan Jumlahnya\relax }}{50}{table.caption.53}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Tabel Beberapa Entitas \textit {Drug} pada Korpus dan Jumlahnya\relax }}{51}{table.caption.54}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Tabel Hasil Eksperimen dari Penelitian \cite {skripsiKakRadit} (\textit {Baseline})\relax }}{51}{table.caption.55}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Kata Itu Sendiri\relax }}{53}{table.caption.57}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan\relax }}{55}{table.caption.59}
+\contentsline {table}{\numberline {5.8}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword\relax }}{57}{table.caption.61}
+\contentsline {table}{\numberline {5.9}{\ignorespaces Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{58}{table.caption.63}
+\contentsline {table}{\numberline {5.10}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata\relax }}{60}{table.caption.65}
+\contentsline {table}{\numberline {5.11}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{62}{table.caption.67}
+\contentsline {table}{\numberline {5.12}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{63}{table.caption.69}
+\contentsline {table}{\numberline {5.13}{\ignorespaces Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{65}{table.caption.71}
+\contentsline {table}{\numberline {5.14}{\ignorespaces Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 1 Layer\relax }}{66}{table.caption.73}
+\contentsline {table}{\numberline {5.15}{\ignorespaces Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 2 Layer\relax }}{68}{table.caption.75}
 \addvspace {10\p@ }

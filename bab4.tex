@@ -5,6 +5,36 @@
 
 Bab ini akan membahas mengenai implementasi pada penelitian yang terdiri atas tahap pengumpulan data, pra-pemrosesan, pengembangan model, eksperimen dan evaluasi. Setiap fitur yang \saya~usulkan pada Bab 3 juga akan dijelaskan langkah pengimplementasian pada bab ini.
 
+\section{Perangkat Pendukung}
+Dalam melakukan eksperimen, \saya~menggunakan perangkat komputer yang disediakan di lab. Perangkat komputer tersebut memiliki spesifikasi seperti pada tabel \ref{table:spesifikasi hardware}.
+
+\begin{table}
+	\centering
+	\caption{Spesifikasi \f{Hardware}}
+	\begin{tabular}{|c|c|}
+		\hline
+		Processor & i7-4770S \\ \hline
+		Banyak Core & 8 core \\ \hline
+		Frekuensi Processor & 3.1 GHz per core \\ \hline
+		RAM & 8 GB \\ \hline
+	\end{tabular}
+	\label{table:spesifikasi hardware}
+\end{table}
+
+Berikut merupakan detail dari sistem operasi yang terpasang pada komputer di atas
+\begin{table}
+	\centering
+	\caption{Spesifikasi Sistem Operasi}
+	\begin{tabular}{|c|c|}
+		\hline
+		Distributor ID & Ubuntu \\ \hline
+		Deskripsi & Ubuntu 13.10 \\ \hline
+		Versi rilis & 13.10 \\ \hline
+		Nama kode & saucy \\ \hline
+	\end{tabular}
+	\label{table:spesifikasi os}
+\end{table}
+
 \section{Pengumpulan Data}
 \Saya~melakukan pengumpulan data dengan menggunakan ide implementasi dari \cite{skripsiKakRadit} yang kemudian \saya~modifikasi sesuai dengan kebutuhan. Bahasa program yang \saya~gunakan untuk melakukan pengumpulan data ini adalah Java, dengan menggunakan library JSoup untuk mengunduh isi forum sebuah situs. Hasil dari pengumpulan data ini \saya~gabungkan dengan data penelitian milik \cite{skripsiKakRadit}.
 
@@ -568,7 +598,6 @@ Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabun
 	\caption{\textit{Pseudocode} untuk melakukan eksperimen}
 	\label{code:eksperimen}	
 \end{kode}
-
 
 \section{Evaluasi}
 Dalam melakukan implementasi pada tahap evaluasi, \saya~menghitung nilai \textit{prescision, recall} dan \textit{F-Measure} untuk mengukur tingkat keakuratan model yang dikembangkan pada tahap sebelumnya. \Saya~menggunakan aturan yang telah dijelaskan pada Bab 3. Berikut merupakan implementasi kode untuk melakukan evaluasi.

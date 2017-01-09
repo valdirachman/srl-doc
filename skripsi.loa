@@ -2,13 +2,13 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {algocf}{\numberline {4.1}{\ignorespaces \textit {Pseudocode} untuk melakukan pengumpulan data\relax }}{33}{algocf.4.1}
-\contentsline {algocf}{\numberline {4.2}{\ignorespaces \textit {Pseudocode} untuk melakukan pembersihan data\relax }}{34}{algocf.4.2}
-\contentsline {algocf}{\numberline {4.3}{\ignorespaces \textit {Pseudocode} untuk melakukan tokenisasi\relax }}{35}{algocf.4.3}
+\contentsline {algocf}{\numberline {4.1}{\ignorespaces \textit {Pseudocode} untuk melakukan pengumpulan data\relax }}{34}{algocf.4.1}
+\contentsline {algocf}{\numberline {4.2}{\ignorespaces \textit {Pseudocode} untuk melakukan pembersihan data\relax }}{35}{algocf.4.2}
+\contentsline {algocf}{\numberline {4.3}{\ignorespaces \textit {Pseudocode} untuk melakukan tokenisasi\relax }}{36}{algocf.4.3}
 \contentsline {algocf}{\numberline {4.4}{\ignorespaces \textit {Pseudocode} untuk melakukan pemotongan kalimat\relax }}{36}{algocf.4.4}
 \contentsline {algocf}{\numberline {4.5}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri\relax }}{37}{algocf.4.5}
 \contentsline {algocf}{\numberline {4.6}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan\relax }}{38}{algocf.4.6}
-\contentsline {algocf}{\numberline {4.7}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur \textit {stop word}\relax }}{38}{algocf.4.7}
+\contentsline {algocf}{\numberline {4.7}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur \textit {stop word}\relax }}{39}{algocf.4.7}
 \contentsline {algocf}{\numberline {4.8}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur POS-Tag\relax }}{39}{algocf.4.8}
 \contentsline {algocf}{\numberline {4.9}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur frasa kata benda\relax }}{40}{algocf.4.9}
 \contentsline {algocf}{\numberline {4.10}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur frasa kata kerja\relax }}{41}{algocf.4.10}
@@ -18,6 +18,6 @@
 \contentsline {algocf}{\numberline {4.14}{\ignorespaces \textit {Pseudocode} untuk arsitektur LSTMs layer bertingkat\relax }}{44}{algocf.4.14}
 \contentsline {algocf}{\numberline {4.15}{\ignorespaces \textit {Pseudocode} untuk memecah \textit {data} menjadi 10 bagian\relax }}{45}{algocf.4.15}
 \contentsline {algocf}{\numberline {4.16}{\ignorespaces \textit {Pseudocode} untuk melakukan eksperimen\relax }}{45}{algocf.4.16}
-\contentsline {algocf}{\numberline {4.17}{\ignorespaces \textit {Pseudocode} untuk melakukan evaluasi\relax }}{46}{algocf.4.17}
+\contentsline {algocf}{\numberline {4.17}{\ignorespaces \textit {Pseudocode} untuk melakukan evaluasi\relax }}{47}{algocf.4.17}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
