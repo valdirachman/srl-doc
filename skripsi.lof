@@ -11,21 +11,22 @@
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Diagram Gambaran Umum Metodologi yang Dilakukan\relax }}{19}{figure.caption.25}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Ilustrasi Pembersihan Data pada Kalimat\relax }}{20}{figure.caption.26}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Ilustrasi Tokenisasi pada Kalimat\relax }}{21}{figure.caption.27}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces LSTMs 1 layer\relax }}{27}{figure.caption.28}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{27}{figure.caption.29}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces LSTM 2 layer\relax }}{28}{figure.caption.30}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Ilustrasi Pemotongan Kalimat pada suatu Teks\relax }}{22}{figure.caption.28}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces LSTMs 1 layer\relax }}{27}{figure.caption.29}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{27}{figure.caption.30}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces LSTM 2 layer\relax }}{28}{figure.caption.31}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Histogram Jumlah Entitas pada Korpus\relax }}{48}{figure.caption.50}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Histogram Metrik Evaluasi dari Penelitian \cite {skripsiKakRadit} (\textit {Baseline})\relax }}{52}{figure.caption.56}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri\relax }}{54}{figure.caption.58}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan\relax }}{55}{figure.caption.60}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword\relax }}{57}{figure.caption.62}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{58}{figure.caption.64}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata\relax }}{60}{figure.caption.66}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{62}{figure.caption.68}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{64}{figure.caption.70}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{65}{figure.caption.72}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 Tingkat\relax }}{67}{figure.caption.74}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur LSTMs Layer Bertingkat\relax }}{68}{figure.caption.76}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Histogram Jumlah Entitas pada Korpus\relax }}{48}{figure.caption.51}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Histogram Metrik Evaluasi dari Penelitian \cite {skripsiKakRadit} (\textit {Baseline})\relax }}{52}{figure.caption.57}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri\relax }}{54}{figure.caption.59}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan\relax }}{55}{figure.caption.61}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword\relax }}{57}{figure.caption.63}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag\relax }}{58}{figure.caption.65}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata\relax }}{60}{figure.caption.67}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag\relax }}{62}{figure.caption.69}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum\relax }}{64}{figure.caption.71}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah\relax }}{65}{figure.caption.73}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 Tingkat\relax }}{67}{figure.caption.75}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Histogram Metrik Evaluasi dengan Arsitektur LSTMs Layer Bertingkat\relax }}{68}{figure.caption.77}
 \addvspace {10\p@ }

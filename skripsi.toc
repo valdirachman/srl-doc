@@ -30,12 +30,12 @@
 \contentsline {subsection}{\numberline {3.3.1}Pembersihan data}{20}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Tokenisasi}{20}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}Pemotongan kalimat}{21}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}Pelabelan}{21}{section.3.4}
+\contentsline {section}{\numberline {3.4}Pelabelan}{22}{section.3.4}
 \contentsline {section}{\numberline {3.5}Pengembangan Model}{23}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}Ekstrasi Fitur}{23}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}Pengusulan Arsitektur RNNs}{26}{subsection.3.5.2}
-\contentsline {section}{\numberline {3.6}Eksperimen}{29}{section.3.6}
-\contentsline {section}{\numberline {3.7}Evaluasi}{30}{section.3.7}
+\contentsline {subsection}{\numberline {3.5.2}Pengusulan Arsitektur RNNs}{27}{subsection.3.5.2}
+\contentsline {section}{\numberline {3.6}Eksperimen}{30}{section.3.6}
+\contentsline {section}{\numberline {3.7}Evaluasi}{31}{section.3.7}
 \contentsline {chapter}{\numberline {4}\uppercase {Implementasi}}{33}{chapter.4}
 \contentsline {section}{\numberline {4.1}Perangkat Pendukung}{33}{section.4.1}
 \contentsline {section}{\numberline {4.2}Pengumpulan Data}{33}{section.4.2}
@@ -80,4 +80,4 @@
 \contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{69}{chapter.6}
 \contentsline {section}{\numberline {6.1}Kesimpulan}{69}{section.6.1}
 \contentsline {section}{\numberline {6.2}Saran}{70}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{71}{chapter*.77}
+\contentsline {chapter}{Daftar Referensi}{71}{chapter*.78}
