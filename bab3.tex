@@ -9,7 +9,7 @@ Pada bab ini \saya~akan menjelaskan metodologi penelitian yang \saya~gunakan. Me
 \section{Gambaran Umum Pengembangan Metodologi}
 Penelitian ini bertujuan untuk membuat sebuah model yang mampu memberikan label entitas kesehatan pada suatu dokumen. Seperti yang telah dijelaskan pada bab sebelumnya, terdapat banyak entitas kesehatan yang dapat digunakan sebagai target pelabelan. Oleh karena itu, untuk mempermudah penelitian ini \saya~menggunakan entitas-entitas yang diusulkan oleh \cite{skripsiKakRadit} dalam penelitiannya,  nama penyakit (\textit{\disease}), gejala penyakit (\textit{\symptom}), obat (\textit{\drug}) dan langkah penyembuhan (\textit{\treatment}).
 
-Penelitian ini menggunakan dua buah korpus, yaitu korpus dari data dokumen teks kesehatan yang digunakan \cite{skripsiKakRadit} dan dokumen teks hasil pengumpulan yang dilakukan oleh \saya~pada situs kesehatan \textit{online}. Setelah itu \saya~melakukan pra-pemrosesan pada kedua data sebelum melakukan tahap selanjutnya. Untuk dokumen hasil pengumpulan dari forum, \saya~memberi label kesehatan secara manual dengan ketentuan pelabelan pada penelitian \cite{skripsiKakRadit}
+Penelitian ini menggunakan dua buah korpus, yaitu korpus dari data dokumen teks kesehatan yang digunakan \cite{skripsiKakRadit} dan dokumen teks hasil pengumpulan yang dilakukan oleh \saya~pada situs kesehatan \textit{online}. Setelah itu \saya~melakukan pra-pemrosesan pada kedua data sebelum melakukan tahap selanjutnya. Untuk dokumen hasil pengumpulan dari forum, \saya~memberi label kesehatan secara manual dengan ketentuan pelabelan pada penelitian \cite{skripsiKakRadit}.
 
 Setelah tahap pengusulan model, terdapat 2 eksperimen yang \saya~lakukan, yaitu eksperimen untuk mendapatkan fitur diskriminatif yang mampu membuat model memiliki akurasi terbaik dan eksperimen untuk mendapatkan arsitektur RNNs yang membuat model menghasilkan akurasi tertinggi. Pada eksperimen pertama, \saya~mencoba beberapa fitur, seperti fitur yang diusulkan oleh \cite{skripsiKakRadit} (fitur \textit{its own word}, frasa, kamus (\textit{symptom}, \textit{disease}, \textit{treatment} dan \textit{drug}), kata pertama sebelum, dan fitur kata setelah. Pada eksperimen kedua, \saya~mencoba dua arsitektur RNNs, yaitu RNNs yang setiap \textit{input} digabung terlebih dahulu dengan meng-\textit{append} semua vektor fitur. Sedangkan RNNs yang kedua yaitu RNNs yang setiap kelompok fitur menjadi \textit{input} bagi masing-masing LSTMs, baru kemudian \textit{output} dari layer tersebut digabung.
 
@@ -54,7 +54,7 @@ Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah ka
 	\item <alfabet><numerik> menjadi <alfabet><spasi><numerik>
 	\item <numerik><alfabet> menjadi <numerik><spasi><alfabet>
 	\item <alfanumerik><non-alfanumerik> menjadi <alfanumerik><spasi><non-alfanumerik>
-	\item <non-alfanumerik><alfanumerik> menjadi <non-alfanumerik><spasi><alfanumerik>
+	\item <non-alfanumerik><alfanumerik> menjadi <non-alfanumerik><spasi> <alfanumerik>
 \end{enumerate}
 
 Gambar \ref{fig:tokenisasi} berikut merupakan contoh tokenisasi pada sebuah teks.
@@ -129,7 +129,7 @@ Pada tahap ini, \saya~melakukan pelabelan pada dokumen teks yang merupakan hasil
 Setelah proses di atas selesai, label di dalam korpus diubah menjadi format BIO (\textit{begin inside outside}). Gambar \ref{fig:pelabelan} berikut merupakan ilustrasi dari tahap pelabelan ini.
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{images/pelabelan}
+	\includegraphics[width=0.85\linewidth]{images/pelabelan}
 	\caption{Ilustrasi Pelabelan Entitas pada suatu Kalimat}
 	\label{fig:pelabelan}
 \end{figure}
@@ -197,7 +197,7 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{images/fiturkamus}
+		\includegraphics[width=0.85\linewidth]{images/fiturkamus}
 		\caption{Ilustrasi Ekstraksi Fitur Kamus \disease~pada Suatu Kalimat}
 		\label{fig:fiturkamus}
 	\end{figure}
@@ -218,7 +218,7 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{images/fiturstopword}
+		\includegraphics[width=0.70\linewidth]{images/fiturstopword}
 		\caption{Ilustrasi Ekstraksi Fitur \textit{Stopword} pada Suatu Kalimat}
 		\label{fig:fiturstopword}
 	\end{figure}
@@ -237,7 +237,7 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{images/fiturpostag}
+		\includegraphics[width=0.70\linewidth]{images/fiturpostag}
 		\caption{Ilustrasi Ekstraksi Fitur POS \textit{Tag} pada Suatu Kalimat}
 		\label{fig:fiturpostag}
 	\end{figure}
@@ -322,7 +322,7 @@ Gambar \ref{fig:fiturfrasa} merupakan ilustrasi dari ekstraksi fitur Frasa Nomin
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\linewidth]{images/fiturfrasa}
+	\includegraphics[width=0.70\linewidth]{images/fiturfrasa}
 	\caption{Ilustrasi Ekstraksi Fitur Frasa Nomina pada Suatu Kalimat}
 	\label{fig:fiturfrasa}
 \end{figure}
@@ -365,6 +365,15 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 		\label{fig:inputlstm}
 	\end{figure}
 	
+	Gambar \ref{fig:iolstm1} merupakan ilustrasi \textit{input} yang diberikan pada sebuah LSTMs 1 layer dan \textit{output} yang dihasilkan.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/iolstm1}
+		\caption{Ilustrasi proses \textit{input} fitur pada LSTMs 1 layer dan \textit{output}-nya}
+		\label{fig:iolstm1}
+	\end{figure}
+	
 	Untuk masing-masing \textit{timestep} $ t $, berikut merupakan gambar sebuah \textit{cell}-nya.
 	\begin{figure}
 		\centering
@@ -387,9 +396,9 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 	
 	$ \alpha_t $, $ \beta_t $ dan $ \gamma_t $ merupakan \textit{gates}:
 	\begin{enumerate}
-		\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1}) $
-		\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{x\beta}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1}) $
-		\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{x\gamma}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
+		\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{x\alpha} \cdot x_{t}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1}) $
+		\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{x\beta}\cdot x_{t}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1}) $
+		\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{x\gamma}\cdot x_{t}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
 	\end{enumerate}
 
 	\item LSTMs 2 layer dengan Multi-\textit{Input}\\
@@ -398,11 +407,19 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 	\begin{figure}
 		\centering
 		\includegraphics[width=1.0\linewidth]{images/lstm2}
-		\caption{LSTM 2 layer}
+		\caption{LSTM 2 layer multi-\textit{input}}
 		\label{fig:lstm2}
 	\end{figure}
 
-	Masing-masing kelompok fitur menjadi \textit{input} dari LSTMs yang terkait. Nantinya, masing-masing \textit{output} akan digabung melalui \textit{merge layer} dengan metode \textit{concat} dan menjadi \textit{input} bagi LSTMs layer kedua.
+	Masing-masing kelompok fitur menjadi \textit{input} dari LSTMs yang terkait. Nantinya, masing-masing \textit{output} akan digabung melalui \textit{merge layer} dengan metode \textit{concat} dan menjadi \textit{input} bagi LSTMs layer kedua. Gambar \ref{fig:iolstm2} merupakan ilustrasi \textit{input} dan \textit{output} pada LSTMs 2 layer multi-\textit{input}. Pada gambar tersebut terlihat bahwa terdapat dua kelompok fitur, yaitu fitur kata dan fitur frasa (verba dan nomina). Masing-masing fitur tersebut dimasukkan ke dalam masing-masing LSTMs, yang hasilnya di-\textit{merge} pada layer di atasnya. Hasil dari layer \textit{merge} menjadi \textit{input} untuk LSTMs di layer kedua. Pada LSTMs kedua inilah label akan diberikan.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=1.0\linewidth]{images/iolstm2}
+		\caption{Ilustrasi \textit{input} dan \textit{output} pada LSTMs 2 layer multi-\textit{input}}
+		\label{fig:iolstm2}
+	\end{figure}
+	
 	Di sini, \saya~menotasikan $ k $ sebagai nomor kelompok fitur dan $ t $ sebagai \textit{timestep} saat ini. Untuk masing-masing kelompok fitur, berikut merupakan formulasi \textit{feedforward}-nya:
 	\begin{equation}\label{eq:mt2}
 	m_{k,t}=\alpha_{k,t} (\times) m_{k,t-1} + \beta_{k,t} (\times) f(x_{k,t},{k,t-1})
@@ -412,13 +429,13 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 	\end{equation}
 	dimana
 	\begin{equation}\label{eq:hf2}
-	f(x_{k,t},{k,t-1})=tanh(W_{k,xm} \cdot x_{t} + W_{k,hm} \cdot h_{k,t-1})
+	f(x_{k,t},{k,t-1})=tanh(W_{k,xm} \cdot x_{k,t} + W_{k,hm} \cdot h_{k,t-1})
 	\end{equation}
 	$ \alpha_{k,t} $, $ \beta_{k,t} $ dan $ \gamma_{k,t} $ merupakan \textit{gates}:
 	\begin{enumerate}
-	\item \textit{Forget gates}: $ \alpha_{k,t}=\sigma(W_{k,x\alpha}+W_{k,h\alpha}\cdot~h_{k,t-1}+W_{k,m\alpha}\cdot~m_{k,t-1}) $
-	\item \textit{Input gates}: $ \beta_{k,t}=\sigma(W_{k,x\beta}+W_{k,h\beta}\cdot~h_{k,t-1}+W_{k,m\beta}\cdot~m_{k,t-1}) $
-	\item \textit{Output gates}: $ \gamma_{k,t}=\sigma(W_{k,x\gamma}+W_{k,h\gamma}\cdot~h_{k,t-1}+W_{k,m\gamma}\cdot~m_{k,t-1}) $
+	\item \textit{Forget gates}: $ \alpha_{k,t}=\sigma(W_{k,x\alpha} \cdot x_{k,t}+W_{k,h\alpha}\cdot~h_{k,t-1}+W_{k,m\alpha}\cdot~m_{k,t-1}) $
+	\item \textit{Input gates}: $ \beta_{k,t}=\sigma(W_{k,x\beta} \cdot x_{k,t}+W_{k,h\beta}\cdot~h_{k,t-1}+W_{k,m\beta}\cdot~m_{k,t-1}) $
+	\item \textit{Output gates}: $ \gamma_{k,t}=\sigma(W_{k,x\gamma} \cdot x_{k,t}+W_{k,h\gamma}\cdot~h_{k,t-1}+W_{k,m\gamma}\cdot~m_{k,t-1}) $
 	\end{enumerate}
 
 	\textit{Merge layer} berfungsi untuk menggabungkan hasil dari \textit{feedforward} pada semua LSTMs layer pertama. Di sini, \saya~menotasikan $ X_t $ sebagai hasil dari \textit{merge} di \textit{timestep} $ t $ dan $ (\cdot) $ merupakan operasi \textit{merging}.

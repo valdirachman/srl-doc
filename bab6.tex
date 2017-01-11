@@ -23,6 +23,11 @@ Setelah melakukan eksperimen dan menganalisis hasilnya, ada beberapa saran untuk
 
 \begin{enumerate}
   \item Penelitian ini hanya menggunakan 309 \textit{post} forum kesehatan \textit{online} sehingga perlu penambahan data \textit{training} dan \textit{testing} mengingat \textit{deep learning} membutuhkan data yang besar dalam melakukan \textit{training} untuk mendapatkan model yang baik.
+  
+  \item Terdapat beberapa parameter bebas seperti dalam pembuatan model \textit{word embedding} yaitu panjang \textit{window} dan \textit{vector}. Hal ini bisa menjadi bahan penelitian lanjutan untuk mendapatkan panjang \textit{window} dan \textit{vector} yang tepat supaya model mampu memberikan akurasi yang lebih baik.
+  
+  \item Dalam menentukan label entitas, \saya~tidak mempertimbangkan konteks kalimat yang berada di sekitarnya. Padahal kalimat di sekitarnya akan memberikan informasi lebih terkait hubungan antar entitas. Misalnya pada kalimat pertama dokter menjelaskan penyakit yang dialami. Pada kalimat selanjutnya dokter tersebut menjelaskan cara penyembuhan dari penyakit tersebut. Oleh karena itu, \saya~menyarankan untuk mempertimbangkan fitur konteks kalimat pada penelitian selanjutnya.
+  
 
   \item Perlu dibuat korpus dengan jumlah masing-masing entitas yang seimbang, sehingga hasil yang diberikan tidak bias.
   

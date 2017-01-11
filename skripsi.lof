@@ -16,29 +16,31 @@
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Ilustrasi Pengubahan Label menjadi \textit {One-Hot-Vector}\relax }}{25}{figure.caption.31}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Ilustrasi Ekstraksi Fitur Kata pada Suatu Kalimat\relax }}{26}{figure.caption.32}
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Ilustrasi Ekstraksi Fitur Kamus \textit {disease}~pada Suatu Kalimat\relax }}{27}{figure.caption.33}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Ilustrasi Pengubahan Label menjadi \textit {One-Hot-Vector}\relax }}{27}{figure.caption.34}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Ilustrasi Pengubahan Label menjadi \textit {One-Hot-Vector}\relax }}{28}{figure.caption.34}
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Ilustrasi Ekstraksi Fitur \textit {Stopword} pada Suatu Kalimat\relax }}{28}{figure.caption.35}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Ilustrasi Pengubahan Label menjadi \textit {One-Hot-Vector}\relax }}{28}{figure.caption.36}
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Ilustrasi Ekstraksi Fitur POS \textit {Tag} pada Suatu Kalimat\relax }}{29}{figure.caption.37}
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Ilustrasi Pengubahan Fitur POS-Tag menjadi \textit {One-Hot-Vector}\relax }}{31}{figure.caption.39}
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Ilustrasi Ekstraksi Fitur Frasa Nomina pada Suatu Kalimat\relax }}{32}{figure.caption.40}
-\contentsline {figure}{\numberline {3.15}{\ignorespaces Ilustrasi Pengubahan Fitur Frasa menjadi \textit {One-Hot-Vector}\relax }}{32}{figure.caption.41}
-\contentsline {figure}{\numberline {3.16}{\ignorespaces LSTMs 1 layer\relax }}{34}{figure.caption.42}
-\contentsline {figure}{\numberline {3.17}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{34}{figure.caption.43}
-\contentsline {figure}{\numberline {3.18}{\ignorespaces Ilustrasi penggabungan fitur kata dan frasa untuk menjadi \textit {input} LSTMs 1 layer dan \textit {output}\relax }}{35}{figure.caption.44}
-\contentsline {figure}{\numberline {3.19}{\ignorespaces LSTM 2 layer\relax }}{36}{figure.caption.45}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Ilustrasi Pengubahan Label menjadi \textit {One-Hot-Vector}\relax }}{29}{figure.caption.36}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Ilustrasi Ekstraksi Fitur POS \textit {Tag} pada Suatu Kalimat\relax }}{30}{figure.caption.37}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Ilustrasi Pengubahan Fitur POS-Tag menjadi \textit {One-Hot-Vector}\relax }}{32}{figure.caption.39}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Ilustrasi Ekstraksi Fitur Frasa Nomina pada Suatu Kalimat\relax }}{33}{figure.caption.40}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Ilustrasi Pengubahan Fitur Frasa menjadi \textit {One-Hot-Vector}\relax }}{34}{figure.caption.41}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces LSTMs 1 layer\relax }}{35}{figure.caption.42}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Ilustrasi penggabungan fitur kata dan frasa untuk menjadi \textit {input} LSTMs 1 layer dan \textit {output}-nya\relax }}{36}{figure.caption.43}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Ilustrasi proses \textit {input} fitur pada LSTMs 1 layer dan \textit {output}-nya\relax }}{36}{figure.caption.44}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces 1 buah blok memori dalam LSTM\relax }}{37}{figure.caption.45}
+\contentsline {figure}{\numberline {3.20}{\ignorespaces LSTM 2 layer multi-\textit {input}\relax }}{38}{figure.caption.46}
+\contentsline {figure}{\numberline {3.21}{\ignorespaces Ilustrasi \textit {input} dan \textit {output} pada LSTMs 2 layer multi-\textit {input}\relax }}{39}{figure.caption.47}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Histogram Jumlah Entitas pada Korpus\relax }}{56}{figure.caption.65}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Histogram Metrik Evaluasi dari Penelitian \cite {skripsiKakRadit} (\textit {Baseline})\relax }}{61}{figure.caption.71}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.1\relax }}{62}{figure.caption.73}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.2\relax }}{65}{figure.caption.75}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.3\relax }}{67}{figure.caption.77}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.4\relax }}{69}{figure.caption.79}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.5\relax }}{71}{figure.caption.81}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.4, 2.5 dan 2.6\relax }}{73}{figure.caption.83}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.7\relax }}{75}{figure.caption.85}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.8\relax }}{77}{figure.caption.87}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 3.1\relax }}{78}{figure.caption.89}
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 3.1, dan 3.2\relax }}{80}{figure.caption.91}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Histogram Jumlah Entitas pada Korpus\relax }}{58}{figure.caption.67}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Histogram Metrik Evaluasi dari Penelitian \cite {skripsiKakRadit} (\textit {Baseline})\relax }}{63}{figure.caption.73}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.1\relax }}{64}{figure.caption.75}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.2\relax }}{67}{figure.caption.77}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.3\relax }}{69}{figure.caption.79}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.4\relax }}{71}{figure.caption.81}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.5\relax }}{73}{figure.caption.83}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.4, 2.5 dan 2.6\relax }}{75}{figure.caption.85}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.7\relax }}{77}{figure.caption.87}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 2.8\relax }}{79}{figure.caption.89}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 3.1\relax }}{80}{figure.caption.91}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Histogram Perbandingan \textit {F-measure} \textit {Baseline} dengan Eksperimen 3.1, dan 3.2\relax }}{82}{figure.caption.93}
 \addvspace {10\p@ }

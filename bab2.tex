@@ -79,7 +79,7 @@ dengan $ f $ sebagai \textit{activation function}, misalnya $ tanh $ atau $ soft
 	\label{fig:nodes_rnn}
 \end{figure}
 
-\subsection{Long Short Term Memory}\label{subbab:lstm}
+\subsection{Long Short Term Memories (LSTMs)}\label{subbab:lstm}
 Pada penjelasan di atas, RNNs sederhana memiliki kelebihan mempertimbangkan konteks untuk mengolah \textit{input} menjadi \textit{output}. Sayangnya, \textit{range} konteks yang dapat digunakan dalam satu blok terbatas \citep{graves2012neural}. Efek dari keterbatasan ini yaitu informasi pada suatu blok akan hilang atau terganggu dalam perjalanan \textit{timestep} sehingga \textit{output} yang dihasilkan tidak sesuai harapan. Oleh karena itu RNNs sederhana tidak dapat menangani permasalahan dependensi jangka panjang. Permasalahan ini disebut dengan \textit{vanishing gradient problem} (\cite{hochreiter1991untersuchungen}; \cite{hochreiter2001gradient}; \cite{bengio1994learning}). Banyak upaya untuk mengatasi masalah ini, seperti dengan menggunakan \textit{simulated annealing} dan \textit{discrete error propagation} \citep{bengio1994learning}, menggunakan \textit{time delays} (\cite{lang1990time}; \cite{bakker2001reinforcement}) atau \textit{time constant} \citep{ieee1997advances}, dan \textit{hierarchical sequence compression} \citep{schmidhuber2007training}. Namun sejauh ini solusi yang paling bagus yaitu dengan arsitektur \textit{Long Short Term Memory} (LSTM) \citep{hochreiter1997long}.
 
 \begin{figure}
@@ -89,7 +89,7 @@ Pada penjelasan di atas, RNNs sederhana memiliki kelebihan mempertimbangkan kont
 	\label{fig:lstm}
 \end{figure}
 
-LSTM diperkenalkan oleh \cite{hochreiter1997long} dan saat ini banyak digunakan dalam berbagai \textit{task}. Gambar \ref{fig:lstm} merupakan ilustrasi satu buah blok memori di dalam LSTMs. Pada dasarnya, arsitektur LSTMs mirip dengan RNNs sederhana, namun unit \textit{nonlinear} pada \textit{hidden layer} di dalam RNNs sederhana diganti menjadi blok memori. Sebuah blok memori memiliki gerbang \textit{multiplicative} yang berfungsi untuk menyimpan dan mengakses informasi dari blok sebelumnya namun dengan batasan yang jauh lebih besar dibanding RNNs, sehingga mampu menghindari \textit{vanishing gradient problem}. Apabila \textit{input gate} selalu tertutup, maka memori tidak akan perah ditimpa sehingga isi memori tidak berubah.
+LSTMs diperkenalkan oleh \cite{hochreiter1997long} dan saat ini banyak digunakan dalam berbagai \textit{task}. Gambar \ref{fig:lstm} merupakan ilustrasi satu buah blok memori di dalam LSTMs. Pada dasarnya, arsitektur LSTMs mirip dengan RNNs sederhana, namun unit \textit{nonlinear} pada \textit{hidden layer} di dalam RNNs sederhana diganti menjadi blok memori. Sebuah blok memori memiliki gerbang \textit{multiplicative} yang berfungsi untuk menyimpan dan mengakses informasi dari blok sebelumnya namun dengan batasan yang jauh lebih besar dibanding RNNs, sehingga mampu menghindari \textit{vanishing gradient problem}. Apabila \textit{input gate} selalu tertutup, maka memori tidak akan perah ditimpa sehingga isi memori tidak berubah.
 
 Pada gambar \ref{fig:lstm}, kita dapat melihat bahwa 1 blok memori pada LSTMs tersebut memiliki 3 buah gerbang, yang berfungsi untuk sebagai pengatur suatu informasi apakah ditambahkan, dipertahankan atau dihapus di dalam sebuah sel. Masing-masing gerbang terdiri dari komponen \textit{sigmoid layer} dan komponen untuk melakukan operasi penjumlahan atau perkalian untuk masing-masing \textit{element-wise}. \textit{Sigmoid layer} tersebut memiliki nilai antara nol sampai dengan satu, yang mendeskripsikan perilaku gerbang dalam menerima \textit{input}. Semakin kecil nilai dari layer tersebut maka semakin kecil pula informasi masuk ke gerbang terkait dan sebaliknya. 
 
@@ -97,19 +97,19 @@ Pada gambar \ref{fig:lstm}, kita dapat melihat bahwa 1 blok memori pada LSTMs te
 	\item \textit{Forget Gate}\\
 	Gerbang ini memiliki fungsi untuk menentukan informasi yang akan disimpan di dalam memori dengan formula berikut
 	\begin{equation}\label{eq:forget_lstm}
-	\alpha_{t}=\sigma(W_{x\alpha}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1})
+	\alpha_{t}=\sigma(W_{x\alpha}\cdot x_{t}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1})
 	\end{equation}
 	
 	\item \textit{Input Gate}\\
 	Gerbang ini berfungsi untuk menentukan apakah informasi baru $ x(t) $ akan disimpan dalam \textit{cell state} atau tidak. 
 	\begin{equation}\label{eq:input_lstm}
-	\beta_{t}=\sigma(W_{x\beta}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1})
+	\beta_{t}=\sigma(W_{x\beta}\cdot x_{t}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1})
 	\end{equation}
 	
 	\item \textit{Output Gate}\\
 	Gerbang ini berfungsi untuk menendukan \textit{output} dari sebuah \textit{timestep} berdasarkan \textit{cell state} saat ini.
 	\begin{equation}\label{eq:output_lstm}
-	\gamma_{t}=\sigma(W_{x\gamma}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1})
+	\gamma_{t}=\sigma(W_{x\gamma}\cdot x_{t}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1})
 	\end{equation}
 	
 \end{enumerate}

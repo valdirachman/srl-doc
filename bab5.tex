@@ -136,20 +136,20 @@ Pada penelitian ini, \saya~melakukan 3 buah skenario utama, yaitu skenario untuk
 	Skenario ini bertujuan untuk mendapatkan kombinasi fitur terbaik sehingga memberikan akurasi terbaik. \Saya~mencoba masing-masing fitur dengan menggunakan model arsitektur LSTMs 1 layer. Apabila penggunaan fitur memberikan hasil yang lebih dari pada hasil eksperimen sebelumnya, fitur tersebut akan dipertahankan untuk eksperimen yang selanjutnya. Skenario ini memiliki 9 sub-skenario, yaitu:
 	\begin{enumerate}
 		\item Sub-skenario 2.1 Fitur kata
-		\item Sub-skenario 2.2 menguji penambahan fitur kamus
-		\item Sub-skenario 2.3 menguji penambahan fitur stop word
-		\item Sub-skenario 2.4 menguji penambahan fitur POS-Tag
-		\item Sub-skenario menguji penambahan fitur frasa kata
-		\item Sub-skenario menguji pengurangan fitur POS-Tag
-		\item Sub-skenario menguji penambahan fitur 1 kata sebelum
-		\item Sub-skenario menguji penambahan fitur 1 kata sesudah
+		\item Sub-skenario 2.2 Fitur kata dan kamus
+		\item Sub-skenario 2.3 Fitur kata, kamus dan \textit{stopword}
+		\item Sub-skenario 2.4 Fitur kata, kamus, \textit{stopword} dan POS-Tag
+		\item Sub-skenario 2.5 Fitur kata, kamus, \textit{stopword}, POS-Tag dan frasa kata
+		\item Sub-skenario 2.5 Fitur kata, kamus, \textit{stopword} dan frasa kata
+		\item Sub-skenario 2.5 Fitur kata, kamus, \textit{stopword}, frasa kata dan kata sebelum
+		\item Sub-skenario 2.5 Fitur kata, kamus, \textit{stopword}, frasa kata, kata sebelum dan kata sesudah
 	\end{enumerate}
 
 	\item Skenario 3: Skenario untuk menguji arsitektur RNNs\\
 	Skenario ini bertujuan untuk melihat pengaruh arsitektur RNNs pada penelitian ini. \Saya~mencoba kedua arsitektur RNNs yang telah diusulkan sebelumnya dengan menggunakan kombinasi fitur terbaik dari eksperimen di skenario pengujian fitur di atas. Pada skenario ini, terdapat 2 sub-skenario, yaitu:
 	\begin{enumerate}
-		\item Sub-skenario untuk menguji arsitektur LSTMs 1 layer
-		\item Sub-skenario untuk menguji arsitektur LSTMs 2 layer
+		\item Sub-skenario 3.1: LSTMs 1 layer
+		\item Sub-skenario 3.2: LSTMs 2 layer multi-\textit{input}
 	\end{enumerate}
 	
 \end{enumerate}
@@ -158,6 +158,8 @@ Pada penelitian ini, \saya~melakukan 3 buah skenario utama, yaitu skenario untuk
 Pada penelitian ini, \saya~mencoba melakukan implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Data yang digunakan adalah data yang \saya~gunakan dalam penelitian ini supaya perbandingan yang didapatkan \textit{apple-to-apple}. Implementasi dan eksperimen ini bertujuan sebagai \textit{baselaine} eksperimen dan penelitian yang \saya~lakukan. Selain itu, juga untuk mengetahui secara singkat fitur yang diskriminatif dalam melakukan \textit{sequence labeling} pada \mer~ini. Model yang digunakan sama dengan penelitian \cite{skripsiKakRadit}, yaitu CRFs dengan penggunaan fitur kata, fitur kamus, fitur frasa, fitur panjang kata dan fitur kata sebelum.
 
 \subsection{Hasil Eksperimen}
+\textbf{Waktu komputasi}: $ 6093.0 $ detik.
+
 Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}.
 	
 \begin{table}
@@ -190,6 +192,8 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	Merujuk pada penelitian \cite{mujiono2016new}, penelitian tersebut bertujuan untuk mendapatkan \textit{non-handcrafted feature}, yaitu fitur kata itu sendiri dengan menggunakan \textit{tools Word Embedding}. Oleh karena itu, \saya~menguji fitur ini untuk mengetahui pengaruhnya pada program \mer~di penelitian ini. 
 	
 	\subsubsection{Hasil Eksperimen}
+	\textbf{Waktu komputasi}: $ 5191.0 $ detik.
+	
 	Tabel \ref{table:ekskata} menampilkan hasil pelabelan otomatis dengan menggunakan fitur kata itu sendiri yang direpresentasikan dengan menggunakan vektor \textit{word embedding}.
 	
 	% Please add the following required packages to your document preamble:
@@ -259,6 +263,8 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	Pada sub-eksperimen ini, \saya~menggunakan tambahan fitur Kamus Kesehatan karena berdasarkan penelitian \cite{skripsiKakRadit} fitur ini memiliki konribusi untuk menambah akurasi pada sistem \mer. Selain itu, menurut \saya, informasi suatu kata terdapat dalam sebuah kamus kesehatan mungkin akan memberikan kontribusi untuk meningkatkan akurasi. Oleh karena itu, \saya~mencoba untuk menambahkan fitur ini ke dalam model RNNs.
 	
 	\subsubsection{Hasil Eksperimen}
+	\textbf{Waktu komputasi}: $ 5658.0 $ detik.
+	
 	Tabel \ref{table:ekskamus} merupakan tabel hasil eksperimen yang didapatkan dengan menggunakan fitur ini.
 	
 	% Please add the following required packages to your document preamble:
@@ -325,6 +331,8 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	Pada sub-eksperimen ini. \saya~mencoba menambahkan informasi lain berupa fitur yang berisi sebuah kata apakah terdapat di dalam kamus \textit{stop word} atau tidak. \Saya~berpendapat bahwa dengan adanya informasi \textit{stop word}, adanya kesalahan suatu kata tidak berentitas yang dilabeli sebagai kata berentitas oleh model dapat dikurangi.
 	
 	\subsubsection{Hasil Eksperimen}
+	\textbf{Waktu komputasi}: $ 6019.5 $ detik.
+	
 	Rangkuman hasil sub-eksperimen ini dapat dilihat di Tabel \ref{table:eksstop} dan Gambar \ref{fig:eksstop}.
 	
 
@@ -363,6 +371,8 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	Pada sub-eksperimen ini, \saya~menambahkan informasi baru pada \textit{resource} yang akan digunakan untuk \textit{training} model yang berupa fitur POS-Tag. Sebelumnya fitur ini telah digunakan pada penelitian \cite{abacha2011medical} pada dokumen berbahasa Inggris dan memberikan kontribusi meningkatkan akurasi dari model \mer~yang dibangun. Oleh karena itu pada eksperimen ini \saya~mencoba menggunakan fitur tersebut dan ingin mengetahui apakah fitur POS-Tag memiliki kontribusi untuk meningkatkan akurasi pada \mer~dengan dokumen berbahasa Indonesia. 
 	
 	\subsubsection{Hasil Eksperimen}
+	\textbf{Waktu komputasi}: $ 6952.0 $ detik.
+	
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict4} dan Gambar \ref{fig:owndict4}.
 	
 	\begin{table}
@@ -410,6 +420,9 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur Frasa Kata. Seperti yang telah dijelaskan pada Bab 3, entitas \textit{symptom} dan \textit{treatment} diharapkan akan lebih mudah dikenali karena pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} diharapkan juga akan lebih mudah dikenali karena pada umumnya merupakan frasa kata benda.
 	
+	\subsubsection{Hasil Eksperimen}
+	\textbf{Waktu komputasi}: $ 7528.5 $ detik.
+	
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict4} dan Gambar \ref{fig:owndict4}.
 	
 	\begin{table}
@@ -435,6 +448,7 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 		\label{fig:owndict5}
 	\end{figure}
 
+	\subsubsection{Analisis}
 	Dari tabel dan grafik di atas, entitas \textit{drug} mengalami penurunan untuk nilai \textit{precission, recall} dan \textit{f-measure}. Selain itu, entitas \textit{disease} mengalami penurunan pada nilai \textit{precission} tetapi mengalami kenaikan pada nilai \textit{recall} dan \textit{f-measure}. Entitas \textit{symptom} mengalami kenaikan pada nilai \textit{precision} tetapi mengalami penurunan pada nilai \textit{recall} dan \textit{f-measure}. Sedangkan pada entitas \textit{treatment}, terjadi kenaikan nilai \textit{recall} tetapi nilai \textit{precision} dan \textit{f-measure} mengalami penurunan. 
 	
 	Dari korpus yang \saya~miliki, berikut merupakan informasi statistik dari penggunaan fitur frasa kata kerja:
@@ -458,9 +472,12 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	%-----------------------------------------------------------------------------%
 	\subsection{Eksperimen 2.6: Fitur Kata, Kamus Kesehatan, \textit{Stopword} dan Frasa Kata}\label{eks:subeksminpostag}
 	%-----------------------------------------------------------------------------%
-	Pada sub-eksperimen ini \saya~menghilangkan fitur POS-Tag berdasarkan hasil dan analisis pada sub-eksperimen \ref{eks:subeksfrasa}. Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}.
+	Pada sub-eksperimen ini \saya~menghilangkan fitur POS-Tag berdasarkan hasil dan analisis pada sub-eksperimen \ref{eks:subeksfrasa}.
 	
 	\subsubsection{Hasil Eksperimen}
+	\textbf{Waktu komputasi}: $ 6636.5 $ detik.
+	
+	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}.
 	\begin{table}
 		\centering
 		\caption{Tabel Hasil Eksperimen 2.6 dibandigkan dengan \textit{Baseline}}
@@ -497,6 +514,8 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur 1 kata sebelum. Fitur ini digunakan pada penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan. Oleh karena itu, pada sub-eksperimen ini \saya~mencoba menambahkan fitur tersebut.
 	
 	\subsubsection{Hasil Eksperimen}
+	\textbf{Waktu komputasi}: $ 9275.5 $ detik.
+	
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}.
 	
 	\begin{table}
@@ -542,6 +561,8 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	Pada sub-eksperimen ini \saya~menambahkan fitur lain yaitu fitur 1 Kata Setelah. Hal ini karena ada beberapa kasus yang mana apabila suatu kata merupakan sebuah entitas, akan lebih mudah dikenali apabila melihat kata atau konteks setelahnya. Sama seperti contoh pada fitur 1 kata sebelum, misal diberikan kata "masuk angin", apabila hanya diberikan informasi "masuk" tanpa "angin", akan lebih sulit mengenali apakah kata tersebut termasuk entitas \textit{disease} atau bukan. Selain itu, fitur ini juga dapat membedakan kata berentitas dengan kata yang bukan, misalnya kata "masuk angin" dengan "masuk rumah". Apabila informasi pada saat tersebut hanya diberikan kata "masuk" saja tanpa kata setelahnya, akan lebih sulit mengenali kata tersebut termasuk kata berentitas atau bukan.
 	
 	\subsubsection{Hasil Eksperimen}
+	\textbf{Waktu komputasi}: $ 14031.5 $ detik.
+	
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict8} dan Gambar \ref{fig:owndict8}.
 	
 	\begin{table}
@@ -585,6 +606,7 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
     Artinya fitur-fitur yang berbeda tersebut akan digabung atau di-\textit{concat} menjadi sebuah vektor yang akan menjadi \textit{input} bagi LSTMs ini. LSTMs inilah yang digunakan pada eksperimen pertama, sehingga hasilnya sama dengan sub-eksperimen \ref{eks:subekswaf1}.
     
     \subsubsection{Hasil Eksperimen}
+    \textbf{Waktu komputasi}: $ 14031.5 $ detik.
     
     \begin{table}
     	\centering
@@ -618,6 +640,8 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
     Pada sub-eksperimen sebelumnya, fitur-fitur yang berbeda digabung menjadi satu, sehingga ada kemungkinan hilangnya informasi dari fitur tersebut. Oleh karena itu, \saya~mengusulkan adanya layer tambahan setelah masing-masing fitur tersebut masuk ke dalam model. \Saya~mengusulkan bahwa masing-masing kelompok fitur menjadi \textit{input} LSTMs secara terpisah. Setelah masuk di RNNs, \textit{output} dari masing-masing LSTMs tersebut di-\textit{merge} ke dalam sebuah layer, lalu masuk kembali ke LSTMs untuk melihat konteks fitur-fitur sebelumnya. Dengan diusulkannya arsitektur RNNs ini \saya~berharap bahwa masing-masing fitur terjaga informasinya dan tidak terganggu dengan informasi lain.
     
     \subsubsection{Hasil Eksperimen}
+    \textbf{Waktu komputasi}: $ 20362.5 $ detik.
+    
     Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict10} dan Gambar \ref{fig:owndict10}.
         
     \begin{table}
