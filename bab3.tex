@@ -116,9 +116,53 @@ Pada tahap ini, \saya~melakukan pelabelan pada dokumen teks yang merupakan hasil
 		\item[$\bullet$] Penilaian denyut kapiler
 		\item[$\bullet$] Terapi inhalasi
 	\end{description}
+
+	\item \textit{Other}\\
+	Entitas \textit{other} merupakan suatu entitas selain dari keempat entitas di atas. Contoh dari entitas \textit{other} yaitu:
+	\begin{description}
+		\item[$\bullet$] Saya
+		\item[$\bullet$] yang
+		\item[$\bullet$] Dokter
+	\end{description}
+
 \end{enumerate}
-Setelah proses di atas selesai, label di dalam korpus diubah menjadi format BIO (\textit{begin inside outside}). Berikut merupakan contoh dari hasil pelabelan dalam suatu dokumen teks.
-\textbf{CONTOH}
+Setelah proses di atas selesai, label di dalam korpus diubah menjadi format BIO (\textit{begin inside outside}). Gambar \ref{fig:pelabelan} berikut merupakan ilustrasi dari tahap pelabelan ini.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/pelabelan}
+	\caption{Ilustrasi Pelabelan Entitas pada suatu Kalimat}
+	\label{fig:pelabelan}
+\end{figure}
+
+Setelah pelabelan selesai dilakukan, supaya model RNNs mampu mengenali masing-masing label, \saya~menggunakan \textit{one-hot-vector} untuk merepresentasikan masing-masing label. Tabel \ref{table:onehotlabel} merupakan tabel pemetaan dari label menjadi represebtasinya dalam \textit{one-hot-vector}.
+
+\begin{table}
+	\centering
+	\caption{Tabel Pemetaan Label dengan Representasi \textit{One-Hot-Vector}}
+	\label{table:onehotlabel}
+	\begin{tabular}{|l|l|}
+		\hline
+		\multicolumn{1}{|c|}{Label IOB} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
+		BD & {[} 0, 0, 0, 0, 0, 0, 0, 0, 1 {]} \\ \hline
+		ID & {[} 0, 0, 0, 0, 0, 0, 0, 1, 0 {]} \\ \hline
+		BS & {[} 0, 0, 0, 0, 0, 0, 1, 0, 0 {]} \\ \hline
+		IS & {[} 0, 0, 0, 0, 0, 1, 0, 0, 0 {]} \\ \hline
+		BT & {[} 0, 0, 0, 0, 1, 0, 0, 0, 0 {]} \\ \hline
+		IT & {[} 0, 0, 0, 1, 0, 0, 0, 0, 0 {]} \\ \hline
+		BG & {[} 0, 0, 1, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		IG & {[} 0, 1, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		OO & {[} 1, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+	\end{tabular}
+\end{table}
+
+Gambar \ref{fig:labeltoone} merupakan contoh pengubahan kata menjadi \textit{one-hot-vector} dalam suatu kalimat.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/labeltoone}
+	\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
+	\label{fig:labeltoone}
+\end{figure}
 
 \section{Pengembangan Model}
 Pada tahap ini, \saya~melakukan pengusulan dan perancangan model yang nantinya akan \saya~evaluasi pada tahap eksperimen. Dalam mengembangkan model, terdapat dua pekerjaan yang \saya~lakukan, yaitu:
@@ -139,16 +183,109 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 		Pada langkah ini \saya~mengubah masing-masing kata dalam kalimat menjadi representasi vektor dengan model yang telah \saya~dapatkan pada tahap \textit{training} model \textit{word embedding}.
 	\end{enumerate}
 	
+	Gambar \ref{fig:fiturkata} merupakan ilustrasi dari proses ekstraksi fitur kata itu sendiri dalam suatu kalimat dengan menggunakan \textit{Word Embedding}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/fiturkata}
+		\caption{Ilustrasi Ekstraksi Fitur Kata pada Suatu Kalimat}
+		\label{fig:fiturkata}
+	\end{figure}
+	
 	\item Fitur 2: Kamus Kesehatan\\
-	Fitur kamus kesehatan merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Fitur ini digunakan dalam penelitian \cite{skripsiKakRadit} dan memberikan kontribusi dalam hasil terbaik. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment. Dengan menggunakan fitur ini diharapkan mampu berkontribusi dalam meningkatkan akurasi karena model akan mempertimbangkan apakah suatu kata termasuk di dalam kamus atau tidak. 
+	Fitur kamus kesehatan merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Fitur ini digunakan dalam penelitian \cite{skripsiKakRadit} dan memberikan kontribusi dalam hasil terbaik. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment. Dengan menggunakan fitur ini diharapkan mampu berkontribusi dalam meningkatkan akurasi karena model akan mempertimbangkan apakah suatu kata termasuk di dalam kamus atau tidak. Gambar \ref{fig:fiturkamus} merupakan ilustrasi dari ekstraksi fitur kamus kesehatan dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/fiturkamus}
+		\caption{Ilustrasi Ekstraksi Fitur Kamus \disease~pada Suatu Kalimat}
+		\label{fig:fiturkamus}
+	\end{figure}
+
+	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang terdapat dalam kamus kesehatan, representasi vektornya adalah $ [0, 1] $, sedangkan yang tidak terdapat di dalam kamus kesehatan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:kamustoone} merupakan contoh pengubahan fitur kamus kesehatan menjadi representasi \textit{one-hot-vector}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/kamustoone}
+		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
+		\label{fig:kamustoone}
+	\end{figure}
 	
 	\item Fitur 3: \textit{Stopword}\\
 	Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. Fitur ini \saya~gunakan dalam penelitian ini untuk membantu sistem dalam menghindari kesalahan pelabelan suatu kata yang bukan entitas namun dilabeli sebagai entitas.
 	
-	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila mempertahankan fitur ini, oleh karena intu, \saya~mengusulkan untuk menggunakan fitur ini. Untuk pembahasan lebih lanjut dibahas pada Bab 5.
+	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila mempertahankan fitur ini, oleh karena itu, \saya~mengusulkan untuk menggunakan fitur ini. Untuk pembahasan lebih lanjut dibahas pada Bab 5. Gambar \ref{fig:fiturstopword} merupakan ilustrasi dari ekstraksi fitur \textit{stopword} dalam suatu kalimat.
 	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/fiturstopword}
+		\caption{Ilustrasi Ekstraksi Fitur \textit{Stopword} pada Suatu Kalimat}
+		\label{fig:fiturstopword}
+	\end{figure}
+
+	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan \textit{stopword}, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan merupakan \textit{stopword}, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:stopwordtoone} merupakan contoh pengubahan fitur \textit{stopword} menjadi representasi \textit{one-hot-vector}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/stopwordtoone}
+		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
+		\label{fig:stopwordtoone}
+	\end{figure}
+
 	\item Fitur 4: \textit{Part of Speech Tag} (POS-Tag)\\
-	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia.
+	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia. Gambar \ref{fig:fiturpostag} merupakan ilustrasi dari ekstraksi fitur POS-\textit{Tag} dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/fiturpostag}
+		\caption{Ilustrasi Ekstraksi Fitur POS \textit{Tag} pada Suatu Kalimat}
+		\label{fig:fiturpostag}
+	\end{figure}
+
+	Setelah POS-Tag didapatkan, supaya model RNNs mampu mengenali masing-masing tag, \saya~menggunakan \textit{one-hot-vector} untuk merepresentasikan masing-masing label. Tabel \ref{table:onehotpostag} merupakan tabel pemetaan dari label menjadi representasinya dalam \textit{one-hot-vector}.
+	
+	\begin{table}
+		\centering
+		\caption{Tabel Pemetaan POS-Tag dengan Representasi \textit{One-Hot-Vector}}
+		\label{table:onehotpostag}
+		\begin{tabular}{|l|l|}
+			\hline
+			\multicolumn{1}{|c|}{Label POS-Tag} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
+			JJ & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1{]} \\ \hline
+			NN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0{]} \\ \hline
+			NNP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0{]} \\ \hline
+			Z & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0{]} \\ \hline
+			IN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0{]} \\ \hline
+			PRP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0{]} \\ \hline
+			MD & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0{]} \\ \hline
+			VB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0{]} \\ \hline
+			SC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0{]} \\ \hline
+			RB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			CC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			NEG & {[}0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			WH & {[}0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			CD & {[}0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			X & {[}0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			PR & {[}0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			RP & {[}0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			FW & {[}0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			NND & {[}0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			DT & {[}0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			OD & {[}0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			UH & {[}0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			SYM & {[}0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			fw & {[}1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+		\end{tabular}
+	\end{table}
+
+	Gambar \ref{fig:postagtoone} merupakan contoh pengubahan fitur POS-Tag menjadi \textit{one-hot-vector} dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/postagtoone}
+		\caption{Ilustrasi Pengubahan Fitur POS-Tag menjadi \textit{One-Hot-Vector}}
+		\label{fig:postagtoone}
+	\end{figure}
 		
 	\item Fitur 5: Frasa Kata\\
 	Pada penelitian ini, \saya~mengusulkan fitur frasa kata karena entitas \textit{symptom} dan \textit{treatment}  pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} pada umumnya entitas yang akan dikenali pada penelitian ini merupakan frasa kata benda. Selain itu, pada penelitian \cite{skripsiKakRadit}, fitur ini berkontribusi dalam memberikan hasil terbaik. Oleh karena itu, \saya~berharap bahwa dengan diusulkannya fitur ini akan mampu menambah akurasi dari model yang diusulkan.
@@ -181,6 +318,24 @@ Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi l
 		\end{description}
 	\end{enumerate}
 
+Gambar \ref{fig:fiturfrasa} merupakan ilustrasi dari ekstraksi fitur Frasa Nomina dalam suatu kalimat.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/fiturfrasa}
+	\caption{Ilustrasi Ekstraksi Fitur Frasa Nomina pada Suatu Kalimat}
+	\label{fig:fiturfrasa}
+\end{figure}
+
+Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan sebuah frasa, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:frasatoone} merupakan contoh pengubahan fitur frasa nomina menjadi representasi \textit{one-hot-vector}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.85\linewidth]{images/frasatoone}
+	\caption{Ilustrasi Pengubahan Fitur Frasa menjadi \textit{One-Hot-Vector}}
+	\label{fig:frasatoone}
+\end{figure}
+
  \item Fitur 6: 1 Kata Sebelum\\
  Fitur ini merupakan fitur yang berisi informasi kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Fitur ini digunakan pada penelitian penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan.
   
@@ -201,6 +356,15 @@ Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap 
 		\caption{LSTMs 1 layer}
 		\label{fig:single_layer_rnn}
 	\end{figure}
+
+	Misalnya fitur yang digunakan adalah fitur kata dan frasa. Karena hanya terdapat 1 layer saja, kedua fitur ini digabung terlebih dahulu menjadi 1. Gambar \ref{fig:inputlstm} merupakan ilustrasi dari proses penggabungan fitur supaya menjadi \textit{input} RNNs, dan  \textit{output} serta pemetaan menjadi label pada arsitektur ini.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/concatlstm1}
+		\caption{Ilustrasi penggabungan fitur kata dan frasa untuk menjadi \textit{input} LSTMs 1 layer dan \textit{output}-nya}
+		\label{fig:inputlstm}
+	\end{figure}
+	
 	Untuk masing-masing \textit{timestep} $ t $, berikut merupakan gambar sebuah \textit{cell}-nya.
 	\begin{figure}
 		\centering

@@ -125,9 +125,39 @@ Tabel \ref{drugCorpus} menunjukkan 39 daftar entitas \textit{drug} teratas yang 
 	}
 \end{table}
 
-\section{\textit{Baseline} Eksperimen}
-Pada penelitian ini, \saya~mencoba melakukan implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Data yang digunakan adalah data yang \saya~gunakan dalam penelitian ini.Implementasi dan eksperimen ini bertujuan sebagai \textit{baselaine} eksperimen dan penelitian yang \saya~lakukan. Selain itu, juga untuk mengetahui secara singkat fitur yang diskriminatif dalam melakukan \textit{sequence labeling} pada \mer~ini.
+%-----------------------------------------------------------------------------%
+\section{Desain Eksperimen}
+Pada penelitian ini, \saya~melakukan 3 buah skenario utama, yaitu skenario untuk melakukan implementasi dan eksperimen ulang pada \textit{baseline} (penelitian sebelumnya), skenario untuk menguji fitur yang memiliki kontribusi untuk meningkatkan akurasi dari setiap eksperimen dan skenario untuk menguji arsitektur RNNs yang \saya~usulkan. Berikut merupakan skenario yang \saya~rancang dalam penelitian ini:
+\begin{enumerate}
+	\item Skenario 1: Skenario untuk mengimplementasikan ulang eksperimen sebelumnya\\
+	Skenario ini bertujuan untuk mengimplementasikan ulang model yang diusulkan pada penelitian \cite{skripsiKakRadit}, yaitu dengan menggunakan model \textit{Conditional Random Fields} (CRFs). Fitur yang digunakan merupakan fitur yang memberikan hasil terbaik pada penelitian sebelumnya, yaitu fitur kata, fitur kamus, fitur frasa, fitur panjang kata dan fitur kata sebelum. Tujuan dari skenario ini yaitu sebagai \textit{baseline} dan pembanding pada penelitian ini.
+	
+	\item Skenario 2: Skenario untuk menguji fitur\\
+	Skenario ini bertujuan untuk mendapatkan kombinasi fitur terbaik sehingga memberikan akurasi terbaik. \Saya~mencoba masing-masing fitur dengan menggunakan model arsitektur LSTMs 1 layer. Apabila penggunaan fitur memberikan hasil yang lebih dari pada hasil eksperimen sebelumnya, fitur tersebut akan dipertahankan untuk eksperimen yang selanjutnya. Skenario ini memiliki 9 sub-skenario, yaitu:
+	\begin{enumerate}
+		\item Sub-skenario 2.1 Fitur kata
+		\item Sub-skenario 2.2 menguji penambahan fitur kamus
+		\item Sub-skenario 2.3 menguji penambahan fitur stop word
+		\item Sub-skenario 2.4 menguji penambahan fitur POS-Tag
+		\item Sub-skenario menguji penambahan fitur frasa kata
+		\item Sub-skenario menguji pengurangan fitur POS-Tag
+		\item Sub-skenario menguji penambahan fitur 1 kata sebelum
+		\item Sub-skenario menguji penambahan fitur 1 kata sesudah
+	\end{enumerate}
 
+	\item Skenario 3: Skenario untuk menguji arsitektur RNNs\\
+	Skenario ini bertujuan untuk melihat pengaruh arsitektur RNNs pada penelitian ini. \Saya~mencoba kedua arsitektur RNNs yang telah diusulkan sebelumnya dengan menggunakan kombinasi fitur terbaik dari eksperimen di skenario pengujian fitur di atas. Pada skenario ini, terdapat 2 sub-skenario, yaitu:
+	\begin{enumerate}
+		\item Sub-skenario untuk menguji arsitektur LSTMs 1 layer
+		\item Sub-skenario untuk menguji arsitektur LSTMs 2 layer
+	\end{enumerate}
+	
+\end{enumerate}
+
+\section{Skenario 1: \textit{Baseline} Eksperimen \cite{skripsiKakRadit}}
+Pada penelitian ini, \saya~mencoba melakukan implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Data yang digunakan adalah data yang \saya~gunakan dalam penelitian ini supaya perbandingan yang didapatkan \textit{apple-to-apple}. Implementasi dan eksperimen ini bertujuan sebagai \textit{baselaine} eksperimen dan penelitian yang \saya~lakukan. Selain itu, juga untuk mengetahui secara singkat fitur yang diskriminatif dalam melakukan \textit{sequence labeling} pada \mer~ini. Model yang digunakan sama dengan penelitian \cite{skripsiKakRadit}, yaitu CRFs dengan penggunaan fitur kata, fitur kamus, fitur frasa, fitur panjang kata dan fitur kata sebelum.
+
+\subsection{Hasil Eksperimen}
 Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{skripsiKakRadit}.
 	
 \begin{table}
@@ -152,101 +182,117 @@ Berikut merupakan hasil implementasi ulang penelitian yang dilakukan oleh \cite{
 	\label{fig:radit}
 \end{figure}
 
-%-----------------------------------------------------------------------------%
-\section{Skenario Eksperimen}
-Pada penelitian ini, \saya~melakukan 2 buah skenario utama, yaitu skenario untuk menguji fitur yang memiliki kontribusi untuk meningkatkan akurasi dari setiap eksperimen dan skenario untuk menguji arsitektur RNNs yang \saya~usulkan. Berikut merupakan skenario yang \saya~rancang dalam penelitian ini:
-\begin{enumerate}
-	\item Skenario untuk menguji fitur\\
-	Skenario ini bertujuan untuk mendapatkan kombinasi fitur terbaik sehingga memberikan akurasi terbaik. \Saya~mencoba masing-masing fitur dengan menggunakan model arsitektur LSTMs biasa. Apabila penggunaan fitur memberikan hasil yang lebih dari pada hasil eksperimen sebelumnya, fitur tersebut akan dipertahankan untuk eksperimen yang selanjutnya. Skenario ini memiliki 9 sub-skenario, yaitu:
-	\begin{enumerate}
-		\item Sub-skenario menguji fitur kata itu sendiri
-		\item Sub-skenario menguji penambahan fitur kamus
-		\item Sub-skenario menguji penambahan fitur stop word
-		\item Sub-skenario menguji penambahan fitur POS-Tag
-		\item Sub-skenario menguji penambahan fitur frasa kata
-		\item Sub-skenario menguji pengurangan fitur POS-Tag
-		\item Sub-skenario menguji penambahan fitur 1 kata sebelum
-		\item Sub-skenario menguji penambahan fitur 1 kata sesudah
-	\end{enumerate}
-	\item Skenario untuk menguji arsitektur RNNs\\
-	Skenario ini bertujuan untuk melihat pengaruh arsitektur RNNs pada penelitian ini. \Saya~mencoba kedua arsitektur RNNs yang telah diusulkan sebelumnya dengan menggunakan kombinasi fitur terbaik dari eksperimen di skenario pengujian fitur di atas. Pada skenario ini, terdapat 2 sub-skenario, yaitu:
-	\begin{enumerate}
-		\item Sub-skenario untuk menguji arsitektur LSTMs 1 layer
-		\item Sub-skenario untuk menguji arsitektur LSTMs 2 layer
-	\end{enumerate}
-	
-\end{enumerate}
 
-\section{Hasil Eksperimen dan Analisis}
-%-----------------------------------------------------------------------------%
-Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang sesuai dengan skenario sebelumnya beserta analisisnya. 
+\section{Skenario 2: Skenario Pengujian Fitur}
+		  
+	\subsection{Eksperimen 2.1: Fitur Kata}
 	%-----------------------------------------------------------------------------%
-	\subsection{Hasil Ekperimen Pengujian Fitur Beserta Analisis}
+	Merujuk pada penelitian \cite{mujiono2016new}, penelitian tersebut bertujuan untuk mendapatkan \textit{non-handcrafted feature}, yaitu fitur kata itu sendiri dengan menggunakan \textit{tools Word Embedding}. Oleh karena itu, \saya~menguji fitur ini untuk mengetahui pengaruhnya pada program \mer~di penelitian ini. 
 	
-	Hasil eksperimen ini adalah laporan dari pengujian kombinasi fitur kata itu sendiri, kamus, \textit{stop word}, POS-Tag, frasa kata (frasa kata benda dan kata kerja), 1 kata sebelum, dan 1 kata sesudah.
-	  
-	\subsubsection{Sub-Eksperimen Menguji Fitur Kata itu Sendiri}
-	%-----------------------------------------------------------------------------%
-	Merujuk pada penelitian \cite{mujiono2016new}, penelitian tersebut bertujuan untuk mendapatkan \textit{non-handcrafted feature}, yaitu fitur kata itu sendiri dengan menggunakan \textit{tools Word Embedding}. Oleh karena itu, \saya~menguji fitur ini untuk mengetahui pengaruhnya pada program \mer~di penelitian ini. Tabel \ref{table:own1} menampilkan hasil pelabelan otomatis dengan menggunakan fitur kata itu sendiri yang direpresentasikan dengan menggunakan vektor \textit{word embedding}.
+	\subsubsection{Hasil Eksperimen}
+	Tabel \ref{table:ekskata} menampilkan hasil pelabelan otomatis dengan menggunakan fitur kata itu sendiri yang direpresentasikan dengan menggunakan vektor \textit{word embedding}.
 	
+	% Please add the following required packages to your document preamble:
+	% \usepackage{multirow}
 	\begin{table}
-	    \centering
-	    \caption{Tabel Hasil Eksperimen dengan Fitur Kata Itu Sendiri}
-	    \begin{tabular}{|c|c|c|c|c|}
-	      \hline
-						      & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-	      \textit{Disease}    & 61.38\%             & 60.42\%        & 60.37\%           \\ \hline
-	      \textit{Symptom}    & 57.05\%             & 56.13\%        & 56.19\%           \\ \hline
-	      \textit{Treatment}  & 49.92\%             & 47.17\%        & 46.96\%           \\ \hline
-	      \textit{Drug}		  & 62.86\%             & 53.32\%        & 57.28\%           \\ \hline
-	      \textit{\textbf{Overall}}&\textbf{ 57.80\%}& \textbf{54.26\%}& \textbf{55.20\%}\\ \hline
-	    \end{tabular}
-	    \label{table:own1}
+		\centering
+		\caption{Tabel Hasil Eksperimen 2.1 dibandigkan dengan \textit{Baseline}}
+		\begin{tabular}{|l|c|c|c|c|c|c|}
+			\hline
+			\multicolumn{1}{|c|}{\multirow{2}{*}{Entitas}} & \multicolumn{3}{c|}{\textit{Baseline (Herwando 2016)}} & \multicolumn{3}{c|}{Eksperimen 2.1} \\ \cline{2-7} 
+			\multicolumn{1}{|c|}{} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} \\ \hline
+			\textit{Disease} & 63.68\% & 55.45\% & 59.13\% & 61.38\% & 60.42\% & 60.37\% \\ \hline
+			\textit{Symptom} & 61.43\% & 59.21\% & 60.18\% & 57.05\% & 56.13\% & 56.19\% \\ \hline
+			\textit{Treatment} & 53.10\% & 45.97\% & 48.82\% & 49.92\% & 47.17\% & 46.96\% \\ \hline
+			\textit{Drug} & 58.99\% & 44.46\% & 48.23\% & 62.86\% & 53.32\% & 57.28\% \\ \hline
+			\textbf{Overall} & \textbf{59.30\%} & \textbf{51.27\%} & \textbf{54.09\%} & \textbf{57.80\%} & \textbf{54.26\%} & \textbf{55.20\%} \\ \hline
+		\end{tabular}
+	\label{table:ekskata}
 	\end{table}
 
 	\begin{figure}
 	  \centering
 	  \includegraphics[width=0.85\linewidth]{images/histogram00}
-	  \caption{Histogram Metrik Evaluasi dengan Fitur Kata Itu Sendiri}
-	  \label{fig:own1}
+	  \caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 2.1}
+	  \label{fig:ekskata}
 	\end{figure}
 		
-	Pada eksperimen ini, ada beberapa entitas masih memiliki nilai \textit{precision, recall} dan \textit{f-measure} lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Menurut \saya~hal ini terjadi karena pada eksperimen ini hanya menggunakan fitur kata itu sendiri tanpa melibatkan informasi lain seperti pada penelitian yang dilakukan oleh \cite{skripsiKakRadit}. Oleh karena itu perlu adanya informasi lain, misalnya seperti apakah suatu kata terdapat dalam sebuah kamus kesehatan, informasi POS-Tag atau informasi yang lain. Oleh karena itu, \saya~mencoba menggunakan tambahan fitur lain untuk meningkatkan akurasi pada penelitian ini, yaitu pada sub-eksperimen \ref{eks:subeksdict}.
+	\subsubsection{Analisis}
+	Pada tabel \ref{table:ekskata}, dapat dilihat bahwa secara umum \textit{recall} dan \textit{F-measure} yang dihasilkan lebih baik dibandingkan dengan \textit{baseline}, walaupun untuk beberapa entitas nilainya lebih rendah (entitas \textit{symptom} dan \textit{treatment}). Selain itu, apabila dilihat pada grafik \ref{fig:ekskata}, secara umum model ini memberikan hasil yang lebih baik pada entitas \textit{disease} dan \textit{drug}. Kemudian rata-rata \textit{F-measure} yang didapatkan yaitu $ 55.20\% $, lebih tinggi dibandingkan \textit{baseline} yang \saya~gunakan yaitu $ 54.09\% $. Hal ini sangat menarik karena hanya dengan penggunaan fitur kata saja, hasil yang diberikan secara umum lebih baik dibandingkan \textit{baseline}.
+	
+	Pada eksperimen ini, ada beberapa entitas masih memiliki nilai \textit{precision, recall} dan \textit{f-measure} lebih kecil apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit}. Setelah \saya~melakukan analisis terhadap penggunaan penggunaan \textit{tools Word Embedding}, ternyata terdapat 429 kata unik yang tidak terdapat dalam model \textit{word embedding}. Hal ini disebabkan oleh beberapa hal, yaitu:
+	\begin{enumerate}
+		\item Terdapat kata di dalam korpus yang tidak baku atau salah eja\\
+		Korpus yang didapatkan berasal dari forum kesehatan \textit{online} yang bersifat non-formal. Oleh karena itu baik pasien maupun dokter bebas mengutarakan pendapatnya tanpa adanya aturan bahasa formal. Oleh karena itu banyak ditemukan adanya kata yang tidak baku atau salah eja, misalnya:
+		\begin{itemize}
+			\item dllsebaiknya,
+			\item sekatrang,
+			\item infeksiny,
+			\item kliengan.
+		\end{itemize}
+		
+		\item Terdapat istilah sulit yang tidak terkandung di dalam model\\
+		Terdapat beberapa istilah kesehatan pada korpus yang tidak ada di dalam model, hal ini disebabkan karena data untuk \textit{training} model \textit{word embedding} terbatas (model sangat tergantung pada data \textit{training}). Oleh karena terdapat beberapa kata yang tidak terdaftar di dalam model. Contoh beberapa istilah sulit tersebut yaitu:
+		\begin{itemize}
+			\item microdermabrians,
+			\item flixotide,
+			\item bimaflox,
+			\item polysiloxanes,
+			\item scizophrenia.
+		\end{itemize}
+	
+		\item Terdapat kata yang merupakan nama orang\\
+		Adanya kata yang merupakan nama orang tidak bisa dihindari di dalam forum kesehatan \textit{online}. Selain itu, nama orang berbeda untuk setiap orang sehingga sulit mendapatkan vektor kata nama orang tersebut di dalam \textit{word embedding}. Contoh dari kata yang merupakan nama orang di dalam korpus yaitu:
+		\begin{itemize}
+			\item novira,
+			\item risma,
+			\item oktavia,
+			\item sudianto.
+		\end{itemize}
+	\end{enumerate}
+	
+	Dari beberapa kasus di atas, \saya~mengusulkan menambahkan fitur yang memperkaya informasi dari fitur kata itu sendiri, misalnya seperti apakah suatu kata terdapat dalam sebuah kamus kesehatan, informasi POS-Tag atau informasi yang lain. Oleh karena itu, \saya~mencoba menggunakan tambahan fitur lain untuk meningkatkan akurasi pada penelitian ini, yaitu pada sub-eksperimen \ref{eks:subeksdict}.
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur Kamus Kesehatan (\textit{Disease, Symptom, Treatment} dan \textit{Drug})}\label{eks:subeksdict}
+	\subsection{Eksperimen 2.2: Fitur Kata dan Kamus Kesehatan (\textit{Disease, Symptom, Treatment} dan \textit{Drug})}\label{eks:subeksdict}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini, \saya~menggunakan tambahan fitur Kamus Kesehatan karena berdasarkan penelitian \cite{skripsiKakRadit} fitur ini memiliki konribusi untuk menambah akurasi pada sistem \mer. Selain itu, menurut \saya, informasi suatu kata terdapat dalam sebuah kamus kesehatan mungkin akan memberikan kontribusi untuk meningkatkan akurasi. Oleh karena itu, \saya~mencoba untuk menambahkan fitur ini ke dalam model RNNs.
 	
-	Tabel \ref{table:owndict2} merupkan tabel hasil eksperimen yang didapatkan dengan menggunakan fitur ini.
+	\subsubsection{Hasil Eksperimen}
+	Tabel \ref{table:ekskamus} merupakan tabel hasil eksperimen yang didapatkan dengan menggunakan fitur ini.
 	
+	% Please add the following required packages to your document preamble:
+	% \usepackage{multirow}
 	\begin{table}
 		\centering
-		\caption{Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan}
-		\begin{tabular}{|c|c|c|c|c|}
+		\caption{Tabel Hasil Eksperimen 2.2 dibandigkan dengan \textit{Baseline}}
+		\label{table:ekskamus}
+		\begin{tabular}{|l|c|c|c|c|c|c|}
 			\hline
-			                      & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-			\textit{Disease}      & 67.32\%             & 61.78\%        & 64.10\%           \\ \hline
-			\textit{Symptom}      & 60.55\%             & 55.12\%        & 57.41\%           \\ \hline
-			\textit{Treatment}    & 52.21\%             & 44.18\%        & 47.02\%           \\ \hline
-			\textit{Drug}		  & 59.42\%             & 59.71\%        & 57.90\%           \\ \hline
-			\textit{\textbf{Overall}}&\textbf{59.88\%}  & \textbf{55.20\%}& \textbf{56.61\%} \\ \hline
+			\multicolumn{1}{|c|}{\multirow{2}{*}{Entitas}} & \multicolumn{3}{c|}{Baseline (Herwando 2016)} & \multicolumn{3}{c|}{Eksperimen 2.2} \\ \cline{2-7} 
+			\multicolumn{1}{|c|}{} & \textit{Precision} & \textit{Recal} & \textit{F-Measure} & \textit{Precision} & \textit{Recal} & \textit{F-Measure} \\ \hline
+			\textit{Disease} & 63.68\% & 55.45\% & 59.13\% & 67.32\% & 61.78\% & 64.10\% \\ \hline
+			\textit{Symptom} & 61.43\% & 59.21\% & 60.18\% & 60.55\% & 55.12\% & 57.41\% \\ \hline
+			\textit{Treatment} & 53.10\% & 45.97\% & 48.82\% & 52.21\% & 44.18\% & 47.02\% \\ \hline
+			\textit{Drug} & 58.99\% & 44.46\% & 48.23\% & 59.42\% & 59.71\% & 57.90\% \\ \hline
+			\textit{\textbf{Overall}} & \textbf{59.30\%} & \textbf{51.27\%} & \textbf{54.09\%} & \textbf{59.88\%} & \textbf{55.20\%} & \textbf{56.61\%} \\ \hline
 		\end{tabular}
-		\label{table:owndict2}
 	\end{table}
 	
-	Berikut merupakan grafik yang merepresentasikan Tabel \ref{table:owndict2} dalam bentuk histogram.
+	Berikut merupakan grafik yang menunjukkan perbandingan \textit{F-Measure} eksperimen \ref{table:ekskamus} dengan \textit{baseline} dalam bentuk histogram.
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.85\linewidth]{images/histogram2}
-		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Kamus Kesehatan}
-		\label{fig:owndict2}
+		\caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 2.2}
+		\label{fig:ekskamus}
 	\end{figure}
 
-	Dari tabel dan grafik tersebut, didapatkan informasi bahwa dengan menggunakan tambahan fitur kamus kesehatan terlihat bahwa entitas \textit{Disease} mengalami kenaikan nilai \textit{precision}, \textit{recall}, dan \textit{f-measure}. Selain itu, entitas \textit{symptom} dan \textit{tratment} mengalami kenaikan nilai \textit{precision} dan \textit{f-measure}. Entitas \textit{drug} mengalami penurunan pada nilai \textit{precision} namun mengalami kenaikan pada nilai \textit{recall} dan \textit{f-measure}-nya. Secara keseluruhan,  Sedangkan entitas \textit{drug} memiliki \textit{precission} tertinggi, yaitu 62.86\%. Grafik \ref{fig:owndict2} menunjukkan perbandingan \textit{precision}, \textit{recall} dan \textit{f-measure} untuk masing-masing entitas.
+	\subsubsection{Analisis}
+
+	Dari tabel dan grafik \ref{fig:ekskamus}, didapatkan informasi bahwa dengan menggunakan tambahan fitur kamus kesehatan terlihat bahwa entitas \textit{Disease} mengalami kenaikan nilai \textit{precision}, \textit{recall}, dan \textit{f-measure}. Selain itu, entitas \textit{symptom} dan \textit{tratment} mengalami kenaikan nilai \textit{precision} dan \textit{f-measure}. Entitas \textit{drug} mengalami penurunan pada nilai \textit{precision} namun mengalami kenaikan pada nilai \textit{recall} dan \textit{f-measure}-nya. Secara keseluruhan,  Sedangkan entitas \textit{drug} memiliki \textit{precission} tertinggi, yaitu 62.86\%. Grafik \ref{fig:owndict2} menunjukkan perbandingan \textit{precision}, \textit{recall} dan \textit{f-measure} untuk masing-masing entitas.
 	
-	Dari analisis yang \saya~lakukan terhadap korpus dan kamus kesehatan, terdapat beberapa entitas pada korpus yang tidak terdapat pada kamus sehingga mengakibatkan kenaikan hasil tidak banyak. Hal ini karena terdapat beberapa penyebab, yaitu:
+	Dari analisis yang \saya~lakukan terhadap korpus dan kamus kesehatan, terdapat beberapa entitas pada korpus yang tidak terdapat pada kamus sehingga mengakibatkan kenaikan hasil tidak besar. Hal ini karena terdapat beberapa penyebab, yaitu:
 	\begin{enumerate}
 		\item Ada entitas yang merupakan kombinasi atau gabungan dari entitas lain yang dihubungkan dengan kata penghubung. Hal ini banyak \saya~temukan pada entitas \textit{treatment} dan \textit{symptom}. Contoh dari kasus ini yaitu:
 		\begin{itemize}
@@ -274,56 +320,63 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	Dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}, hasil yang dicapai pada eksperimen ini masih lebih rendah pada entitas \textit{symptom} dan \textit{treatment}. Menurut \saya~perlu ada informasi tambahan untuk meningkatkan akurasi. Seperti yang kita ketahui bahwa eksperimen \cite{skripsiKakRadit} tidak hanya menggunakan fitur kata itu sendiri dan kamus kesehatan saja. Oleh karena itu, \saya~mencoba melakukan eksperimen kembali dengan menggunakan tambahan fitur lain pada sub-eksperimen \ref{eks:subekstopword};
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur Stopword}\label{eks:subekstopword}
+	\subsection{Eksperimen 2.3: Fitur Kata, Kamus Kesehatan dan \textit{Stopword}}\label{eks:subekstopword}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini. \saya~mencoba menambahkan informasi lain berupa fitur yang berisi sebuah kata apakah terdapat di dalam kamus \textit{stop word} atau tidak. \Saya~berpendapat bahwa dengan adanya informasi \textit{stop word}, adanya kesalahan suatu kata tidak berentitas yang dilabeli sebagai kata berentitas oleh model dapat dikurangi.
 	
-	Rangkuman hasil sub-eksperimen ini dapat dilihat di Tabel \ref{table:owndict3} dan Gambar \ref{fig:owndict3}.
+	\subsubsection{Hasil Eksperimen}
+	Rangkuman hasil sub-eksperimen ini dapat dilihat di Tabel \ref{table:eksstop} dan Gambar \ref{fig:eksstop}.
 	
+
 	\begin{table}
 		\centering
-		\caption{Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}
-		\begin{tabular}{|c|c|c|c|c|}
+		\caption{Tabel Hasil Eksperimen 2.3 dibandigkan dengan \textit{Baseline}}
+		\begin{tabular}{|l|c|c|c|c|c|c|}
 			\hline
-							      & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-			\textit{Disease}      & 65.97\%             & 59.81\%        & 62.28\%           \\ \hline
-			\textit{Symptom}      & 63.08\%             & 55.20\%        & 58.68\%           \\ \hline
-			\textit{Treatment}    & 54.73\%             & 46.27\%        & 49.69\%           \\ \hline
-			\textit{Drug}		  & 61.88\%             & 58.99\%        & 59.57\%           \\ \hline
-			\textit{\textbf{Overall}}&\textbf{61.42\%}  & \textbf{55.07\%}& \textbf{57.56\%} \\ \hline
+			\multicolumn{1}{|c|}{\multirow{2}{*}{Entitas}} & \multicolumn{3}{c|}{Baseline (Herwando 2016)} & \multicolumn{3}{c|}{Eksperimen 2.3} \\ \cline{2-7} 
+			\multicolumn{1}{|c|}{} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} \\ \hline
+			\textit{Disease} & 63.68\% & 55.45\% & 59.13\% & 65.97\% & 59.81\% & 62.28\% \\ \hline
+			\textit{Symptom} & 61.43\% & 59.21\% & 60.18\% & 63.08\% & 55.20\% & 58.68\% \\ \hline
+			\textit{Treatment} & 53.10\% & 45.97\% & 48.82\% & 54.73\% & 46.27\% & 49.69\% \\ \hline
+			\textit{Drug} & 58.99\% & 44.46\% & 48.23\% & 61.88\% & 58.99\% & 59.57\% \\ \hline
+			\textit{\textbf{Overall}} & \textbf{59.30\%} & \textbf{51.27\%} & \textbf{54.09\%} & \textbf{61.42\%} & \textbf{55.07\%} & \textbf{57.56\%} \\ \hline
 		\end{tabular}
-		\label{table:owndict3}
+		\label{table:eksstop}
 	\end{table}
 		
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.85\linewidth]{images/histogram3}
-		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Stopword}
-		\label{fig:owndict3}
+		\caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 2.3}
+		\label{fig:eksstop}
 	\end{figure}
+
+	\subsubsection{Analisis}
 	
-	Dari Tabel \ref{table:owndict3} dan Gambar \ref{fig:owndict3} dapat diamati bahwa secara umum, penggunaan fitur kamus \textit{stop word} dapat meningkatkan \textit{precision, recall,} dan \textit{f-measure}. Untuk lebih detailnya, entitas \textit{disease} mengalami penurunan nilai \textit{precision} dan \textit{f-measure} tetapi mengalami kenaikan nilai \textit{recall}. Entitas \textit{symptom} dan \textit{treatment} mengalami kenaikan untuk nilai \textit{precision, recall} dan \textit{f-measure}. Sedangkan entitas \textit{drug} mengalami kenaikan pada nilai \textit{precission} dan \textit{f-measure} teteapi mengalami penurunan pada nilai \textit{recall}.
+	Dari Tabel \ref{table:eksstop} dan Gambar \ref{fig:eksstop} dapat diamati bahwa secara umum, penggunaan fitur kamus \textit{stop word} dapat meningkatkan \textit{precision, recall,} dan \textit{f-measure}. Untuk lebih detailnya, entitas \textit{disease} mengalami penurunan nilai \textit{precision} dan \textit{f-measure} tetapi mengalami kenaikan nilai \textit{recall}. Entitas \textit{symptom} dan \textit{treatment} mengalami kenaikan untuk nilai \textit{precision, recall} dan \textit{f-measure}. Sedangkan entitas \textit{drug} mengalami kenaikan pada nilai \textit{precission} dan \textit{f-measure} teteapi mengalami penurunan pada nilai \textit{recall}.
 		
 	Pada sub-eksperimen ini, walaupun secara umum akurasi lebih baik dibandingkan dengan sub-eksperimen sebelumnya, hasil sub-eksperimen ini masih lebih rendah pada entitas \textit{treatment} apabila dibandingkan dengan hasil eksperimen \cite{skripsiKakRadit}. Oleh karena \saya~mengusulkan fitur tambahan lain yaitu fitur POS-Tag yang akan dijelaskan pada sub-eksperimen \ref{eks:subekspostag}.
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur POS-Tag}\label{eks:subekspostag}
+	\subsection{Eksperimen 2.4: Fitur Kata, Kamus Kesehatan, \textit{Stopword} dan POS-Tag}\label{eks:subekspostag}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini, \saya~menambahkan informasi baru pada \textit{resource} yang akan digunakan untuk \textit{training} model yang berupa fitur POS-Tag. Sebelumnya fitur ini telah digunakan pada penelitian \cite{abacha2011medical} pada dokumen berbahasa Inggris dan memberikan kontribusi meningkatkan akurasi dari model \mer~yang dibangun. Oleh karena itu pada eksperimen ini \saya~mencoba menggunakan fitur tersebut dan ingin mengetahui apakah fitur POS-Tag memiliki kontribusi untuk meningkatkan akurasi pada \mer~dengan dokumen berbahasa Indonesia. 
 	
+	\subsubsection{Hasil Eksperimen}
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict4} dan Gambar \ref{fig:owndict4}.
 	
 	\begin{table}
 		\centering
-		\caption{Tabel Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}
-		\begin{tabular}{|c|c|c|c|c|}
+		\caption{Tabel Hasil Eksperimen 2.4 dibandigkan dengan \textit{Baseline}}
+		\begin{tabular}{|l|c|c|c|c|c|c|}
 			\hline
-								  & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-			\textit{Disease}      & 69.10\%             & 58.67\%        & 63.22\%           \\ \hline
-			\textit{Symptom}      & 61.09\%             & 54.43\%        & 57.00\%           \\ \hline
-			\textit{Treatment}    & 59.73\%             & 44.10\%        & 49.87\%           \\ \hline
-			\textit{Drug}		  & 62.00\%             & 55.74\%        & 57.87\%           \\ \hline
-			\textit{\textbf{Overall}}&\textbf{62.98\%}  & \textbf{53.24\%}& \textbf{56.99\%} \\ \hline
+			\multicolumn{1}{|c|}{\multirow{2}{*}{Entitas}} & \multicolumn{3}{c|}{Baseline (Herwando 2016)} & \multicolumn{3}{c|}{Eksperimen 2.4} \\ \cline{2-7} 
+			\multicolumn{1}{|c|}{} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} \\ \hline
+			\textit{Disease} & 63.68\% & 55.45\% & 59.13\% & 69.10\% & 58.67\% & 63.22\% \\ \hline
+			\textit{Symptom} & 61.43\% & 59.21\% & 60.18\% & 61.09\% & 54.43\% & 57.00\% \\ \hline
+			\textit{Treatment} & 53.10\% & 45.97\% & 48.82\% & 59.73\% & 44.10\% & 49.87\% \\ \hline
+			\textit{Drug} & 58.99\% & 44.46\% & 48.23\% & 62.00\% & 55.74\% & 57.87\% \\ \hline
+			\textit{\textbf{Overall}} & \textbf{59.30\%} & \textbf{51.27\%} & \textbf{54.09\%} & \textbf{62.98\%} & \textbf{53.24\%} & \textbf{56.99\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict4}
 	\end{table}
@@ -331,10 +384,11 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.85\linewidth]{images/histogram4}
-		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur POS-Tag}
+		\caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 2.4}
 		\label{fig:owndict4}
 	\end{figure}
 	
+	\subsubsection{Analisis}
 	Dari tabel dan grafik di atas, entitas \textit{disease} dan \textit{treatment} memiliki nilai \textit{precision} dan \textit{f-measure} yang meningkat, tetapi dengan nilai \textit{recall} yang turun. Untuk entitas \textit{symptom}, nilai \textit{precision, recall}, dan \textit{f-measure} mengalami penurunan. Sedangkan entitas \textit{drug} mengalami kenaikan hanya pada \textit{precision}-nya saja.
 	
 	Hasil dari penggunaan fitur ini kurang baik, karena beberapa hal, yaitu:
@@ -352,7 +406,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	Oleh karena itu pada sub-eksperimen selanjutnya, \saya~mencoba menambahkan fitur lain yang lebih spesifik dibandingkan dengan fitur POS-Tag, yaitu fitur Frasa Kata. Penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subeksfrasa}.
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur Frasa Kata}\label{eks:subeksfrasa}
+	\subsection{Eksperimen 2.5: Fitur Kata, Kamus Kesehatan, \textit{Stopword}, POS-Tag dan Frasa Kata}\label{eks:subeksfrasa}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur Frasa Kata. Seperti yang telah dijelaskan pada Bab 3, entitas \textit{symptom} dan \textit{treatment} diharapkan akan lebih mudah dikenali karena pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} diharapkan juga akan lebih mudah dikenali karena pada umumnya merupakan frasa kata benda.
 	
@@ -360,15 +414,16 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	
 	\begin{table}
 		\centering
-		\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}
-		\begin{tabular}{|c|c|c|c|c|}
+		\caption{Tabel Hasil Eksperimen 2.5 dibandigkan dengan \textit{Baseline}}
+		\begin{tabular}{|l|c|c|c|c|c|c|}
 			\hline
-			                      & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-			\textit{Disease}      & 67.49\%             & 61.56\%        & 63.81\%           \\ \hline
-			\textit{Symptom}      & 62.89\%             & 52.27\%        & 56.72\%           \\ \hline
-			\textit{Treatment}    & 54.87\%             & 44.92\%        & 49.06\%           \\ \hline
-			\textit{Drug}		  & 59.77\%             & 53.37\%        & 55.66\%           \\ \hline
-			\textit{\textbf{Overall}}&\textbf{61.26\%}  & \textbf{53.03\%}& \textbf{56.31\%} \\ \hline
+			\multicolumn{1}{|c|}{\multirow{2}{*}{Entitas}} & \multicolumn{3}{c|}{Baseline (Herwando 2016)} & \multicolumn{3}{c|}{Eksperimen 2.5} \\ \cline{2-7} 
+			\multicolumn{1}{|c|}{} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} \\ \hline
+			\textit{Disease} & 63.68\% & 55.45\% & 59.13\% & 67.49\% & 61.56\% & 63.81\% \\ \hline
+			\textit{Symptom} & 61.43\% & 59.21\% & 60.18\% & 62.89\% & 52.27\% & 56.72\% \\ \hline
+			\textit{Treatment} & 53.10\% & 45.97\% & 48.82\% & 54.87\% & 44.92\% & 49.06\% \\ \hline
+			\textit{Drug} & 58.99\% & 44.46\% & 48.23\% & 59.77\% & 53.37\% & 55.66\% \\ \hline
+			\textit{\textbf{Overall}} & \textbf{59.30\%} & \textbf{51.27\%} & \textbf{54.09\%} & \textbf{61.26\%} & \textbf{53.03\%} & \textbf{56.31\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict5}
 	\end{table}
@@ -376,7 +431,7 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.85\linewidth]{images/histogram5}
-		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur Frasa Kata}
+		\caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 2.5}
 		\label{fig:owndict5}
 	\end{figure}
 
@@ -398,24 +453,26 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 		\item Untuk entitas \textit{drug}, sebanyak 318 entitas merupakan frasa kata benda, 14 entitas merupakan bagian dari frasa kata benda dan 22  entitas bukan merupakan frasa.
 	\end{enumerate}
 	
-	Dari 2 informasi di atas, dapat diambil informasi bahwa sebagian besar entitas \textit{disease} dan \textit{drug} merupakan frasa kata benda dan entitas \textit{symptom} dan \textit{treatment} merupakan frasa kata kerja. Hal ini menjadi seharusnya menjadi informasi pembeda dengan kata lain. Namun apabila dilihat dari hasil eksperimen ini, performa penggunaan fitur ini tidak terlalu bagus atau bahkan turun di entitas \textit{disease} dan \textit{symptom} tersebut. \Saya~berpendapat hal ini terjadi karena penggunaan fitur ini redundan apabila digunakan bersama-sama dengan fitur POS-Tag. Pada fitur POS-Tag, tidak ada perbedaan antara kata yang merupakan frasa maupun kata yang bukan frasa. Padahal, mayoritas entitas seperti yang telah dijelaskan di atas merupakan frasa. Oleh karena itu, pada sub-eksperimen \ref{eks:subeksminpostag}, penulis menghilangkan fitur POS-Tag dan tetap mempertahankan fitur frasa kata untuk mengetahui hal tersebut. 
+	Dari 2 informasi di atas, dapat diambil informasi bahwa sebagian besar entitas \textit{disease} dan \textit{drug} merupakan frasa kata benda dan entitas \textit{symptom} dan \textit{treatment} merupakan frasa kata kerja. Hal ini menjadi seharusnya menjadi informasi pembeda dengan kata yang bukan merupakan entitas. Namun apabila dilihat dari hasil eksperimen ini, performa penggunaan fitur ini tidak terlalu bagus atau bahkan turun di entitas \textit{disease} dan \textit{symptom} tersebut. \Saya~berpendapat hal ini terjadi karena penggunaan fitur ini sudah cukup mewakili informasi fitur POS-Tag, akrena untuk menentukan suatu kata atau kumpulan kata merupakan frasa adalah dengan menggunakan POS-Tag. Selain itu, pada fitur POS-Tag, tidak ada perbedaan antara kata yang merupakan frasa maupun kata yang bukan frasa. Padahal, mayoritas entitas seperti yang telah dijelaskan di atas merupakan frasa. Oleh karena itu, pada sub-eksperimen \ref{eks:subeksminpostag}, penulis menghilangkan fitur POS-Tag dan tetap mempertahankan fitur frasa kata untuk mengetahui hal tersebut. 
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Pengurangan Fitur POS-Tag}\label{eks:subeksminpostag}
+	\subsection{Eksperimen 2.6: Fitur Kata, Kamus Kesehatan, \textit{Stopword} dan Frasa Kata}\label{eks:subeksminpostag}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini \saya~menghilangkan fitur POS-Tag berdasarkan hasil dan analisis pada sub-eksperimen \ref{eks:subeksfrasa}. Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}.
 	
+	\subsubsection{Hasil Eksperimen}
 	\begin{table}
 		\centering
-		\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}
-		\begin{tabular}{|c|c|c|c|c|}
+		\caption{Tabel Hasil Eksperimen 2.6 dibandigkan dengan \textit{Baseline}}
+		\begin{tabular}{|l|c|c|c|c|c|c|}
 			\hline
-			                      & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-			\textit{Disease}      & 68.67\%             & 61.80\%        & 64.78\%           \\ \hline
-			\textit{Symptom}      & 63.79\%             & 56.10\%        & 59.23\%           \\ \hline
-			\textit{Treatment}    & 54.47\%             & 46.72\%        & 49.58\%           \\ \hline
-			\textit{Drug}		  & 60.08\%             & 56.70\%        & 57.00\%           \\ \hline
-			\textit{\textbf{Overall}}&\textbf{61.75\%}  & \textbf{55.33\%}& \textbf{57.65\%} \\ \hline
+			\multicolumn{1}{|c|}{\multirow{2}{*}{Entitas}} & \multicolumn{3}{c|}{Baseline (Herwando 2016)} & \multicolumn{3}{c|}{Eksperimen 2.6} \\ \cline{2-7} 
+			\multicolumn{1}{|c|}{} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} \\ \hline
+			\textit{Disease} & 63.68\% & 55.45\% & 59.13\% & 68.67\% & 61.80\% & 64.78\% \\ \hline
+			\textit{Symptom} & 61.43\% & 59.21\% & 60.18\% & 63.79\% & 56.10\% & 59.23\% \\ \hline
+			\textit{Treatment} & 53.10\% & 45.97\% & 48.82\% & 54.47\% & 46.72\% & 49.58\% \\ \hline
+			\textit{Drug} & 58.99\% & 44.46\% & 48.23\% & 60.08\% & 56.70\% & 57.00\% \\ \hline
+			\textit{\textbf{Overall}} & \textbf{59.30\%} & \textbf{51.27\%} & \textbf{54.09\%} & \textbf{61.75\%} & \textbf{55.33\%} & \textbf{57.65\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict6}
 	\end{table}
@@ -423,32 +480,37 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.85\linewidth]{images/histogram6}
-		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Dikurangi Fitur POS-Tag}
+		\caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 2.4, 2.5 dan 2.6}
 		\label{fig:owndict6}
 	\end{figure}
 	
-	Dari Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}, terlihat bahwa semua entitas (\textit{disease, symptom, treatment,}) dan \textit{drug} mengalami kenaikan pada nilai \textit{precision, recall,} dan \textit{f-measure}. Seperti yang telah dijelaskan pada sub-eksperimen \ref{eks:subeksfrasa}, penggabungan fitur POS-Tag dan frasa akan memberikan hasil yang lebih rendah. Oleh karena itu, sebaiknya fitur POS-Tag tidak digabung dengan fitur frasa. Selain itu, \saya~lebih memilih fitur frasa untuk dipertahankan karena fitur ini lebih diskriminatif dibandingkan dengan fitur POS-Tag, dengan melihat bahwa mayoritas kata berentitas merupakan frasa.
+	\subsubsection{Analisis}
+	Dari Tabel \ref{table:owndict6} dan Gambar \ref{fig:owndict6}, terlihat bahwa semua entitas (\textit{disease, symptom, treatment,}) dan \textit{drug} mengalami kenaikan pada nilai \textit{precision, recall,} dan \textit{f-measure}. Seperti yang telah dijelaskan pada sub-eksperimen \ref{eks:subeksfrasa}, penggabungan fitur POS-Tag dan frasa akan memberikan hasil yang lebih rendah. Oleh karena itu, sebaiknya fitur POS-Tag tidak digabung dengan fitur frasa.
+	
+	Untuk mempermudah dalam membandingkan hasil eksperimen 2.4, 2.5 dan 2.6, \saya~menyajikan grafik \ref{fig:owndict6} untuk membandingkan nilai \textit{F-Measure} pada masing-masing eksperimen. Dapat dilihat bahwa apabila fitur POS-Tag dan Frasa digunakan secara bersama-sama, hasil yang diberikan lebih rendah apabila kedua fitur tersebut dipisah. Namun, apabila dengan menggunakan fitur POS-Tag tanpa Frasa, hasil pada entitas \textit{treatment} dan \textit{drug} lebih bagus. Sedangkan apabila dengan menggunakan fitur Frasa tanpa POS-Tag, hasil pada entitas \textit{disease} dan \textit{symptom} lebih baik. Oleh karena itu \saya~memilih salah satu dari kedua fitur tersebut. Apabila dilihat dari rata-rata \textit{F-Measure}, penggunaan fitur Frasa tanpa POS-Tag memberikan hasil yang paling tinggi ($ 57.65\% $) apabila dibandingkan dengan penggunaan fitur POS-Tag tanpa Frasa ($ 56.99\% $). Oleh karena itu, \saya~mempertahankan fitur Frasa dan tidak menggunakan fitur POS-tag pada eksperimen selanjutnya.
 	
 	Walaupun pada sub-eksperimen ini hasil yang dicapai lebih baik dari sub-eksperimen sebelumnya, hasilnya tetap lebih rendah dari hasil eksperimen \cite{skripsiKakRadit} pada nilai \textit{recall} dan \textit{f-measure} pada entitas \textit{symptom}. Oleh karena itu \saya~mencoba fitur yang lain, yaitu fitur Kata Sebelum. Untuk penjelasan lebih lanjut akan dibahas pada sub-eksperimen \ref{eks:subekswbef1}.
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Penambahan Fitur 1 Kata Sebelum}\label{eks:subekswbef1}
+	\subsection{Eksperimen 2.7: Fitur Kata, Kamus Kesehatan, \textit{Stopword}, Frasa Kata dan Kata Sebelum}\label{eks:subekswbef1}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini \saya~menambahkan fitur baru yaitu fitur 1 kata sebelum. Fitur ini digunakan pada penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan. Oleh karena itu, pada sub-eksperimen ini \saya~mencoba menambahkan fitur tersebut.
 	
+	\subsubsection{Hasil Eksperimen}
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}.
 	
 	\begin{table}
 		\centering
-		\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}
-		\begin{tabular}{|c|c|c|c|c|}
+		\caption{Tabel Hasil Eksperimen 2.7 dibandigkan dengan \textit{Baseline}}
+		\begin{tabular}{|l|c|c|c|c|c|c|}
 			\hline
-		                          & \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-			\textit{Disease}      & 69.49\%             & 61.60\%        & 64.68\%           \\ \hline
-			\textit{Symptom}      & 64.78\%             & 57.15\%        & 60.23\%           \\ \hline
-			\textit{Treatment}    & 56.58\%             & 44.71\%        & 49.54\%           \\ \hline
-			\textit{Drug}		  & 62.22\%             & 57.28\%        & 58.76\%           \\ \hline
-			\textit{\textbf{Overall}}&\textbf{63.27\%}  & \textbf{55.19\%}& \textbf{58.30\%} \\ \hline
+			\multicolumn{1}{|c|}{\multirow{2}{*}{Entitas}} & \multicolumn{3}{c|}{Baseline (Herwando 2016)} & \multicolumn{3}{c|}{Eksperimen 2.7} \\ \cline{2-7} 
+			\multicolumn{1}{|c|}{} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} \\ \hline
+			\textit{Disease} & 63.68\% & 55.45\% & 59.13\% & 69.49\% & 61.60\% & 64.68\% \\ \hline
+			\textit{Symptom} & 61.43\% & 59.21\% & 60.18\% & 64.78\% & 57.15\% & 60.23\% \\ \hline
+			\textit{Treatment} & 53.10\% & 45.97\% & 48.82\% & 56.58\% & 44.71\% & 49.54\% \\ \hline
+			\textit{Drug} & 58.99\% & 44.46\% & 48.23\% & 62.22\% & 57.28\% & 58.76\% \\ \hline
+			\textit{\textbf{Overall}} & \textbf{59.30\%} & \textbf{51.27\%} & \textbf{54.09\%} & \textbf{63.27\%} & \textbf{55.19\%} & \textbf{58.30\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict7}
 	\end{table}
@@ -456,10 +518,11 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.85\linewidth]{images/histogram7}
-		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sebelum}
+		\caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 2.7}
 		\label{fig:owndict7}
 	\end{figure}
 	
+	\subsubsection{Analisis}
 	Melihat pada Tabel \ref{table:owndict7} dan Gambar \ref{fig:owndict7}, dapat diketahui bahwa entitas \textit{disease} dan \textit{treatment} mengalami kenaikan pada nilai \textit{precission}, tetapi mengalami penurunan pada nilai \textit{recall} dan \textit{f-measure}. Sedangkan entitas \textit{symptom} dan \textit{drug} mengalami kenaikan pada nilai \textit{precision, recall,} dan \textit{f-measure}.
 	
 	Seperti pada penelitian \cite{skripsiKakRadit}, fitur ini berhasil meningkatkan performa dari beberapa entitas, karena fitur ini memberikan informasi tambahan kata sebelumnya, misalnya:
@@ -474,23 +537,25 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	
 	
 	%-----------------------------------------------------------------------------%
-	\subsubsection{Sub-Eksperimen Menguji Fitur Penambahan Fitur 1 Kata Sesudah}\label{eks:subekswaf1}
+	\subsection{Eksperimen 2.8: Fitur Kata, Kamus Kesehatan, \textit{Stopword}, Frasa Kata, Kata Sebelum dan Kata Sesudah}\label{eks:subekswaf1}
 	%-----------------------------------------------------------------------------%
 	Pada sub-eksperimen ini \saya~menambahkan fitur lain yaitu fitur 1 Kata Setelah. Hal ini karena ada beberapa kasus yang mana apabila suatu kata merupakan sebuah entitas, akan lebih mudah dikenali apabila melihat kata atau konteks setelahnya. Sama seperti contoh pada fitur 1 kata sebelum, misal diberikan kata "masuk angin", apabila hanya diberikan informasi "masuk" tanpa "angin", akan lebih sulit mengenali apakah kata tersebut termasuk entitas \textit{disease} atau bukan. Selain itu, fitur ini juga dapat membedakan kata berentitas dengan kata yang bukan, misalnya kata "masuk angin" dengan "masuk rumah". Apabila informasi pada saat tersebut hanya diberikan kata "masuk" saja tanpa kata setelahnya, akan lebih sulit mengenali kata tersebut termasuk kata berentitas atau bukan.
 	
+	\subsubsection{Hasil Eksperimen}
 	Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict8} dan Gambar \ref{fig:owndict8}.
 	
 	\begin{table}
 		\centering
-		\caption{Rangkuman Hasil Eksperimen dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}
-		\begin{tabular}{|c|c|c|c|c|}
+		\caption{Tabel Hasil Eksperimen 2.8 dibandigkan dengan \textit{Baseline}}
+		\begin{tabular}{|l|c|c|c|c|c|c|}
 			\hline
-			& \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-			\textit{Disease}      & 70.68\%             & 66.18\%        & 68.17\%           \\ \hline
-			\textit{Symptom}      & 64.16\%             & 59.55\%        & 61.42\%           \\ \hline
-			\textit{Treatment}    & 61.02\%             & 51.13\%        & 54.03\%           \\ \hline
-			\textit{Drug}		  & 70.85\%             & 70.33\%        & 69.82\%           \\ \hline
-			\textit{\textbf{Overall}}&\textbf{66.68\%}  & \textbf{61.80\%}& \textbf{63.06\%} \\ \hline
+			\multicolumn{1}{|c|}{\multirow{2}{*}{Entitas}} & \multicolumn{3}{c|}{Baseline (Herwando 2016)} & \multicolumn{3}{c|}{Eksperimen 2.7} \\ \cline{2-7} 
+			\multicolumn{1}{|c|}{} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} \\ \hline
+			\textit{Disease} & 63.68\% & 55.45\% & 59.13\% & 70.68\% & 66.18\% & 68.17\% \\ \hline
+			\textit{Symptom} & 61.43\% & 59.21\% & 60.18\% & 64.16\% & 59.55\% & 60.23\% \\ \hline
+			\textit{Treatment} & 53.10\% & 45.97\% & 48.82\% & 61.02\% & 51.13\% & 54.03\% \\ \hline
+			\textit{Drug} & 58.99\% & 44.46\% & 48.23\% & 70.85.\% & 70.33\% & 69.82\% \\ \hline
+			\textit{\textbf{Overall}} & \textbf{59.30\%} & \textbf{51.27\%} & \textbf{54.09\%} & \textbf{65.29\%} & \textbf{61.80\%} & \textbf{63.06\%} \\ \hline
 		\end{tabular}
 		\label{table:owndict8}
 	\end{table}
@@ -498,10 +563,11 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.85\linewidth]{images/histogram8}
-		\caption{Histogram Metrik Evaluasi dengan Fitur Terbaik Sebelumnya Ditambahkan Fitur 1 Kata Sesudah}
+		\caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 2.8}
 		\label{fig:owndict8}
 	\end{figure}
 	
+	\subsubsection{Analisis}
 	Melihat pada Tabel \ref{table:owndict8} dan Gambar \ref{fig:owndict8}, dapat diketahui bahwa hanya entitas \textit{symptom} yang mengalami penurunan nilai pada \textit{precision}, tetapi nilai \textit{recall} dan \textit{f-measure}-nya naik. Sedangkan entitas lain mengalami kenaikan pada nilai \textit{precision, recall} dan \textit{f-measure}. Oleh karena itu, setelah \saya~mencoba kemungkinan fitur yang memberikan kontribusi dalam penelitian ini, \saya~mencoba arsitektur untuk model RNNs yang lain. Penjelasan lebih lanjut akan dibahas pada eksperimen \ref{eks:eks2}.
 	
 	
@@ -509,26 +575,29 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
   %-----------------------------------------------------------------------------%
   
   
-    \subsection{Hasil Ekperimen Pengujian Arsitektur RNNs}\label{eks:eks2}
+\section{Skenario 3: Skenario Pengujian Arsitektur RNNs}\label{eks:eks2}
     
     Pada eksperimen ini, \saya~mencoba dua buah arsitektur RNNs yang telah \saya~usulkan pada Bab 3 yaitu RNNs dengan 1 layer dan RNNs dengan 2 layer. Fitur yang digunakan dalam pengujian ini yaitu kombinasi fitur yang menghasilkan akurasi terbaik pada eksperimen pertama, yaitu fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, frasa kata, 1 kata sebelum dan 1 kata sesudah.
     
-    \subsubsection{Sub-Eksperimen Menguji Arsitektur LSTMs 1 Layer}\label{eks2:subeksrnn1}
+    \subsection{Eksperimen 3.1: Menguji Arsitektur LSTMs 1 Layer}\label{eks2:subeksrnn1}
     %-----------------------------------------------------------------------------%
     Pada sub-eksperimen ini, \saya~menggunakan struktur RNNs yang mana semua fitur digabung menjadi satu dalam sebuah \textit{timestep}.
     Artinya fitur-fitur yang berbeda tersebut akan digabung atau di-\textit{concat} menjadi sebuah vektor yang akan menjadi \textit{input} bagi LSTMs ini. LSTMs inilah yang digunakan pada eksperimen pertama, sehingga hasilnya sama dengan sub-eksperimen \ref{eks:subekswaf1}.
     
+    \subsubsection{Hasil Eksperimen}
+    
     \begin{table}
     	\centering
-    	\caption{Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 1 Layer}
-    	\begin{tabular}{|c|c|c|c|c|}
+    	\caption{Tabel Hasil Eksperimen 3.1 dibandigkan dengan \textit{Baseline}}
+    	\begin{tabular}{|l|c|c|c|c|c|c|}
     		\hline
-    		& \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
-    		\textit{Disease}      & 70.68\%             & 66.18\%        & 68.17\%           \\ \hline
-    		\textit{Symptom}      & 64.16\%             & 59.55\%        & 61.42\%           \\ \hline
-    		\textit{Treatment}    & 61.02\%             & 51.13\%        & 54.03\%           \\ \hline
-    		\textit{Drug}		  & 70.85\%             & 70.33\%        & 69.82\%           \\ \hline
-    		\textit{\textbf{Overall}}&\textbf{66.68\%}  & \textbf{61.80\%}& \textbf{63.06\%} \\ \hline
+    		\multicolumn{1}{|c|}{\multirow{2}{*}{Entitas}} & \multicolumn{3}{c|}{Baseline (Herwando 2016)} & \multicolumn{3}{c|}{Eksperimen 2.7} \\ \cline{2-7} 
+    		\multicolumn{1}{|c|}{} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} & \textit{Precision} & \textit{Recall} & \textit{F-Measure} \\ \hline
+    		\textit{Disease} & 63.68\% & 55.45\% & 59.13\% & 70.68\% & 66.18\% & 68.17\% \\ \hline
+    		\textit{Symptom} & 61.43\% & 59.21\% & 60.18\% & 64.16\% & 59.55\% & 60.23\% \\ \hline
+    		\textit{Treatment} & 53.10\% & 45.97\% & 48.82\% & 61.02\% & 51.13\% & 54.03\% \\ \hline
+    		\textit{Drug} & 58.99\% & 44.46\% & 48.23\% & 70.85.\% & 70.33\% & 69.82\% \\ \hline
+    		\textit{\textbf{Overall}} & \textbf{59.30\%} & \textbf{51.27\%} & \textbf{54.09\%} & \textbf{65.29\%} & \textbf{61.80\%} & \textbf{63.06\%} \\ \hline
     	\end{tabular}
     	\label{table:owndict9}
     \end{table}
@@ -536,22 +605,24 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     \begin{figure}
     	\centering
     	\includegraphics[width=0.85\linewidth]{images/histogram9}
-    	\caption{Histogram Metrik Evaluasi dengan Arsitektur RNNs 1 Tingkat}
+    	\caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 3.1}
     	\label{fig:owndict9}
     \end{figure}
     
+    \subsubsection{Analisis}
     Pada eksperimen ini, hasil yang sudah lebih baik apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit} di entitas. Namun, dari eksperimen sebelumnya, terdapat akurasi yang turun, yaitu nilai \textit{precision} untuk entitas \textit{symptom}. Menurut \saya~hal ini terjadi karena informasi fitur yang berbeda-beda dijadikan satu, sehingga ada kemungkinan hilangnya informasi dari masing-masing fitur tersebut. Oleh karena itu, untuk mengatasi permasalahan tersebut \saya~mengusulkan arsitektur yang mana masing-masng kelompok fitur yang berbeda dipisahkan dan menjadi \textit{input} bagi masing-masing LSTMs. Untuk penjelasan eksperimen ini akan dijelaskan pada sub-eksperimen \ref{eks2:subeksrnn2}
     
     
-    \subsubsection{Sub-Eksperimen Menguji Arsitektur LSTMs 2 Layer Multi-Input}\label{eks2:subeksrnn2}
+    \subsection{Eksperimen 3.2: Menguji Arsitektur LSTMs 2 Layer Multi-Input}\label{eks2:subeksrnn2}
     %-----------------------------------------------------------------------------%
     Pada sub-eksperimen sebelumnya, fitur-fitur yang berbeda digabung menjadi satu, sehingga ada kemungkinan hilangnya informasi dari fitur tersebut. Oleh karena itu, \saya~mengusulkan adanya layer tambahan setelah masing-masing fitur tersebut masuk ke dalam model. \Saya~mengusulkan bahwa masing-masing kelompok fitur menjadi \textit{input} LSTMs secara terpisah. Setelah masuk di RNNs, \textit{output} dari masing-masing LSTMs tersebut di-\textit{merge} ke dalam sebuah layer, lalu masuk kembali ke LSTMs untuk melihat konteks fitur-fitur sebelumnya. Dengan diusulkannya arsitektur RNNs ini \saya~berharap bahwa masing-masing fitur terjaga informasinya dan tidak terganggu dengan informasi lain.
     
+    \subsubsection{Hasil Eksperimen}
     Rangkuman hasil sub-eksperimen ini dapat dilihat pada Tabel \ref{table:owndict10} dan Gambar \ref{fig:owndict10}.
         
     \begin{table}
     	\centering
-    	\caption{Rangkuman Hasil Eksperimen dengan Arsitektur RNNs 2 Layer}
+    	\caption{Tabel Hasil Eksperimen 3.2 dibandigkan dengan \textit{Baseline}}
     	\begin{tabular}{|c|c|c|c|c|}
     		\hline
     		& \textit{Precision} & \f{\f{Recall}} & \f{\f{F-Measure}} \\ \hline
@@ -567,8 +638,9 @@ Pada bagian ini akan dilaporkan hasil dari ekperimen yang telah \saya~rancang se
     \begin{figure}
     	\centering
     	\includegraphics[width=0.85\linewidth]{images/histogramrnnv2}
-    	\caption{Histogram Metrik Evaluasi dengan Arsitektur LSTMs Layer Bertingkat}
+    	\caption{Histogram Perbandingan \textit{F-measure} \textit{Baseline} dengan Eksperimen 3.1, dan 3.2}
     	\label{fig:owndict10}
     \end{figure}
 
+	\subsubsection{Analisis}
 	Pada eksperimen ini, hasil yang sudah lebih baik apabila dibandingkan dengan hasil yang dicapai \cite{skripsiKakRadit} di masing-masing entitas dan lebih baik dibandingkan eksperimem \ref{eks2:subeksrnn1} pada identifikasi entitas \textit{symptom} dan \textit{treatment}.

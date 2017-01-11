@@ -7,8 +7,8 @@
 \contentsline {chapter}{ABSTRAK}{vii}{section*.12}
 \contentsline {chapter}{Daftar Isi}{ix}{chapter*.15}
 \contentsline {chapter}{Daftar Gambar}{xii}{chapter*.16}
-\contentsline {chapter}{Daftar Tabel}{xiii}{chapter*.17}
-\contentsline {chapter}{Daftar Kode}{xiv}{chapter*.18}
+\contentsline {chapter}{Daftar Tabel}{xiv}{chapter*.17}
+\contentsline {chapter}{Daftar Kode}{xv}{chapter*.18}
 \contentsline {chapter}{\numberline {1}\uppercase {Pendahuluan}}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Latar Belakang}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Perumusan Masalah}{3}{section.1.2}
@@ -31,53 +31,71 @@
 \contentsline {subsection}{\numberline {3.3.2}Tokenisasi}{20}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}Pemotongan kalimat}{21}{subsection.3.3.3}
 \contentsline {section}{\numberline {3.4}Pelabelan}{22}{section.3.4}
-\contentsline {section}{\numberline {3.5}Pengembangan Model}{23}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Ekstrasi Fitur}{23}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}Pengusulan Arsitektur RNNs}{27}{subsection.3.5.2}
-\contentsline {section}{\numberline {3.6}Eksperimen}{30}{section.3.6}
-\contentsline {section}{\numberline {3.7}Evaluasi}{31}{section.3.7}
-\contentsline {chapter}{\numberline {4}\uppercase {Implementasi}}{33}{chapter.4}
-\contentsline {section}{\numberline {4.1}Perangkat Pendukung}{33}{section.4.1}
-\contentsline {section}{\numberline {4.2}Pengumpulan Data}{33}{section.4.2}
-\contentsline {section}{\numberline {4.3}Pra-Pemrosesan}{34}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Pembersihan Data}{34}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Tokenisasi}{35}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Pemotongan Kalimat}{35}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Pelabelan}{36}{section.4.4}
-\contentsline {section}{\numberline {4.5}Pengembangan Model}{37}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Ekstraksi Fitur}{37}{subsection.4.5.1}
-\contentsline {subsubsection}{\numberline {4.5.1.1}Fitur Kata Itu Sendiri}{37}{subsubsection.4.5.1.1}
-\contentsline {subsubsection}{\numberline {4.5.1.2}Ekstraksi Fitur Kamus Kesehatan}{37}{subsubsection.4.5.1.2}
-\contentsline {subsubsection}{\numberline {4.5.1.3}Ekstraksi Fitur Stop Word}{38}{subsubsection.4.5.1.3}
-\contentsline {subsubsection}{\numberline {4.5.1.4}Ekstraksi Fitur Part of Speech Tag}{38}{subsubsection.4.5.1.4}
-\contentsline {subsubsection}{\numberline {4.5.1.5}Ekstraksi Frasa Kata Benda}{39}{subsubsection.4.5.1.5}
-\contentsline {subsubsection}{\numberline {4.5.1.6}Ekstraksi Frasa Kata Kerja}{40}{subsubsection.4.5.1.6}
-\contentsline {subsubsection}{\numberline {4.5.1.7}Ekstraksi Fitur 1 Kata Sebelum}{41}{subsubsection.4.5.1.7}
-\contentsline {subsubsection}{\numberline {4.5.1.8}Ekstraksi Fitur 1 Kata Sesudah}{41}{subsubsection.4.5.1.8}
-\contentsline {subsection}{\numberline {4.5.2}Pengusulan Arsitektur RNNs}{42}{subsection.4.5.2}
-\contentsline {subsubsection}{\numberline {4.5.2.1}LSTMs 1 layer}{43}{subsubsection.4.5.2.1}
-\contentsline {subsubsection}{\numberline {4.5.2.2}LSTMs 2 Layer Multi-Input}{43}{subsubsection.4.5.2.2}
-\contentsline {section}{\numberline {4.6}Eksperimen}{44}{section.4.6}
-\contentsline {section}{\numberline {4.7}Evaluasi}{45}{section.4.7}
-\contentsline {chapter}{\numberline {5}\uppercase {Eksperimen}}{48}{chapter.5}
-\contentsline {section}{\numberline {5.1}Matriks Evaluasi}{48}{section.5.1}
-\contentsline {section}{\numberline {5.2}Visualisasi Data}{48}{section.5.2}
-\contentsline {section}{\numberline {5.3}\textit {Baseline} Eksperimen}{51}{section.5.3}
-\contentsline {section}{\numberline {5.4}Skenario Eksperimen}{52}{section.5.4}
-\contentsline {section}{\numberline {5.5}Hasil Eksperimen dan Analisis}{53}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Hasil Ekperimen Pengujian Fitur Beserta Analisis}{53}{subsection.5.5.1}
-\contentsline {subsubsection}{\numberline {5.5.1.1}Sub-Eksperimen Menguji Fitur Kata itu Sendiri}{53}{subsubsection.5.5.1.1}
-\contentsline {subsubsection}{\numberline {5.5.1.2}Sub-Eksperimen Menguji Penambahan Fitur Kamus Kesehatan (\textit {Disease, Symptom, Treatment} dan \textit {Drug})}{54}{subsubsection.5.5.1.2}
-\contentsline {subsubsection}{\numberline {5.5.1.3}Sub-Eksperimen Menguji Penambahan Fitur Stopword}{56}{subsubsection.5.5.1.3}
-\contentsline {subsubsection}{\numberline {5.5.1.4}Sub-Eksperimen Menguji Penambahan Fitur POS-Tag}{58}{subsubsection.5.5.1.4}
-\contentsline {subsubsection}{\numberline {5.5.1.5}Sub-Eksperimen Menguji Penambahan Fitur Frasa Kata}{59}{subsubsection.5.5.1.5}
-\contentsline {subsubsection}{\numberline {5.5.1.6}Sub-Eksperimen Menguji Pengurangan Fitur POS-Tag}{62}{subsubsection.5.5.1.6}
-\contentsline {subsubsection}{\numberline {5.5.1.7}Sub-Eksperimen Menguji Penambahan Fitur 1 Kata Sebelum}{63}{subsubsection.5.5.1.7}
-\contentsline {subsubsection}{\numberline {5.5.1.8}Sub-Eksperimen Menguji Fitur Penambahan Fitur 1 Kata Sesudah}{65}{subsubsection.5.5.1.8}
-\contentsline {subsection}{\numberline {5.5.2}Hasil Ekperimen Pengujian Arsitektur RNNs}{66}{subsection.5.5.2}
-\contentsline {subsubsection}{\numberline {5.5.2.1}Sub-Eksperimen Menguji Arsitektur LSTMs 1 Layer}{66}{subsubsection.5.5.2.1}
-\contentsline {subsubsection}{\numberline {5.5.2.2}Sub-Eksperimen Menguji Arsitektur LSTMs 2 Layer Multi-Input}{67}{subsubsection.5.5.2.2}
-\contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{69}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{69}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{70}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{71}{chapter*.78}
+\contentsline {section}{\numberline {3.5}Pengembangan Model}{25}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Ekstrasi Fitur}{25}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Pengusulan Arsitektur RNNs}{33}{subsection.3.5.2}
+\contentsline {section}{\numberline {3.6}Eksperimen}{37}{section.3.6}
+\contentsline {section}{\numberline {3.7}Evaluasi}{38}{section.3.7}
+\contentsline {chapter}{\numberline {4}\uppercase {Implementasi}}{41}{chapter.4}
+\contentsline {section}{\numberline {4.1}Perangkat Pendukung}{41}{section.4.1}
+\contentsline {section}{\numberline {4.2}Pengumpulan Data}{41}{section.4.2}
+\contentsline {section}{\numberline {4.3}Pra-Pemrosesan}{42}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Pembersihan Data}{42}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Tokenisasi}{43}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Pemotongan Kalimat}{43}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Pelabelan}{44}{section.4.4}
+\contentsline {section}{\numberline {4.5}Pengembangan Model}{45}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Ekstraksi Fitur}{45}{subsection.4.5.1}
+\contentsline {subsubsection}{\numberline {4.5.1.1}Fitur Kata Itu Sendiri}{45}{subsubsection.4.5.1.1}
+\contentsline {subsubsection}{\numberline {4.5.1.2}Ekstraksi Fitur Kamus Kesehatan}{45}{subsubsection.4.5.1.2}
+\contentsline {subsubsection}{\numberline {4.5.1.3}Ekstraksi Fitur Stop Word}{46}{subsubsection.4.5.1.3}
+\contentsline {subsubsection}{\numberline {4.5.1.4}Ekstraksi Fitur Part of Speech Tag}{46}{subsubsection.4.5.1.4}
+\contentsline {subsubsection}{\numberline {4.5.1.5}Ekstraksi Frasa Kata Benda}{47}{subsubsection.4.5.1.5}
+\contentsline {subsubsection}{\numberline {4.5.1.6}Ekstraksi Frasa Kata Kerja}{48}{subsubsection.4.5.1.6}
+\contentsline {subsubsection}{\numberline {4.5.1.7}Ekstraksi Fitur 1 Kata Sebelum}{49}{subsubsection.4.5.1.7}
+\contentsline {subsubsection}{\numberline {4.5.1.8}Ekstraksi Fitur 1 Kata Sesudah}{49}{subsubsection.4.5.1.8}
+\contentsline {subsection}{\numberline {4.5.2}Pengusulan Arsitektur RNNs}{50}{subsection.4.5.2}
+\contentsline {subsubsection}{\numberline {4.5.2.1}LSTMs 1 layer}{51}{subsubsection.4.5.2.1}
+\contentsline {subsubsection}{\numberline {4.5.2.2}LSTMs 2 Layer Multi-Input}{51}{subsubsection.4.5.2.2}
+\contentsline {section}{\numberline {4.6}Eksperimen}{52}{section.4.6}
+\contentsline {section}{\numberline {4.7}Evaluasi}{53}{section.4.7}
+\contentsline {chapter}{\numberline {5}\uppercase {Eksperimen}}{56}{chapter.5}
+\contentsline {section}{\numberline {5.1}Matriks Evaluasi}{56}{section.5.1}
+\contentsline {section}{\numberline {5.2}Visualisasi Data}{56}{section.5.2}
+\contentsline {section}{\numberline {5.3}Desain Eksperimen}{59}{section.5.3}
+\contentsline {section}{\numberline {5.4}Skenario 1: \textit {Baseline} Eksperimen \cite {skripsiKakRadit}}{60}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Hasil Eksperimen}{61}{subsection.5.4.1}
+\contentsline {section}{\numberline {5.5}Skenario 2: Skenario Pengujian Fitur}{61}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Eksperimen 2.1: Fitur Kata}{61}{subsection.5.5.1}
+\contentsline {subsubsection}{\numberline {5.5.1.1}Hasil Eksperimen}{62}{subsubsection.5.5.1.1}
+\contentsline {subsubsection}{\numberline {5.5.1.2}Analisis}{62}{subsubsection.5.5.1.2}
+\contentsline {subsection}{\numberline {5.5.2}Eksperimen 2.2: Fitur Kata dan Kamus Kesehatan (\textit {Disease, Symptom, Treatment} dan \textit {Drug})}{64}{subsection.5.5.2}
+\contentsline {subsubsection}{\numberline {5.5.2.1}Hasil Eksperimen}{64}{subsubsection.5.5.2.1}
+\contentsline {subsubsection}{\numberline {5.5.2.2}Analisis}{65}{subsubsection.5.5.2.2}
+\contentsline {subsection}{\numberline {5.5.3}Eksperimen 2.3: Fitur Kata, Kamus Kesehatan dan \textit {Stopword}}{66}{subsection.5.5.3}
+\contentsline {subsubsection}{\numberline {5.5.3.1}Hasil Eksperimen}{66}{subsubsection.5.5.3.1}
+\contentsline {subsubsection}{\numberline {5.5.3.2}Analisis}{67}{subsubsection.5.5.3.2}
+\contentsline {subsection}{\numberline {5.5.4}Eksperimen 2.4: Fitur Kata, Kamus Kesehatan, \textit {Stopword} dan POS-Tag}{68}{subsection.5.5.4}
+\contentsline {subsubsection}{\numberline {5.5.4.1}Hasil Eksperimen}{68}{subsubsection.5.5.4.1}
+\contentsline {subsubsection}{\numberline {5.5.4.2}Analisis}{69}{subsubsection.5.5.4.2}
+\contentsline {subsection}{\numberline {5.5.5}Eksperimen 2.5: Fitur Kata, Kamus Kesehatan, \textit {Stopword}, POS-Tag dan Frasa Kata}{70}{subsection.5.5.5}
+\contentsline {subsection}{\numberline {5.5.6}Eksperimen 2.6: Fitur Kata, Kamus Kesehatan, \textit {Stopword} dan Frasa Kata}{72}{subsection.5.5.6}
+\contentsline {subsubsection}{\numberline {5.5.6.1}Hasil Eksperimen}{73}{subsubsection.5.5.6.1}
+\contentsline {subsubsection}{\numberline {5.5.6.2}Analisis}{73}{subsubsection.5.5.6.2}
+\contentsline {subsection}{\numberline {5.5.7}Eksperimen 2.7: Fitur Kata, Kamus Kesehatan, \textit {Stopword}, Frasa Kata dan Kata Sebelum}{74}{subsection.5.5.7}
+\contentsline {subsubsection}{\numberline {5.5.7.1}Hasil Eksperimen}{74}{subsubsection.5.5.7.1}
+\contentsline {subsubsection}{\numberline {5.5.7.2}Analisis}{75}{subsubsection.5.5.7.2}
+\contentsline {subsection}{\numberline {5.5.8}Eksperimen 2.8: Fitur Kata, Kamus Kesehatan, \textit {Stopword}, Frasa Kata, Kata Sebelum dan Kata Sesudah}{76}{subsection.5.5.8}
+\contentsline {subsubsection}{\numberline {5.5.8.1}Hasil Eksperimen}{76}{subsubsection.5.5.8.1}
+\contentsline {subsubsection}{\numberline {5.5.8.2}Analisis}{77}{subsubsection.5.5.8.2}
+\contentsline {section}{\numberline {5.6}Skenario 3: Skenario Pengujian Arsitektur RNNs}{77}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Eksperimen 3.1: Menguji Arsitektur LSTMs 1 Layer}{77}{subsection.5.6.1}
+\contentsline {subsubsection}{\numberline {5.6.1.1}Hasil Eksperimen}{78}{subsubsection.5.6.1.1}
+\contentsline {subsubsection}{\numberline {5.6.1.2}Analisis}{78}{subsubsection.5.6.1.2}
+\contentsline {subsection}{\numberline {5.6.2}Eksperimen 3.2: Menguji Arsitektur LSTMs 2 Layer Multi-Input}{79}{subsection.5.6.2}
+\contentsline {subsubsection}{\numberline {5.6.2.1}Hasil Eksperimen}{79}{subsubsection.5.6.2.1}
+\contentsline {subsubsection}{\numberline {5.6.2.2}Analisis}{80}{subsubsection.5.6.2.2}
+\contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{81}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{81}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{82}{section.6.2}
+\contentsline {chapter}{Daftar Referensi}{83}{chapter*.92}
