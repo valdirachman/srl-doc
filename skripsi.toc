@@ -59,7 +59,7 @@
 \contentsline {section}{\numberline {4.6}Eksperimen}{55}{section.4.6}
 \contentsline {section}{\numberline {4.7}Evaluasi}{56}{section.4.7}
 \contentsline {chapter}{\numberline {5}\uppercase {Eksperimen}}{58}{chapter.5}
-\contentsline {section}{\numberline {5.1}Matriks Evaluasi}{58}{section.5.1}
+\contentsline {section}{\numberline {5.1}Metrik Evaluasi}{58}{section.5.1}
 \contentsline {section}{\numberline {5.2}Visualisasi Data}{58}{section.5.2}
 \contentsline {section}{\numberline {5.3}Desain Eksperimen}{61}{section.5.3}
 \contentsline {section}{\numberline {5.4}Skenario 1: \textit {Baseline} Eksperimen \cite {skripsiKakRadit}}{62}{section.5.4}
@@ -100,3 +100,8 @@
 \contentsline {section}{\numberline {6.1}Kesimpulan}{83}{section.6.1}
 \contentsline {section}{\numberline {6.2}Saran}{84}{section.6.2}
 \contentsline {chapter}{Daftar Referensi}{85}{chapter*.94}
+\contentsline {chapter}{LAMPIRAN}{1}{section*.95}
+\contentsline {section}{\numberline {.1}PART OF SPEECH TAG BAHASA INDONESIA}{1}{section.Alph0.1}
+\contentsline {section}{\numberline {.2}KAMUS DISEASE}{4}{section.Alph0.2}
+\contentsline {section}{\numberline {.3}KAMUS SYMPTOM}{14}{section.Alph0.3}
+\contentsline {section}{\numberline {.4}KAMUS SYMPTOM}{18}{section.Alph0.4}

@@ -11,7 +11,7 @@
 \contentsline {algocf}{\numberline {4.7}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan\relax }}{49}{algocf.4.7}
 \contentsline {algocf}{\numberline {4.8}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur \textit {stop word}\relax }}{50}{algocf.4.8}
 \contentsline {algocf}{\numberline {4.9}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur POS-Tag\relax }}{50}{algocf.4.9}
-\contentsline {algocf}{\numberline {4.10}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur frasa dalam sebuah korpus\relax }}{51}{algocf.4.10}
+\contentsline {algocf}{\numberline {4.10}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur frasa\relax }}{51}{algocf.4.10}
 \contentsline {algocf}{\numberline {4.11}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur 1 kata sebelum\relax }}{52}{algocf.4.11}
 \contentsline {algocf}{\numberline {4.12}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur 1 kata sesudah\relax }}{52}{algocf.4.12}
 \contentsline {algocf}{\numberline {4.13}{\ignorespaces \textit {Pseudocode} untuk arsitektur LSTMs 1 layer\relax }}{53}{algocf.4.13}

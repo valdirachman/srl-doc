@@ -6,8 +6,6 @@
 %-----------------------------------------------------------------------------%
 \section{Kesimpulan}
 %-----------------------------------------------------------------------------%
-Penelitian ini bertujuan untuk membangun sistem yang mampu melakukan ekstraksi entitas kesehatan dari forum \textit{online} secara otomatis. Data yang digunakan bersumber dari \textit{post} pada forum kesehatan \textit{online} yang telah didapatkan oleh \cite{skripsiKakRadit} dan \saya. Fitur yang digunakan pada penelitian ini yaitu fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, POS-Tag, frasa kata,  1 kata sebelum dan 1 kata sesudah. Penelitian ini juga menggunakan dua arsitektur RNNs yang diusulkan, yaitu LSTMs dengan 1 layer dan LSTMs dengan 2 layer dengan multi-\textit{input}.
-
 Terkait dengan rumusan masalah pertama, setelah dilakukan penelitian secara garis besar didapatkan kesimpulan bahwa model RNNs yang dihasilkan mampu memberikan performa yang lebih baik dibandingkan dengan model CRF (\textit{baseline}) pada penelitian \cite{skripsiKakRadit}. Dari penggunaan fitur kata itu sendiri saja, model RNNs sudah memberikan performa yang lebih baik dengan nilai \textit{F-Measure} dan \textit{recall} yang lebih tinggi.
 
 Terkait dengan rumusan masalah kedua, didapatkan kesimpulan lain bahwa fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, frasa Kata,  1 kata sebelum dan 1 kata sesudah memberikan hasil yang terbaik, yaitu dengan rata-rata \textit{f-measure} $ 63.06\% $ (\textit{disease} $ 68.17\% $, \textit{symptom} $ 61.42\% $, \textit{treatment} $ 68.17\% $ dan \textit{drug} $ 68.17\% $).

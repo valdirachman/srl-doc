@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.20)  11 JAN 2017 23:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100 64-bit) (preloaded format=pdflatex 2016.12.20)  17 JAN 2017 23:09
 entering extended mode
 **./skripsi.tex
 (skripsi.tex
@@ -147,6 +147,24 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@inbox=\box43
 \enitdp@description=\count133
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty"
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip49
+\LTright=\skip50
+\LTpre=\skip51
+\LTpost=\skip52
+\LTchunksize=\count134
+\LTcapwidth=\dimen135
+\LT@head=\box44
+\LT@firsthead=\box45
+\LT@foot=\box46
+\LT@lastfoot=\box47
+\LT@cols=\count135
+\LT@rows=\count136
+\c@LT@tables=\count137
+\c@LT@chunks=\count138
+\LT@p@ftn=\toks41
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\algorithmicx\algpseudocode.sty"
 Package: algpseudocode 
 
@@ -157,22 +175,22 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count134
-\c@ALG@rem=\count135
-\c@ALG@nested=\count136
-\ALG@tlm=\skip49
-\ALG@thistlm=\skip50
-\c@ALG@Lnr=\count137
-\c@ALG@blocknr=\count138
-\c@ALG@storecount=\count139
-\c@ALG@tmpcounter=\count140
-\ALG@tmplength=\skip51
+\c@ALG@line=\count139
+\c@ALG@rem=\count140
+\c@ALG@nested=\count141
+\ALG@tlm=\skip53
+\ALG@thistlm=\skip54
+\c@ALG@Lnr=\count142
+\c@ALG@blocknr=\count143
+\c@ALG@storecount=\count144
+\c@ALG@tmpcounter=\count145
+\ALG@tmplength=\skip55
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\algorithm2e\algorithm2e.sty"
 Package: algorithm2e 2013/01/06 v5.00 algorithms environments
-\c@AlgoLine=\count141
-\algocf@hangindent=\skip52
+\c@AlgoLine=\count146
+\algocf@hangindent=\skip56
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\xspace.sty"
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
@@ -187,46 +205,46 @@ Package `algorithm2e' Release 5.1 -- october 19 2015 --
 subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
 - Author: Christophe Fiorio (christophe.fiorio@umontpellier.fr)
 ********************************************************
-\skiptotal=\skip53
-\skiplinenumber=\skip54
-\skiprule=\skip55
-\skiphlne=\skip56
-\skiptext=\skip57
-\skiplength=\skip58
-\algomargin=\skip59
-\skipalgocfslide=\skip60
-\algowidth=\dimen135
-\inoutsize=\dimen136
-\inoutindent=\dimen137
-\interspacetitleruled=\dimen138
-\interspacealgoruled=\dimen139
-\interspacetitleboxruled=\dimen140
-\algocf@ruledwidth=\skip61
-\algocf@inoutbox=\box44
-\algocf@inputbox=\box45
-\AlCapSkip=\skip62
-\AlCapHSkip=\skip63
-\algoskipindent=\skip64
-\algocf@nlbox=\box46
-\algocf@hangingbox=\box47
-\algocf@untilbox=\box48
-\algocf@skipuntil=\skip65
-\algocf@capbox=\box49
-\algoheightruledefault=\skip66
-\algoheightrule=\skip67
-\algotitleheightruledefault=\skip68
-\algotitleheightrule=\skip69
-\c@algocfline=\count142
-\c@algocfproc=\count143
-\c@algocf=\count144
-\algocf@algoframe=\box50
-\algocf@algobox=\box51
+\skiptotal=\skip57
+\skiplinenumber=\skip58
+\skiprule=\skip59
+\skiphlne=\skip60
+\skiptext=\skip61
+\skiplength=\skip62
+\algomargin=\skip63
+\skipalgocfslide=\skip64
+\algowidth=\dimen136
+\inoutsize=\dimen137
+\inoutindent=\dimen138
+\interspacetitleruled=\dimen139
+\interspacealgoruled=\dimen140
+\interspacetitleboxruled=\dimen141
+\algocf@ruledwidth=\skip65
+\algocf@inoutbox=\box48
+\algocf@inputbox=\box49
+\AlCapSkip=\skip66
+\AlCapHSkip=\skip67
+\algoskipindent=\skip68
+\algocf@nlbox=\box50
+\algocf@hangingbox=\box51
+\algocf@untilbox=\box52
+\algocf@skipuntil=\skip69
+\algocf@capbox=\box53
+\algoheightruledefault=\skip70
+\algoheightrule=\skip71
+\algotitleheightruledefault=\skip72
+\algotitleheightrule=\skip73
+\c@algocfline=\count147
+\c@algocfproc=\count148
+\c@algocf=\count149
+\algocf@algoframe=\box54
+\algocf@algobox=\box55
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip70
-\bibsep=\skip71
+\bibhang=\skip74
+\bibsep=\skip75
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count145
+\c@NAT@ctr=\count150
 ) (uithesis.sty
 (tocbibind.sty
 Package: tocbibind 2010/10/13 v1.5k extra ToC listings
@@ -239,14 +257,14 @@ Package tocbibind Note: Using chapter style headings, unless overridden.
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ) (multirow.sty
-\bigstrutjot=\dimen141
+\bigstrutjot=\dimen142
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks41
+\KV@toks@=\toks42
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
@@ -268,10 +286,10 @@ Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count146
+\Gread@gobject=\count151
 ))
-\Gin@req@height=\dimen142
-\Gin@req@width=\dimen143
+\Gin@req@height=\dimen143
+\Gin@req@width=\dimen144
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\setspace\setspace.sty"
 Package: setspace 2011/12/19 v6.7a set line spacing
@@ -289,18 +307,18 @@ Package ifvtex Info: VTeX not detected.
 ("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count147
-\Gm@cntv=\count148
-\c@Gm@tempcnt=\count149
-\Gm@bindingoffset=\dimen144
-\Gm@wd@mp=\dimen145
-\Gm@odd@mp=\dimen146
-\Gm@even@mp=\dimen147
-\Gm@layoutwidth=\dimen148
-\Gm@layoutheight=\dimen149
-\Gm@layouthoffset=\dimen150
-\Gm@layoutvoffset=\dimen151
-\Gm@dimlist=\toks42
+\Gm@cnth=\count152
+\Gm@cntv=\count153
+\c@Gm@tempcnt=\count154
+\Gm@bindingoffset=\dimen145
+\Gm@wd@mp=\dimen146
+\Gm@odd@mp=\dimen147
+\Gm@even@mp=\dimen148
+\Gm@layoutwidth=\dimen149
+\Gm@layoutheight=\dimen150
+\Gm@layouthoffset=\dimen151
+\Gm@layoutvoffset=\dimen152
+\Gm@dimlist=\toks43
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
@@ -310,16 +328,20 @@ Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: Fixing ArabTeX on input line 50.
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen152
-\captionmargin@=\dimen153
-\captionwidth=\dimen154
-\caption@tempdima=\dimen155
-\caption@indent=\dimen156
-\caption@parindent=\dimen157
-\caption@hangindent=\dimen158
+\captionmargin=\dimen153
+\captionmargin@=\dimen154
+\captionwidth=\dimen155
+\caption@tempdima=\dimen156
+\caption@indent=\dimen157
+\caption@parindent=\dimen158
+\caption@hangindent=\dimen159
 )
-\c@ContinuedFloat=\count150
-)
+\c@ContinuedFloat=\count155
+Package caption Info: longtable package is loaded.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\caption\ltcaption.sty"
+Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
+))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\subfloat\subfloat.sty"
 Package: subfloat 2003/08/21 version 2.14
 
@@ -373,16 +395,16 @@ Package: pdfpages 2016/12/11 v0.5g Insert pages of external PDF documents (AM)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count151
-\calc@Bcount=\count152
-\calc@Adimen=\dimen159
-\calc@Bdimen=\dimen160
-\calc@Askip=\skip72
-\calc@Bskip=\skip73
+\calc@Acount=\count156
+\calc@Bcount=\count157
+\calc@Adimen=\dimen160
+\calc@Bdimen=\dimen161
+\calc@Askip=\skip76
+\calc@Bskip=\skip77
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count153
-\calc@Cskip=\skip74
+\calc@Ccount=\count158
+\calc@Cskip=\skip78
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
 Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
@@ -407,47 +429,47 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 ))
-\AM@pagewidth=\dimen161
-\AM@pageheight=\dimen162
+\AM@pagewidth=\dimen162
+\AM@pageheight=\dimen163
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def"
 File: pppdftex.def 2016/12/11 v0.5g Pdfpages driver for pdfTeX (AM)
 )
-\AM@pagebox=\box52
-\AM@global@opts=\toks43
-\AM@toc@title=\toks44
-\c@AM@survey=\count154
-\AM@templatesizebox=\box53
+\AM@pagebox=\box56
+\AM@global@opts=\toks44
+\AM@toc@title=\toks45
+\c@AM@survey=\count159
+\AM@templatesizebox=\box57
 ) (fncychap.sty
 Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
-\RW=\skip75
-\mylen=\skip76
-\myhi=\skip77
-\px=\skip78
-\py=\skip79
-\pyy=\skip80
-\pxx=\skip81
+\RW=\skip79
+\mylen=\skip80
+\myhi=\skip81
+\px=\skip82
+\py=\skip83
+\pyy=\skip84
+\pxx=\skip85
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\colortbl\colortbl.sty"
 Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
 Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen163
-\extrarowheight=\dimen164
-\NC@list=\toks45
-\extratabsurround=\skip82
-\backup@length=\skip83
+\col@sep=\dimen164
+\extrarowheight=\dimen165
+\NC@list=\toks46
+\extratabsurround=\skip86
+\backup@length=\skip87
 )
-\everycr=\toks46
-\minrowclearance=\skip84
+\everycr=\toks47
+\minrowclearance=\skip88
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count155
-\float@exts=\toks47
-\float@box=\box54
-\@float@everytoks=\toks48
-\@floatcapt=\box55
+\c@float@type=\count160
+\float@exts=\toks48
+\float@box=\box58
+\@float@everytoks=\toks49
+\@floatcapt=\box59
 ) (fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
@@ -457,35 +479,35 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
 Package: fancyhdr 2016/09/06 3.8 Extensive control of page headers and footers
-\fancy@headwidth=\skip85
-\f@ncyO@elh=\skip86
-\f@ncyO@erh=\skip87
-\f@ncyO@olh=\skip88
-\f@ncyO@orh=\skip89
-\f@ncyO@elf=\skip90
-\f@ncyO@erf=\skip91
-\f@ncyO@olf=\skip92
-\f@ncyO@orf=\skip93
+\fancy@headwidth=\skip89
+\f@ncyO@elh=\skip90
+\f@ncyO@erh=\skip91
+\f@ncyO@olh=\skip92
+\f@ncyO@orh=\skip93
+\f@ncyO@elf=\skip94
+\f@ncyO@erf=\skip95
+\f@ncyO@olf=\skip96
+\f@ncyO@orf=\skip97
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
-\lst@mode=\count156
-\lst@gtempboxa=\box56
-\lst@token=\toks49
-\lst@length=\count157
-\lst@currlwidth=\dimen165
-\lst@column=\count158
-\lst@pos=\count159
-\lst@lostspace=\dimen166
-\lst@width=\dimen167
-\lst@newlines=\count160
-\lst@lineno=\count161
-\lst@maxwidth=\dimen168
+\lst@mode=\count161
+\lst@gtempboxa=\box60
+\lst@token=\toks50
+\lst@length=\count162
+\lst@currlwidth=\dimen166
+\lst@column=\count163
+\lst@pos=\count164
+\lst@lostspace=\dimen167
+\lst@width=\dimen168
+\lst@newlines=\count165
+\lst@lineno=\count166
+\lst@maxwidth=\dimen169
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count162
-\lst@skipnumbers=\count163
-\lst@framebox=\box57
+\c@lstnumber=\count167
+\lst@skipnumbers=\count168
+\lst@framebox=\box61
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
 File: listings.cfg 2015/06/04 1.6 listings configuration
@@ -503,11 +525,11 @@ Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)
-\FV@CodeLineNo=\count164
+\FV@CodeLineNo=\count169
 \FV@InFile=\read1
-\FV@TabBox=\box58
-\c@FancyVerbLine=\count165
-\FV@StepNumber=\count166
+\FV@TabBox=\box62
+\c@FancyVerbLine=\count170
+\FV@StepNumber=\count171
 \FV@OutFile=\write5
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\hhline.sty"
 Package: hhline 2014/10/28 v2.03 Table rule package (DPC)
@@ -519,24 +541,6 @@ Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
-)
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty"
-Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip94
-\LTright=\skip95
-\LTpre=\skip96
-\LTpost=\skip97
-\LTchunksize=\count167
-\LTcapwidth=\dimen169
-\LT@head=\box59
-\LT@firsthead=\box60
-\LT@foot=\box61
-\LT@lastfoot=\box62
-\LT@cols=\count168
-\LT@rows=\count169
-\c@LT@tables=\count170
-\c@LT@chunks=\count171
-\LT@p@ftn=\toks50
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
 Package: hyperref 2016/06/24 v6.83q Hypertext links for LaTeX
@@ -677,29 +681,40 @@ File: babel.def 2016/04/23 3.9r Babel common definitions
 (hype.indonesia.tex) (istilah.tex) (skripsi.aux (sampul.aux) (judul_dalam.aux)
 (orisinal.aux) (pengesahan_sidang.aux) (pengantar.aux)
 (persetujuan_publikasi.aux) (abstrak.aux) (abstract.aux) (bab1.aux) (bab2.aux)
-(bab3.aux) (bab4.aux) (bab5.aux) (bab6.aux))
+(bab3.aux) (bab4.aux) (bab5.aux) (bab6.aux) (markLampiran.aux) (lampiran.aux
+
+LaTeX Warning: Label `lampiran:postag' multiply defined.
+
+
+LaTeX Warning: Label `lampiran:postag' multiply defined.
+
+) (lampiran_disease.aux) (lampiran_symptom.aux) (lampiran_treatment.aux)
+(lampiran_drug.aux
+
+LaTeX Warning: Label `lampiran:symptom' multiply defined.
+
+))
 \openout1 = `skripsi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 62.
-LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 62
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 63.
+LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 63
 .
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omspzccm.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omspzccm.fd"
 File: omspzccm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/pzccm.
 )
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -765,15 +780,10 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
-Package caption Info: longtable package is loaded.
-("C:\Program Files\MiKTeX 2.9\tex\latex\caption\ltcaption.sty"
-Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
-)
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box64
 \c@lstlisting=\count189
-Package hyperref Info: Link coloring OFF on input line 62.
-
+Package hyperref Info: Link coloring OFF on input line 63.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -782,9 +792,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count190
 )
-LaTeX Info: Redefining \ref on input line 62.
-LaTeX Info: Redefining \pageref on input line 62.
-LaTeX Info: Redefining \nameref on input line 62.
+LaTeX Info: Redefining \ref on input line 63.
+LaTeX Info: Redefining \pageref on input line 63.
+LaTeX Info: Redefining \nameref on input line 63.
 
 (skripsi.out) (skripsi.out)
 \@outlinefile=\write6
@@ -802,7 +812,7 @@ LaTeX Info: Redefining \nameref on input line 62.
 \openout2 = `sampul.aux'.
 
  (sampul.tex
-<pics/makara.png, id=407, 154.86429pt x 154.34807pt>
+<pics/makara.png, id=431, 154.86429pt x 154.34807pt>
 File: pics/makara.png Graphic file (type png)
  <use pics/makara.png>
 Package pdftex.def Info: pics/makara.png used on input line 15.
@@ -910,7 +920,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--46
 ])
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\uppercase' on input line 96.
+(hyperref)                removing `\uppercase' on input line 97.
 
 \openout2 = `pengantar.aux'.
 
@@ -926,11 +936,11 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 97.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 98.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 97.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 98.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.99994pt on input line 97.
+(Font)              scaled to size 8.99994pt on input line 98.
 [5]
 \openout2 = `persetujuan_publikasi.aux'.
 
@@ -1100,7 +1110,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2] <images/merforqa.png, id=793, 1381.41093pt x 538.26094pt>
+[2] <images/merforqa.png, id=835, 1381.41093pt x 538.26094pt>
 File: images/merforqa.png Graphic file (type png)
 
 <use images/merforqa.png>
@@ -1202,7 +1212,7 @@ Underfull \hbox (badness 1043) in paragraph at lines 10--11
 m/n/12 dan \T1/ptm/m/it/12 Information Extraction \T1/ptm/m/n/12 untuk
  []
 
-<images/mer_ilustration.png, id=832, 1407.75937pt x 442.65375pt>
+<images/mer_ilustration.png, id=874, 1407.75937pt x 442.65375pt>
 File: images/mer_ilustration.png Graphic file (type png)
 
 <use images/mer_ilustration.png>
@@ -1284,7 +1294,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10] <images/simple_rnn.png, id=916, 1217.2978pt x 642.90187pt>
+[10] <images/simple_rnn.png, id=958, 1217.2978pt x 642.90187pt>
 File: images/simple_rnn.png Graphic file (type png)
 
 <use images/simple_rnn.png>
@@ -1298,14 +1308,14 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [11 <./images/simple_rnn.png>]
-<images/nodes_rnn.png, id=929, 1078.0275pt x 682.80093pt>
+<images/nodes_rnn.png, id=971, 1078.0275pt x 682.80093pt>
 File: images/nodes_rnn.png Graphic file (type png)
 
 <use images/nodes_rnn.png>
 Package pdftex.def Info: images/nodes_rnn.png used on input line 77.
 (pdftex.def)             Requested size: 318.67209pt x 201.84126pt.
 
-<images/lstm.png, id=950, 1020.81375pt x 727.96968pt>
+<images/lstm.png, id=992, 1020.81375pt x 727.96968pt>
 File: images/lstm.png Graphic file (type png)
  <use images/lstm.png>
 Package pdftex.def Info: images/lstm.png used on input line 87.
@@ -1365,7 +1375,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[15] <images/word2vec.png, id=1023, 1462.71469pt x 791.95876pt>
+[15] <images/word2vec.png, id=1065, 1462.71469pt x 791.95876pt>
 File: images/word2vec.png Graphic file (type png)
 
 <use images/word2vec.png>
@@ -1412,7 +1422,7 @@ Underfull \hbox (badness 1609) in paragraph at lines 14--15
 ulkan oleh
  []
 
-<images/arsitektur.png, id=1046, 1220.30907pt x 642.14906pt>
+<images/arsitektur.png, id=1088, 1220.30907pt x 642.14906pt>
 File: images/arsitektur.png Graphic file (type png)
 
 <use images/arsitektur.png>
@@ -1434,7 +1444,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 35--36
 []\T1/ptm/m/n/12 mengganti token url menjadi kata "url", misalnya token tautan
  []
 
-<images/pembersihandata.png, id=1061, 1078.78032pt x 388.45125pt>
+<images/pembersihandata.png, id=1103, 1078.78032pt x 388.45125pt>
 File: images/pembersihandata.png Graphic file (type png)
 
 <use images/pembersihandata.png>
@@ -1459,14 +1469,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--58
 >
  []
 
-<images/tokenisasi.png, id=1075, 922.19531pt x 306.39468pt>
+<images/tokenisasi.png, id=1117, 922.19531pt x 306.39468pt>
 File: images/tokenisasi.png Graphic file (type png)
 
 <use images/tokenisasi.png>
 Package pdftex.def Info: images/tokenisasi.png used on input line 63.
 (pdftex.def)             Requested size: 398.3386pt x 132.34557pt.
 
-<images/pemotongankalimat.png, id=1077, 1213.53375pt x 567.62062pt>
+<images/pemotongankalimat.png, id=1119, 1213.53375pt x 567.62062pt>
 File: images/pemotongankalimat.png Graphic file (type png)
 
 <use images/pemotongankalimat.png>
@@ -1487,7 +1497,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [22 <./images/pemotongankalimat.png>]
-<images/pelabelan.png, id=1098, 1038.88126pt x 944.02687pt>
+<images/pelabelan.png, id=1140, 1038.88126pt x 944.02687pt>
 File: images/pelabelan.png Graphic file (type png)
 
 <use images/pelabelan.png>
@@ -1500,7 +1510,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[23] <images/labeltoone.png, id=1108, 672.5928pt x 154.6578pt>
+[23] <images/labeltoone.png, id=1150, 672.5928pt x 154.6578pt>
 File: images/labeltoone.png Graphic file (type png)
 
 <use images/labeltoone.png>
@@ -1531,7 +1541,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 179--181
 mampu
  []
 
-<images/fiturkata.png, id=1128, 1340.00626pt x 1041.8925pt>
+<images/fiturkata.png, id=1170, 1340.00626pt x 1041.8925pt>
 File: images/fiturkata.png Graphic file (type png)
 
 <use images/fiturkata.png>
@@ -1545,7 +1555,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [26 <./images/fiturkata.png>]
-<images/fiturkamus.png, id=1140, 1047.16219pt x 845.40843pt>
+<images/fiturkamus.png, id=1182, 1047.16219pt x 845.40843pt>
 File: images/fiturkamus.png Graphic file (type png)
 
 <use images/fiturkamus.png>
@@ -1557,7 +1567,7 @@ Underfull \hbox (badness 1127) in paragraph at lines 205--206
 re-
  []
 
-<images/kamustoone.png, id=1142, 452.4102pt x 135.3858pt>
+<images/kamustoone.png, id=1184, 452.4102pt x 135.3858pt>
 File: images/kamustoone.png Graphic file (type png)
 
 <use images/kamustoone.png>
@@ -1571,7 +1581,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [27 <./images/fiturkamus.png>]
-<images/fiturstopword.png, id=1150, 821.31844pt x 892.83563pt>
+<images/fiturstopword.png, id=1192, 821.31844pt x 892.83563pt>
 File: images/fiturstopword.png Graphic file (type png)
 
 <use images/fiturstopword.png>
@@ -1585,7 +1595,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [28 <./images/kamustoone.png> <./images/fiturstopword.png>]
-<images/stopwordtoone.png, id=1159, 545.3976pt x 135.3858pt>
+<images/stopwordtoone.png, id=1201, 545.3976pt x 135.3858pt>
 File: images/stopwordtoone.png Graphic file (type png)
 
 <use images/stopwordtoone.png>
@@ -1597,7 +1607,7 @@ Underfull \hbox (badness 1033) in paragraph at lines 235--237
 lebih
  []
 
-<images/fiturpostag.png, id=1163, 773.89125pt x 827.34094pt>
+<images/fiturpostag.png, id=1205, 773.89125pt x 827.34094pt>
 File: images/fiturpostag.png Graphic file (type png)
 
 <use images/fiturpostag.png>
@@ -1622,7 +1632,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [30 <./images/fiturpostag.png>]
-<images/postagtoone.png, id=1177, 654.7662pt x 231.7458pt>
+<images/postagtoone.png, id=1219, 654.7662pt x 231.7458pt>
 File: images/postagtoone.png Graphic file (type png)
 
 <use images/postagtoone.png>
@@ -1653,7 +1663,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [32 <./images/postagtoone.png>]
-<images/fiturfrasa.png, id=1197, 762.59906pt x 734.745pt>
+<images/fiturfrasa.png, id=1239, 762.59906pt x 734.745pt>
 File: images/fiturfrasa.png Graphic file (type png)
 
 <use images/fiturfrasa.png>
@@ -1667,7 +1677,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [33 <./images/fiturfrasa.png>]
-<images/frasatoone.png, id=1206, 652.3572pt x 151.2852pt>
+<images/frasatoone.png, id=1248, 652.3572pt x 151.2852pt>
 File: images/frasatoone.png Graphic file (type png)
 
 <use images/frasatoone.png>
@@ -1681,13 +1691,13 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [34 <./images/frasatoone.png>]
-<images/lstm1.png, id=1216, 1036.62282pt x 405.01312pt>
+<images/lstm1.png, id=1258, 1036.62282pt x 405.01312pt>
 File: images/lstm1.png Graphic file (type png)
  <use images/lstm1.png>
 Package pdftex.def Info: images/lstm1.png used on input line 355.
 (pdftex.def)             Requested size: 318.67209pt x 124.50835pt.
 
-<images/concatlstm1.png, id=1218, 672.5928pt x 526.1256pt>
+<images/concatlstm1.png, id=1260, 672.5928pt x 526.1256pt>
 File: images/concatlstm1.png Graphic file (type png)
 
 <use images/concatlstm1.png>
@@ -1701,7 +1711,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [35 <./images/lstm1.png>]
-<images/iolstm1.png, id=1226, 1017.04968pt x 572.1375pt>
+<images/iolstm1.png, id=1268, 1017.04968pt x 572.1375pt>
 File: images/iolstm1.png Graphic file (type png)
 
 <use images/iolstm1.png>
@@ -1730,14 +1740,14 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[37] <images/lstm2.png, id=1246, 2190.68437pt x 1040.38687pt>
+[37] <images/lstm2.png, id=1288, 2190.68437pt x 1040.38687pt>
 File: images/lstm2.png Graphic file (type png)
 
 <use images/lstm2.png>
 Package pdftex.def Info: images/lstm2.png used on input line 409.
 (pdftex.def)             Requested size: 398.3386pt x 189.16655pt.
 
-<images/iolstm2.png, id=1248, 1152.55594pt x 785.18344pt>
+<images/iolstm2.png, id=1290, 1152.55594pt x 785.18344pt>
 File: images/iolstm2.png Graphic file (type png)
 
 <use images/iolstm2.png>
@@ -2034,7 +2044,7 @@ Underfull \hbox (badness 2035) in paragraph at lines 10--11
 i sudah
  []
 
-<images/histogramentitaskorpus.png, id=1626, 371.4678pt x 269.808pt>
+<images/histogramentitaskorpus.png, id=1668, 371.4678pt x 269.808pt>
 File: images/histogramentitaskorpus.png Graphic file (type png)
 
 <use images/histogramentitaskorpus.png>
@@ -2125,7 +2135,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[62] <images/radit.png, id=1679, 452.892pt x 280.4076pt>
+[62] <images/radit.png, id=1721, 452.892pt x 280.4076pt>
 File: images/radit.png Graphic file (type png)
 
 <use images/radit.png>
@@ -2143,7 +2153,7 @@ Overfull \hbox (12.15042pt too wide) in paragraph at lines 204--215
  [][] 
  []
 
-<images/histogram00.png, id=1693, 452.892pt x 280.4076pt>
+<images/histogram00.png, id=1735, 452.892pt x 280.4076pt>
 File: images/histogram00.png Graphic file (type png)
 
 <use images/histogram00.png>
@@ -2180,7 +2190,7 @@ Underfull \hbox (badness 4569) in paragraph at lines 288--289
 /m/it/12 F-Measure
  []
 
-<images/histogram2.png, id=1715, 452.892pt x 280.4076pt>
+<images/histogram2.png, id=1757, 452.892pt x 280.4076pt>
 File: images/histogram2.png Graphic file (type png)
 
 <use images/histogram2.png>
@@ -2194,10 +2204,6 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [66]
-
-LaTeX Warning: Reference `fig:owndict2' on page 67 undefined on input line 299.
-
-
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -2227,7 +2233,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[68] <images/histogram3.png, id=1740, 452.4102pt x 343.5234pt>
+[68] <images/histogram3.png, id=1783, 452.4102pt x 343.5234pt>
 File: images/histogram3.png Graphic file (type png)
 
 <use images/histogram3.png>
@@ -2245,7 +2251,7 @@ Overfull \hbox (12.15042pt too wide) in paragraph at lines 381--392
  [][] 
  []
 
-<images/histogram4.png, id=1756, 452.4102pt x 296.7888pt>
+<images/histogram4.png, id=1799, 452.4102pt x 296.7888pt>
 File: images/histogram4.png Graphic file (type png)
 
 <use images/histogram4.png>
@@ -2275,7 +2281,7 @@ Overfull \hbox (12.15042pt too wide) in paragraph at lines 431--442
  [][] 
  []
 
-<images/histogram5.png, id=1772, 452.892pt x 296.7888pt>
+<images/histogram5.png, id=1815, 452.892pt x 296.7888pt>
 File: images/histogram5.png Graphic file (type png)
 
 <use images/histogram5.png>
@@ -2319,7 +2325,7 @@ Overfull \hbox (12.15042pt too wide) in paragraph at lines 484--495
  [][] 
  []
 
-<images/histogram6.png, id=1798, 452.4102pt x 296.7888pt>
+<images/histogram6.png, id=1841, 452.4102pt x 296.7888pt>
 File: images/histogram6.png Graphic file (type png)
 
 <use images/histogram6.png>
@@ -2349,7 +2355,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[76] <images/histogram7.png, id=1820, 452.4102pt x 296.7888pt>
+[76] <images/histogram7.png, id=1863, 452.4102pt x 296.7888pt>
 File: images/histogram7.png Graphic file (type png)
 
 <use images/histogram7.png>
@@ -2378,7 +2384,7 @@ Overfull \hbox (12.15042pt too wide) in paragraph at lines 571--582
  [][] 
  []
 
-<images/histogram8.png, id=1835, 452.892pt x 299.6796pt>
+<images/histogram8.png, id=1878, 452.892pt x 299.6796pt>
 File: images/histogram8.png Graphic file (type png)
 
 <use images/histogram8.png>
@@ -2403,7 +2409,7 @@ Overfull \hbox (12.15042pt too wide) in paragraph at lines 614--625
  [][] 
  []
 
-<images/histogram9.png, id=1849, 452.892pt x 299.6796pt>
+<images/histogram9.png, id=1892, 452.892pt x 299.6796pt>
 File: images/histogram9.png Graphic file (type png)
 
 <use images/histogram9.png>
@@ -2417,7 +2423,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [80 <./images/histogram9.png>]
-<images/histogramrnnv2.png, id=1860, 452.892pt x 292.9344pt>
+<images/histogramrnnv2.png, id=1903, 452.892pt x 292.9344pt>
 File: images/histogramrnnv2.png Graphic file (type png)
 
 <use images/histogramrnnv2.png>
@@ -2447,13 +2453,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\uppercase' on input line 3.
 
 
-Underfull \hbox (badness 1983) in paragraph at lines 9--10
-\T1/ptm/m/n/12 Penelitian ini bertujuan untuk membangun sistem yang mampu melak
-ukan
- []
-
-
-Underfull \hbox (badness 1264) in paragraph at lines 15--16
+Underfull \hbox (badness 1264) in paragraph at lines 13--14
 \T1/ptm/m/n/12 arsitektur LSTMs dengan 1 layer, \T1/ptm/m/it/12 f-measure \T1/p
 tm/m/n/12 sama dengan percobaan untuk
  []
@@ -2463,7 +2463,7 @@ tm/m/n/12 sama dengan percobaan untuk
 
 
 ]
-Underfull \hbox (badness 1817) in paragraph at lines 25--26
+Underfull \hbox (badness 1817) in paragraph at lines 23--24
 \T1/ptm/m/n/12 perlu penambahan data \T1/ptm/m/it/12 training \T1/ptm/m/n/12 da
 n \T1/ptm/m/it/12 testing \T1/ptm/m/n/12 mengingat \T1/ptm/m/it/12 deep learnin
 g
@@ -2505,8 +2505,6 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [87])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 160.
-
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -2514,12 +2512,2126 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [88]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
- (skripsi.aux (sampul.aux) (judul_dalam.aux) (orisinal.aux)
-(pengesahan_sidang.aux) (pengantar.aux) (persetujuan_publikasi.aux)
-(abstrak.aux) (abstract.aux) (bab1.aux) (bab2.aux) (bab3.aux) (bab4.aux)
-(bab5.aux) (bab6.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
+\openout2 = `markLampiran.aux'.
+
+ (markLampiran.texpdfTeX warning (ext4): destination with the same identifier (
+name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.14 \end{titlepage}
+                     [1
+
+])
+\openout2 = `lampiran.aux'.
+
+ (lampiran.tex
+Overfull \hbox (50.83138pt too wide) in alignment at lines 3--9
+ [] [] [] [] 
+ []
+
+
+Overfull \hbox (50.83138pt too wide) in alignment at lines 9--11
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 6493) in paragraph at lines 12--12
+\T1/ptm/m/n/12 dua satuan bahasa atau lebih yang
+ []
+
+
+Underfull \hbox (badness 2707) in paragraph at lines 12--12
+\T1/ptm/m/n/12 masing-masing mempunyai kedudukan
+ []
+
+
+Underfull \hbox (badness 6141) in paragraph at lines 13--13
+[]|\T1/ptm/m/n/12 Numeralia kardinal; yaitu numeralia
+ []
+
+
+Underfull \hbox (badness 1348) in paragraph at lines 13--13
+\T1/ptm/m/n/12 0;025; 0;525; banyak; kedua;
+ []
+
+
+Underfull \hbox (badness 3148) in paragraph at lines 14--14
+[]|\T1/ptm/m/n/12 Numeralia ordinal menyatakan urutan
+ []
+
+
+Underfull \hbox (badness 2261) in paragraph at lines 14--14
+\T1/ptm/m/n/12 dan menjadi jawaban atas pertanyaan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\T1/ptm/m/n/12 Artikel bertugas membatasi makna
+ []
+
+
+Underfull \hbox (badness 3302) in paragraph at lines 16--16
+[]|\T1/ptm/m/n/12 Kata bahasa asing adalah kata yang
+ []
+
+
+Underfull \hbox (badness 1132) in paragraph at lines 16--16
+\T1/ptm/m/n/12 berasal dari bahasa asing yang belum
+ []
+
+
+Underfull \hbox (badness 6188) in paragraph at lines 16--16
+\T1/ptm/m/n/12 dasarnya; kata bahasa asing adalah
+ []
+
+
+Underfull \hbox (badness 2608) in paragraph at lines 17--17
+\T1/ptm/m/n/12 dengan konstituen di depan preposisi
+ []
+
+
+Underfull \hbox (badness 1314) in paragraph at lines 17--17
+[]|\T1/ptm/m/n/12 dalam; dengan; di; ke; oleh;
+ []
+
+
+Underfull \hbox (badness 1748) in paragraph at lines 18--18
+\T1/ptm/m/n/12 keterangan yang lebih khusus tentang
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 18--18
+\T1/ptm/m/n/12 sesuatu yang dinyatakan oleh nomina
+ []
+
+
+Underfull \hbox (badness 1286) in paragraph at lines 18--18
+[]|\T1/ptm/m/n/12 bersih; panjang; hitam; lama;
+ []
+
+
+Underfull \hbox (badness 3884) in paragraph at lines 23--23
+[]|\T1/ptm/m/n/12 Penggolong menempatkan nomina ke
+ []
+
+
+Underfull \hbox (badness 3612) in paragraph at lines 25--25
+[]|\T1/ptm/m/n/12 Pronomina persona; yaitu pronomina
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--26
+[]|\T1/ptm/m/n/12 Adverbia; atau disebut juga kata
+ []
+
+
+Underfull \hbox (badness 5431) in paragraph at lines 27--27
+[]|\T1/ptm/m/n/12 Dalam penelitian ini; POS tag RP
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+\T1/ptm/m/n/12 yang digunakan untuk menegaskan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+\T1/ptm/m/n/12 kalimat interogatif; imperatif; atau
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 28--28
+\T1/ptm/m/n/12 tanpa; dengan; bahwa; yang;
+ []
+
+
+Underfull \hbox (badness 2460) in paragraph at lines 29--29
+[]|\T1/ptm/m/n/12 Simbol; yang diberi POS tag SYM;
+ []
+
+
+Underfull \hbox (badness 5847) in paragraph at lines 31--31
+[]|\T1/ptm/m/n/12 merancang; mengatur; pergi;
+ []
+
+
+Overfull \hbox (50.83138pt too wide) in alignment at lines 11--31
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 3930) in paragraph at lines 32--32
+[]|\T1/ptm/m/n/12 Pronomina penanya digunakan dalam
+ []
+
+
+Underfull \hbox (badness 5862) in paragraph at lines 32--32
+\T1/ptm/m/n/12 kalimat interogatif sebagai pemarkah
+ []
+
+
+Underfull \hbox (badness 1590) in paragraph at lines 33--33
+\T1/ptm/m/n/12 diketahui atau belum diketahui secara
+ []
+
+
+Overfull \hbox (50.83138pt too wide) in alignment at lines 31--34
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.34 \end{longtable}
+                     [1
+
+
+]
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.34 \end{longtable}
+                     [2])
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.157  	\include{lampiran}
+                           [3]
+\openout2 = `lampiran_disease.aux'.
+
+ (lampiran_disease.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--8
+[]|\T1/ptm/m/n/12 Duchene muscular
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/ptm/m/n/12 Infeksi sitome-ga-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/ptm/m/n/12 Toksoplasmosis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\T1/ptm/m/n/12 Hematom intra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\T1/ptm/m/n/12 Perdarahan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--16
+[]|\T1/ptm/m/n/12 Ensefalopati
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--16
+[]|\T1/ptm/m/n/12 Meniere’s
+ []
+
+
+Underfull \hbox (badness 3557) in paragraph at lines 17--17
+[]|\T1/ptm/m/n/12 Benign paroxysmal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--18
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--18
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+[]|\T1/ptm/m/n/12 Complete spinal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--20
+[]|\T1/ptm/m/n/12 Sindrom kauda
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\T1/ptm/m/n/12 Dorsal root
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--22
+[]|\T1/ptm/m/n/12 Acute medulla
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--22
+[]|\T1/ptm/m/n/12 Hernia nucleus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/ptm/m/n/12 Trauma Medula
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+[]|\T1/ptm/m/n/12 Carpal tunnel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+[]|\T1/ptm/m/n/12 Tarsal tunnel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+[]|\T1/ptm/m/n/12 Guillain Barre
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--26
+[]|\T1/ptm/m/n/12 Von Recklaing
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 3--26
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+[]|\T1/ptm/m/n/12 Mild Cognitive
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--28
+[]|\T1/ptm/m/n/12 Gangguan skizo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--29
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]|\T1/ptm/m/n/12 post-partum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]|\T1/ptm/m/n/12 Agorafobia denga-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
+[]|\T1/ptm/m/n/12 Gangguan cemas
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--32
+[]|\T1/ptm/m/n/12 Gangguan obsesif
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--32
+[]|\T1/ptm/m/n/12 Reaksi terhadap
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--32
+[]|\T1/ptm/m/n/12 gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 4913) in paragraph at lines 34--34
+[]|\T1/ptm/m/n/12 Gangguan identitas
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+\T1/ptm/m/n/12 perkembangan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--35
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 35--35
+[]|\T1/ptm/m/n/12 Gangguan tingkah
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+[]|\T1/ptm/m/n/12 Chronic motor of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+[]|\T1/ptm/m/n/12 Transient tics
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+[]|\T1/ptm/m/n/12 Functional
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
+[]|\T1/ptm/m/n/12 Uncoordinated
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T1/ptm/m/n/12 Sleep-wake cycle
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T1/ptm/m/n/12 Benda asing di
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+[]|\T1/ptm/m/n/12 Perdarahan subkon
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]|\T1/ptm/m/n/12 Laserasi kelopak
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]|\T1/ptm/m/n/12 Retraksi kelopak
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--45
+[]|\T1/ptm/m/n/12 Laserasi duktus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--46
+[]|\T1/ptm/m/n/12 Benda asing di
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 26--46
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+[]|\T1/ptm/m/n/12 Kerato konju-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--51
+[]|\T1/ptm/m/n/12 Hipermetropia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
+[]|\T1/ptm/m/n/12 Gangguan lapang
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
+[]|\T1/ptm/m/n/12 oklusi pembuluh
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--58
+[]|\T1/ptm/m/n/12 Inflamasi pada
+ []
+
+
+Underfull \hbox (badness 1215) in paragraph at lines 58--58
+[]|\T1/ptm/m/n/12 Herpes zoster pada
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--60
+[]|\T1/ptm/m/n/12 Perforasi membran
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--62
+[]|\T1/ptm/m/n/12 Deviasi septum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--63
+[]|\T1/ptm/m/n/12 Furunkel pada
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--64
+[]|\T1/ptm/m/n/12 Rhinitis medika
+ []
+
+
+Underfull \hbox (badness 3514) in paragraph at lines 65--65
+[]|\T1/ptm/m/n/12 Sinusitis maksilaris
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+[]|\T1/ptm/m/n/12 Fistula dan kista-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+\T1/ptm/m/n/12 brankial lateral
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 46--66
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.66 ...teral danmedial & Higroma kistik \\ \hline
+                                                   [4
+
+
+]
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.66 ...teral danmedial & Higroma kistik \\ \hline
+                                                   [5]
+Underfull \hbox (badness 10000) in paragraph at lines 68--68
+[]|\T1/ptm/m/n/12 Acute Respi-ra-tor-
+ []
+
+
+Underfull \hbox (badness 2512) in paragraph at lines 70--70
+[]|\T1/ptm/m/n/12 Pseudo-croop acute
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+[]|\T1/ptm/m/n/12 Karsinoma
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+[]|\T1/ptm/m/n/12 Displasia bronko-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+[]|\T1/ptm/m/n/12 Pneumonia,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--74
+[]|\T1/ptm/m/n/12 Tuberkulosis paru
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--74
+[]|\T1/ptm/m/n/12 Multi Drug
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
+[]|\T1/ptm/m/n/12 Paru Obstruksi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
+\T1/ptm/m/n/12 Kronik (PPOK)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--79
+[]|\T1/ptm/m/n/12 Penyakit paru
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--79
+[]|\T1/ptm/m/n/12 Obstructive Sleep
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--79
+[]|\T1/ptm/m/n/12 Kelainan jantung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--80
+[]|\T1/ptm/m/n/12 Ventricular Septal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--80
+[]|\T1/ptm/m/n/12 Patent Ductus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+[]|\T1/ptm/m/n/12 Radang pada
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--84
+[]|\T1/ptm/m/n/12 Gagal jantung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--84
+[]|\T1/ptm/m/n/12 Cardio respiratory
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--84
+[]|\T1/ptm/m/n/12 Kelainan katup
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 66--86
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--87
+[]|\T1/ptm/m/n/12 Ekstrasistol supra-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--87
+[]|\T1/ptm/m/n/12 Ekstrasistol
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--87
+[]|\T1/ptm/m/n/12 Bundle Branch
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--88
+[]|\T1/ptm/m/n/12 Kor pulmonale
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--90
+[]|\T1/ptm/m/n/12 Buerger’s
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--90
+\T1/ptm/m/n/12 (Throm-bo-a-ngiitis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
+[]|\T1/ptm/m/n/12 Subclavian steal-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+[]|\T1/ptm/m/n/12 Obstructed
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+[]|\T1/ptm/m/n/12 Trombosis vena
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--94
+[]|\T1/ptm/m/n/12 Insufisiensi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--95
+[]|\T1/ptm/m/n/12 Sumbing pada
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--98
+[]|\T1/ptm/m/n/12 Lesi korosif pada
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
+[]|\T1/ptm/m/n/12 Malrotasi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
+\T1/ptm/m/n/12 traktusgastro-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--101
+[]|\T1/ptm/m/n/12 Infeksi pada
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--102
+[]|\T1/ptm/m/n/12 Refluks gastro-e-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 102--102
+[]|\T1/ptm/m/n/12 Ulkus (gaster,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--103
+[]|\T1/ptm/m/n/12 Divertikulum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--103
+[]|\T1/ptm/m/n/12 Fistula umbilikal,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--103
+\T1/ptm/m/n/12 omphalos cole
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--106
+[]|\T1/ptm/m/n/12 Penyakit cacing
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 86--106
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.106 ...cing tambang & Strongiloidiasis \\ \hline
+                                                   [6]
+Underfull \hbox (badness 10000) in paragraph at lines 110--110
+[]|\T1/ptm/m/n/12 hidrops kandung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--112
+[]|\T1/ptm/m/n/12 Disentri basiler,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+[]|\T1/ptm/m/n/12 Irritable Bowel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--114
+[]|\T1/ptm/m/n/12 Penyakit
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--114
+[]|\T1/ptm/m/n/12 Enterokolitis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+[]|\T1/ptm/m/n/12 Gastrointestinal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+[]|\T1/ptm/m/n/12 Infeksi saluran
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+[]|\T1/ptm/m/n/12 Glomerulonefritis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 119--119
+[]|\T1/ptm/m/n/12 Glomerulonefritis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--120
+[]|\T1/ptm/m/n/12 Penyakit ginjal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ptm/m/n/12 Ginjal polikistik
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 121--121
+[]|\T1/ptm/m/n/12 Pielonefritis tanpa
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--122
+[]|\T1/ptm/m/n/12 Nekrosis tubular
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--125
+[]|\T1/ptm/m/n/12 Ruptur kandung
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 106--126
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.7}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.126 ...minoma testis & Teratoma testis \\ \hline
+                                                   [7]
+Underfull \hbox (badness 10000) in paragraph at lines 127--127
+[]|\T1/ptm/m/n/12 Hiperplasia prostat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--129
+[]|\T1/ptm/m/n/12 Infeksi virus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--129
+[]|\T1/ptm/m/n/12 Infeksi saluran
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--129
+[]|\T1/ptm/m/n/12 Kondiloma
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--132
+[]|\T1/ptm/m/n/12 Aborsi sponta-nin-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--133
+[]|\T1/ptm/m/n/12 Aborsi spontan-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--133
+[]|\T1/ptm/m/n/12 Hiperemesis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--133
+[]|\T1/ptm/m/n/12 Inkompatibilitas
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
+[]|\T1/ptm/m/n/12 Hipertensi pada
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--137
+[]|\T1/ptm/m/n/12 Diproporsi kepala
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--138
+[]|\T1/ptm/m/n/12 Anemia defisiensi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--138
+[]|\T1/ptm/m/n/12 Intra-Uterine
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--141
+[]|\T1/ptm/m/n/12 Ruptur perineum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--141
+[]|\T1/ptm/m/n/12 Ruptur perineum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--141
+[]|\T1/ptm/m/n/12 Ruptur perineum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
+[]|\T1/ptm/m/n/12 Ruptur perineum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
+[]|\T1/ptm/m/n/12 Perdarahan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 144--144
+[]|\T1/ptm/m/n/12 Trombosis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
+[]|\T1/ptm/m/n/12 abses kelenjar
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
+[]|\T1/ptm/m/n/12 Malformasi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--146
+[]|\T1/ptm/m/n/12 Corpus alienum
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 126--146
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.8}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.146 ...alienum vaginae & Kista Gartner \\ \hline
+                                                   [8]
+Underfull \hbox (badness 10000) in paragraph at lines 147--147
+[]|\T1/ptm/m/n/12 Malformasi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
+[]|\T1/ptm/m/n/12 Prolaps uterus,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 148--148
+[]|\T1/ptm/m/n/12 Hiperplasia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--149
+[]|\T1/ptm/m/n/12 perimenopausal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--150
+[]|\T1/ptm/m/n/12 Karsinoma
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+[]|\T1/ptm/m/n/12 Torsi dan ruptur
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+[]|\T1/ptm/m/n/12 Korio karsinoma
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--153
+[]|\T1/ptm/m/n/12 Fibroadenoma
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--155
+[]|\T1/ptm/m/n/12 Diabetes melitus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--156
+[]|\T1/ptm/m/n/12 Diabetes melitus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--156
+[]|\T1/ptm/m/n/12 Ketoasidosis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--156
+\T1/ptm/m/n/12 diabetikum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--156
+[]|\T1/ptm/m/n/12 Hiperglikemia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--158
+[]|\T1/ptm/m/n/12 Defisiensi hormon
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
+[]|\T1/ptm/m/n/12 Cushing’s
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
+[]|\T1/ptm/m/n/12 Addison’s
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--162
+[]|\T1/ptm/m/n/12 Malnutrisi energi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--164
+[]|\T1/ptm/m/n/12 Anemia defisiensi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 165--165
+[]|\T1/ptm/m/n/12 Anemia megalo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--166
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--166
+[]|\T1/ptm/m/n/12 Von Wille-bran-
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 146--166
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.9}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.166 ...lia & Von Willebrand’sdisease \\ \hline
+                                                   [9]
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
+[]|\T1/ptm/m/n/12 Inkompatibilitas
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--168
+[]|\T1/ptm/m/n/12 Limfoma non
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--170
+[]|\T1/ptm/m/n/12 Dengue shock
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--171
+[]|\T1/ptm/m/n/12 Leishmaniasis dan
+ []
+
+
+Underfull \hbox (badness 3557) in paragraph at lines 172--172
+[]|\T1/ptm/m/n/12 Lupus erite-matosus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
+[]|\T1/ptm/m/n/12 Polimialgia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--173
+[]|\T1/ptm/m/n/12 Juvenile chronic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--173
+[]|\T1/ptm/m/n/12 Henoch-schoenlein
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--176
+[]|\T1/ptm/m/n/12 Fraktur tulang
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--176
+[]|\T1/ptm/m/n/12 dislokasi tulang
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--176
+[]|\T1/ptm/m/n/12 Osteogenesis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--177
+[]|\T1/ptm/m/n/12 Ricketsia, osteo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
+[]|\T1/ptm/m/n/12 Tenosinovitis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
+[]|\T1/ptm/m/n/12 Tumor tulang
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
+[]|\T1/ptm/m/n/12 Teratoma sakro-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
+[]|\T1/ptm/m/n/12 Lesi pada
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--182
+[]|\T1/ptm/m/n/12 Nekrosis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--182
+[]|\T1/ptm/m/n/12 Ruptur tendon
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--183
+[]|\T1/ptm/m/n/12 Instabilitas sendi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 184--184
+[]|\T1/ptm/m/n/12 Malformasi
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 166--186
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.10}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.186 ...steomielitis & Rhabdomiosarkoma \\ \hline
+                                                   [10]
+Underfull \hbox (badness 10000) in paragraph at lines 189--189
+[]|\T1/ptm/m/n/12 Kondiloma
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--189
+[]|\T1/ptm/m/n/12 Moluskum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--191
+[]|\T1/ptm/m/n/12 Folikulitis super-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--195
+[]|\T1/ptm/m/n/12 Kandidosis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--196
+[]|\T1/ptm/m/n/12 Cutaneus larva
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]|\T1/ptm/m/n/12 Reaksi gigitan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]|\T1/ptm/m/n/12 Dermatitis konta-
+ []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 197--197
+[]|\T1/ptm/m/n/12 Dermatitis konta-ka-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 198--198
+[]|\T1/ptm/m/n/12 Dermatitis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 198--198
+[]|\T1/ptm/m/n/12 Liken simpleks
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 198--198
+[]|\T1/ptm/m/n/12 Liken simpleks
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+[]|\T1/ptm/m/n/12 Akne vulgaris
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+[]|\T1/ptm/m/n/12 Akne vulgaris
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
+[]|\T1/ptm/m/n/12 Hidradenitis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
+[]|\T1/ptm/m/n/12 Toxic epidermal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
+[]|\T1/ptm/m/n/12 Sindrom Stevens
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 202--202
+[]|\T1/ptm/m/n/12 Lupus erite-matosis
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
+[]|\T1/ptm/m/n/12 Hiperpigmentasi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
+[]|\T1/ptm/m/n/12 Hipopigmentasi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+[]|\T1/ptm/m/n/12 Squamous cell
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+[]|\T1/ptm/m/n/12 Karsinoma sel
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 186--206
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.11}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.206 ...Xanthoma & Hemangioma & Lentigo \\ \hline
+                                                   [11]
+Overfull \hbox (49.99994pt too wide) in alignment at lines 206--210
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.12}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.210 \end{longtable}
+                      [12])
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.13}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.158  	\include{lampiran_disease}
+                                   [13]
+\openout2 = `lampiran_symptom.aux'.
+
+ (lampiran_symptom.tex
+Underfull \hbox (badness 10000) in paragraph at lines 8--8
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[]|\T1/ptm/m/n/12 Penyalahgunaan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]|\T1/ptm/m/n/12 Penurunan fungsi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--12
+[]|\T1/ptm/m/n/12 Gerakan tidak
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--12
+[]|\T1/ptm/m/n/12 Gangguan perilaku
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\T1/ptm/m/n/12 Kepercayaan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--14
+[]|\T1/ptm/m/n/12 Gangguan perilaku
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\T1/ptm/m/n/12 Masalah akibat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\T1/ptm/m/n/12 penggunaan lensa
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--18
+[]|\T1/ptm/m/n/12 Mata terlihat
+ []
+
+
+Underfull \hbox (badness 4981) in paragraph at lines 20--20
+[]|\T1/ptm/m/n/12 Keluar cairan dari
+ []
+
+
+Underfull \hbox (badness 1097) in paragraph at lines 22--22
+[]|\T1/ptm/m/n/12 Gangguan lapangan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\T1/ptm/m/n/12 Benda asing di
+ []
+
+
+Underfull \hbox (badness 1205) in paragraph at lines 24--24
+[]|\T1/ptm/m/n/12 Benda asing dalam
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 3--26
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 1205) in paragraph at lines 27--27
+[]|\T1/ptm/m/n/12 Benda asing dalam
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--28
+[]|\T1/ptm/m/n/12 Sumbatan jalan
+ []
+
+
+Underfull \hbox (badness 1527) in paragraph at lines 30--30
+[]|\T1/ptm/m/n/12 Benjolan di daerah
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--33
+[]|\T1/ptm/m/n/12 Berak berwarna
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+[]|\T1/ptm/m/n/12 Berak seperti
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+[]|\T1/ptm/m/n/12 Peningkatan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+\T1/ptm/m/n/12 frekuensi buang
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--37
+\T1/ptm/m/n/12 buang air kecil
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
+[]|\T1/ptm/m/n/12 Waktu kencing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
+\T1/ptm/m/n/12 preputium
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--38
+[]|\T1/ptm/m/n/12 Berkurangnya
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+[]|\T1/ptm/m/n/12 Tidak dapat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--39
+[]|\T1/ptm/m/n/12 Air kencing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T1/ptm/m/n/12 Keluar darah dari
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--40
+[]|\T1/ptm/m/n/12 Pancaran kencing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+[]|\T1/ptm/m/n/12 Darah keluar
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+\T1/ptm/m/n/12 bersama produk
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--41
+[]|\T1/ptm/m/n/12 Akhir kencing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]|\T1/ptm/m/n/12 Duh dari saluran
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--42
+[]|\T1/ptm/m/n/12 Benjolan saluran
+ []
+
+
+Underfull \hbox (badness 1527) in paragraph at lines 43--43
+[]|\T1/ptm/m/n/12 Benjolan di daerah
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 43--43
+[]|\T1/ptm/m/n/12 Perdarahan saat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]|\T1/ptm/m/n/12 Payudara
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
+[]|\T1/ptm/m/n/12 Gangguan daerah
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--45
+[]|\T1/ptm/m/n/12 vagina terasa
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--45
+[]|\T1/ptm/m/n/12 Puting tertarik
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--46
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 26--46
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+[]|\T1/ptm/m/n/12 nyeri saat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+[]|\T1/ptm/m/n/12 Payudara seperti
+ []
+
+
+Underfull \hbox (badness 1052) in paragraph at lines 47--47
+[]|\T1/ptm/m/n/12 Gangguan masame-
+ []
+
+
+Underfull \hbox (badness 1052) in paragraph at lines 48--48
+[]|\T1/ptm/m/n/12 Gangguan masaperi
+ []
+
+
+Underfull \hbox (badness 4072) in paragraph at lines 48--48
+[]|\T1/ptm/m/n/12 Nyeri perut waktu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--48
+[]|\T1/ptm/m/n/12 Perdarahan vagina
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]|\T1/ptm/m/n/12 Anyang-anyangan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--50
+[]|\T1/ptm/m/n/12 Ambeien waktu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--50
+[]|\T1/ptm/m/n/12 Buah zakar tidak
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--50
+[]|\T1/ptm/m/n/12 Kehamilan tidak
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--51
+[]|\T1/ptm/m/n/12 Benjolan di lipat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--52
+[]|\T1/ptm/m/n/12 Gangguan fungsi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--52
+[]|\T1/ptm/m/n/12 Perdarahan lewat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--52
+[]|\T1/ptm/m/n/12 Produk ejakulat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
+[]|\T1/ptm/m/n/12 Berat bayi lahir
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+[]|\T1/ptm/m/n/12 Penurunan berat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+[]|\T1/ptm/m/n/12 Bercak merah di
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
+[]|\T1/ptm/m/n/12 Bengkak pada
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--60
+[]|\T1/ptm/m/n/12 Terlambat dapat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--61
+[]|\T1/ptm/m/n/12 sendi kelainan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+[]|\T1/ptm/m/n/12 Kuku berubah
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 46--66
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.14}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.66 ...enebal & Ketombe & Kulit menipis \\ \hline
+                                                   [14
+
+
+]
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.15}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.66 ...enebal & Ketombe & Kulit menipis \\ \hline
+                                                   [15]
+Underfull \hbox (badness 10000) in paragraph at lines 71--71
+[]|\T1/ptm/m/n/12 Gangguan
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 66--73
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.16}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.73 \end{longtable}
+                     [16])
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.17}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.159  	\include{lampiran_symptom}
+                                   [17]
+\openout2 = `lampiran_treatment.aux'.
+
+ (lampiran_treatment.tex)
+Runaway argument?
+{{KAMUS SYMPTOM} \begin {longtable}{|p{.25\textwidth }|p{.25\textwidth \ETC.
+! File ended while scanning use of \@xdblarg.
+<inserted text> 
+                \par 
+l.160  	\include{lampiran_treatment}
+                                    
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+\openout2 = `lampiran_drug.aux'.
+
+(lampiran_drug.tex
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+[]|\T1/ptm/m/n/12 benzatin benzi-lpe-
+ []
+
+
+Overfull \hbox (1.75374pt too wide) in paragraph at lines 25--25
+[]|\T1/ptm/m/n/12 fenoksimetilpenisilin| 
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 3--26
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--27
+[]|\T1/ptm/m/n/12 prokain benzi-lpe-
+ []
+
+
+Overfull \hbox (3.74614pt too wide) in paragraph at lines 29--29
+[]|\T1/ptm/m/n/12 sefpodoksimproksetil| 
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 26--46
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--50
+[]|\T1/ptm/m/n/12 medroksi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--66
+[]|\T1/ptm/m/n/12 low molecular
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 46--66
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.18}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.66 ...ow molecular weight iron dextran \\ \hline
+                                                   [18
+
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 67--67
+[]|\T1/ptm/m/n/12 low molecular
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--70
+[]|\T1/ptm/m/n/12 deferoksamin
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 72--72
+[]|\T1/ptm/m/n/12 albumin serum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
+[]|\T1/ptm/m/n/12 meglumin amido-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+[]|\T1/ptm/m/n/12 galactose micro-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
+[]|\T1/ptm/m/n/12 methylene diphos-
+ []
+
+
+Underfull \hbox (badness 5050) in paragraph at lines 78--78
+[]|\T1/ptm/m/n/12 diethylene triamine
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--79
+[]|\T1/ptm/m/n/12 iodohippurate
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--79
+[]|\T1/ptm/m/n/12 mercapto acetyl
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--80
+[]|\T1/ptm/m/n/12 macro agregate
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--80
+[]|\T1/ptm/m/n/12 MIBG oktreotid
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+[]|\T1/ptm/m/n/12 metoxy isobu-tyli-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+[]|\T1/ptm/m/n/12 stannous
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]|\T1/ptm/m/n/12 natrium amino-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--83
+[]|\T1/ptm/m/n/12 tuberkulin protein
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--85
+[]|\T1/ptm/m/n/12 gutta percha dan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--86
+[]|\T1/ptm/m/n/12 klorfenol
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 66--86
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--88
+[]|\T1/ptm/m/n/12 medisinal creoso-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--89
+[]|\T1/ptm/m/n/12 bahan tumpatan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
+[]|\T1/ptm/m/n/12 triamsinolon
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
+[]|\T1/ptm/m/n/12 dementil klor
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
+[]|\T1/ptm/m/n/12 surgical ginggival
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--98
+[]|\T1/ptm/m/n/12 estrogen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+[]|\T1/ptm/m/n/12 medroksi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--103
+[]|\T1/ptm/m/n/12 triamsinolon
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 86--106
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.19}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.106 ...apamil & bisoprolol & imidapril \\ \hline
+                                                   [19]
+Underfull \hbox (badness 10000) in paragraph at lines 123--123
+[]|\T1/ptm/m/n/12 triamsinolon
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--125
+[]|\T1/ptm/m/n/12 trinatrium sitrat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--126
+[]|\T1/ptm/m/n/12 kalsium polistirena
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 106--126
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.20}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.126 ...tuk injeksi & air untuk irigasi \\ \hline
+                                                   [20]
+Underfull \hbox (badness 10000) in paragraph at lines 133--133
+[]|\T1/ptm/m/n/12 karboksimetil
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 126--146
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.21}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.146 ...lfasalazin & asam urdeoksikolat \\ \hline
+                                                   [21]
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+[]|\T1/ptm/m/n/12 hepatitis Bimuno-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+[]|\T1/ptm/m/n/12 human tetanus
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--151
+[]|\T1/ptm/m/n/12 imunoglobulin
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 153--153
+[]|\T1/ptm/m/n/12 vaksin kombinasi
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 153--153
+[]|\T1/ptm/m/n/12 vaksin jerap difteri
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 153--153
+[]|\T1/ptm/m/n/12 vaksin jerap difteri
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 154--154
+[]|\T1/ptm/m/n/12 vaksin jerap difteri
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--157
+[]|\T1/ptm/m/n/12 triamsinolon
+ []
+
+
+Overfull \hbox (49.99994pt too wide) in alignment at lines 146--162
+ [] [] [] [] 
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.22}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.162 \end{longtable}
+                      [22])
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.23}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.161  	\include{lampiran_drug}
+                                [23]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 164.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 164.
+ (skripsi.aux (sampul.aux) (judul_dalam.aux) (orisinal.aux) (pengesahan_sidang.
+aux) (pengantar.aux)
+(persetujuan_publikasi.aux) (abstrak.aux) (abstract.aux) (bab1.aux) (bab2.aux)
+(bab3.aux) (bab4.aux) (bab5.aux) (bab6.aux) (markLampiran.aux) (lampiran.aux)
+(lampiran_disease.aux) (lampiran_symptom.aux) (lampiran_treatment.aux)
+(lampiran_drug.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 164.
 
 
  *File List*
@@ -2560,6 +4672,7 @@ arabchrs.sty    1998/07/11  3.07 letter token definitions
  amssymb.sty    2013/01/14 v3.01 AMS font symbols
 amsfonts.sty    2013/01/14 v3.01 Basic AMSFonts support
 enumitem.sty    2011/09/28 v3.5.2 Customized lists
+longtable.sty    2014/10/28 v4.11 Multi-page Table package (DPC)
 algpseudocode.sty    
   ifthen.sty    2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 algorithmicx.sty    2005/04/27 v1.2 Algorithmicx
@@ -2587,6 +4700,7 @@ geometry.sty    2010/09/12 v5.6 Page Geometry
 geometry.cfg
  caption.sty    2016/02/21 v3.3-144 Customizing captions (AR)
 caption3.sty    2016/05/22 v1.7-166 caption3 kernel (AR)
+ltcaption.sty    2013/06/09 v1.4-94 longtable captions (AR)
 subfloat.sty    2003/08/21 version 2.14
  pslatex.sty    1996/07/24 v1.2 pslatex emulation (DPC)
 pdfpages.sty    2016/12/11 v0.5g Insert pages of external PDF documents (AM)
@@ -2612,7 +4726,6 @@ fancyvrb.sty    2008/02/07
   hhline.sty    2014/10/28 v2.03 Table rule package (DPC)
 pdflscape.sty    2016/05/14 v0.11 Display of landscape pages in PDF (HO)
   lscape.sty    2000/10/22 v3.01 Landscape Pages (DPC)
-longtable.sty    2014/10/28 v4.11 Multi-page Table package (DPC)
 hyperref.sty    2016/06/24 v6.83q Hypertext links for LaTeX
 hobsub-hyperref.sty    2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
 hobsub-generic.sty    2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
@@ -2650,7 +4763,6 @@ omspzccm.fd    2000/01/03 Fontinst v1.801 font definitions for OMS/pzccm.
 supp-pdf.mkii
 epstopdf-base.sty    2016/05/15 v2.6 Base part for package epstopdf
   grfext.sty    2016/05/16 v1.2 Manage graphics extensions (HO)
-ltcaption.sty    2013/06/09 v1.4-94 longtable captions (AR)
  nameref.sty    2016/05/21 v2.44 Cross-referencing by name of section
 gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
  skripsi.out
@@ -2717,40 +4829,82 @@ images/histogram9.png
 images/histogramrnnv2.png
     bab6.tex
  skripsi.bbl
+markLampiran.tex
+lampiran.tex
+lampiran_disease.tex
+lampiran_symptom.tex
+lampiran_treatment.tex
+lampiran_drug.tex
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 160.
-Package rerunfilecheck Info: File `skripsi.out' has not changed.
-(rerunfilecheck)             Checksum: 7AA440F15DF29635CAB09A41623DEEAA;8095.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 164.
 
-LaTeX Warning: There were undefined references.
+Package rerunfilecheck Warning: File `skripsi.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 160.
+Package rerunfilecheck Info: Checksums for `skripsi.out':
+(rerunfilecheck)             Before: F78BBFAC44682632F6B5CB227C036209;8434
+(rerunfilecheck)             After:  3A2A2732386523583C67F1CEDA3C14B9;8448.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 164.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 17508 strings out of 493333
- 244262 string characters out of 3139158
- 406128 words of memory out of 3000000
- 19740 multiletter control sequences out of 15000+200000
- 52729 words of font info for 76 fonts, out of 3000000 for 9000
+ 17600 strings out of 493333
+ 245656 string characters out of 3139158
+ 449141 words of memory out of 3000000
+ 19769 multiletter control sequences out of 15000+200000
+ 55451 words of font info for 78 fonts, out of 3000000 for 9000
  1269 hyphenation exceptions out of 8191
- 44i,24n,51p,1718b,11559s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/
-symbol/usyr.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/urw/times/utmri8a.pfb>
-Output written on skripsi.pdf (104 pages, 2059785 bytes).
+ 44i,24n,51p,1718b,11498s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{table.E.1} has been referenced but 
+does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{table.D.1} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{table.C.1} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{table.B.1} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{table.A.1} has been referenced but does not exist, 
+replaced by a fixed one
+
+pdfTeX warning (dest): name{appendix.E} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{appendix.D} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{appendix.C} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{appendix.B} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{appendix.A} has been referenced but does not exist,
+ replaced by a fixed one
+
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/he
+lvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/symbol/usyr.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times
+/utmri8a.pfb>
+Output written on skripsi.pdf (128 pages, 2142561 bytes).
 PDF statistics:
- 2086 PDF objects out of 2487 (max. 8388607)
- 663 named destinations out of 1000 (max. 500000)
- 1004 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2215 PDF objects out of 2487 (max. 8388607)
+ 682 named destinations out of 1000 (max. 500000)
+ 1052 words of extra memory for PDF output out of 10000 (max. 10000000)
 
