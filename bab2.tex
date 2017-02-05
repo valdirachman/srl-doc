@@ -4,263 +4,157 @@
 %-----------------------------------------------------------------------------%
 
 %-----------------------------------------------------------------------------%
-\section{Pengenalan Entitas Kesehatan}
+\section{Pengenalan Entitas Kesehatan}\label{aboutmer}
 %-----------------------------------------------------------------------------%
-% Manfaat MER %
-% Cerita MER Bahasa Inggris %
-% Cerita MER Bahasa Indonesia (Kak Radit, Performa, Tabel) %
+% Apa itu MER
+Pengenalan Entitas Kesehatan atau disebut juga dengan \textit{Medical Entity Recognition} (\mer) merupakan salah satu cabang dari Pengenalan Entitas Bernama (\textit{Named Entity Recoginition}) atau disingkat NER dengan dokumen sumber berupa teks kesehatan. NER sendiri merupakan suatu sistem/aplikasi yang memanfaatkan teknik pada \textit{Natural Language Processing} dan \textit{Information Extraction} untuk mengenali entitas yang telah dikategorikan sebelumnya seperti nama, lokasi, organisasi, waktu dan sebagainya. Sedangkan pada sistem MER, entitas yang akan dikenali yaitu entitas yang berada pada domain kesehatan seperti nama penyakit (\textit{\disease}), gejala penyakit (\textit{symptom}), obat (\textit{\drug}), langkah penyembuhan (\textit{\treatment}), nama protein, DNA, RNA dan lain sebagainya. Gambar \ref{fig:mer_ilustration} merupakan ilustrasi dari sebuah sistem \mer.
 
-\section{Recurrent Neural Networks}
-\textit{Recurrent neural networks} (RNNs) merupakan salah satu arsitektur dalam \textit{deep learning}. RNNS memiliki \textit{neuron} yang terkoneksi dengan \textit{neuron} lain sehingga membentuk \textit{loop} umpan balik (\cite{haykin2009neural}), tidak seperti \textit{feedforward neural network} (FNNs) dimana aliran informasi hanya berjalan searah. RNNs memungkinkan \iob~yang dihasilkan akan menjadi \ioa~untuk menghasilkan \iob~yang lain. Hal ini menyebabkan perilaku RNNs tidak hanya bergantung pada \ioa~saat ini saja, namun juga bergantung pada \iob~sebelumya. Oleh karena itu, RNNs memiliki kemampuan yang sangat bagus sebagai model dalam permasalahan \textit{sequence data} dibandingkan dengan FNNs. RNNs sendiri memiliki kemampuan yang sangat bagus dalam beberapa \textit{task}, seperti \textit{language model} (\cite{mikolov2010recurrent}) dan \textit{speech recognition} (\cite{graves2013speech}).
-
-Dibandingkan dengan FNNs, RNNs memiliki beberapa kelebihan (\cite{mikolov2010recurrent}), yaitu:
-\begin{enumerate}
-	\item Pada RNNs, kata-kata sebelumnya direpresentasikan dengan \textit{recurrent connections}, sehingga RNNs dapat menyimpan informasi kata sebelumnya dalam jumlah tak hingga. Pada FNNss, representasi kata sebelumnya berupa konteks dari n-1 kata. Oleh karena itu, FNNs terbatas dalam penyimpanan informasi kata sebelumnya terbatas seperti pada model n-gram.
-	\item RNNs dapat melakukan kompresi keseluruhan riwayat kata menjadi ruang dimensi yang lebih kecil, sedangkan FNNs melakukan kompresi/proyeksi hanya dengan sebuah kata saja.
-	\item RNNs memiliki kemampuan membentuk \textit{short term memory}, sehingga dapat dapat posisi invarian sebuah kata dapat ditangani. Hal ini tidak dapat dilakukan pada FNNs,
-\end{enumerate}
-
-Berikut merupakan gambar struktur RNNs yang diusulkan oleh \cite{elman1990finding}.
+% Contoh tentang MER
 \begin{figure}
 	\centering
-	\includegraphics[width=0.55\linewidth]{images/simple_rnn}
-	\caption{\textit{Simple Recurrent Neural Network}} {Sumber gambar: \cite{mikolov2010recurrent}}
-	\label{fig:simplernn}
+	\includegraphics[width=1.0\linewidth]{images/mer_ilustration}
+	\caption{Ilustrasi Sistem \mer}
+	\label{fig:mer_ilustration}
 \end{figure}
 
-Sebuah jaringan pada RNNs memiliki \textit{input layer} $ x $, \textit{hidden layer} $ s $ dan \textit{output layer} $ y $. Untuk suatu waktu $ t $, \textit{input} RNNs dinotasikan sebagai $ x(t) $, \textit{state} dinotasikan sebagai $ s(t) $ dan \textit{output} dinotasikan sebagai $ y(t) $.
+Dari ilustrasi di atas, sebuah sistem MER akan diberikan \textit{input} berupa dokumen kesehatan, kemudian sistem diharapkan dapat memberikan \textit{output} berupa dokumen yang sudah diberi label dengan benar. Dokumen kesehatan yang menjadi \textit{input} dapat berupa dokumen formal seperti dokumen suatu rumah sakit atau dokumen non-formal seperti dokumen forum kesehatan \textit{online}.
 
-RNNs have demonstrated great success
-in sequence labeling and prediction tasks such as handwriting
-recognition and language modeling. In acoustic modeling
-for speech recognition, however, where deep neural networks
-(DNNs) are the established state-of-the-art, recently RNNs have
-received little attention beyond small scale phone recognition
-tasks, notable exceptions being the work of Robinson [1],
-Graves [2], and Sak [3].
-\subsection{Deep Learning}
-\subsection{Vanilla RNNs}
-\subsection{Long Short Term Memory}
+% Manfaat MER %
+Implementasi sistem \mer~dapat memberikan manfaat pada beberapa bidang, seperti pada aplikasi \textit{Question Answering} \citep{abacha2011medical} yang hasil pelabelan dari sistem \mer~dapat mempermudah identifikasi entitas yang ditanyakan. Selain itu, hasil pelabelan sistem \mer~juga dapat dimanfaatkan untuk pembuatan sistem \textit{indexing} dokumen forum sehingga pencarian dokumen kesehatan dapat dilakukan dengan lebih efisien. Sistem \mer~juga dapat digunakan untuk mendukung aplikasi \textit{entity linking} yang memungkinkan seseorang untuk mengetahui hubungan antar entitas \citep{hachey2013evaluating}. Misalnya dengan adanya aplikasi \textit{entity linking}, kita dapat mengetahui obat apabila hanya diberikan \textit{query} nama penyakit dengan \textit{resource} dokumen-dokumen kesehatan yang telah mendapatkan pelabelan dari sistem \mer. Masih banyak manfaat lain dari implementasi sistem \mer~ini.
+
+% Cerita MER Bahasa Inggris %
+Sebelumnya \cite{abacha2011medical} telah melakukan penelitian terkait sistem \mer~pada dokumen berbahasa Inggris. Sistem \mer~yang dibuat bertujuan untuk melabeli entitas \textit{treatment}, \textit{problem} dan \textit{test} dengan menggunakan 3 metode, yaitu (i) metode semantik dengan menggunakan \textit{tools} MetaMap (\textit{domain knowledge}), (ii) ekstraksi frasa berdasarkan \textit{chunker} dan klasifikasi dengan SVM (\textit{Support Vector Machine}) dan (iii) gabungan 2 metode sebelumnya dengan menggunakan CRF (\textit{hybrid}). Metode \textit{hybrid} yang dimaksud yaitu dengan menggunakan \textit{tools} CRF sebagai \textit{tools machine learning} yang ditambahkan fitur \textit{domain knowledge}, yaitu fitur semantik yang diekstraksi dengan \textit{tools} MetaMap. Hasil yang terbaik didapatkan dengan menggunakan metode \textit{hybrid} yang menggabungkan 2 metode sebelumnya (\textit{domain knowledge} dan \textit{machine learning}) dan dengan \textit{precision} $ 72.18\% $, \textit{recall} $ 83.78\% $ dan \textit{f-measures} $ 77.55\% $.
+
+Selain penelitian di atas, \cite{mujiono2016new} juga melakukan penelitian terkait \mer~pada dokumen berbahasa Indonesia. Model \mer~yang dikembangkan adalah untuk melabeli entitas \textit{drug} saja. Penelitian tersebut bertujuan untuk mendapatkan representasi data yang berdasarkan karakteristik \textit{training data}. \cite{mujiono2016new} mengusulkan tiga teknik representasi data yang berdasarkan karakteristik distribusi kata dan kemiripan kata dari hasil \textit{training} dari model \textit{word embedding}. Representasi data yang dimasud adalah: (i) semua kalimat diformat sebagai \textit{sequence} token, (ii) semua kalimat di-\textit{generate} menjadi beberapa \textit{sequence}, dan (iii) data direpresentasikan sebagai vektor dengan \textit{tools} \textit{Word Embedding}. Masing-masing representasi kata tersebut dievaluasi dengan masing-masing evaluator, yaitu (i) evaluasi dengan model \textit{neural networks} standar, (ii) evaluasi dengan dua \textit{deep network classifiers}, yaitu DBN (\textit{Deep Belief Networks}), dan SAE (\textit{Stacked Denoising Encoders}) serta (iii) representasi kalimat sebagai vektor \textit{word embedding} yang dievaluasi dengan \textit{recurrent neural networks} yaitu LSTM (\textit{Long Short Term Memory}). Hasil yang didapatkan yaitu kalimat sebagai \textit{sequence} yang dievaluasi dengan LSTM memberikan hasil yang terbaik, yaitu \textit{f-measure} $ 86.45\% $.
+
+% Cerita MER Bahasa Indonesia (Kak Radit, Performa, Tabel) %
+Penelitian terkait \mer~pada dokumen berbahasa Indonesia sudah dilakukan sebelumnya oleh \cite{skripsiKakRadit}. Dalam penelitiannya, \cite{skripsiKakRadit} menggunakan CRF (\textit{Conditional Random Fields}) untuk proses pelabelan. Kemudian, pada pekerjaan yang Herwando (2006) lakukan, sebagian besar digunakan untuk mencari fitur-fitur yang memang diskriminatif untuk masalah \mer~yang menghasilkan akurasi terbaik. Entitas yang akan diberi label yaitu nama penyakit (\textit{\disease}), gejala penyakit (\textit{sympton}), obat (\textit{\drug}) dan langkah penyembuhan (\textit{\treatment}). Dokumen yang menjadi \textit{input} penelitian merupakan hasil \textit{crawling} dari  forum kesehatan \textit{online} dari berbagai situs yang berisi tanya jawab. Hasil yang didapatkan yaitu \textit{precision} $ 70.97\% $, \textit{recall} $ 57.83\% $ dan \textit{f-measeure} $ 63.69\% $ dengan fitur \textit{its own word}, frasa, kamus (\textit{symptom}, \textit{disease}, \textit{treatment} dan \textit{drug}), \textit{window feature (previous word)} dan panjang kata.
+
+Selain itu, \cite{suwarningsih2014imner} juga melakukan penelitian terkait \mer~pada dokumen berbahasa Indonesia dengan menggunakan SVM (\textit{Support Vector Machine}), dengan SVM yang digunakan untuk klasifikasi per-kata. Entitas yang akan dikenali yaitu \textit{location}, \textit{facility}, \textit{diagnosis}, \textit{definition} dan \textit{person}. Data yang digunakan sebagai korpus merupakan data dari situs \textit{http://health.detik.com/}, \textit{http://detikhealth.com/} dan \textit{http://health.kompas.com/konsultasi/} dengan total keseluruhan sebanyak 1000 kalimat. Akurasi yang dihasilkan yaitu $ 90\% $ dengan menggunakan fitur \textit{baseline}, \textit{word level (morphology, POS-Tag, dll)} dan fitur dari dalam dokumen tersebut.
+
+\section{Deep Learning}
+\textit{Deep Learning}, atau disebut juga \textit{deep structured learning, hierarchical learning,} dan \textit{deep machine learning} merupakan salah satu cabang dalam \textit{machine learning} yang model komputasinya terdiri dari beberapa layer. \textit{Deep learning} mampu mempelajari dan mengekstrak representasi data/fitur secara otomatis pada abtraksi tingkat tinggi \citep{lecun2015deep}. Model tersebut memberikan hasil yang sangat baik dalam penelitan di berbagai bidang seperti \textit{speech recognition}, \textit{object detection}, \textit{sequence labeling} dan lain sebagainya.  
+
+Struktur pembelajaran pada \textit{deep learning} berbentuk hierarki karena termotivasi dari bagaimana neokorteks pada otak maunusia bekerja secara mendalam. Neokorteks tersebut melakukan proses pemelajaran berlayer dan secara otomatis mampu mengketrak fitur dan melakukan abstraksi dari \textit{resource} yang diberikan \citep{bengio2007scaling}. Struktur tersebut terdiri atas \textit{input layer}, \textit{hidden layer} dan \textit{output layer}. \textit{Input layer} memiliki fungsi sebagai tempat masuknya data yang akan dipelajari oleh model. \textit{Hidden layer} melakukan aproksimasi fungsi untuk mendapatkan target dari data \textit{training} yang diberikan. Disebut \textit{hidden layer} karena pada layer ini, \textit{output} tidak bisa kita lihat \citep{Goodfellow-et-al-2016-Book}. \textit{Hidden layer} inilah yang menjadi \textit{key role} dalam \textit{deep learning}. Sedangkan \textit{output layer} merupakan layer untuk mengembalikan target yang diinginkan.
+
+\textit{Deep learning} ini mampu memberikan model yanng memiliki performa sangat baik dalam \textit{supervised learning} \citep{Goodfellow-et-al-2016-Book}. Dengan menambahkan lebih banyak layer dan unit di dalam layer, \textit{deep network} dapat merepresentasikan fungsi dengan kompleksitas yang tinggi. Secara umum, \textit{deep learning} memetakan \textit{input vector} ke \textit{output vector}. Walaupun hal ini mudah dilakukan oleh manusia secar manual, namun untuk \textit{dataset} yang sangat besar, tentu hal ini tidak mungkin dilakukan. Ada banyak macam model \textit{Deep Learning} yang sesuai dengan kebutuhan komputasi, seperti \textit{Deep Belief Network} \citep{hinton2006fast}, \textit{Recurrent Neural Networks} \citep{elman1990finding}, \textit{Long Short Term Memory} \citep{hochreiter1997long}, \textit{Restricted Boltzman Machine} \citep{pennington2014glove} dan lain sebagainya. 
+
+\section{Recurrent Neural Networks}\label{sec:rnns}
+
+\textit{Recurrent neural networks} (RNNs) merupakan merupakan salah satu arsitektur \textit{Deep Learning} yang memiliki koneksi siklik \citep{graves2012neural}. RNNs memiliki \textit{neuron} yang terkoneksi dengan \textit{neuron} lain sehingga membentuk \textit{loop} umpan balik (\cite{haykin2009neural}), tidak seperti \textit{feedforward neural network} (FNNs) dimana aliran informasi hanya berjalan searah. RNNs memungkinkan \iob~yang dihasilkan akan menjadi \ioa~untuk menghasilkan \iob~yang lain. Hal ini menyebabkan perilaku RNNs tidak hanya bergantung pada \ioa~saat ini saja, namun juga bergantung pada \iob~sebelumya. Oleh karena itu, RNNs memiliki kemampuan yang sangat bagus sebagai model dalam permasalahan \textit{sequence data} dibandingkan dengan FNNs. RNNs sendiri memiliki kemampuan yang sangat bagus dalam beberapa \textit{task} terkait \textit{sequence data}, seperti \textit{language model} (\cite{mikolov2010recurrent}) dan \textit{speech recognition} (\cite{graves2013speech}).
+
+Dibandingkan dengan FNNs, RNNs memiliki beberapa kelebihan \citep{mikolov2010recurrent}, yaitu:
+\begin{enumerate}
+	\item Pada RNNs, kata-kata sebelumnya direpresentasikan dengan \textit{recurrent connections}, sehingga RNNs dapat menyimpan informasi kata sebelumnya dalam jumlah tak hingga. FNNs tidak bisa secara alami memodelkan hubungan kontekstual antara sebuah kata dengan kata-kata pada posisi sebelumnya dan representasi kata sebelumnya berupa konteks dari $ n-1 $ kata. Oleh karena itu, FNNs terbatas dalam penyimpanan informasi kata sebelumnya terbatas seperti pada model \textit{n-gram}.
+	\item RNNs dapat melakukan kompresi keseluruhan riwayat kata menjadi ruang dimensi yang lebih kecil, sedangkan FNNs melakukan kompresi/proyeksi hanya dengan sebuah kata saja.
+\end{enumerate}
+
+Banyak variasi RNNs yang telah diusulkan oleh beberapa peneliti, seperti Elman \textit{networks} \citep{elman1990finding}, Jordan \textit{networks} \citep{jordan1986attractor}, \textit{time delay neural networks} \citep{lang1990time} dll. Gambar berikut merupakan contoh  dari RNNs secara umum
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.80\linewidth]{images/simple_rnn}
+	\caption{\textit{Recurrent Neural Networks} sederhana}
+	\label{fig:simple_rnn}
+\end{figure}
+
+Dari gambar \ref{fig:simple_rnn}, sebuah jaringan pada RNNs memiliki 3 layer pada setiap \textit{timestep}, yaitu \textit{input layer}, \textit{hidden layer} dan \textit{output layer}. \textit{Input layer} merupakan layer sebagai tempat masuk \textit{resource}. Di dalam \textit{hidden layer} tersebut terdapat beberapa unit untuk menyimpan informasi dari \textit{timestep} sebelumnya. Sedangkan pada \textit{output layer} merupakan layer yang memberikan \textit{output} dari model. Pada setiap \textit{timestep} $ t $, RNNs di atas memiliki sebuah \textit{input layer} $ \vec{x(t)} \in {\rm I\!R^{N}} $, \textit{hidden layer} $ \vec{h(t)} \in {\rm I\!R^{H}} $, dan \textit{output layer} $ \vec{y(t)} \in {\rm I\!R^{M}} $. Nilai $ N $, $ H $, dan $ M $ merupakan panjang vektor \textit{input}, jumlah unit di dalam \textit{hidden layer} tersebut, dan panjang vektor \textit{output} yang diinginkan. Terdapat tiga parameter yang akan diestimasi, yaitu $ U \in {\rm I\!R^{H \times N }} $, $ V \in {\rm I\!R^{M \times H}}$, dan $ W \in {\rm I\!R^{H \times H}}$. Tiga parameter tersebut bersifat \textit{shared}, yang artinya masing-masing \textit{timestep} menggunakaan dan mengestimasi tiga parameter tersebut.
+
+Apabila tiga parameter di atas sudah diketahui, $ \vec{h(t)} $ dan $ \vec{y(t)} $ dapat dihitung dengan persamaan:
+\begin{equation}
+\vec{y(t)} = f(V \cdot \vec{(t)})
+\end{equation}
+\begin{equation}
+\vec{h(t)} = f(U \cdot \vec{x(t)} + W \cdot \vec{h(t-1)})
+\end{equation}
+dimana
+\begin{equation}
+\vec{h(0)} = f(U \cdot \vec{x(0)})
+\end{equation}
+dengan $ f $ sebagai \textit{activation function}, misalnya $ tanh $ atau $ softmax $. Untuk lebih jelasnya, berikut merupakan gambar dari satu buah \textit{timestep} di dalam RNNs.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.80\linewidth]{images/nodes_rnn}
+	\caption{1 buah \textit{timestep} dalam RNNs}
+	\label{fig:nodes_rnn}
+\end{figure}
+
+\subsection{Long Short Term Memories (LSTMs)}\label{subbab:lstm}
+Pada penjelasan di atas, RNNs sederhana memiliki kelebihan mempertimbangkan konteks untuk mengolah \textit{input} menjadi \textit{output}. Sayangnya, \textit{range} konteks yang dapat digunakan dalam satu blok terbatas \citep{graves2012neural}. Efek dari keterbatasan ini yaitu informasi pada suatu blok akan hilang atau terganggu dalam perjalanan \textit{timestep} sehingga \textit{output} yang dihasilkan tidak sesuai harapan. Oleh karena itu RNNs sederhana tidak dapat menangani permasalahan dependensi jangka panjang. Permasalahan ini disebut dengan \textit{vanishing gradient problem} (\cite{hochreiter1991untersuchungen}; \cite{hochreiter2001gradient}; \cite{bengio1994learning}). Banyak upaya untuk mengatasi masalah ini, seperti dengan menggunakan \textit{simulated annealing} dan \textit{discrete error propagation} \citep{bengio1994learning}, menggunakan \textit{time delays} (\cite{lang1990time}; \cite{bakker2001reinforcement}) atau \textit{time constant} \citep{ieee1997advances}, dan \textit{hierarchical sequence compression} \citep{schmidhuber2007training}. Namun sejauh ini solusi yang paling bagus yaitu dengan arsitektur \textit{Long Short Term Memory} (LSTM) \citep{hochreiter1997long}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\linewidth]{images/lstm}
+	\caption{1 buah blok memori dalam LSTM}
+	\label{fig:lstm}
+\end{figure}
+
+LSTMs diperkenalkan oleh \cite{hochreiter1997long} dan saat ini banyak digunakan dalam berbagai \textit{task}. Gambar \ref{fig:lstm} merupakan ilustrasi satu buah blok memori di dalam LSTMs. Pada dasarnya, arsitektur LSTMs mirip dengan RNNs sederhana, namun unit \textit{nonlinear} pada \textit{hidden layer} di dalam RNNs sederhana diganti menjadi blok memori. Sebuah blok memori memiliki gerbang \textit{multiplicative} yang berfungsi untuk menyimpan dan mengakses informasi dari blok sebelumnya namun dengan batasan yang jauh lebih besar dibanding RNNs, sehingga mampu menghindari \textit{vanishing gradient problem}. Apabila \textit{input gate} selalu tertutup, maka memori tidak akan perah ditimpa sehingga isi memori tidak berubah.
+
+Pada gambar \ref{fig:lstm}, kita dapat melihat bahwa 1 blok memori pada LSTMs tersebut memiliki 3 buah gerbang, yang berfungsi untuk sebagai pengatur suatu informasi apakah ditambahkan, dipertahankan atau dihapus di dalam sebuah sel. Masing-masing gerbang terdiri dari komponen \textit{sigmoid layer} dan komponen untuk melakukan operasi penjumlahan atau perkalian untuk masing-masing \textit{element-wise}. \textit{Sigmoid layer} tersebut memiliki nilai antara nol sampai dengan satu, yang mendeskripsikan perilaku gerbang dalam menerima \textit{input}. Semakin kecil nilai dari layer tersebut maka semakin kecil pula informasi masuk ke gerbang terkait dan sebaliknya. 
+
+\begin{enumerate}
+	\item \textit{Forget Gate}\\
+	Gerbang ini memiliki fungsi untuk menentukan informasi yang akan disimpan di dalam memori dengan formula berikut
+	\begin{equation}\label{eq:forget_lstm}
+	\alpha_{t}=\sigma(W_{x\alpha}\cdot x_{t}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1})
+	\end{equation}
+	
+	\item \textit{Input Gate}\\
+	Gerbang ini berfungsi untuk menentukan apakah informasi baru $ x(t) $ akan disimpan dalam \textit{cell state} atau tidak. 
+	\begin{equation}\label{eq:input_lstm}
+	\beta_{t}=\sigma(W_{x\beta}\cdot x_{t}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1})
+	\end{equation}
+	
+	\item \textit{Output Gate}\\
+	Gerbang ini berfungsi untuk menendukan \textit{output} dari sebuah \textit{timestep} berdasarkan \textit{cell state} saat ini.
+	\begin{equation}\label{eq:output_lstm}
+	\gamma_{t}=\sigma(W_{x\gamma}\cdot x_{t}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1})
+	\end{equation}
+	
+\end{enumerate}
+
+Dalam setiap \textit{timestep} $ t $, berikut merupakan formula untuk menghitung $ m(t) $ dan $ h(t) $:
+\begin{equation}\label{eq:mt}
+m_{t}=\alpha_{t} (\times) m_{t-1} + \beta_{t} (\times) f(x_{t},{t-1})
+\end{equation}
+\begin{equation}\label{eq:ht}
+h_{t}=\gamma_{t} (\times) tanh(m_{t})
+\end{equation}
+dimana
+\begin{equation}\label{eq:hf}
+f(x_{t},{t-1})=tanh(W_{xm} \cdot x_{t} + W_{hm} \cdot h_{t-1})
+\end{equation}
+
+Notasi $ (\times) $ merupakan operasi perkalian untuk setiap pasang elemen, dan $ (+) $ merupakan operasi penjumlahan setiap pasang elemen.
+
 \subsection{Penerapan RNNs untuk MER}
+Terdapat beberapa penelitian terkait \mer~yang dikembangkan menggunakan RNNs, seperti \textit{drug entity recognition} \citep{mujiono2016new}, \textit{medical event detection on EHR} \citep{jagannatha2016bidirectional}, \textit{biomedical entity recognition} \citep{limsopatham2016learning}, dan \textit{Named Entity Recognition in Swedish Health Records} \citep{almgren2016named}. Penelitian \textit{drug entity recognition} oleh \cite{mujiono2016new} sudah dijelaskan pada subbab \ref{aboutmer}.
+
+Dalam penelitiannya, \cite{jagannatha2016bidirectional} menggunakan LSTMs untuk memprediksi label entitasnya. Penelitian tersebut bertujuan untuk mendeteksi kejadian medis pada \textit{Electronic Health Records} seperti \textit{medication, diagnosis (Indication), adverse drug events (ADEs) severity, other SSD, frequency, drugname} dan \textit{duration}. Sebagai pembanding, penulis tersebut juga mengimplementasikan CRF dan GRU. Ada beberapa kesulitan yang dihadapi dalam mengolah EHR tersebut, yaitu EHR lebih \textit{noisy} dibandingkan dengan teks biasa, banyak kalimat yang tidak komplet dan penggunaan frasa. Hasil dari penelitian tersebut menunjukkan bahwa semua model RNNs (LSTMs dan GRU) memiliki akurasi yang lebih baik daripada CRF. Apabila dibandingkan dengan \textit{baseline} yang digunakan, GRU mampu meningkatkan \textit{recall} (0.8126), \textit{precision} (0.7938) dan \textit{F-score} (0.8031) sebesar 19\%, 2\% dan 11\% dari \textit{baseline}.
+
+\cite{limsopatham2016learning} menggunakan \textit{Bidirectional-LSTMs} untuk mengidentifikasi kalimat dengan menggunakan karakter dan kata yang diubah menjadi vektor menggunakan \textit{word embedding}. Untuk setiap kalimatnya, peneliti tersebut mengusulkan adanya \textit{ortographic feature} supaya modelnya dapat mempelajari fitur tersebut secara eksplisit. Evaluasi yang digunakan menggunakan tiga buah koleksi \textit{biomedical test}, yaitu \textit{Gene Mention task corpus}, \textit{BioNLP 2009} dan \textit{NCBI disease corpus}, dengan perhitungan \textit{F1-score}. ada empat \textit{baseline} yang digunakan sebagai pembanding, yaitu \textit{feedforward}, \textit{bidirectional-LSTM}, \textit{CNN-Bidirectional-LSTM} yang hanya menggunakan karakter dan \textit{CNN-Bidirectional LSTM}. Hasil yang didapatkan mengatakan bahwa penggunaan \textit{Bidirectional-LSTM} yang dikombinasikan dengan CNN dengan diberikan \textit{word embedding} dan \textit{orthographic} merupakan model yang paling bagus. Penulis tersebut juga menyimpulkan bahwa penggunaan fitur \textit{hand-crafted} tersebut mampu memberikan akurasi yang lebih tinggi.
+
+\cite{almgren2016named} menggunakan \textit{deep bidirectional LSTM} dalam mengembangkan NER di bidang medis. Entitas yang akan diidentifikasi adalah \textit{disorders and findings}, \textit{pharmaceutical drugs}, \textit{body structure} dan \textit{non-entity term}. Model menggunakan teks medis berbahasa Swedia sebagai \textit{dataset}, di-\textit{train} dengan menggunakan \textit{end-to-end backpropagation} dan Adam \textit{optimizer}, dan \textit{input} yang diberikan berbentuk urutan karakter. Hasil yang didapatkan adalah Char-BiLSTM pada Stockholm EPR corpus mendapatkan \textit{precision} 0.67, \textit{recall} 0.12 dan \textit{f-measure} 0.20 meningkat 60\% dibandingkan dengan \textit{baseline}.
 
 \section{Word Embedding}
+Pada umumnya, pendekatan yang digunakan untuk merepresentasikan sebuah kata sebagai \textit{input} model adalah dengan menggunakan \textit{one-hot-vetor} \citep{turian2010word}. Panjang dari sebuah vektor kata ini bergantung dari banyaknya kata unik di dalam sebuah korpus. Ada beberapa cara untuk mengubahnya menjadi \textit{one-hot-vector}, seperti mengumpulkan semua kata unik kemudian mngurutkannya secara alfabetis. Vektor \textit{one-hot} tersebut bernilai 1 pada indeks kata yang bersesuaian. Misalnya kata "obat" berada di indeks ke 25 pada kumpulan kata unik, maka representasi vektornya elemen ke 21 di vektor "obat" adalah 1 sedangkan yang lainnya 0.
+
+Dari ilustrasi singkat tersebut, representasi \textit{one-hot-vector} memiliki kelemahan yaitu besar vektor yang tergantung jumlah kata unik di dalam korpus. Selain itu, jika terdapat sebuah kata yang muncul di korpus namun tidak muncul di \textit{training} ataupun \textit{testing data}, kata tersebut tidak dapat diproses. Selain itu, sangat susah untuk mencari hubungan baik sintak maupun semantik dari representasi kata ini, karena antar kata hanya dibedakan indeks yang berisi angka 1 saja.
+
+Dari kelemahan di atas, terdapat sebuah representasi vektor lain dari kata yang lebih baik, yaitu dengan menggunakan \textit{word embedding}. \textit{Word embedding} adalah salah satu jenis dari representasi kata yang memiliki kelebihan yaitu padat, berdimensi rendah, dan memiliki nilai yang real. \textit{Word embedding} memetakan kata dengan vektor berisi bilangan \textit{real}, misalkan W("obat") = [0.4, -0.9, 0.1, ...., 0.9], dimana W adalah fungsi yang memetakan suatu kata menuju representasi vektor dan W("obat") merupakan \textit{word embedding} dari kata "obat". \textit{Word embedding} dapat meningkatkan performa dari \textit{tasks} dalam NLP dengan cara mengelompokkan kata-kata yang mirip, karena kata yang mirip memiliki vektor yang mirip pula. Ada beberapa metode \textit{word embedding} yang banyak digunakan dalam beberapa \textit{task} di NLP, seperti Glove \citep{pennington2014glove} dan Word2Vec \citep{mikolov2014word2vec}. Pada pembahasan ini, \saya~hanya menuliskan mengenai Word2Vec.
+
+Word2Vec merupakan model linguistik yang dikembangkan oleh \cite{mikolov2014word2vec} dan berdasarkan pada \textit{neural networks}. Word2Vec mempelajari \textit{embedding} dari setiap kata untuk dipetakan ke masing-masing vektor yang berdimensi rendah dari sifat distribusinya pada korpus yang diberikan. Dari situ, Word2Vec mampu mengelompokkan kata berdasarkan kemiripannya di dalam \textit{vector space}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.85\linewidth]{images/word2vec}
+	\caption{Arsitektur Word2Vec}
+	\label{fig:word2vec}
+\end{figure}
+
+Ada dua arsitektur Word2Vec yang dikembangkan oleh \cite{mikolov2014word2vec}, yaitu arsitektur \textit{skip-gram} dan arsitektur \textit{continuous bag-of-words} (CBOW). Dari gambar \ref{fig:word2vec}, dapat dilihat bahwa arsitektur CBOW memprediksi masing-masing kata berdasarkan kata di sekelilingnya. \textit{Input layer} dalam arsitektur ini direpresentasikan dengan \textit{bag-of-words}. CBOW sendiri dapat mempelajari data dengan ukuran yang sangat besar yang tidak dapat dilakukan oleh model \textit{neural network} yang lain. Sedangkan arsitektur \textit{skip-gram} memprediksi kata-kata di sekeliling dan konteksnya berdasarkan sebuah kata yang diberikan (gambar \ref{fig:word2vec}). \textit{Skip-gram} mampu menangkap \textit{co-occurance} rata-rata dari dua buah kata di dalam \textit{training set}.
 %-----------------------------------------------------------------------------%
 % Cerita umum Word Embedding terlepas dari, kenapa bukan %
 % Salah satunya adalah word2vc%
 % CBOW vs Skip %
-
-Satu \quran~dibagi sama rata ke dalam 30 bagian, yang masing-masing disebut dengan \f{juz}. Dalam \quran~terdapat 114 \f{surat}, di mana setiap surat terdiri dari beberapa \f{ayat}, bervariasi mulai dari 3 ayat sampai 286 ayat. Total seluruh ayat dalam \quran~ada sebanyak 6,236 ayat. Ayat-ayat \quran~tidak seluruhnya unik, karena ada beberapa pasang ayat yang sama dan ada beberapa pasang ayat yang mirip. Hal ini bisa dideteksi menggunakan algoritma yang akan dijelaskan di Bab \ref{lcs}.
-
-%-----------------------------------------------------------------------------%
-\section{Pengenalan Suara Otomatis}
-%-----------------------------------------------------------------------------%
-Pengenalan Suara Otomatis atau yang lebih umum dikenal dengan \f{Automatic Speech Recognition} (ASR) memiliki beberapa definisi dari sumber yang berbeda. Menurut \cite{forsberg2003speech}, ASR adalah proses yang dilakukan komputer untuk menafsirkan ucapan manusia. Definisi lebih teknis diberikan oleh \cite{Jurafsky:2009:SLP:1214993}, yaitu ASR adalah sebuah sistem untuk memetakan sinyal akustik ke dalam untaian kata. Selain definisi-definisi yang telah disebutkan sebelumnya, \cite{chigier1997automatic} menambahkan bahwa ASR merupakan proses komputasi yang bertujuan untuk menangkap sinyal akustik yang merepresentasikan ucapan dan menentukan kata-kata yang diucapkan menggunakan pencocokan pola.
-
-Teknik dalam membangun sistem ASR berbeda-beda, namun secara garis besar ada kesamaan. Sistem pengenalan suara umumnya memiliki sekumpulan model akustik dan bahasa yang direpresentasikan sebagai pola, dan disimpan dalam sebuah basis data komputer. Model-model ini kemudian dibandingkan dengan sinyal yang ditangkap. Untuk sistem ASR yang mengandung sedikit kosakata (kurang dari 50 kata), sebuah model dapat merepresentasikan sebuah kata. Namun untuk kosakata yang lebih dari 50 kata, proses pemodelan dan algoritma pengenalan membutuhkan komputasi yang banyak dan tidak praktis. Oleh karena itu, sistem dengan kosakata yang banyak (lebih dari 1000 kata) membuat sebuah model yang merepresentasikan komponen yang lebih kecil dari kata, sebagai contoh adalah \f{fonem}. Deretan fonem dapat dirangkai untuk menghasilkan sebuah model kata.
-
-\cite{juang2005automatic} dalam artikelnya yang berjudul \f{Automatic Speech Recognition -- A Brief History of the Technology Development} menjelaskan bahwa saat ini teknologi ASR sudah tersedia secara komersial, walaupun hanya mampu menjalankan tugas-tugas yang terbatas. Teknologi ini memungkinkan mesin untuk menanggapi perintah manusia melalui suara dengan baik. Namun teknologi tersebut masih jauh dari kemampuan untuk bercakap-cakap dengan manusia dalam berbagai topik bebas. Perkembangan dalam bidang sains dan teknologi semakin mendorong sistem ASR untuk menjadi sistem yang mampu mengenali dan memahami ucapan manusia dengan baik.
-
-Sejarah singkat mengenai perkembangan ASR dapat dikelompokkan ke dalam beberapa era. Dimulai pada sekitar tahun 1960, di mana pada saat itu telah berhasil dikembangkan teknologi yang mampu mengenali kosakata dalam skala kecil (10 sampai 100 kata). Pengenalan ini dilakukan dengan mengenali kata demi kata secara terpisah berdasarkan sifat-sifat \f{acoustic-phonetic} yang terdapat dalam suara. \f{Acoustic-phonetic} adalah ilmu tentang karakteristik akustik dari suara. Kunci dari keberhasilan teknologi ASR di era ini adalah analisis \f{filter-bank}, metode normalisasi \f{simple time}, dan permulaan dari metodologi \f{dynamic programming} yang canggih. \f{Filter-bank} adalah pembagian sinyal \f{input} $x(n)$ ke dalam himpunan sinyal analisis  $x_1(n), x_2(n), \ldots$, yang masing-masing berkorespondensi terhadap wilayahnya di dalam spektrum $x(n)$.
-
-Sekitar tahun 1970, teknologi yang berkembang mampu untuk mengenali kosakata dalam skala sedang (100 sampai 1000 kata). Kunci perkembangan teknologi di era ini adalah model pengenalan pola (\f{pattern recognition}), permulaan metode \f{Linear Predictive Coding} (LPC) untuk merepresentasikan spektrum, metode \f{pattern clustering} untuk \f{speaker-independent recognizers}, dan permulaan metode \f{dynamic programming} untuk menyelesaikan permasalahan \f{connected word recognition}. Sekitar tahun 1980, teknologi ASR mampu menangani kosakata dalam skala besar (1000 kata atau lebih). Kunci dari keberhasilan di era ini adalah model statistik \f{Hidden Markov Model} (HMM) dan model bahasa \f{stochastic}.
-
-Teknologi semakin maju pada sekitar tahun 1990. Sistem ASR dengan kosakata berskala besar yang lebih canggih dari era sebelumnya telah berhasil dikembangkan pada era ini, dengan adanya \f{continuous speech recognition and understanding}. Adapun keberhasilan teknologi ASR di era ini berkat metode untuk melakukan \f{stochastic language understanding}, pembelajaran statistik dari model akustik dan model bahasa, permulaan \f{finite state transducer framework} (dan juga \f{FSM Library}), serta metode untuk determinasi dan minimalisasi untuk implementasi sistem \f{speech understanding} yang efisien dengan kosakata berskala besar. Akhirnya sekitar tahun 2000, muncul permulaan dari sistem ASR dengan kosakata berskala sangat besar disertai model semantik penuh, terintegrasi dengan sistem sintesis \f{text-to-speech} (TTS), dan \f{multi-modal inputs}.
-
-
-
-%-----------------------------------------------------------------------------%
-\section{Fitur}
-%-----------------------------------------------------------------------------%
-Informasi tertentu yang diambil dari data disebut \f{fitur}. Proses pengambilan fitur dari data dinamakan proses \f{ekstraksi fitur}. Dalam sistem ASR, fitur yang populer digunakan antara lain adalah \f{Mel Frequency Cepstral Coefficients} (MFCCs) dan \f{Shifted Delta Cepstral Coefficients} (SDCCs). Implementasi fungsi untuk melakukan ekstraksi fitur MFCCs dan SDCCs akan dijelaskan pada Bab \ref{chap:fungsipendukung}.
-
-	\subsection{Mel Frequency Cepstral Coefficients (MFCCs)} \label{teorimfcc}
-	\f{Mel frequency cepstral coefficients} (MFCCs) adalah salah satu fitur modern dalam teknologi \f{speech}, yang diperkenalkan oleh \cite{1163420}. Fitur ini sudah banyak digunakan dalam ASR \citep{young2002htk}, verifikasi \f{speaker} \citep{ganchev2005comparative}, dan juga di dalam identifikasi bahasa lisan \citep{yin2006combining}. MFCCs adalah fitur yang berbasis spektrum \f{short-term}. Dalam penelitian tentang \f{speech}, \f{short term} sering dipilih sebagai fitur dengan asumsi bahwa secara statistik sinyal bersifat stasioner dalam periode waktu singkat. Namun jika terlalu singkat, banyaknya sampel tidak akan cukup untuk menghasilkan estimasi spektrum tepat. Umumnya interval waktu untuk sebuah \fr~adalah 20 ms sampai dengan 40 ms \citep{zahra2013unique}.
-
-  \cite{hitungmfcc} menjelaskan secara garis besar cara menghitung nilai MFCCs dari sebuah data audio. Langkah-langkahnya adalah sebagai berikut.
-  \begin{enumerate}
-    \item Bagi sebuah sinyal ke dalam beberapa \fr~singkat.
-    \item Hitung estimasi \f{periodogram} dari \f{power spectrum} pada setiap \fr.
-    \item Terapkan \f{mel filter-bank} ke setiap \f{power spectrum}, lalu jumlahkan energi di setiap \f{filter}.
-    \item Hitung nilai logaritma dari seluruh energi \f{filter-bank}.
-    \item Hitung nilai \f{discrete cosine transform} (DCT) dari logaritma energi \f{filter-bank}.
-  \end{enumerate}
-
-
-
-	\subsection{Shifted Delta Cepstral Coefficients (SDCCs)}  \label{teorisdcc}
-  \f{Shifted delta cepstral coefficients (SDCCs)} adalah pengembangan dari MFCCs \citep{torres2002approaches}. Untuk menghitung SDCCs diperlukan nilai MFCCs sebagai salah satu parameter dalam komputasi SDCCs. Vektor fitur SDCCs diperoleh dengan cara menumpuk \f{delta cepstral} yang dihitung dari beberapa \fr. Selain nilai MFCCs, fitur SDCCs membutuhkan 4 parameter tambahan sebagai berikut.
-  \begin{enumerate}
-    \item N: banyaknya koefisien-koefisien \f{cepstral} yang dihitung pada setiap \fr
-    \item \f{d}: waktu untuk \f{advance} dan \f{delay} untuk komputasi \f{delta}
-    \item \f{P}: pergeseran waktu antarblok berurutan
-    \item \f{k}: banyaknya blok di mana koefisien \f{delta} disambungkan untuk membentuk vektor fitur akhir
-  \end{enumerate}
-  
-  Menurut \cite{zahra2013unique}, ide dari perhitungan ini adalah menghitung jarak antara pasangan N koefisien \f{cepstral} paralel yang dipisahkan oleh waktu \f{advance} dan \f{delay} \f{t}, dilakukan pada \f{k} blok dengan waktu geser \f{P} antarblok yang berurutan. Semua nilai jarak ini kemudian disatukan menjadi sebuah vektor. Langkah ini dilakukan secara iteratif dari awal sampai akhir \fr~pada \f{speech}, sehingga diperoleh kumpulan vektor yang menjadi nilai SDCCs. Gambar \ref{fig:hitungsdcc} mengilustrasikan bagaimana cara menghitung sebuah vektor SDCC.
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/hitung_sdcc_mono}
-    \caption{Contoh Perhitungan Sebuah Vektor SDCC}{Sumber gambar: \cite{zahra2013unique}}
-    \label{fig:hitungsdcc}
-  \end{figure}
-
-
-
-%-----------------------------------------------------------------------------%
-\section{Longest Common Subsequence (LCS)}\label{lcs}
-%-----------------------------------------------------------------------------%
-\cite{Cormen:2009:IAT:1614191} menjelaskan tentang algoritma untuk menyelesaikan permasalahan \f{longest common subsequence} (LCS) dalam bukunya yang berjudul \f{Introduction to Algorithms}. Diberikan sebuah barisan (\f{sequence}) $X=\langle x_1,x_2,...,x_m\rangle$. Barisan $Z=\langle z_1,z_2,...,z_k\rangle$ disebut \textbf{\f{subsequence}} dari $X$ jika terdapat barisan menaik $\langle i_1,i_2,...,i_k\rangle$ berupa indeks dari $X$ sedemikian hingga untuk semua $j=1,2,...,k$, terpenuhi $x_{i_j}=z_j$. Sebagai contoh, $Z=\langle B,C,D,B\rangle$ adalah \f{subsequence} dari $X=\langle A,B,C,B,D,A,B\rangle$ dengan barisan indeks yang berkorespondensi adalah $Z=\langle 2,3,5,7\rangle$.
-
-Diberikan dua buah barisan $X$ dan $Y$. $Z$ disebut \textbf{\f{common subsequence}} dari $X$ dan $Y$ jika Z merupakan \f{subsequence} dari $X$ dan $Y$ sekaligus. Sebagai contoh,  jika $X=\langle A,B,C,B,D,A,B\rangle$, dan $Y=\langle B,D,C,A,B,A\rangle$, barisan $\langle B,C,A\rangle$ adalah \f{common subsequence} dari $X$ dan $Y$ sekaligus. Barisan $\langle B,C,A\rangle$ bukan merupakan \f{common subsequence} terpanjang dari $X$ dan $Y$ karena hanya memiliki panjang 3, sedangkan terdapat barisan $\langle B,C,B,A\rangle$ yang memiliki panjang 4 dan juga merupakan \f{common subsequence} dari $X$ dan $Y$. Karena tidak ada \f{common subsequence} dari $X$ dan $Y$ dengan panjang 5, maka barisan $\langle B,C,B,A\rangle$ merupakan \f{common subsequence} terpanjang atau \textbf{\f{longest common subsequence}} (LCS) dari $X$ dan $Y$.
-
-LCS dapat diselesaikan menggunakan \f{dynamic programming}. Prosedur pada gambar \ref{fig:prosedurlcs} menjelaskan cara untuk menghitung nilai LCS. Prosedur tersebut membutuhkan dua buah barisan sebagai \f{input}, yaitu $X=\langle x_1,x_2,...,x_m\rangle$ dan $Y=\langle y_1,y_2,...,y_n\rangle$, lalu memberikan tabel $b$ dan $c$ sebagai \f{output}. Nilai LCS terdapat pada $c[m,n]$.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.7\linewidth]{pics/prosedur_lcs}
-  \caption{Prosedur LCS-Length}{Sumber gambar: \cite{Cormen:2009:IAT:1614191}}
-  \label{fig:prosedurlcs}
-\end{figure}
-
-Gambar \ref{fig:tabellcs} memperlihatkan bagaimana isi tabel yang dihasilkan dari prosedur LCS-Length pada barisan $X=\langle A,B,C,B,D,A,B\rangle$ dan $Y=\langle B,D,C,A,B,A\rangle$.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.55\linewidth]{pics/tabel_lcs}
-  \caption{Tabel $c$ dan $b$ yang Dihasilkan oleh Prosedur LCS-Length}{Sumber gambar: \cite{Cormen:2009:IAT:1614191}}
-  \label{fig:tabellcs}
-\end{figure}
-
-
-%-----------------------------------------------------------------------------%
-\section{Metode \f{Clustering} dan Klasifikasi}
-%-----------------------------------------------------------------------------%
-Metode \f{clustering} dan klasifikasi adalah dua hal yang mirip. \f{Clustering} mengelompokkan data tanpa diketahui labelnya, sedangkan klasifikasi mengelompokkan data dengan diketahui labelnya.
-
-  %-----------------------------------------------------------------------------%
-  \subsection{K-Means Clustering}
-  %-----------------------------------------------------------------------------%
-  \f{Clustering} adalah proses mengelompokkan data menurut kemiripannya. Ada beberapa metode \f{clustering} yang dikembangkan oleh peneliti, salah satunya adalah \f{k-means clustering}. Metode ini mengelompokkan data menurut kedekatannya ke dalam \f{k} kelompok. Data dalam \f{k-means clustering} berupa sebuah vektor, sehingga kedekatan dua buah vektor ditentukan oleh jarak dari dua buah vektor tersebut. Jarak dua buah vektor salah satunya dihitung menggunakan \f{euclidean distance}. \cite{anton2010elementary} menjelaskan tentang \f{euclidean distance} dalam bukunya yang berjudul \f{Elementary Linear Algebra} sebagai berikut. Jika $\mathbf{u} = (u_1,u_2,...,u_n)$ dan $\mathbf{v} = (v_1,v_2,...,v_n)$ adalah dua buah titik di dalam $\mathbb{R}^n$, maka \f{euclidean distance} antara $\mathbf{u}$ dan $\mathbf{v}$ didefinisikan sebagai
-  \begin{equation} \label{equ:euclideandistance}
-    d(\mathbf{u},\mathbf{v})=||\mathbf{u}-\mathbf{v}||=\sqrt{(u_1-v_1)^2+(u_2-v_2)^2+\dots+(u_n-v_n)^2}.
-  \end{equation}
-  
-  \cite{kanungo2002efficient} menjelaskan cara kerja \f{k-means} sebagai berikut. Diberikan himpunan $n$ titik dalam dimensi $d$, $\mathbb{R}^d$, dan sebuah bilangan bulat $K$. Tugas dari \f{k-means} adalah menentukan himpunan $K$ titik dalam $\mathbb{R}^d$, yang disebut \f{centers}, untuk meminimalkan nilai \f{mean squared distance} dari setiap titik ke \f{center} terdekat. \f{Center} dalam istilah lain disebut \f{centroid}. Secara matematis, untuk himpunan \f{disjoint} $S_j$ yang berisi $N_j$ titik, \f{k-means} bekerja dengan cara meminimalkan nilai $J$ pada persamaan
-  \begin{equation}
-    J = \sum_{j=1}^{K}{\sum_{n\in S_j}{|x_n-\mu_j|^2}},
-  \end{equation}
-  di mana $x_n$ adalah vektor yang merepresentasikan titik ke-$n$ dan $\mu_j$ merepresentasikan \f{centroid} dari titik-titik dalam himpunan $S_j$ \citep{kmeans}. Walaupun algoritma \f{k-means clustering} tidak menghasilkan solusi \f{global optimum} untuk $J$, namun algoritma ini sering digunakan oleh banyak praktisi karena mudah untuk diimplementasikan.
-
-  Metode \f{k-means clustering} secara singkat terdiri dari langkah-langkah sebagai berikut.
-  \begin{enumerate}
-    \item Masukkan seluruh titik ke dalam $K$ himpunan secara acak.
-    \item \label{hitung_centroid} Hitung \f{centroid} pada setiap himpunan.
-    \item \label{kelompokkan} Kelompokkan ulang setiap titik ke kelompok yang memiliki \f{centroid} terdekat dengan titik tersebut.
-    \item Ulangi langkah \ref{hitung_centroid} sampai \ref{kelompokkan} hingga syarat berhenti terpenuhi, misalnya tidak adanya perubahan kelompok pada setiap titik.
-  \end{enumerate}
-
-
-
-  \subsection{Support Vector Machine (SVM)}
-  \f{Support Vector Machine} (SVM) adalah metode pembelajaran mesin yang relatif baru untuk klasifikasi biner, yaitu klasifikasi yang hanya terdiri dari dua kelas \citep{svm}. Ide dasar dari SVM adalah mencari \f{hyperplane} yang memisahkan data $d$-dimensi secara linier menjadi dua kelas. Namun data sampel terkadang tidak dapat dipisahkan secara linier, sehingga SVM memperkenalkan konsep \f{kernel induced feature space}, yaitu memetakan data ke dimensi ruang yang lebih tinggi supaya data dapat dipisahkan secara linier. Gambar \ref{fig:svm2d} mengilustrasikan data dalam dimensi 2 yang tidak dapat dipisahkan secara linier. Gambar \ref{fig:svm3d} mengilustrasikan data tersebut setelah dipetakan ke dimensi 3 dengan fungsi $\phi(x,y)=(x,y,x^2+y^2)$, sehingga dapat dipisahkan secara linier menggunakan \f{hyperplane}.
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/svm_2db_mono}
-    \caption{Ilustrasi Data dalam Dimensi 2}
-    \label{fig:svm2d}
-  \end{figure}
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/svm_3db_mono}
-    \caption{Ilustrasi Data dalam Dimensi 3}
-    \label{fig:svm3d}
-  \end{figure}
-
-  Secara matematis, cara kerja SVM dalam melakukan klasifikasi adalah sebagai berikut. Diberikan $l$ sampel \f{training}, $\{\vec x_i,y_i\}$ untuk $i=1,2,\dots,l$; $\vec x_i\in\mathbb{R}^d$; dan $y_i\in\{-1,1\}$. Semua \f{hyperplane} di $\mathbb{R}^d$ memiliki parameter berupa sebuah vektor $\vec w$ dan sebuah konstanta $b$, yang dinyatakan dalam bentuk persamaan
-  \begin{equation}
-    \vec w\cdot\vec x+b=0.
-  \end{equation}
-  Diberikan sebuah \f{hyperplane} $(\vec w,b)$ yang memisahkan data, maka terdapat fungsi
-  \begin{equation}
-    f(\vec x) = sign(\vec w\cdot\vec x+b)
-  \end{equation}
-  yang mengklasifikasi data \f{training} dengan benar. Syarat data terklasifikasi dengan benar adalah $\forall_i(f(\vec x_i)y_i \geq 1)$.
-
-  Pemetaan ke dimensi ruang yang lebih tinggi membutuhkan proses komputasi yang lebih banyak, serta dapat membuat proses klasifikasi mengalami \f{overfitting}. Karena itu pemetaan vektor tidak dilakukan dalam SVM secara langsung. Pemetaan terjadi secara tidak langsung di dalam \f{kernel function}. \f{Kernel function} adalah fungsi yang digunakan untuk menghitung nilai perkalian dua buah vektor dalam SVM. \f{Kernel function} $K(\vec{x_a},\vec{x_b})$ menerima \f{input} berupa dua buah vektor dan memberikan \f{output} berupa sebuah nilai skalar. Salah satu contoh \f{kernel function} adalah $K(\vec{x_a},\vec{x_b}) = (\vec{x_a}\cdot\vec{x_b}+1)^2$.
-
-
-
-  \subsection{Gaussian Mixture Model (GMM)}
-  Menurut \cite{6235282}, \f{Gaussian mixture distribution} atau \f{Gaussian mixture model} (GMM) adalah gabungan dari $L$ komponen \f{Gaussian distribution}. Untuk \f{random variable} satu dimensi, $Y$, \f{probability density function (PDF)} dari $Y$ didefinisikan sebagai
-  \begin{equation}
-    f_Y(y) = \sum_{i=1}^{L}{\omega_i f_{N(\mu_i,\sigma^2_i)}(y)},
-  \end{equation}
-  di mana $\omega_i$, $\mu_i$, dan $\sigma^2_i$ secara berurutan menyatakan proporsi, rata-rata, dan varian dari komponen ke-i di \f{Gaussian mixture} \citep{4643623}. PDF adalah fungsi pada suatu distribusi \f{random variable} kontinu yang menyatakan probabilitas suatu nilai berada pada interval distribusi tersebut.
-
-  Untuk mempertahankan karakteristik dari \f{probability distribution}, parameter memiliki batasan yaitu, $0<\omega_i\leq1$~dan~$\sum_{i=1}^{L}{\omega_i=1}$. Menurut buku \f{Applied Statistics and Probability for Engineers} yang ditulis oleh \cite{montgomery2013applied}, cara menghitung distribusi dari komponen \f{Gaussian} ke-i, $f_{N(\mu_i,\sigma^2_i)}$, adalah sebagai berikut.
-  \begin{equation}
-    f_{N(\mu_i,\sigma^2_i)}(x) = \frac{1}{\sqrt{2\pi\sigma^2_i}} e^{(\frac{-(x-\mu_i)^2}{2\sigma^2_i})}.
-  \end{equation}
-
-  \cite{5089549} menjelaskan cara menghitung rata-rata ($\mu$) dan varian ($\sigma^2$) dari \f{random variable} $Y$ adalah sebagai berikut.
-  \begin{align}
-    \mu_Y      &= \sum_{i=1}^{L}{\omega_i\mu_i}\\
-    \sigma^2_Y &= \sum_{i=1}^{L}{\omega_i(\sigma^2_i+(\mu_i-\mu_Y)^2)}.
-  \end{align}
-
-  Gambar \ref{fig:gmm} menunjukkan \f{probability density} dari \f{random variable} $Y$ yang dimodelkan menggunakan \f{Gaussian distribution} dengan 7 komponen. Jumlah setiap komponen berbobot \f{Gaussian} menghasilkan \f{Gaussian mixture distribution}
-
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/gmm}
-    \caption{\f{Gaussian Mixture Distribution} dengan 7 Komponen}{Sumber gambar: \cite{6235282}}
-    \label{fig:gmm}
-  \end{figure}
-
-  Keuntungan menggunakan GMM adalah sembarang PDF dengan banyak komponennya terbatas dapat didekati. Biasanya semakin banyak komponen yang ada pada GMM, maka pendekatan tersebut semakin akurat. Metode paling efektif untuk menentukan GMM yang paling mendekati distribusi sampel \f{random variable} $Y$ adalah menggunakan algoritma \f{expectation maximization} \citep{singh2010statistical}.
-
-
-\section{Evaluasi} \label{chap:evaluasi}
-Hasil pada klasifikasi biner dapat dikategorikan menjadi dua, yaitu \f{true} (+) dan \f{false} (-). Perbandingan hasil klasifikasi dengan hasil yang diharapkan dapat dilihat pada tabel \ref{table:kontingensi}.
-
-\begin{table}
-  \centering
-  \caption{Kontingensi}
-  \begin{tabular}{|c|c|c|}
-    \hline
-    \multirow{2}{7em}{\textbf{Hasil Klasifikasi}} & \multicolumn{2}{c|}{\textbf{Hasil yang Diharapkan}} \\
-    \cline{2-3}
-    & + & - \\
-    \hline
-    + & True Positive (TP) & False Positive (FP) \\
-    \hline
-    - & False Negative (FN) & True Negative (TN) \\
-    \hline
-  \end{tabular}
-  \label{table:kontingensi}
-\end{table}
-
-Dari tabel \ref{table:kontingensi} dapat dihitung beberapa metrik evaluasi, yang dapat digunakan untuk melihat dan menganalisis hasil eksperimen. Beberapa contoh metrik evaluasi antara lain sebagai berikut.
-
-\begin{align}
-  Accuracy &= \frac{TP+FN}{TP+FN+FP+TN} \label{equ:accuracy} \\
-  Precision &= \frac{TP}{TP+FP} \label{equ:precision} \\
-  Recall &= \frac{TP}{TP+FN} \label{equ:recall} \\
-  F-measure &= \frac{2 \cdot Precision \cdot Recall}{Precision + Recall} \label{equ:fmeasure}
-\end{align}
-
-Nilai-nilai pada metrik evaluasi memiliki makna yang berbeda-beda. \f{Accuracy} (persamaan \ref{equ:accuracy}) menyatakan rasio antara banyaknya hasil klasifikasi yang sesuai dengan hasil yang diharapkan dengan seluruh data yang ada. Rasio antara banyaknya hasil positif yang sesuai harapan, terhadap banyaknya hasil klasifikasi yang memberikan nilai positif (+) disebut \f{precision} (persamaan \ref{equ:precision}). Kemudian \f{recall} (persamaan \ref{equ:recall}) menyatakan rasio antara banyaknya yang diklasifikasikan positif dengan banyaknya data yang diharapkan positif. Namun terkadang nilai \f{precision} bersaing dengan nilai \f{recall}. Semakin tinggi nilai \f{precision} umumnya akan membuat nilai \f{recall} semakin rendah, dan sebaliknya. Nilai \f{F-measure} (persamaan \ref{equ:fmeasure}) menyatakan rata-rata harmonik antara nilai \f{precision} dengan nilai \f{recall}.
-
-
-
-%-----------------------------------------------------------------------------%
-\section{Penelitian Terkait}
-%-----------------------------------------------------------------------------%
-Penelitian ini membahas sistem \f{automatic speech recognition} (ASR) dalam domain bacaan Al-Qur'an. Beberapa pekerjaan yang sudah dilakukan oleh peneliti sebelumnya terkait bidang ASR dengan domain \quran~antara lain, yang \f{pertama} adalah penelitian yang dilakukan oleh \cite{Muhammad:2010:VCM:1934908.1935467}. Penelitiannya membahas tentang pencocokan suara bacaan Al-Qur'an. Tujuannya adalah membangun sistem yang dapat memberitahukan kesalahan pada pelafalan bacaan \quran~yang tidak sesuai dengan pelafalan yang seharusnya. Penelitiannya menggunakan MFCC sebagai fitur.% Namun tidak dijelaskan secara menyeluruh bagaimana proses pencocokan itu dilakukan dalam penelitiannya. Selain itu, terdapat parameter yang ditentukan sendiri oleh penulisnya tanpa penjelasan, seperti penentuan $threshold\_value = 2,6$ dan $matched \geq 3$. Dalam penelitiannya juga tidak dijelaskan mengenai cakupan data yang digunakan.
-
-Penelitian \f{kedua} dilakukan oleh \cite{putra2012developing} yang dimuat dalam jurnalnya, \f{Developing Speech Recognition System for Quranic Verse Recitation Learning Software}. Jurnal tersebut membahas mengenai pengembangan perangkat lunak untuk membantu pembelajaran dalam membaca Al-Qur'an. Penelitian dalam jurnal tersebut menggunakan MFCC sebagai fitur dan GMM sebagai model.% Walaupun jurnalnya membahas sampai pada tahap pembuatan perangkat lunak, namun penjelasan mengenai ekstraksi fitur dan teknik pemodelannya masih kurang.
-
-Penelitian \f{ketiga} dilakukan oleh \cite{mohammed2015quranic}. Penelitiannya bertujuan untuk mencegah pengubahan suara bacaan \quran~yang banyak tersebar di \f{internet} dan media sosial secara otomatis. Pengubahan yang dimaksud adalah penambahan, pengurangan, atau kesalahan dalam melafalkan bacaan ayat-ayat Al-Qur'an. Penelitian tersebut menggunakan teks sebagai fitur. Proses ekstraksi teks dari audio lebih kompleks dibandingkan dengan proses ekstraksi MFCC. Untuk mengekstrak teks dari suara setidaknya diperlukan model akustik dan model bahasa. Proses ini menggunakan \f{Hidden Markov Model} (HMM) sebagai model untuk mencari tahu teks mana yang paling memungkinkan untuk menjadi \f{output}.% Kekurangan dalam penelitian tersebut adalah laporan penelitiannya hanya mencantumkan hasil yang diharapkan, dan 
-Penelitian tersebut memberikan kesimpulan bahwa untuk Bahasa Arab, fitur yang tepat digunakan adalah MFCC dengan model HMM, berdasarkan teknologi yang berkembang saat ini.

@@ -1,0 +1,21 @@
+6_word_dict_stopword_postag_phrase
+---------------------------------------
+Total Precission: 61.35649462987084
+Total Recall: 52.605344338820885
+Total F-Measure: 56.51946252587036
+---------------------------------------
+Total Precission disease: 67.49400635850293
+Total Recall disease: 61.555872872134316
+Total F-Measure disease: 63.811308169205475
+---------------------------------------
+Total Precission symptom: 62.89118721252404
+Total Recall symptom: 52.27280988286368
+Total F-Measure symptom: 56.72008552758217
+---------------------------------------
+Total Precission treatment: 54.868678256031764
+Total Recall treatment: 44.915759022725716
+Total F-Measure treatment: 49.05845124352185
+---------------------------------------
+Total Precission drug: 59.768154352642945
+Total Recall drug: 53.36892237885421
+Total F-Measure drug: 55.6621379413359

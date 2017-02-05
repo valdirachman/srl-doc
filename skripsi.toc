@@ -7,74 +7,101 @@
 \contentsline {chapter}{ABSTRAK}{vii}{section*.12}
 \contentsline {chapter}{Daftar Isi}{ix}{chapter*.15}
 \contentsline {chapter}{Daftar Gambar}{xii}{chapter*.16}
-\contentsline {chapter}{Daftar Tabel}{xiii}{chapter*.17}
+\contentsline {chapter}{Daftar Tabel}{xiv}{chapter*.17}
+\contentsline {chapter}{Daftar Kode}{xv}{chapter*.18}
 \contentsline {chapter}{\numberline {1}\uppercase {Pendahuluan}}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Latar Belakang}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Perumusan Masalah}{2}{section.1.2}
+\contentsline {section}{\numberline {1.2}Perumusan Masalah}{3}{section.1.2}
 \contentsline {section}{\numberline {1.3}Tujuan dan Manfaat Penelitian}{3}{section.1.3}
-\contentsline {section}{\numberline {1.4}Metodologi Penelitian}{3}{section.1.4}
+\contentsline {section}{\numberline {1.4}Metodologi Penelitian}{4}{section.1.4}
 \contentsline {section}{\numberline {1.5}Ruang Lingkup Penelitian}{5}{section.1.5}
-\contentsline {section}{\numberline {1.6}Sistematika Penulisan}{5}{section.1.6}
+\contentsline {section}{\numberline {1.6}Sistematika Penulisan}{6}{section.1.6}
 \contentsline {chapter}{\numberline {2}\uppercase {Landasan Teori}}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Pengenalan Entitas Kesehatan}{7}{section.2.1}
-\contentsline {section}{\numberline {2.2}Recurrent Neural Networks}{7}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Deep Learning}{8}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Vanilla RNNs}{8}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Long Short Term Memory}{8}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Penerapan RNNs untuk MER}{8}{subsection.2.2.4}
-\contentsline {section}{\numberline {2.3}Word Embedding}{8}{section.2.3}
-\contentsline {section}{\numberline {2.4}Pengenalan Suara Otomatis}{9}{section.2.4}
-\contentsline {section}{\numberline {2.5}Fitur}{10}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Mel Frequency Cepstral Coefficients (MFCCs)}{11}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Shifted Delta Cepstral Coefficients (SDCCs)}{11}{subsection.2.5.2}
-\contentsline {section}{\numberline {2.6}Longest Common Subsequence (LCS)}{12}{section.2.6}
-\contentsline {section}{\numberline {2.7}Metode \textit {Clustering} dan Klasifikasi}{14}{section.2.7}
-\contentsline {subsection}{\numberline {2.7.1}K-Means Clustering}{14}{subsection.2.7.1}
-\contentsline {subsection}{\numberline {2.7.2}Support Vector Machine (SVM)}{15}{subsection.2.7.2}
-\contentsline {subsection}{\numberline {2.7.3}Gaussian Mixture Model (GMM)}{18}{subsection.2.7.3}
-\contentsline {section}{\numberline {2.8}Evaluasi}{19}{section.2.8}
-\contentsline {section}{\numberline {2.9}Penelitian Terkait}{20}{section.2.9}
-\contentsline {chapter}{\numberline {3}\uppercase {Perancangan Sistem}}{22}{chapter.3}
-\contentsline {section}{\numberline {3.1}Rancangan Arsitektur Sistem}{22}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Pengumpulan Data}{22}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Proses Normalisasi}{23}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Pembuatan Model \textit {Word Embedding}}{24}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Ekstrasi Fitur}{24}{subsection.3.1.4}
-\contentsline {subsection}{\numberline {3.1.5}Eksperimen}{25}{subsection.3.1.5}
-\contentsline {section}{\numberline {3.2}Data}{25}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Pengambilan Data}{25}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Pembuangan Data Duplikat}{26}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Penyaringan Data}{28}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Perangkat dan Fungsi Pendukung}{29}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Perangkat Pendukung}{29}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Fungsi Pendukung}{29}{subsection.3.3.2}
-\contentsline {chapter}{\numberline {4}\uppercase {Eksperimen}}{32}{chapter.4}
-\contentsline {section}{\numberline {4.1}Normalisasi Data}{32}{section.4.1}
-\contentsline {section}{\numberline {4.2}Ekstraksi Fitur}{33}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Ekstraksi Fitur MFCC}{34}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Ekstraksi Fitur SDCC}{36}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Pemodelan}{38}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Pemodelan dengan Support Vector Machine (SVM)}{39}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Pemodelan dengan Gaussian Mixture Model (GMM)}{40}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Pemodelan dengan Gabungan SVM dan GMM}{40}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Pengujian}{41}{section.4.4}
-\contentsline {chapter}{\numberline {5}\uppercase {Hasil Eksperimen dan Analisis}}{43}{chapter.5}
-\contentsline {section}{\numberline {5.1}Hasil dengan Fitur MFCC}{43}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Hasil dengan Fitur MFCC dan Metode Klasifikasi SVM}{43}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Hasil dengan Fitur MFCC dan Metode Klasifikasi GMM}{45}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Hasil dengan Fitur MFCC dan Metode Klasifikasi Gabungan}{46}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}Hasil dengan Fitur SDCC}{48}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Hasil dengan Fitur SDCC dan Metode Klasifikasi SVM}{48}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Hasil dengan Fitur SDCC dan Metode Klasifikasi GMM}{49}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Hasil dengan Fitur SDCC dan Metode Klasifikasi Gabungan}{51}{subsection.5.2.3}
-\contentsline {section}{\numberline {5.3}Perbandingan Hasil}{52}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Perbandingan Metode Klasifikasi pada Fitur MFCC}{52}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Perbandingan Metode Klasifikasi pada Fitur SDCC}{53}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Perbandingan Fitur pada Metode Klasifikasi SVM}{54}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Perbandingan Fitur pada Metode Klasifikasi GMM}{55}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Perbandingan Fitur pada Metode Klasifikasi Gabungan}{56}{subsection.5.3.5}
-\contentsline {section}{\numberline {5.4}Analisis Lanjut}{57}{section.5.4}
-\contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{60}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{60}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{61}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{62}{chapter*.64}
+\contentsline {section}{\numberline {2.2}Deep Learning}{9}{section.2.2}
+\contentsline {section}{\numberline {2.3}Recurrent Neural Networks}{10}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Long Short Term Memories (LSTMs)}{12}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Penerapan RNNs untuk MER}{14}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}Word Embedding}{15}{section.2.4}
+\contentsline {chapter}{\numberline {3}\uppercase {Metodologi}}{18}{chapter.3}
+\contentsline {section}{\numberline {3.1}Gambaran Umum Pengembangan Metodologi}{18}{section.3.1}
+\contentsline {section}{\numberline {3.2}Pengumpulan Data}{19}{section.3.2}
+\contentsline {section}{\numberline {3.3}Pra-Pemrosesan}{19}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Pembersihan data}{20}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Tokenisasi}{21}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Pemotongan kalimat}{21}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Pelabelan}{22}{section.3.4}
+\contentsline {section}{\numberline {3.5}Pengembangan Model}{25}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Ekstrasi Fitur}{25}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Pengusulan Arsitektur RNNs}{34}{subsection.3.5.2}
+\contentsline {section}{\numberline {3.6}Eksperimen}{40}{section.3.6}
+\contentsline {section}{\numberline {3.7}Evaluasi}{41}{section.3.7}
+\contentsline {chapter}{\numberline {4}\uppercase {Implementasi}}{44}{chapter.4}
+\contentsline {section}{\numberline {4.1}Perangkat Pendukung}{44}{section.4.1}
+\contentsline {section}{\numberline {4.2}Pengumpulan Data}{44}{section.4.2}
+\contentsline {section}{\numberline {4.3}Pra-Pemrosesan}{45}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Pembersihan Data}{45}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Tokenisasi}{46}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Pemotongan Kalimat}{47}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Pelabelan}{47}{section.4.4}
+\contentsline {section}{\numberline {4.5}Pengembangan Model}{48}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Ekstraksi Fitur}{48}{subsection.4.5.1}
+\contentsline {subsubsection}{\numberline {4.5.1.1}Fitur Kata Itu Sendiri}{48}{subsubsection.4.5.1.1}
+\contentsline {subsubsection}{\numberline {4.5.1.2}Ekstraksi Fitur Kamus Kesehatan}{49}{subsubsection.4.5.1.2}
+\contentsline {subsubsection}{\numberline {4.5.1.3}Ekstraksi Fitur Stop Word}{50}{subsubsection.4.5.1.3}
+\contentsline {subsubsection}{\numberline {4.5.1.4}Ekstraksi Fitur Part of Speech Tag}{50}{subsubsection.4.5.1.4}
+\contentsline {subsubsection}{\numberline {4.5.1.5}Ekstraksi Frasa Kata Benda dan Kata Kerja}{51}{subsubsection.4.5.1.5}
+\contentsline {subsubsection}{\numberline {4.5.1.6}Ekstraksi Fitur 1 Kata Sebelum}{51}{subsubsection.4.5.1.6}
+\contentsline {subsubsection}{\numberline {4.5.1.7}Ekstraksi Fitur 1 Kata Sesudah}{52}{subsubsection.4.5.1.7}
+\contentsline {subsection}{\numberline {4.5.2}Pengusulan Arsitektur RNNs}{52}{subsection.4.5.2}
+\contentsline {subsubsection}{\numberline {4.5.2.1}LSTMs 1 layer}{53}{subsubsection.4.5.2.1}
+\contentsline {subsubsection}{\numberline {4.5.2.2}LSTMs 2 Layer Multi-Input}{54}{subsubsection.4.5.2.2}
+\contentsline {section}{\numberline {4.6}Eksperimen}{55}{section.4.6}
+\contentsline {section}{\numberline {4.7}Evaluasi}{56}{section.4.7}
+\contentsline {chapter}{\numberline {5}\uppercase {Eksperimen}}{58}{chapter.5}
+\contentsline {section}{\numberline {5.1}Metrik Evaluasi}{58}{section.5.1}
+\contentsline {section}{\numberline {5.2}Visualisasi Data}{58}{section.5.2}
+\contentsline {section}{\numberline {5.3}Desain Eksperimen}{61}{section.5.3}
+\contentsline {section}{\numberline {5.4}Skenario 1: \textit {Baseline} Eksperimen \cite {skripsiKakRadit}}{62}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Hasil Eksperimen}{63}{subsection.5.4.1}
+\contentsline {section}{\numberline {5.5}Skenario 2: Skenario Pengujian Fitur}{63}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Eksperimen 2.1: Fitur Kata}{63}{subsection.5.5.1}
+\contentsline {subsubsection}{\numberline {5.5.1.1}Hasil Eksperimen}{64}{subsubsection.5.5.1.1}
+\contentsline {subsubsection}{\numberline {5.5.1.2}Analisis}{64}{subsubsection.5.5.1.2}
+\contentsline {subsection}{\numberline {5.5.2}Eksperimen 2.2: Fitur Kata dan Kamus Kesehatan (\textit {Disease, Symptom, Treatment} dan \textit {Drug})}{66}{subsection.5.5.2}
+\contentsline {subsubsection}{\numberline {5.5.2.1}Hasil Eksperimen}{66}{subsubsection.5.5.2.1}
+\contentsline {subsubsection}{\numberline {5.5.2.2}Analisis}{67}{subsubsection.5.5.2.2}
+\contentsline {subsection}{\numberline {5.5.3}Eksperimen 2.3: Fitur Kata, Kamus Kesehatan dan \textit {Stopword}}{68}{subsection.5.5.3}
+\contentsline {subsubsection}{\numberline {5.5.3.1}Hasil Eksperimen}{68}{subsubsection.5.5.3.1}
+\contentsline {subsubsection}{\numberline {5.5.3.2}Analisis}{69}{subsubsection.5.5.3.2}
+\contentsline {subsection}{\numberline {5.5.4}Eksperimen 2.4: Fitur Kata, Kamus Kesehatan, \textit {Stopword} dan POS-Tag}{70}{subsection.5.5.4}
+\contentsline {subsubsection}{\numberline {5.5.4.1}Hasil Eksperimen}{70}{subsubsection.5.5.4.1}
+\contentsline {subsubsection}{\numberline {5.5.4.2}Analisis}{71}{subsubsection.5.5.4.2}
+\contentsline {subsection}{\numberline {5.5.5}Eksperimen 2.5: Fitur Kata, Kamus Kesehatan, \textit {Stopword}, POS-Tag dan Frasa Kata}{72}{subsection.5.5.5}
+\contentsline {subsubsection}{\numberline {5.5.5.1}Hasil Eksperimen}{72}{subsubsection.5.5.5.1}
+\contentsline {subsubsection}{\numberline {5.5.5.2}Analisis}{73}{subsubsection.5.5.5.2}
+\contentsline {subsection}{\numberline {5.5.6}Eksperimen 2.6: Fitur Kata, Kamus Kesehatan, \textit {Stopword} dan Frasa Kata}{74}{subsection.5.5.6}
+\contentsline {subsubsection}{\numberline {5.5.6.1}Hasil Eksperimen}{75}{subsubsection.5.5.6.1}
+\contentsline {subsubsection}{\numberline {5.5.6.2}Analisis}{75}{subsubsection.5.5.6.2}
+\contentsline {subsection}{\numberline {5.5.7}Eksperimen 2.7: Fitur Kata, Kamus Kesehatan, \textit {Stopword}, Frasa Kata dan Kata Sebelum}{76}{subsection.5.5.7}
+\contentsline {subsubsection}{\numberline {5.5.7.1}Hasil Eksperimen}{76}{subsubsection.5.5.7.1}
+\contentsline {subsubsection}{\numberline {5.5.7.2}Analisis}{77}{subsubsection.5.5.7.2}
+\contentsline {subsection}{\numberline {5.5.8}Eksperimen 2.8: Fitur Kata, Kamus Kesehatan, \textit {Stopword}, Frasa Kata, Kata Sebelum dan Kata Sesudah}{78}{subsection.5.5.8}
+\contentsline {subsubsection}{\numberline {5.5.8.1}Hasil Eksperimen}{78}{subsubsection.5.5.8.1}
+\contentsline {subsubsection}{\numberline {5.5.8.2}Analisis}{79}{subsubsection.5.5.8.2}
+\contentsline {section}{\numberline {5.6}Skenario 3: Skenario Pengujian Arsitektur RNNs}{79}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Eksperimen 3.1: Menguji Arsitektur LSTMs 1 Layer}{79}{subsection.5.6.1}
+\contentsline {subsubsection}{\numberline {5.6.1.1}Hasil Eksperimen}{80}{subsubsection.5.6.1.1}
+\contentsline {subsubsection}{\numberline {5.6.1.2}Analisis}{80}{subsubsection.5.6.1.2}
+\contentsline {subsection}{\numberline {5.6.2}Eksperimen 3.2: Menguji Arsitektur LSTMs 2 Layer Multi-Input}{81}{subsection.5.6.2}
+\contentsline {subsubsection}{\numberline {5.6.2.1}Hasil Eksperimen}{81}{subsubsection.5.6.2.1}
+\contentsline {subsubsection}{\numberline {5.6.2.2}Analisis}{82}{subsubsection.5.6.2.2}
+\contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{83}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{83}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{84}{section.6.2}
+\contentsline {chapter}{Daftar Referensi}{85}{chapter*.94}
+\contentsline {chapter}{LAMPIRAN}{1}{section*.95}
+\contentsline {section}{\numberline {.1}PART OF SPEECH TAG BAHASA INDONESIA}{1}{section.Alph0.1}
+\contentsline {section}{\numberline {.2}KAMUS DISEASE}{4}{section.Alph0.2}
+\contentsline {section}{\numberline {.3}KAMUS SYMPTOM}{14}{section.Alph0.3}
+\contentsline {section}{\numberline {.4}KAMUS SYMPTOM}{18}{section.Alph0.4}

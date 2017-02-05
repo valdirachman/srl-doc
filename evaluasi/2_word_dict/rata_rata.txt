@@ -1,0 +1,21 @@
+2_word_dict
+---------------------------------------
+Total Precission: 59.15908229113867
+Total Recall: 54.08183267336572
+Total F-Measure: 56.371133188469074
+---------------------------------------
+Total Precission disease: 67.3186476534186
+Total Recall disease: 61.78129810401047
+Total F-Measure disease: 64.09834254329492
+---------------------------------------
+Total Precission symptom: 60.54533855610039
+Total Recall symptom: 55.117591836196446
+Total F-Measure symptom: 57.406134902818806
+---------------------------------------
+Total Precission treatment: 52.20953344330003
+Total Recall treatment: 44.18430717684115
+Total F-Measure treatment: 47.02229763742356
+---------------------------------------
+Total Precission drug: 59.4185522025767
+Total Recall drug: 59.7120001041264
+Total F-Measure drug: 57.902841380448805

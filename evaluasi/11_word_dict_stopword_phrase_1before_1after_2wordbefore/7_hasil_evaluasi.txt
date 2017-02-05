@@ -1,0 +1,15 @@
+precision : 73.53463587921847
+recall : 56.634746922024625
+f-meassure : 63.987635239567226
+precisiond : 75.2
+recalld : 59.11949685534591
+f-meassured : 66.19718309859155
+precisions : 78.2442748091603
+recalls : 60.29411764705882
+f-meassures : 68.1063122923588
+precisiont : 62.5
+recallt : 50.0
+f-meassuret : 55.55555555555556
+precisionr : 75.0
+recallr : 48.38709677419355
+f-meassurer : 58.82352941176471
