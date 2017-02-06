@@ -3,227 +3,624 @@
 \chapter{\babEmpat} \label{eksperimen}
 %-----------------------------------------------------------------------------%
 
-\section{Normalisasi Data}
-Data yang sudah diperoleh perlu dinormalisasi terlebih dahulu untuk membuang \f{noise} yang dapat mengganggu jalannya eksperimen. Normalisasi dilakukan dengan cara membuang suara senyap atau \f{silence}. Ada beberapa teknik yang digunakan untuk membuang \f{silence}. Salah satu teknik klasik dan populer yang digunakan untuk membuang \f{silence} pada suara adalah kombinasi \f{short term energy} (STE) dengan \f{zero crossing rate} (ZCR) \citep{rabiner1978digital}. \cite{saha2005new} memaparkan pendekatan lain yang lebih baik akurasinya dalam membuang \f{silence} jika dibandingkan dengan STE maupun kombinasi ZCR dengan STE, yaitu dengan memodelkan sinyal audio menggunakan distribusi \f{Gaussian}.
+Bab ini akan membahas mengenai implementasi pada penelitian yang terdiri atas tahap pengumpulan data, pra-pemrosesan, pengembangan model, eksperimen dan evaluasi. Setiap fitur yang \saya~usulkan pada Bab 3 juga akan dijelaskan langkah pengimplementasian pada bab ini.
 
-Penelitian ini menggunakan pendekatan yang dipaparkan oleh \cite{saha2005new} dalam membuang \f{silence}, dengan langkah-langkah sebagai berikut.
+\section{Perangkat Pendukung}
+Dalam melakukan eksperimen, \saya~menggunakan perangkat komputer yang disediakan di lab. Perangkat komputer tersebut memiliki spesifikasi seperti pada tabel \ref{table:spesifikasi hardware}.
 
-\begin{enumerate}
-	\item \label{satu} Hitung rata-rata ($\mu$) dan standar deviasi ($\sigma$) dari 10 ms sampel pertama pada audio. Jika $fs$ menyatakan \br~dari audio, maka terdapat sebanyak $s$ sampel dalam 10 ms.
-	\begin{align}
-    s &= 0.01\cdot fs \\
-		\mu &= \frac{\sum_{i=1}^{s}x(i)}{s} \\
-		\sigma &= \sqrt{\frac{\sum_{i=1}^{s}(x(i)-\mu)^2}{s}}
-	\end{align}
-	\f{Background noise} juga dikenali dari berdasarkan nilai rata-rata ($\mu$) dan standar deviasinya ($\sigma$).
+\begin{table}
+	\centering
+	\caption{Spesifikasi \f{Hardware}}
+	\begin{tabular}{|c|c|}
+		\hline
+		Processor & i7-4770S \\ \hline
+		Banyak Core & 8 core \\ \hline
+		Frekuensi Processor & 3.1 GHz per core \\ \hline
+		RAM & 8 GB \\ \hline
+	\end{tabular}
+	\label{table:spesifikasi hardware}
+\end{table}
 
-	\item Periksa apakah jarak \f{Mahalanobis} mulai dari sampel pertama sampai dengan sampel terakhir pada audio lebih dari $3$ atau tidak. Jarak \f{Mahalanobis} dihitung menggunakan fungsi $f$ sebagai berikut.
-	\begin{equation}
-		d(x) = \frac{|x-\mu|}{\sigma}
-	\end{equation}
-	Nilai $3$ dipilih karena pada distribusi \f{Gaussian}, 99.7\% data memiliki nilai jarak \f{Mahalanobis} $\leq3$. Gambar \ref{fig:distribusinormal} menunjukkan persebaran data pada distribusi \f{Gaussian}.
+Berikut merupakan detail dari sistem operasi yang terpasang pada komputer di atas.
+\begin{table}
+	\centering
+	\caption{Spesifikasi Sistem Operasi}
+	\begin{tabular}{|c|c|}
+		\hline
+		Distributor ID & Ubuntu \\ \hline
+		Deskripsi & Ubuntu 13.10 \\ \hline
+		Versi rilis & 13.10 \\ \hline
+		Nama kode & saucy \\ \hline
+	\end{tabular}
+	\label{table:spesifikasi os}
+\end{table}
 
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{pics/distribusi_normal}
-		\caption{Distribusi \f{Gaussian} Terhadap Nilai Jarak \f{Mahalanobis}}{Sumber gambar: \cite{saha2005new}}
-		\label{fig:distribusinormal}
-	\end{figure}
+\section{Pengumpulan Data}
+\Saya~melakukan pengumpulan data dengan menggunakan ide implementasi dari \cite{skripsiKakRadit} yang kemudian \saya~modifikasi sesuai dengan kebutuhan. Bahasa program yang \saya~gunakan untuk melakukan pengumpulan data ini adalah Java, dengan menggunakan library JSoup untuk mengunduh isi forum sebuah situs. Hasil dari pengumpulan data ini \saya~gabungkan dengan data penelitian milik \cite{skripsiKakRadit}.
 
-	\item Tandai sampel yang dianggap bukan sebagai \f{silence} (selanjutnya disebut \f{voiced}) dengan 1 dan sampel yang dianggap sebagai \f{silence} dengan 0. Bagi keseluruhan sinyal audio ke dalam beberapa bagian yang tidak saling \f{overlap}, dengan durasi pada setiap bagian adalah 10 ms.
-
-	\item \label{empat} Asumsikan ada $M$ sampel yang bernilai 0 dan $N$ sampel yang bernilai 1. Jika $M \geq N$, maka ubah setiap tanda 1 menjadi tanda 0, dan sebaliknya.
-
-	\item Kumpulkan seluruh bagian yang dianggap sebagai \f{voiced}, yaitu bagian-bagian yang bertanda 1 hasil dari langkah \ref{satu} sampai langkah \ref{empat}.
-\end{enumerate}
-
-
+\begin{kode}\label{(kode_crawling)}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
 	
-\section{Ekstraksi Fitur} \label{chap:ekstraksi fitur}
-Ekstraksi fitur adalah proses mengubah data \f{input} menjadi himpunan fitur-fitur yang dapat merepresentasikan data \f{input} dengan baik. Ekstraksi fitur merupakan bentuk istimewa dari \f{dimensionality reduction} \citep{Soft-Computational}. \cite{wyse1980critical} menjelaskan bahwa ekstraksi fitur adalah proses yang mengekstrak himpunan fitur-fitur baru dari fitur asli melalui serangkaian fungsi pemetaan. Penelitian ini menggunakan dua jenis fitur, yaitu \f{mel frequency cepstral coefficient} (MFCC) dan \f{shifted delta cepstral coefficient} (SDCC). Fitur MFCC dipilih karena MFCC merupakan fitur yang banyak digunakan dalam penelitian di bidang \f{speech recognition} \citep{young2002htk}. Contohnya adalah penelitian yang berjudul \f{Voice Content Matching System for Quran Readers} oleh \cite{Muhammad:2010:VCM:1934908.1935467}. Sedangkan fitur SDCC dipilih karena SDCC merupakan fitur yang memuat lebih banyak konteks dalam setiap \f{frame}-nya jika dibandingkan dengan MFCC.
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{downloadPage(link)}{
+		\Input{link of an online health forum}
+		\Output{content of forum}
+		\BlankLine
+		
+		sql = selectFromDB(link)\;
+		res = execOnDB(sql)\;
+		\BlankLine
+		
+		\If{res != empty}{
+			insertToDB(sql)\;
+			doc = JSoup.connect(link)\;
+			writeToFile(doc.getJudulKeluhan())\;
+			writeToFile(doc.getIsiKeluhan())\;
+			writeToFile(doc.getJawaban)\;
+		}
+	}
+	\label{code:crawl}	
+	\caption{\textit{Pseudocode} untuk melakukan pengumpulan data}	
+\end{kode}
 
-% Data jenis mp3 terlalu kompleks untuk diklasifikasi secara langsung menggunakan metode-metode yang ada saat ini. Selain itu, banyak informasi tidak perlu atau \f{noise} yang terdapat pada sebuah berkas mp3. Untuk itu diperlukan proses ekstraksi fitur. Dengan proses ini diharapkan hanya informasi penting saja yang terambil dari sebuah berkas mp3 dan memiliki bentuk yang tidak terlalu kompleks.
+Hasil dari pengumpulan data ini yaitu \saya~mendapatkan 2065 \textit{post} dari forum kesehatan \textit{online} pada situs \textit{www.tanyadok.com}.
 
-\subsection{Ekstraksi Fitur MFCC} \label{chap:ekstrak fitur mfcc}
-Ekstraksi fitur MFCC menggunakan fungsi \f{mfcc} yang telah dijelaskan di Bab \ref{chap:fungsipendukung}. Fungsi \f{mfcc} pada eksperimen ini dipanggil dengan parameter fungsi yang dijelaskan pada tabel \ref{table:pemanggilanmfcc}.
-\begin{table}
-	\centering
-  \caption{Parameter Pemanggilan Fungsi \f{mfcc}}
-  \begin{tabular}{|l|l|}
-    % mfcc( speech, fs, Tw, Ts, alpha, window, R, M, N, L )
-    \hline
-    \textbf{Nama Parameter} & \textbf{Nilai Parameter} \\ \hline
-    Tw & 25 ms \\ \hline
-    Ts & 10 ms \\ \hline
-    Alpha & 0.97 \\ \hline
-    Window & \f{hamming window}  \\ \hline
-    R & [300 3700] \\ \hline
-    M & 20 \\ \hline
-    C & 13 \\ \hline
-    L & 22 \\ \hline
-  \end{tabular}
-  \label{table:pemanggilanmfcc}
- \end{table}
+\section{Pra-Pemrosesan}
+Tahap selanjutnya yaitu tahap pra-pemrosesan. Seperti yang telah dijelaskan pada bab metodologi, \saya~melakukan tiga buah pekerjaan di tahap ini, yaitu melakukan pembersihan data, tokenisasi dan pemotongan kalimat. Berikut merupakan penjelasan dari masing-masing pekerjaan tersebut:
 
-Berikut adalah langkah-langkah untuk memproses fitur MFCC.
-\begin{enumerate}
-  \item Tentukan nilai \br~untuk dimasukkan dalam perhitungan MFCC, yang akan mempengaruhi durasi audio. Durasi sebuah audio (dalam detik), $d$, dapat dihitung dengan rumus
-  \begin{equation}
-    d = \frac{L}{fs}, 
-  \end{equation}
-  di mana $L$ adalah panjang \fr~audio dan $fs$ adalah \br. Banyaknya \fr~(panjang kolom) pada hasil ekstraksi nilai MFCC dipengaruhi oleh durasi audionya. Maka untuk menyamakan panjang kolom hasil ekstraksi MFCC, durasi audio-audio yang akan diproses harus disamakan terlebih dahulu. Durasi yang digunakan untuk mengekstrak nilai MFCC pada satu ayat tertentu adalah \f{nilai rata-rata durasi} keseluruhan audio dari berbagai qari pada ayat tersebut. Setelah diperoleh nilai rata-rata durasi, $\bar{d}$, langkah selanjutnya adalah membuat masing-masing audio memiliki durasi yang sama, dengan cara mengubah nilai $fs$ masing-masing audio. Jika diberikan nilai $\bar{d}$ dan $L$, maka nilai $fs$ yang baru, $\widehat{fs}$, dihitung menggunakan rumus
-  \begin{equation}
-    \widehat{fs} = \frac{L}{\bar{d}}.
-  \end{equation}
+\subsection{Pembersihan Data}
+Tahap pembersihan data bertujuan untuk menghilangkan karakter yang bukan merupakan ASCII. Hal ini \saya~lakukan supaya dalam tahap ekstraksi fitur POS \textit{Tagging} tidak memiliki masalah karena terdapat karakter bukan ASCII. Selain itu, di dalam dokumen terdapat banyak \textit{email} dan \textit{url} yang unik sehingga mengakibatkan sistem akan menganggap token-token tersebut merupakan token yang unik dan berbeda. Untuk menangani hal tersebut \saya~melakukan normalisasi dengan mengubah semua token \textit{email} dan \textit{url} menjadi kata "email" dan "url" sehingga tetap mempertahankan keberadaan kedua token tersebut. Selain itu \saya~juga mengganti beberapa karakter yang bukan alfanumerik menjadi beberapa token dalam representasi kata, seperti karakter "\&" menjadi "dan", "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari". Hal ini \saya~lakukan karena korpus yang \saya~gunakan dalam bentuk berkas \textit{xml} yang tidak mengizinkan adanya ketiga karakter tersebut. Kemudian \saya~juga mengubah karakter "/" menjadi "atau" supaya mudah dalam ekstraksi fitur kata itu sendiri dengan menggunakan \textit{word embedding}. Kode \ref{code:cleaning} merupakan \textit{pseudocode} untuk melakukan pembersihan data yang \saya~gunakan.
 
 
-	\item Panggil fungsi \f{mfcc} dengan parameter yang telah disebutkan pada tabel \ref{table:pemanggilanmfcc} dan nilai \br~sama dengan $\widehat{fs}$, sehingga memberikan \f{output} berupa matriks MFCC 13x$K$, di mana $K$ menyatakan banyaknya \fr.
+\begin{kode}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{downloadPage(sentence)}{
+		\Input{sentence before cleaning}
+		\Output{sentence which has cleaned}
+		\BlankLine
+		
+		sentence.removeByRegex(non-ASCII regex)\;
+		sentence.replace(email-regex, "email")\;
+		sentence.replace(url-regex, "url")\;
+		sentence.replace(\&, "dan")\;
+		sentence.replace(\textless, "kurang dari")\;
+		sentence.replace(\textgreater, "lebih dari")\;
+		sentence.replace(/, "atau")\;
+		\BlankLine
+		
+		\Return sentence;
+	}
+	
+	\caption{\textit{Pseudocode} untuk melakukan pembersihan data}
+	\label{code:cleaning}
+\end{kode}
 
-	\item Buang matriks MFCC pada baris pertama, karena nilai tersebut merupakan log energi yang bukan merupakan bagian dari fitur dalam eksperimen ini. Sehingga matriks MFCC yang tersisa berukuran $12\times K$.
+\subsection{Tokenisasi}
+Pada tahap tokenisasi \saya~melakukan pemisahan antar kata dan antar token yang berbeda jenis, seperti token alfabet dengan numerik, alfanumerik dengan non-alfanumerik dan menghilangkan karakter spasi yang berlebih. Dalam mengimplementasikan tahap ini, \saya~menggunakan bahasa pemrograman Ruby. Berikut merupakan \textit{pseudocode} untuk melakukan tokenisasi.
 
-	\item Hitung nilai rata-rata pada setiap \fr~matriks MFCC. Perhitungan tersebut akan menghasilkan vektor kolom, $\vec v$, dengan panjang $K$. Vektor kolom adalah matriks yang hanya memiliki satu baris.
+\begin{kode}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{tokenization(sentence)}{
+		\Input{sentence before tokenization}
+		\Output{sentence which has tokenized}
+		\BlankLine
+		
+		sentence.replaceByRegex([alfabet][numerik], [alfabet] [numerik])\;
+		sentence.replaceByRegex([numerik][alfabet], [numerik] [alfabet])\;
+		sentence.replaceByRegex([alfanumerik][non-alfanumerik], [alfanumerik] [non-alfanumerik])\;
+		sentence.replaceByRegex([non-alfanumerik][alfanumerik], [non-alfanumerik] [alfanumerik])\;
+		sentence.replaceByRegex([\textbackslash s]+, " ")\;
+		\BlankLine
+		
+		\Return sentence;
+	}
+	\caption{\textit{Pseudocode} untuk melakukan tokenisasi}
+	\label{code:tokenisasi}
+\end{kode}
 
-	\item Selanjutnya vektor tersebut dipendekkan dengan cara sebagai berikut.
-	\begin{enumerate}[label*=\arabic*.]
-		\item Tentukan nilai $s$ (\f{shift}). $s = \left\lceil\frac{K}{30}\right\rceil$.
-		\item Tentukan nilai $w$ (\f{width}). $w = \left\lceil1.5 \times s\right\rceil$.
-		\item Setiap $s$ elemen sekali, hitung nilai rata-rata dari $w$ elemen berurutan pada vektor $\vec{v}$.
-	\end{enumerate}
-	Hasil pemendekan tersebut berupa vektor $\widehat{\vec{v}}$ dengan panjang $\widehat K$, di mana \[ \widehat{K} = \left\lceil \frac{K-w+1}{s} \right\rceil = \left\lceil \frac{K-1.5\left\lceil\frac{K}{30}\right\rceil+1}{\left\lceil\frac{K}{30}\right\rceil} \right\rceil \leq 29. \] Tujuan dari pemendekan vektor ini adalah untuk mengurangi kompleksitas fitur sehingga diharapkan hasil klasifikasi akan lebih akurat.
-  
-  Gambar \ref{fig:alurekstraksifiturmfcc} menunjukkan alur proses ekstraksi fitur MFCC.
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/ekstraksi_mfcc_v3}
-    \caption{Alur Ekstraksi Fitur MFCC}
-    \label{fig:alurekstraksifiturmfcc}
-  \end{figure}
-\end{enumerate}
+\subsection{Pemotongan Kalimat}
+Implementasi yang \saya~lakukan tahap ini bertujuan untuk mendapatkan sebuah \textit{instance} sebagai \textit{input} dari program RNNs di tahap eksperimen. Pemotongan dilakukan pada masing-masing \textit{post}. Pada pemotongan kalimat ini, penulis menerapkan aturan berbeda yang telah dijelaskan pada bab 3 karena jumlah kata pada sebuah kalimat yang dipisahkan dengan tanda baca ".", "!" dan "?" sangat jauh berbeda. Dengan implementasi pemotongan kalimat ini, \saya~berupaya untuk menghindari kasus kalimat yang \textit{sparse}, yaitu adanya kalimat yang memiliki jumlah token sangat renggang. Kode \ref{code:potong} merupakan \textit{pseudocode} untuk melakukan pemotongan kalimat.
+
+\begin{kode}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{sentenceSplitting(post, limit)}{
+		\Input{post, minimal limit number of word in a sentence}
+		\Output{array of sentence}
+		\BlankLine
+		
+		arrSentence = post.splitByRegex([?\.!,])\;
+		temp = []\;
+		arrResult = []\;
+		\ForEach{sentence in arrSentence}{
+			\uIf{len(temp) > limit}{
+				arrResult.append(temp)\;
+				temp = []\;
+			}
+			\Else{
+				temp += sentence
+			}
+		}
+		\BlankLine
+		
+		\Return arrResult;
+	}
+	
+	\caption{\textit{Pseudocode} untuk melakukan pemotongan kalimat}
+	\label{code:potong}
+\end{kode}
+
+\section{Pelabelan}
+Pada tahap ini \saya~melakukan pelabelan pada data baru yang telah diunduh. Sebelumnya, \cite{skripsiKakRadit} telah melabeli 200 buah \textit{post} dan pada penelitian ini \saya~melakukan pelabelan terhadap 109 buah \textit{post} yang \saya~pilih dari hasil pengumpulan data. \Saya~melakukan pemilihan berdasarkan banyaknya kalimat dalam sebuah \textit{post}. Untuk aturan pelabelan, \saya~mengikuti atuan pelabelan yang dilakukan oleh \cite{skripsiKakRadit} dalam penelitiannya. Pelabelan ini dilakukan selama 2 minggu.
+
+\section{Pengembangan Model}
+\subsection{Ekstraksi Fitur}
+Ekstraksi fitur dilakukan dengan menggunakan program yang diimplementasikan dalam bahasa Python. Keluaran dari ekstraksi fitur ini adalah vektor kata untuk masing-masing kalimat yang disimpan dalam format JSON. Masing-masing kalimat dalam sebuah \textit{post} disimpan dalam sebuah \textit{array} yang kemudian keseluruhan \textit{post} disimpan dalam \textit{hash} dengan indeks yang telah didefinisikan pada saat tahap pengumpulan data.
+
+\subsubsection{Fitur Kata Itu Sendiri}
+Dalam melakukan ekstraksi fitur kata itu sendiri, \saya~menggunakan \textit{library} gensim \citep{rehurek_lrec} yang disediakan secara gratis. Gensim mengimplementasikan \textit{word embedding} melalui \textit{library} bernama word2vec. Sebelum melakukan ekstraksi fitur, \saya~melakukan \textit{training} model \textit{word embedding} dengan data yang \saya~unduh dari berbagai artikel kesehatan di beberapa situs (\textit{https://www.kaskus.co.id/forum/94/health, http://archive.kaskus.co.id/forum/94}). Dalam melakukan \textit{training}, terdapat beberapa parameter yang perlu diberikan yaitu panjang \textit{windows} dan panjang vektor yang dihasilkan. Kedua parameter tersebut merupakan parameter bebas, sehingga dapat diisi dengan angka positif yang bebas. Dalam penelitian ini, \saya~menggunakan panjang \textit{window} yaitu $ 5 $ dan panjang vektor yaitu $ 128 $. Kode \ref{code:trainword2ve} merupakan kode untuk membuat dan melakukan \textit{training} Word2Vec.
+\begin{kode}
+	
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{trainWwordToVector(corpus, windowsSize, vectSize)}{
+		\Input{corpus of sentences for training, length of window, size of vector}
+		\Output{model Word2Vec}
+		
+		\BlankLine
+		model = Word2Vec.createModel(corpus, windowsSize, vectSize)
+		
+		\BlankLine
+		\Return model;
+	}
+	
+	\caption{\textit{Pseudocode} untuk membuat model dan melakukan training Word2Vec}
+	\label{code:trainword2ve}
+\end{kode}
+
+Setelah model didapatkan, \saya~melakukan ekstraksi dari masing-masing kata pada korpus. Kode \ref{code:ekstraksiownword} merupakan \textit{pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri.
+
+\begin{kode}
+
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{wordToVector(model, arrWord)}{
+		\Input{model word embedding, array of word in a sentence}
+		\Output{array of word vector}
+	
+		\BlankLine
+		arrVector = []\;
+		\ForEach{word in arrWord}{
+			arrVector.append(model.getVector(word))
+		}
+		
+		\BlankLine
+		\Return arrVector;
+	}
+	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri}
+	\label{code:ekstraksiownword}
+\end{kode}
+
+\subsubsection{Ekstraksi Fitur Kamus Kesehatan}
+Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implementasi ekstraksi fitur \textit{stop word}. Perbedaanya yaitu pada penggunaan \textit{resource}, yang mana ekstraksi fitur \textit{stop words} \saya~lakukan dengan menggunakan kamus \textit{stop word}, sedangkan pada fitur ini \saya~menggunakan kamus kesehatan. Kamus kesehatan yang \saya~gunakan sama dengan kamus pada penelitian \cite{skripsiKakRadit}, yang mana terdapat 4 kamus, yaitu kamus \textit{disease}, \textit{symptom}, \textit{treatment} dan \textit{drug}.
+
+\begin{kode}
+	
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetAlgoLined
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{dictExtract(dictionary, sentence)}{
+		\Input{dictionary of stop word,sentence}
+		\Output{array of one hot vector}
+		\BlankLine
+		
+		dictFeature = []\;
+		\ForEach{word in sentence}{
+			dictFeature.append(dictionary.isExist(word))
+		}
+		\BlankLine
+		
+		\Return dictFeature;
+		
+	}
+	\BlankLine
+	
+	\Fn{dictExtractAll(sentence)}{
+		\Input{dictionary of stop word,sentence}
+		\Output{array of one hot vector}
+		\BlankLine
+		
+		dictExtract(symptomDict, sentence)\;
+		dictExtract(diseaseDict, sentence)\;
+		dictExtract(treatmentDict, sentence)\;
+		dictExtract(drugDict, sentence)\;
+		\BlankLine
+		
+	}
+	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}
+	\label{code:ekstraksikamus}	
+\end{kode}
+
+Setiap kata yang terdaftar di dalam kamus kesehatan memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan Python dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ini dapat dilihat pada kode \ref{code:ekstraksikamus}.
 
 
+\subsubsection{Ekstraksi Fitur Stop Word}
+\Saya~melakukan ekstraksi fitur \textit{stop word} dengan menggunakan kamus \textit{stop word} yang digunakan oleh Taufik (2015) dalam melakukan pengenalan entitas bernama. Setiap kata yang merupakan \textit{stop word} memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan Python dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksistopword}.
 
-\subsection{Ekstraksi Fitur SDCC}
-Ekstraksi fitur SDCC menggunakan fungsi \f{mfcc2sdc} yang telah dijelaskan di Bab \ref{chap:fungsipendukung}. Fungsi \f{mfcc2sdc} pada eksperimen ini dipanggil dengan parameter fungsi yang dijelaskan pada tabel \ref{table:pemanggilansdcc}.
-\begin{table}
-	\centering
-  \caption{Parameter Pemanggilan Fungsi \f{mfcc2sdc}}
-  \begin{tabular}{|l|l|}
-    % mfcc2sdc(CepCoeff,d,P,K)
-    \hline
-    \textbf{Nama Parameter} & \textbf{Nilai Parameter} \\ \hline
-    D (nilai \f{shift} untuk \f{delta computation}) & 1 \\ \hline
-    P (nilai \f{shift} untuk \fr~selanjutnya) & 3 \\ \hline
-    K (banyaknya blok di mana koefisien \f{delta} disambungkan) & 3 \\ \hline
-  \end{tabular}
-  \label{table:pemanggilansdcc}
- \end{table}
+\begin{kode}
+	
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{stopWordExtract(dictionary, sentence)}{
+		\Input{dictionary of stop word,sentence}
+		\Output{array of one hot vector}
+		
+		\BlankLine
+		stopWordFeature = []\;
+		\ForEach{word in tagOnly}{
+			posTagFeature.append(dictionary.isExist(word))
+		}
+		\BlankLine
+		
+		\Return stopWordFeature;
+	}
+	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur \textit{stop word}}
+	\label{code:ekstraksistopword}	
+\end{kode}
 
-Berikut adalah langkah-langkah untuk memproses fitur SDCC.
-\begin{enumerate}
-  \item Hitung nilai MFCC menggunakan fungsi \f{mfcc} seperti sudah dijelaskan di Bab \ref{chap:ekstrak fitur mfcc}, langkah 1 sampai 3, sehingga diperoleh nilai MFCC berupa matriks berukuran $12\times K$. Nilai MFCC berukuran $12\times K$ perlu di-\f{transpose} terlebih dahulu menjadi ukuran $K\times12$ untuk menyesuaikan kebutuhan fungsi \f{mfcc2sdc}, yaitu baris sebagai \fr~dan kolom sebagai koefisien.
+\begin{kode}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{posTagExtract(model, sentence)}{
+		\Input{tagger of POS Tag,sentence}
+		\Output{array of one hot vector}
+		\BlankLine
+		
+		sentenceTagged = model.tagSentence(sentence)\;
+		tagOnly = getTagOnly(sentenceTagged)\;
+		posTagFeature = []\;
+		\ForEach{tag in tagOnly}{
+			posTagFeature.append(tag.convertToOneHotVector())
+		}
+		\BlankLine
+		
+		\Return posTagFeature;
+	}
+	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur POS-Tag}
+	\label{code:ekstraksipostag}
+\end{kode}
 
-	\item Panggil fungsi \f{mfcc2sdc} dengan parameter yang telah disebutkan pada tabel \ref{table:pemanggilansdcc}, sehingga memberikan \f{output} berupa matriks SDCC $36\times L$, di mana $L$ menyatakan banyaknya \fr.
+\subsubsection{Ekstraksi Fitur Part of Speech Tag}
+\Saya~menggunakan \textit{tools} Stanford POS Tagger \citep{toutanova2000enriching} dan model POS \textit{tagger} yang dikembangkan oleh \cite{dinakaramani2014designing}. \Saya~melakukan pemberian tag pada setiap kalimat di dalam korpus, kemudian mengubah hasil tag tersebut menjadi bentuk \textit{one-hot-vector}. Kode \ref{code:ekstraksipostag} merupakan \textit{pseudocode} dalam melakukan ekstraksi fitur POS Tag untuk sebuah kalimat yang \saya~lakukan.
 
-	\item Hitung nilai rata-rata pada setiap \fr~matriks SDCC. Perhitungan tersebut akan menghasilkan vektor kolom, $w$, dengan panjang $L$.
+\subsubsection{Ekstraksi Frasa Kata Benda dan Kata Kerja}
+Dalam mengimplementasikan ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK \citep{bird2009nltk} yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS-Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array} yang berisi \textit{array of one-hot-vector} dari masing-masing kata dalam 1 kalimat, yang apabila suatu kata merupakan bagian dari frasa kata benda akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. \textit{Pseudocode} untuk melakukan ekstraksi fitur ini dalam 1 kalimat dapat dilihat pada kode \ref{code:ekstraksinp}.
 
-	\item Selanjutnya vektor tersebut dipendekkan dengan cara sebagai berikut.
-	\begin{enumerate}[label*=\arabic*.]
-		\item Tentukan nilai $s$ (\f{shift}). $s = \left\lceil\frac{L}{30}\right\rceil$.
-		\item Tentukan nilai $w$ (\f{width}). $w = \left\lceil1.5\times s\right\rceil$.
-		\item Setiap $s$ elemen sekali, hitung nilai rata-rata dari $w$ elemen berurutan pada vektor $\vec{w}$.
-	\end{enumerate}
-	Hasil pemendekan tersebut berupa vektor $\widehat{\vec{w}}$ dengan panjang $\widehat L$, di mana \[ \widehat L = \left\lceil \frac{L-w+1}{s} \right\rceil = \left\lceil \frac{L-1.5\left\lceil\frac{L}{30}\right\rceil+1}{\left\lceil\frac{L}{30}\right\rceil} \right\rceil \leq 29. \] Tujuan dari pemendekan vektor ini adalah untuk mengurangi kompleksitas fitur sehingga diharapkan hasil klasifikasi akan lebih akurat.
+\begin{kode}
 
-  Gambar \ref{fig:alurekstraksifitursdcc} menunjukkan alur proses ekstraksi fitur SDCC.
-  \begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{pics/ekstraksi_sdcc_v2}
-    \caption{Alur Ekstraksi Fitur SDCC}
-    \label{fig:alurekstraksifitursdcc}
-  \end{figure}
-\end{enumerate}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetAlgoLined
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{phraseExtract(chunker, sentence, label)}{
+		\Input{chunker for a sentence, sentence, label of chunking}
+		\BlankLine
+		
+		chunkedSentence = chunker.chunk(sentence)\;
+		chunkFeature = []\;
+		\ForEach{token in chunkedSentence}{
+			\If{token.isLabel(label)}
+			{
+				chunkFeature.append([0.0, 1.0])\;
+			}
+			\Else(){
+				chunkFeature.append([1.0, 0.0])\;
+			}
+		}
+		\BlankLine
+		
+		\Return chunkFeature;
+		
+	}
+	\BlankLine	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur frasa}
+	\label{code:ekstraksinp}	
+\end{kode}
 
+\subsubsection{Ekstraksi Fitur 1 Kata Sebelum}
+Ekstraksi fitur ini \saya~lakukan dengan mengambil vektor kata dengan indeks saat ini dikurangi satu. Untuk awal kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. Kode \ref{code:ekstraksi1wordbef} merupakan implementasi dari ekstraksi fitur 1 kata sebelum.
 
+\begin{kode}	
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetAlgoLined
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{oneWordBeforeExtract(sentenceVector)}{
+		\Input{array of vector in a sentence}
+		\Output{array of vector}
+		\BlankLine
+		
+		oneWordBeforeFeature = []\;
+		oneWordBeforeFeature.append(zeroth)\;
+		\For{i in 1...sentenceVector.length}{
+			oneWordBeforeFeature.append(sentenceVector[i-1])\;
+		}
+		\BlankLine
+		
+		\Return oneWordBeforeFeature;
+		
+	}
+	
+	\BlankLine
+	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sebelum}
+	\label{code:ekstraksi1wordbef}	
+\end{kode}
 
-\section{Pemodelan} \label{chap:pemodelan}
-Penelitian ini menggunakan tiga variasi metode klasifikasi untuk mengenali pola dari fitur-fitur yang dihasilkan melalui proses pada Bab \ref{chap:ekstraksi fitur}, yaitu \f{support vector machine} (SVM), \f{Gaussian mixture model} (GMM), serta gabungan SVM dengan GMM. SVM dipilih untuk digunakan dalam penelitian ini karena SVM merupakan metode klasifikasi biner yang \f{powerful} \citep{bishop2006pattern}. Sedangkan GMM dipilih untuk digunakan dalam penelitian ini karena GMM merupakan model yang banyak digunakan dalam penelitian di bidang \f{speaker verification} \citep{reynolds2000speaker} dan \f{language identification} \citep{torres2002approaches}, serta sudah menjadi salah satu pendekatan terbaik dalam kedua bidang tersebut \citep{zahra2013unique}.
+\subsubsection{Ekstraksi Fitur 1 Kata Sesudah}
+Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fitur 1 kata sebelum, perbedaannya pada indeks yang diambil dalam pada saat ekstraksi. Untuk masing-masing kata, \saya~mengambil vektor kata dengan indeks 1 kata setelahnya. Untuk vektor kata di akhir kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. Kode \ref{code:ekstraksi1wordaft} merupakan implementasi dari ekstraksi fitur 1 kata sesudah.
 
-Satu ayat dari berbagai qari dimodelkan menjadi sebuah model klasifikasi. Ayat-ayat yang sama dari para qari akan dijadikan data sampel dengan label \f{benar}. Ayat-ayat selain ayat tersebut yang tidak mirip secara tekstual akan dijadikan data sampel dengan label \f{salah}. Cara mengetahui dua buat ayat mirip secara tekstual adalah menggunakan pendekatan algoritma \f{dynamic programming} yang sudah dijelaskan pada Bab \ref{lcs}.
+\begin{kode}
+	
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetAlgoLined
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{oneWordBeforeExtract(sentenceVector)}{
+		\Input{array of vector in a sentence}
+		\Output{array of vector}
+		\BlankLine
+		
+		oneWordAfterFeature = []\;
+		\For{i in 0...sentenceVector.length - 1}{
+			oneWordAfterFeature.append(sentenceVector[i+1])\;
+		}
+		oneWordAfterFeature.append(zeroth)\;
+		\BlankLine
+		
+		\Return oneWordAfterFeature;
+		
+	}
+	
+	\BlankLine	
+	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sesudah}
+	\label{code:ekstraksi1wordaft}
+\end{kode}
 
-	\subsection{Pemodelan dengan Support Vector Machine (SVM)}
-	SVM dipilih untuk digunakan dalam eksperimen ini karena memiliki kemampuan yang terbukti kuat dalam melakukan klasifikasi pola. Hal tersebut dijelaskan oleh \cite{campbell2006support} dalam jurnalnya yang berjudul \f{Support Vector Machines for Speaker and Language Recognition}. SVM didasari oleh teori-teori matematika yang kuat, antara lain dengan adalah pemetaan data ke dimensi ruang yang lebih tinggi, pencarian \f{margin} terbesar, dan generalisasi. Alasan lain yang memperkuat penggunaan SVM dalam penelitian ini adalah karena SVM merupakan metode klasifikasi dua kelas, sesuai dengan kebutuhan sistem untuk mengklasifikasi data ke dalam dua kelas, yaitu kelas \f{benar} dan kelas \f{salah}.
+\subsection{Pengusulan Arsitektur RNNs}
+Sesuai dengan yang telah dijelaskan pada Bab 3, \saya~mengusulkan dua arsitektur RNNs yang akan digunakan pada tahap eksperimen. Pada bagian ini \saya~akan menjelaskan implementasi dari masing-masing arsitektur tersebut. Dalam melakukan implementasi RNNs, \saya~menggunakan \textit{library} Keras \citep{chollet2015keras} dalam bahasa Python. Keras sendiri dapat berjalan di atas dua \textit{library deep learning} lain, yaitu Theano dan Tensorflow, namun dalam penelitian ini \saya~menggunakan Theano. \Saya~menggunakan \textit{Sequential model} yang merupakan layer \textit{linear stack} dalam mengembangkan model dan jenis RNNs yang \saya~gunakan dalam penelitian ini adalah LSTMs. Terkait dengan jumlah \textit{timesteps}, LSTMs membutuhkan jumlah yang tedefinisi dari awal. Oleh karena itu, jumlah \textit{timestep} merupakan jumlah kata dari kalimat terpanjang di dalam korpus ($ l $). Apabila terdapat kalimat yang panjangnya kurang dari $ l $, vektor dari kalimat tersebut akan di-\textit{padding} atau ditambahkan vektor $ \vec{0} $ sampai panjangnya $ l $. Dalam melakukan \textit{padding}, \saya~menggunakan fungsi \textit{padsequences} yang sudah terdapat di dalam Keras.
 
-  Metode klasifikasi SVM dalam eksperimen ini menggunakan fungsi MATLAB \f{svmtrain}\footnote{http://www.mathworks.com/help/stats/svmtrain.html} dalam proses pemodelan dan \f{svmclassify}\footnote{http://www.mathworks.com/help/stats/svmclassify.html} dalam proses pengujian, dengan parameter yang dijelaskan pada Tabel \ref{table:parametersvm} berikut.
+\subsubsection{LSTMs 1 layer}
+LSTMs 1 layer yang dimaksud adalah model yang digunakan memiliki satu layer LSTMs saja dan semua fitur yang menjadi input program digabung terlebih dahulu menjadi satu buah \textit{array}.
 
-  \begin{table}
-    \centering
-    \caption{Parameter SVM dalam Eksperimen}
-    \begin{tabular}{|c|c|}
-      \hline
-      \textbf{Nama Parameter} & \textbf{Nilai Parameter} \\ \hline
-      kernel\_function & linear \\ \hline
-      method & Sequential Minimal Optimization (SMO) \\ \hline
-      MaxIter & 15000 \\ \hline
-    \end{tabular}
-    \label{table:parametersvm}
-  \end{table}
+\begin{kode}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{lstm1(arrTraining, arrTesting)}{
+		\Input{training data, testing data}
+		\Output{predicted label}
+		\BlankLine
+		
+		doPadSequences(arrTraining)\;
+		doPadSequences(arrTesting)\;
+		shape = arrTraning.shape()\;
+		\BlankLine
+		
+		model = Sequential()\;
+		model.add(Masking(input\char`_shape:shape))]\;
+		model.add(LSTM(output = shape/2))\;
+		model.add(TimeDistributed(Dense(output = 9)))\;
+		\BlankLine
+		
+		model.input(arrTraining)\;
+		prediction = model.predict(arrTesting)\;
+		\BlankLine
+		
+		\Return prediction;
+	}
+	
+	\caption{\textit{Pseudocode} untuk arsitektur LSTMs 1 layer}
+	\label{code:lstm1}
+\end{kode}
 
+Seperti yang telah dijelaskan pada Bab 3, susunan layer yang \saya~gunakan terdiri dari \textit{Masking Layer}, LSTMs Layer, dan \textit{Time Distributed Layer} yang masing-masing \textit{timestep} berisi \textit{Dense Layer}. Untuk \textit{Masking Layer}, dimensi yang menjadi parameter tergantung dari \textit{array} yang menjadi masukan, untuk LSTMs Layer, dimensi masukan sama dengan dimensi \textit{Masking Layer} dan dimensi keluaran untuk masing-masing \textit{timesteps} adalah panjang input dalam satu \textit{timestep} dibagi 2. Untuk masing-masing Dense Layer, dimensi masukan yang diminta sama dengan dimensi keluaran pada LSTMs Layer dan dimensi keluaran sesuai dengan jumlah kelas yang telah didefinisikan.
 
+Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm1} merupakan kode untuk mengimplementasikan model ini.
 
-  \subsection{Pemodelan dengan Gaussian Mixture Model (GMM)}
-  GMM dipilih dalam eksperimen ini karena banyak penelitian yang menyatakan bahwa GMM dapat memodelkan fitur-fitur \f{speech recognition} dengan baik, salah satunya adalah penelitian yang dilakukan oleh \cite{zahra2013unique}. Ayat-ayat yang berlabel \f{benar} dimodelkan menjadi sebuah GMM, sedangkan ayat-ayat yang berlabel \f{salah} dimodelkan menjadi sebuah GMM lain, sehingga untuk satu ayat terdapat dua GMM yang menjadi model dalam melakukan klasifikasi. Cara menentukan apakah satu data uji masuk ke dalam kelas \f{benar} atau \f{salah} adalah dengan membandingkan nilai PDF dari kedua model tersebut. Jika nilai PDF pada GMM yang memodelkan kelas \f{benar} lebih besar atau sama dengan nilai PDF pada GMM yang memodelkan kelas \f{salah}, maka data uji tersebut diklasifikasikan sebagai data \f{benar}. Selain itu maka data uji tersebut diklasifikasikan sebagai data \f{salah}.
+\subsubsection{LSTMs 2 Layer Multi-Input}
+LSTMs 2 layer yang dimaksud yaitu terdapat dua layer, layer pertama untuk menerima \textit{input} yang setiap kelompok fitur menjadi \textit{input} bagi LSTMs masing-masing. Misalnya terdapat 3 kelompok fitur, masing-masing kelompok tadi akan menjadi input bagi layer LSTMs masing-masing. Layer kedua sebagai penggabung hasil dari tingkat pertama.
 
-  Metode klasifikasi GMM dalam eksperimen ini menggunakan fungsi MATLAB \f{gmdistribution.fit}\footnote{http://www.mathworks.com/help/stats/gmdistribution.fit.html} dalam proses pemodelan dengan parameter yang dijelaskan pada Tabel \ref{table:parametergmm} berikut.
+\begin{kode}
+	
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{lstm2(groupOfArrTraining, groupOfArrTraining)}{
+		\Input{grop of training data, group of testing data}
+		\Output{predicted label}
+		\BlankLine
+		
+		doPadSequences(groupOfArrTraining)\;
+		doPadSequences(groupOfArrTraining)\;
+		\BlankLine
+		
+		modelArr = []\;
+		\ForEach{groupFeature in groupOfArrTraining}{
+			shape = arrTraning.shape()\;
+			model = Sequential()\;
+			model.add(Masking(input\char`_shape:shape))]\;
+			model.add(LSTM(output = shape/2))\;
+			modelArr.append(model)\;
+		}
+		\BlankLine
+		
+		mainModel = Sequential()\;
+		mainModel.add(Merge(mode='concat', modelArr))]\;
+		mainModel.add(LSTM(output = 32))\;
+		mainModel.add(TimeDistributed(Dense(output = 9)))\;
+		\BlankLine
+		
+		mainModel.input(groupOfArrTraining)\;
+		prediction = mainModel.predict(groupOfArrTraining)\;
+		\BlankLine
+		
+		\Return prediction;
+	}
+	
+	\caption{\textit{Pseudocode} untuk arsitektur LSTMs 2 layer multi-\textit{input}}
+	\label{code:lstm2}	
+\end{kode}
 
-  \begin{table}
-    \centering
-    \caption{Parameter GMM dalam Eksperimen}
-    \begin{tabular}{|c|c|}
-      \hline
-      \textbf{Nama Parameter} & \textbf{Nilai Parameter} \\ \hline
-      k & 8 \\ \hline
-      CovType & diagonal \\ \hline
-      SharedCov & true \\ \hline
-      MaxIter & 100 \\ \hline
-    \end{tabular}
-    \label{table:parametergmm}
-  \end{table}
+Layer pada tingkat pertama terdiri dari \textit{Masking Layer} dan sebuah Layer LSTMs. Untuk dimensi \textit{input} dan \textit{output} \textit{Masking Layer} secara otomatis mengikuti dimensi dari data masukan. Dimensi \textit{output} dari Layer LSTMs yaitu dimensi awal dibagi 2. Pada layer tingkat kedua, layer tersebut terdiri dari \textit{Merge Layer}, \textit{Time Distributed} dengan masing-masing \textit{timestep} merupakan \textit{Dense Layer} dan sebuah Layer LSTMs. Keluaran dari \textit{Merge Layer} sesuai dengan total dimensi \textit{output} dari masing-masing LSTMs di tingkat 1. Dimensi keluaran dari masing-masing \textit{Dense Layer} yaitu sesuai jumlah kelas.
+Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm2} merupakan kode untuk mengimplementasikan model ini.
 
+\section{Eksperimen}
+Pada tahap ini \saya~melakukan eksperimen model yang dikembangkan pada tahap sebelumnya. Sebelum masuk ke tahap eksperimen, \saya~melakukan beberapa tahap pra-eksperimen seperti melakukan pemecahan data sebagai implementasi \textit{cross-fold validation}. \Saya~memecah data menjadi 10 bagian dan disimpan dalam sebuah \textit{array} untuk masing-masing fitur. Berikut merupakan \textit{pseudocode} untuk melakukan pemecahan data
 
+\begin{kode}
 
-  \subsection{Pemodelan dengan Gabungan SVM dan GMM}
-	Kemampuan SVM maupun GMM untuk menjadi model sistem ASR sudah teruji baik oleh beberapa penelitian \citep{zahra2013unique}. Maka dalam eksperimen ini dicoba pula gabungan dari dua metode klasifikasi tersebut. Cara menggabungkan dua metode tersebut dalam proses pemodelan adalah sebagai berikut.
-	\begin{enumerate}
-    \item Buat model pertama, $M_{SVM}$ menggunakan metode klasifikasi SVM dan data sampel.
-    \item Buat model kedua, $M_0$ menggunakan GMM dengan sampel data berlabel \f{salah} dan data sampel.
-    \item Buat model ketiga, $M_1$ menggunakan GMM dengan sampel data berlabel \f{benar} dan data sampel.
-  \end{enumerate}
-  Sedangkan cara menggabungkan dua metode tersebut dalam proses pengujian adalah sebagai berikut.
-  \begin{enumerate}
-    \item Hitung nilai PDF dari data uji pada $M_0$, $P_0$, sebagai nilai probabilitas \f{salah}.
-    \item Hitung nilai PDF dari data uji pada $M_1$, $P_1$, sebagai nilai probabilitas \f{benar}.
-    \item Klasifikasikan data uji menggunakan metode klasifikasi SVM. dengan model $M_{SVM}$ Jika hasil klasifikasinya bernilai \f{salah}, tambahkan nilai 1 pada $P_0$, dan jika hasil klasifikasinya bernilai \f{benar}, tambahkan nilai 1 pada $P_1$.
-    \item Jika nilai $P_1$ lebih besar atau sama dengan $P_0$, maka data uji tersebut diklasifikasikan sebagai data \f{benar}. Selain itu maka data uji tersebut diklasifikasikan sebagai data \f{salah}.
-  \end{enumerate}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{splitting(featureArr)}{
+		\Input{array of feature}
+		\Output{splitted array of feature}
+		\BlankLine
+		
+		lenSplit = len(featureArr)/10\;
+		arrSplitted = []\;
+		\For{i=0; i<10;i++}{
+			start = i * lenSplit\;
+			end = (i+1) * lenSplit\;
+			arrSplitted.append[start:end]\;
+		}
+		\BlankLine
+		
+		\Return arrSplitted;
+	}
+	
+	\caption{\textit{Pseudocode} untuk memecah \textit{data} menjadi 10 bagian}	
+	\label{code:split}
+\end{kode}
 
+Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabungan antar fitur sebagai \textit{input} untuk melakukan eksperimen. Seperti yang dijelaskan pada tahap sebelumnya, \saya~menggunakan dua arsitektur RNNs. Hasil dari eksperimen tersebut ditulis dalam sebuah berkas dengan format JSON yang nantinya akan menjadi \textit{input} pada tahap evaluasi. Berikut merupakan implementasi eksperimen dengan masing-masing arsitektur tersebut.
 
+\begin{kode}
+	
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	arrAllFeature = []\;
+	\ForEach{feature in arrSplitted}{
+		arrAllFeature.join(feature)\;
+	}
+	\BlankLine
+	
+	\For{i=0; i<10;i++}{
+		training = arrSplitted[0:i] + arrSplitted[i+1:10]
+		testing = arrSplitted[i]\;
+		
+		\BlankLine
+		result1 = lstm1(training, testing)\;
+		result2 = lstm2(training, testing)\;
+		
+		\BlankLine
+		writeToJSON(result1)\;
+		writeToJSON(result2)\;
+	}
+	\caption{\textit{Pseudocode} untuk melakukan eksperimen}
+	\label{code:eksperimen}	
+\end{kode}
 
-\section{Pengujian}
-Pengujian dilakukan per ayat menggunakan teknik \f{$k$-fold cross validation}, dengan nilai $k$ yang umum digunakan, yaitu $k = 10$. Langkah-langkah dalam melakukan \f{$k$-fold cross validation} adalah sebagai berikut.
-\begin{enumerate}
-  \item \label{step:pisahkan data} Dari 40 qari yang ada dalam koleksi data eksperimen, gunakan 10\% qari (4 qari) \f{secara acak} sebagai data uji, sedangkan qari-qari lainnya digunakan sebagai data model. Pengacakan tersebut bertujuan untuk membuat proses pengujian menjadi \f{fair} karena tidak ada beberapa qari yang selalu berada kelompok yang sama, baik sebagai kelompok data uji maupun kelompok data model.
+\section{Evaluasi}
+Dalam melakukan implementasi pada tahap evaluasi, \saya~menghitung nilai \textit{prescision, recall} dan \textit{F-Measure} untuk mengukur tingkat keakuratan model yang dikembangkan pada tahap sebelumnya. \Saya~menggunakan aturan yang telah dijelaskan pada Bab 3. Berikut merupakan implementasi kode untuk melakukan evaluasi.
 
-  \item \label{step:bangun model} Bangun model sesuai penjelasan pada Bab \ref{chap:pemodelan} menggunakan data model yang diperoleh pada langkah \ref{step:pisahkan data}.
+\begin{kode}
+	
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
+	
+	\SetKwProg{Fn}{Function}{ is}{end}
+	resultTag = load(resultRNN)\;
+	originalTag = load(originalTag)\;
+	\BlankLine
+	
+	TP = newHash()\;
+	FP = newHash()\;
+	FN = newHash()\;
+	\For{i = 0; i < len(resultTag); i++}{
+		sentenceResult = resultTag[i]\;
+		sentenceOriginal = originalTag[i]\;
+		\For{j = 0; j < len(sentenceOriginal); i++}{
+			wordResult = sentenceResult[j]\;
+			wordOri = sentenceOriginal[j]\;
+			\uIf{wordOri != O}{
+				\uIf{wordResult != O}{
+					\uIf{wordOri == wordResult}{
+						TP[wordOri] += 1\;
+					}
+					\Else{
+						FN[wordOri] += 1\;
+					}
+				}
+				\Else{
+					FN[wordOri] += 1\;
+				}
+			}
+			\Else{
+				\uIf{wordResult != O}{
+					FP[wordOri] += 1\;
+				}
+			}
+		}
+	}
+	\BlankLine
 
-  \item \label{step:klasifikasi} Lakukan proses klasifikasi menggunakan model yang dibangun pada langkah \ref{step:bangun model} terhadap dua kelompok data berikut.
-  \begin{enumerate}
-    \item Data berlabel \f{benar} diperoleh dari ayat-ayat yang sama. Terdapat 4 \f{instance} berlabel \f{benar} dari 4 qari yang dijadikan data uji.
-    \item Data berlabel \f{salah} diperoleh dari ayat-ayat yang tidak mirip secara tekstual. Ambil 4 \f{instance} berlabel \f{salah} secara acak dari 4 qari yang dijadikan data uji.
-  \end{enumerate}
-
-  \item \label{step:evaluasi} Lakukan evaluasi terhadap hasil klasifikasi pada langkah \ref{step:klasifikasi}. Evaluasi tersebut akan menghasilkan \f{confusion matrix}, $C$, berukuran $2\times2$ yang merepresentasikan Tabel \ref{table:kontingensi}.
-
-  \item \label{step:ulangi} Ulangi langkah \ref{step:pisahkan data} sampai langkah \ref{step:evaluasi} sebanyak 10 kali. Qari yang sudah menjadi data uji diganti dengan qari lainnya yang belum pernah menjadi data uji. Sehingga seluruh data qari akan mendapat giliran menjadi data uji. Langkah tersebut akan menghasilkan 10 \f{confusion matrix}, $\{C_1, C_2, \dots, C_{10}\}$.
-
-  \item Jumlahkan 10 \f{confusion matrix} yang diperoleh pada langkah \ref{step:ulangi}, sehingga menghasilkan satu \f{confusion matrix} baru, $C_{total} = \sum_{i=1}^{10}{C_i}$. Nilai akurasi, presisi, \f{recall}, serta \f{f-measure} diperoleh dari perhitungan yang sudah dijelaskan pada Bab \ref{chap:evaluasi} dengan mengacu pada matriks $C_{total}$.
-\end{enumerate}
+	prec = newHash()\;
+	rec = newHash()\;
+	fMeas = newHash()\;
+	\ForEach{label in TP}{
+		prec[label] = TP[label] / (TP[label] + FP[label])\;
+		rec[label] = TP[label] / (TP[label] + FN[label])\;
+		fMeas[label] = 2 * 	(prec[label] * rec[label]) / (prec[label] + rec[label])\;
+	}
+	\BlankLine
+	
+	\ForEach{label in prec}{
+		print "Precission", label, prec[label]\;
+		print "Recall", label, rec[label]\;
+		print "F-Measure", label, fmeas[label]\;
+	}
+	\BlankLine
+	\caption{\textit{Pseudocode} untuk melakukan evaluasi}	
+	\label{code:evaluasi}
+\end{kode}

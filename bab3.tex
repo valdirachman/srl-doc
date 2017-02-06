@@ -1,234 +1,551 @@
 %!TEX root = skripsi.tex
 %-----------------------------------------------------------------------------%
-\chapter{\babTiga}
+\chapter{\babTiga}\label{bab:tiga}
 %-----------------------------------------------------------------------------%
-
-
-%-----------------------------------------------------------------------------%
-\section{Rancangan Arsitektur Sistem}
 %-----------------------------------------------------------------------------%
 % Ide, model matematik, rumus, fitur, jangan m=ngomongin teknologi (java, keras, dll), word2vec boleh %
-Sistem yang akan \saya~buat dalam penelitian ini sesuai dengan rancangan arsitektur sistem pada gambar \ref{fig:arsitektur_sistem}.
+Pada bab ini \saya~akan menjelaskan metodologi penelitian yang \saya~gunakan. Metodologi penelitian yang dilakukan meliputi tahap pengumpulan data, pra-pemrosesan data, pelabelan data, pengembangan model, eksperimen dan evaluasi.
+
+\section{Gambaran Umum Pengembangan Metodologi}
+Penelitian ini bertujuan untuk membuat sebuah model yang mampu memberikan label entitas kesehatan pada suatu dokumen. Seperti yang telah dijelaskan pada bab sebelumnya, terdapat banyak entitas kesehatan yang dapat digunakan sebagai target pelabelan. Oleh karena itu, untuk mempermudah penelitian ini \saya~menggunakan entitas-entitas yang diusulkan oleh \cite{skripsiKakRadit} dalam penelitiannya,  nama penyakit (\textit{\disease}), gejala penyakit (\textit{\symptom}), obat (\textit{\drug}) dan langkah penyembuhan (\textit{\treatment}).
+
+Penelitian ini menggunakan dua buah korpus, yaitu korpus dari data dokumen teks kesehatan yang digunakan \cite{skripsiKakRadit} dan dokumen teks hasil pengumpulan yang dilakukan oleh \saya~pada situs kesehatan \textit{online}. Setelah itu \saya~melakukan pra-pemrosesan pada kedua data sebelum melakukan tahap selanjutnya. Untuk dokumen hasil pengumpulan dari forum, \saya~memberi label kesehatan secara manual dengan ketentuan pelabelan pada penelitian \cite{skripsiKakRadit}.
+
+Setelah tahap pengusulan model, terdapat 2 eksperimen yang \saya~lakukan, yaitu eksperimen untuk mendapatkan fitur diskriminatif yang mampu membuat model memiliki akurasi terbaik dan eksperimen untuk mendapatkan arsitektur RNNs yang membuat model menghasilkan akurasi tertinggi. Pada eksperimen pertama, \saya~mencoba beberapa fitur, seperti fitur yang diusulkan oleh \cite{skripsiKakRadit} (fitur \textit{its own word}, frasa, kamus (\textit{symptom}, \textit{disease}, \textit{treatment} dan \textit{drug}), kata pertama sebelum, dan fitur kata setelah. Pada eksperimen kedua, \saya~mencoba dua arsitektur RNNs, yaitu RNNs yang setiap \textit{input} digabung terlebih dahulu dengan meng-\textit{append} semua vektor fitur. Sedangkan RNNs yang kedua yaitu RNNs yang setiap kelompok fitur menjadi \textit{input} bagi masing-masing LSTMs, baru kemudian \textit{output} dari layer tersebut digabung.
+
+Setelah melakukan eksperimen, \saya~melakukan evaluasi dari hasil yang didapatkan dengan menghitung nilai \textit{precission}, \textit{recall} dan \textit{F-measure} dari masing-masing entitas secara keseluruhan. Untuk mendapatkan rata-rata akurasi dari setiap eksperimen, \saya~melakukan \textit{10-fold cross validation} dengan cara membagi semua data menjadi 10 bagian, 9 bagian menjadi data \textit{training} dan 1 \textit{bagian} menjadi data \textit{testing}. Proses tersebut diulang sebanyak sepuluh kali sehingga masing-masing bagian data menjadi data \textit{testing}.
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{pics/arsitektur_sistemc}
-  \caption{Rancangan Arsitektur Sistem}
-  \label{fig:arsitektur_sistem}
+  \includegraphics[width=\linewidth]{images/arsitektur}
+  \caption{Diagram Gambaran Umum Metodologi yang Dilakukan}
+  \label{fig:metodologi_penelitian}
 \end{figure}
 
-Berikut merupakan penjelasan alur dalam rancangan arsitektur sistem.
-	\subsection{Pengumpulan Data}
-	\Saya~mengumpulkan data dari beberapa situs forum kesehatan \ioa. Forum tersebut yaitu:
+\section{Pengumpulan Data}
+Pengumpulan data dilakukan dengan tujuan untuk mendapatkan data \textit{training} dan \textit{testing} yang akan digunakan sebagai \textit{resource} dalam melakukan \textit{training} dan evaluasi model \mer. Data yang dimaksud merupakan teks dari forum kesehatan \textit{online} dari berbagai sumber. Pada penelitian ini, \saya~menggunakan data penelitian \cite{skripsiKakRadit} dan data yang \saya~dapatkan dari hasil \textit{crawling} di forum kesehatan \textit{online}. Data yang \cite{skripsiKakRadit} diambil dari beberapa situs forum kesehatan \textit{online} dan sedangkan data yang \saya~unduh bersumber dari forum kesehatan \textit{online}.
+
+\section{Pra-Pemrosesan}
+Pra-pemrosesan dilakukan dengan tujuan supaya teks yang diberikan mampu dibaca oleh sistem \mer. Dalam tahap ini, ada tiga pekerjaan utama yang perlu dilakukan, yaitu:
+
+\subsection{Pembersihan data}
+Langkah ini dilakukan dengan tujuan untuk mempermudah proses POS \textit{tagging}. Selain itu, terdapat beberapa token yang berbeda sintaks namun memiliki jenis kata yang sama, misalnya token \textit{email}. Model hanya perlu tahu token tersebut merupakan email, tidak peduli pemilik email tersebut. Berikut merupakan beberapa langkah yang \saya~lakukan:
+	
+\begin{enumerate}
+	\item menghapus karakter yang bukan merupakan karakter ASCII,
+	\item mengganti token url menjadi kata "url", misalnya token tautan (\textit{www.alodokter.com/asma/pengobatan}) diganti menjadi token "url",
+	\item mengganti token \textit{email} menjadi kata "email", misalnya sebuah alamat \textit{email} (\textit{wahid@domain.com}) diganti menjadi token "email",
+	\item mengganti karakter "\_" menjadi token "underscore",
+	\item mengganti karakter "\&" menjadi token "dan",
+	\item mengganti karakter "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari" dan
+	\item mengganti karakter "/" menjadi token "atau".
+\end{enumerate}
+Pada langkah ini, \saya~tidak menghapus karakter tanda baca karena karakter tersebut memiliki fungsi pada sistem POS \textit{tagging} yang \saya~gunakan. Gambar \ref{fig:pembersihandata} merupakan contoh pembersihan data pada sebuah teks.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/pembersihandata}
+	\caption{Ilustrasi Pembersihan Data pada Kalimat}
+	\label{fig:pembersihandata}
+\end{figure}
+
+	
+\subsection{Tokenisasi}
+Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah kata. Hal ini perlu dilakukan untuk menghindari beberapa kelompok token berbeda yang tergabung. Karakter abjad dengan karakter angka atau karakter abjad dengan karakter tanda baca dipisahkan berdasarkan kelompoknya. Misalnya token "pusing2" diubah menjadi "pusing 2". Pada tahap ini, \saya~melakukan pemisahan terhadap beberapa kelompok token, yaitu:
+\begin{enumerate}
+	\item <alfabet><numerik> menjadi <alfabet><spasi><numerik>
+	\item <numerik><alfabet> menjadi <numerik><spasi><alfabet>
+	\item <alfanumerik><non-alfanumerik> menjadi <alfanumerik><spasi><non-alfanumerik>
+	\item <non-alfanumerik><alfanumerik> menjadi <non-alfanumerik><spasi> <alfanumerik>
+\end{enumerate}
+
+Gambar \ref{fig:tokenisasi} berikut merupakan contoh tokenisasi pada sebuah teks.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/tokenisasi}
+	\caption{Ilustrasi Tokenisasi pada Kalimat}
+	\label{fig:tokenisasi}
+\end{figure}
+
+	
+\subsection{Pemotongan kalimat}
+Untuk menghindari jumlah token yang timpang dalam kalimat yang berbeda dan data yang \textit{sparse}, \saya~melakukan pemotongan kata dengan langkah-langkah sebagai berikut:
+\begin{enumerate}
+	\item memisahkan kalimat berdasarkan tanda baca (.!?,),
+	\item apabila suatu kalimat memiliki jumlah kata yang sedikit (batasan minimal jumlah kata dalam sebuah kalimat yang \saya~gunakan adalah 10 kata), kalimat tersebut digabungkan dengan kalimat setelahnya.
+\end{enumerate}
+
+Gambar \ref{fig:pemotongan_kalimat} berikut merupakan contoh dari pemotongan kalimat pada sebuah teks.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/pemotongankalimat}
+	\caption{Ilustrasi Pemotongan Kalimat pada suatu Teks}
+	\label{fig:pemotongan_kalimat}
+\end{figure}
+
+
+\section{Pelabelan}
+Pada tahap ini, \saya~melakukan pelabelan pada dokumen teks yang merupakan hasil pada tahap sebelumnya dengan label \disease, \symptom, \drug~dan \treatment. Berikut merupakan penjelasan dari masing-masing label:
+\begin{enumerate}
+	\item \Disease\\
+	Entitas \disease~yang dimaksud pada penelitian ini yaitu nama dari suatu penyakit. Penyakit merupakan keadaan abnormal yang timbul pada tubuh manusia. Contoh dari entitas \disease~yaitu:
+	\begin{description}
+		\item[$\bullet$] Skizofrenia
+		\item[$\bullet$] Trikotilomania
+		\item[$\bullet$] Diabetes melitus
+	\end{description}
+
+	\item \Symptom\\
+	Entitas \symptom~yang dimaksud pada penelitian ini yaitu fenomena yang dialami oleh seseorang yang terkena suatu penyakit. Contoh dari entitas \symptom~yaitu:
+	\begin{description}
+		\item[$\bullet$] Napas berbunyi
+		\item[$\bullet$] Benjolan di daerah perut
+		\item[$\bullet$] Nyeri saat BAK
+	\end{description}
+
+	\item \Drug\\
+	Entitas \drug~merupakan entitas nama obat dari suatu penyakit yang memiliki fungsi untuk mengurangi atau menyembuhkan penyakit tersebut. Contoh dari entitas \drug~yaitu:
+	\begin{description}
+		\item[$\bullet$] Paracetamol
+		\item[$\bullet$] Diltiazem
+		\item[$\bullet$] eritropoetin-alfa
+	\end{description}
+
+	\item \Treatment\\
+	Entitas \treatment~merupakan cara atau langkah penyembuhan dari suatu penyakit. Contoh dari entitas \treatment~yaitu:
+	\begin{description}
+		\item[$\bullet$] Pemeriksaan darah rutin
+		\item[$\bullet$] Penilaian denyut kapiler
+		\item[$\bullet$] Terapi inhalasi
+	\end{description}
+
+	\item \textit{Other}\\
+	Entitas \textit{other} merupakan suatu entitas selain dari keempat entitas di atas. Contoh dari entitas \textit{other} yaitu:
+	\begin{description}
+		\item[$\bullet$] Saya
+		\item[$\bullet$] yang
+		\item[$\bullet$] Dokter
+	\end{description}
+
+\end{enumerate}
+Setelah proses di atas selesai, label di dalam korpus diubah menjadi format BIO (\textit{begin inside outside}). Gambar \ref{fig:pelabelan} berikut merupakan ilustrasi dari tahap pelabelan ini.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.85\linewidth]{images/pelabelan}
+	\caption{Ilustrasi Pelabelan Entitas pada suatu Kalimat}
+	\label{fig:pelabelan}
+\end{figure}
+
+Setelah pelabelan selesai dilakukan, supaya model RNNs mampu mengenali masing-masing label, \saya~menggunakan \textit{one-hot-vector} untuk merepresentasikan masing-masing label. Tabel \ref{table:onehotlabel} merupakan tabel pemetaan dari label menjadi represebtasinya dalam \textit{one-hot-vector}.
+
+\begin{table}
+	\centering
+	\caption{Tabel Pemetaan Label dengan Representasi \textit{One-Hot-Vector}}
+	\label{table:onehotlabel}
+	\begin{tabular}{|l|l|}
+		\hline
+		\multicolumn{1}{|c|}{Label IOB} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
+		BD & {[} 0, 0, 0, 0, 0, 0, 0, 0, 1 {]} \\ \hline
+		ID & {[} 0, 0, 0, 0, 0, 0, 0, 1, 0 {]} \\ \hline
+		BS & {[} 0, 0, 0, 0, 0, 0, 1, 0, 0 {]} \\ \hline
+		IS & {[} 0, 0, 0, 0, 0, 1, 0, 0, 0 {]} \\ \hline
+		BT & {[} 0, 0, 0, 0, 1, 0, 0, 0, 0 {]} \\ \hline
+		IT & {[} 0, 0, 0, 1, 0, 0, 0, 0, 0 {]} \\ \hline
+		BG & {[} 0, 0, 1, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		IG & {[} 0, 1, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		OO & {[} 1, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+	\end{tabular}
+\end{table}
+
+Gambar \ref{fig:labeltoone} merupakan contoh pengubahan kata menjadi \textit{one-hot-vector} dalam suatu kalimat.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/labeltoone}
+	\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
+	\label{fig:labeltoone}
+\end{figure}
+
+\section{Pengembangan Model}
+Pada tahap ini, \saya~melakukan pengusulan dan perancangan model yang nantinya akan \saya~evaluasi pada tahap eksperimen. Dalam mengembangkan model, terdapat dua pekerjaan yang \saya~lakukan, yaitu:
+
+\subsection{Ekstrasi Fitur}\label{subbab:fitur}
+Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi label entitas. Ada beberapa fitur yang \saya~usulkan dalam penelitian ini yang nantinya \saya~kombinasikan supaya mendapatkan hasil terbaik. Fitur-fitur tersebut yaitu:
+\begin{enumerate}
+	\item Fitur 1: Kata itu sendiri\\
+	Fitur ini merupakan fitur kata dalam representasi vektor. Fitur ini merupakan fitur yang digunakan \cite{abacha2011medical} dan \cite{skripsiKakRadit} dalam penelitian tentang \mer. Untuk mendapatkan representasi vektor dari masing-masing kata, penulis menggunakan \textit{word embedding}. Pada penelitian mengenai \mer~yang dilakukan oleh \cite{mujiono2016new}, hasil dari representasi data terbaik yaitu \textit{word embedding}. Selain itu, seperti yang dijelaskan pada Bab 2, \textit{word embedding} memberikan hasil yang sangat baik dalam bidang NLP. Oleh karena itu, \saya~menggunakan \textit{word embedding} untuk mendapatkan representasi vektor masing-masing kata. Dalam penelitian ini. Terdapat beberapa langkah yang perlu \saya~lakukan dalam memanfaatkan \textit{word embedding} ini, yaitu:
 	\begin{enumerate}
-		\item lala
-		\item lili
-	\end{enumerate}
-	Dalam proses pengumpulan data, \saya~menggunakan data yang digunakan \skripsiRadit~dalam penelitiannya, ditambah dengan data dari forum terbaru. \Saya~menggunakan program untuk melakukan otomasi. Program pertama merupakan program untuk mengumpulkan data \ioa~untuk model \we~dan program kedua merupakan program untuk mengumpulkan data forum kesehatan \ol~di situs di atas. Program kedua merupakan program hasil modifikasi dari \skripsiRadit.
-	
-	\subsection{Proses Normalisasi}
-	Proses normalisasi \saya~lakukan untuk setiap data, baik data dari penelitian \cite{skripsiKakRadit} maupun data yang \saya~dapatkan dari forum kesehatan terbaru. Pada tahap ini, \saya~melakukan normalisasi 2 data, yaitu data untuk membuat model \we~dan data sebagai \ioa~sistem. Normalisasi yang dilakukan dalam penelitian ini adalah:
-	\begin{enumerate}
-		\item Penghapusan karakter yang tidak ada di dalam daftar ASCII
-		\item Perbaikan karakter spasi dalam dokumen
-		\item Pengubahan beberapa tanda baca/token menjadi 1 token tersendiri. Misalnya sebuah token url diganti menjadi kata"url".
-	\end{enumerate}
-	
-	Setelah \saya~melakukan proses di atas, sama seperti yang dilakukan \skripsiRadit, \saya~menggabung masing-masing data menjadi 2 kelompok besar, yaitu data sebagai \ioa~model \we~dan data sebagai \ioa~sistem. Untuk data sebagai \ioa~model \we, setiap baris merupakan 1 buah kalimat yang masing-masing kata dipisahkan dengan karakter spasi. Selain itu, setiap tanda baca juga dipisahkan dengan karakter spasi. Untuk data sebagai \ioa~sistem, \saya mengubah format data menjadi format yang dipakai oleh \radit~dalam penelitiannya:
-	
-	FOOOORRRMMMAAATTT
-	
-	Setelah proses pemformatan selesai, \saya~memberikan label secara manual pada data yang baru (karena data dari \radit~sudah diberikan label sebelumnya). Label yang \saya~gunakan sama dengan label yang \radit~gunakan dalam penelitiannya, yaitu:
-	\begin{enumerate}
-		\item \symptom: gejala penyakit,
-		\item \disease: nama penyakit,
-		\item \treatment: pengobatan penyakit, dan
-		\item \drug: nama obat.
-	\end{enumerate}
-	Format pelabelan yang \saya~gunakan adalah format format xml. Satu buah entitas yang  masuk dalam kategori entitas kesehatan akan diberikan tag. Entitas yang terdiri dari lebih dari 1 kata akan diberikan 1 buah tag saja. Berikut merupakan contoh teks yang sudah diberikan label:
-	
-	CCOOONNNTTTOOOHHH
-	
-	Setelah pelabelan seara menual selesai dilakukan, \saya~akan membuat statistik dari data yang ada. Statistik ini bertujuan untuk mengetahui informasi dari masing-masing kategori yang \saya~definisikan di atas. Selain itu, \saya~juga ingin mengetahui distribusi penyakit yang ada dalam data sehingga \saya~dapat membagi data yang seimbang dalam melakukan eksperimen nantinya.
-	
-	\subsection{Pembuatan Model \textit{Word Embedding}}
-	Model \we~digunakan untuk mendapatkan representasi vektor dari kata dalam data.
-	
-	\subsection{Ekstrasi Fitur}
-	Sebelum masuk tahap eksperimen, \saya~melakukan ekstraksi fitur. Ada beberapa fitur yang \saya~usulkan dalam penelitian ini. Fitur-fitur tersebut \saya~kombinasikan supaya mendapatkan hasil terbaik. Fitur-fitur tersebut yaitu:
-	\begin{enumerate}
-		\item Fitur 1: Kata itu sendiri\\
-		Fitur ini merupakan fitur kata dalam representasi vektor. Dalam mengubah kata menjadi vektor, \saya~menggunakan \textit{tools} \we~yang merupakan hasil penelitian \cite{rehurek_lrec}. KENAPA?
+		\item Pengumpulan data \textit{training} untuk \textit{word embedding}\\
+		\Saya~melakukan pengumpulan data teks sebagai \textit{resource} untuk melakukan \textit{training} model \textit{word embedding}. Data teks yang \saya~gunakan merupakan data teks dari artikel-artikel kesehatan dan data teks forum kesehatan di kaskus. \Saya~menggunakan teks berjenis kesehatan supaya \textit{domain word embedding} dengan data \textit{training} untuk model \mer~sama. Selain itu, terdapat beberapa \textit{term} kesehatan yang susah ditemukan di forum umum.
+		 
+		\item \textit{Training} untuk mendapatkan model \textit{word embedding}\\
+		\textit{Training} dilakukan untuk mendapatkan model yang mampu mendapatkan representasi vektor dari sebuah kata. Panjang vektor yang dihasilkan yaitu 128 dengan besaran \textit{window} yaitu 5. Arsitektur yang digunakan untuk melakukan \textit{training} ini adalah \textit{skip-gram}.
 		
-		\item Fitur 2: \textit{Part of Speech Stanford postagger}\\
-		Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata. Dalam mengubah setiap kata menjadi \textit{tag} dalam POS Tag, \saya~menggunakan \textit{tools Stanford POS Tagger} yang menggunakan bahasa pemrograman Java. \Saya~membuat sebuah kelas yang mengubah setiap baris kalimat menjadi baris \textit{tag}. Kemudian, \saya~mengubah masing-masing kalimat menjadi kumpulan vektor \textit{tag}. KENAPA?
-		
-		\item Fitur 3: \textit{Stopword}\\
-		Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. KENAPA?
-		
-		\item Fitur 4: Kamus kata\\
+		\item Pengubahan kata menjadi vektor dari model yang didapatkan\\
+		Pada langkah ini \saya~mengubah masing-masing kata dalam kalimat menjadi representasi vektor dengan model yang telah \saya~dapatkan pada tahap \textit{training} model \textit{word embedding}.
 	\end{enumerate}
 	
-	\subsection{Eksperimen}
-	Dalam melakukan Eksperimen, \saya~menggunakan \textit{Recurrent Neural Network}. \textit{Tools} yang \saya~gunakan yaitu Keras. Keras merupakan \textit{library} untuk \textit{Deep Learning} yang \textit{high level} yang ditulis dalam bahasa pemrograman python. Keras yang \saya~gunakan berjalan di atas Theano.
-	Sebelum memulai eksperimen, \saya~membagi data menjadi beberapa bagian untuk melakukan \textit{n-fold cross validation}. Hal ini \saya~lakukan karena data yang digunakan sedikit. Dalam melakukan pembagian data, \saya~menggunakan program buatan \saya~sendiri dengan menggunakan bahasa pemrograman Python.
-	Setelah data telah terbagi menjadi n-bagian, \saya~melakukan pengkombinasian fitur-fitur supaya mendapatkan hasil terbaik.
-%-----------------------------------------------------------------------------%
-\section{Data}
-%-----------------------------------------------------------------------------%
-Penelitian ini memerlukan data berupa berkas audio bacaan seluruh ayat \quran~di juz 30 dari berbagai qari. Karena sistem yang dikembangkan adalah pengenalan suara per ayat, maka data yang diperlukan berupa bacaan \quran~yang sudah dipotong per ayat. Dengan kata lain, satu \f{instance} data merepresentasikan satu ayat \quran~yang dibaca oleh seorang qari. Berikut adalah langkah-langkah untuk memperoleh data tersebut dan memilih data yang tepat untuk digunakan dalam eksperimen.
+	Gambar \ref{fig:fiturkata} merupakan ilustrasi dari proses ekstraksi fitur kata itu sendiri dalam suatu kalimat dengan menggunakan \textit{Word Embedding}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/fiturkata}
+		\caption{Ilustrasi Ekstraksi Fitur Kata pada Suatu Kalimat}
+		\label{fig:fiturkata}
+	\end{figure}
+	
+	\item Fitur 2: Kamus Kesehatan\\
+	Fitur kamus kesehatan merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Fitur ini digunakan dalam penelitian \cite{skripsiKakRadit} dan memberikan kontribusi dalam hasil terbaik. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment. Dengan menggunakan fitur ini diharapkan mampu berkontribusi dalam meningkatkan akurasi karena model akan mempertimbangkan apakah suatu kata termasuk di dalam kamus atau tidak. Gambar \ref{fig:fiturkamus} merupakan ilustrasi dari ekstraksi fitur kamus kesehatan dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/fiturkamus}
+		\caption{Ilustrasi Ekstraksi Fitur Kamus \disease~pada Suatu Kalimat}
+		\label{fig:fiturkamus}
+	\end{figure}
 
-  \subsection{Pengambilan Data} \label{pengambilan data}
-  Data diperoleh dengan cara mengunduh dari beberapa sumber, yaitu \url{http://everyayah.com}, \url{http://tanzil.net}, dan \url{http://recitequran.com}. Tiga sumber tersebut memberi penomoran yang urut pada datanya. Penomoran berkas yang urut memudahkan proses pengunduhan untuk dilakukan secara otomatis menggunakan bantuan program. Nama berkas untuk surat ke-\f{s} dan ayat ke-\f{a} adalah \f{sssaaa.mp3}. Contoh untuk surat ke-78 ayat pertama adalah \f{078001.mp3} dan surat ke-114 ayat ke-6 adalah \f{114006.mp3}. Data yang diambil adalah seluruh surat, mulai dari surat ke-78 sampai dengan surat ke-114 (seluruh surat dalam \quran~di juz 30). Total ayat dari surat-surat yang diambil adalah 564 ayat untuk masing-masing qari.
+	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang terdapat dalam kamus kesehatan, representasi vektornya adalah $ [0, 1] $, sedangkan yang tidak terdapat di dalam kamus kesehatan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:kamustoone} merupakan contoh pengubahan fitur kamus kesehatan menjadi representasi \textit{one-hot-vector}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/kamustoone}
+		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
+		\label{fig:kamustoone}
+	\end{figure}
+	
+	\item Fitur 3: \textit{Stopword}\\
+	Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. Fitur ini \saya~gunakan dalam penelitian ini untuk membantu sistem dalam menghindari kesalahan pelabelan suatu kata yang bukan entitas namun dilabeli sebagai entitas.
+	
+	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila mempertahankan fitur ini, oleh karena itu, \saya~mengusulkan untuk menggunakan fitur ini. Untuk pembahasan lebih lanjut dibahas pada Bab 5. Gambar \ref{fig:fiturstopword} merupakan ilustrasi dari ekstraksi fitur \textit{stopword} dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.70\linewidth]{images/fiturstopword}
+		\caption{Ilustrasi Ekstraksi Fitur \textit{Stopword} pada Suatu Kalimat}
+		\label{fig:fiturstopword}
+	\end{figure}
 
-  Di dalam tiga \f{website} yang telah disebutkan sebelumnya tersedia data berupa berkas mp3, di mana satu berkas merepresentasikan satu ayat. Masing-masing berkas memiliki informasi detil yang berbeda-beda, terutama pada \f{duration}, \br, dan \f{channel}. Tabel \ref{table:format berkas 078007 alafasy} menyajikan informasi detil salah satu berkas, yaitu surat An-Naba' ayat 7 dengan qari Mishary Rashid Alafasy.
+	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan \textit{stopword}, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan merupakan \textit{stopword}, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:stopwordtoone} merupakan contoh pengubahan fitur \textit{stopword} menjadi representasi \textit{one-hot-vector}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/stopwordtoone}
+		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
+		\label{fig:stopwordtoone}
+	\end{figure}
 
-  \begin{table}
-    \centering
-    \caption{Informasi Detil Surat An-Naba' Ayat 7 dengan Qari Mishary Rashid Alafasy}
-    \begin{tabular}{|c|c|}
-      \hline
-      Format                         & MPEG Audio \\ \hline
-      Format version                 & Version 1 \\ \hline
-      Format profile                 & Layer 3 \\ \hline
-      Mode                           & Joint stereo \\ \hline
-      Mode extension                 & MS Stereo \\ \hline
-      Duration                       & 3.866 s \\ \hline
-      Bit rate mode                  & Constant \\ \hline
-      Bit rate                       & 128 Kbps \\ \hline
-      Channel(s)                     & 2 channels \\ \hline
-      Sampling rate                  & 44.1 KHz \\ \hline
-      Compression mode               & Lossy \\ \hline
-      Stream size                    & 60.4 KiB (99\%) \\ \hline
-      Writing library                & LAME3.96r \\ \hline
-      Encoding settings              & -m j -V 4 -q 3 -lowpass 17.5 -b 128 \\ \hline
-    \end{tabular}
-    \label{table:format berkas 078007 alafasy}
-  \end{table}
+	\item Fitur 4: \textit{Part of Speech Tag} (POS-Tag)\\
+	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia. Gambar \ref{fig:fiturpostag} merupakan ilustrasi dari ekstraksi fitur POS-\textit{Tag} dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.70\linewidth]{images/fiturpostag}
+		\caption{Ilustrasi Ekstraksi Fitur POS \textit{Tag} pada Suatu Kalimat}
+		\label{fig:fiturpostag}
+	\end{figure}
 
+	Setelah POS-Tag didapatkan, supaya model RNNs mampu mengenali masing-masing tag, \saya~menggunakan \textit{one-hot-vector} untuk merepresentasikan masing-masing label. Tabel \ref{table:onehotpostag} merupakan tabel pemetaan dari label menjadi representasinya dalam \textit{one-hot-vector}.
+	
+	\begin{table}
+		\centering
+		\caption{Tabel Pemetaan POS-Tag dengan Representasi \textit{One-Hot-Vector}}
+		\label{table:onehotpostag}
+		\begin{tabular}{|l|l|}
+			\hline
+			\multicolumn{1}{|c|}{Label POS-Tag} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
+			JJ & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1{]} \\ \hline
+			NN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0{]} \\ \hline
+			NNP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0{]} \\ \hline
+			Z & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0{]} \\ \hline
+			IN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0{]} \\ \hline
+			PRP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0{]} \\ \hline
+			MD & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0{]} \\ \hline
+			VB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0{]} \\ \hline
+			SC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0{]} \\ \hline
+			RB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			CC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			NEG & {[}0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			WH & {[}0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			CD & {[}0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			X & {[}0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			PR & {[}0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			RP & {[}0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			FW & {[}0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			NND & {[}0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			DT & {[}0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			OD & {[}0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			UH & {[}0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			SYM & {[}0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			fw & {[}1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+		\end{tabular}
+	\end{table}
 
+	Gambar \ref{fig:postagtoone} merupakan contoh pengubahan fitur POS-Tag menjadi \textit{one-hot-vector} dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/postagtoone}
+		\caption{Ilustrasi Pengubahan Fitur POS-Tag menjadi \textit{One-Hot-Vector}}
+		\label{fig:postagtoone}
+	\end{figure}
+		
+	\item Fitur 5: Frasa Kata\\
+	Pada penelitian ini, \saya~mengusulkan fitur frasa kata karena entitas \textit{symptom} dan \textit{treatment}  pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} pada umumnya entitas yang akan dikenali pada penelitian ini merupakan frasa kata benda. Selain itu, pada penelitian \cite{skripsiKakRadit}, fitur ini berkontribusi dalam memberikan hasil terbaik. Oleh karena itu, \saya~berharap bahwa dengan diusulkannya fitur ini akan mampu menambah akurasi dari model yang diusulkan.
+	
+	Pada penelitian ini ada dua frasa yang diujicobakan, yaitu:
+	\begin{enumerate}
+		\item Frasa Kata Benda (Nomina)
+		Menurut \cite{hs2005bahasa}, frasa kata benda sendiri merupakan kelompok kata benda yang dibentuk dengan memperluas kata benda ke sekelilingnya. Fitur frasa kata benda yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa kata benda atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
+		\begin{description}
+			\item[$\bullet$] NP : NN
+			\item[$\bullet$] NP : NNP
+			\item[$\bullet$] NP : PR
+			\item[$\bullet$] NP : PRP
+			\item[$\bullet$] NP : NN + NN
+			\item[$\bullet$] NP : NN + NNP
+			\item[$\bullet$] NP : NN + PR
+			\item[$\bullet$] NP : NN + PRP
+			\item[$\bullet$] NP : NN + JJ
+			\item[$\bullet$] NP : DT + NN
+			\item[$\bullet$] NP : RB + NN
+			\item[$\bullet$] NP : CD + NN
+			\item[$\bullet$] NP : NND + NN
+		\end{description}
+		
+		\item Frasa Kata Kerja (Verbal)\\
+		Menurut \cite{hs2005bahasa}, frasa verbal merupakan kelompok kata benda yang dibentuk dengan kata kerja. Fitur frasa verbal yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa verbal atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
+		\begin{description}
+			\item[$\bullet$] VP : VB
+			\item[$\bullet$] VP : VB + NP
+		\end{description}
+	\end{enumerate}
 
-  \subsection{Pembuangan Data Duplikat}
-  Dari tiga sumber yang telah disebutkan pada Bab \ref{pengambilan data}, diperoleh data bacaan \quran~lebih dari 50 qari berbeda. Namun di antara data-data tersebut, ada beberapa data yang duplikat, yaitu data dengan nama berkas berbeda tetapi sebenarnya memiliki suara yang sama persis. Hal ini dikarenakan ada sedikit perbedaan dari masing-masing sumber data dalam menamai qari. Misalnya dalam \url{http://everyayah.com} terdapat qari dengan nama ``Alafasy\_128kbps'' dan dalam \url{http://tanzil.net} terdapat qari dengan nama ``afasy''. Dua nama tersebut merujuk ke orang yang sama. Untuk mengetahui bahwa dua berkas memiliki konten audio yang sama tidak dilihat dari nama berkasnya, tetapi menggunakan teknik lain. Dalam penelitian ini teknik yang digunakan adalah perbandingan nilai MFCC. Langkah-langkah dari teknik tersebut adalah sebagai berikut.
+Gambar \ref{fig:fiturfrasa} merupakan ilustrasi dari ekstraksi fitur Frasa Nomina dalam suatu kalimat.
 
-  \begin{enumerate}
-    \item \label{step:pilih ayat} \textbf{Menentukan satu ayat yang akan menjadi acuan}\\
-    Ayat yang dipilih boleh yang mana saja, tetapi disarankan bukan ayat pertama dari setiap surat. Ayat pertama dari setiap surat terkadang mengandung bacaan \f{basmalah}\footnote{sebutan untuk bacaan ``\<بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ>''.} yang sebenarnya bukan merupakan bagian dari ayat tersebut, karena bacaan tersebut sifatnya opsional untuk dibaca di awal surat. Ayat yang digunakan pada langkah selanjutnya hanya ayat yang terpilih pada langkah ini. Dalam penelitian ini ayat yang digunakan sebagai acuan adalah ayat ke-6 dari surat ke-114.
-    
-  	\item \label{step:hitung mfcc} \textbf{Ekstraksi MFCC dari semua qari}\\
-  	Dengan mengacu pada ayat yang ditentukan di langkah \ref{step:pilih ayat}, audio bacaan \quran~masing-masing qari diekstrak nilai MFCC-nya. Dalam penelitian ini, parameter koefisien MFCC yang digunakan adalah 13. Hasil dari ekstraksi nilai MFCC berupa matriks berukuran $13\times K$, di mana $K$ merepresentasikan banyaknya \fr. Nilai $K$ bervariasi, bergantung pada durasi audio yang diekstrak. Kemudian, nilai rata-rata dari matriks $13\times K$ pada setiap barisnya dihitung, sehingga terbentuk vektor kolom dengan panjang 13. Vektor kolom adalah matriks yang memiliki tepat 1 kolom. Penghitungan rata-rata dilakukan per baris supaya panjang vektor dari hasil perhitungan ini konstan, yaitu 13. Karena jika yang dihitung nilai rata-rata per \fr, maka hasilnya tentu bervariasi sesuai dengan banyak \fr~dari masing-masing nilai MFCC, yang dipengaruhi oleh durasi audio. Panjang setiap vektor dari langkah ini haruslah sama supaya masing-masing vektor dapat dihitung nilai jaraknya.
-  	
-  	\item \label{step:hitung jarak} \textbf{Menghitung jarak dari setiap pasang data}\\
-    Setiap pasang vektor yang terbentuk dari langkah \ref{step:hitung mfcc} kemudian dihitung nilai jaraknya. Sehingga akan terbentuk matriks D berukuran $N\times N$ yang berisi nilai-nilai jarak tersebut, di mana $N$ adalah banyaknya qari. Baris ke-i dan kolom ke-j menyatakan nilai jarak dari qari ke-i dengan qari ke-j. Penelitian ini menggunakan nilai jarak \f{euclidean distance}\footnote{persamaan \ref{equ:euclideandistance}}.
-  	
-  	\item \label{step:clustering} \textbf{Mengelompokkan matriks D}\\
-    Kumpulan sel di matriks D hasil dari langkah \ref{step:hitung jarak} kemudian dikelompokkan ke dalam 4 kelompok menggunakan teknik \f{k-means clustering}. Pembagian ke dalam 4 kelompok ini dimaksudkan supaya data terbagi ke dalam kelompok \f{mirip}, \f{sedikit mirip}, \f{tidak terlalu mirip}, dan \f{tidak mirip}. Kelompok yang mengandung nilai terendah adalah kelompok \f{mirip} yang ditetapkan sebagai pasangan data yang duplikat. Jika pembagiannya hanya 3 atau 2 kelompok saja, maka akan ada pasangan-pasangan data yang hanya \f{sedikit mirip}, yang jika diamati secara manual berbeda (tidak duplikat), tetapi masuk ke dalam kelompok \f{mirip}, sehingga dianggap duplikat. Dari langkah ini akan dihasilkan matriks C yang berukuran sama dengan matriks D, di mana setiap sel pada matriks C berisi label kelompok. Nilai sel pada baris ke-i dan kolom ke-j menyatakan level kemiripan qari ke-i dengan qari ke-j.
-  	
-  	\item \textbf{Membuang data mirip}\\
-    Dengan mengacu pada matriks C yang diperoleh pada langkah \ref{step:clustering}, setiap pasangan data yang memiliki hubungan \f{mirip}, salah satu dari keduanya dihilangkan dari himpunan data eksperimen pada penelitian ini.
-  \end{enumerate}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.70\linewidth]{images/fiturfrasa}
+	\caption{Ilustrasi Ekstraksi Fitur Frasa Nomina pada Suatu Kalimat}
+	\label{fig:fiturfrasa}
+\end{figure}
 
-  \subsection{Penyaringan Data}
-  Setelah data yang terkumpul dipastikan tidak mengandung data yang duplikat, maka langkah selanjutnya adalah menyaring data. Proses ini dilakukan secara manual. Adapun kriteria data yang lolos saringan adalah sebagai berikut:
-  \begin{enumerate}
-    \item \textbf{Terdengar jelas dan bacaannya benar}.\\
-    Suara bacaan \quran~harus terdengar jelas oleh pendengaran manusia. Data yang tidak jelas menurut pendengaran manusia tidak sesuai standar dalam penelitian ini, sehingga tidak disertakan dalam eksperimen. Di samping itu, bacaan dalam data tersebut juga harus sesuai dengan cara membaca \quran~yang benar.
+Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan sebuah frasa, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:frasatoone} merupakan contoh pengubahan fitur frasa nomina menjadi representasi \textit{one-hot-vector}.
 
-    \item \textbf{Tidak mengandung bacaan \f{basmalah}}.\\
-    Sebagian qari mengawali pembacaan ayat pertama di setiap surat dengan \f{basmalah}. Karena bacaan ini bukan bagian dari ayat pertama dan sifatnya opsional, ada qari yang membacanya dan ada juga yang tidak. Baik membaca \f{basmalah} maupun tidak, keduanya benar menurut aturan membaca Al-Qur'an. Oleh karena itu, dalam penelitian ini perlu diterapkan standar, yaitu data yang digunakan hanya data yang tidak mengandung bacaan \f{basmalah}.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.85\linewidth]{images/frasatoone}
+	\caption{Ilustrasi Pengubahan Fitur Frasa menjadi \textit{One-Hot-Vector}}
+	\label{fig:frasatoone}
+\end{figure}
 
-    \item \textbf{Tidak mengandung pantulan suara}.\\
-    Beberapa suara bacaan \quran~mengandung pantulan suara atau \f{echo}. \f{Echo} dalam rekaman bacaan \quran~disebabkan oleh efek audio digital yang sengaja ditambahkan untuk memberikan kesan bagus. Namun hal tersebut justru akan mengganggu proses klasifikasi. Maka dalam penelitian ini, data yang mengandung \f{echo} tidak disertakan dalam eksperimen.
-  \end{enumerate}
-
-  Informasi mengenai data yang tersisa setelah proses pembuangan data duplikat dan penyaringan, dapat dilihat pada tabel \ref{table:data yang tersisa}.
+ \item Fitur 6: 1 Kata Sebelum\\
+ Fitur ini merupakan fitur yang berisi informasi kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Fitur ini digunakan pada penelitian penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan.
   
-  \begin{table}
-    \centering
-    \caption{Informasi Data Eksperimen}
-    \begin{tabular}{|c|c|}
-      \hline
-      Banyak Qari & 40 qari \\ \hline
-      Surat Mulai & An-Naba' (surat ke-78) \\ \hline
-      Surat Selesai & An-Nas (surat ke-114) \\ \hline
-      Banyak Surat & 37 surat \\ \hline
-      Banyak Ayat & 564 ayat \\ \hline
-      Total Seluruh \f{Instance} & 22,560 \f{instance} \\ \hline
-    \end{tabular}
-    \label{table:data yang tersisa}
-  \end{table}
+ \item Fitur 7: 1 Kata Sesudah\\
+ Fitur ini merupakan fitur yang berisi informasi kata sesudah kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Sama seperti pada fitur 1 Kata Sebelum, ada beberapa kasus yang mana apabila suatu kata merupakan sebuah entitas, akan lebih mudah dikenali apabila melihat kata atau konteks setelahnya. Sama seperti contoh pada Fitur 1 Kata Sebelum, misal diberikan kata "masuk angin", apabila hanya diberikan informasi "masuk" tanpa "angin", akan lebih sulit mengenali apakah kata tersebut termasuk entitas \textit{disease} atau bukan. Selain itu, fitur ini juga dapat membedakan kata berentitas dengan kata yang bukan, misalnya kata "masuk angin" dengan "masuk rumah". Apabila informasi pada saat tersebut hanya diberikan kata "masuk" saja tanpa kata setelahnya, akan lebih sulit mengenali kata tersebut termasuk kata berentitas atau bukan.
+  
+\end{enumerate}
 
+\subsection{Pengusulan Arsitektur RNNs}
+Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap eksperimen. Ada dua arsitektur yang \saya~gunakan dalam penelitian ini, yaitu
+\begin{enumerate}
+	\item LSTMs 1 layer\\
+	Pada LSTMs 1 layer, semua fitur yang menjadi input pada sebuah \textit{timestep} digabung menjadi satu. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Networks} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi LSTM 1 layer yang \saya~gunakan dalam penelitian ini.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{images/lstm1}
+		\caption{LSTMs 1 layer}
+		\label{fig:single_layer_rnn}
+	\end{figure}
 
+	Misalnya fitur yang digunakan adalah fitur kata dan frasa. Karena hanya terdapat 1 layer saja, kedua fitur ini digabung terlebih dahulu menjadi 1. Gambar \ref{fig:inputlstm} merupakan ilustrasi dari proses penggabungan fitur supaya menjadi \textit{input} RNNs, dan  \textit{output} serta pemetaan menjadi label pada arsitektur ini.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/concatlstm1}
+		\caption{Ilustrasi penggabungan fitur kata dan frasa untuk menjadi \textit{input} LSTMs 1 layer dan \textit{output}-nya}
+		\label{fig:inputlstm}
+	\end{figure}
+	
+	Gambar \ref{fig:iolstm1} merupakan ilustrasi \textit{input} yang diberikan pada sebuah LSTMs 1 layer dan \textit{output} yang dihasilkan.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/iolstm1}
+		\caption{Ilustrasi proses \textit{input} fitur pada LSTMs 1 layer dan \textit{output}-nya}
+		\label{fig:iolstm1}
+	\end{figure}
+	
+	Untuk masing-masing \textit{timestep} $ t $, berikut merupakan gambar sebuah \textit{cell}-nya.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/lstm}
+		\caption{1 buah blok memori dalam LSTM}
+		\label{fig:lstm1cell}
+	\end{figure}
+	
+	Dari gambar \ref{fig:lstm1cell}, sebuah \textit{cell} membutuhkan \textit{input} $ x(t) $ dan \textit{output} $ h(t) $. $ x(t) $ merupakan vektor dengan panjang $ N $, dan $ h(t) $ merupakan vektor dengan panjang $ M $. Seperti yang telah dijelaskan pada subbab \ref{subbab:lstm}, berikut merupakan formula untuk mengetahui \textit{output} pada \textit{timestep} $ t $.
+	\begin{equation}\label{eq:lstmm}
+	m_{t}=\alpha_{t} (\times) m_{t-1} + \beta_{t} (\times) f(x_{t},{t-1})
+	\end{equation}
+	\begin{equation}\label{eq:lstmh}
+	h_{t}=\gamma_{t} (\times) tanh(m_{t})
+	\end{equation}
+	dimana
+	\begin{equation}\label{eq:lstmx}
+	f(x_{t},{t-1})=tanh(W_{xm} \cdot x_{t} + W_{hm} \cdot h_{t-1})
+	\end{equation}
+	
+	$ \alpha_t $, $ \beta_t $ dan $ \gamma_t $ merupakan \textit{gates}:
+	\begin{enumerate}
+		\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{x\alpha} \cdot x_{t}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1}) $
+		\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{x\beta}\cdot x_{t}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1}) $
+		\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{x\gamma}\cdot x_{t}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
+	\end{enumerate}
 
-\section{Perangkat dan Fungsi Pendukung}
-  \subsection{Perangkat Pendukung}
-  Dalam melakukan eksperimen, \saya~menggunakan perangkat komputer yang disediakan di lab. Perangkat komputer tersebut memiliki spesifikasi seperti pada tabel \ref{table:spesifikasi hardware}.
+	\item LSTMs 2 layer dengan Multi-\textit{Input}\\
+	Pada LSTMs 2 layer dengan multi-\textit{input}, penulis mendefinisikan 2 layer, yang layer terbawah merupakan layer dengan jumlah LSTMs sebanyak n kelompok fitur. Pertama-tama fitur dikelompokkan terlebih dahulu, kemudian dijadikan \textit{input} untuk masing-masing LSTMs pada tingkat pertama. Setelah itu, hasil dari tingkat pertama tersebut akan digabung menjadi satu, dengan menggunakan layer penggabung (\textit{Merge Layer}). \textit{Output} dari layer penggabung kemudian dimasukkan ke dalam LSTMs layer kedua. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Network} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi dari LSTMs layer bertingkat yang \saya~gunakan.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=1.0\linewidth]{images/lstm2}
+		\caption{LSTM 2 layer multi-\textit{input}}
+		\label{fig:lstm2}
+	\end{figure}
 
-  \begin{table}
-    \centering
-    \caption{Spesifikasi \f{Hardware}}
-    \begin{tabular}{|c|c|}
-      \hline
-      Processor & i7-4770S \\ \hline
-      Banyak Core & 8 core \\ \hline
-      Frekuensi Processor & 3.1 GHz per core \\ \hline
-      RAM & 8 GB \\ \hline
-    \end{tabular}
-    \label{table:spesifikasi hardware}
-  \end{table}
+	Masing-masing kelompok fitur menjadi \textit{input} dari LSTMs yang terkait. Nantinya, masing-masing \textit{output} akan digabung melalui \textit{merge layer} dengan metode \textit{concat} dan menjadi \textit{input} bagi LSTMs layer kedua. Gambar \ref{fig:iolstm2} merupakan ilustrasi \textit{input} dan \textit{output} pada LSTMs 2 layer multi-\textit{input}. Pada gambar tersebut terlihat bahwa terdapat dua kelompok fitur, yaitu fitur kata dan fitur frasa (verba dan nomina). Masing-masing fitur tersebut dimasukkan ke dalam masing-masing LSTMs, yang hasilnya di-\textit{merge} pada layer di atasnya. Hasil dari layer \textit{merge} menjadi \textit{input} untuk LSTMs di layer kedua. Pada LSTMs kedua inilah label akan diberikan.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=1.0\linewidth]{images/iolstm2}
+		\caption{Ilustrasi \textit{input} dan \textit{output} pada LSTMs 2 layer multi-\textit{input}}
+		\label{fig:iolstm2}
+	\end{figure}
+	
+	Di sini, \saya~menotasikan $ k $ sebagai nomor kelompok fitur dan $ t $ sebagai \textit{timestep} saat ini. Untuk masing-masing kelompok fitur, berikut merupakan formulasi \textit{feedforward}-nya:
+	\begin{equation}\label{eq:mt2}
+	m_{k,t}=\alpha_{k,t} (\times) m_{k,t-1} + \beta_{k,t} (\times) f(x_{k,t},{k,t-1})
+	\end{equation}
+	\begin{equation}\label{eq:ht2}
+	h_{k,t}=\gamma_{k,t} (\times) tanh(k,m_{t})
+	\end{equation}
+	dimana
+	\begin{equation}\label{eq:hf2}
+	f(x_{k,t},{k,t-1})=tanh(W_{k,xm} \cdot x_{k,t} + W_{k,hm} \cdot h_{k,t-1})
+	\end{equation}
+	$ \alpha_{k,t} $, $ \beta_{k,t} $ dan $ \gamma_{k,t} $ merupakan \textit{gates}:
+	\begin{enumerate}
+	\item \textit{Forget gates}: $ \alpha_{k,t}=\sigma(W_{k,x\alpha} \cdot x_{k,t}+W_{k,h\alpha}\cdot~h_{k,t-1}+W_{k,m\alpha}\cdot~m_{k,t-1}) $
+	\item \textit{Input gates}: $ \beta_{k,t}=\sigma(W_{k,x\beta} \cdot x_{k,t}+W_{k,h\beta}\cdot~h_{k,t-1}+W_{k,m\beta}\cdot~m_{k,t-1}) $
+	\item \textit{Output gates}: $ \gamma_{k,t}=\sigma(W_{k,x\gamma} \cdot x_{k,t}+W_{k,h\gamma}\cdot~h_{k,t-1}+W_{k,m\gamma}\cdot~m_{k,t-1}) $
+	\end{enumerate}
 
-   Perangkat lunak yang \saya~gunakan dalam mengembangkan sistem yaitu Sublime. Bahasa pemrograman yang \saya~pilih yaitu Python untuk pengolahan dan pengembangan sistem dan Ruby untuk pengambilan data dari internet. \textit{Framework} \rnn~yang \saya~gunakan adalah Keras. \Saya~memilih Keras karena \textit{framework} ini lebih \textit{high level} dibandingkan dengan \textit{framework} lain dan memiliki \textit{library} yang cukup lengkap. Selain itu, pengembang Keras juga masih aktif dalam mengembangkan \textit{framework} dan diskusi mengenai Keras. Sehingga \saya~lebih mudah dalam membangun sistem. Untuk mengubah kata menjadi vektor, \saya~menggunakan \we~dari Gensim. Alasan \saya~memilih \textit{library} tersebut yaitu relatif lebih mudah digunakan.
+	\textit{Merge layer} berfungsi untuk menggabungkan hasil dari \textit{feedforward} pada semua LSTMs layer pertama. Di sini, \saya~menotasikan $ X_t $ sebagai hasil dari \textit{merge} di \textit{timestep} $ t $ dan $ (\cdot) $ merupakan operasi \textit{merging}.
+	\begin{equation}\label{eq:merge}
+	X_t = h_{1,t} (\cdot) h_{2,t} (\cdot) h_{3,t} (\cdot) .... (\cdot) h_{k,t}
+	\end{equation}
 
-  \subsection{Fungsi Pendukung} \label{chap:fungsipendukung}
-  MATLAB menyediakan banyak fungsi yang dapat digunakan untuk membantu eksperimen. Namun selain fungsi-fungsi yang sudah disediakan MATLAB, diperlukan fungsi tambahan untuk menjalankan eksperimen ini, antara lain sebagai berikut.
-  \begin{enumerate}
-    \item audioread\\
-    \f{audioread} adalah fungsi untuk membaca berkas mp3 yang sudah tersedia di MATLAB mulai dari versi R2012b\footnote{http://www.mathworks.com/help/matlab/ref/audioread.html}. Jika fungsi \f{audioread} belum ada di MATLAB, maka alternatifnya adalah fungsi \f{wavread}. Fungsi \f{audioread} menerima \ioa~berupa \f{string} yang menyatakan lokasi penyimpanan berkas, lalu memberikan \iob~berupa matriks sinyal $N \times C$ dan \br. $N$ menyatakan panjang sinyal, sedangkan $C$ menyatakan banyaknya \f{channel}.
+	Hasil dari \textit{merge layer} akan digunakan sebagai \textit{input} bagi LSTMs layer kedua. Untuk memudahkan penggunaan notasi dan membedakan dengan LSTMs pada layer pertama, \saya~menggunakan huruf kapital dalam menotasikan masing-masing nilai di LSTMs layer kedua. Berikut merupakan formulasi \textit{feed-forwarnya}.
+	
+	\begin{equation}\label{eq:mt3}
+	M_{t}=\alpha_{t} (\times) M_{t-1} + \beta_{t} (\times) f(X_{t},{t-1})
+	\end{equation}
+	\begin{equation}\label{eq:ht3}
+	H_{t}=\gamma_{t} (\times) tanh(M_{t})
+	\end{equation}
+	dimana
+	\begin{equation}\label{eq:hf3}
+	f(X_{t},{t-1})=tanh(W_{XM} \cdot X_{t} + W_{HM} \cdot H_{t-1})
+	\end{equation}
+	$ \alpha_{t} $, $ \beta_{t} $ dan $ \gamma_{t} $ merupakan \textit{gates}:
+	\begin{enumerate}
+	\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{X\alpha}+W_{H\alpha}\cdot~H_{t-1}+W_{M\alpha}\cdot~M_{t-1}) $
+	\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{X\beta}+W_{H\beta}\cdot~H_{t-1}+W_{M\beta}\cdot~M_{t-1}) $
+	\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{X\gamma}+W_{H\gamma}\cdot~H_{t-1}+W_{M\gamma}\cdot~M_{t-1}) $
+	\end{enumerate}
+		
+\end{enumerate}
+	
+\section{Eksperimen}
+Dalam melakukan eksperimen, arsitektur \textit{deep learning} yang \saya~gunakan adalah \textit{Recurrent Neural Networks}, dalam hal ini \saya~menggunakan LSTMs. Hal ini \saya~lakukan karena pada penelitian \cite{mujiono2016new}, \cite{jagannatha2016bidirectional}, \cite{limsopatham2016learning} dan \cite{almgren2016named}, penggunaan LSTMs memberikan \textit{output} terbaik dalam \mer~yang dirancang. Selain itu, LSTMs juga sangat baik dalam masalah \textit{sequence labeling} seperti yang dilakukan oleh \cite{graves2013speech} dan merupakan \textit{state-of-the-art} dalam bidang ini. Masih banyak penelitian lain yang membuktikan bahwa LSTMs merupakan arsitektur \textit{deep learning} yang sangat baik dalam masalah \textit{sequence labeling} seperti \textit{Offline Hadwriting Recognition} \citep{graves2009offline}, \textit{sequence tagging} \citep{huang2015bidirectional}, \textit{Sequence to Sequence Learning} \citep{NIPS2014_5346} dan lain lain.
 
-    \item mfcc\\
-    \f{mfcc} adalah fungsi untuk menghitung MFCC. Implementasi fungsi \f{mfcc} menggunakan \f{source code} dari \href{http://www.mathworks.com/matlabcentral/fileexchange/32849-htk-mfcc-matlab}{HTK MFCC MATLAB}\footnote{http://www.mathworks.com/matlabcentral/fileexchange/32849-htk-mfcc-matlab}. Fungsi \f{mfcc} membutuhkan parameter seperti yang tercantum dalam tabel \ref{table:parametermfcc}.
+Eksperimen yang \saya~lakukan menggunakan 10-\textit{cross fold validation}, karena keterbatasan \textit{resource} yang \saya~miliki. Sebelum melakukan eksperimen, \saya~membagi data \textit{training} menjadi 10 bagian, kemudian melakukan iterasi sebanyak 10 kali yang pada masing-masing iterasi ke-i, bagian data ke-i menjadi data \textit{testing} dan yang lainnya digabung menjadi data \textit{training}. 
 
-    \begin{table}
-      \centering
-      \caption{Parameter Fungsi \f{mfcc}}
-      \begin{tabular}{|l|l|}
-        % mfcc( speech, fs, Tw, Ts, alpha, window, R, M, N, L )
-        \hline
-        \textbf{Nama Parameter} & \textbf{Keterangan} \\ \hline
-        Speech & Data audio dalam bentuk matriks $nx1$ \\ \hline
-        Fs & \f{Bit rate} \\ \hline
-        Tw & \f{Analysis frame duration} (ms) \\ \hline
-        Ts & \f{Analysis frame shift} (ms) \\ \hline
-        Alpha & \f{Preemphasis coefficient} \\ \hline
-        Window & \f{Windowing function} \\ \hline
-        R & \f{Frequency range} \\ \hline
-        M & Banyaknya \f{filterbank channels} \\ \hline
-        C & Banyaknya \f{cepstral coefficients} \\ \hline
-        L & Parameter \f{cepstral sine lifter} \\ \hline
-      \end{tabular}
-      \label{table:parametermfcc}
-    \end{table}
+Setelah melakukan pembagian dan pengelompokan data berdasarkan nomor iterasi, penulis membuat model dari data \textit{training} tersebut. Setelah \saya~mendapatkan model, \saya~melakukan testing terhadap masing-masing model dengan data \textit{testing} yang telah disediakan sebelumnya. Hasil dari pelabelan data \textit{testing} ini akan \saya~evaluasi di tahap selanjutnya. Setelah itu \saya~kembali melakukan pembuatan model dengan fitur yang berbeda, atau dengan tambahan fitur lain. Dalam perjalanan melakukan pengujian, apabila fitur yang diuji memberikan hasil yang bagus atau menambah akurasi, \saya~menggabungkan fitur ini ke percobaan selanjutnya. Namun apabila fitur pada saat ini memberikan akurasi yang lebih jelek, \saya~tidak menggunakan fitur tersebut di percobaan selanjutnya.
 
-    \item mfcc2sdc\\
-    \f{mfcc2sdc} adalah fungsi untuk menghitung SDCC. Implementasi fungsi tersebut diperoleh dari \f{source code} di \href{http://www.mathworks.com/matlabcentral/fileexchange/31478-shifted-delta-coefficients--sdc--computation-from-mel-frequency-cepstral-coefficients--mfcc-}{HTK MFCC MATLAB}\footnote{http://www.mathworks.com/matlabcentral/fileexchange/31478-shifted-delta-coefficients--sdc--computation-from-mel-frequency-cepstral-coefficients--mfcc-}. Fungsi \f{mfcc2sdc} membutuhkan parameter seperti yang tercantum pada tabel \ref{table:parametersdcc}.
+\section{Evaluasi}
+Pada tahap ini, \saya~melakukan serangkaian evaluasi dari data \textit{testing} yang telah dilabeli dengan model yang dihasilkan pada tahap eksperimen. \Saya~melakukan evaluasi dengan menggunakan metode \textit{partial evaluation} di mana sebuah token yang diprediksi entitas oleh model dihitung benar apabila terdapat fragmen yang menyusun entitas bernama tersebut \citep{seki2003probabilistic}. Aturan yang \saya~gunakan dalam melakukan evaluasi adalah sebagai berikut: 
 
-    \begin{table}
-      \centering
-      \caption{Parameter Fungsi \f{mfcc2sdc}}
-      \begin{tabular}{|l|l|}
-        % mfcc2sdc(CepCoeff,d,P,K)
-        \hline
-        \textbf{Nama Parameter} & \textbf{Keterangan} \\ \hline
-        CepCoeff & Matriks MFCC dalam bentuk KxC, di mana K menyatakan \\
-        &~ banyaknya \fr~dan C menyatakan banyaknya koefisien MFCC \\ \hline
-        D & Nilai \f{shift} untuk \f{delta computation} \\ \hline
-        P & Nilai \f{shift} untuk \fr~selanjutnya \\ \hline
-        K & Banyaknya blok di mana koefisien \f{delta} disambungkan \\ \hline
-      \end{tabular}
-      \label{table:parametersdcc}
-    \end{table}
+\begin{enumerate}
+	\item Perhitungan nilai \textit{True Positive} (TP)\\
+	Untuk masing-masing kata yang mendapat label entitas benar, nilai $ TP $ bertambah sejumlah kata yang diprediksi benar.\\
+	Misal:
+	
+	\fbox{%
+		\parbox{1.0\linewidth}{%
+		Contoh 1\\
+		True: Anak saya <Disease>\textbf{sakit kepala} sebelah</Disease>\\
+		Predicted: Anak saya <Disease>\textbf{sakit kepala}</Disease> sebelah
+		}%
+	}
+	
+	Dari contoh di atas, nilai $ TP = 2 $, karena ada 2 kata yang mendapatkan label entitas yang benar.
+	
+	\fbox{%
+		\parbox{1.0\linewidth}{%	
+		Contoh 2\\
+		True : <Disease>Masuk angin</Disease> dan <Sympton>\textbf{suhu badan tinggi}</Symptom>\\
+		Predicted : <Sympton>Masuk angin</Sympton> dan <Sympton>\textbf{suhu badan tinggi}</Symptom>\\
+		}%
+	}
 
-    % \item kmeans\\
-    % \item svmtrain\\
-    % \item gmdistribution.fit\\
+	Dari contoh di atas, nilai $ TP = 3 $, karena ada 3 kata yang mendapatkan label entitas yang benar
+	
+	\item Perhitungan nilai \textit{False Positive} (FP)\\
+	Untuk masing-masing kata yang mendapat label entitas namun seharusnya tidak berentitas,  nilai $ FP $ bertambah sejumlah kata yang diprediksi salah.\\
+	Misal:
+	
+	\fbox{%
+		\parbox{1.0\linewidth}{%	
+		Contoh 1\\
+		True : <Disease>Sakit kepala</Disease> sudah \textbf{beberapa hari istirahat}\\
+		Predicted : <Disease>Sakit kepala</Disease> sudah <Treatment>\textbf{beberapa hari istirahat}</Treatment>
+		}
+	}
 
-  \end{enumerate}
+	Dari contoh di atas, nilai $ FP = 3 $, karena ada 3 kata yang mendapat label entitas yang seharusnya tidak berlabel, yaitu "beberapa hari istirahat".
+			
+	\item Perhitungan nilai \textit{False Negative} (FN)\\
+	Untuk masing-masing kata yang mendapat label entitas salah,  nilai $ FP $ bertambah sejumlah kata yang diprediksi salah.\\
+	Misal:
+	
+	\fbox{%
+		\parbox{1.0\linewidth}{%
+		Contoh 1\\
+		True : Anak saya <Disease>sakit kepala sebelah</Disease>\\
+		Predicted : Anak saya <Disease>sakit kepala</Disease> sebelah
+
+		}
+	}
+
+	Dari contoh di atas, nilai $ FN = 0 $, karena tidak ada kata yang mendapat label entitas salah (kata "sebelah" tidak mendapat label).
+	
+	\fbox{%
+		\parbox{1.0\linewidth}{%
+		Contoh 2\\
+		True : <Symptom>Badan terasa pegal</Symptom>, sepertinya akan <Disease>\textbf{demam}</Disease>.\\
+		Predicted : <Symptom>Badan terasa pegal</Symptom>, sepertinya akan <Symptom>\textbf{demam}</Symptom>.
+		}
+	}
+
+	Dari contoh di atas, nilai $ FN = 1 $, karena ada 1 kata yang mendapat label entitas salah, yaitu kata "demam".
+	
+\end{enumerate}
+	
+Setelah mendapatkan angka $ TP, FP $ dan $ FN $, \saya~menghitung \textit{f-measure}, \textit{precission} dan \textit{recall} untuk masing-masing entitas dengan menggunakan formula:
+\begin{align}
+	Precission &= \frac{TP}{TP+FP}\\
+	Recall &= \frac{TP}{TP+FN}\\
+	F-Measeure &= 2 \cdot \frac{Precission \cdot Recall}{Precission + Recall}
+\end{align}
+
+Angka-angka hasil evaluasi ini akan menjadi pertimbangan untuk penggunaan fitur pada saat ini di eksperimen selanjutnya. Apabila akurasi dari penggunaan fitur saat ini lebih baik atau meningkat dari eksperimen sebelumnya, \saya~menggunakan fitur ini pada eksperimen selanjutnya. Selain itu, \saya~juga mengevaluasi arsitektur RNNs yang \saya~gunakan dengan cara yang sama.
+	

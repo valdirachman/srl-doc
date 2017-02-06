@@ -22,6 +22,21 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{longtable}
+
+\usepackage{algpseudocode}
+\algnewcommand\algorithmicinput{\textbf{Input:}}
+\algnewcommand\Input{\item[\algorithmicinput]}
+\algnewcommand\algorithmicoutput{\textbf{Output:}}
+\algnewcommand\Output{\item[\algorithmicoutput]}
+\usepackage[ruled,vlined,linesnumbered,resetcount,algochapter]{algorithm2e}
+\newcommand{\listofalgorithmes}{\tocfile{\listalgorithmcfname}{loa}}
+\renewcommand{\listalgorithmcfname}{Daftar Kode}
+\newenvironment{kode}[1][htb]
+	{\renewcommand{\algorithmcfname}{Kode}% Update algorithm name
+		\begin{algorithm}[#1]%
+	}{\end{algorithm}}
 
 \usepackage{natbib}
 % Load konfigurasi LaTeX untuk tipe laporan thesis
@@ -103,8 +118,9 @@
 \clearpage
 \listoftables
 \clearpage
+\listofalgorithmes
 % \lstlistoflistings
-% \clearpage
+\clearpage
 
 %
 % Gunakan penomeran Arab (1, 2, 3, ...) setelah bagian ini.
@@ -136,10 +152,13 @@
 %
 % Lampiran 
 %
-% \begin{appendix}
-% 	\include{markLampiran}
-% 	\setcounter{page}{2}
-% 	\include{lampiran}
-% \end{appendix}
+\begin{appendix}
+	\include{markLampiran}
+ 	\include{lampiran}
+ 	\include{lampiran_disease}
+ 	\include{lampiran_symptom}
+ 	\include{lampiran_treatment}
+ 	\include{lampiran_drug}
+ \end{appendix}
 
 \end{document}
