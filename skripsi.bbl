@@ -37,6 +37,12 @@ Chollet, F. (2015).
 \newblock Keras.
 \newblock \url{https://github.com/fchollet/keras}.
 
+\bibitem[Collobert et~al., 2011]{collobert2011natural}
+Collobert, R., Weston, J., Bottou, L., Karlen, M., Kavukcuoglu, K., dan Kuksa,
+  P. (2011).
+\newblock Natural language processing (almost) from scratch.
+\newblock {\em Journal of Machine Learning Research}, 12(Aug):2493--2537.
+
 \bibitem[Dinakaramani et~al., 2014]{dinakaramani2014designing}
 Dinakaramani, A., Rashel, F., Luthfi, A., dan Manurung, R. (2014).
 \newblock Designing an indonesian part of speech tagset and manually tagged
@@ -47,6 +53,24 @@ Dinakaramani, A., Rashel, F., Luthfi, A., dan Manurung, R. (2014).
 Elman, J.~L. (1990).
 \newblock Finding structure in time.
 \newblock {\em Cognitive science}, 14(2):179--211.
+
+\bibitem[Emanuele et~al., 2013]{emanuele2013textual}
+Emanuele, B., Castellucci, G., Croce, D., dan Basili, R. (2013).
+\newblock Textual inference and meaning representation in human robot
+  interaction.
+\newblock In {\em Joint Symposium on Semantic Processing.}, page~65.
+
+\bibitem[Gildea dan Jurafsky, 2002]{gildea2002automatic}
+Gildea, D. dan Jurafsky, D. (2002).
+\newblock Automatic labeling of semantic roles.
+\newblock {\em Computational linguistics}, 28(3):245--288.
+
+\bibitem[Gildea dan Palmer, 2002]{gildea2002necessity}
+Gildea, D. dan Palmer, M. (2002).
+\newblock The necessity of parsing for predicate argument recognition.
+\newblock In {\em Proceedings of the 40th Annual Meeting on Association for
+  Computational Linguistics}, pages 239--246. Association for Computational
+  Linguistics.
 
 \bibitem[Goodfellow et~al., 2016]{Goodfellow-et-al-2016-Book}
 Goodfellow, I., Bengio, Y., dan Courville, A. (2016).
@@ -149,6 +173,19 @@ Limsopatham, N. dan Collier, N. (2016).
   named entity recognition.
 \newblock {\em BioTxtM 2016}, page~10.
 
+\bibitem[Liu dan Gildea, 2010]{liu2010semantic}
+Liu, D. dan Gildea, D. (2010).
+\newblock Semantic role features for machine translation.
+\newblock In {\em Proceedings of the 23rd International Conference on
+  Computational Linguistics}, pages 716--724. Association for Computational
+  Linguistics.
+
+\bibitem[Lo et~al., 2013]{lo2013improving}
+Lo, C.-k., Addanki, K., Saers, M., dan Wu, D. (2013).
+\newblock Improving machine translation by training against an automatic
+  semantic frame based evaluation metric.
+\newblock In {\em ACL (2)}, pages 375--381.
+
 \bibitem[Mikolov et~al., 2014]{mikolov2014word2vec}
 Mikolov, T., Chen, K., Corrado, G., dan Dean, J. (2014).
 \newblock word2vec.
@@ -158,6 +195,11 @@ Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.
   (2010).
 \newblock Recurrent neural network based language model.
 \newblock In {\em Interspeech}, volume~2, page~3.
+
+\bibitem[Moschitti et~al., 2003]{moschitti2003open}
+Moschitti, A., Morarescu, P., dan Harabagiu, S.~M. (2003).
+\newblock Open domain information extraction via automatic semantic labeling.
+\newblock In {\em FLAIRS conference}, pages 397--401.
 
 \bibitem[Mozer et~al., 1997]{ieee1997advances}
 Mozer, M.~C., Jordan, M.~I., dan Petsche, T. (1997).
@@ -175,6 +217,19 @@ Mujiono, S., Fanany, M.~I., dan Basaruddin, C. (2016).
 Pennington, J., Socher, R., dan Manning, C.~D. (2014).
 \newblock Glove: Global vectors for word representation.
 \newblock In {\em EMNLP}, volume~14, pages 1532--43.
+
+\bibitem[Pradhan et~al., 2005]{pradhan2005semantic}
+Pradhan, S., Ward, W., Hacioglu, K., Martin, J.~H., dan Jurafsky, D. (2005).
+\newblock Semantic role labeling using different syntactic views.
+\newblock In {\em Proceedings of the 43rd Annual Meeting on Association for
+  Computational Linguistics}, pages 581--588. Association for Computational
+  Linguistics.
+
+\bibitem[Punyakanok et~al., 2008]{punyakanok2008importance}
+Punyakanok, V., Roth, D., dan Yih, W.-t. (2008).
+\newblock The importance of syntactic parsing and inference in semantic role
+  labeling.
+\newblock {\em Computational Linguistics}, 34(2):257--287.
 
 \bibitem[{\v R}eh{\r u}{\v r}ek dan Sojka, 2010]{rehurek_lrec}
 {\v R}eh{\r u}{\v r}ek, R. dan Sojka, P. (2010).
@@ -194,6 +249,18 @@ Seki, K. dan Mostafa, J. (2003).
   boundaries.
 \newblock In {\em Bioinformatics Conference, 2003. CSB 2003. Proceedings of the
   2003 IEEE}, pages 251--258. IEEE.
+
+\bibitem[Shen dan Lapata, 2007]{shen2007using}
+Shen, D. dan Lapata, M. (2007).
+\newblock Using semantic roles to improve question answering.
+\newblock In {\em EMNLP-CoNLL}, pages 12--21.
+
+\bibitem[Surdeanu et~al., 2003]{surdeanu2003using}
+Surdeanu, M., Harabagiu, S., Williams, J., dan Aarseth, P. (2003).
+\newblock Using predicate-argument structures for information extraction.
+\newblock In {\em Proceedings of the 41st Annual Meeting on Association for
+  Computational Linguistics-Volume 1}, pages 8--15. Association for
+  Computational Linguistics.
 
 \bibitem[Sutskever et~al., 2014]{NIPS2014_5346}
 Sutskever, I., Vinyals, O., dan Le, Q.~V. (2014).
@@ -226,5 +293,11 @@ Turian, J., Ratinov, L., dan Bengio, Y. (2010).
 \newblock In {\em Proceedings of the 48th annual meeting of the association for
   computational linguistics}, pages 384--394. Association for Computational
   Linguistics.
+
+\bibitem[Zhou dan Xu, 2015]{zhou2015end}
+Zhou, J. dan Xu, W. (2015).
+\newblock End-to-end learning of semantic role labeling using recurrent neural
+  networks.
+\newblock In {\em ACL (1)}, pages 1127--1137.
 
 \end{thebibliography}

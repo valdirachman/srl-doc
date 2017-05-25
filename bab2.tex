@@ -1,9 +1,280 @@
 %!TEX root = skripsi.tex
 %-----------------------------------------------------------------------------%
 \chapter{\babDua}
+This chapter focuses on literature study on 3 aspects including language models, deep learning, and semantic role labeling. In language model section, Part-of-Speech Tag (POS Tag) and word embedding are described. Deep learning section focuses on the architecture widely used for sequence labeling problem. Finally, we explain semantic role labeling in the last section, including the semantic roles definition, annotation corpus, problem definitions, common features, and the historical perspectives.
 %-----------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------%
+\section{Language Models}
+This section explains the language models usually used in Natural Language Processing (NLP) applications. We first describe the traditional yet important language model, Part-of-Speech Tag (POS Tag), followed by word embedding that is often used in recent NLP application with deep learning.
 
-%-----------------------------------------------------------------------------%
+\subsection{Part-of-Speech Tag (POS Tag)}
+
+\subsection{Word Embedding}
+Word representation is an important feature when one wants to build deep learning model for NLP tasks. The idea is to convert words into vectors. There are two approaches for this vector representation, which are traditional and word embedding approach. Traditional approach uses one-hot vectors for the representation, meanwhile word embedding approach uses real values vectors that contain information about the words.
+
+In the traditional approach, the vectors are retrieved based on the index of the word found in the dictionary. The dictionary consists of the word and its index. Suppose that we have four words: I, eat, chicken, beef. Each of these words has their own index, with I:0, eat:1, chicken:2, beef:3. These indices will represent the one-hot vectors for the words. For instance, word with index 0 has a one-hot vector [1 0 0 0], word with index 1 has a one-hot vector [0 1 0 0], and so on. The length of the vector is determined by the size of our dictionary. In this case, the size of our dictionary is 4, hence the length of the vector is also 4. 
+
+However, this representation has two drawbacks. First, it hardly depends on the dictionary. If the dictionary does not have the desired word, then it could not represent the word into vector. If we want the dictionary to cover all the words, the size of the dictionary will be extremely huge. Second, the vector representation is sparse. Since we just give the index to the all the words based on the dictionary, it does not really represent an important information from the words. The word ‘hotel’ and ‘hostel’, though have similar context, could be represented by two far indices, say 1 and 100. 
+
+Word embedding aims to address the second issue. Word embedding converts similar words with similar vectors. From the previous example, the word hotel and hostel will have vectors that are close to each other. Hence, the vector representations are dense. Unfortunately, it still could not solve the first drawback that out-of-vocab words could not be represented as vectors.
+
+There has been a lot of research on word embedding (Mikolov et al, 20xx) (Mikolov et al, 20xx) (Mikolov et al, 20xx). In this section, we will explain word embedding architectures proposed by Mikolov, called as Word2Vec. Word2Vec uses unsupervised approach so that we only need a lot of unlabeled data for building word embedding model. Word2Vec has two architectures, which are Context Bags of Words (CBOW) and Skipgram. Fig XX shows the difference between CBOW and Skipgram architectures. In CBOW, the model learns to predict a word based on its neighbouring words.	 In contrast, Skipgram aims to predict the neighbouring words of a word. 
+
+(GAMBAR CBOW DAN SKIPGRAM)
+
+Both architectures mainly aims to build language model. For word embedding model, we do not need the whole architecture model after we finish training the model. Instead, we only need to extract the weight matrix W when the model converts the word index into vector. This weight matrix W is our word embedding model that we use to represent our input words.
+
+\section{Deep Learning}
+
+\subsection{Recurrent Neural Networks}
+Recurrent Neural Networks, shortened as RNN, is part of neural network family for processing sequential data. It is thus perfect for modeling the sequence labeling problem. Suppose that we have sequence of inputs, RNN will take each input in a time step t to process it in a function. Figure XX shows a general RNN.
+
+(GAMBAR SEDERHANA RNN)
+
+The left picture illustrates the folded RNN model applied to all time steps. Note that the black rectangle represents one time step delay, meaning that that input is coming from the output of the previous time step. 
+
+The right picture shows the unfolded RNN that is more intuitive since it visualizes the time steps. There are three layers in every time step t, which are input, hidden, and output layers, denoted as x, h, and o respectively. The input layer is for the input representations. In the hidden layer, it contains information from the input layer as well as those coming from hidden layers in the previous time steps. The output layer consists of the output of the model. These three layers are in a form of vectors. In every time step t, RNN has input layer x(t) E R A, hidden layer h(t) E R H, and output layer y(t) E B. The values of A, H, and B, represent the length of the input vector, the number of unit in a hidden layer, and the length of the output vector. There are three parameters that will be trained, which are U, V, and W. These parameters are the weight matrices for connecting two layers. U E R HxA connects input with hidden (input-hidden), W E R HxH  connects hidden with the previous hidden (hidden-hidden) and V E R BxH connects hidden with ouput (hidden-ouput). These parameters are shared across time steps. 
+
+Every input layer x(t) is mapped into output layer o(t) in every time step t. In the middle of the process, it calculates the hidden layer h(t) from two layers, x(t) and h(t-1). The output layer o(t) then is retrieved by performing a function to the hidden layer h(t). The general equations for RNN is presented as follows:
+•	h(t) = f1(U. x(t) + W . h(t-1) + b)
+•	o(t) = f2(V. h(t) + c)
+•	Where h(0) = f1(U . x(0))
+
+Note that there are two additional parameters to train, which are the bias vectors b and c. In the first equation, the input x(t) and h(t-1) is weighted by matrices U and W respectively, added by a bias vector b. The result is then inserted to an activation function f1 in order to produce hidden layer h(t). In the second equation, h(t) is multiplied by the weight matrix V and added by a bias vector c, before being processed by the activation function f2 to produce o(t). The examples of activation function f1 and f2 are tanh and softmax.
+
+Based on this illustration, there are two main characteristics of RNN:
+
+1. It has a cycle in the graph for every time step. Hidden layer h(t) will be one of the inputs for forming h(t+1).
+
+2. It has shared parameters across time steps. 
+
+Fig XX illustrates a more complete RNN model on how it is being trained.
+
+(GAMBAR BAGAIMANA RNN DI TRAIN)
+
+The goal of training the model is to find the estimated values of parameters W, U, V, b, and c which produce outputs o(t) as close as the expected outputs y(t) in the training data. 
+
+The loss function L acts as the measure the difference between the predicted output o(t) and the expected output y(t) in every time step t. The more little the difference, the better the model. The machine thus has to minimize the result of loss function as small as possible. The parameters W, U, V, b, and c are unknown in the beginning. At first, these parameters are initiated randomly.For every iteration (called as epoch), the machine aims to learn the best values for each parameters.
+
+The way to do so is by computing the gradient for each iteration. The idea behind computing the gradient values is to show us which parameter setting that brings us into smaller loss function result. By having this information, the machine then sets the better values for each parameter in the next iteration in order to reduce the loss function. From one iteration into another, the machine will find better parameter values to minimize the loss function. The learning method based on the gradient information is called optimization algorithm such as Stochastic Gradient Descent (), Adam (Kingma and Ba, 2014), and RMSProp (Hinton, 2012)
+
+\subsection{Long Short-Term Memories}
+There is an issue in traditional RNN that our networks should overcome, it is called vanishing and exploding gradient problem. The RNN architecture repeatedly uses same parameters for each time steps. Suppose that we use W as the parameter used for each time step between the hidden units. After t time steps, the matrix would be multiplied t times, hence it is the same as multiplying the hidden units with Wt. Assuming that W has an eigendecomposition W = X diag(lambda) X-1, Wt is equal to:
+
+Wt = (X diag(lambda) X-1)t = (X diag(lambda)t X-1)
+
+The eigenvalues lambda in diag(lambda) will either vanish if they are less than 1 in magnitude or explode if they are greater than 1 in magnitude. The gradient counted in each time step is aligned with the eigenvalues. Hence, the gradient may also vanish or explode. This is what we called as vanishing and exploding gradient problem. When the gradient vanishes, it is hard for the machine to find the direction to reduce the cost function. In the case of exploding gradient, the learning algorithm will become unstable.
+
+To address this issue, there are solutions proposed such as leaky units (Mozer, 1992), simulated annealing and discrete error propagation (Bengio et al., 1994), time delays (Lang et al., 1990), and hierarchical sequence compression (Schmidhuber et al., 2007). Among these approach, one of the most robust solutions is called Long Short Term Memories (LSTM) (Hochreiter et. al., 1997). 
+
+The modification used in LSTM to address the issue is by using gates. It is basically RNN, but the nonlinear units in the hidden layer is replaced by the memory blocks. Fig XX shows the difference between RNN and LSTM for the hidden layer. One nonlinear unit tanh in RNN is replaced by a more complex memory blocks in LSTM. Besides the hidden layer h(t), LSTM also has m(t) which is called memory cells.  The idea of LSTM is to learn when to forget or remember the memory from previous time steps through multiplicative gates. It thus prevents the vanishing and exploding gradient problem. For example, if the input gate is closed, then the memory will be unchanged.
+
+(GAMBAR ONE BLOCK MEMORY IN LSTM)
+
+Fig XX illustrates a one block memory in LSTM. There are three main gates which are forget gate, input gate, and output gate. These gates are responsible to determine whether an information is added, kept, or deleted in a cell. Each gate has sigmoid layer and element-wise operations. The sigmoid layer converts the input into a probability between 0 and 1. This probability describes the gate behavior towards the input, whether to accept it (probability close to 1) or not (probability close to 0). 
+
+The equations of the sigmoid layers for each of the gates are explained as follows:
+
+1. Forget Gate
+
+This gate is responsible to determine how much the information from the past should be kept in the memory. The equation of sigmoid layer in forget gate is:
+
+At = sigmoid(WAX X + WAH . h t– 1 + WAM . m t-1)
+
+2. Input Gate
+
+This gate is responsible to determine how much the current information x(t) should be kept in the memory. The equation of sigmoid layer in input gate is:
+
+Bt = sigmoid(WAX X + WAH . h t– 1 + WAM . m t-1)
+
+3. Output Gate
+
+This gate is responsible to determine the output of a time step based on current cell state. The equation of sigmoid layer in output gate is:
+
+Yt = sigmoid(WAX X + WAH . h t– 1 + WAM . m t-1)
+
+In every time step t, the equation for computing cell state m(t) and hidden layer h(t) is presented below:
+
+Mt = At ( x) mt-1 + Bt ( X ) . tanh (Wxmx Xt + Whm. H t-1)
+Ht = Yt (x) tanh(mt)
+
+
+\section{Semantic Role Labeling}
+Semantic role labeling (SRL) is a task in Natural Language Processing to assign semantic roles for each argument for each predicate in given input sentence. In this sub-chapter, the definition of semantic roles will be explained. This sub-chapter then explains the most commonly used annotation corpus for SRL. In the end, the details on semantic role labeling task is described.
+
+\subsection{Semantic Roles}
+Semantic roles are the representations that express the abstract role of that arguments of a predicate can take in the event (Jurafsky, 2015). When it comes to understanding natural language, one would want to understand the events and their participants of a given input sentence. In this case, the events refer to the predicate and the participants refer to the argument. The example below illustrates the connection between a predicate and its arguments.
+Andy         eats      fried chicken
+Argument   Predicate    Argument
+In this example, eat is the predicate with Andy and fried chicken as its argument. With this point of view, the predicate can be seen as the center of the sentence, followed by the arguments that depend on it.
+
+Knowing the predicate and its arguments is not enough to understand the sentence since the roles of the arguments towards the predicate are unknown. In the previous example, it would be more meaningful to differentiate that Andy is the Eater and fried chicken is the EatenThing. Eater and thing eaten are the examples of semantic roles for the predicate eat. These semantic roles could be used to identify the roles of the arguments regardless its position in the sentence. The previous example could be represented with 2 ways:
+Andy         eats      fried chicken
+Eater      Predicate      EatenThing
+The fried chicken   is eaten    by Andy
+EatenThing          Predicate      Eater
+Both sentences represent the role of Andy and fried chicken as eater and thing eaten respectively, regardless of their position in the sentence as a subject or object.
+
+There are many ways to define such semantic roles. From the examples above, the semantic roles are very specific for its predicate, known as deep roles (Jurafsky, 2015). Eater and ThingEaten are semantic roles for the predicate eat, Kicker and KickedThing are semantic roles for the predicate kick, and so on. In order to further knowing more about the semantics of these arguments, these semantic roles could be generalized into more abstract roles. Eater and Kicker have something in common: they are volitional actors having direct causal responsibility for the predicate. For this reason, thematic roles are introduced as a set of semantic roles designed to capture semantic commonality between Eater and Kicker (Jurafsky, 2015). With this in mind, Kicker and Eater can be represented as AGENT, which represents the abstract concept that is a volitional causer of an event (or predicate). On the other hand, EatenThing and KickedThing both represent the direct objects that are affected by the event. The semantic role for EatenThing and KickedThing is THEME.
+
+Table x shows the thematic roles often used across computational papers (Jurafsky, 2015).
+
+(TABLE CONTOH SEMANTIC ROLES)
+
+
+\subsection{Annotation Corpus}
+There are available annotated corpus for SRL consists of sentences labeled with semantic roles. Researchers are using these annotated corpus for building supervised machine learning model for SRL. The two most commonly used annotation corpus for SRL are Proposition Bank and FrameNet.
+
+\subsubsection{Proposition Bank}
+Proposition Bank, shortened as PropBank, is a corpus in which sentences are annotated with semantic roles. PropBank corpus is available for English, Chinese, .., ..., ... The main approach used for its semantic roles grouping is based on proto-roles and verb-specific semantic roles. Every verb sense has its set of semantic roles with argument numbers rather than names, for example: Arg0, Arg1. Arg2, etc. Generally, Arg0 represents PROTO-AGENT while Arg1 represents PROTO-PATIENT. Other argument number representations may vary based on each verb sense.
+
+The PropBank entries are called frame files. One example of the frame files for one sense of verb eat is presented below.
+
+Frame File:
+Eat.01
+Arg0: Eater
+Arg1: Things Eaten
+Arg2: Instrument used
+
+Example:
+Ex1: [Arg0 Andy] eats [Arg1 fried chicken] [Arg2 with spoon]
+Ex2: [Arg1 That fried chicken] is eaten by [Arg0 Andy] [Arg2 with spoon]
+
+For verb sense Eat.01, Arg0 acts as the Eater (PROTO-AGENT), and Arg1 represents the Things Eaten (PROTO-PATIENT). As we can see from the example above, we can infer the commonality between examples Ex1 and Ex2 regardless its structure, be it in a passive or active voice. In both examples, Andy is the Eater and fried chicken is the Things Eaten. In this frame file, there is also another argument, Arg2, that represents the instrument used by the Eater. In example Ex1 and Ex2, the instrument is spoon.
+
+Other non-numbered arguments are available in PropBank, the so-called ArgMs, representing modifiers that could be used across frame files. Some examples of ArgMS include:
+
+TMP: When?
+LOC: Where?
+DIR: Where to/from?
+
+The next annotation corpus is called FrameNet which has different approach on how to group set of semantic roles. Instead of using verb-specific, it uses frame-specific grouping.
+
+\subsubsection{FrameNet}
+FrameNet is an annotation corpus for semantic roles that are specific to a frame. In PropBank, the semantic roles are defined based on each sense of a verb. In contrast, a frame in FrameNet could include more than one predicate (verbs or nouns) that have the same background context. Each frame consists of two elements: 1. A set of semantic roles related to this frame, and 2. A set of predicates using the respective semantic roles.
+
+One example is a frame called change position on a scale defined as:
+This frame consists of words that indicate the change of an Item’s position 
+on a scale (the Attribute)from a starting point (Initial value) 
+to an end point (Final value)
+The set of semantic roles for a frame is divided into two roles: Core roles and Non-Core Roles. Core Roles are specific to a frame while Non-Core Roles are more general across frames (like ArgMs in PropBank). The set of semantic roles of the frame change position on a scale is explained as bellow:
+
+Core Roles
+ITEM: The entity that has a position on the scale.
+ATTRIBUTE: The ATTRIBUTE is a scalar property that the ITEM possesses
+DIFFERENCE: The distance by which an ITEM changes its position on the scale. FINAL STATE: A description that presents the ITEM’s state after the change in the ATTRIBUTE’s value as an independent predication.
+FINAL VALUE: The position on the scale where the ITEM ends up. 
+INITIAL STATE: A description that presents the ITEM’s state before the change in the ATTRIBUTE’s value as an independent predication.
+INITIAL VALUE:The initial position on the scale from which the ITEM moves away. 
+VALUE RANGE: A portion of the scale, typically identified by its end points, along which the values of the ATTRIBUTE fluctuate. 
+Non-Core Roles
+DURATION SPEED GROUP
+The length of time over which the change takes place.
+The rate of change of the VALUE.
+
+The possible predicates of the frame change position on a scale are:
+VERBS: dwindle move advance edge climb decline dip double drop reach
+decrease fluctuate rise diminish gain
+soar mushroom swell
+explode plummet swing fall triple tumble rocket grow shift slide increase skyrocket decline jump
+escalation shift explosion tumble fall fluctuation ADVERBS: gain increasingly NOUNS: hike 
+decrease ris
+The example of semantic roles of the frame change position on a scale could be seen as follows:
+
+(22.20) [ITEM Oil] rose [ATTRIBUTE in price] [DIFFERENCE by 2%]. 
+
+(22.21) [ITEM It] has increased [FINAL STATE to having them 1 day a month]. 
+
+(22.22) [ITEM Microsoft shares] fell [FINAL VALUE to 7 5/8]. 
+
+(22.23) [ITEM Colon cancer incidence] fell [DIFFERENCE by 50%] [GROUP among men]
+
+(22.24) a steady increase [INITIAL VALUE from 9.5] [FINAL VALUE to 14.3] [ITEM in dividends]
+
+(22.25) a [DIFFERENCE 5%] [ITEM dividend] increase... 
+
+As we can see from the examples above, rose, fell, and increase have the same set of semantic roles under the frame change position on a scale. Instead of defining the semantic roles for each verb sense one by one, FrameNet groups predicates (not limited to verbs) that have the same semantic roles as one frame.
+
+\subsection{Problem Definitions}
+Semantic Role Labeling (SRL) is one of Natural Language Processing task which aims to automatically assign semantic roles for each constituent (argument) for each predicate in a sentence (Jurafsky, 20XX). Current approach to solve this task is by using supervised machine learning. Given a labeled data, the machine learns from it and builds a generalization model. Researches often used PropBank or FrameNet corpus as the sources of annotated data. In this section, we describe the approaches to define the problem of SRL task, followed by the common features used for building supervised model for SRL.
+
+There are two ways to see SRL problem, either as Classification or Sequence Labeling problem (Someone, 20XX). Classification approach assigns semantic roles for each word independently. Meanwhile, Sequence Labeling approach traverses from assigning semantic role for the first word until the last one in a sentence sequentially. In Sequence Labeing, the next label (semantic role) prediction of time step t is dependent to labels predicted on previous time steps (1..t-1). The differences of these two approaches to solve SRL task are visualized in Fig X.
+
+[Fig X. The visualizations of the differences of Classification approach and Sequence Labeling approach]
+
+The general algorithm for SRL based on Classification approach is explained as follows.
+Function SEMANTICROLELABEL(words) returns labeled tree
+Parse <- Parse(words)
+For each predicate in parse do
+For each node in parse do
+Featurevector <- EXTRACTFEATURES(node, predicate, parse)
+CLASSIFYNODE(node, featurevector, parse)
+
+Explanation on SRL based on Classification approach:
+•	Parsing input sentence into a parse tree
+•	Traverse the parse tree to find all the predicates
+•	For each predicate, traverse each node (word) in a parse tree to
+o	Extract features
+o	Classify the node based on features extracted. 
+	1-of-N classifier is trained here to predict the semantic role for each node (word) in a parse tree.
+	N is the number of possible semantic roles added with 1 Other role for word that has no semantic roles.
+
+The classification algorithms that have been used to train 1-of-N classifier include logistic regression (Someone, 20xx) and SVM (Someone, 20xx).
+
+[Penjelasan untuk algoritme Sequence Labeling approach]
+
+\subsection{Common Features for SRL}
+•	The first set of features for SRL is proposed by Gildea and Jurafsky (2000).
+o	They are the first ones who used supervised machine learning approach to solve SRL. 
+o	Over the years, many research proposed new set of features to improve the result, but they still used the basic features proposed by Gildea and Jurafsky (2000).
+o	Common features used for solving SRL task are:
+	The predicate. 
+•	Usually in a form of verb.
+	The phrase type of the constituent.
+•	NP, PP, etc
+	The headword of the constituent.
+•	The black bird. Headword: bird.
+	The headword part of speech of the constituent. 
+•	Example: NNP.
+	The path of the parse tree from constituent to predicate. 
+•	This is to represent the grammatical relationships between the constituent and the predicate.
+•	Example: NP S VP VBD
+	The voice of the clause, active or passive.
+•	Example: I eat chicken rice (active), Chicken rice is eaten by me (passive).
+	The binary linear position of the constituent from the predicate.
+•	Could be before or after the predicate.
+	The subcategorization of the predicate
+•	Set of arguments that appear in the verb phrase VP.
+•	Example: NP and PP in ‘VP -> VBD NP PP’
+	The named entity type of the constituent
+•	Example: Organization, Person, Location, ..
+	The first and last words of the constituent.
+o	There are also other additional features that could be used for SRL.
+	Sets of n-grams inside the constituent.
+	Using dependency parser instead of syntactic parser for extracting features.
+
+\subsection{Historical Perspectives}
+Previous research have found useful to use RNN for NLP task Semantic Role Labeling (SRL). Before we discuss about the use of RNN on SRL, we describe the historical perspective of solving SRL with supervised machine learning. We divide the historical perspective based on SRL systems without and with deep learning.
+
+The non-deep learning approach uses specific hand-crafted features for SRL, which mainly depend on syntactic or dependency parser as explained in section 2.XX. It started from Gildea et. Al (2002) who firstly build supervised machine learning model for SRL. The goal of the research was to create the first shallow semantic role parser which is not domain specific, since at that time all the semantic roles research were too domain specific. The features used are extracted from the syntactic tree Collins Parser (XX, 1997), such as Phrase Type, Parse tree path, voice, and head word. Then the predicate of a sentence is also added as a feature. The research used semantic role annotation based on FrameNet. The algorithm used was statistical classifier with backoff approach. The result is 65\% precision and 61\% recall.
+
+Then, Gildea et al (2002) continues the research to quantify the effect of parser accuracy on SRL system’s performance. The research also examines whether a flatter “chunked” representation (which is less costly) of the input can be as effective as syntactic tree parser. The data used is from PropBank dataset, since it is from Wall Street Journal corpus that has a gold-standard syntactic parse trees for the entire dataset from the Penn Treebank Project. The finding shows that the parser accuracy affects the SRL system, since it is seen that the system with gold-standard parse tree impacts directly to build a better SRL system. Hence, the syntactic parser is an integral intermediary model to build a robust SRL system. If the parser is not good, one would not get a good SRL system.
+
+Surdeanu et al (2003) proposed a new set of features for SRL system, such as POS Tag of Head Word, POS Tag of content word, and Named Entity Class of Content Word. They use inductive learning through decision trees C5 for the algorithm.
+
+Xue et al (2004) aims to explore more information extracted from the parse tree in order to propose new set of features crafted to improve SRL. In their research, there are three steps for the model, pruning, argument identification, and argument classification. Pruning filters out constituents that are clearly not semantic arguments to the predicate. Argument identification classifies candidates as either semantic arguments or non arguments. Argument classification then runs a multi-category classifier to classify the constituents with semantic roles. The features proposed for the argument classification are syntactic frame, lexicalized constituent type, lexicalized head word, and the head of Preposition Phrase parent.
+
+Since the source of SRL system errors mostly based on syntactic parser’s error, Pradhan et al (2005) combines features from different syntactic parsers (Charniak parser and Collins Parser). The idea of combining two parser is that they train separate SRL systems for each tree parser. The role output from these two systems is used as additional features in a SRL system using flat syntactic view. They then use SVM classifier to train SRL based on PropBank data.
+
+Aside from using syntactic parse tree like Charniak or Collins parser, one can build SRL system by extracting features from dependency parser. Some of the features extracted are word property, syntactic connection, semantic connection, and dependency path.
+
+The drawbacks of using the non-deep learning approach are 1.) building syntactic or dependency parsers is costly, 2.) the SRL system hardly depends on the robustness of the parsers. Building tree parsers is costly because it is language-dependent and it needs experts in each language to create it. When we move to another language, we have to build these parsers for the new language from scratch. Not to mention a new problem arises when such parsers are not robust, hence creating error propagation in our SRL system. The analysis in Pradhan et al., (2005) says that the major source of errors in SRL system comes from the errors of the syntactic parsers from which we extract the features.
+
+To address this issue, Collobert et al. (20XX) firstly introduced the use of deep learning for SRL and other core NLP tasks such as POS Tagging and Chunking. They use Convolutional Neural Network (CNN) with no task-specific features for the system. For example, in non-deep learning approach, we use POS Tagging features for Chunking, and we use both of which as the features for SRL. Instead, the main feature used in this research is word embedding. As explained in the previous section, word embedding model converts words to vectors. The word vectors then are fed into CNN architecture. However, though the model achieved state-of-the-art performances for POS Tagging and Chungking, that is not the case for SRL. For SRL, it is still needed to use features from the tree parser to achieve robust performance.
+
+Zhou et al., (2015) proposed new architecture for the SRL system. Instead of seeing the SRL as a classification problem like the previous research including Collobert’s, Zhou considers SRL as the sequence labeling problem. Hence, the suitable architecture for such problem is Recurrent Neural Networks (RNN). In their research, a more specific RNN architecture is used, which is Long Short Term Memories (LSTM) in order to prevent the vanishing and exploding gradient problem in RNN. They used the deep bi-directional LSTM. The “deep” is for extracting more hidden features and the “bi-directional” is for extracting information from the past and future. On top of the LSTM architecture, they used Conditional Random Field (CRF) for the output layer. For the word representation, they also used word embedding as one of the main features, along with predicate and context predicate. Our research is mainly inspired by this research.
+
+% PUNYA WAHID %
 \section{Pengenalan Entitas Kesehatan}\label{aboutmer}
 %-----------------------------------------------------------------------------%
 % Apa itu MER

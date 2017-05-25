@@ -2,22 +2,22 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {algocf}{\numberline {4.1}{\ignorespaces \textit {Pseudocode} untuk melakukan pengumpulan data\relax }}{45}{algocf.4.1}
-\contentsline {algocf}{\numberline {4.2}{\ignorespaces \textit {Pseudocode} untuk melakukan pembersihan data\relax }}{46}{algocf.4.2}
-\contentsline {algocf}{\numberline {4.3}{\ignorespaces \textit {Pseudocode} untuk melakukan tokenisasi\relax }}{46}{algocf.4.3}
-\contentsline {algocf}{\numberline {4.4}{\ignorespaces \textit {Pseudocode} untuk melakukan pemotongan kalimat\relax }}{47}{algocf.4.4}
-\contentsline {algocf}{\numberline {4.5}{\ignorespaces \textit {Pseudocode} untuk membuat model dan melakukan training Word2Vec\relax }}{48}{algocf.4.5}
-\contentsline {algocf}{\numberline {4.6}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri\relax }}{49}{algocf.4.6}
-\contentsline {algocf}{\numberline {4.7}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan\relax }}{49}{algocf.4.7}
-\contentsline {algocf}{\numberline {4.8}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur \textit {stop word}\relax }}{50}{algocf.4.8}
-\contentsline {algocf}{\numberline {4.9}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur POS-Tag\relax }}{50}{algocf.4.9}
-\contentsline {algocf}{\numberline {4.10}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur frasa\relax }}{51}{algocf.4.10}
-\contentsline {algocf}{\numberline {4.11}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur 1 kata sebelum\relax }}{52}{algocf.4.11}
-\contentsline {algocf}{\numberline {4.12}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur 1 kata sesudah\relax }}{52}{algocf.4.12}
-\contentsline {algocf}{\numberline {4.13}{\ignorespaces \textit {Pseudocode} untuk arsitektur LSTMs 1 layer\relax }}{53}{algocf.4.13}
-\contentsline {algocf}{\numberline {4.14}{\ignorespaces \textit {Pseudocode} untuk arsitektur LSTMs 2 layer multi-\textit {input}\relax }}{54}{algocf.4.14}
-\contentsline {algocf}{\numberline {4.15}{\ignorespaces \textit {Pseudocode} untuk memecah \textit {data} menjadi 10 bagian\relax }}{55}{algocf.4.15}
-\contentsline {algocf}{\numberline {4.16}{\ignorespaces \textit {Pseudocode} untuk melakukan eksperimen\relax }}{56}{algocf.4.16}
-\contentsline {algocf}{\numberline {4.17}{\ignorespaces \textit {Pseudocode} untuk melakukan evaluasi\relax }}{57}{algocf.4.17}
+\contentsline {algocf}{\numberline {4.1}{\ignorespaces \textit {Pseudocode} untuk melakukan pengumpulan data\relax }}{56}{algocf.4.1}
+\contentsline {algocf}{\numberline {4.2}{\ignorespaces \textit {Pseudocode} untuk melakukan pembersihan data\relax }}{57}{algocf.4.2}
+\contentsline {algocf}{\numberline {4.3}{\ignorespaces \textit {Pseudocode} untuk melakukan tokenisasi\relax }}{57}{algocf.4.3}
+\contentsline {algocf}{\numberline {4.4}{\ignorespaces \textit {Pseudocode} untuk melakukan pemotongan kalimat\relax }}{58}{algocf.4.4}
+\contentsline {algocf}{\numberline {4.5}{\ignorespaces \textit {Pseudocode} untuk membuat model dan melakukan training Word2Vec\relax }}{59}{algocf.4.5}
+\contentsline {algocf}{\numberline {4.6}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri\relax }}{60}{algocf.4.6}
+\contentsline {algocf}{\numberline {4.7}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan\relax }}{60}{algocf.4.7}
+\contentsline {algocf}{\numberline {4.8}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur \textit {stop word}\relax }}{61}{algocf.4.8}
+\contentsline {algocf}{\numberline {4.9}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur POS-Tag\relax }}{61}{algocf.4.9}
+\contentsline {algocf}{\numberline {4.10}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur frasa\relax }}{62}{algocf.4.10}
+\contentsline {algocf}{\numberline {4.11}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur 1 kata sebelum\relax }}{63}{algocf.4.11}
+\contentsline {algocf}{\numberline {4.12}{\ignorespaces \textit {Pseudocode} untuk melakukan ekstraksi fitur 1 kata sesudah\relax }}{63}{algocf.4.12}
+\contentsline {algocf}{\numberline {4.13}{\ignorespaces \textit {Pseudocode} untuk arsitektur LSTMs 1 layer\relax }}{64}{algocf.4.13}
+\contentsline {algocf}{\numberline {4.14}{\ignorespaces \textit {Pseudocode} untuk arsitektur LSTMs 2 layer multi-\textit {input}\relax }}{65}{algocf.4.14}
+\contentsline {algocf}{\numberline {4.15}{\ignorespaces \textit {Pseudocode} untuk memecah \textit {data} menjadi 10 bagian\relax }}{66}{algocf.4.15}
+\contentsline {algocf}{\numberline {4.16}{\ignorespaces \textit {Pseudocode} untuk melakukan eksperimen\relax }}{67}{algocf.4.16}
+\contentsline {algocf}{\numberline {4.17}{\ignorespaces \textit {Pseudocode} untuk melakukan evaluasi\relax }}{68}{algocf.4.17}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

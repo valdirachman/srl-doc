@@ -3,9 +3,62 @@
 \chapter{\babLima}
 %-----------------------------------------------------------------------------%
 
-Pada bab ini \saya~akan menjelaskan mengenai skeanrio, hasil dan analisis dari eksperimen yang telah dilakukan.
-
+In this chapter, we describe the data statistics followed by experiment scenarios, results, and analyses.
 %-----------------------------------------------------------------------------%
+
+\section{Evaluation Metrics}
+
+\section{Data Statistics}
+
+\section{Experiment Design}
+
+In this section, we present our experiment results and the analysis accordingly. There are two set of scenarios. The first scenario set aims to find the best combination set of features. This scenario consists of four combinations of three features, namely feature Word Embedding (WE), POS Tag (POS), and Word Embedding of Neighbors (WE-N) as presented in Table~\ref{tab:feature_scenario}.
+
+The second scenario set evaluates two different architectures, which are the original BLSTM and CA-BLSTM. Underlying both architectures is a Convolutional Neural Network (CNN) layer, in order to catch more information surrounding each time step. This second scenario also aims to see the effect of hyper-parameter tuning for the CA-BLSTM.
+
+As for evaluation, we use precision, recall and F1 metrics for all scenarios. The results are evaluated with partial match approach. To illustrate, suppose that the expected label consists of two words or more and the predicted contains only one word of it, partial match will still count it as a true positive.
+
+\section{Scenario 1: Feature Selection}
+Table~\ref{tab:feature_scenario} shows the scenario results of four feature combinations. The highest result is achieved with combination of WE + POS, followed by WE + WE-N + POS, WE, and WE + WE-N, with F1 scores of 72.29\%, 72.22\%, 62.00\%, and 61.92\% respectively. From these results, we can see the big impact POS Tag contributes for the performance. Using POS Tag enhances the result up to 10.29\%, when we compare WE + POS and WE combinations. The explanation would be the fact that POS Tag contains meaningful information such as Noun and Adjective which describes the word, it thus supports the word embedding feature when the training data size is relatively low.
+
+Surprisingly, when we combine the neighboring words of the argument as in WE + WE-N, the result slightly decreases by 0.08\%, compared to only using WE feature. This is also the case when we compare WE + WE-N with WE + WE-N + POS scenarios, which decreases by 0.07\% when we used neighboring words. It shows us that neighboring words do not improve the performance at all. We suggest that this is because the CNN layer already extracts these information implicitly, by capturing surrounding information and compressed it into one vector. Hence, we do not need explicit neighboring words as part of our features. 
+
+\begin{table}
+	\caption{Results of Feature Combination Scenario}
+	\label{tab:feature_scenario}
+	\begin{tabular}{llll}
+		\toprule
+		Features		&Precision	&Recall		&F1			\\
+		\midrule
+		WE				&	64.68\%				&	60.25\%				&	62.00\%	\\
+		WE + POS		&	74.24\%				&	\textbf{71.26\%}	&	\textbf{72.29\%}	\\
+		WE + WE-N		&	64.17\%				&	60.29\%				&	61.92\%	\\
+		WE + POS + WE-N	&	\textbf{74.51\%}	&	70.69\%				&	72.23\%	\\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Since WE + POS outputs the best result in terms of F1 score in this scenario set, we will use it for the next set of scenarios.
+
+\subsection{Scenario 2: Model Selection}
+The experiment results of the second scenario set are presented in Table~\ref{tab:architecture_scenario}. First we show the result using the original BLSTM with F1 score of 72.29\%. On the next experiment, we added the attention mechanism on top of the BLSTM layer, with three different dimensions $K$ of weight matrix $W \in {\rm I\!R^{H \times K}}$ from the Equation~\ref{sum_weight}. The three dimensions of $K$ are 64, 128, and 256. When we experimented on the first dimension size of $K$, 64, it is notable that the F1 score increases by 0.76\%. The performance keeps increasing as we add the dimension size of $K$ until 256 with F1 score of 74.78\% which increased by 2.49\% compared to the original BLSTM. We also obtained the highest precision and recall with dimension size $K$ of 256. However, when we added more dimension above 256, the model seems to be overfitting.
+
+The results show that the CA-BLSTM architecture outperforms the original BLSTM architecture. We suggest that our proposed model can capture context information at abstract level. We believe that the attention mechanism plays an essential role to extract which word has the most significant value as a hint to predict the semantic roles of each time step.
+
+\begin{table}
+	\caption{Results of Model Architecture Scenario}
+	\label{tab:architecture_scenario}
+	\begin{tabular}{llll}
+		\toprule
+		Name			&Precision					&Recall		&F1			\\
+		\midrule
+		BLSTM				&	74.24\%				&	71.26\%				&	72.29\%	\\
+		CA-BLSTM-64			&	73.37\%				&	73.25\%				&	73.05\%	\\
+		CA-BLSTM-128		&	76.25\%				&	73.52\%				&	74.05\%	\\
+		CA-BLSTM-256		&	\textbf{77.03\%}	&	\textbf{73.55\%}	&	\textbf{74.78\%}\\
+		\bottomrule
+	\end{tabular}
+\end{table}
 \section{Metrik Evaluasi}
 Pada eksperimen ini, untuk mendapatkan nilai akurasi dari masing-masing eksperimen \saya~menggunakan \textit{precision}, \textit{recall} dan \textit{f-measure}. \Saya~menggunakan \textit{10-cross fold validation} dalam menjalankan eksperimen. Terkait dengan penjelasan mengenai cara penghitungan dan evaluasi sudah dijelaskan pada Bab 3.
 
