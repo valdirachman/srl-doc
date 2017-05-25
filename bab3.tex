@@ -7,29 +7,383 @@
 In this chapter, we describe the methodology used in this research. It consists of data gathering, data pre-processing, data annotation, experiment, and evaluation. Before we describe each part in details, we explain the big picture of the methodology in a form of pipeline.
 
 \section{Pipeline}
+The goal of this research is to build a model that predicts the semantic roles of each Indonesian sentence. In other languages such as English, there are already semantic role corpus from which the SRL system is built. Unfortunately, that is not the case for Indonesian, since there is no annotated corpus available yet. We therefore create our own with the annotation guideline crafted for Indonesian conversational language. In this research, we focus on building SRL system for the conversational Indonesian language.
 
-The goal of this research is to build a model that predicts the semantic roles of each Indonesian sentence. In English, there are already semantic role corpus from which the SRL system is built. Unfortunately, there is no such corpus for Indonesian language, hence we create our own corpus with the annotation guideline crafted for Indonesian informal language. In this research, we focus on building SRL system for the informal Indonesian language.
+We view SRL as a sequence labeling problem. Suppose that we have an input of \textit{n} words $w = (w_{1}, w_{2}, ..., w_{n})$, the goal is to find the best label sequence $y = (y_{1}, y_{2}, ..., y_{n})$, with $y_{i}$ representing the semantic roles. The probabilities of the label in each time step $i$ is described as follows.
+\begin{equation}
+P(y_{i}|w_{i-l}, ..., w_{i+l},y_{i-l}, ..., y_{i+l})
+\end{equation}
 
-This research uses the data from one of Kata.ai’s chat bots. Firstly, the data is pre-processed before going into the next steps. After the data has been pre-processed, the data is annotated with semantic roles based on the annotation guideline proposed by us for Indonesian informal language. The data is then divided into training and testing sets with the ratio 80:20. The training set will be trained by the deep learning model in this research. 
+whereby \textit{l} is a small number. In this section, we explain our research methodology including the data annotation, features used, and the proposed model architecture. 
 
-There are 2 main scenarios for the experiment. The first scenario aims for finding the best set of features that output the best performance. The goal of the second scenario is to find which machine learning architecture has the best result. In the first scenario, we have five features, which are word embedding, predicate, context predicate, as proposed by Zhou et al. (2015). Since our data is not as huge as ConLL 2005 used by Zhou, hence additional feature is needed. POS Tag and Bi-gram are used as the additional features. In the second scenario, we are using two …….
+This research uses the data from one of Kata.ai's chat bots. Firstly, the data is pre-processed before going into the next steps. After that, the data is then annotated with semantic roles based on the annotation guideline proposed by us for Indonesian conversational language. The annotated data is then divided into training, development, and testing sets with the ratio of 80:20:20, respectively.
+
+There are 2 main scenarios for the experiment. The first scenario aims for finding the best set of features that output the best performance. The goal of the second scenario is to find which deep learning model architecture has the best result. In the first scenario, we have two features, which are word embedding and POS Tag. In the second scenario, we compare three model architectures, namely vanilla Bi-Directional Long-Short Term Memories (BLSTM), CNN-BLSTM, and CA-CNN-BLSTM.
 
 Every experiment is evaluated based on precision, recall, and F-measure of each semantic roles. The evaluation approach used is partial evaluation based on Seki et al. (20xx). We then analyze and explain the results of each experiment scenario.
 
 \section{Data Gathering}
-There are two data sets used for this research. The first set is for building SRL system and the second one is used for building the language model. For the first set, we use the data from one of Kata.ai’s chat bot which consists of 10.000 instances of chat texts. This first data set will be the one which is annotated, trained, and tested to build the SRL system. On the other hand, the second set contains data from two sources, which are: Kata.ai’s chatbot (30.000 instances) and YesBoss services (1.200.000 instances). The second set is used for building two language model, which are word embedding and bi-gram models. It is important to note that the second set is unlabeled, since both language models train the data with unsupervised approach.
+In this research we use real-world data from one of Kata.ai chat bots. We firstly retrieved data consisting of 40.000 instances of text chats. We then manually deleted junk chats which contain, for example, only laugh or greeting. After that, we run a script to delete duplicate chats. The deletion process outputs a clean data with 30.000 instances in total. Finally, we randomly selected 9.000 out of 30.000 instances as the data to be annotated. This data set will be the one which is trained and tested to build the SRL system.
+
+It is worth to note that conversational language has unique characteristics. First, they use slangs and abbreviations. For example, one might use \textit{"u"} instead of \textit{"you"} in \textit{"I brought u a present"}. The grammars are often unstructured and thus, one cannot rely on syntactic parsers to build SRL system for conversational language. The sentences are also filled with interjections such as \textit{"haha"} and \textit{"lol"}. Lastly, since conversational sentences are really short, averaging around 5-7 words per sentence, it sometimes contains incomplete information. These are the interesting challenges the SRL system should learn and tackle.
 
 \section{Data Pre-Processing}
-After the data has been gathered, the next step is to pre-process the data so that it could be fed into the machine learning model later. This step focuses on the first set of data, which later will be use as the training and testing data for the machine learning model. The data pre-processing step includes data cleaning and tokenization.
+After the data has been gathered, the next step is to pre-process the data so that it could be fed into the machine learning model later. In this step, each sentence is going through a process called tokenization. Tokenization splits sentence into its individual words. Traditionally, one can split sentence by \textit{space}, however, it does not work for sentences in conversational language since number or symbol are often concatenated with words, such as "makan2". It thus needs further tokenization technique, that is, splitting alphabet with number and symbol tokens. This way, "makan2" will be tokenized as "makan 2". In addition to tokenization by \textit{space}, the rules are listed as follows:
+
+\begin{enumerate}
+	\item <alphabet><numeric> to be <alphabet><space><numeric>
+	\item <numeric><alphabet> to be <numeric><space><alphabet>
+	\item <alphabet><symbol> to be <alphabet><space><symbol>
+	\item <symbol><alphabet> to be <symbol><space> <alphabet>
+\end{enumerate}
+
+Figure~\ref{fig:tokenization} illustrates a few examples of sentence tokenization.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/tokenisasi}
+	\caption{Sentence Tokenization Illustration}
+	\label{fig:tokenization}
+\end{figure}
 
 \section{Data Annotation}
+In this work, we create a new set of semantic roles mainly crafted for informal conversational language. The summary of semantic roles proposed with its examples are presented in Table~\ref{tab:semantic_roles}.
+
+\begin{table}
+	\centering
+	\caption{Set of Semantic Roles for Conversational Language}
+	\label{tab:semantic_roles}
+	\begin{tabular}{|l|l|}
+		\hline
+		\multicolumn{1}{|c|}{Semantic Roles} & \multicolumn{1}{c|}{\textit{Example}} \\
+		\hline
+		\textsc{Agent}		& \underline{Aku} beliin kamu kado\\
+		\textsc{Patient}		& Aku beliin kamu \underline{kado}\\
+		\textsc{Beneficiary}	& Aku beliin \underline{kamu} kado\\
+		\textsc{Greet} 				& Hai \underline{Budi}! Aku beliin kamu kado\\
+		\textsc{Modal} 				& Aku \underline{bisa} makan di rumah besok\\
+		\textsc{Location} 			& Aku bisa makan di \underline{rumah} besok\\
+		\textsc{Time} 				& Aku bisa makan di rumah \underline{besok} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+These semantic roles are mainly inspired by the work of \cite{saeed19972003}, except that \textsc{Agent} and \textsc{Patient} refer to \textsc{Proto-Agent} and \textsc{Proto-Patient} as explained by \cite{dowty1991thematic}. The main difference of this set of semantic roles compared to the previous ones is \textsc{Greet}.
+
+The center of all semantic roles is the \predicate. As in English, \predicate in Indonesian is usually in a form of \textit{verb}, as illustrated by the examples below:
+\begin{description}
+	\item[$\bullet$] "Kemarin aku \underline{makan} di rumah"
+	\item[$\bullet$] "Aku \underline{ada} ujian nih hari Senin"
+\end{description}
+
+In Indonesian, however, predicate can also be an adjective. Some examples are presented as follows:
+\begin{description}
+	\item[$\bullet$] "Kamu \underline{cantik} deh"
+	\item[$\bullet$] "Aku lagi \underline{sedih} nih"
+\end{description}
+
+In this section, we briefly explain each semantic roles with their respective examples.
+\begin{enumerate}
+	\item \agent\\
+	An entity is called as \agent~ if one of this following properties is fulfilled:
+	\begin{description}
+		\item Volitional involvement in event or state
+		\item Sentience (and/or perception)
+		\item Causing an event or change of state in another participant
+		\item Movement (relative to position of another participant) (exists independently of event named)
+	\end{description}
+	
+	The examples of \agent~ in a sentence are given as follows:
+	\begin{description}
+		\item[$\bullet$] "\underline{Aku} makan ayam dulu ya"
+		\item[$\bullet$] "\underline{Kamu} gak tidur?"
+		\item[$\bullet$] "\underline{Kamu} mau beliin aku pulsa?"
+	\end{description}
+	
+	\item \patient\\
+	An entity is called as \patient~ if one of this following properties is fulfilled:
+	\begin{description}
+		\item Volitional involvement in event or state
+		\item Sentience (and/or perception)
+		\item Causing an event or change of state in another participant
+		\item Movement (relative to position of another participant) (exists independently of event named)
+	\end{description}
+	
+	The examples of \patient~ in a sentence are given as follows:
+	\begin{description}
+		\item[$\bullet$] "Aku makan \underline{ayam} dulu ya"
+		\item[$\bullet$] "Kamu mau beliin aku \underline{pulsa}?"
+		\item[$\bullet$] "\underline{Aku} lagi sedih nih.."
+	\end{description}
+
+	\item \beneficiary\\
+	\beneficiary~ is an entity which gets benefit of the predicate. It is usually in a form of indirect object. The examples of \beneficiary~ in a sentence are given as follows:
+	\begin{description}
+		\item[$\bullet$] "Kamu mau beliin \underline{aku} pulsa?"
+		\item[$\bullet$] "Aku pengen ngobrol sama \underline{kamu}"
+	\end{description}
+	
+	\item \greet\\
+	\greet~ is the main difference of this set of semantic roles for conversational language. \greet~ refers to an animate object, usually a person, which is being greeted in a chat. In conversational language, one often calls the name of person it is talking to. This information is useful, for instance, we can derive that \textit{"you"} refers to \textit{"Budi"} in \textit{"Halo Budi! Aku beliin kamu kado loh"}. The examples of \greet~ in a sentence are given as follows:
+	\begin{description}
+		\item[$\bullet$] "Hai \underline{rizky}! kamu udah makan belum?"
+		\item[$\bullet$] "aku ga bisa tidur nih \underline{Val}"
+	\end{description}
+
+	\item \modal\\
+	\modal~ refers to \textit{modal verb} of a predicate. The word examples are \textit{"boleh, harus, pernah, sudah, udah, mesti, perlu, akan, lagi, bisa, mau, ingin, pengen, pingin"}. The examples of \modal~ in a sentence are given as follows:
+	\begin{description}
+		\item[$\bullet$] "Aku \underline{mau} makan dulu ya!"
+		\item[$\bullet$] "Kamu \underline{udah} tidur belum?"
+	\end{description}
+
+	\item \location\\
+	\location~ refers to the location of a predicate. The examples of \location~ in a sentence are given as follows:
+	\begin{description}
+		\item[$\bullet$] "Aku mau makan di \underline{rumah} ya!"
+		\item[$\bullet$] "Kamu gak pergi ke \underline{sekolah}?"
+	\end{description}
+
+	\item \timesrl\\
+	\timesrl~ refers to the time of a predicate. The examples of \timesrl~ in a sentence are given as follows:
+	\begin{description}
+		\item[$\bullet$] "\underline{Kemarin} aku makan di rumah"
+		\item[$\bullet$] "Aku ada ujian nih \underline{hari Senin}"
+	\end{description}
+\end{enumerate}
+
+Following Collobert et al., all the labels are tagged using BIO (Begin Inside Outside) tagging~\cite{collobert2011natural}. Suppose that a label \patient consists of more than one word, such as \textit{"ayam goreng"} in "Aku makan \textit{ayam goreng}", "ayam" and "goreng" are tagged as "B-Patient" and "I-Patient", respectively. If the label has only one word, than it is tagged as "B-Patient". Word that does not have any label is thus tagged as "O" which means "Others".
+
+Figure~\ref{fig:BIO} illustrates the annotation of the data with BIO tagging.
+
+\begin{figure}
+	\centering
+	% GANTI GAMBARNYA
+	\includegraphics[width=0.85\linewidth]{images/pelabelan}
+	\caption{BIO Tagging Illustration}
+	\label{fig:BIO}
+\end{figure}
+
+After the data has been labeled, the labels need to be encoded in a way that the deep learning model understands. To do so, the labels are then transformed into \textit{one-hot-vector}. The mapping between each label and its one-hot-vector is shown in Table~\ref{table:onehotlabel}.
+
+\begin{table}
+	\centering
+	\caption{Mapping between semantic role labels (in BIO format) to their respective \textit{One-Hot-Vectors}}
+	\label{table:onehotlabel}
+	\begin{tabular}{|l|l|}
+		\hline
+		\multicolumn{1}{|c|}{Label IOB} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
+		B-AGENT 				& {[} 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-AGENT					& {[} 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-PREDICATE 		& {[} 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-PREDICATE 		& {[} 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-PATIENT 			& {[} 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-PATIENT			 & {[} 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-MODAL 			& {[} 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-MODAL 			& {[} 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-BENEFICIARY 	& {[} 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-BENEFICIARY 	& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-LOCATION 		& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-LOCATION		 & {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 {]} \\ \hline
+		B-GREET 			& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 {]} \\ \hline
+		I-GREET 			& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 {]} \\ \hline
+		B-TIME 				& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 {]} \\ \hline
+		I-TIME 				& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 {]} \\ \hline
+	\end{tabular}
+\end{table}
+
+Figure~\ref{fig:labeltoone} shows an example of how words in a sentence are transformed into one-hot-vectors format.
+
+\begin{figure}
+	% GANTI GAMBAR
+	\centering
+	\includegraphics[width=\linewidth]{images/labeltoone}
+	\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
+	\label{fig:labeltoone}
+\end{figure}
 
 \section{Model Development}
+In this section, the features and model architecture are described. We firstly describe word embedding and POS Tag as the feature candidates. Following after that, the three model architectures, one of which is the new architecture we propose, are explained.
 
-\subsection{Features}
-We utilized word embedding and POS tag as our main features with neighboring words as the secondary feature. While most of the SRL research used predicate information as one of the main features, we omit to use it since we seek for an SRL system which finds the predicate from scratch alongside with other semantic roles.
+\subsection{Feature Extraction}
+In this step, we extract features from the data that has been annotated with semantic roles. We propose three features which will be combined later to find the best feature selection that outputs the best result. Those features are word embedding, POS-Tag, and neighboring word embeddings.
 
-\textbf{1. Word Embedding}. We use pre-trained word embedding as the main word representation. We trained the model with our chat corpus using Word2Vec's Skipgram architecture~\cite{mikolov2013distributed}. All the words were lowercased before being fed into the model. The context window and word dimension parameters used are 5 and 32, respectively.
+\begin{enumerate}
+	\item Feature 1: Word Embedding\\
+	Word embedding represents word as a vector. Word embedding has proved to be one of the most contributing features by a lot of deep learning research, such as for SRL system proposed by \cite{zhou2015end} \cite{collobert2011natural}. The interesting characteristic of word embedding is that similar words have proved to have similar vectors. This is very important when dealing with conversational language which has a lot of slang words. For instance, pronoun "Aku" will have similar vector with its slang form, "Gue". We believe that this feature will contribute greatly to the model performance. Therefore, we utilized our embedding as one of our feature candidates.
+	
+	In order to utilize word embedding as our features, we conduct three steps which consist of: 1.) data gathering for building word embedding model, 2.) training the word embedding model, and 3.) transforming words into vectors with the trained word embedding model.
+	
+	\begin{enumerate}
+		\item Pengumpulan data \textit{training} untuk \textit{word embedding}\\
+		\Saya~melakukan pengumpulan data teks sebagai \textit{resource} untuk melakukan \textit{training} model \textit{word embedding}. Data teks yang \saya~gunakan merupakan data teks dari artikel-artikel kesehatan dan data teks forum kesehatan di kaskus. \Saya~menggunakan teks berjenis kesehatan supaya \textit{domain word embedding} dengan data \textit{training} untuk model \mer~sama. Selain itu, terdapat beberapa \textit{term} kesehatan yang susah ditemukan di forum umum.
+		
+		\item \textit{Training} untuk mendapatkan model \textit{word embedding}\\
+		\textit{Training} dilakukan untuk mendapatkan model yang mampu mendapatkan representasi vektor dari sebuah kata. Panjang vektor yang dihasilkan yaitu 128 dengan besaran \textit{window} yaitu 5. Arsitektur yang digunakan untuk melakukan \textit{training} ini adalah \textit{skip-gram}.
+		
+		\item Pengubahan kata menjadi vektor dari model yang didapatkan\\
+		Pada langkah ini \saya~mengubah masing-masing kata dalam kalimat menjadi representasi vektor dengan model yang telah \saya~dapatkan pada tahap \textit{training} model \textit{word embedding}.
+	\end{enumerate}
+	
+	Gambar \ref{fig:fiturkata} merupakan ilustrasi dari proses ekstraksi fitur kata itu sendiri dalam suatu kalimat dengan menggunakan \textit{Word Embedding}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/fiturkata}
+		\caption{Ilustrasi Ekstraksi Fitur Kata pada Suatu Kalimat}
+		\label{fig:fiturkata}
+	\end{figure}
+	
+	\item Fitur 2: Kamus Kesehatan\\
+	Fitur kamus kesehatan merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Fitur ini digunakan dalam penelitian \cite{skripsiKakRadit} dan memberikan kontribusi dalam hasil terbaik. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment. Dengan menggunakan fitur ini diharapkan mampu berkontribusi dalam meningkatkan akurasi karena model akan mempertimbangkan apakah suatu kata termasuk di dalam kamus atau tidak. Gambar \ref{fig:fiturkamus} merupakan ilustrasi dari ekstraksi fitur kamus kesehatan dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/fiturkamus}
+		\caption{Ilustrasi Ekstraksi Fitur Kamus \disease~pada Suatu Kalimat}
+		\label{fig:fiturkamus}
+	\end{figure}
+	
+	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang terdapat dalam kamus kesehatan, representasi vektornya adalah $ [0, 1] $, sedangkan yang tidak terdapat di dalam kamus kesehatan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:kamustoone} merupakan contoh pengubahan fitur kamus kesehatan menjadi representasi \textit{one-hot-vector}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/kamustoone}
+		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
+		\label{fig:kamustoone}
+	\end{figure}
+	
+	\item Fitur 3: \textit{Stopword}\\
+	Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. Fitur ini \saya~gunakan dalam penelitian ini untuk membantu sistem dalam menghindari kesalahan pelabelan suatu kata yang bukan entitas namun dilabeli sebagai entitas.
+	
+	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila mempertahankan fitur ini, oleh karena itu, \saya~mengusulkan untuk menggunakan fitur ini. Untuk pembahasan lebih lanjut dibahas pada Bab 5. Gambar \ref{fig:fiturstopword} merupakan ilustrasi dari ekstraksi fitur \textit{stopword} dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.70\linewidth]{images/fiturstopword}
+		\caption{Ilustrasi Ekstraksi Fitur \textit{Stopword} pada Suatu Kalimat}
+		\label{fig:fiturstopword}
+	\end{figure}
+	
+	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan \textit{stopword}, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan merupakan \textit{stopword}, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:stopwordtoone} merupakan contoh pengubahan fitur \textit{stopword} menjadi representasi \textit{one-hot-vector}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/stopwordtoone}
+		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
+		\label{fig:stopwordtoone}
+	\end{figure}
+	
+	\item Fitur 4: \textit{Part of Speech Tag} (POS-Tag)\\
+	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia. Gambar \ref{fig:fiturpostag} merupakan ilustrasi dari ekstraksi fitur POS-\textit{Tag} dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.70\linewidth]{images/fiturpostag}
+		\caption{Ilustrasi Ekstraksi Fitur POS \textit{Tag} pada Suatu Kalimat}
+		\label{fig:fiturpostag}
+	\end{figure}
+	
+	Setelah POS-Tag didapatkan, supaya model RNNs mampu mengenali masing-masing tag, \saya~menggunakan \textit{one-hot-vector} untuk merepresentasikan masing-masing label. Tabel \ref{table:onehotpostag} merupakan tabel pemetaan dari label menjadi representasinya dalam \textit{one-hot-vector}.
+	
+	\begin{table}
+		\centering
+		\caption{Tabel Pemetaan POS-Tag dengan Representasi \textit{One-Hot-Vector}}
+		\label{table:onehotpostag}
+		\begin{tabular}{|l|l|}
+			\hline
+			\multicolumn{1}{|c|}{Label POS-Tag} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
+			JJ & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1{]} \\ \hline
+			NN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0{]} \\ \hline
+			NNP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0{]} \\ \hline
+			Z & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0{]} \\ \hline
+			IN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0{]} \\ \hline
+			PRP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0{]} \\ \hline
+			MD & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0{]} \\ \hline
+			VB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0{]} \\ \hline
+			SC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0{]} \\ \hline
+			RB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			CC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			NEG & {[}0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			WH & {[}0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			CD & {[}0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			X & {[}0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			PR & {[}0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			RP & {[}0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			FW & {[}0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			NND & {[}0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			DT & {[}0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			OD & {[}0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			UH & {[}0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			SYM & {[}0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+			fw & {[}1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	Gambar \ref{fig:postagtoone} merupakan contoh pengubahan fitur POS-Tag menjadi \textit{one-hot-vector} dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{images/postagtoone}
+		\caption{Ilustrasi Pengubahan Fitur POS-Tag menjadi \textit{One-Hot-Vector}}
+		\label{fig:postagtoone}
+	\end{figure}
+	
+	\item Fitur 5: Frasa Kata\\
+	Pada penelitian ini, \saya~mengusulkan fitur frasa kata karena entitas \textit{symptom} dan \textit{treatment}  pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} pada umumnya entitas yang akan dikenali pada penelitian ini merupakan frasa kata benda. Selain itu, pada penelitian \cite{skripsiKakRadit}, fitur ini berkontribusi dalam memberikan hasil terbaik. Oleh karena itu, \saya~berharap bahwa dengan diusulkannya fitur ini akan mampu menambah akurasi dari model yang diusulkan.
+	
+	Pada penelitian ini ada dua frasa yang diujicobakan, yaitu:
+	\begin{enumerate}
+		\item Frasa Kata Benda (Nomina)
+		Menurut \cite{hs2005bahasa}, frasa kata benda sendiri merupakan kelompok kata benda yang dibentuk dengan memperluas kata benda ke sekelilingnya. Fitur frasa kata benda yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa kata benda atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
+		\begin{description}
+			\item[$\bullet$] NP : NN
+			\item[$\bullet$] NP : NNP
+			\item[$\bullet$] NP : PR
+			\item[$\bullet$] NP : PRP
+			\item[$\bullet$] NP : NN + NN
+			\item[$\bullet$] NP : NN + NNP
+			\item[$\bullet$] NP : NN + PR
+			\item[$\bullet$] NP : NN + PRP
+			\item[$\bullet$] NP : NN + JJ
+			\item[$\bullet$] NP : DT + NN
+			\item[$\bullet$] NP : RB + NN
+			\item[$\bullet$] NP : CD + NN
+			\item[$\bullet$] NP : NND + NN
+		\end{description}
+		
+		\item Frasa Kata Kerja (Verbal)\\
+		Menurut \cite{hs2005bahasa}, frasa verbal merupakan kelompok kata benda yang dibentuk dengan kata kerja. Fitur frasa verbal yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa verbal atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
+		\begin{description}
+			\item[$\bullet$] VP : VB
+			\item[$\bullet$] VP : VB + NP
+		\end{description}
+	\end{enumerate}
+	
+	Gambar \ref{fig:fiturfrasa} merupakan ilustrasi dari ekstraksi fitur Frasa Nomina dalam suatu kalimat.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.70\linewidth]{images/fiturfrasa}
+		\caption{Ilustrasi Ekstraksi Fitur Frasa Nomina pada Suatu Kalimat}
+		\label{fig:fiturfrasa}
+	\end{figure}
+	
+	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan sebuah frasa, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:frasatoone} merupakan contoh pengubahan fitur frasa nomina menjadi representasi \textit{one-hot-vector}.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{images/frasatoone}
+		\caption{Ilustrasi Pengubahan Fitur Frasa menjadi \textit{One-Hot-Vector}}
+		\label{fig:frasatoone}
+	\end{figure}
+	
+	\item Fitur 6: 1 Kata Sebelum\\
+	Fitur ini merupakan fitur yang berisi informasi kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Fitur ini digunakan pada penelitian penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan.
+	
+	\item Fitur 7: 1 Kata Sesudah\\
+	Fitur ini merupakan fitur yang berisi informasi kata sesudah kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Sama seperti pada fitur 1 Kata Sebelum, ada beberapa kasus yang mana apabila suatu kata merupakan sebuah entitas, akan lebih mudah dikenali apabila melihat kata atau konteks setelahnya. Sama seperti contoh pada Fitur 1 Kata Sebelum, misal diberikan kata "masuk angin", apabila hanya diberikan informasi "masuk" tanpa "angin", akan lebih sulit mengenali apakah kata tersebut termasuk entitas \textit{disease} atau bukan. Selain itu, fitur ini juga dapat membedakan kata berentitas dengan kata yang bukan, misalnya kata "masuk angin" dengan "masuk rumah". Apabila informasi pada saat tersebut hanya diberikan kata "masuk" saja tanpa kata setelahnya, akan lebih sulit mengenali kata tersebut termasuk kata berentitas atau bukan.
+	
+\end{enumerate}
 
 \textbf{2. POS Tag}. We use POS tag as the second feature. While most of the deep learning research aims for not using such feature, we argue that POS tag is still important for building a robust model in our case, knowing that the size of our corpus is relatively small.
 
@@ -92,7 +446,6 @@ Lastly, the time-distributed softmax layers produce the final semantic roles lab
 
 
 % PUNYA WAHID
-Pada bab ini \saya~akan menjelaskan metodologi penelitian yang \saya~gunakan. Metodologi penelitian yang dilakukan meliputi tahap pengumpulan data, pra-pemrosesan data, pelabelan data, pengembangan model, eksperimen dan evaluasi.
 
 \section{Gambaran Umum Pengembangan Metodologi}
 Penelitian ini bertujuan untuk membuat sebuah model yang mampu memberikan label entitas kesehatan pada suatu dokumen. Seperti yang telah dijelaskan pada bab sebelumnya, terdapat banyak entitas kesehatan yang dapat digunakan sebagai target pelabelan. Oleh karena itu, untuk mempermudah penelitian ini \saya~menggunakan entitas-entitas yang diusulkan oleh \cite{skripsiKakRadit} dalam penelitiannya,  nama penyakit (\textit{\disease}), gejala penyakit (\textit{\symptom}), obat (\textit{\drug}) dan langkah penyembuhan (\textit{\treatment}).

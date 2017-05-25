@@ -27,14 +27,11 @@ Surprisingly, when we combine the neighboring words of the argument as in WE + W
 	\caption{Results of Feature Combination Scenario}
 	\label{tab:feature_scenario}
 	\begin{tabular}{llll}
-		\toprule
 		Features		&Precision	&Recall		&F1			\\
-		\midrule
 		WE				&	64.68\%				&	60.25\%				&	62.00\%	\\
 		WE + POS		&	74.24\%				&	\textbf{71.26\%}	&	\textbf{72.29\%}	\\
 		WE + WE-N		&	64.17\%				&	60.29\%				&	61.92\%	\\
 		WE + POS + WE-N	&	\textbf{74.51\%}	&	70.69\%				&	72.23\%	\\
-		\bottomrule
 	\end{tabular}
 \end{table}
 
@@ -49,14 +46,11 @@ The results show that the CA-BLSTM architecture outperforms the original BLSTM a
 	\caption{Results of Model Architecture Scenario}
 	\label{tab:architecture_scenario}
 	\begin{tabular}{llll}
-		\toprule
 		Name			&Precision					&Recall		&F1			\\
-		\midrule
 		BLSTM				&	74.24\%				&	71.26\%				&	72.29\%	\\
 		CA-BLSTM-64			&	73.37\%				&	73.25\%				&	73.05\%	\\
 		CA-BLSTM-128		&	76.25\%				&	73.52\%				&	74.05\%	\\
 		CA-BLSTM-256		&	\textbf{77.03\%}	&	\textbf{73.55\%}	&	\textbf{74.78\%}\\
-		\bottomrule
 	\end{tabular}
 \end{table}
 \section{Metrik Evaluasi}

@@ -49,6 +49,11 @@ Dinakaramani, A., Rashel, F., Luthfi, A., dan Manurung, R. (2014).
   indonesian corpus.
 \newblock In {\em IALP}, pages 66--69.
 
+\bibitem[Dowty, 1991]{dowty1991thematic}
+Dowty, D. (1991).
+\newblock Thematic proto-roles and argument selection.
+\newblock {\em language}, pages 547--619.
+
 \bibitem[Elman, 1990]{elman1990finding}
 Elman, J.~L. (1990).
 \newblock Finding structure in time.
@@ -196,6 +201,13 @@ Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.
 \newblock Recurrent neural network based language model.
 \newblock In {\em Interspeech}, volume~2, page~3.
 
+\bibitem[Mikolov et~al., 2013]{mikolov2013distributed}
+Mikolov, T., Sutskever, I., Chen, K., Corrado, G.~S., dan Dean, J. (2013).
+\newblock Distributed representations of words and phrases and their
+  compositionality.
+\newblock In {\em Advances in neural information processing systems}, pages
+  3111--3119.
+
 \bibitem[Moschitti et~al., 2003]{moschitti2003open}
 Moschitti, A., Morarescu, P., dan Harabagiu, S.~M. (2003).
 \newblock Open domain information extraction via automatic semantic labeling.
@@ -237,6 +249,11 @@ Punyakanok, V., Roth, D., dan Yih, W.-t. (2008).
 \newblock In {\em {Proceedings of the LREC 2010 Workshop on New Challenges for
   NLP Frameworks}}, pages 45--50, Valletta, Malta. ELRA.
 \newblock \url{http://is.muni.cz/publication/884893/en}.
+
+\bibitem[Saeed, 1997]{saeed19972003}
+Saeed, J. (1997).
+\newblock I. 2003. semantics.
+\newblock {\em GB: Blackwell Publishing}.
 
 \bibitem[Schmidhuber et~al., 2007]{schmidhuber2007training}
 Schmidhuber, J., Wierstra, D., Gagliolo, M., dan Gomez, F. (2007).
