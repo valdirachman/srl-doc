@@ -32,6 +32,13 @@ Bengio, Y., Simard, P., dan Frasconi, P. (1994).
 Bird, S., Klein, E., dan Loper, E. (2009).
 \newblock Nltk book.
 
+\bibitem[Carreras dan M{\`a}rquez, 2005]{carreras2005introduction}
+Carreras, X. dan M{\`a}rquez, L. (2005).
+\newblock Introduction to the conll-2005 shared task: Semantic role labeling.
+\newblock In {\em Proceedings of the Ninth Conference on Computational Natural
+  Language Learning}, pages 152--164. Association for Computational
+  Linguistics.
+
 \bibitem[Chollet, 2015]{chollet2015keras}
 Chollet, F. (2015).
 \newblock Keras.
@@ -137,12 +144,6 @@ Hochreiter, S. dan Schmidhuber, J. (1997).
 \newblock Long short-term memory.
 \newblock {\em Neural computation}, 9(8):1735--1780.
 
-\bibitem[Hs, 2005]{hs2005bahasa}
-Hs, W. (2005).
-\newblock {\em Bahasa Indonesia: mata kuliah pengembangan kepribadian di
-  perguruan tinggi}.
-\newblock Gramedia Widiasarana Indonesia.
-
 \bibitem[Huang et~al., 2015]{huang2015bidirectional}
 Huang, Z., Xu, W., dan Yu, K. (2015).
 \newblock Bidirectional lstm-crf models for sequence tagging.
@@ -200,13 +201,6 @@ Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.
   (2010).
 \newblock Recurrent neural network based language model.
 \newblock In {\em Interspeech}, volume~2, page~3.
-
-\bibitem[Mikolov et~al., 2013]{mikolov2013distributed}
-Mikolov, T., Sutskever, I., Chen, K., Corrado, G.~S., dan Dean, J. (2013).
-\newblock Distributed representations of words and phrases and their
-  compositionality.
-\newblock In {\em Advances in neural information processing systems}, pages
-  3111--3119.
 
 \bibitem[Moschitti et~al., 2003]{moschitti2003open}
 Moschitti, A., Morarescu, P., dan Harabagiu, S.~M. (2003).

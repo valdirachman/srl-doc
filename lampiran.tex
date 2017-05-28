@@ -32,3 +32,29 @@
 	21 & WH & Pronomina penanya digunakan dalam kalimat interogatif sebagai pemarkah pertanyaan. & siapa; apa; mana; kenapa; kapan; di mana; bagaimana; berapa \\ \hline
 	22 & X & Kata atau bagian dari kalimat yang tidak diketahui atau belum diketahui secara pasti kategorinya. & statement \\ \hline
 \end{longtable}
+
+\begin{table}
+	\centering
+	\caption{Mapping between semantic role labels (in BIO format) to their respective \textit{One-Hot-Vectors}}
+	\label{table:onehotlabel}
+	\begin{tabular}{|l|l|}
+		\hline
+		\multicolumn{1}{|c|}{Label IOB} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
+		B-AGENT 				& {[} 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-AGENT					& {[} 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-PREDICATE 		& {[} 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-PREDICATE 		& {[} 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-PATIENT 			& {[} 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-PATIENT			 & {[} 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-MODAL 			& {[} 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-MODAL 			& {[} 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-BENEFICIARY 	& {[} 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-BENEFICIARY 	& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 {]} \\ \hline
+		B-LOCATION 		& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 {]} \\ \hline
+		I-LOCATION		 & {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 {]} \\ \hline
+		B-GREET 			& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 {]} \\ \hline
+		I-GREET 			& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 {]} \\ \hline
+		B-TIME 				& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 {]} \\ \hline
+		I-TIME 				& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 {]} \\ \hline
+	\end{tabular}
+\end{table}

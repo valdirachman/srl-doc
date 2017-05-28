@@ -18,9 +18,9 @@ whereby \textit{l} is a small number. In this section, we explain our research m
 
 This research uses the data from one of Kata.ai's chat bots. Firstly, the data is pre-processed before going into the next steps. After that, the data is then annotated with semantic roles based on the annotation guideline proposed by us for Indonesian conversational language. The annotated data is then divided into training, development, and testing sets with the ratio of 80:20:20, respectively.
 
-There are 2 main scenarios for the experiment. The first scenario aims for finding the best set of features that output the best performance. The goal of the second scenario is to find which deep learning model architecture has the best result. In the first scenario, we have two features, which are word embedding and POS Tag. In the second scenario, we compare three model architectures, namely vanilla Bi-Directional Long-Short Term Memories (BLSTM), CNN-BLSTM, and CA-CNN-BLSTM.
+There are 2 main scenarios for the experiment. The first scenario aims for finding the best set of features that output the best performance. The goal of the second scenario is to find which deep learning model architecture has the best result. In the first scenario, we have two features, which are word embedding and POS Tag. In the second scenario, we compare four model architectures, namely vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), CNN-BLSTM, and Context-Aware BLSTM (CA-BLSTM).
 
-Every experiment is evaluated based on precision, recall, and F-measure of each semantic roles. The evaluation approach used is partial evaluation based on Seki et al. (20xx). We then analyze and explain the results of each experiment scenario.
+Every experiment is evaluated based on precision, recall, and F-measure of each semantic roles. The evaluation approach used is partial match based on Seki et al. (20xx). We then analyze and explain the results of each experiment scenario.
 
 \section{Data Gathering}
 In this research we use real-world data from one of Kata.ai chat bots. We firstly retrieved data consisting of 40.000 instances of text chats. We then manually deleted junk chats which contain, for example, only laugh or greeting. After that, we run a script to delete duplicate chats. The deletion process outputs a clean data with 30.000 instances in total. Finally, we randomly selected 9.000 out of 30.000 instances as the data to be annotated. This data set will be the one which is trained and tested to build the SRL system.
@@ -153,256 +153,238 @@ In this section, we briefly explain each semantic roles with their respective ex
 
 Following Collobert et al., all the labels are tagged using BIO (Begin Inside Outside) tagging~\cite{collobert2011natural}. Suppose that a label \patient consists of more than one word, such as \textit{"ayam goreng"} in "Aku makan \textit{ayam goreng}", "ayam" and "goreng" are tagged as "B-Patient" and "I-Patient", respectively. If the label has only one word, than it is tagged as "B-Patient". Word that does not have any label is thus tagged as "O" which means "Others".
 
-Figure~\ref{fig:BIO} illustrates the annotation of the data with BIO tagging.
-
-\begin{figure}
-	\centering
-	% GANTI GAMBARNYA
-	\includegraphics[width=0.85\linewidth]{images/pelabelan}
-	\caption{BIO Tagging Illustration}
-	\label{fig:BIO}
-\end{figure}
-
-After the data has been labeled, the labels need to be encoded in a way that the deep learning model understands. To do so, the labels are then transformed into \textit{one-hot-vector}. The mapping between each label and its one-hot-vector is shown in Table~\ref{table:onehotlabel}.
-
+After the data has been labeled, the labels need to be encoded in a way the deep learning model understands. To do so, the labels are then transformed into \textit{one-hot-vector}. Each label is mapped into a unique one-hot-vector, hence the relation is 1-to-1.
 \begin{table}
 	\centering
-	\caption{Mapping between semantic role labels (in BIO format) to their respective \textit{One-Hot-Vectors}}
-	\label{table:onehotlabel}
-	\begin{tabular}{|l|l|}
+	\caption{Set of Semantic Roles for Conversational Language}
+	\label{tab:examplelabel}
+	\begin{tabular}{|lcccc|}
 		\hline
-		\multicolumn{1}{|c|}{Label IOB} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
-		B-AGENT 				& {[} 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		I-AGENT					& {[} 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		B-PREDICATE 		& {[} 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		I-PREDICATE 		& {[} 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		B-PATIENT 			& {[} 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		I-PATIENT			 & {[} 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		B-MODAL 			& {[} 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		I-MODAL 			& {[} 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		B-BENEFICIARY 	& {[} 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		I-BENEFICIARY 	& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		B-LOCATION 		& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 {]} \\ \hline
-		I-LOCATION		 & {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 {]} \\ \hline
-		B-GREET 			& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 {]} \\ \hline
-		I-GREET 			& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 {]} \\ \hline
-		B-TIME 				& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 {]} \\ \hline
-		I-TIME 				& {[} 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 {]} \\ \hline
+		\textbf{Sentence} 				& Aku & pengen & makan & ayam \\
+		\hline
+		\textbf{BIO-Label}				& B-AGEN & B-MD & B-PRED & B-PATIENT  \\
+		\hline
+		\textbf{One-Hot-Vector}		& [1, 0, 0, .., 0] & [0, 1, 0, .., 0] & [0, 0, 1, .., 0] & [0, .., 1, 0, 0] \\
+		\hline
 	\end{tabular}
 \end{table}
 
-Figure~\ref{fig:labeltoone} shows an example of how words in a sentence are transformed into one-hot-vectors format.
-
-\begin{figure}
-	% GANTI GAMBAR
-	\centering
-	\includegraphics[width=\linewidth]{images/labeltoone}
-	\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
-	\label{fig:labeltoone}
-\end{figure}
+Table~\ref{tab:examplelabel} shows an example of how sentence is labeled with the one-hot vectors representations of BIO format.
 
 \section{Model Development}
-In this section, the features and model architecture are described. We firstly describe word embedding and POS Tag as the feature candidates. Following after that, the three model architectures, one of which is the new architecture we propose, are explained.
+In this section, the features and model architecture are described. We firstly describe word embedding and POS Tag as the feature candidates. Following after that, the four model architectures, one of which is the new architecture we propose, are explained.
 
 \subsection{Feature Extraction}
 In this step, we extract features from the data that has been annotated with semantic roles. We propose three features which will be combined later to find the best feature selection that outputs the best result. Those features are word embedding, POS-Tag, and neighboring word embeddings.
 
+\subsubsection{Word Embedding}
+% Apa itu word embedding
+Word embedding represents word as a vector. Word embedding has proved to be one of the most contributing features by a lot of deep learning research, such as for SRL system proposed by \cite{zhou2015end} and \cite{collobert2011natural}. The interesting characteristic of word embedding is that similar words have proved to have similar vectors. This is very important when dealing with conversational language which has a lot of slang words. For instance, pronoun "Aku" will have similar vector with its slang form, "Gue". We believe that this feature will contribute greatly to the model performance. Therefore, we utilized our embedding as one of our feature candidates.
+
+% Cara mendapat word embedding model
+In order to utilize word embedding as our features, we conduct three steps which consist of: 1.) data gathering for building word embedding model, 2.) training the word embedding model, and 3.) converting words into vectors with the trained word embedding model.
+
 \begin{enumerate}
-	\item Feature 1: Word Embedding\\
-	Word embedding represents word as a vector. Word embedding has proved to be one of the most contributing features by a lot of deep learning research, such as for SRL system proposed by \cite{zhou2015end} \cite{collobert2011natural}. The interesting characteristic of word embedding is that similar words have proved to have similar vectors. This is very important when dealing with conversational language which has a lot of slang words. For instance, pronoun "Aku" will have similar vector with its slang form, "Gue". We believe that this feature will contribute greatly to the model performance. Therefore, we utilized our embedding as one of our feature candidates.
+	\item Data gathering for building word embedding modelPengumpulan data \textit{training} untuk \textit{word embedding}\\
+	%Berikan penjelasan
 	
-	In order to utilize word embedding as our features, we conduct three steps which consist of: 1.) data gathering for building word embedding model, 2.) training the word embedding model, and 3.) transforming words into vectors with the trained word embedding model.
+	\item Training the word embedding model\\
+	%Berikan penjelasan
 	
-	\begin{enumerate}
-		\item Pengumpulan data \textit{training} untuk \textit{word embedding}\\
-		\Saya~melakukan pengumpulan data teks sebagai \textit{resource} untuk melakukan \textit{training} model \textit{word embedding}. Data teks yang \saya~gunakan merupakan data teks dari artikel-artikel kesehatan dan data teks forum kesehatan di kaskus. \Saya~menggunakan teks berjenis kesehatan supaya \textit{domain word embedding} dengan data \textit{training} untuk model \mer~sama. Selain itu, terdapat beberapa \textit{term} kesehatan yang susah ditemukan di forum umum.
-		
-		\item \textit{Training} untuk mendapatkan model \textit{word embedding}\\
-		\textit{Training} dilakukan untuk mendapatkan model yang mampu mendapatkan representasi vektor dari sebuah kata. Panjang vektor yang dihasilkan yaitu 128 dengan besaran \textit{window} yaitu 5. Arsitektur yang digunakan untuk melakukan \textit{training} ini adalah \textit{skip-gram}.
-		
-		\item Pengubahan kata menjadi vektor dari model yang didapatkan\\
-		Pada langkah ini \saya~mengubah masing-masing kata dalam kalimat menjadi representasi vektor dengan model yang telah \saya~dapatkan pada tahap \textit{training} model \textit{word embedding}.
-	\end{enumerate}
-	
-	Gambar \ref{fig:fiturkata} merupakan ilustrasi dari proses ekstraksi fitur kata itu sendiri dalam suatu kalimat dengan menggunakan \textit{Word Embedding}.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=\linewidth]{images/fiturkata}
-		\caption{Ilustrasi Ekstraksi Fitur Kata pada Suatu Kalimat}
-		\label{fig:fiturkata}
-	\end{figure}
-	
-	\item Fitur 2: Kamus Kesehatan\\
-	Fitur kamus kesehatan merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Fitur ini digunakan dalam penelitian \cite{skripsiKakRadit} dan memberikan kontribusi dalam hasil terbaik. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment. Dengan menggunakan fitur ini diharapkan mampu berkontribusi dalam meningkatkan akurasi karena model akan mempertimbangkan apakah suatu kata termasuk di dalam kamus atau tidak. Gambar \ref{fig:fiturkamus} merupakan ilustrasi dari ekstraksi fitur kamus kesehatan dalam suatu kalimat.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/fiturkamus}
-		\caption{Ilustrasi Ekstraksi Fitur Kamus \disease~pada Suatu Kalimat}
-		\label{fig:fiturkamus}
-	\end{figure}
-	
-	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang terdapat dalam kamus kesehatan, representasi vektornya adalah $ [0, 1] $, sedangkan yang tidak terdapat di dalam kamus kesehatan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:kamustoone} merupakan contoh pengubahan fitur kamus kesehatan menjadi representasi \textit{one-hot-vector}.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/kamustoone}
-		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
-		\label{fig:kamustoone}
-	\end{figure}
-	
-	\item Fitur 3: \textit{Stopword}\\
-	Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. Fitur ini \saya~gunakan dalam penelitian ini untuk membantu sistem dalam menghindari kesalahan pelabelan suatu kata yang bukan entitas namun dilabeli sebagai entitas.
-	
-	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila mempertahankan fitur ini, oleh karena itu, \saya~mengusulkan untuk menggunakan fitur ini. Untuk pembahasan lebih lanjut dibahas pada Bab 5. Gambar \ref{fig:fiturstopword} merupakan ilustrasi dari ekstraksi fitur \textit{stopword} dalam suatu kalimat.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.70\linewidth]{images/fiturstopword}
-		\caption{Ilustrasi Ekstraksi Fitur \textit{Stopword} pada Suatu Kalimat}
-		\label{fig:fiturstopword}
-	\end{figure}
-	
-	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan \textit{stopword}, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan merupakan \textit{stopword}, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:stopwordtoone} merupakan contoh pengubahan fitur \textit{stopword} menjadi representasi \textit{one-hot-vector}.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/stopwordtoone}
-		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
-		\label{fig:stopwordtoone}
-	\end{figure}
-	
-	\item Fitur 4: \textit{Part of Speech Tag} (POS-Tag)\\
-	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia. Gambar \ref{fig:fiturpostag} merupakan ilustrasi dari ekstraksi fitur POS-\textit{Tag} dalam suatu kalimat.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.70\linewidth]{images/fiturpostag}
-		\caption{Ilustrasi Ekstraksi Fitur POS \textit{Tag} pada Suatu Kalimat}
-		\label{fig:fiturpostag}
-	\end{figure}
-	
-	Setelah POS-Tag didapatkan, supaya model RNNs mampu mengenali masing-masing tag, \saya~menggunakan \textit{one-hot-vector} untuk merepresentasikan masing-masing label. Tabel \ref{table:onehotpostag} merupakan tabel pemetaan dari label menjadi representasinya dalam \textit{one-hot-vector}.
-	
-	\begin{table}
-		\centering
-		\caption{Tabel Pemetaan POS-Tag dengan Representasi \textit{One-Hot-Vector}}
-		\label{table:onehotpostag}
-		\begin{tabular}{|l|l|}
-			\hline
-			\multicolumn{1}{|c|}{Label POS-Tag} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
-			JJ & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1{]} \\ \hline
-			NN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0{]} \\ \hline
-			NNP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0{]} \\ \hline
-			Z & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0{]} \\ \hline
-			IN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0{]} \\ \hline
-			PRP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0{]} \\ \hline
-			MD & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0{]} \\ \hline
-			VB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0{]} \\ \hline
-			SC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0{]} \\ \hline
-			RB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			CC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			NEG & {[}0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			WH & {[}0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			CD & {[}0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			X & {[}0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			PR & {[}0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			RP & {[}0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			FW & {[}0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			NND & {[}0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			DT & {[}0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			OD & {[}0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			UH & {[}0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			SYM & {[}0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			fw & {[}1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-		\end{tabular}
-	\end{table}
-	
-	Gambar \ref{fig:postagtoone} merupakan contoh pengubahan fitur POS-Tag menjadi \textit{one-hot-vector} dalam suatu kalimat.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=\linewidth]{images/postagtoone}
-		\caption{Ilustrasi Pengubahan Fitur POS-Tag menjadi \textit{One-Hot-Vector}}
-		\label{fig:postagtoone}
-	\end{figure}
-	
-	\item Fitur 5: Frasa Kata\\
-	Pada penelitian ini, \saya~mengusulkan fitur frasa kata karena entitas \textit{symptom} dan \textit{treatment}  pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} pada umumnya entitas yang akan dikenali pada penelitian ini merupakan frasa kata benda. Selain itu, pada penelitian \cite{skripsiKakRadit}, fitur ini berkontribusi dalam memberikan hasil terbaik. Oleh karena itu, \saya~berharap bahwa dengan diusulkannya fitur ini akan mampu menambah akurasi dari model yang diusulkan.
-	
-	Pada penelitian ini ada dua frasa yang diujicobakan, yaitu:
-	\begin{enumerate}
-		\item Frasa Kata Benda (Nomina)
-		Menurut \cite{hs2005bahasa}, frasa kata benda sendiri merupakan kelompok kata benda yang dibentuk dengan memperluas kata benda ke sekelilingnya. Fitur frasa kata benda yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa kata benda atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
-		\begin{description}
-			\item[$\bullet$] NP : NN
-			\item[$\bullet$] NP : NNP
-			\item[$\bullet$] NP : PR
-			\item[$\bullet$] NP : PRP
-			\item[$\bullet$] NP : NN + NN
-			\item[$\bullet$] NP : NN + NNP
-			\item[$\bullet$] NP : NN + PR
-			\item[$\bullet$] NP : NN + PRP
-			\item[$\bullet$] NP : NN + JJ
-			\item[$\bullet$] NP : DT + NN
-			\item[$\bullet$] NP : RB + NN
-			\item[$\bullet$] NP : CD + NN
-			\item[$\bullet$] NP : NND + NN
-		\end{description}
-		
-		\item Frasa Kata Kerja (Verbal)\\
-		Menurut \cite{hs2005bahasa}, frasa verbal merupakan kelompok kata benda yang dibentuk dengan kata kerja. Fitur frasa verbal yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa verbal atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
-		\begin{description}
-			\item[$\bullet$] VP : VB
-			\item[$\bullet$] VP : VB + NP
-		\end{description}
-	\end{enumerate}
-	
-	Gambar \ref{fig:fiturfrasa} merupakan ilustrasi dari ekstraksi fitur Frasa Nomina dalam suatu kalimat.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.70\linewidth]{images/fiturfrasa}
-		\caption{Ilustrasi Ekstraksi Fitur Frasa Nomina pada Suatu Kalimat}
-		\label{fig:fiturfrasa}
-	\end{figure}
-	
-	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan sebuah frasa, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:frasatoone} merupakan contoh pengubahan fitur frasa nomina menjadi representasi \textit{one-hot-vector}.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/frasatoone}
-		\caption{Ilustrasi Pengubahan Fitur Frasa menjadi \textit{One-Hot-Vector}}
-		\label{fig:frasatoone}
-	\end{figure}
-	
-	\item Fitur 6: 1 Kata Sebelum\\
-	Fitur ini merupakan fitur yang berisi informasi kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Fitur ini digunakan pada penelitian penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan.
-	
-	\item Fitur 7: 1 Kata Sesudah\\
-	Fitur ini merupakan fitur yang berisi informasi kata sesudah kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Sama seperti pada fitur 1 Kata Sebelum, ada beberapa kasus yang mana apabila suatu kata merupakan sebuah entitas, akan lebih mudah dikenali apabila melihat kata atau konteks setelahnya. Sama seperti contoh pada Fitur 1 Kata Sebelum, misal diberikan kata "masuk angin", apabila hanya diberikan informasi "masuk" tanpa "angin", akan lebih sulit mengenali apakah kata tersebut termasuk entitas \textit{disease} atau bukan. Selain itu, fitur ini juga dapat membedakan kata berentitas dengan kata yang bukan, misalnya kata "masuk angin" dengan "masuk rumah". Apabila informasi pada saat tersebut hanya diberikan kata "masuk" saja tanpa kata setelahnya, akan lebih sulit mengenali kata tersebut termasuk kata berentitas atau bukan.
+	\item Converting words into vectors with the trained word embedding model\\
+	%Berikan penjelasan
 	
 \end{enumerate}
 
-\textbf{2. POS Tag}. We use POS tag as the second feature. While most of the deep learning research aims for not using such feature, we argue that POS tag is still important for building a robust model in our case, knowing that the size of our corpus is relatively small.
+Figure~\ref{fig:wordembedding} illustrates the afore-mentioned steps in order to get the vector representation of words with word embedding.
 
-\textbf{3. Neighboring Words}. As an additional feature, we also experiment by using the word embedding of one word before and after the word of interest. This feature can be useful for capturing the context of the word by looking at the surrounding words.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/fiturkata}
+	\caption{Ilustrasi Ekstraksi Fitur Kata pada Suatu Kalimat}
+	\label{fig:fiturkata}
+\end{figure}
 
-\subsection{Context-Aware BLSTM}
-Recurrent Neural Networks (RNN) has a nature advantage for solving sequence labeling problem~\cite{zhou2015end}. In this work, we propose a new RNN architecture named Context-Aware Bi-Directional Long Short-Term Memory Networks (CA-BLSTM). The rationale is to add a dense yet useful information containing a sentence context to every time step in order to help the machine to decide semantic roles better. With this in mind, we design an attention mechanism on top of the recurrent networks layers, as illustrated in Figure~\ref{fig:cabilstm} 
+\subsubsection{Part-of-Speech Tag (POS-Tag)}
+POS Tag is a feature to represent the class of each word. In this research, we use POS Tag annotation which is mainly inspired by the work of Ruli Manurung (20XX). The POS Tags that we use are: Verb (V), Noun (NN), Adjective (ADJ), Adverb (ADV), Coordinative Conjunction (CC), Subordinative Conjunction (SC), Interjection (INTJ), Question (WH), Preposition (PREP), and Negation (NEG). Before feeding the feature to the deep learning model, we encode the POS tag features as a one-hot vector. Each one-hot vector represents each POS tag uniquely.
 
+The example of POS Tag features is presented in Table~\ref{tab:examplepos}
+\begin{table}
+	\centering
+	\caption{An example of POS Tag feature and its respective one-hot-vector}
+	\label{tab:examplepos}
+	\begin{tabular}{|lcccc|}
+		\hline
+		\textbf{Sentence} 				& Aku & pengen & makan & ayam \\
+		\hline
+		\textbf{POS Tag}				& NN & ADV & V & NN  \\
+		\hline
+		\textbf{One-Hot-Vector}		& [1, 0, 0, .., 0] & [0, 1, 0, .., 0] & [0, 0, 1, .., 0] & [0, .., 1, 0, 0] \\
+		\hline
+	\end{tabular}
+\end{table}
+
+While most of the deep learning research aims for not using such feature, we argue that POS tag is still important for building a robust model in our case. This is because of the fact that size of our corpus is relatively small compared to the huge English-based SRL corpus such as ConLL 2015 by~\cite{carreras2005introduction}. We argue that having Verb as one of our POS Tag will help to determine which one is the predicate, since predicate is usually in a form of verb, though some can also be adjectives. As the arguments having semantic role are mostly in a form of Noun, POS Tag Noun will be a helpful information as well. Other POS tags will help to determine which word that obviously does not have any semantic role.
+
+In this work, we use gold-standard POS tag on our data as the features to prevent propagation errors from the POS tag model. This way, we can focus on analyzing errors resulting from the SRL model later in chapter 5. 
+
+\subsubsection{Neighboring Word Embeddings}
+Neighboring word embeddings are the vector representations of words located before and after the word being processed. We use specifically one word before and after the word being processed. Suppose that we are processing the word $w_{t}$ at time step $t$, the neighboring words embeddings are the vector representations of the word $w_{t-1}$ and $w_{t+1}$. We argue that this feature can be useful for capturing the context of the word by looking at the surrounding words. Suppose that the machine is processing the word \textit{"rumah"} in \textit{"aku tidur di rumah"}. By looking at the previous word, which is the preposition \textit{"di"}, it gives a hint that \textit{"rumah"} might have the semantic role \location.
+
+\subsection{Model Architecture}
+Recurrent Neural Networks (RNN) has a nature advantage for solving sequence labeling problem~\cite{zhou2015end}. ~\cite{hochreiter1997long} proposed Long Short-Term Memories (LSTM) as the specific version of RNN designed to overcome vanishing and exploding gradient problem. In this research, we experiment on various LSTM architectures, namely vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), Convolutional Neural Network BLSTM (CNN-BLSTM), and Context-Aware BLSTM (CA-BLSTM). Each architecture is built incrementally upon the previous architectures, starting from the vanilla LSTM. The last architecture, CA-BLSTM, is the one we propose in this work.
+
+\subsubsection{Vanilla LSTM}
+% Explain what is LSTM (generally)
+Vanilla LSTM is the basic, one-directional LSTM networks designed to overcome vanishing and exploding gradient problem found in RNN. To do so, it has forget gates, a gate to open or close incoming information from the previous time steps. We firstly explain the LSTM networks as the big picture for solving sequence labeling problem, followed by the details of every LSTM unit. 
+
+% Gambar Big Picture LSTM
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{images/olstm}
+	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\label{fig:olstm}
+\end{figure}
+
+% Explain the formula based on big picture LSTM
+Figure~\ref{fig:olstm} illustrates the big picture of the vanilla LSTM networks used in this research. Suppose that we have sequence of input tensors $[\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}]$, with $n$ denotes the number of time steps. Each input tensor $\mathbf{x_{t}}$ represents features of the word in time step $t$. For every time step $t$, each input tensor $\mathbf{x_{t}}$ is fed into the LSTM layer, resulting tensor $\mathbf{f_{t}}$, as shown in Equation~\ref{eq:lstm}. 
+
+\begin{equation}
+\label{eq:lstm}
+\mathbf{f_{t}} = LSTM(\mathbf{x_{t}})
+\end{equation}
+
+Equation~\ref{eq:softmaxout} shows that each LSTM output from every time step is then processed by the time-distributed softmax layer to produce the probabilities of every possible label.
+
+\begin{equation}
+\label{eq:softmaxout}
+label_{t} = Softmax(\mathbf{f_{t}})
+\end{equation}
+
+In each time step, label with highest probability among others will be the final output. This way, we have all the predicted labels for every time step.
+
+After explaining the big picture of LSTM networks, we describe the details of every LSTM unit in time step $t$ shown in Equation~\ref{eq:lstm}. That is, given an input tensor $\mathbf{x_{t}}$, each LSTM unit will output tensor $\mathbf{f_{t}}$. Figure~\ref{fig:lstmunit} illustrates the architecture of one LSTM unit in time step $t$.
+
+% Gambar single unit LSTM
+\begin{figure}
+	\centering
+	\includegraphics[width=0.85\linewidth]{images/lstm}
+	\caption{An LSTM unit in time step $t$}
+	\label{fig:lstmunit}
+\end{figure}
+
+% Explain the formula based on single cell LSTM
+The LSTM unit in time step $t$ requires an input tensor $a_{t}$. As explained in subchapter X, the equations to produce output tensor $\mathbf{f_{t}}$ are presented as follows:
+
+\begin{equation}\label{eq:lstmm}
+m_{t}=\alpha_{t} (\times) m_{t-1} + \beta_{t} (\times) f(x_{t},{t-1})
+\end{equation}
+\begin{equation}\label{eq:lstmh}
+h_{t}=\gamma_{t} (\times) tanh(m_{t})
+\end{equation}
+where
+\begin{equation}\label{eq:lstmx}
+f(x_{t},{t-1})=tanh(W_{xm} \cdot x_{t} + W_{hm} \cdot h_{t-1})
+\end{equation}
+
+$ \alpha_t $, $ \beta_t $, and $ \gamma_t $ are the gates:
+\begin{enumerate}
+	\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{x\alpha} \cdot x_{t}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1}) $
+	\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{x\beta}\cdot x_{t}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1}) $
+	\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{x\gamma}\cdot x_{t}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
+\end{enumerate}
+
+It is worth noting that the LSTM layer is recursive, meaning that one of the inputs comes from the output of previous time step. This way, the result of each time step also depends on the previous ones.
+
+
+\subsubsection{Bi-Directional LSTM (BLSTM)}
+\label{sec:blstm}
+% What is Bi-Directional LSTM generally, what it's for. Menurut Zhou gimana
+Bi-Directional LSTM (BLSTM) is a modification of LSTM networks. While vanilla LSTM only goes one direction, BLSTM goes both ways in order to capture context information from the past and future, as explained by~\cite{zhou2015end}. This characteristic is suitable for SRL task, since information from the right (future) might be useful to determine the label of current time step, as explained by~\cite{zhou2015end}. The idea is to have two LSTM layers, one for going forward and another for going backward, as illustrated in Figure~\ref{fig:bilstm}
+
+% Gambar BILSTM
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{images/blstm}
+	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\label{fig:bilstm}
+\end{figure}
+
+% Explain the formula based on big picture BILSTM
+Figure~\ref{fig:bilstm} shows that the input $\mathbf{x_{t}}$ in every time step $t$ is fed into two LSTM layers, the first one for going forward and the second one for going backward. These are illustrated in Equation~\ref{eq:lstmforward} and Equation~\ref{eq:lstmbackward}
+\begin{equation}
+\label{eq:lstmforward}
+\mathbf{f_{t}} = ForwardLSTM(\mathbf{x_{t}})
+\end{equation}
+
+\begin{equation}
+\label{eq:lstmbackward}
+\mathbf{b_{t}} = BackwardLSTM(\mathbf{x_{t}})
+\end{equation}
+
+In each time step, the result tensors $mathbf{f_{t}}$ and $mathbf{b_{t}}$ are then concatenated to be one tensor output $\mathbf{h_{t}}$, as shown in Equation~\ref{eq:lstm_concat}
+\begin{equation}
+\label{eq:lstm_concat}
+\mathbf{h_{t}} = Concatenate(\mathbf{f_{t}}, \mathbf{g_{t}})
+\end{equation}
+
+Likewise in vanilla LSTM architecture, the output tensor $\mathbf{h_{t}}$ is then fed into softmax layer, as shown in Equation~\ref{eq:bilstm_softmax}
+
+\begin{equation}
+\label{eq:bilstm_softmax}
+label_{t} = Softmax(\mathbf{h_{t}})
+\end{equation}
+
+After which, the output of the softmax layer will determine the final label for each time step.
+
+\subsubsection{CNN-BLSTM}
+% What is CNN-BLSTM generally, what it's for.
+In addition to the BLSTM architecture, we also experiment on adding Convolutional Neural Networks (CNN) layer underneath the BLSTM layer. The rationale is to capture raw context from the neighboring input tensors. This way, CNN can implicitly extract meaningful context information. Figure ~\ref{fig:cnnblstm} illustrates the big picture of the CNN-BLSTM architecture.
+
+% Gambar CNN-BLSTM
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{images/cnnblstm}
+	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\label{fig:cnnblstm}
+\end{figure}
+
+% Explain the formula based on big picture CNN-BILSTM
+Instead of feeding the BLSTM with raw input tensor $\mathbf{x_{t}}$, CNN-BLSTM firstly processes it through CNN layer, resulting output tensor $\mathbf{c_{t}}$, as shown in Equation~\ref{eq:cnn}.
+\begin{equation}
+[\mathbf{c_{1}}; \mathbf{c_{2}}; ...; \mathbf{c_{n}}] = CNN([\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}])
+\end{equation}
+
+The result tensor $\mathbf{c_{t}}$ is then fed into the BLSTM layer, as explained in section~\ref{sec:blstm}. To simplify the notation, the BLSTM layer equation is summarized as follows.
+\begin{equation}
+\mathbf{h_{i}} = BLSTM(\mathbf{c_{i}})
+\end{equation}
+
+As explained in section~\ref{sec:blstm}, the BLSTM's output tensor $\mathbf{h_{i}}$ is then processed by the time-distributed softmax layer to determine the final output label.
+
+\subsubsection{Context-Aware BLSTM (CA-BLSTM)}
+% What is CA-BLSTM generally, what it's for
+In this work, we propose a new LSTM architecture named Context-Aware Bi-Directional Long Short-Term Memory Networks (CA-BLSTM). The rationale is to add a dense yet useful high-level information containing a sentence context to every time step in order to help the machine to decide semantic roles better. With this in mind, we design an attention mechanism on top of the LSTM networks layers, as illustrated in Figure~\ref{fig:cabilstm} 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{images/cabilstm}
+	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\label{fig:cabilstm}
+\end{figure}
+
+% Explain the formula based on big picture CA-BLSTM
 The attention mechanism firstly collects the context information by multiplying trainable weights with all the vectors from every time step of the last LSTM output. We sum each element for each weighted vectors to reduce the dimension. The results are then fed into a hidden softmax layer which outputs weights with a total of 1. The original output vectors of the last LSTM output are multiplied by these distributed weights respectively. We then sum all the multiplication results as the final context information. The original LSTM outputs are concatenated with this context information before going to the last softmax layer to predict the semantic roles. 
 
-We describe the formulation of the networks from the first layer all the way to the top. It begins with these two equations:
+We describe the formulation of the networks from the first layer all the way to the top. Like the previous architectures, it begins with these two equations:
 \begin{equation}
-[\mathbf{c_{1}}; \mathbf{c_{2}}; ...; \mathbf{c_{n}}] = CNN([\mathbf{a_{1}}; \mathbf{a_{2}}; ...; \mathbf{a_{n}}])
+[\mathbf{c_{1}}; \mathbf{c_{2}}; ...; \mathbf{c_{n}}] = CNN([\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}])
 \end{equation}
 \begin{equation}
 \mathbf{h_{i}} = BLSTM(\mathbf{c_{i}})
 \end{equation}
 
-$\mathbf{a_{i}}$, $\mathbf{c_{i}}$, and $\mathbf{h_{i}}$ are the input tensors, the output of CNN layer, and the output of BLSTM layer respectively, with $i$ indicating the time step. 
+$\mathbf{x_{i}}$, $\mathbf{c_{i}}$, and $\mathbf{h_{i}}$ are the input tensors, the output of CNN layer, and the output of BLSTM layer respectively, with $i$ indicating the time step. 
 \begin{equation}
 \label{sum_weight}
 g(\mathbf{h_{i}}) = Sum(\mathbf{W}.\mathbf{h_{i}})
@@ -418,7 +400,6 @@ $\mathbf{h_{i}}$ is then fed into a differentiable neural networks function $g(\
 
 Once we have all the values of $[g(\mathbf{h_{1}}); g(\mathbf{h_{2}}); ...; g(\mathbf{h_{n}})]$, we make it as an input for the softmax layer, resulting weights $[\alpha_{1}; \alpha_{2}; ...; \alpha_{n}]$. All the original LSTM outputs $[\mathbf{h_{1}}; \mathbf{h_{2}}; ...; \mathbf{h_{n}}]$ are multiplied by these weights, with the results of $[\mathbf{r_{1}}; \mathbf{r_{2}}; ...; \mathbf{r_{n}}]$
 
-
 \begin{equation}
 \mathbf{z} = \mathbf{r_{1}} + \mathbf{r_{2}} + ... + \mathbf{r_{n}}
 \end{equation}
@@ -432,561 +413,76 @@ All the original LSTM outputs are thus concatenated with tensor $\mathbf{z}$ as 
 label_{i} = Softmax(\mathbf{j_{i}})
 \end{equation}
 
-Lastly, the time-distributed softmax layers produce the final semantic roles label.
-
-%\begin{figure}
-%	\includegraphics[width=2.5in]{cabilstm}
-%	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
-%	\label{fig:cabilstm}
-%\end{figure}
+Lastly, the time-distributed softmax layer produces the final semantic roles label.
 
 \section{Experiment}
+The annotated data is split into training, validation, and testing set with ration 60:20:20. We train our model by using training set. The trained model is then use to predict the semantic roles out of validation set. The analysis done in each experiment scenario is based on the result of our validation set. Lastly, the results of testing set will be used as the final metrics to compare between scenarios.
 
 \section{Evaluation}
+In each scenario, we evaluate the trained model in order to see how good it predicts the semantic roles as expected. The metrics for our evaluation are precision, recall, and F1. These metrics is applied to all semantic role labels. We then average each metrics from all semantic role labels to get the average precision, recall, and F1 of a model. The evaluation approach used is partial match in which a set of predicted labels is counted right if there is an intersection with the gold-standard \citep{seki2003probabilistic}. 
 
-
-% PUNYA WAHID
-
-\section{Gambaran Umum Pengembangan Metodologi}
-Penelitian ini bertujuan untuk membuat sebuah model yang mampu memberikan label entitas kesehatan pada suatu dokumen. Seperti yang telah dijelaskan pada bab sebelumnya, terdapat banyak entitas kesehatan yang dapat digunakan sebagai target pelabelan. Oleh karena itu, untuk mempermudah penelitian ini \saya~menggunakan entitas-entitas yang diusulkan oleh \cite{skripsiKakRadit} dalam penelitiannya,  nama penyakit (\textit{\disease}), gejala penyakit (\textit{\symptom}), obat (\textit{\drug}) dan langkah penyembuhan (\textit{\treatment}).
-
-Penelitian ini menggunakan dua buah korpus, yaitu korpus dari data dokumen teks kesehatan yang digunakan \cite{skripsiKakRadit} dan dokumen teks hasil pengumpulan yang dilakukan oleh \saya~pada situs kesehatan \textit{online}. Setelah itu \saya~melakukan pra-pemrosesan pada kedua data sebelum melakukan tahap selanjutnya. Untuk dokumen hasil pengumpulan dari forum, \saya~memberi label kesehatan secara manual dengan ketentuan pelabelan pada penelitian \cite{skripsiKakRadit}.
-
-Setelah tahap pengusulan model, terdapat 2 eksperimen yang \saya~lakukan, yaitu eksperimen untuk mendapatkan fitur diskriminatif yang mampu membuat model memiliki akurasi terbaik dan eksperimen untuk mendapatkan arsitektur RNNs yang membuat model menghasilkan akurasi tertinggi. Pada eksperimen pertama, \saya~mencoba beberapa fitur, seperti fitur yang diusulkan oleh \cite{skripsiKakRadit} (fitur \textit{its own word}, frasa, kamus (\textit{symptom}, \textit{disease}, \textit{treatment} dan \textit{drug}), kata pertama sebelum, dan fitur kata setelah. Pada eksperimen kedua, \saya~mencoba dua arsitektur RNNs, yaitu RNNs yang setiap \textit{input} digabung terlebih dahulu dengan meng-\textit{append} semua vektor fitur. Sedangkan RNNs yang kedua yaitu RNNs yang setiap kelompok fitur menjadi \textit{input} bagi masing-masing LSTMs, baru kemudian \textit{output} dari layer tersebut digabung.
-
-Setelah melakukan eksperimen, \saya~melakukan evaluasi dari hasil yang didapatkan dengan menghitung nilai \textit{precission}, \textit{recall} dan \textit{F-measure} dari masing-masing entitas secara keseluruhan. Untuk mendapatkan rata-rata akurasi dari setiap eksperimen, \saya~melakukan \textit{10-fold cross validation} dengan cara membagi semua data menjadi 10 bagian, 9 bagian menjadi data \textit{training} dan 1 \textit{bagian} menjadi data \textit{testing}. Proses tersebut diulang sebanyak sepuluh kali sehingga masing-masing bagian data menjadi data \textit{testing}.
-\begin{figure}
-  \centering
-  \includegraphics[width=\linewidth]{images/arsitektur}
-  \caption{Diagram Gambaran Umum Metodologi yang Dilakukan}
-  \label{fig:metodologi_penelitian}
-\end{figure}
-
-\section{Pengumpulan Data}
-Pengumpulan data dilakukan dengan tujuan untuk mendapatkan data \textit{training} dan \textit{testing} yang akan digunakan sebagai \textit{resource} dalam melakukan \textit{training} dan evaluasi model \mer. Data yang dimaksud merupakan teks dari forum kesehatan \textit{online} dari berbagai sumber. Pada penelitian ini, \saya~menggunakan data penelitian \cite{skripsiKakRadit} dan data yang \saya~dapatkan dari hasil \textit{crawling} di forum kesehatan \textit{online}. Data yang \cite{skripsiKakRadit} diambil dari beberapa situs forum kesehatan \textit{online} dan sedangkan data yang \saya~unduh bersumber dari forum kesehatan \textit{online}.
-
-\section{Pra-Pemrosesan}
-Pra-pemrosesan dilakukan dengan tujuan supaya teks yang diberikan mampu dibaca oleh sistem \mer. Dalam tahap ini, ada tiga pekerjaan utama yang perlu dilakukan, yaitu:
-
-\subsection{Pembersihan data}
-Langkah ini dilakukan dengan tujuan untuk mempermudah proses POS \textit{tagging}. Selain itu, terdapat beberapa token yang berbeda sintaks namun memiliki jenis kata yang sama, misalnya token \textit{email}. Model hanya perlu tahu token tersebut merupakan email, tidak peduli pemilik email tersebut. Berikut merupakan beberapa langkah yang \saya~lakukan:
-	
-\begin{enumerate}
-	\item menghapus karakter yang bukan merupakan karakter ASCII,
-	\item mengganti token url menjadi kata "url", misalnya token tautan (\textit{www.alodokter.com/asma/pengobatan}) diganti menjadi token "url",
-	\item mengganti token \textit{email} menjadi kata "email", misalnya sebuah alamat \textit{email} (\textit{wahid@domain.com}) diganti menjadi token "email",
-	\item mengganti karakter "\_" menjadi token "underscore",
-	\item mengganti karakter "\&" menjadi token "dan",
-	\item mengganti karakter "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari" dan
-	\item mengganti karakter "/" menjadi token "atau".
-\end{enumerate}
-Pada langkah ini, \saya~tidak menghapus karakter tanda baca karena karakter tersebut memiliki fungsi pada sistem POS \textit{tagging} yang \saya~gunakan. Gambar \ref{fig:pembersihandata} merupakan contoh pembersihan data pada sebuah teks.
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{images/pembersihandata}
-	\caption{Ilustrasi Pembersihan Data pada Kalimat}
-	\label{fig:pembersihandata}
-\end{figure}
-
-	
-\subsection{Tokenisasi}
-Tokenisasi dilakukan untuk mendapatkan token yang paling tepat sebagai sebuah kata. Hal ini perlu dilakukan untuk menghindari beberapa kelompok token berbeda yang tergabung. Karakter abjad dengan karakter angka atau karakter abjad dengan karakter tanda baca dipisahkan berdasarkan kelompoknya. Misalnya token "pusing2" diubah menjadi "pusing 2". Pada tahap ini, \saya~melakukan pemisahan terhadap beberapa kelompok token, yaitu:
-\begin{enumerate}
-	\item <alfabet><numerik> menjadi <alfabet><spasi><numerik>
-	\item <numerik><alfabet> menjadi <numerik><spasi><alfabet>
-	\item <alfanumerik><non-alfanumerik> menjadi <alfanumerik><spasi><non-alfanumerik>
-	\item <non-alfanumerik><alfanumerik> menjadi <non-alfanumerik><spasi> <alfanumerik>
-\end{enumerate}
-
-Gambar \ref{fig:tokenisasi} berikut merupakan contoh tokenisasi pada sebuah teks.
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{images/tokenisasi}
-	\caption{Ilustrasi Tokenisasi pada Kalimat}
-	\label{fig:tokenisasi}
-\end{figure}
-
-	
-\subsection{Pemotongan kalimat}
-Untuk menghindari jumlah token yang timpang dalam kalimat yang berbeda dan data yang \textit{sparse}, \saya~melakukan pemotongan kata dengan langkah-langkah sebagai berikut:
-\begin{enumerate}
-	\item memisahkan kalimat berdasarkan tanda baca (.!?,),
-	\item apabila suatu kalimat memiliki jumlah kata yang sedikit (batasan minimal jumlah kata dalam sebuah kalimat yang \saya~gunakan adalah 10 kata), kalimat tersebut digabungkan dengan kalimat setelahnya.
-\end{enumerate}
-
-Gambar \ref{fig:pemotongan_kalimat} berikut merupakan contoh dari pemotongan kalimat pada sebuah teks.
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{images/pemotongankalimat}
-	\caption{Ilustrasi Pemotongan Kalimat pada suatu Teks}
-	\label{fig:pemotongan_kalimat}
-\end{figure}
-
-
-\section{Pelabelan}
-Pada tahap ini, \saya~melakukan pelabelan pada dokumen teks yang merupakan hasil pada tahap sebelumnya dengan label \disease, \symptom, \drug~dan \treatment. Berikut merupakan penjelasan dari masing-masing label:
-\begin{enumerate}
-	\item \Disease\\
-	Entitas \disease~yang dimaksud pada penelitian ini yaitu nama dari suatu penyakit. Penyakit merupakan keadaan abnormal yang timbul pada tubuh manusia. Contoh dari entitas \disease~yaitu:
-	\begin{description}
-		\item[$\bullet$] Skizofrenia
-		\item[$\bullet$] Trikotilomania
-		\item[$\bullet$] Diabetes melitus
-	\end{description}
-
-	\item \Symptom\\
-	Entitas \symptom~yang dimaksud pada penelitian ini yaitu fenomena yang dialami oleh seseorang yang terkena suatu penyakit. Contoh dari entitas \symptom~yaitu:
-	\begin{description}
-		\item[$\bullet$] Napas berbunyi
-		\item[$\bullet$] Benjolan di daerah perut
-		\item[$\bullet$] Nyeri saat BAK
-	\end{description}
-
-	\item \Drug\\
-	Entitas \drug~merupakan entitas nama obat dari suatu penyakit yang memiliki fungsi untuk mengurangi atau menyembuhkan penyakit tersebut. Contoh dari entitas \drug~yaitu:
-	\begin{description}
-		\item[$\bullet$] Paracetamol
-		\item[$\bullet$] Diltiazem
-		\item[$\bullet$] eritropoetin-alfa
-	\end{description}
-
-	\item \Treatment\\
-	Entitas \treatment~merupakan cara atau langkah penyembuhan dari suatu penyakit. Contoh dari entitas \treatment~yaitu:
-	\begin{description}
-		\item[$\bullet$] Pemeriksaan darah rutin
-		\item[$\bullet$] Penilaian denyut kapiler
-		\item[$\bullet$] Terapi inhalasi
-	\end{description}
-
-	\item \textit{Other}\\
-	Entitas \textit{other} merupakan suatu entitas selain dari keempat entitas di atas. Contoh dari entitas \textit{other} yaitu:
-	\begin{description}
-		\item[$\bullet$] Saya
-		\item[$\bullet$] yang
-		\item[$\bullet$] Dokter
-	\end{description}
-
-\end{enumerate}
-Setelah proses di atas selesai, label di dalam korpus diubah menjadi format BIO (\textit{begin inside outside}). Gambar \ref{fig:pelabelan} berikut merupakan ilustrasi dari tahap pelabelan ini.
-\begin{figure}
-	\centering
-	\includegraphics[width=0.85\linewidth]{images/pelabelan}
-	\caption{Ilustrasi Pelabelan Entitas pada suatu Kalimat}
-	\label{fig:pelabelan}
-\end{figure}
-
-Setelah pelabelan selesai dilakukan, supaya model RNNs mampu mengenali masing-masing label, \saya~menggunakan \textit{one-hot-vector} untuk merepresentasikan masing-masing label. Tabel \ref{table:onehotlabel} merupakan tabel pemetaan dari label menjadi represebtasinya dalam \textit{one-hot-vector}.
-
-\begin{table}
-	\centering
-	\caption{Tabel Pemetaan Label dengan Representasi \textit{One-Hot-Vector}}
-	\label{table:onehotlabel}
-	\begin{tabular}{|l|l|}
-		\hline
-		\multicolumn{1}{|c|}{Label IOB} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
-		BD & {[} 0, 0, 0, 0, 0, 0, 0, 0, 1 {]} \\ \hline
-		ID & {[} 0, 0, 0, 0, 0, 0, 0, 1, 0 {]} \\ \hline
-		BS & {[} 0, 0, 0, 0, 0, 0, 1, 0, 0 {]} \\ \hline
-		IS & {[} 0, 0, 0, 0, 0, 1, 0, 0, 0 {]} \\ \hline
-		BT & {[} 0, 0, 0, 0, 1, 0, 0, 0, 0 {]} \\ \hline
-		IT & {[} 0, 0, 0, 1, 0, 0, 0, 0, 0 {]} \\ \hline
-		BG & {[} 0, 0, 1, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		IG & {[} 0, 1, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-		OO & {[} 1, 0, 0, 0, 0, 0, 0, 0, 0 {]} \\ \hline
-	\end{tabular}
-\end{table}
-
-Gambar \ref{fig:labeltoone} merupakan contoh pengubahan kata menjadi \textit{one-hot-vector} dalam suatu kalimat.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{images/labeltoone}
-	\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
-	\label{fig:labeltoone}
-\end{figure}
-
-\section{Pengembangan Model}
-Pada tahap ini, \saya~melakukan pengusulan dan perancangan model yang nantinya akan \saya~evaluasi pada tahap eksperimen. Dalam mengembangkan model, terdapat dua pekerjaan yang \saya~lakukan, yaitu:
-
-\subsection{Ekstrasi Fitur}\label{subbab:fitur}
-Pada tahap ini, \saya~melakukan ekstraksi fitur dari dokumen yang telah diberi label entitas. Ada beberapa fitur yang \saya~usulkan dalam penelitian ini yang nantinya \saya~kombinasikan supaya mendapatkan hasil terbaik. Fitur-fitur tersebut yaitu:
-\begin{enumerate}
-	\item Fitur 1: Kata itu sendiri\\
-	Fitur ini merupakan fitur kata dalam representasi vektor. Fitur ini merupakan fitur yang digunakan \cite{abacha2011medical} dan \cite{skripsiKakRadit} dalam penelitian tentang \mer. Untuk mendapatkan representasi vektor dari masing-masing kata, penulis menggunakan \textit{word embedding}. Pada penelitian mengenai \mer~yang dilakukan oleh \cite{mujiono2016new}, hasil dari representasi data terbaik yaitu \textit{word embedding}. Selain itu, seperti yang dijelaskan pada Bab 2, \textit{word embedding} memberikan hasil yang sangat baik dalam bidang NLP. Oleh karena itu, \saya~menggunakan \textit{word embedding} untuk mendapatkan representasi vektor masing-masing kata. Dalam penelitian ini. Terdapat beberapa langkah yang perlu \saya~lakukan dalam memanfaatkan \textit{word embedding} ini, yaitu:
-	\begin{enumerate}
-		\item Pengumpulan data \textit{training} untuk \textit{word embedding}\\
-		\Saya~melakukan pengumpulan data teks sebagai \textit{resource} untuk melakukan \textit{training} model \textit{word embedding}. Data teks yang \saya~gunakan merupakan data teks dari artikel-artikel kesehatan dan data teks forum kesehatan di kaskus. \Saya~menggunakan teks berjenis kesehatan supaya \textit{domain word embedding} dengan data \textit{training} untuk model \mer~sama. Selain itu, terdapat beberapa \textit{term} kesehatan yang susah ditemukan di forum umum.
-		 
-		\item \textit{Training} untuk mendapatkan model \textit{word embedding}\\
-		\textit{Training} dilakukan untuk mendapatkan model yang mampu mendapatkan representasi vektor dari sebuah kata. Panjang vektor yang dihasilkan yaitu 128 dengan besaran \textit{window} yaitu 5. Arsitektur yang digunakan untuk melakukan \textit{training} ini adalah \textit{skip-gram}.
-		
-		\item Pengubahan kata menjadi vektor dari model yang didapatkan\\
-		Pada langkah ini \saya~mengubah masing-masing kata dalam kalimat menjadi representasi vektor dengan model yang telah \saya~dapatkan pada tahap \textit{training} model \textit{word embedding}.
-	\end{enumerate}
-	
-	Gambar \ref{fig:fiturkata} merupakan ilustrasi dari proses ekstraksi fitur kata itu sendiri dalam suatu kalimat dengan menggunakan \textit{Word Embedding}.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=\linewidth]{images/fiturkata}
-		\caption{Ilustrasi Ekstraksi Fitur Kata pada Suatu Kalimat}
-		\label{fig:fiturkata}
-	\end{figure}
-	
-	\item Fitur 2: Kamus Kesehatan\\
-	Fitur kamus kesehatan merupakan fitur yang berisi informasi suatu kata terdapat di dalam kamus kesehatan atau tidak. Fitur ini digunakan dalam penelitian \cite{skripsiKakRadit} dan memberikan kontribusi dalam hasil terbaik. Pada penelitian ini, kamus kesehatan yang dipakai merupakan kamus \disease, kamus \symptom, kamus \drug~dan kamus \treatment. Dengan menggunakan fitur ini diharapkan mampu berkontribusi dalam meningkatkan akurasi karena model akan mempertimbangkan apakah suatu kata termasuk di dalam kamus atau tidak. Gambar \ref{fig:fiturkamus} merupakan ilustrasi dari ekstraksi fitur kamus kesehatan dalam suatu kalimat.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/fiturkamus}
-		\caption{Ilustrasi Ekstraksi Fitur Kamus \disease~pada Suatu Kalimat}
-		\label{fig:fiturkamus}
-	\end{figure}
-
-	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang terdapat dalam kamus kesehatan, representasi vektornya adalah $ [0, 1] $, sedangkan yang tidak terdapat di dalam kamus kesehatan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:kamustoone} merupakan contoh pengubahan fitur kamus kesehatan menjadi representasi \textit{one-hot-vector}.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/kamustoone}
-		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
-		\label{fig:kamustoone}
-	\end{figure}
-	
-	\item Fitur 3: \textit{Stopword}\\
-	Fitur ini merupakan fitur yang berisi vektor suatu kata merupakan \textit{stopword} atau bukan. Fitur ini \saya~gunakan dalam penelitian ini untuk membantu sistem dalam menghindari kesalahan pelabelan suatu kata yang bukan entitas namun dilabeli sebagai entitas.
-	
-	Ketika melakukan eksperimen, hasil yang \saya~dapatkan ternyata lebih bagus apabila mempertahankan fitur ini, oleh karena itu, \saya~mengusulkan untuk menggunakan fitur ini. Untuk pembahasan lebih lanjut dibahas pada Bab 5. Gambar \ref{fig:fiturstopword} merupakan ilustrasi dari ekstraksi fitur \textit{stopword} dalam suatu kalimat.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.70\linewidth]{images/fiturstopword}
-		\caption{Ilustrasi Ekstraksi Fitur \textit{Stopword} pada Suatu Kalimat}
-		\label{fig:fiturstopword}
-	\end{figure}
-
-	Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan \textit{stopword}, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan merupakan \textit{stopword}, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:stopwordtoone} merupakan contoh pengubahan fitur \textit{stopword} menjadi representasi \textit{one-hot-vector}.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/stopwordtoone}
-		\caption{Ilustrasi Pengubahan Label menjadi \textit{One-Hot-Vector}}
-		\label{fig:stopwordtoone}
-	\end{figure}
-
-	\item Fitur 4: \textit{Part of Speech Tag} (POS-Tag)\\
-	Fitur ini merupakan fitur \textit{tag} yang dimiliki setiap kata yang diusulkan oleh \cite{abacha2011medical} dalam penelitiannya di bidang \mer. Entitas-entitas tertentu memiliki tag yang sama, misalnya entitas obat dan penyakit pada umumnya memiliki tag "NNP" sehingga dengan digunakannya fitur ini sistem dapat mengenali jenis obat dan penyakit dengan lebih baik. Model POS-Tagger yang \saya~gunakan merupakan model POS-Tag berbahasa Indonesia. Gambar \ref{fig:fiturpostag} merupakan ilustrasi dari ekstraksi fitur POS-\textit{Tag} dalam suatu kalimat.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.70\linewidth]{images/fiturpostag}
-		\caption{Ilustrasi Ekstraksi Fitur POS \textit{Tag} pada Suatu Kalimat}
-		\label{fig:fiturpostag}
-	\end{figure}
-
-	Setelah POS-Tag didapatkan, supaya model RNNs mampu mengenali masing-masing tag, \saya~menggunakan \textit{one-hot-vector} untuk merepresentasikan masing-masing label. Tabel \ref{table:onehotpostag} merupakan tabel pemetaan dari label menjadi representasinya dalam \textit{one-hot-vector}.
-	
-	\begin{table}
-		\centering
-		\caption{Tabel Pemetaan POS-Tag dengan Representasi \textit{One-Hot-Vector}}
-		\label{table:onehotpostag}
-		\begin{tabular}{|l|l|}
-			\hline
-			\multicolumn{1}{|c|}{Label POS-Tag} & \multicolumn{1}{c|}{\textit{One-hot-vector}} \\ \hline
-			JJ & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1{]} \\ \hline
-			NN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0{]} \\ \hline
-			NNP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0{]} \\ \hline
-			Z & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0{]} \\ \hline
-			IN & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0{]} \\ \hline
-			PRP & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0{]} \\ \hline
-			MD & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0{]} \\ \hline
-			VB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0{]} \\ \hline
-			SC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0{]} \\ \hline
-			RB & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			CC & {[}0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			NEG & {[}0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			WH & {[}0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			CD & {[}0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			X & {[}0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			PR & {[}0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			RP & {[}0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			FW & {[}0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			NND & {[}0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			DT & {[}0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			OD & {[}0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			UH & {[}0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			SYM & {[}0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-			fw & {[}1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0{]} \\ \hline
-		\end{tabular}
-	\end{table}
-
-	Gambar \ref{fig:postagtoone} merupakan contoh pengubahan fitur POS-Tag menjadi \textit{one-hot-vector} dalam suatu kalimat.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=\linewidth]{images/postagtoone}
-		\caption{Ilustrasi Pengubahan Fitur POS-Tag menjadi \textit{One-Hot-Vector}}
-		\label{fig:postagtoone}
-	\end{figure}
-		
-	\item Fitur 5: Frasa Kata\\
-	Pada penelitian ini, \saya~mengusulkan fitur frasa kata karena entitas \textit{symptom} dan \textit{treatment}  pada umumnya merupakan frasa kata kerja. Sedangkan entitas \textit{disease} dan \textit{drug} pada umumnya entitas yang akan dikenali pada penelitian ini merupakan frasa kata benda. Selain itu, pada penelitian \cite{skripsiKakRadit}, fitur ini berkontribusi dalam memberikan hasil terbaik. Oleh karena itu, \saya~berharap bahwa dengan diusulkannya fitur ini akan mampu menambah akurasi dari model yang diusulkan.
-	
-	Pada penelitian ini ada dua frasa yang diujicobakan, yaitu:
-	\begin{enumerate}
-		\item Frasa Kata Benda (Nomina)
-		Menurut \cite{hs2005bahasa}, frasa kata benda sendiri merupakan kelompok kata benda yang dibentuk dengan memperluas kata benda ke sekelilingnya. Fitur frasa kata benda yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa kata benda atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
-		\begin{description}
-			\item[$\bullet$] NP : NN
-			\item[$\bullet$] NP : NNP
-			\item[$\bullet$] NP : PR
-			\item[$\bullet$] NP : PRP
-			\item[$\bullet$] NP : NN + NN
-			\item[$\bullet$] NP : NN + NNP
-			\item[$\bullet$] NP : NN + PR
-			\item[$\bullet$] NP : NN + PRP
-			\item[$\bullet$] NP : NN + JJ
-			\item[$\bullet$] NP : DT + NN
-			\item[$\bullet$] NP : RB + NN
-			\item[$\bullet$] NP : CD + NN
-			\item[$\bullet$] NP : NND + NN
-		\end{description}
-		
-		\item Frasa Kata Kerja (Verbal)\\
-		Menurut \cite{hs2005bahasa}, frasa verbal merupakan kelompok kata benda yang dibentuk dengan kata kerja. Fitur frasa verbal yang \saya~gunakan dalam penelitian merupakan fitur yang berisi informasi suatu kata atau kumpulan kata merupakan frasa verbal atau bukan. Dalam menentukan suatu kata merupakan frasa atau bukan, penulis menggunakan aturan pembentukan frasa yang digunakan pada bahasa Indonesia, yaitu:
-		\begin{description}
-			\item[$\bullet$] VP : VB
-			\item[$\bullet$] VP : VB + NP
-		\end{description}
-	\end{enumerate}
-
-Gambar \ref{fig:fiturfrasa} merupakan ilustrasi dari ekstraksi fitur Frasa Nomina dalam suatu kalimat.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.70\linewidth]{images/fiturfrasa}
-	\caption{Ilustrasi Ekstraksi Fitur Frasa Nomina pada Suatu Kalimat}
-	\label{fig:fiturfrasa}
-\end{figure}
-
-Supaya model RNNs mengenali fitur ini, \saya~menggunakan representasi \textit{one-hot vector}. Untuk suatu kata yang merupakan sebuah frasa, representasi vektornya adalah $ [0, 1] $, sedangkan yang bukan, representasi vektornya adalah $ [1, 0] $. Gambar \ref{fig:frasatoone} merupakan contoh pengubahan fitur frasa nomina menjadi representasi \textit{one-hot-vector}.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.85\linewidth]{images/frasatoone}
-	\caption{Ilustrasi Pengubahan Fitur Frasa menjadi \textit{One-Hot-Vector}}
-	\label{fig:frasatoone}
-\end{figure}
-
- \item Fitur 6: 1 Kata Sebelum\\
- Fitur ini merupakan fitur yang berisi informasi kata sebelum kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Fitur ini digunakan pada penelitian penelitian \cite{skripsiKakRadit} yang juga berkontribusi memberikan hasil terbaik pada penelitiannya. Menurut \saya, ada beberapa entitas yang akan lebih mudah diketahui apabila diketahui kata sebelumnya. Misalnya kata "masuk angin", apabila hanya diberikan informasi kata "angin" tanpa kata "masuk", akan lebih sulit menentukan kata tersebut bagian dari suatu entitas \textit{disease} atau bukan.
-  
- \item Fitur 7: 1 Kata Sesudah\\
- Fitur ini merupakan fitur yang berisi informasi kata sesudah kata saat ini yang direpresentasikan dalam bentuk vektor untuk masing-masing kata. Sama seperti pada fitur 1 Kata Sebelum, ada beberapa kasus yang mana apabila suatu kata merupakan sebuah entitas, akan lebih mudah dikenali apabila melihat kata atau konteks setelahnya. Sama seperti contoh pada Fitur 1 Kata Sebelum, misal diberikan kata "masuk angin", apabila hanya diberikan informasi "masuk" tanpa "angin", akan lebih sulit mengenali apakah kata tersebut termasuk entitas \textit{disease} atau bukan. Selain itu, fitur ini juga dapat membedakan kata berentitas dengan kata yang bukan, misalnya kata "masuk angin" dengan "masuk rumah". Apabila informasi pada saat tersebut hanya diberikan kata "masuk" saja tanpa kata setelahnya, akan lebih sulit mengenali kata tersebut termasuk kata berentitas atau bukan.
-  
-\end{enumerate}
-
-\subsection{Pengusulan Arsitektur RNNs}
-Pada tahap ini \saya~mengusulkan arsitektur RNNs yang akan digunakan pada tahap eksperimen. Ada dua arsitektur yang \saya~gunakan dalam penelitian ini, yaitu
-\begin{enumerate}
-	\item LSTMs 1 layer\\
-	Pada LSTMs 1 layer, semua fitur yang menjadi input pada sebuah \textit{timestep} digabung menjadi satu. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Networks} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi LSTM 1 layer yang \saya~gunakan dalam penelitian ini.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.8\linewidth]{images/lstm1}
-		\caption{LSTMs 1 layer}
-		\label{fig:single_layer_rnn}
-	\end{figure}
-
-	Misalnya fitur yang digunakan adalah fitur kata dan frasa. Karena hanya terdapat 1 layer saja, kedua fitur ini digabung terlebih dahulu menjadi 1. Gambar \ref{fig:inputlstm} merupakan ilustrasi dari proses penggabungan fitur supaya menjadi \textit{input} RNNs, dan  \textit{output} serta pemetaan menjadi label pada arsitektur ini.
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/concatlstm1}
-		\caption{Ilustrasi penggabungan fitur kata dan frasa untuk menjadi \textit{input} LSTMs 1 layer dan \textit{output}-nya}
-		\label{fig:inputlstm}
-	\end{figure}
-	
-	Gambar \ref{fig:iolstm1} merupakan ilustrasi \textit{input} yang diberikan pada sebuah LSTMs 1 layer dan \textit{output} yang dihasilkan.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/iolstm1}
-		\caption{Ilustrasi proses \textit{input} fitur pada LSTMs 1 layer dan \textit{output}-nya}
-		\label{fig:iolstm1}
-	\end{figure}
-	
-	Untuk masing-masing \textit{timestep} $ t $, berikut merupakan gambar sebuah \textit{cell}-nya.
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{images/lstm}
-		\caption{1 buah blok memori dalam LSTM}
-		\label{fig:lstm1cell}
-	\end{figure}
-	
-	Dari gambar \ref{fig:lstm1cell}, sebuah \textit{cell} membutuhkan \textit{input} $ x(t) $ dan \textit{output} $ h(t) $. $ x(t) $ merupakan vektor dengan panjang $ N $, dan $ h(t) $ merupakan vektor dengan panjang $ M $. Seperti yang telah dijelaskan pada subbab \ref{subbab:lstm}, berikut merupakan formula untuk mengetahui \textit{output} pada \textit{timestep} $ t $.
-	\begin{equation}\label{eq:lstmm}
-	m_{t}=\alpha_{t} (\times) m_{t-1} + \beta_{t} (\times) f(x_{t},{t-1})
-	\end{equation}
-	\begin{equation}\label{eq:lstmh}
-	h_{t}=\gamma_{t} (\times) tanh(m_{t})
-	\end{equation}
-	dimana
-	\begin{equation}\label{eq:lstmx}
-	f(x_{t},{t-1})=tanh(W_{xm} \cdot x_{t} + W_{hm} \cdot h_{t-1})
-	\end{equation}
-	
-	$ \alpha_t $, $ \beta_t $ dan $ \gamma_t $ merupakan \textit{gates}:
-	\begin{enumerate}
-		\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{x\alpha} \cdot x_{t}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1}) $
-		\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{x\beta}\cdot x_{t}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1}) $
-		\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{x\gamma}\cdot x_{t}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
-	\end{enumerate}
-
-	\item LSTMs 2 layer dengan Multi-\textit{Input}\\
-	Pada LSTMs 2 layer dengan multi-\textit{input}, penulis mendefinisikan 2 layer, yang layer terbawah merupakan layer dengan jumlah LSTMs sebanyak n kelompok fitur. Pertama-tama fitur dikelompokkan terlebih dahulu, kemudian dijadikan \textit{input} untuk masing-masing LSTMs pada tingkat pertama. Setelah itu, hasil dari tingkat pertama tersebut akan digabung menjadi satu, dengan menggunakan layer penggabung (\textit{Merge Layer}). \textit{Output} dari layer penggabung kemudian dimasukkan ke dalam LSTMs layer kedua. Untuk menentukan label, \saya~menggunakan \textit{feed-forward Neural Network} pada masing-masing \textit{timestep} di layer terakhir. Berikut merupakan ilustrasi dari LSTMs layer bertingkat yang \saya~gunakan.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=1.0\linewidth]{images/lstm2}
-		\caption{LSTM 2 layer multi-\textit{input}}
-		\label{fig:lstm2}
-	\end{figure}
-
-	Masing-masing kelompok fitur menjadi \textit{input} dari LSTMs yang terkait. Nantinya, masing-masing \textit{output} akan digabung melalui \textit{merge layer} dengan metode \textit{concat} dan menjadi \textit{input} bagi LSTMs layer kedua. Gambar \ref{fig:iolstm2} merupakan ilustrasi \textit{input} dan \textit{output} pada LSTMs 2 layer multi-\textit{input}. Pada gambar tersebut terlihat bahwa terdapat dua kelompok fitur, yaitu fitur kata dan fitur frasa (verba dan nomina). Masing-masing fitur tersebut dimasukkan ke dalam masing-masing LSTMs, yang hasilnya di-\textit{merge} pada layer di atasnya. Hasil dari layer \textit{merge} menjadi \textit{input} untuk LSTMs di layer kedua. Pada LSTMs kedua inilah label akan diberikan.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=1.0\linewidth]{images/iolstm2}
-		\caption{Ilustrasi \textit{input} dan \textit{output} pada LSTMs 2 layer multi-\textit{input}}
-		\label{fig:iolstm2}
-	\end{figure}
-	
-	Di sini, \saya~menotasikan $ k $ sebagai nomor kelompok fitur dan $ t $ sebagai \textit{timestep} saat ini. Untuk masing-masing kelompok fitur, berikut merupakan formulasi \textit{feedforward}-nya:
-	\begin{equation}\label{eq:mt2}
-	m_{k,t}=\alpha_{k,t} (\times) m_{k,t-1} + \beta_{k,t} (\times) f(x_{k,t},{k,t-1})
-	\end{equation}
-	\begin{equation}\label{eq:ht2}
-	h_{k,t}=\gamma_{k,t} (\times) tanh(k,m_{t})
-	\end{equation}
-	dimana
-	\begin{equation}\label{eq:hf2}
-	f(x_{k,t},{k,t-1})=tanh(W_{k,xm} \cdot x_{k,t} + W_{k,hm} \cdot h_{k,t-1})
-	\end{equation}
-	$ \alpha_{k,t} $, $ \beta_{k,t} $ dan $ \gamma_{k,t} $ merupakan \textit{gates}:
-	\begin{enumerate}
-	\item \textit{Forget gates}: $ \alpha_{k,t}=\sigma(W_{k,x\alpha} \cdot x_{k,t}+W_{k,h\alpha}\cdot~h_{k,t-1}+W_{k,m\alpha}\cdot~m_{k,t-1}) $
-	\item \textit{Input gates}: $ \beta_{k,t}=\sigma(W_{k,x\beta} \cdot x_{k,t}+W_{k,h\beta}\cdot~h_{k,t-1}+W_{k,m\beta}\cdot~m_{k,t-1}) $
-	\item \textit{Output gates}: $ \gamma_{k,t}=\sigma(W_{k,x\gamma} \cdot x_{k,t}+W_{k,h\gamma}\cdot~h_{k,t-1}+W_{k,m\gamma}\cdot~m_{k,t-1}) $
-	\end{enumerate}
-
-	\textit{Merge layer} berfungsi untuk menggabungkan hasil dari \textit{feedforward} pada semua LSTMs layer pertama. Di sini, \saya~menotasikan $ X_t $ sebagai hasil dari \textit{merge} di \textit{timestep} $ t $ dan $ (\cdot) $ merupakan operasi \textit{merging}.
-	\begin{equation}\label{eq:merge}
-	X_t = h_{1,t} (\cdot) h_{2,t} (\cdot) h_{3,t} (\cdot) .... (\cdot) h_{k,t}
-	\end{equation}
-
-	Hasil dari \textit{merge layer} akan digunakan sebagai \textit{input} bagi LSTMs layer kedua. Untuk memudahkan penggunaan notasi dan membedakan dengan LSTMs pada layer pertama, \saya~menggunakan huruf kapital dalam menotasikan masing-masing nilai di LSTMs layer kedua. Berikut merupakan formulasi \textit{feed-forwarnya}.
-	
-	\begin{equation}\label{eq:mt3}
-	M_{t}=\alpha_{t} (\times) M_{t-1} + \beta_{t} (\times) f(X_{t},{t-1})
-	\end{equation}
-	\begin{equation}\label{eq:ht3}
-	H_{t}=\gamma_{t} (\times) tanh(M_{t})
-	\end{equation}
-	dimana
-	\begin{equation}\label{eq:hf3}
-	f(X_{t},{t-1})=tanh(W_{XM} \cdot X_{t} + W_{HM} \cdot H_{t-1})
-	\end{equation}
-	$ \alpha_{t} $, $ \beta_{t} $ dan $ \gamma_{t} $ merupakan \textit{gates}:
-	\begin{enumerate}
-	\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{X\alpha}+W_{H\alpha}\cdot~H_{t-1}+W_{M\alpha}\cdot~M_{t-1}) $
-	\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{X\beta}+W_{H\beta}\cdot~H_{t-1}+W_{M\beta}\cdot~M_{t-1}) $
-	\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{X\gamma}+W_{H\gamma}\cdot~H_{t-1}+W_{M\gamma}\cdot~M_{t-1}) $
-	\end{enumerate}
-		
-\end{enumerate}
-	
-\section{Eksperimen}
-Dalam melakukan eksperimen, arsitektur \textit{deep learning} yang \saya~gunakan adalah \textit{Recurrent Neural Networks}, dalam hal ini \saya~menggunakan LSTMs. Hal ini \saya~lakukan karena pada penelitian \cite{mujiono2016new}, \cite{jagannatha2016bidirectional}, \cite{limsopatham2016learning} dan \cite{almgren2016named}, penggunaan LSTMs memberikan \textit{output} terbaik dalam \mer~yang dirancang. Selain itu, LSTMs juga sangat baik dalam masalah \textit{sequence labeling} seperti yang dilakukan oleh \cite{graves2013speech} dan merupakan \textit{state-of-the-art} dalam bidang ini. Masih banyak penelitian lain yang membuktikan bahwa LSTMs merupakan arsitektur \textit{deep learning} yang sangat baik dalam masalah \textit{sequence labeling} seperti \textit{Offline Hadwriting Recognition} \citep{graves2009offline}, \textit{sequence tagging} \citep{huang2015bidirectional}, \textit{Sequence to Sequence Learning} \citep{NIPS2014_5346} dan lain lain.
-
-Eksperimen yang \saya~lakukan menggunakan 10-\textit{cross fold validation}, karena keterbatasan \textit{resource} yang \saya~miliki. Sebelum melakukan eksperimen, \saya~membagi data \textit{training} menjadi 10 bagian, kemudian melakukan iterasi sebanyak 10 kali yang pada masing-masing iterasi ke-i, bagian data ke-i menjadi data \textit{testing} dan yang lainnya digabung menjadi data \textit{training}. 
-
-Setelah melakukan pembagian dan pengelompokan data berdasarkan nomor iterasi, penulis membuat model dari data \textit{training} tersebut. Setelah \saya~mendapatkan model, \saya~melakukan testing terhadap masing-masing model dengan data \textit{testing} yang telah disediakan sebelumnya. Hasil dari pelabelan data \textit{testing} ini akan \saya~evaluasi di tahap selanjutnya. Setelah itu \saya~kembali melakukan pembuatan model dengan fitur yang berbeda, atau dengan tambahan fitur lain. Dalam perjalanan melakukan pengujian, apabila fitur yang diuji memberikan hasil yang bagus atau menambah akurasi, \saya~menggabungkan fitur ini ke percobaan selanjutnya. Namun apabila fitur pada saat ini memberikan akurasi yang lebih jelek, \saya~tidak menggunakan fitur tersebut di percobaan selanjutnya.
-
-\section{Evaluasi}
-Pada tahap ini, \saya~melakukan serangkaian evaluasi dari data \textit{testing} yang telah dilabeli dengan model yang dihasilkan pada tahap eksperimen. \Saya~melakukan evaluasi dengan menggunakan metode \textit{partial evaluation} di mana sebuah token yang diprediksi entitas oleh model dihitung benar apabila terdapat fragmen yang menyusun entitas bernama tersebut \citep{seki2003probabilistic}. Aturan yang \saya~gunakan dalam melakukan evaluasi adalah sebagai berikut: 
+Suppose that we are evaluating the semantic role \patient. The rules for evaluation using partial match for semantic role \patient are explained as follows.
 
 \begin{enumerate}
-	\item Perhitungan nilai \textit{True Positive} (TP)\\
-	Untuk masing-masing kata yang mendapat label entitas benar, nilai $ TP $ bertambah sejumlah kata yang diprediksi benar.\\
-	Misal:
+	\item Counting \textit{True Positive} (TP)\\
+	For every gold standard label that has intersection with the predicted label, the value of True Positive ($TP$) is added by 1.
+	\\
 	
 	\fbox{%
 		\parbox{1.0\linewidth}{%
-		Contoh 1\\
-		True: Anak saya <Disease>\textbf{sakit kepala} sebelah</Disease>\\
-		Predicted: Anak saya <Disease>\textbf{sakit kepala}</Disease> sebelah
+			Gold-standard: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
+			Predicted.1: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
+			Predicted.2: Aku pengen makan <Patient>\textbf{ayam}</Patient> goreng deh\\
+			Predicted.3: Aku pengen makan <Patient>\textbf{ayam goreng deh} </Patient>\\
+			Predicted.4: Aku pengen makan ayam goreng deh
 		}%
 	}
+	\\
 	
-	Dari contoh di atas, nilai $ TP = 2 $, karena ada 2 kata yang mendapatkan label entitas yang benar.
+	The examples above illustrate four scenarios of possible predicted results, denoted as Predicted.1, Predicted.2, Predicted.3, and Predicted.4, given a gold-standard called Expected which has "ayam goreng" as the \patient.
+	\\
+	
+	Predicted.1 predicts exactly the same as the Expected, hence the value of $TP$ is added by 1. The result of Predicted.2 has an intersection with the gold-standard, which is "ayam", the value of $TP$ is then added by 1 as well. Although Predicted.3 predicts too much as it includes "deh" as part of \patient, it also has an intersection with the gold-standard, which is "ayam goreng". The Predicted.3 therefore also adds the value of $TP$ by 1. Meanwhile, Predicted.4 does not predict anything. In this case, the value of $TP$ is not added at all.
+	\\
+	
+	\item Counting \textit{False Positive} (FP)\\
+	For every predicted label that should not be predicted according to gold-standard, the value of False Positive ($FP$) is added by 1.
+	\\
 	
 	\fbox{%
-		\parbox{1.0\linewidth}{%	
-		Contoh 2\\
-		True : <Disease>Masuk angin</Disease> dan <Sympton>\textbf{suhu badan tinggi}</Symptom>\\
-		Predicted : <Sympton>Masuk angin</Sympton> dan <Sympton>\textbf{suhu badan tinggi}</Symptom>\\
+		\parbox{1.0\linewidth}{%
+			Gold-standard: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
+			Predicted.1: <Patient>Aku</Patient> pengen makan ayam goreng deh\\
 		}%
 	}
-
-	Dari contoh di atas, nilai $ TP = 3 $, karena ada 3 kata yang mendapatkan label entitas yang benar
+	\\
 	
-	\item Perhitungan nilai \textit{False Positive} (FP)\\
-	Untuk masing-masing kata yang mendapat label entitas namun seharusnya tidak berentitas,  nilai $ FP $ bertambah sejumlah kata yang diprediksi salah.\\
-	Misal:
+	From the example above, "Aku" is predicted as \patient, while it should not be predicted as \patient according to the gold-standard. This will add the value of $FP$ by 1.
+	\\
 	
-	\fbox{%
-		\parbox{1.0\linewidth}{%	
-		Contoh 1\\
-		True : <Disease>Sakit kepala</Disease> sudah \textbf{beberapa hari istirahat}\\
-		Predicted : <Disease>Sakit kepala</Disease> sudah <Treatment>\textbf{beberapa hari istirahat}</Treatment>
-		}
-	}
-
-	Dari contoh di atas, nilai $ FP = 3 $, karena ada 3 kata yang mendapat label entitas yang seharusnya tidak berlabel, yaitu "beberapa hari istirahat".
-			
-	\item Perhitungan nilai \textit{False Negative} (FN)\\
-	Untuk masing-masing kata yang mendapat label entitas salah,  nilai $ FP $ bertambah sejumlah kata yang diprediksi salah.\\
-	Misal:
+	\item Counting \textit{False Negative} (FN)\\
+	For every gold-standard label that is either not predicted or predicted with wrong label, the value of False Negative ($FN$) is added by 1.
+	\\
 	
 	\fbox{%
 		\parbox{1.0\linewidth}{%
-		Contoh 1\\
-		True : Anak saya <Disease>sakit kepala sebelah</Disease>\\
-		Predicted : Anak saya <Disease>sakit kepala</Disease> sebelah
-
-		}
+			Gold-standard: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
+			Predicted.1: Aku pengen makan <Agent>\textbf{ayam goreng}</Agent> deh\\
+			Predicted.2: Aku pengen makan ayam goreng deh
+		}%
 	}
-
-	Dari contoh di atas, nilai $ FN = 0 $, karena tidak ada kata yang mendapat label entitas salah (kata "sebelah" tidak mendapat label).
+	\\
 	
-	\fbox{%
-		\parbox{1.0\linewidth}{%
-		Contoh 2\\
-		True : <Symptom>Badan terasa pegal</Symptom>, sepertinya akan <Disease>\textbf{demam}</Disease>.\\
-		Predicted : <Symptom>Badan terasa pegal</Symptom>, sepertinya akan <Symptom>\textbf{demam}</Symptom>.
-		}
-	}
-
-	Dari contoh di atas, nilai $ FN = 1 $, karena ada 1 kata yang mendapat label entitas salah, yaitu kata "demam".
+	From the example above, Predicted.1 predicts "ayam goreng" as \agent, while it should be predicted as \patient. In this case, the value of $FP$ is added by 1. Predicted.2 illustrates an example which does not predict "ayam goreng" with any label, while it should be predicted as \patient. In this case, the value of $FP$ is added by 1 as well.
 	
 \end{enumerate}
-	
-Setelah mendapatkan angka $ TP, FP $ dan $ FN $, \saya~menghitung \textit{f-measure}, \textit{precission} dan \textit{recall} untuk masing-masing entitas dengan menggunakan formula:
+
+After we have the value of $TP$, $FP$, and $FN$ for the semantic role \patient, we then count the precision, recall, and F1 with following equations:
 \begin{align}
-	Precission &= \frac{TP}{TP+FP}\\
-	Recall &= \frac{TP}{TP+FN}\\
-	F-Measeure &= 2 \cdot \frac{Precission \cdot Recall}{Precission + Recall}
+Precision &= \frac{TP}{TP+FP}\\
+Recall &= \frac{TP}{TP+FN}\\
+F-Measeure &= 2 \cdot \frac{Precission \cdot Recall}{Precission + Recall}
 \end{align}
 
-Angka-angka hasil evaluasi ini akan menjadi pertimbangan untuk penggunaan fitur pada saat ini di eksperimen selanjutnya. Apabila akurasi dari penggunaan fitur saat ini lebih baik atau meningkat dari eksperimen sebelumnya, \saya~menggunakan fitur ini pada eksperimen selanjutnya. Selain itu, \saya~juga mengevaluasi arsitektur RNNs yang \saya~gunakan dengan cara yang sama.
+Other semantic roles, such as \agent and \beneficiary, are also evaluated by following these rules. After we have the value of precision, recall, and F1 for every semantic role, we average them to get the average precision, recall, and F1 for the model being evaluated.
 	
