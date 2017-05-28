@@ -3,202 +3,81 @@
 \chapter{\babEmpat} \label{eksperimen}
 %-----------------------------------------------------------------------------%
 
-Bab ini akan membahas mengenai implementasi pada penelitian yang terdiri atas tahap pengumpulan data, pra-pemrosesan, pengembangan model, eksperimen dan evaluasi. Setiap fitur yang \saya~usulkan pada Bab 3 juga akan dijelaskan langkah pengimplementasian pada bab ini.
+This chapter explans the implementations of the methodology explained in chapter 3. It includes the implementation of data annotation and pre-processing, model development, experiment, as well as the evaluation.
 
-\section{Perangkat Pendukung}
-Dalam melakukan eksperimen, \saya~menggunakan perangkat komputer yang disediakan di lab. Perangkat komputer tersebut memiliki spesifikasi seperti pada tabel \ref{table:spesifikasi hardware}.
+\section{Computer Specification}
+For every experiment, we use GPU-based virtual server provided by Kata.ai. The specifications of the server are explained as follows.
 
 \begin{table}
 	\centering
-	\caption{Spesifikasi \f{Hardware}}
-	\begin{tabular}{|c|c|}
+	\caption{Server Specifications}
+	\begin{tabular}{|l|l|}
 		\hline
-		Processor & i7-4770S \\ \hline
-		Banyak Core & 8 core \\ \hline
-		Frekuensi Processor & 3.1 GHz per core \\ \hline
-		RAM & 8 GB \\ \hline
+		\textbf{Processor} & i7-4770S \\ \hline
+		\textbf{Number of Cores} & 8 core \\ \hline
+		\textbf{Processor Frequency} & 3.1 GHz per core \\ \hline
+		\textbf{RAM} & 8 GB \\ \hline
+		\textbf{Operating System} & Ubuntu 14 \\ \hline
 	\end{tabular}
 	\label{table:spesifikasi hardware}
 \end{table}
 
-Berikut merupakan detail dari sistem operasi yang terpasang pada komputer di atas.
-\begin{table}
-	\centering
-	\caption{Spesifikasi Sistem Operasi}
-	\begin{tabular}{|c|c|}
-		\hline
-		Distributor ID & Ubuntu \\ \hline
-		Deskripsi & Ubuntu 13.10 \\ \hline
-		Versi rilis & 13.10 \\ \hline
-		Nama kode & saucy \\ \hline
-	\end{tabular}
-	\label{table:spesifikasi os}
-\end{table}
+The server uses 8-core i7 processor with 3.1 GHz per core frequency. The size of the RAM is 8 GB. We use Ubuntu 14 distribution as the operating system.
 
-\section{Pengumpulan Data}
-\Saya~melakukan pengumpulan data dengan menggunakan ide implementasi dari \cite{skripsiKakRadit} yang kemudian \saya~modifikasi sesuai dengan kebutuhan. Bahasa program yang \saya~gunakan untuk melakukan pengumpulan data ini adalah Java, dengan menggunakan library JSoup untuk mengunduh isi forum sebuah situs. Hasil dari pengumpulan data ini \saya~gabungkan dengan data penelitian milik \cite{skripsiKakRadit}.
+\section{Data Annotation and Pre-processing}
+For data annotation, we use an in-house tool provided by Kata.ai, named \textit{kata-annotator}. After finish annotating, the tool outputs the tokenized annotation result as JSON in BIO format. An example is given as follows:
 
-\begin{kode}\label{(kode_crawling)}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{downloadPage(link)}{
-		\Input{link of an online health forum}
-		\Output{content of forum}
-		\BlankLine
-		
-		sql = selectFromDB(link)\;
-		res = execOnDB(sql)\;
-		\BlankLine
-		
-		\If{res != empty}{
-			insertToDB(sql)\;
-			doc = JSoup.connect(link)\;
-			writeToFile(doc.getJudulKeluhan())\;
-			writeToFile(doc.getIsiKeluhan())\;
-			writeToFile(doc.getJawaban)\;
-		}
-	}
-	\label{code:crawl}	
-	\caption{\textit{Pseudocode} untuk melakukan pengumpulan data}	
-\end{kode}
+[\\
+	{\\
+		"data": ["Aku", "pengen", "makan", "ayam", "goreng", "dong"],\\
+		"label": ["B-AGENT", "B-MD", "B-PRED", "B-PATIENT", "I-PATIENT", "O"]\\
+	},\\
+	{\\
+		"data": ["Kamu", "gak", "tidur", ",", "Andi", "?"],\\
+		"label": ["B-AGENT", "O", "B-PRED", "O", "B-GREET", "O"]\\
+	}\\
+]
 
-Hasil dari pengumpulan data ini yaitu \saya~mendapatkan 2065 \textit{post} dari forum kesehatan \textit{online} pada situs \textit{www.tanyadok.com}.
+The total amount of data to be annotated was 9000 sentences. The data was annotated by three linguists with each of them annotating different set of data containing 3000 sentences for 8 weeks. In order to align the annotation understanding between them, the three linguists annotated the same trial set consisting of 100 sentences before starting to annotate the real one. The annotation differences found are then discussed in order to align the understanding between them.
 
-\section{Pra-Pemrosesan}
-Tahap selanjutnya yaitu tahap pra-pemrosesan. Seperti yang telah dijelaskan pada bab metodologi, \saya~melakukan tiga buah pekerjaan di tahap ini, yaitu melakukan pembersihan data, tokenisasi dan pemotongan kalimat. Berikut merupakan penjelasan dari masing-masing pekerjaan tersebut:
+After 8 weeks of annotation, the total amount of data that has been annotated is 8000 sentences. The other 1000 sentences missing is due to one annotator that could not complete the annotation on time. It turns out there are only 5000 sentences which contain predicate in it. These 5000 sentences are the main data set to be trained, validated, and tested. This data set is split into training, validation, and testing sets with the ratio 60:20:20. 
 
-\subsection{Pembersihan Data}
-Tahap pembersihan data bertujuan untuk menghilangkan karakter yang bukan merupakan ASCII. Hal ini \saya~lakukan supaya dalam tahap ekstraksi fitur POS \textit{Tagging} tidak memiliki masalah karena terdapat karakter bukan ASCII. Selain itu, di dalam dokumen terdapat banyak \textit{email} dan \textit{url} yang unik sehingga mengakibatkan sistem akan menganggap token-token tersebut merupakan token yang unik dan berbeda. Untuk menangani hal tersebut \saya~melakukan normalisasi dengan mengubah semua token \textit{email} dan \textit{url} menjadi kata "email" dan "url" sehingga tetap mempertahankan keberadaan kedua token tersebut. Selain itu \saya~juga mengganti beberapa karakter yang bukan alfanumerik menjadi beberapa token dalam representasi kata, seperti karakter "\&" menjadi "dan", "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari". Hal ini \saya~lakukan karena korpus yang \saya~gunakan dalam bentuk berkas \textit{xml} yang tidak mengizinkan adanya ketiga karakter tersebut. Kemudian \saya~juga mengubah karakter "/" menjadi "atau" supaya mudah dalam ekstraksi fitur kata itu sendiri dengan menggunakan \textit{word embedding}. Kode \ref{code:cleaning} merupakan \textit{pseudocode} untuk melakukan pembersihan data yang \saya~gunakan.
-
+\section{Model Development}
+\subsection{Feature Extraction}
+\subsubsection{Word Embedding}
+% Jelasin pake gensim's word2vec. Parameter nya apa aja. Data training yang digunakan darimana.
 
 \begin{kode}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{downloadPage(sentence)}{
-		\Input{sentence before cleaning}
-		\Output{sentence which has cleaned}
-		\BlankLine
-		
-		sentence.removeByRegex(non-ASCII regex)\;
-		sentence.replace(email-regex, "email")\;
-		sentence.replace(url-regex, "url")\;
-		sentence.replace(\&, "dan")\;
-		sentence.replace(\textless, "kurang dari")\;
-		sentence.replace(\textgreater, "lebih dari")\;
-		sentence.replace(/, "atau")\;
-		\BlankLine
-		
-		\Return sentence;
-	}
-	
-	\caption{\textit{Pseudocode} untuk melakukan pembersihan data}
-	\label{code:cleaning}
-\end{kode}
-
-\subsection{Tokenisasi}
-Pada tahap tokenisasi \saya~melakukan pemisahan antar kata dan antar token yang berbeda jenis, seperti token alfabet dengan numerik, alfanumerik dengan non-alfanumerik dan menghilangkan karakter spasi yang berlebih. Dalam mengimplementasikan tahap ini, \saya~menggunakan bahasa pemrograman Ruby. Berikut merupakan \textit{pseudocode} untuk melakukan tokenisasi.
-
-\begin{kode}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{tokenization(sentence)}{
-		\Input{sentence before tokenization}
-		\Output{sentence which has tokenized}
-		\BlankLine
-		
-		sentence.replaceByRegex([alfabet][numerik], [alfabet] [numerik])\;
-		sentence.replaceByRegex([numerik][alfabet], [numerik] [alfabet])\;
-		sentence.replaceByRegex([alfanumerik][non-alfanumerik], [alfanumerik] [non-alfanumerik])\;
-		sentence.replaceByRegex([non-alfanumerik][alfanumerik], [non-alfanumerik] [alfanumerik])\;
-		sentence.replaceByRegex([\textbackslash s]+, " ")\;
-		\BlankLine
-		
-		\Return sentence;
-	}
-	\caption{\textit{Pseudocode} untuk melakukan tokenisasi}
-	\label{code:tokenisasi}
-\end{kode}
-
-\subsection{Pemotongan Kalimat}
-Implementasi yang \saya~lakukan tahap ini bertujuan untuk mendapatkan sebuah \textit{instance} sebagai \textit{input} dari program RNNs di tahap eksperimen. Pemotongan dilakukan pada masing-masing \textit{post}. Pada pemotongan kalimat ini, penulis menerapkan aturan berbeda yang telah dijelaskan pada bab 3 karena jumlah kata pada sebuah kalimat yang dipisahkan dengan tanda baca ".", "!" dan "?" sangat jauh berbeda. Dengan implementasi pemotongan kalimat ini, \saya~berupaya untuk menghindari kasus kalimat yang \textit{sparse}, yaitu adanya kalimat yang memiliki jumlah token sangat renggang. Kode \ref{code:potong} merupakan \textit{pseudocode} untuk melakukan pemotongan kalimat.
-
-\begin{kode}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{sentenceSplitting(post, limit)}{
-		\Input{post, minimal limit number of word in a sentence}
-		\Output{array of sentence}
-		\BlankLine
-		
-		arrSentence = post.splitByRegex([?\.!,])\;
-		temp = []\;
-		arrResult = []\;
-		\ForEach{sentence in arrSentence}{
-			\uIf{len(temp) > limit}{
-				arrResult.append(temp)\;
-				temp = []\;
-			}
-			\Else{
-				temp += sentence
-			}
-		}
-		\BlankLine
-		
-		\Return arrResult;
-	}
-	
-	\caption{\textit{Pseudocode} untuk melakukan pemotongan kalimat}
-	\label{code:potong}
-\end{kode}
-
-\section{Pelabelan}
-Pada tahap ini \saya~melakukan pelabelan pada data baru yang telah diunduh. Sebelumnya, \cite{skripsiKakRadit} telah melabeli 200 buah \textit{post} dan pada penelitian ini \saya~melakukan pelabelan terhadap 109 buah \textit{post} yang \saya~pilih dari hasil pengumpulan data. \Saya~melakukan pemilihan berdasarkan banyaknya kalimat dalam sebuah \textit{post}. Untuk aturan pelabelan, \saya~mengikuti atuan pelabelan yang dilakukan oleh \cite{skripsiKakRadit} dalam penelitiannya. Pelabelan ini dilakukan selama 2 minggu.
-
-\section{Pengembangan Model}
-\subsection{Ekstraksi Fitur}
-Ekstraksi fitur dilakukan dengan menggunakan program yang diimplementasikan dalam bahasa Python. Keluaran dari ekstraksi fitur ini adalah vektor kata untuk masing-masing kalimat yang disimpan dalam format JSON. Masing-masing kalimat dalam sebuah \textit{post} disimpan dalam sebuah \textit{array} yang kemudian keseluruhan \textit{post} disimpan dalam \textit{hash} dengan indeks yang telah didefinisikan pada saat tahap pengumpulan data.
-
-\subsubsection{Fitur Kata Itu Sendiri}
-Dalam melakukan ekstraksi fitur kata itu sendiri, \saya~menggunakan \textit{library} gensim \citep{rehurek_lrec} yang disediakan secara gratis. Gensim mengimplementasikan \textit{word embedding} melalui \textit{library} bernama word2vec. Sebelum melakukan ekstraksi fitur, \saya~melakukan \textit{training} model \textit{word embedding} dengan data yang \saya~unduh dari berbagai artikel kesehatan di beberapa situs (\textit{https://www.kaskus.co.id/forum/94/health, http://archive.kaskus.co.id/forum/94}). Dalam melakukan \textit{training}, terdapat beberapa parameter yang perlu diberikan yaitu panjang \textit{windows} dan panjang vektor yang dihasilkan. Kedua parameter tersebut merupakan parameter bebas, sehingga dapat diisi dengan angka positif yang bebas. Dalam penelitian ini, \saya~menggunakan panjang \textit{window} yaitu $ 5 $ dan panjang vektor yaitu $ 128 $. Kode \ref{code:trainword2ve} merupakan kode untuk membuat dan melakukan \textit{training} Word2Vec.
-\begin{kode}
 	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{trainWwordToVector(corpus, windowsSize, vectSize)}{
-		\Input{corpus of sentences for training, length of window, size of vector}
-		\Output{model Word2Vec}
+	\Fn{trainWordEmbeddingModel(corpus, contextWindow, vectorDimension)}{
+		\Input{training corpus, context window, vector dimension}
+		\Output{Word2Vec model}
 		
 		\BlankLine
-		model = Word2Vec.createModel(corpus, windowsSize, vectSize)
+		model = Word2Vec.createModel(corpus, contextWindow, vectorDimension)
 		
 		\BlankLine
 		\Return model;
 	}
 	
-	\caption{\textit{Pseudocode} untuk membuat model dan melakukan training Word2Vec}
+	\caption{A pseudocode to train word embedding model using Word2Vec}
 	\label{code:trainword2ve}
 \end{kode}
 
-Setelah model didapatkan, \saya~melakukan ekstraksi dari masing-masing kata pada korpus. Kode \ref{code:ekstraksiownword} merupakan \textit{pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri.
+% jelasin kode train word embedding
 
 \begin{kode}
-
+	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	\SetKwProg{Fn}{Function}{ is}{end}
 	\Fn{wordToVector(model, arrWord)}{
-		\Input{model word embedding, array of word in a sentence}
-		\Output{array of word vector}
-	
+		\Input{word embedding model, array of words of a sentence}
+		\Output{array of word vectors}
+		
 		\BlankLine
 		arrVector = []\;
 		\ForEach{word in arrWord}{
@@ -209,148 +88,55 @@ Setelah model didapatkan, \saya~melakukan ekstraksi dari masing-masing kata pada
 		\Return arrVector;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri}
+	\caption{A pseudocode to transform words into vectors by word embedding model}
 	\label{code:ekstraksiownword}
 \end{kode}
+% jelasin kode convert word embedding
 
-\subsubsection{Ekstraksi Fitur Kamus Kesehatan}
-Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implementasi ekstraksi fitur \textit{stop word}. Perbedaanya yaitu pada penggunaan \textit{resource}, yang mana ekstraksi fitur \textit{stop words} \saya~lakukan dengan menggunakan kamus \textit{stop word}, sedangkan pada fitur ini \saya~menggunakan kamus kesehatan. Kamus kesehatan yang \saya~gunakan sama dengan kamus pada penelitian \cite{skripsiKakRadit}, yang mana terdapat 4 kamus, yaitu kamus \textit{disease}, \textit{symptom}, \textit{treatment} dan \textit{drug}.
+\subsubsection{POS Tag}
+For POS Tag feature, we use the gold-standard POS tag annotated by the three linguists. The annotation tool \textit{kata-annotator} is also used for annotating the POS tag. The output example of the POS tag from the tool is given as follows:
 
-\begin{kode}
-	
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetAlgoLined
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{dictExtract(dictionary, sentence)}{
-		\Input{dictionary of stop word,sentence}
-		\Output{array of one hot vector}
-		\BlankLine
-		
-		dictFeature = []\;
-		\ForEach{word in sentence}{
-			dictFeature.append(dictionary.isExist(word))
-		}
-		\BlankLine
-		
-		\Return dictFeature;
-		
-	}
-	\BlankLine
-	
-	\Fn{dictExtractAll(sentence)}{
-		\Input{dictionary of stop word,sentence}
-		\Output{array of one hot vector}
-		\BlankLine
-		
-		dictExtract(symptomDict, sentence)\;
-		dictExtract(diseaseDict, sentence)\;
-		dictExtract(treatmentDict, sentence)\;
-		dictExtract(drugDict, sentence)\;
-		\BlankLine
-		
-	}
-	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}
-	\label{code:ekstraksikamus}	
-\end{kode}
+[\\
+{\\
+	"data": ["Aku", "pengen", "makan", "ayam", "goreng", "dong"],\\
+	"label": ["NN", "ADV", "V", "NN", "V", "INTJ"]\\
+},\\
+{\\
+	"data": ["Kamu", "gak", "tidur", ",", "Andi", "?"],\\
+	"label": ["NN", "NEG", "V", "O", "NN", "O"]\\
+}\\
+]
 
-Setiap kata yang terdaftar di dalam kamus kesehatan memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan Python dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ini dapat dilihat pada kode \ref{code:ekstraksikamus}.
-
-
-\subsubsection{Ekstraksi Fitur Stop Word}
-\Saya~melakukan ekstraksi fitur \textit{stop word} dengan menggunakan kamus \textit{stop word} yang digunakan oleh Taufik (2015) dalam melakukan pengenalan entitas bernama. Setiap kata yang merupakan \textit{stop word} memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan Python dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksistopword}.
-
-\begin{kode}
-	
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{stopWordExtract(dictionary, sentence)}{
-		\Input{dictionary of stop word,sentence}
-		\Output{array of one hot vector}
-		
-		\BlankLine
-		stopWordFeature = []\;
-		\ForEach{word in tagOnly}{
-			posTagFeature.append(dictionary.isExist(word))
-		}
-		\BlankLine
-		
-		\Return stopWordFeature;
-	}
-	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur \textit{stop word}}
-	\label{code:ekstraksistopword}	
-\end{kode}
+% jelasin sedikit tentang contoh output tools nya
 
 \begin{kode}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{posTagExtract(model, sentence)}{
-		\Input{tagger of POS Tag,sentence}
+	\Fn{convertPOSTagToOneHotVector(arrPOS)}{
+		\Input{array of POS tags of a sentence}
 		\Output{array of one hot vector}
 		\BlankLine
 		
-		sentenceTagged = model.tagSentence(sentence)\;
-		tagOnly = getTagOnly(sentenceTagged)\;
 		posTagFeature = []\;
-		\ForEach{tag in tagOnly}{
-			posTagFeature.append(tag.convertToOneHotVector())
+		\ForEach{pos in arrPOS}{
+			posTagFeature.append(pos.convertToOneHotVector())
 		}
 		\BlankLine
 		
 		\Return posTagFeature;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur POS-Tag}
+	\caption{A pseudocode for converting POS tags of a sentence into one hot vectors}
 	\label{code:ekstraksipostag}
-\end{kode}
-
-\subsubsection{Ekstraksi Fitur Part of Speech Tag}
-\Saya~menggunakan \textit{tools} Stanford POS Tagger \citep{toutanova2000enriching} dan model POS \textit{tagger} yang dikembangkan oleh \cite{dinakaramani2014designing}. \Saya~melakukan pemberian tag pada setiap kalimat di dalam korpus, kemudian mengubah hasil tag tersebut menjadi bentuk \textit{one-hot-vector}. Kode \ref{code:ekstraksipostag} merupakan \textit{pseudocode} dalam melakukan ekstraksi fitur POS Tag untuk sebuah kalimat yang \saya~lakukan.
-
-\subsubsection{Ekstraksi Frasa Kata Benda dan Kata Kerja}
-Dalam mengimplementasikan ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK \citep{bird2009nltk} yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS-Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array} yang berisi \textit{array of one-hot-vector} dari masing-masing kata dalam 1 kalimat, yang apabila suatu kata merupakan bagian dari frasa kata benda akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. \textit{Pseudocode} untuk melakukan ekstraksi fitur ini dalam 1 kalimat dapat dilihat pada kode \ref{code:ekstraksinp}.
-
-\begin{kode}
-
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
 	
-	\SetAlgoLined
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{phraseExtract(chunker, sentence, label)}{
-		\Input{chunker for a sentence, sentence, label of chunking}
-		\BlankLine
-		
-		chunkedSentence = chunker.chunk(sentence)\;
-		chunkFeature = []\;
-		\ForEach{token in chunkedSentence}{
-			\If{token.isLabel(label)}
-			{
-				chunkFeature.append([0.0, 1.0])\;
-			}
-			\Else(){
-				chunkFeature.append([1.0, 0.0])\;
-			}
-		}
-		\BlankLine
-		
-		\Return chunkFeature;
-		
-	}
-	\BlankLine	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur frasa}
-	\label{code:ekstraksinp}	
 \end{kode}
 
-\subsubsection{Ekstraksi Fitur 1 Kata Sebelum}
-Ekstraksi fitur ini \saya~lakukan dengan mengambil vektor kata dengan indeks saat ini dikurangi satu. Untuk awal kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. Kode \ref{code:ekstraksi1wordbef} merupakan implementasi dari ekstraksi fitur 1 kata sebelum.
+% jelasin sedikit tentang convert POS tag into one hot vector
+
+\subsubsection{Neighboring Word Embeddings}
+% jelasin ada dua, yaitu extract 1 word vector before and after. Pada sebelum token pertama dan setelah token terakhir ditambah padding vektor 0.
 
 \begin{kode}	
 	\SetKwInOut{Input}{Input}
@@ -380,9 +166,6 @@ Ekstraksi fitur ini \saya~lakukan dengan mengambil vektor kata dengan indeks saa
 	\label{code:ekstraksi1wordbef}	
 \end{kode}
 
-\subsubsection{Ekstraksi Fitur 1 Kata Sesudah}
-Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fitur 1 kata sebelum, perbedaannya pada indeks yang diambil dalam pada saat ekstraksi. Untuk masing-masing kata, \saya~mengambil vektor kata dengan indeks 1 kata setelahnya. Untuk vektor kata di akhir kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. Kode \ref{code:ekstraksi1wordaft} merupakan implementasi dari ekstraksi fitur 1 kata sesudah.
-
 \begin{kode}
 	
 	\SetKwInOut{Input}{Input}
@@ -410,6 +193,25 @@ Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fit
 	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sesudah}
 	\label{code:ekstraksi1wordaft}
 \end{kode}
+
+\subsection{Model Architecture}
+% Jelasin gambaran umum apa aja architecture nya.
+
+\subsubsection{Vanilla LSTM (LSTM)}
+\subsubsection{Bi-Directional LSTM (BLSTM)}
+\subsubsection{CNN-BLSTM}
+\subsubsection{Context-Aware BLSTM (CA-BLSTM)}
+
+\section{Experiment}
+
+\section{Evaluation}
+
+% PUNYA WAHID
+\section{Pengembangan Model}
+\subsection{Ekstraksi Fitur}
+Ekstraksi fitur dilakukan dengan menggunakan program yang diimplementasikan dalam bahasa Python. Keluaran dari ekstraksi fitur ini adalah vektor kata untuk masing-masing kalimat yang disimpan dalam format JSON. Masing-masing kalimat dalam sebuah \textit{post} disimpan dalam sebuah \textit{array} yang kemudian keseluruhan \textit{post} disimpan dalam \textit{hash} dengan indeks yang telah didefinisikan pada saat tahap pengumpulan data.
+
+\subsubsection{Fitur Kata Itu Sendiri}
 
 \subsection{Pengusulan Arsitektur RNNs}
 Sesuai dengan yang telah dijelaskan pada Bab 3, \saya~mengusulkan dua arsitektur RNNs yang akan digunakan pada tahap eksperimen. Pada bagian ini \saya~akan menjelaskan implementasi dari masing-masing arsitektur tersebut. Dalam melakukan implementasi RNNs, \saya~menggunakan \textit{library} Keras \citep{chollet2015keras} dalam bahasa Python. Keras sendiri dapat berjalan di atas dua \textit{library deep learning} lain, yaitu Theano dan Tensorflow, namun dalam penelitian ini \saya~menggunakan Theano. \Saya~menggunakan \textit{Sequential model} yang merupakan layer \textit{linear stack} dalam mengembangkan model dan jenis RNNs yang \saya~gunakan dalam penelitian ini adalah LSTMs. Terkait dengan jumlah \textit{timesteps}, LSTMs membutuhkan jumlah yang tedefinisi dari awal. Oleh karena itu, jumlah \textit{timestep} merupakan jumlah kata dari kalimat terpanjang di dalam korpus ($ l $). Apabila terdapat kalimat yang panjangnya kurang dari $ l $, vektor dari kalimat tersebut akan di-\textit{padding} atau ditambahkan vektor $ \vec{0} $ sampai panjangnya $ l $. Dalam melakukan \textit{padding}, \saya~menggunakan fungsi \textit{padsequences} yang sudah terdapat di dalam Keras.
