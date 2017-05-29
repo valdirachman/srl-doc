@@ -7,20 +7,29 @@
 In this chapter, we describe the methodology used in this research. It consists of data gathering, data pre-processing, data annotation, experiment, and evaluation. Before we describe each part in details, we explain the big picture of the methodology in a form of pipeline.
 
 \section{Pipeline}
-The goal of this research is to build a model that predicts the semantic roles of each Indonesian sentence. In other languages such as English, there are already semantic role corpus from which the SRL system is built. Unfortunately, that is not the case for Indonesian, since there is no annotated corpus available yet. We therefore create our own with the annotation guideline crafted for Indonesian conversational language. In this research, we focus on building SRL system for the conversational Indonesian language.
+The goal of this research is to build a model that predicts the semantic roles of each Indonesian sentence. In other languages such as English, there are already semantic role corpus from which the SRL system is built. Unfortunately, that is not the case for Indonesian, since there is no annotated corpus available yet. We therefore create our own with the annotation guideline crafted for Indonesian conversational language. In this research, we focus on building SRL system for the conversational Indonesian language. 
 
 We view SRL as a sequence labeling problem. Suppose that we have an input of \textit{n} words $w = (w_{1}, w_{2}, ..., w_{n})$, the goal is to find the best label sequence $y = (y_{1}, y_{2}, ..., y_{n})$, with $y_{i}$ representing the semantic roles. The probabilities of the label in each time step $i$ is described as follows.
 \begin{equation}
 P(y_{i}|w_{i-l}, ..., w_{i+l},y_{i-l}, ..., y_{i+l})
 \end{equation}
 
-whereby \textit{l} is a small number. In this section, we explain our research methodology including the data annotation, features used, and the proposed model architecture. 
+whereby \textit{l} is a small number. 
 
-This research uses the data from one of Kata.ai's chat bots. Firstly, the data is pre-processed before going into the next steps. After that, the data is then annotated with semantic roles based on the annotation guideline proposed by us for Indonesian conversational language. The annotated data is then divided into training, development, and testing sets with the ratio of 80:20:20, respectively.
+In this section, we explain our research methodology including the data annotation, features used, and the proposed model architecture. Figure~\ref{fig:pipeline} shows the pipeline of this research.
 
-There are 2 main scenarios for the experiment. The first scenario aims for finding the best set of features that output the best performance. The goal of the second scenario is to find which deep learning model architecture has the best result. In the first scenario, we have two features, which are word embedding and POS Tag. In the second scenario, we compare four model architectures, namely vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), CNN-BLSTM, and Context-Aware BLSTM (CA-BLSTM).
+This research uses the data from one of Kata.ai's chat bots. Firstly, the data is pre-processed before going into the next steps. After that, the data is then annotated with semantic roles based on the annotation guideline proposed by us for Indonesian conversational language.
 
-Every experiment is evaluated based on precision, recall, and F-measure of each semantic roles. The evaluation approach used is partial match based on Seki et al. (20xx). We then analyze and explain the results of each experiment scenario.
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/pipeline}
+	\caption{Methodology Pipeline}
+	\label{fig:pipeline}
+\end{figure}
+
+There are 2 main scenarios for the experiment. The first scenario aims for finding the best set of features that output the best performance. The goal of the second scenario is to find which deep learning model architecture has the best result. In the first scenario, we have three features, which are word embedding, POS tag, and neighboring word embeddings. In the second scenario, we compare four model architectures, namely vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), CNN-BLSTM, and Context-Aware BLSTM (CA-BLSTM).
+
+We use 5-fold cross validation for every experiment. Each experiment is evaluated based on precision, recall, and F1 of each semantic roles with partial match approach. The performance of a model is retrieved by averaging precision, refall, and F1 of every semantic role.  We then analyze and explain the results of each experiment scenario.
 
 \section{Data Gathering}
 In this research we use real-world data from one of Kata.ai chat bots. We firstly retrieved data consisting of 40.000 instances of text chats. We then manually deleted junk chats which contain, for example, only laugh or greeting. After that, we run a script to delete duplicate chats. The deletion process outputs a clean data with 30.000 instances in total. Finally, we randomly selected 9.000 out of 30.000 instances as the data to be annotated. This data set will be the one which is trained and tested to build the SRL system.
@@ -36,14 +45,6 @@ After the data has been gathered, the next step is to pre-process the data so th
 	\item <alphabet><symbol> to be <alphabet><space><symbol>
 	\item <symbol><alphabet> to be <symbol><space> <alphabet>
 \end{enumerate}
-
-Figure~\ref{fig:tokenization} illustrates a few examples of sentence tokenization.
-\begin{figure}
-	\centering
-	\includegraphics[width=\linewidth]{images/tokenisasi}
-	\caption{Sentence Tokenization Illustration}
-	\label{fig:tokenization}
-\end{figure}
 
 \section{Data Annotation}
 In this work, we create a new set of semantic roles mainly crafted for informal conversational language. The summary of semantic roles proposed with its examples are presented in Table~\ref{tab:semantic_roles}.
@@ -185,25 +186,33 @@ Word embedding represents word as a vector. Word embedding has proved to be one 
 In order to utilize word embedding as our features, we conduct three steps which consist of: 1.) data gathering for building word embedding model, 2.) training the word embedding model, and 3.) converting words into vectors with the trained word embedding model.
 
 \begin{enumerate}
-	\item Data gathering for building word embedding modelPengumpulan data \textit{training} untuk \textit{word embedding}\\
+	\item Data gathering for building word embedding model\\
 	%Berikan penjelasan
+	We first gather an unlabeled dataset in order to build the word embedding model. The dataset is retrieved from 1.300.000 sentences of chats from Kata.ai.
 	
 	\item Training the word embedding model\\
 	%Berikan penjelasan
+	The word embedding model is trained using the afore-mentioned unlabeled data set. This model is used to transform words into their respective vector representations.
 	
 	\item Converting words into vectors with the trained word embedding model\\
 	%Berikan penjelasan
-	
+	The trained word embedding model is then used to convert words into vectors. The example of this conversion can be seen in Table~\ref{tab:examplewe}
 \end{enumerate}
 
-Figure~\ref{fig:wordembedding} illustrates the afore-mentioned steps in order to get the vector representation of words with word embedding.
-
-\begin{figure}
+\begin{table}
 	\centering
-	\includegraphics[width=\linewidth]{images/fiturkata}
-	\caption{Ilustrasi Ekstraksi Fitur Kata pada Suatu Kalimat}
-	\label{fig:fiturkata}
-\end{figure}
+	\caption{An example of word embedding vector representation with dimension of 3}
+	\label{tab:examplewe}
+	\begin{tabular}{|lcccc|}
+		\hline
+		\textbf{Sentence} 				& Aku & pengen & makan & ayam \\
+		\hline
+		\textbf{Word Vector}		& [0.2, -0.4, 0.9] & [0.7, 0.1, 0.2] & [0.1, 0.6, -0.5] & [0.9, 0.1, 0.8] \\
+		\hline
+	\end{tabular}
+\end{table}
+
+In Table~\ref{tab:examplewe} provides an example assuming that the vector dimension is 3. This means that every word is mapped into a vector with a length of 3.
 
 \subsubsection{Part-of-Speech Tag (POS-Tag)}
 POS Tag is a feature to represent the class of each word. In this research, we use POS Tag annotation which is mainly inspired by the work of Ruli Manurung (20XX). The POS Tags that we use are: Verb (V), Noun (NN), Adjective (ADJ), Adverb (ADV), Coordinative Conjunction (CC), Subordinative Conjunction (SC), Interjection (INTJ), Question (WH), Preposition (PREP), and Negation (NEG). Before feeding the feature to the deep learning model, we encode the POS tag features as a one-hot vector. Each one-hot vector represents each POS tag uniquely.
@@ -230,6 +239,22 @@ In this work, we use gold-standard POS tag on our data as the features to preven
 
 \subsubsection{Neighboring Word Embeddings}
 Neighboring word embeddings are the vector representations of words located before and after the word being processed. We use specifically one word before and after the word being processed. Suppose that we are processing the word $w_{t}$ at time step $t$, the neighboring words embeddings are the vector representations of the word $w_{t-1}$ and $w_{t+1}$. We argue that this feature can be useful for capturing the context of the word by looking at the surrounding words. Suppose that the machine is processing the word \textit{"rumah"} in \textit{"aku tidur di rumah"}. By looking at the previous word, which is the preposition \textit{"di"}, it gives a hint that \textit{"rumah"} might have the semantic role \location.
+
+\begin{table}
+	\centering
+	\caption{An example of neighboring word embedding vectors of every time step}
+	\label{tab:examplenwe}
+	\begin{tabular}{|lcccc|}
+		\hline
+		\textbf{Sentence} 				& Aku & pengen & makan & ayam \\
+		\hline
+		\textbf{Word Vector}		& [0.2, -0.4, 0.9] & [0.7, 0.1, 0.2] & [0.1, 0.6, -0.5] & [0.9, 0.1, 0.8] \\			\textbf{Neighbor Vector}	& [0.0, 0.0, 0.0] & [0.2, -0.4, 0.9] & [0.7, 0.1, 0.2] & [0.1, 0.6, -0.5] \\
+													& [0.7, 0.1, 0.2] & [0.1, 0.6, -0.5] &  [0.9, 0.1, 0.8] &  [0.0, 0.0, 0.0] \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Table~\ref{tab:examplenwe} illustrates the neighboring word embeddings of every time step. The table shows that in every time step, it adds the word vector information from the left and right. Since the first word does not have any previous word, its left neighbor is a vector $\vec{0}$. This is also the case for the last word which does not have any subsequent word. Hence, the right neighbor of the last word is also a vector  $\vec{0}$.
 
 \subsection{Model Architecture}
 Recurrent Neural Networks (RNN) has a nature advantage for solving sequence labeling problem~\cite{zhou2015end}. ~\cite{hochreiter1997long} proposed Long Short-Term Memories (LSTM) as the specific version of RNN designed to overcome vanishing and exploding gradient problem. In this research, we experiment on various LSTM architectures, namely vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), Convolutional Neural Network BLSTM (CNN-BLSTM), and Context-Aware BLSTM (CA-BLSTM). Each architecture is built incrementally upon the previous architectures, starting from the vanilla LSTM. The last architecture, CA-BLSTM, is the one we propose in this work.
@@ -277,21 +302,17 @@ After explaining the big picture of LSTM networks, we describe the details of ev
 The LSTM unit in time step $t$ requires an input tensor $a_{t}$. As explained in subchapter X, the equations to produce output tensor $\mathbf{f_{t}}$ are presented as follows:
 
 \begin{equation}\label{eq:lstmm}
-m_{t}=\alpha_{t} (\times) m_{t-1} + \beta_{t} (\times) f(x_{t},{t-1})
+\mathbf{m_{t}}=\alpha_{t}\cdot~\mathbf{m_{t-1}} + \beta_{t}\cdot~tanh(W_{xm} \cdot \mathbf{x_{t}} + W_{fm} \cdot \mathbf{f_{t-1}})
 \end{equation}
 \begin{equation}\label{eq:lstmh}
-h_{t}=\gamma_{t} (\times) tanh(m_{t})
+\mathbf{f_{t}}=\gamma_{t}\cdot~tanh(\mathbf{m_{t}})
 \end{equation}
 where
-\begin{equation}\label{eq:lstmx}
-f(x_{t},{t-1})=tanh(W_{xm} \cdot x_{t} + W_{hm} \cdot h_{t-1})
-\end{equation}
-
 $ \alpha_t $, $ \beta_t $, and $ \gamma_t $ are the gates:
 \begin{enumerate}
-	\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{x\alpha} \cdot x_{t}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1}) $
-	\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{x\beta}\cdot x_{t}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1}) $
-	\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{x\gamma}\cdot x_{t}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1}) $
+	\item \textit{Forget gates}: $ \alpha_{t}=\sigma(W_{x\alpha} \cdot \mathbf{x_{t}}+W_{f\alpha}\cdot~\mathbf{f_{t-1}}+W_{m\alpha}\cdot~\mathbf{m_{t-1}}) $
+	\item \textit{Input gates}: $ \beta_{t}=\sigma(W_{x\beta}\cdot \mathbf{x_{t}}+W_{f\beta}\cdot~\mathbf{f_{t-1}}+W_{m\beta}\cdot~\mathbf{m_{t-1}}) $
+	\item \textit{Output gates}: $ \gamma_{t}=\sigma(W_{x\gamma}\cdot \mathbf{x_{t}}+W_{f\gamma}\cdot~\mathbf{f_{t-1}}+W_{m\gamma}\cdot~\mathbf{m_{t-1}}) $
 \end{enumerate}
 
 It is worth noting that the LSTM layer is recursive, meaning that one of the inputs comes from the output of previous time step. This way, the result of each time step also depends on the previous ones.
@@ -416,7 +437,7 @@ label_{i} = Softmax(\mathbf{j_{i}})
 Lastly, the time-distributed softmax layer produces the final semantic roles label.
 
 \section{Experiment}
-The annotated data is split into training, validation, and testing set with ration 60:20:20. We train our model by using training set. The trained model is then use to predict the semantic roles out of validation set. The analysis done in each experiment scenario is based on the result of our validation set. Lastly, the results of testing set will be used as the final metrics to compare between scenarios.
+We use 5-fold cross validation for out experiments and thus, the data set is firstly split into 5 sets. These 5 sets are divided into training and testing sets with the ratio of 4:1. After that, we train the model using the training set and evaluate it using the testing set. This process is done 5 times until every set of data is tested.
 
 \section{Evaluation}
 In each scenario, we evaluate the trained model in order to see how good it predicts the semantic roles as expected. The metrics for our evaluation are precision, recall, and F1. These metrics is applied to all semantic role labels. We then average each metrics from all semantic role labels to get the average precision, recall, and F1 of a model. The evaluation approach used is partial match in which a set of predicted labels is counted right if there is an intersection with the gold-standard \citep{seki2003probabilistic}. 

@@ -54,72 +54,65 @@
 \BOOKMARK [1][-]{section.3.6}{3.6 Experiment}{chapter.3}% 54
 \BOOKMARK [1][-]{section.3.7}{3.7 Evaluation}{chapter.3}% 55
 \BOOKMARK [0][-]{chapter.4}{4 Implementation}{}% 56
-\BOOKMARK [1][-]{section.4.1}{4.1 Perangkat Pendukung}{chapter.4}% 57
-\BOOKMARK [1][-]{section.4.2}{4.2 Pengumpulan Data}{chapter.4}% 58
-\BOOKMARK [1][-]{section.4.3}{4.3 Pra-Pemrosesan}{chapter.4}% 59
-\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Pembersihan Data}{section.4.3}% 60
-\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 Tokenisasi}{section.4.3}% 61
-\BOOKMARK [2][-]{subsection.4.3.3}{4.3.3 Pemotongan Kalimat}{section.4.3}% 62
-\BOOKMARK [1][-]{section.4.4}{4.4 Pelabelan}{chapter.4}% 63
-\BOOKMARK [1][-]{section.4.5}{4.5 Pengembangan Model}{chapter.4}% 64
-\BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Ekstraksi Fitur}{section.4.5}% 65
-\BOOKMARK [3][-]{subsubsection.4.5.1.1}{4.5.1.1 Fitur Kata Itu Sendiri}{subsection.4.5.1}% 66
-\BOOKMARK [3][-]{subsubsection.4.5.1.2}{4.5.1.2 Ekstraksi Fitur Kamus Kesehatan}{subsection.4.5.1}% 67
-\BOOKMARK [3][-]{subsubsection.4.5.1.3}{4.5.1.3 Ekstraksi Fitur Stop Word}{subsection.4.5.1}% 68
-\BOOKMARK [3][-]{subsubsection.4.5.1.4}{4.5.1.4 Ekstraksi Fitur Part of Speech Tag}{subsection.4.5.1}% 69
-\BOOKMARK [3][-]{subsubsection.4.5.1.5}{4.5.1.5 Ekstraksi Frasa Kata Benda dan Kata Kerja}{subsection.4.5.1}% 70
-\BOOKMARK [3][-]{subsubsection.4.5.1.6}{4.5.1.6 Ekstraksi Fitur 1 Kata Sebelum}{subsection.4.5.1}% 71
-\BOOKMARK [3][-]{subsubsection.4.5.1.7}{4.5.1.7 Ekstraksi Fitur 1 Kata Sesudah}{subsection.4.5.1}% 72
-\BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 Pengusulan Arsitektur RNNs}{section.4.5}% 73
-\BOOKMARK [3][-]{subsubsection.4.5.2.1}{4.5.2.1 LSTMs 1 layer}{subsection.4.5.2}% 74
-\BOOKMARK [3][-]{subsubsection.4.5.2.2}{4.5.2.2 LSTMs 2 Layer Multi-Input}{subsection.4.5.2}% 75
-\BOOKMARK [1][-]{section.4.6}{4.6 Eksperimen}{chapter.4}% 76
-\BOOKMARK [1][-]{section.4.7}{4.7 Evaluasi}{chapter.4}% 77
-\BOOKMARK [0][-]{chapter.5}{5 Experiments}{}% 78
-\BOOKMARK [1][-]{section.5.1}{5.1 Evaluation Metrics}{chapter.5}% 79
-\BOOKMARK [1][-]{section.5.2}{5.2 Data Statistics}{chapter.5}% 80
-\BOOKMARK [1][-]{section.5.3}{5.3 Experiment Design}{chapter.5}% 81
-\BOOKMARK [1][-]{section.5.4}{5.4 Scenario 1: Feature Selection}{chapter.5}% 82
-\BOOKMARK [2][-]{subsection.5.4.1}{5.4.1 Scenario 2: Model Selection}{section.5.4}% 83
-\BOOKMARK [1][-]{section.5.5}{5.5 Metrik Evaluasi}{chapter.5}% 84
-\BOOKMARK [1][-]{section.5.6}{5.6 Visualisasi Data}{chapter.5}% 85
-\BOOKMARK [1][-]{section.5.7}{5.7 Desain Eksperimen}{chapter.5}% 86
-\BOOKMARK [1][-]{section.5.8}{5.8 Skenario 1: Baseline Eksperimen skripsiKakRadit}{chapter.5}% 87
-\BOOKMARK [2][-]{subsection.5.8.1}{5.8.1 Hasil Eksperimen}{section.5.8}% 88
-\BOOKMARK [1][-]{section.5.9}{5.9 Skenario 2: Skenario Pengujian Fitur}{chapter.5}% 89
-\BOOKMARK [2][-]{subsection.5.9.1}{5.9.1 Eksperimen 2.1: Fitur Kata}{section.5.9}% 90
-\BOOKMARK [3][-]{subsubsection.5.9.1.1}{5.9.1.1 Hasil Eksperimen}{subsection.5.9.1}% 91
-\BOOKMARK [3][-]{subsubsection.5.9.1.2}{5.9.1.2 Analisis}{subsection.5.9.1}% 92
-\BOOKMARK [2][-]{subsection.5.9.2}{5.9.2 Eksperimen 2.2: Fitur Kata dan Kamus Kesehatan \(Disease, Symptom, Treatment dan Drug\)}{section.5.9}% 93
-\BOOKMARK [3][-]{subsubsection.5.9.2.1}{5.9.2.1 Hasil Eksperimen}{subsection.5.9.2}% 94
-\BOOKMARK [3][-]{subsubsection.5.9.2.2}{5.9.2.2 Analisis}{subsection.5.9.2}% 95
-\BOOKMARK [2][-]{subsection.5.9.3}{5.9.3 Eksperimen 2.3: Fitur Kata, Kamus Kesehatan dan Stopword}{section.5.9}% 96
-\BOOKMARK [3][-]{subsubsection.5.9.3.1}{5.9.3.1 Hasil Eksperimen}{subsection.5.9.3}% 97
-\BOOKMARK [3][-]{subsubsection.5.9.3.2}{5.9.3.2 Analisis}{subsection.5.9.3}% 98
-\BOOKMARK [2][-]{subsection.5.9.4}{5.9.4 Eksperimen 2.4: Fitur Kata, Kamus Kesehatan, Stopword dan POS-Tag}{section.5.9}% 99
-\BOOKMARK [3][-]{subsubsection.5.9.4.1}{5.9.4.1 Hasil Eksperimen}{subsection.5.9.4}% 100
-\BOOKMARK [3][-]{subsubsection.5.9.4.2}{5.9.4.2 Analisis}{subsection.5.9.4}% 101
-\BOOKMARK [2][-]{subsection.5.9.5}{5.9.5 Eksperimen 2.5: Fitur Kata, Kamus Kesehatan, Stopword, POS-Tag dan Frasa Kata}{section.5.9}% 102
-\BOOKMARK [3][-]{subsubsection.5.9.5.1}{5.9.5.1 Hasil Eksperimen}{subsection.5.9.5}% 103
-\BOOKMARK [3][-]{subsubsection.5.9.5.2}{5.9.5.2 Analisis}{subsection.5.9.5}% 104
-\BOOKMARK [2][-]{subsection.5.9.6}{5.9.6 Eksperimen 2.6: Fitur Kata, Kamus Kesehatan, Stopword dan Frasa Kata}{section.5.9}% 105
-\BOOKMARK [3][-]{subsubsection.5.9.6.1}{5.9.6.1 Hasil Eksperimen}{subsection.5.9.6}% 106
-\BOOKMARK [3][-]{subsubsection.5.9.6.2}{5.9.6.2 Analisis}{subsection.5.9.6}% 107
-\BOOKMARK [2][-]{subsection.5.9.7}{5.9.7 Eksperimen 2.7: Fitur Kata, Kamus Kesehatan, Stopword, Frasa Kata dan Kata Sebelum}{section.5.9}% 108
-\BOOKMARK [3][-]{subsubsection.5.9.7.1}{5.9.7.1 Hasil Eksperimen}{subsection.5.9.7}% 109
-\BOOKMARK [3][-]{subsubsection.5.9.7.2}{5.9.7.2 Analisis}{subsection.5.9.7}% 110
-\BOOKMARK [2][-]{subsection.5.9.8}{5.9.8 Eksperimen 2.8: Fitur Kata, Kamus Kesehatan, Stopword, Frasa Kata, Kata Sebelum dan Kata Sesudah}{section.5.9}% 111
-\BOOKMARK [3][-]{subsubsection.5.9.8.1}{5.9.8.1 Hasil Eksperimen}{subsection.5.9.8}% 112
-\BOOKMARK [3][-]{subsubsection.5.9.8.2}{5.9.8.2 Analisis}{subsection.5.9.8}% 113
-\BOOKMARK [1][-]{section.5.10}{5.10 Skenario 3: Skenario Pengujian Arsitektur RNNs}{chapter.5}% 114
-\BOOKMARK [2][-]{subsection.5.10.1}{5.10.1 Eksperimen 3.1: Menguji Arsitektur LSTMs 1 Layer}{section.5.10}% 115
-\BOOKMARK [3][-]{subsubsection.5.10.1.1}{5.10.1.1 Hasil Eksperimen}{subsection.5.10.1}% 116
-\BOOKMARK [3][-]{subsubsection.5.10.1.2}{5.10.1.2 Analisis}{subsection.5.10.1}% 117
-\BOOKMARK [2][-]{subsection.5.10.2}{5.10.2 Eksperimen 3.2: Menguji Arsitektur LSTMs 2 Layer Multi-Input}{section.5.10}% 118
-\BOOKMARK [3][-]{subsubsection.5.10.2.1}{5.10.2.1 Hasil Eksperimen}{subsection.5.10.2}% 119
-\BOOKMARK [3][-]{subsubsection.5.10.2.2}{5.10.2.2 Analisis}{subsection.5.10.2}% 120
-\BOOKMARK [0][-]{chapter.6}{6 Conclusions}{}% 121
-\BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 122
-\BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 123
-\BOOKMARK [0][-]{chapter*.82}{Daftar Referensi}{}% 124
-\BOOKMARK [0][-]{section*.83}{LAMPIRAN}{}% 125
+\BOOKMARK [1][-]{section.4.1}{4.1 Computer Specification}{chapter.4}% 57
+\BOOKMARK [1][-]{section.4.2}{4.2 Data Annotation and Pre-processing}{chapter.4}% 58
+\BOOKMARK [1][-]{section.4.3}{4.3 Model Development}{chapter.4}% 59
+\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Feature Extraction}{section.4.3}% 60
+\BOOKMARK [3][-]{subsubsection.4.3.1.1}{4.3.1.1 Word Embedding}{subsection.4.3.1}% 61
+\BOOKMARK [3][-]{subsubsection.4.3.1.2}{4.3.1.2 POS Tag}{subsection.4.3.1}% 62
+\BOOKMARK [3][-]{subsubsection.4.3.1.3}{4.3.1.3 Neighboring Word Embeddings}{subsection.4.3.1}% 63
+\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 Model Architecture}{section.4.3}% 64
+\BOOKMARK [3][-]{subsubsection.4.3.2.1}{4.3.2.1 Vanilla LSTM \(LSTM\)}{subsection.4.3.2}% 65
+\BOOKMARK [3][-]{subsubsection.4.3.2.2}{4.3.2.2 Bi-Directional LSTM \(BLSTM\)}{subsection.4.3.2}% 66
+\BOOKMARK [3][-]{subsubsection.4.3.2.3}{4.3.2.3 CNN-BLSTM}{subsection.4.3.2}% 67
+\BOOKMARK [3][-]{subsubsection.4.3.2.4}{4.3.2.4 Context-Aware BLSTM \(CA-BLSTM\)}{subsection.4.3.2}% 68
+\BOOKMARK [1][-]{section.4.4}{4.4 Experiment}{chapter.4}% 69
+\BOOKMARK [1][-]{section.4.5}{4.5 Evaluation}{chapter.4}% 70
+\BOOKMARK [0][-]{chapter.5}{5 Experiments}{}% 71
+\BOOKMARK [1][-]{section.5.1}{5.1 Evaluation Metrics}{chapter.5}% 72
+\BOOKMARK [1][-]{section.5.2}{5.2 Data Statistics}{chapter.5}% 73
+\BOOKMARK [1][-]{section.5.3}{5.3 Experiment Design}{chapter.5}% 74
+\BOOKMARK [1][-]{section.5.4}{5.4 Scenario 1: Feature Selection}{chapter.5}% 75
+\BOOKMARK [2][-]{subsection.5.4.1}{5.4.1 Scenario 2: Model Selection}{section.5.4}% 76
+\BOOKMARK [1][-]{section.5.5}{5.5 Metrik Evaluasi}{chapter.5}% 77
+\BOOKMARK [1][-]{section.5.6}{5.6 Visualisasi Data}{chapter.5}% 78
+\BOOKMARK [1][-]{section.5.7}{5.7 Desain Eksperimen}{chapter.5}% 79
+\BOOKMARK [1][-]{section.5.8}{5.8 Skenario 1: Baseline Eksperimen skripsiKakRadit}{chapter.5}% 80
+\BOOKMARK [2][-]{subsection.5.8.1}{5.8.1 Hasil Eksperimen}{section.5.8}% 81
+\BOOKMARK [1][-]{section.5.9}{5.9 Skenario 2: Skenario Pengujian Fitur}{chapter.5}% 82
+\BOOKMARK [2][-]{subsection.5.9.1}{5.9.1 Eksperimen 2.1: Fitur Kata}{section.5.9}% 83
+\BOOKMARK [3][-]{subsubsection.5.9.1.1}{5.9.1.1 Hasil Eksperimen}{subsection.5.9.1}% 84
+\BOOKMARK [3][-]{subsubsection.5.9.1.2}{5.9.1.2 Analisis}{subsection.5.9.1}% 85
+\BOOKMARK [2][-]{subsection.5.9.2}{5.9.2 Eksperimen 2.2: Fitur Kata dan Kamus Kesehatan \(Disease, Symptom, Treatment dan Drug\)}{section.5.9}% 86
+\BOOKMARK [3][-]{subsubsection.5.9.2.1}{5.9.2.1 Hasil Eksperimen}{subsection.5.9.2}% 87
+\BOOKMARK [3][-]{subsubsection.5.9.2.2}{5.9.2.2 Analisis}{subsection.5.9.2}% 88
+\BOOKMARK [2][-]{subsection.5.9.3}{5.9.3 Eksperimen 2.3: Fitur Kata, Kamus Kesehatan dan Stopword}{section.5.9}% 89
+\BOOKMARK [3][-]{subsubsection.5.9.3.1}{5.9.3.1 Hasil Eksperimen}{subsection.5.9.3}% 90
+\BOOKMARK [3][-]{subsubsection.5.9.3.2}{5.9.3.2 Analisis}{subsection.5.9.3}% 91
+\BOOKMARK [2][-]{subsection.5.9.4}{5.9.4 Eksperimen 2.4: Fitur Kata, Kamus Kesehatan, Stopword dan POS-Tag}{section.5.9}% 92
+\BOOKMARK [3][-]{subsubsection.5.9.4.1}{5.9.4.1 Hasil Eksperimen}{subsection.5.9.4}% 93
+\BOOKMARK [3][-]{subsubsection.5.9.4.2}{5.9.4.2 Analisis}{subsection.5.9.4}% 94
+\BOOKMARK [2][-]{subsection.5.9.5}{5.9.5 Eksperimen 2.5: Fitur Kata, Kamus Kesehatan, Stopword, POS-Tag dan Frasa Kata}{section.5.9}% 95
+\BOOKMARK [3][-]{subsubsection.5.9.5.1}{5.9.5.1 Hasil Eksperimen}{subsection.5.9.5}% 96
+\BOOKMARK [3][-]{subsubsection.5.9.5.2}{5.9.5.2 Analisis}{subsection.5.9.5}% 97
+\BOOKMARK [2][-]{subsection.5.9.6}{5.9.6 Eksperimen 2.6: Fitur Kata, Kamus Kesehatan, Stopword dan Frasa Kata}{section.5.9}% 98
+\BOOKMARK [3][-]{subsubsection.5.9.6.1}{5.9.6.1 Hasil Eksperimen}{subsection.5.9.6}% 99
+\BOOKMARK [3][-]{subsubsection.5.9.6.2}{5.9.6.2 Analisis}{subsection.5.9.6}% 100
+\BOOKMARK [2][-]{subsection.5.9.7}{5.9.7 Eksperimen 2.7: Fitur Kata, Kamus Kesehatan, Stopword, Frasa Kata dan Kata Sebelum}{section.5.9}% 101
+\BOOKMARK [3][-]{subsubsection.5.9.7.1}{5.9.7.1 Hasil Eksperimen}{subsection.5.9.7}% 102
+\BOOKMARK [3][-]{subsubsection.5.9.7.2}{5.9.7.2 Analisis}{subsection.5.9.7}% 103
+\BOOKMARK [2][-]{subsection.5.9.8}{5.9.8 Eksperimen 2.8: Fitur Kata, Kamus Kesehatan, Stopword, Frasa Kata, Kata Sebelum dan Kata Sesudah}{section.5.9}% 104
+\BOOKMARK [3][-]{subsubsection.5.9.8.1}{5.9.8.1 Hasil Eksperimen}{subsection.5.9.8}% 105
+\BOOKMARK [3][-]{subsubsection.5.9.8.2}{5.9.8.2 Analisis}{subsection.5.9.8}% 106
+\BOOKMARK [1][-]{section.5.10}{5.10 Skenario 3: Skenario Pengujian Arsitektur RNNs}{chapter.5}% 107
+\BOOKMARK [2][-]{subsection.5.10.1}{5.10.1 Eksperimen 3.1: Menguji Arsitektur LSTMs 1 Layer}{section.5.10}% 108
+\BOOKMARK [3][-]{subsubsection.5.10.1.1}{5.10.1.1 Hasil Eksperimen}{subsection.5.10.1}% 109
+\BOOKMARK [3][-]{subsubsection.5.10.1.2}{5.10.1.2 Analisis}{subsection.5.10.1}% 110
+\BOOKMARK [2][-]{subsection.5.10.2}{5.10.2 Eksperimen 3.2: Menguji Arsitektur LSTMs 2 Layer Multi-Input}{section.5.10}% 111
+\BOOKMARK [3][-]{subsubsection.5.10.2.1}{5.10.2.1 Hasil Eksperimen}{subsection.5.10.2}% 112
+\BOOKMARK [3][-]{subsubsection.5.10.2.2}{5.10.2.2 Analisis}{subsection.5.10.2}% 113
+\BOOKMARK [0][-]{chapter.6}{6 Conclusions}{}% 114
+\BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 115
+\BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 116
+\BOOKMARK [0][-]{chapter*.74}{Daftar Referensi}{}% 117
+\BOOKMARK [0][-]{section*.75}{LAMPIRAN}{}% 118

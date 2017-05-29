@@ -28,10 +28,6 @@ Bengio, Y., Simard, P., dan Frasconi, P. (1994).
 \newblock Learning long-term dependencies with gradient descent is difficult.
 \newblock {\em IEEE transactions on neural networks}, 5(2):157--166.
 
-\bibitem[Bird et~al., 2009]{bird2009nltk}
-Bird, S., Klein, E., dan Loper, E. (2009).
-\newblock Nltk book.
-
 \bibitem[Carreras dan M{\`a}rquez, 2005]{carreras2005introduction}
 Carreras, X. dan M{\`a}rquez, L. (2005).
 \newblock Introduction to the conll-2005 shared task: Semantic role labeling.
@@ -39,9 +35,9 @@ Carreras, X. dan M{\`a}rquez, L. (2005).
   Language Learning}, pages 152--164. Association for Computational
   Linguistics.
 
-\bibitem[Chollet, 2015]{chollet2015keras}
+\bibitem[Chollet, 2015]{chollet2015}
 Chollet, F. (2015).
-\newblock Keras.
+\newblock keras.
 \newblock \url{https://github.com/fchollet/keras}.
 
 \bibitem[Collobert et~al., 2011]{collobert2011natural}
@@ -49,12 +45,6 @@ Collobert, R., Weston, J., Bottou, L., Karlen, M., Kavukcuoglu, K., dan Kuksa,
   P. (2011).
 \newblock Natural language processing (almost) from scratch.
 \newblock {\em Journal of Machine Learning Research}, 12(Aug):2493--2537.
-
-\bibitem[Dinakaramani et~al., 2014]{dinakaramani2014designing}
-Dinakaramani, A., Rashel, F., Luthfi, A., dan Manurung, R. (2014).
-\newblock Designing an indonesian part of speech tagset and manually tagged
-  indonesian corpus.
-\newblock In {\em IALP}, pages 66--69.
 
 \bibitem[Dowty, 1991]{dowty1991thematic}
 Dowty, D. (1991).
@@ -101,13 +91,6 @@ Graves, A., Mohamed, A.-r., dan Hinton, G. (2013).
 \newblock In {\em 2013 IEEE international conference on acoustics, speech and
   signal processing}, pages 6645--6649. IEEE.
 
-\bibitem[Graves dan Schmidhuber, 2009]{graves2009offline}
-Graves, A. dan Schmidhuber, J. (2009).
-\newblock Offline handwriting recognition with multidimensional recurrent
-  neural networks.
-\newblock In {\em Advances in neural information processing systems}, pages
-  545--552.
-
 \bibitem[Hachey et~al., 2013]{hachey2013evaluating}
 Hachey, B., Radford, W., Nothman, J., Honnibal, M., dan Curran, J.~R. (2013).
 \newblock Evaluating entity linking with wikipedia.
@@ -117,6 +100,12 @@ Hachey, B., Radford, W., Nothman, J., Honnibal, M., dan Curran, J.~R. (2013).
 Haykin, S.~S., Haykin, S.~S., Haykin, S.~S., dan Haykin, S.~S. (2009).
 \newblock {\em Neural networks and learning machines}, volume~3.
 \newblock Pearson Upper Saddle River, NJ, USA:.
+
+\bibitem[He et~al., 2017]{he2017deep}
+He, L., Lee, K., Lewis, M., dan Zettlemoyer, L. (2017).
+\newblock Deep semantic role labeling: What works and what’s next.
+\newblock In {\em Proceedings of the Annual Meeting of the Association for
+  Computational Linguistics}.
 
 \bibitem[Herwando, 2016]{skripsiKakRadit}
 Herwando, R. (2016).
@@ -143,11 +132,6 @@ Hochreiter, S., Bengio, Y., Frasconi, P., dan Schmidhuber, J. (2001).
 Hochreiter, S. dan Schmidhuber, J. (1997).
 \newblock Long short-term memory.
 \newblock {\em Neural computation}, 9(8):1735--1780.
-
-\bibitem[Huang et~al., 2015]{huang2015bidirectional}
-Huang, Z., Xu, W., dan Yu, K. (2015).
-\newblock Bidirectional lstm-crf models for sequence tagging.
-\newblock {\em arXiv preprint arXiv:1508.01991}.
 
 \bibitem[Jagannatha dan Yu, 2016]{jagannatha2016bidirectional}
 Jagannatha, A.~N. dan Yu, H. (2016).
@@ -237,13 +221,6 @@ Punyakanok, V., Roth, D., dan Yih, W.-t. (2008).
   labeling.
 \newblock {\em Computational Linguistics}, 34(2):257--287.
 
-\bibitem[{\v R}eh{\r u}{\v r}ek dan Sojka, 2010]{rehurek_lrec}
-{\v R}eh{\r u}{\v r}ek, R. dan Sojka, P. (2010).
-\newblock {Software Framework for Topic Modelling with Large Corpora}.
-\newblock In {\em {Proceedings of the LREC 2010 Workshop on New Challenges for
-  NLP Frameworks}}, pages 45--50, Valletta, Malta. ELRA.
-\newblock \url{http://is.muni.cz/publication/884893/en}.
-
 \bibitem[Saeed, 1997]{saeed19972003}
 Saeed, J. (1997).
 \newblock I. 2003. semantics.
@@ -273,29 +250,12 @@ Surdeanu, M., Harabagiu, S., Williams, J., dan Aarseth, P. (2003).
   Computational Linguistics-Volume 1}, pages 8--15. Association for
   Computational Linguistics.
 
-\bibitem[Sutskever et~al., 2014]{NIPS2014_5346}
-Sutskever, I., Vinyals, O., dan Le, Q.~V. (2014).
-\newblock Sequence to sequence learning with neural networks.
-\newblock In Ghahramani, Z., Welling, M., Cortes, C., Lawrence, N.~D., dan
-  Weinberger, K.~Q., editors, {\em Advances in Neural Information Processing
-  Systems 27}, pages 3104--3112. Curran Associates, Inc.
-
 \bibitem[Suwarningsih et~al., 2014]{suwarningsih2014imner}
 Suwarningsih, W., Supriana, I., dan Purwarianti, A. (2014).
 \newblock Imner indonesian medical named entity recognition.
 \newblock In {\em Technology, Informatics, Management, Engineering, and
   Environment (TIME-E), 2014 2nd International Conference on}, pages 184--188.
   IEEE.
-
-\bibitem[Toutanova dan Manning, 2000]{toutanova2000enriching}
-Toutanova, K. dan Manning, C.~D. (2000).
-\newblock Enriching the knowledge sources used in a maximum entropy
-  part-of-speech tagger.
-\newblock In {\em Proceedings of the 2000 Joint SIGDAT conference on Empirical
-  methods in natural language processing and very large corpora: held in
-  conjunction with the 38th Annual Meeting of the Association for Computational
-  Linguistics-Volume 13}, pages 63--70. Association for Computational
-  Linguistics.
 
 \bibitem[Turian et~al., 2010]{turian2010word}
 Turian, J., Ratinov, L., dan Bengio, Y. (2010).
