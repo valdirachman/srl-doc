@@ -19,45 +19,46 @@ The style file: apalikerd.bst
 A level-1 auxiliary file: markLampiran.aux
 Database file #1: skripsi.bib
 Warning--empty journal in jordan1986attractor
-You've used 47 entries,
+Warning--empty journal in jurafsky2000speech
+You've used 29 entries,
             1961 wiz_defined-function locations,
-            754 strings with 12007 characters,
-and the built_in function-call counts, 20823 in all, are:
-= -- 2115
-> -- 777
-< -- 48
-+ -- 270
-- -- 258
-* -- 1612
-:= -- 3406
-add.period$ -- 150
-call.type$ -- 47
-change.case$ -- 361
-chr.to.int$ -- 47
-cite$ -- 48
-duplicate$ -- 908
-empty$ -- 1484
-format.name$ -- 327
-if$ -- 4296
+            662 strings with 8732 characters,
+and the built_in function-call counts, 13102 in all, are:
+= -- 1346
+> -- 467
+< -- 31
++ -- 162
+- -- 154
+* -- 1000
+:= -- 2112
+add.period$ -- 92
+call.type$ -- 29
+change.case$ -- 221
+chr.to.int$ -- 29
+cite$ -- 31
+duplicate$ -- 578
+empty$ -- 948
+format.name$ -- 203
+if$ -- 2725
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 44
-newline$ -- 235
-num.names$ -- 141
-pop$ -- 393
+missing$ -- 26
+newline$ -- 145
+num.names$ -- 87
+pop$ -- 243
 preamble$ -- 1
-purify$ -- 363
+purify$ -- 221
 quote$ -- 0
-skip$ -- 707
+skip$ -- 457
 stack$ -- 0
-substring$ -- 1452
-swap$ -- 235
-text.length$ -- 28
+substring$ -- 959
+swap$ -- 154
+text.length$ -- 16
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 278
-warning$ -- 1
-while$ -- 176
+type$ -- 174
+warning$ -- 2
+while$ -- 113
 width$ -- 0
-write$ -- 614
-(There was 1 warning)
+write$ -- 375
+(There were 2 warnings)

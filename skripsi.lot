@@ -1,30 +1,18 @@
 \select@language {bahasa}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces An example predicate and its arguments\relax }}{14}{table.caption.23}
+\contentsline {table}{\numberline {2.2}{\ignorespaces An example predicate and its deep roles\relax }}{15}{table.caption.24}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Examples of thematic roles\relax }}{16}{table.caption.25}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Set of Semantic Roles for Conversational Language\relax }}{34}{table.caption.25}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Set of Semantic Roles for Conversational Language\relax }}{36}{table.caption.26}
-\contentsline {table}{\numberline {3.3}{\ignorespaces An example of word embedding vector representation with dimension of 3\relax }}{38}{table.caption.27}
-\contentsline {table}{\numberline {3.4}{\ignorespaces An example of POS Tag feature and its respective one-hot-vector\relax }}{38}{table.caption.28}
-\contentsline {table}{\numberline {3.5}{\ignorespaces An example of neighboring word embedding vectors of every time step\relax }}{39}{table.caption.29}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Set of Semantic Roles for Conversational Language\relax }}{25}{table.caption.27}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Set of Semantic Roles for Conversational Language\relax }}{27}{table.caption.28}
+\contentsline {table}{\numberline {3.3}{\ignorespaces An example of word embedding vector representation with dimension of 3\relax }}{29}{table.caption.29}
+\contentsline {table}{\numberline {3.4}{\ignorespaces An example of POS Tag feature and its respective one-hot-vector\relax }}{29}{table.caption.30}
+\contentsline {table}{\numberline {3.5}{\ignorespaces An example of neighboring word embedding vectors of every time step\relax }}{30}{table.caption.31}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Server Specifications\relax }}{49}{table.caption.35}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Server Specifications\relax }}{40}{table.caption.37}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Results of Feature Combination Scenario\relax }}{59}{table.caption.45}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Results of Model Architecture Scenario\relax }}{60}{table.caption.46}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Tabel Beberapa Entitas \textit {Disease} pada Korpus dan Jumlahnya\relax }}{61}{table.caption.48}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Tabel Beberapa Entitas \textit {Symptom} pada Korpus dan Jumlahnya\relax }}{62}{table.caption.49}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Tabel Beberapa Entitas \textit {Treatment} pada Korpus dan Jumlahnya\relax }}{62}{table.caption.50}
-\contentsline {table}{\numberline {5.6}{\ignorespaces Tabel Beberapa Entitas \textit {Drug} pada Korpus dan Jumlahnya\relax }}{63}{table.caption.51}
-\contentsline {table}{\numberline {5.7}{\ignorespaces Tabel Hasil Eksperimen dari Penelitian \cite {skripsiKakRadit} (\textit {Baseline})\relax }}{65}{table.caption.52}
-\contentsline {table}{\numberline {5.8}{\ignorespaces Tabel Hasil Eksperimen 2.1 dibandigkan dengan \textit {Baseline}\relax }}{66}{table.caption.54}
-\contentsline {table}{\numberline {5.9}{\ignorespaces Tabel Hasil Eksperimen 2.2 dibandigkan dengan \textit {Baseline}\relax }}{68}{table.caption.56}
-\contentsline {table}{\numberline {5.10}{\ignorespaces Tabel Hasil Eksperimen 2.3 dibandigkan dengan \textit {Baseline}\relax }}{71}{table.caption.58}
-\contentsline {table}{\numberline {5.11}{\ignorespaces Tabel Hasil Eksperimen 2.4 dibandigkan dengan \textit {Baseline}\relax }}{72}{table.caption.60}
-\contentsline {table}{\numberline {5.12}{\ignorespaces Tabel Hasil Eksperimen 2.5 dibandigkan dengan \textit {Baseline}\relax }}{74}{table.caption.62}
-\contentsline {table}{\numberline {5.13}{\ignorespaces Tabel Hasil Eksperimen 2.6 dibandigkan dengan \textit {Baseline}\relax }}{77}{table.caption.64}
-\contentsline {table}{\numberline {5.14}{\ignorespaces Tabel Hasil Eksperimen 2.7 dibandigkan dengan \textit {Baseline}\relax }}{79}{table.caption.66}
-\contentsline {table}{\numberline {5.15}{\ignorespaces Tabel Hasil Eksperimen 2.8 dibandigkan dengan \textit {Baseline}\relax }}{80}{table.caption.68}
-\contentsline {table}{\numberline {5.16}{\ignorespaces Tabel Hasil Eksperimen 3.1 dibandigkan dengan \textit {Baseline}\relax }}{82}{table.caption.70}
-\contentsline {table}{\numberline {5.17}{\ignorespaces Tabel Hasil Eksperimen 3.2 dibandigkan dengan \textit {Baseline}\relax }}{83}{table.caption.72}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Results of Feature Combination Scenario\relax }}{50}{table.caption.47}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Results of Model Architecture Scenario\relax }}{51}{table.caption.48}
 \addvspace {10\p@ }

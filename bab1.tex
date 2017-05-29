@@ -8,45 +8,37 @@
 \section{Background}
 %-----------------------------------------------------------------------------%
 	
-	Semantic Role Labeling (SRL) is a task in Natural Language Processing (NLP) which aims to automatically assign semantic roles to each argument for each predicate in a given input sentence. As for a brief definition, given an input sentence, SRL system will give an output of \textit{"Who did what to whom"} with \textit{what} as the predicate and \textit{who} and \textit{whom} being the argument of the predicate. SRL is an integral part of understanding natural language as it helps machine to retrieve semantic information from the input. In practice, SRL has been widely used as one of the intermediate steps for many NLP tasks, some of which are information extraction~\cite{emanuele2013textual, surdeanu2003using}, machine translation~\cite{liu2010semantic, lo2013improving}, question-answering~\cite{shen2007using, moschitti2003open}.
-	
-	In the chat bot industry, the bots need to understand semantic information of the user's text in order to generate more personalized response. To illustrate, suppose that the user send a text chat to the bot as follows.
-	
-	\texttt{\textbf{Input:} \textit{"I just ate chicken rice! Haha"}}
-	
-	The SRL system then extracts the semantic roles of the text.
-	
-	\texttt{\textbf{Roles:}}
-	
-	\texttt{Predicate: \textit{eat}}
-	
-	\texttt{Agent: \textit{I}}
-	
-	\texttt{Patient: \textit{chicken rice}}
-	\\
-	
-	By knowing that the user just ate a chicken rice, the bot can thus response with \textit{"That's great! how was the chicken?"}. This way, the user will be more engaged to the conversation with the bot.
-	
-	As we can see from the example above, it is worth noting that the style of language used on chatting platform is different than those in formal text. In this work, we call this as \textit{conversational language}. While formal language has been extensively studied in terms of SRL system, conversational language is yet to explore. The language is informal and thus, it has some unique characteristics including a wide variety of slangs and abbreviations, short sentences, and disorganized grammars. These characteristics are the challenges an SRL system should tackle in understanding conversational language.
-	
-	SRL can be seen as either a classification or sequence labeling problem. The earlier research on SRL was conducted with the classification approach, meaning that each argument is being predicted independently from the others. Those research focused on how to extract meaningful features out of syntactic parsers~\cite{gildea2002automatic, gildea2002necessity, pradhan2005semantic}, such as the path to predicate and constituent type. This syntactic information plays a pivotal role in solving SRL problem~\cite{punyakanok2008importance} as it addresses SLR's long distance dependency~\cite{zhou2015end}. Thus, traditional SRL system heavily depends on the quality of the parsers. The analysis done by Pradhan et al. shows that most errors of the SRL system were caused by the parser's error \cite{pradhan2005semantic}. In addition, those parsers are costly to build, since it needs linguistic experts to annotate the data. If we want to create an SRL system on another language, one should build a new parser all over again for it.~\cite{zhou2015end}.
-	
-	In order to minimize the number of hand-crafted features, Collobert et al. utilized deep learning for solving NLP tasks including Part-of-Speech Tagging (POS), Chunking (CHUNK), Named Entity Recognition (NER), and Semantic Role Labeling (SRL) with classification approach~\cite{collobert2011natural}. The research aims to prevent using any task-specific feature in order to achieve state-of-the-art performance. The word embedding is used as the main feature across tasks, combined with Convolutional Neural Networks (CNN) architecture to train the model. They achieve promising results for the POS Tagging and Chunking, while features from the parsers are still needed to achieve competitive results for SRL.
-	
-	Different from the previous works, Zhou et al. view SRL as a sequence labeling problem in which the arguments are labeled sequentially instead of independently~\cite{zhou2015end}. They proposed an end-to-end learning of SRL using Deep Bi-Directional Long Short-Term Memories (DB-LSTM), with word embedding as the main feature. Their analysis suggests that the DB-LSTM model implicitly extracts the syntactic information over the sentences and thus, syntactic parser is not needed. The research result outperforms the previous state-of-the-art traditional SLR systems as it achieves F1 score of 81,07\%. The research also shows that the performance of the sequence labeling approach using DB-LSTM is better than the classification approach using CNN, since the DB-LSTM can extract syntactic information implicitly.
-	
-	On the other hand, the number of research focusing on SRL for Indonesian language (next, will be called as *Indonesian*) is still low. One example would be a research done by Dewi [x], which proposed SRL for Indonesian using Support Vector Machine. The research done by Dewi used the TreeBank data (in English) translated to Indonesian language using Google Translate. The research result opens a window of improvement as the best result consists of 61,6% precision and 66,8% recall. Another work focusing on SRL for Indonesian was done by Nur Indrawati et al., which used case grammar theory for SRL [x]. However, the research concludes that not all sentences could be labeled as it did not cover all types of verbs in Indonesian. Moreover, little number of instances is used as the test data showing that the data set is relatively small. These facts open an opportunity to explore a more robust approach for Indonesian SRL as well as the need for a more reliable data.
-	
-	Kata.ai is a technology company focusing on Artificial Intelligence (AI) and NLP development in Indonesian. Its goal is to empower businesses by leveraging the power of AI and NLP towards customer engagement in a form of chat-bot. In order to achieve it, there has been an ongoing research project by the company focusing on Indonesian NLP. Since it uses chatting platforms as the medium, the scope of the project is for informal Indonesian short text. Informal language is the most natural way we use to communicate in our daily life and thus, we found it interesting to understand it better through SRL.
-	
-	Telling from the characteristics, informal Indonesian short text has its own challenges. It has many informal words, known as '*slang*' in English, for daily conversations. For example, the verb *belikan* (*buy*) has its informal form which is 'beliin'. Another example would be *berbicara* (*talk*) as *ngobrol*. It happens to many words in Indonesian. Not to mention the variety of ways to express pronoun *aku *(*I*) which are 'gw', 'gue', and 'aq'. Yet, they have many kinds of interjection such as “eh”, “duuh”, “dong”, “kok” which complexify of the structure. Moreover, daily conversations include non-sentential utterances, which could be tricky for the SRL task. These characteristics need deep understanding on how the SRL works towards informal Indonesian short text.
-	
-	Based on the fact that we still lack of Indonesian SLR research, it is an interesting opportunity to build SLR system for Indonesian. Our main contribution in this work would be applying SRL to informal Indonesian short text. We will deep dive into the semantic role characteristics found in informal Indonesian short text. After that, we will use deep learning as the state-of-the-art approach that has been emerging in NLP field for doing the SRL task.
-	
-	
-	While many of the previous works studied SRL on formal language, our research aims to explore SRL on conversational language, which is still under-resourced. Following Zhou et al.~\cite{zhou2015end}, we view SRL as a sequence labeling problem. We thus introduce a new set of semantic roles for this language type. Furthermore, we propose a new architecture named Context-Aware Bi-Directional Long Short-Term Memories, designed with attention mechanism in order to capture context information of the sentence at a higher level.
-	
-	This work explores the SRL on conversational language, including creating a new set of semantic roles and proposing a new architecture, the so-called Context-Aware Bi-Directional Long Short-Term Memory Networks. We utilized word embedding and linguistic components as our main features. The SRL task was mainly evaluated on Indonesian conversational language used on chatting platform. Although this is a pilot task, we obtained a really promising result with F1 score of 74.78\%.
+Semantic Role Labeling (SRL) is a task in Natural Language Processing (NLP) which aims to automatically assign semantic roles to each argument for each predicate in a given input sentence. As for a brief definition, given an input sentence, SRL system will give an output of \textit{"Who did what to whom"} with \textit{what} as the predicate and \textit{who} and \textit{whom} being the argument of the predicate. SRL is an integral part of understanding natural language as it helps machine to retrieve semantic information from the input. In practice, SRL has been widely used as one of the intermediate steps for many NLP tasks, some of which are information extraction~\cite{emanuele2013textual, surdeanu2003using}, machine translation~\cite{liu2010semantic, lo2013improving}, question-answering~\cite{shen2007using, moschitti2003open}.
+
+In the chat bot industry, the bots need to understand semantic information of the user's text in order to generate more personalized response. To illustrate, suppose that the user send a text chat to the bot as follows.
+
+\texttt{\textbf{Input:} \textit{"I just ate chicken rice! Haha"}}
+
+The SRL system then extracts the semantic roles of the text.
+
+\texttt{\textbf{Roles:}}
+
+\texttt{Predicate: \textit{eat}}
+
+\texttt{Agent: \textit{I}}
+
+\texttt{Patient: \textit{chicken rice}}
+\\
+
+By knowing that the user just ate a chicken rice, the bot can thus response with \textit{"That's great! how was the chicken?"}. This way, the user will be more engaged to the conversation with the bot.
+
+SRL has been extensively studied for English formal language. Most of the traditional SRL systems are built based on language-dependent features such as syntactic parsers~\citep{gildea2002automatic, gildea2002necessity, pradhan2005semantic}. This syntactic information plays a pivotal role in solving SRL problem for traditional systems as it addresses SLR’s long distance dependency. Unfortunately, this approach hardly depends on the linguistic experts experience assigning the correct syntactic information to the training data, which is costly. Moreover, if we want to build such system for another language, we have to define the syntactic information all over again. In order to address such problem, Jie Zhou et al. proposed an end-to-end learning of SRL using Recurrent Neural Networks (RNN)~\citep{zhou2015end}. In their research, they used Deep Bi-Directional Long Short-Term Memory (DB-LSTM) as the approach for RNN. The advantage of their system is that it only needs words of sentences as the input feature, and does not need any syntactic parsing since LSTM approach addresses the long distance relationship property of SLR problem. The research result outperforms the previous state-of-the-art traditional SLR systems as it achieved F1 score of 81,07\%. Other works involving deep learning for SRL are done by Collobert et al. and Foland Jr. et al.
+
+On the other hand, the number of research focusing on SRL for Indonesian language (next, will be called as \textit{Indonesian}) is still low. One example would be a research done by Dewi [x], which proposed SRL for Indonesian using Support Vector Machine. The research done by Dewi used the TreeBank data (in English) translated to Indonesian language using Google Translate. The research result opens a window of improvement as the best result consists of 61,6\% precision and 66,8\% recall. Another work focusing on SRL for Indonesian was done by Nur Indrawati et al., which used case grammar theory for SRL [x]. However, the research concludes that not all sentences could be labeled as it did not cover all types of verbs in Indonesian. Moreover, little number of instances is used as the test data showing that the data set is relatively small. These facts open an opportunity to explore a more robust approach for Indonesian SRL as well as the need for a more reliable data.
+
+Kata.ai is a technology company focusing on Artificial Intelligence (AI) and NLP development in Indonesian. Its goal is to empower businesses by leveraging the power of AI and NLP towards customer engagement in a form of chat-bot. In order to achieve it, there has been an ongoing research project by the company focusing on Indonesian NLP. Since it uses chatting platforms as the medium, the scope of the project is for conversational Indonesian language. Conversational language is the most natural way people use to communicate in their daily life and thus, we found it interesting to understand it better through SRL.
+
+Telling from the characteristics, conversational Indonesian language has its own challenges. It has many slang words for daily conversations. For example, the verb 'belikan' ('buy') has its informal form which is 'beliin'. Another example would be 'berbicara' ('talk') as 'ngobrol'. It happens to many words in Indonesian. Not to mention the variety of ways to express pronoun 'aku' ('I') such as 'gw', 'gue', and 'aq'. Yet, they have many kinds of interjection such as 'eh', 'duuh', 'dong', 'kok' which complexify the sentence structure. These are the challenges that the SRL system should tackle in dealing with conversational language.
+
+Based on the fact that we still lack of Indonesian SLR research, it is an interesting opportunity to build SLR system for Indonesian. Our main contribution in this work would be applying SRL to Indonesian conversational language. We will deep dive into the semantic role characteristics found in the language. After that, we will use deep learning as the state-of-the-art approach that has been emerging in NLP field for doing the SRL task. There is a wide variety of features and model architectures that can be used to train the SRL model. It is thus important for us to find the best feature combinations and model architecture for solving SRL in Indonesian conversational language.
+%While many of the previous works studied SRL on formal language, our research aims to explore SRL on conversational language, which is still under-resourced. Following Zhou et al.~\cite{zhou2015end}, we view SRL as a sequence labeling problem. We thus introduce a new set of semantic roles for this language type. Furthermore, we propose a new architecture named Context-Aware Bi-Directional Long Short-Term Memories, designed with attention mechanism in order to capture context information of the sentence at a higher level.
+
+%This work explores the SRL on conversational language, including creating a new set of semantic roles and proposing a new architecture, the so-called Context-Aware Bi-Directional Long Short-Term Memory Networks. We utilized word embedding and linguistic components as our main features. The SRL task was mainly evaluated on Indonesian conversational language used on chatting platform. Although this is a pilot task, we obtained a really promising result with F1 score of 74.78\%.
 
 %-----------------------------------------------------------------------------%
 \section{Problem Statement}
@@ -55,14 +47,12 @@ Based on the motivation described in the background, we therefore propose follow
 \begin{enumerate}
 	% Bagaimana --- %
 	\item Which feature combination outputs the best performance?
-	\item Which model architecture gives the best result?
+	\item Which deep learning model architecture gives the best result?
 \end{enumerate}
 
 %-----------------------------------------------------------------------------%
 \section{Objectives and Contributions}
 %-----------------------------------------------------------------------------%
-
-
 The objectives of this research includes understanding the semantic role characteristics of informal Indonesian short text and performing Semantic Role Labeling for informal Indonesian short text using deep learning approaches.
 
 %-----------------------------------------------------------------------------%
@@ -92,48 +82,37 @@ The methodology of this work consists of literature review, data gathering, mode
 
 %-----------------------------------------------------------------------------%
 \section{Scope}
+We scope our research to these kinds of sentences:
 \begin{enumerate}
-	\item{\bf Linguistic:}\\
-	Data set includes:
-	* Single clause with:
-	* Single verb as the predicate
-	* Single adjective or single noun as the predicate
-	* Data set does not include:
-	* Multiple clauses
-	
+	\item Single predicate in a form of verb.
+	\item Single predicate in a form of adjective.
 \end{enumerate}
-\begin{enumerate}
-	\item{\bf Computationa Linguistics:}\\
-	* Algorithm used are LSTM, CNN, ...etc.
-	
-\end{enumerate}
-
 %-----------------------------------------------------------------------------%
 
 %-----------------------------------------------------------------------------%
 \section{Organization}
 %-----------------------------------------------------------------------------%
-The organization of the rest of this thesis will be divided into 6 chapters. In chapter 2, literature review on the previous works will be shown. The methodologies used to do the annotation and the design of the deep learning is presented in chapter 3. This chapter will also provide the new idea of contribution for this research. In the next chapter, implementation is described with the details of tools used, experiment scenarios, as well as the measurement setup. In chapter 5, all the experiment results based on the scenario defined in chapter 4 is presented. The result then will be evaluated and analyzed in chapter 6. Lastly, the conclusion and possible future works are described in chapter 7.
+The organization of the rest of this thesis will be divided into 6 chapters. In chapter 2, literature review on the previous works will be shown. The methodology of this research is described in chapter 3, including the features and the model architectures being used. This chapter will also provide the new idea of contribution for this research. In chapter 4, implementation is described with the details of tools used and the measurement setup. The experiment scenarios, results, and analyses are presented in chapter 5. Lastly, the conclusion and possible future works are described in chapter 7.
 
-This report is organized as follows. We first explain the previous works on SRL systems in section 2. In section 3, the methodology of the research is described, including the features and the model architectures being used. The results and analysis are then explained in section 4. Finally, we report our conclusion and potential future works in the last section.
-\begin{itemize}
-
-	\item Chapter 1 \babSatu \\
-	Pada bab ini \saya~menjelaskan mengenai motivasi dalam melakukan penelitian ini dan komponen-komponen utama penelitian seperi latar belakang, perumusan masalah, tujuan dan manfaat penelitian, metodologi penelitian, ruang lingkup penelitian dan sistematika penulisan.
-	
-	\item Chapter 2 \babDua \\
-	Pada bab ini \saya~melakukan studi literatur mengenai beberapa teori dan penelitian yang dilakukan oleh penulis lain. 
-		
-	\item Chapter 3 \babTiga \\
-	Pada bab ini \saya~menjelaskan alur dari penelitian ini, yaitu pengumpulan data, pra-pemrosesan, pelabelan, pengembangan model, eksperimen dan evaluasi.
-		
-	\item Chapter 4 \babEmpat \\
-	Pada bab ini \saya~menjelaskan proses implementasi sistem dan eksperimen berdasarkan rancangan yang telah \penulis~tentukan pada bab sebelumnya. Selain itu \saya~juga menjelaskan implementasi dari masing-masing tahapan yang dilakukan.
-		
-	\item Chapter 5 \babLima \\
-	Pada bab ini \saya~menjelaskan analisis dari hasil eksperimen yang telah \saya~kerjakan pada tahap sebelumnya. Hasil eksperimen \saya~sajikan dalam bentuk tabel dan grafik.
-	
-	\item Chapter 6 \babEnam \\
-	Pada bab ini \saya~memberikan kesimpulan berdasarkan hasil eksperimen dan analisis yang telah dilakukan pada penelitian ini. Selain itu \saya~juga memberikan saran dan masukan untuk penelitian dan pengembangan sistem mengenai \mer~berbahasa Indonesia selanjutnya.
-	
-\end{itemize}
+%This report is organized as follows. We first explain the previous works on SRL systems in section 2. In section 3, the methodology of the research is described, . The results and analysis are then explained in section 4. Finally, we report our conclusion and potential future works in the last section.
+%\begin{itemize}
+%
+%	\item Chapter 1 \babSatu \\
+%	Pada bab ini \saya~menjelaskan mengenai motivasi dalam melakukan penelitian ini dan komponen-komponen utama penelitian seperi latar belakang, perumusan masalah, tujuan dan manfaat penelitian, metodologi penelitian, ruang lingkup penelitian dan sistematika penulisan.
+%	
+%	\item Chapter 2 \babDua \\
+%	Pada bab ini \saya~melakukan studi literatur mengenai beberapa teori dan penelitian yang dilakukan oleh penulis lain. 
+%		
+%	\item Chapter 3 \babTiga \\
+%	Pada bab ini \saya~menjelaskan alur dari penelitian ini, yaitu pengumpulan data, pra-pemrosesan, pelabelan, pengembangan model, eksperimen dan evaluasi.
+%		
+%	\item Chapter 4 \babEmpat \\
+%	Pada bab ini \saya~menjelaskan proses implementasi sistem dan eksperimen berdasarkan rancangan yang telah \penulis~tentukan pada bab sebelumnya. Selain itu \saya~juga menjelaskan implementasi dari masing-masing tahapan yang dilakukan.
+%		
+%	\item Chapter 5 \babLima \\
+%	Pada bab ini \saya~menjelaskan analisis dari hasil eksperimen yang telah \saya~kerjakan pada tahap sebelumnya. Hasil eksperimen \saya~sajikan dalam bentuk tabel dan grafik.
+%	
+%	\item Chapter 6 \babEnam \\
+%	Pada bab ini \saya~memberikan kesimpulan berdasarkan hasil eksperimen dan analisis yang telah dilakukan pada penelitian ini. Selain itu \saya~juga memberikan saran dan masukan untuk penelitian dan pengembangan sistem mengenai \mer~berbahasa Indonesia selanjutnya.
+%	
+%\end{itemize}

@@ -1,32 +1,17 @@
 \begin{thebibliography}{}
 
-\bibitem[Abacha dan Zweigenbaum, 2011]{abacha2011medical}
-Abacha, A.~B. dan Zweigenbaum, P. (2011).
-\newblock Medical entity recognition: A comparison of semantic and statistical
-  methods.
-\newblock In {\em Proceedings of BioNLP 2011 Workshop}, pages 56--64.
-  Association for Computational Linguistics.
-
-\bibitem[Almgren et~al., 2016]{almgren2016named}
-Almgren, S., Pavlov, S., dan Mogren, O. (2016).
-\newblock Named entity recognition in swedish health records with
-  character-based deep bidirectional lstms.
-\newblock {\em BioTxtM 2016}, page~30.
-
-\bibitem[Bakker, 2001]{bakker2001reinforcement}
-Bakker, B. (2001).
-\newblock Reinforcement learning with long short-term memory.
-\newblock In {\em NIPS}, pages 1475--1482.
+\bibitem[Baker et~al., 1998]{baker1998berkeley}
+Baker, C.~F., Fillmore, C.~J., dan Lowe, J.~B. (1998).
+\newblock The berkeley framenet project.
+\newblock In {\em Proceedings of the 36th Annual Meeting of the Association for
+  Computational Linguistics and 17th International Conference on Computational
+  Linguistics-Volume 1}, pages 86--90. Association for Computational
+  Linguistics.
 
 \bibitem[Bengio et~al., 2007]{bengio2007scaling}
 Bengio, Y., LeCun, Y., et~al. (2007).
 \newblock Scaling learning algorithms towards ai.
 \newblock {\em Large-scale kernel machines}, 34(5).
-
-\bibitem[Bengio et~al., 1994]{bengio1994learning}
-Bengio, Y., Simard, P., dan Frasconi, P. (1994).
-\newblock Learning long-term dependencies with gradient descent is difficult.
-\newblock {\em IEEE transactions on neural networks}, 5(2):157--166.
 
 \bibitem[Carreras dan M{\`a}rquez, 2005]{carreras2005introduction}
 Carreras, X. dan M{\`a}rquez, L. (2005).
@@ -79,89 +64,36 @@ Goodfellow, I., Bengio, Y., dan Courville, A. (2016).
 \newblock Deep learning.
 \newblock Book in preparation for MIT Press.
 
-\bibitem[Graves, 2012]{graves2012neural}
-Graves, A. (2012).
-\newblock Neural networks.
-\newblock In {\em Supervised Sequence Labelling with Recurrent Neural
-  Networks}, pages 15--35. Springer.
-
-\bibitem[Graves et~al., 2013]{graves2013speech}
-Graves, A., Mohamed, A.-r., dan Hinton, G. (2013).
-\newblock Speech recognition with deep recurrent neural networks.
-\newblock In {\em 2013 IEEE international conference on acoustics, speech and
-  signal processing}, pages 6645--6649. IEEE.
-
-\bibitem[Hachey et~al., 2013]{hachey2013evaluating}
-Hachey, B., Radford, W., Nothman, J., Honnibal, M., dan Curran, J.~R. (2013).
-\newblock Evaluating entity linking with wikipedia.
-\newblock {\em Artificial intelligence}, 194:130--150.
-
-\bibitem[Haykin et~al., 2009]{haykin2009neural}
-Haykin, S.~S., Haykin, S.~S., Haykin, S.~S., dan Haykin, S.~S. (2009).
-\newblock {\em Neural networks and learning machines}, volume~3.
-\newblock Pearson Upper Saddle River, NJ, USA:.
-
 \bibitem[He et~al., 2017]{he2017deep}
 He, L., Lee, K., Lewis, M., dan Zettlemoyer, L. (2017).
 \newblock Deep semantic role labeling: What works and what’s next.
 \newblock In {\em Proceedings of the Annual Meeting of the Association for
   Computational Linguistics}.
 
-\bibitem[Herwando, 2016]{skripsiKakRadit}
-Herwando, R. (2016).
-\newblock Pengenalan entitas kesehatan pada forum kesehatan online berbahasa
-  indonesia menggunakan algoritma conditional random fields.
-\newblock Bachelor's thesis, Universitas Indonesia, Kampus UI Depok.
-
-\bibitem[Hinton et~al., 2006]{hinton2006fast}
-Hinton, G.~E., Osindero, S., dan Teh, Y.-W. (2006).
-\newblock A fast learning algorithm for deep belief nets.
-\newblock {\em Neural computation}, 18(7):1527--1554.
-
-\bibitem[Hochreiter, 1991]{hochreiter1991untersuchungen}
-Hochreiter, S. (1991).
-\newblock Untersuchungen zu dynamischen neuronalen netzen.
-\newblock {\em Diploma, Technische Universit{\"a}t M{\"u}nchen}, page~91.
-
-\bibitem[Hochreiter et~al., 2001]{hochreiter2001gradient}
-Hochreiter, S., Bengio, Y., Frasconi, P., dan Schmidhuber, J. (2001).
-\newblock Gradient flow in recurrent nets: the difficulty of learning long-term
-  dependencies.
-
 \bibitem[Hochreiter dan Schmidhuber, 1997]{hochreiter1997long}
 Hochreiter, S. dan Schmidhuber, J. (1997).
 \newblock Long short-term memory.
 \newblock {\em Neural computation}, 9(8):1735--1780.
-
-\bibitem[Jagannatha dan Yu, 2016]{jagannatha2016bidirectional}
-Jagannatha, A.~N. dan Yu, H. (2016).
-\newblock Bidirectional rnn for medical event detection in electronic health
-  records.
-\newblock In {\em Proceedings of the conference. Association for Computational
-  Linguistics. North American Chapter. Meeting}, volume 2016, page 473. NIH
-  Public Access.
 
 \bibitem[Jordan, 1986]{jordan1986attractor}
 Jordan, M.~I. (1986).
 \newblock Attractor dynamics and parallellism in a connectionist sequential
   machine.
 
-\bibitem[Lang et~al., 1990]{lang1990time}
-Lang, K.~J., Waibel, A.~H., dan Hinton, G.~E. (1990).
-\newblock A time-delay neural network architecture for isolated word
-  recognition.
-\newblock {\em Neural networks}, 3(1):23--43.
+\bibitem[Jurafsky dan James, 2000]{jurafsky2000speech}
+Jurafsky, D. dan James, H. (2000).
+\newblock Speech and language processing an introduction to natural language
+  processing, computational linguistics, and speech.
+
+\bibitem[Kingsbury dan Palmer, 2002]{kingsbury2002treebank}
+Kingsbury, P. dan Palmer, M. (2002).
+\newblock From treebank to propbank.
+\newblock In {\em LREC}, pages 1989--1993. Citeseer.
 
 \bibitem[LeCun et~al., 2015]{lecun2015deep}
 LeCun, Y., Bengio, Y., dan Hinton, G. (2015).
 \newblock Deep learning.
 \newblock {\em Nature}, 521(7553):436--444.
-
-\bibitem[Limsopatham dan Collier, 2016]{limsopatham2016learning}
-Limsopatham, N. dan Collier, N. (2016).
-\newblock Learning orthographic features in bi-directional lstm for biomedical
-  named entity recognition.
-\newblock {\em BioTxtM 2016}, page~10.
 
 \bibitem[Liu dan Gildea, 2010]{liu2010semantic}
 Liu, D. dan Gildea, D. (2010).
@@ -180,28 +112,10 @@ Lo, C.-k., Addanki, K., Saers, M., dan Wu, D. (2013).
 Mikolov, T., Chen, K., Corrado, G., dan Dean, J. (2014).
 \newblock word2vec.
 
-\bibitem[Mikolov et~al., 2010]{mikolov2010recurrent}
-Mikolov, T., Karafi{\'a}t, M., Burget, L., Cernock{\`y}, J., dan Khudanpur, S.
-  (2010).
-\newblock Recurrent neural network based language model.
-\newblock In {\em Interspeech}, volume~2, page~3.
-
 \bibitem[Moschitti et~al., 2003]{moschitti2003open}
 Moschitti, A., Morarescu, P., dan Harabagiu, S.~M. (2003).
 \newblock Open domain information extraction via automatic semantic labeling.
 \newblock In {\em FLAIRS conference}, pages 397--401.
-
-\bibitem[Mozer et~al., 1997]{ieee1997advances}
-Mozer, M.~C., Jordan, M.~I., dan Petsche, T. (1997).
-\newblock {\em Advances in Neural Information Processing Systems 9: Proceedings
-  of the 1996 Conference}.
-\newblock Mit Press.
-
-\bibitem[Mujiono et~al., 2016]{mujiono2016new}
-Mujiono, S., Fanany, M.~I., dan Basaruddin, C. (2016).
-\newblock A new data representation based on training data characteristics to
-  extract drug named-entity in medical text.
-\newblock {\em arXiv preprint arXiv:1610.01891}.
 
 \bibitem[Pennington et~al., 2014]{pennington2014glove}
 Pennington, J., Socher, R., dan Manning, C.~D. (2014).
@@ -226,11 +140,6 @@ Saeed, J. (1997).
 \newblock I. 2003. semantics.
 \newblock {\em GB: Blackwell Publishing}.
 
-\bibitem[Schmidhuber et~al., 2007]{schmidhuber2007training}
-Schmidhuber, J., Wierstra, D., Gagliolo, M., dan Gomez, F. (2007).
-\newblock Training recurrent networks by evolino.
-\newblock {\em Neural computation}, 19(3):757--779.
-
 \bibitem[Seki dan Mostafa, 2003]{seki2003probabilistic}
 Seki, K. dan Mostafa, J. (2003).
 \newblock A probabilistic model for identifying protein names and their name
@@ -249,21 +158,6 @@ Surdeanu, M., Harabagiu, S., Williams, J., dan Aarseth, P. (2003).
 \newblock In {\em Proceedings of the 41st Annual Meeting on Association for
   Computational Linguistics-Volume 1}, pages 8--15. Association for
   Computational Linguistics.
-
-\bibitem[Suwarningsih et~al., 2014]{suwarningsih2014imner}
-Suwarningsih, W., Supriana, I., dan Purwarianti, A. (2014).
-\newblock Imner indonesian medical named entity recognition.
-\newblock In {\em Technology, Informatics, Management, Engineering, and
-  Environment (TIME-E), 2014 2nd International Conference on}, pages 184--188.
-  IEEE.
-
-\bibitem[Turian et~al., 2010]{turian2010word}
-Turian, J., Ratinov, L., dan Bengio, Y. (2010).
-\newblock Word representations: a simple and general method for semi-supervised
-  learning.
-\newblock In {\em Proceedings of the 48th annual meeting of the association for
-  computational linguistics}, pages 384--394. Association for Computational
-  Linguistics.
 
 \bibitem[Zhou dan Xu, 2015]{zhou2015end}
 Zhou, J. dan Xu, W. (2015).

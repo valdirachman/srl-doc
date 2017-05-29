@@ -18,13 +18,14 @@
 
 \vspace*{0.5cm}
 
-\noindent
-Saat ini, seseorang dapat memanfaatkan forum kesehatan \textit{online} untuk mencari tahu perihal penyakit tanpa perlu tatap muka dengan dokter.  Melalui forum tersebut, seseorang hanya perlu menuliskan keluhan dan pertanyaan pada formulir yang tersedia. Banyak sekali informasi bermanfaat yang dapat diperoleh dari forum tersebut seperti keluhan, obat atau langkah penyembuhan. Penelitian ini mencoba untuk melakukan ekstraksi entitas \textit{disease, symptom, treatment} dan \textit{drug} secara otomatis. \Saya~memandang permasalahan ini sebagai permasalahan \textit{sequence labeling} sehingga \saya~mengusulkan penggunaan teknik \textit{Deep Learning} dengan menggunakan \textit{Recurrent Neural Networks} (RNNs), karena RNNs merupakan \textit{state-of-the-art} untuk permasalahan \textit{sequence labeling}. \Saya~mengusulkan fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, POS-Tag, frasa kata (nomina dan verba), kata sebelum dan kata sesudah. Selain itu \saya~juga mengusulkan dua arsitektur RNNs, yaitu LSTMs 1 layer dan LSTMs 2 layer multi-\textit{input}. Hasil eksperimen menunjukkan bawah model yang diusulkan mampu memberikan hasil yang cukup baik. Berdasarkan eksperimen dengan kombinasi fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, frasa kata (nomina dan verba), 1 kata sebelum dan 1 kata sesudah dengan arsitektur LSTMs 1 layer mampu mencapai rata-rata \textit{f-measure} $ 63.06\% $ dan LSTMs 2 layer mampu menghasilkan rata-rata \textit{f-measure} $ 62.14\% $. Hasil tersebut lebih baik dibandingkan dengan \textit{baseline} yang digunakan, yaitu penelitian \cite{skripsiKakRadit} dengan \textit{f-measure} $ 54.09\% $.
+\noindent 
+
+Semantic Role Labeling (SRL) has been extensively studied, mostly for understanding English formal language. However, only a few reports exist for informal conversational language, especially for language being used in the chatbot system. The challenges of informal texting language include a wide variety of slangs and abbreviations, short sentences, as well as disorganized grammars. In this work, we propose a new set of semantic roles and a Context-Aware Bi-Directional Long Short-Term Memory Networks model for solving SRL task on informal conversational language. We utilized word embedding and linguistic components as our main features. The SRL task was mainly evaluated on Indonesian informal conversational language used on chatting platform. Although this is a pilot task, we obtained a really promising result with F1 score of 74.78\%.
 
 
 \vspace*{0.2cm}
 
-\noindent Kata Kunci: \\ 
-\noindent \mer, RNNs, \textit{disease}, \textit{symptom}, \textit{treatment}, \textit{drug} \\ 
+\noindent Keywords: \\ 
+\noindent Semantic Role Labeling, deep learning, conversational language, RNNs \\ 
 
 \newpage
