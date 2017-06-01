@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.2.7)  29 MAY 2017 22:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.2.7)  1 JUN 2017 22:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -797,7 +797,7 @@ LaTeX Info: Redefining \nameref on input line 63.
 \openout2 = `sampul.aux'.
 
  (./sampul.tex
-<pics/makara.png, id=305, 154.86429pt x 154.34807pt>
+<pics/makara.png, id=301, 154.86429pt x 154.34807pt>
 File: pics/makara.png Graphic file (type png)
  <use pics/makara.png>
 Package pdftex.def Info: pics/makara.png used on input line 15.
@@ -1090,7 +1090,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--24
 []\T1/ptm/m/n/12 There has been a lot of research on word embedding, such as
  []
 
-<images/word2vec.png, id=599, 1462.71469pt x 791.95876pt>
+<images/word2vec.png, id=596, 1462.71469pt x 791.95876pt>
 File: images/word2vec.png Graphic file (type png)
 
 <use images/word2vec.png>
@@ -1111,7 +1111,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [8 <./images/word2vec.png>]
-<images/simplernn.png, id=628, 550.30594pt x 207.02344pt>
+<images/simplernn.png, id=625, 550.30594pt x 207.02344pt>
 File: images/simplernn.png Graphic file (type png)
 
 <use images/simplernn.png>
@@ -1125,7 +1125,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9 <./images/simplernn.png>]
-<images/fullrnn.png, id=644, 624.83438pt x 406.51875pt>
+<images/fullrnn.png, id=641, 624.83438pt x 406.51875pt>
 File: images/fullrnn.png Graphic file (type png)
 
 <use images/fullrnn.png>
@@ -1151,7 +1151,7 @@ Underfull \hbox (badness 1320) in paragraph at lines 101--102
 aky units
  []
 
-<images/lstm.png, id=659, 1020.81375pt x 727.96968pt>
+<images/lstm.png, id=656, 1020.81375pt x 727.96968pt>
 File: images/lstm.png Graphic file (type png)
  <use images/lstm.png>
 Package pdftex.def Info: images/lstm.png used on input line 107.
@@ -1340,7 +1340,7 @@ Bab 3.
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\uppercase' on input line 3.
 
-<images/pipeline.png, id=769, 885.3075pt x 419.5675pt>
+<images/pipeline.png, id=766, 885.3075pt x 419.5675pt>
 File: images/pipeline.png Graphic file (type png)
 
 <use images/pipeline.png>
@@ -1421,7 +1421,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[30] <images/olstm.png, id=851, 604.2575pt x 305.14pt>
+[30] <images/olstm.png, id=848, 604.2575pt x 305.14pt>
 File: images/olstm.png Graphic file (type png)
  <use images/olstm.png>
 Package pdftex.def Info: images/olstm.png used on input line 269.
@@ -1449,7 +1449,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[32] <images/blstm.png, id=878, 644.4075pt x 467.7475pt>
+[32] <images/blstm.png, id=875, 644.4075pt x 467.7475pt>
 File: images/blstm.png Graphic file (type png)
 
 <use images/blstm.png>
@@ -1463,7 +1463,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [33 <./images/blstm.png>]
-<images/cnnblstm.png, id=895, 644.4075pt x 622.325pt>
+<images/cnnblstm.png, id=892, 644.4075pt x 622.325pt>
 File: images/cnnblstm.png Graphic file (type png)
 
 <use images/cnnblstm.png>
@@ -1480,7 +1480,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [34 <./images/cnnblstm.png>]
-<images/cabilstm.png, id=906, 644.4075pt x 963.6pt>
+<images/cabilstm.png, id=903, 644.4075pt x 963.6pt>
 File: images/cabilstm.png Graphic file (type png)
  <use images/cabilstm.png>
 Package pdftex.def Info: images/cabilstm.png used on input line 392.
@@ -1694,18 +1694,49 @@ Bab 5.
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\uppercase' on input line 3.
 
-[49
+<images/srldistribution.png, id=1105, 606.39047pt x 384.31078pt>
+File: images/srldistribution.png Graphic file (type png)
+
+<use images/srldistribution.png>
+Package pdftex.def Info: images/srldistribution.png used on input line 14.
+(pdftex.def)             Requested size: 398.3386pt x 252.45547pt.
+ [49
 
 
 
-]
+ <./images/srldistribution.png>]
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[50])
+[50]
+
+LaTeX Warning: Reference `tab:ex11srl' on page 51 undefined on input line 67.
+
+
+Underfull \hbox (badness 2573) in paragraph at lines 70--109
+\T1/ptm/m/n/12 F1: 0.801601402935 ---- B-PRED Evaluation Precision: 0.880060259
+716
+ []
+
+
+Underfull \hbox (badness 3323) in paragraph at lines 70--109
+\T1/ptm/m/n/12 Recall: 0.894626221078 F1: 0.887212840582 ---- B-PASIEN Evaluati
+on
+ []
+
+
+Underfull \hbox (badness 2698) in paragraph at lines 70--109
+\T1/ptm/m/n/12 Recall: 0.662933936503 F1: 0.668576145212 ---- B-LOKASI Evaluati
+on
+ []
+
+
+LaTeX Warning: Reference `srl:distribution' on page 51 undefined on input line 
+110.
+
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -1713,27 +1744,68 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [51]
-\openout2 = `bab6.aux'.
 
- (./bab6.tex
-Bab 6.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\uppercase' on input line 3.
-
-) [52
+LaTeX Warning: Reference `tab:XX' on page 52 undefined on input line 136.
 
 
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
 
-] (./skripsi.bbl [53
+[52]
+
+LaTeX Warning: Reference `tab:wevswen' on page 53 undefined on input line 186.
 
 
-]
-Underfull \hbox (badness 1077) in paragraph at lines 94--97
-[]\T1/ptm/m/n/12 LeCun, Y., Bengio, Y., dan Hinton, G. (2015).  Deep learning. 
- \T1/ptm/m/it/12 Nature\T1/ptm/m/n/12 ,
+Underfull \hbox (badness 2573) in paragraph at lines 188--233
+\T1/ptm/m/n/12 F1: 0.801601402935 ---- B-PRED Evaluation Precision: 0.880060259
+716
  []
 
+
+Underfull \hbox (badness 3323) in paragraph at lines 188--233
+\T1/ptm/m/n/12 Recall: 0.894626221078 F1: 0.887212840582 ---- B-PASIEN Evaluati
+on
+ []
+
+
+Underfull \hbox (badness 2698) in paragraph at lines 188--233
+\T1/ptm/m/n/12 Recall: 0.662933936503 F1: 0.668576145212 ---- B-LOKASI Evaluati
+on
+ []
+
+
+Underfull \hbox (badness 2573) in paragraph at lines 236--280
+\T1/ptm/m/n/12 F1: 0.813783934309 ---- B-PRED Evaluation Precision: 0.963619724
+053
+ []
+
+
+Underfull \hbox (badness 4792) in paragraph at lines 236--280
+\T1/ptm/m/n/12 Recall: 0.97068563925 F1: 0.967131679745 ---- B-PASIEN Evaluatio
+n
+ []
+
+
+Underfull \hbox (badness 2698) in paragraph at lines 236--280
+\T1/ptm/m/n/12 Recall: 0.710069501968 F1: 0.720251473836 ---- B-LOKASI Evaluati
+on
+ []
+
+
+Underfull \hbox (badness 1024) in paragraph at lines 281--282
+\T1/ptm/m/n/12 F1 scores. The most notable impro-vements are \T1/ptm/m/sc/12 Ti
+me\T1/ptm/m/n/12 (76.85% to 87.72%),
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[53]
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -1748,6 +1820,41 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [55]
+\openout2 = `bab6.aux'.
+
+ (./bab6.tex
+Bab 6.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\uppercase' on input line 3.
+
+) [56
+
+
+
+] (./skripsi.bbl [57
+
+
+]
+Underfull \hbox (badness 1077) in paragraph at lines 94--97
+[]\T1/ptm/m/n/12 LeCun, Y., Bengio, Y., dan Hinton, G. (2015).  Deep learning. 
+ \T1/ptm/m/it/12 Nature\T1/ptm/m/n/12 ,
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[58])
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[59]
 \openout2 = `markLampiran.aux'.
 
  (./markLampiran.texpdfTeX warning (ext4): destination with the same identifier
@@ -1930,6 +2037,7 @@ images/cnnblstm.png
 images/cabilstm.png
     bab4.tex
     bab5.tex
+images/srldistribution.png
     bab6.tex
  skripsi.bbl
 markLampiran.tex
@@ -1937,21 +2045,23 @@ markLampiran.tex
 
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 164.
 Package rerunfilecheck Info: File `skripsi.out' has not changed.
-(rerunfilecheck)             Checksum: B16E58620766E3154B1A0FD82C285620;5312.
+(rerunfilecheck)             Checksum: 89F295BACFD13E51F62BED4948CDDD63;5245.
 
 LaTeX Warning: There were undefined references.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 164.
  )
-(\end occurred inside a group at level 1)
+(\end occurred inside a group at level 3)
 
+### simple group (level 3) entered at line 165 ({)
+### simple group (level 2) entered at line 138 ({)
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 17034 strings out of 493013
- 235309 string characters out of 6136994
- 404213 words of memory out of 5000000
- 19562 multiletter control sequences out of 15000+600000
+ 17061 strings out of 493013
+ 235659 string characters out of 6136994
+ 404304 words of memory out of 5000000
+ 19571 multiletter control sequences out of 15000+600000
  84437 words of font info for 131 fonts, out of 8000000 for 9000
  1269 hyphenation exceptions out of 8191
  44i,16n,51p,1418b,11290s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1966,10 +2076,10 @@ exmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2016/texmf-dist/fonts/typ
 e1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi
 8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive
 /2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on skripsi.pdf (70 pages, 653710 bytes).
+Output written on skripsi.pdf (74 pages, 735392 bytes).
 PDF statistics:
- 1271 PDF objects out of 1440 (max. 8388607)
- 1155 compressed objects within 12 object streams
- 391 named destinations out of 1000 (max. 500000)
- 651 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1304 PDF objects out of 1440 (max. 8388607)
+ 1182 compressed objects within 12 object streams
+ 408 named destinations out of 1000 (max. 500000)
+ 648 words of extra memory for PDF output out of 10000 (max. 10000000)
 

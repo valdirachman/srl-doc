@@ -64,13 +64,12 @@
 \contentsline {section}{\numberline {4.4}Experiment}{47}{section.4.4}
 \contentsline {section}{\numberline {4.5}Evaluation}{47}{section.4.5}
 \contentsline {chapter}{\numberline {5}\uppercase {Experiments}}{49}{chapter.5}
-\contentsline {section}{\numberline {5.1}Evaluation Metrics}{49}{section.5.1}
-\contentsline {section}{\numberline {5.2}Data Statistics}{49}{section.5.2}
-\contentsline {section}{\numberline {5.3}Experiment Design}{49}{section.5.3}
-\contentsline {section}{\numberline {5.4}Scenario 1: Feature Selection}{49}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Scenario 2: Model Selection}{50}{subsection.5.4.1}
-\contentsline {chapter}{\numberline {6}\uppercase {Conclusions}}{52}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{52}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{52}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{53}{chapter*.49}
-\contentsline {chapter}{LAMPIRAN}{1}{section*.50}
+\contentsline {section}{\numberline {5.1}Data Statistics}{49}{section.5.1}
+\contentsline {section}{\numberline {5.2}Experiment Scenario}{49}{section.5.2}
+\contentsline {section}{\numberline {5.3}Scenario 1: Feature Selection}{50}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Scenario 2: Model Selection}{54}{subsection.5.3.1}
+\contentsline {chapter}{\numberline {6}\uppercase {Conclusions}}{56}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{56}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{56}{section.6.2}
+\contentsline {chapter}{Daftar Referensi}{57}{chapter*.50}
+\contentsline {chapter}{LAMPIRAN}{1}{section*.51}

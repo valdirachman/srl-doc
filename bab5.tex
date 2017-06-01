@@ -3,39 +3,288 @@
 \chapter{\babLima}
 %-----------------------------------------------------------------------------%
 
-In this chapter, we describe the data statistics followed by experiment scenarios, results, and analyses.
+This chapter focuses on the experiments that we have conducted. Firstly, the data statistics about the semantic role distribution are presented. The experiment scenarios are then explained, followed by the results and analyses of this work.
 %-----------------------------------------------------------------------------%
 
-\section{Evaluation Metrics}
-
 \section{Data Statistics}
+As explained in Chapter 3, there are 8 semantic roles to be predicted, which are: \agent, \predicate, \patient, \modal, \beneficiary, \location, \greet, and \timesrl. The distribution of the semantic roles in our data set is presented in Figure~\ref{fig:srldistribution}.
 
-\section{Experiment Design}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{images/srldistribution}
+	\caption{Distribution of Semantic Roles}
+	\label{fig:srldistribution}
+\end{figure}
 
-In this section, we present our experiment results and the analysis accordingly. There are two set of scenarios. The first scenario set aims to find the best combination set of features. This scenario consists of four combinations of three features, namely feature Word Embedding (WE), POS Tag (POS), and Word Embedding of Neighbors (WE-N) as presented in Table~\ref{tab:feature_scenario}.
+\section{Experiment Scenario}
+Our experiment consists of two scenario sets: feature selection and model selection. In feature selection, we experiment to find which feature combination outputs the best result. For model selection, the experiment focuses on finding the best model architecture to get the highest result.
 
-The second scenario set evaluates two different architectures, which are the original BLSTM and CA-BLSTM. Underlying both architectures is a Convolutional Neural Network (CNN) layer, in order to catch more information surrounding each time step. This second scenario also aims to see the effect of hyper-parameter tuning for the CA-BLSTM.
+The feature selection set consists of 4 combination scenarios, which are:
+\begin{enumerate}
+	\item Word Embedding (WE)
+	\item Word Embedding + Neighboring Words (WE + N)
+	\item Word Embedding + POS Tag (WE + POS)
+	\item Word Embedding + POS Tag + Neighboring Words (WE + POS + N)
+\end{enumerate}
 
-As for evaluation, we use precision, recall and F1 metrics for all scenarios. The results are evaluated with partial match approach. To illustrate, suppose that the expected label consists of two words or more and the predicted contains only one word of it, partial match will still count it as a true positive.
+In this scenario set, we use vanilla LSTM for the base architecture. Out of 4 combinations, we pick the best two to be experimented in the model selection scenario set.
+
+In model selection set, we experiment on 8 combinations of architectures including CNN, LSTM, and attention mechanism. Those combinations are:
+\begin{enumerate}
+	\item Vanilla LSTM (LSTM)
+	\item CNN + LSTM
+	\item CNN + BLSTM
+	\item CNN + BLSTM + Attention
+	\item CNN + BLSTM Zhou
+	\item BLSTM Zhou
+	\item BLSTM Zhou + Attention
+	\item BLSTM Highway
+	\item BLSTM Highway + Attention
+\end{enumerate}
+
+Each scenario in both sets are evaluated using average precision, recall and F1 of all semantic roles.
 
 \section{Scenario 1: Feature Selection}
-Table~\ref{tab:feature_scenario} shows the scenario results of four feature combinations. The highest result is achieved with combination of WE + POS, followed by WE + WE-N + POS, WE, and WE + WE-N, with F1 scores of 72.29\%, 72.22\%, 62.00\%, and 61.92\% respectively. From these results, we can see the big impact POS Tag contributes for the performance. Using POS Tag enhances the result up to 10.29\%, when we compare WE + POS and WE combinations. The explanation would be the fact that POS Tag contains meaningful information such as Noun and Adjective which describes the word, it thus supports the word embedding feature when the training data size is relatively low.
-
-Surprisingly, when we combine the neighboring words of the argument as in WE + WE-N, the result slightly decreases by 0.08\%, compared to only using WE feature. This is also the case when we compare WE + WE-N with WE + WE-N + POS scenarios, which decreases by 0.07\% when we used neighboring words. It shows us that neighboring words do not improve the performance at all. We suggest that this is because the CNN layer already extracts these information implicitly, by capturing surrounding information and compressed it into one vector. Hence, we do not need explicit neighboring words as part of our features. 
+Table~\ref{tab:feature_scenario} shows the results of the afore-mentioned four feature combinations. The highest result is achieved with the combination of WE + POS + N, followed by WE + POS, WE + N, and WE, with F1 scores of 79.76\%, 79.10\%, 73.76\%, and 73.12\%, respectively. 
 
 \begin{table}
-	\caption{Results of Feature Combination Scenario}
+	\centering
+	\caption{Results of Feature Selection Scenario, in percentage}
 	\label{tab:feature_scenario}
-	\begin{tabular}{llll}
-		Features		&Precision	&Recall		&F1			\\
-		WE				&	64.68\%				&	60.25\%				&	62.00\%	\\
-		WE + POS		&	74.24\%				&	\textbf{71.26\%}	&	\textbf{72.29\%}	\\
-		WE + WE-N		&	64.17\%				&	60.29\%				&	61.92\%	\\
-		WE + POS + WE-N	&	\textbf{74.51\%}	&	70.69\%				&	72.23\%	\\
+	\begin{tabular}{llccc}
+		\hline
+		No & Feature & Precision & Recall & F1 \\
+		\hline\hline
+		1 & WE & 75.20 & 71.16 & 73.12 \\
+		2 & WE + Context & 76.07 & 71.58 & 73.76 \\
+		3 & WE + POS & 80.09 & 78.14 & 79.10 \\
+		4 & WE + POS + Context & 80.96 & 78.60 & 79.76 \\
+		\hline
 	\end{tabular}
+
 \end{table}
 
-Since WE + POS outputs the best result in terms of F1 score in this scenario set, we will use it for the next set of scenarios.
+Our first experiment uses only word embedding (WE) as the feature. For a starting point, the results are promising with 75.20\% precision, 71.16\% recall and 73.12\% F1. Table~\ref{tab:ex11srl} shows the precision, recall, and F1 scores for each semantic role when only word embedding is used as the feature.
+
+% Table ex11srl, ubah ini jadi tabel
+B-AGEN Evaluation
+Precision:  0.745252056655
+Recall:  0.867405902752
+F1:  0.801601402935
+----
+B-PRED Evaluation
+Precision:  0.880060259716
+Recall:  0.894626221078
+F1:  0.887212840582
+----
+B-PASIEN Evaluation
+Precision:  0.74295332464
+Recall:  0.686814790297
+F1:  0.713550355647
+----
+B-MD Evaluation
+Precision:  0.78136073735
+Recall:  0.767350801535
+F1:  0.774115624902
+----
+B-BENEFAKTOR Evaluation
+Precision:  0.686820980771
+Recall:  0.662933936503
+F1:  0.668576145212
+----
+B-LOKASI Evaluation
+Precision:  0.683145743146
+Recall:  0.556898354483
+F1:  0.612622057055
+----
+B-GREET Evaluation
+Precision:  0.691257726842
+Recall:  0.520800507736
+F1:  0.592197948979
+----
+B-WAKTU Evaluation
+Precision:  0.805847009979
+Recall:  0.736116852873
+F1:  0.768557536403
+
+As we can see from the table above, the top three semantic roles with the highest F1 scores are \predicate~(88.72\%), \agent~(80.16\%), and \modal~(77.41\%). On the other hand, the top three semantic roles with the lowest F1 scores are \greet~(59.21\%), \location~(61.26\%), and \beneficiary~(66.85\%). We suggest that these results are partially caused by the unbalanced distribution of semantic roles as presented in Figure~\ref{srl:distribution}. \predicate, \agent, and \modal are on the top of the distribution while \greet, \location, and \beneficiary are among the lowest. When we analyze the prediction results, some interesting findings are found. The model often mispredicts \greet as \agent, for example:
+
+"data": [
+"jemma",
+"kamu",
+"kenal",
+"dito",
+"enggak"
+],
+"expected": [
+"B-GREET",
+"B-AGEN",
+"B-PRED",
+"B-PASIEN",
+"O"
+],
+"predicted": [
+"B-AGEN",
+"B-AGEN",
+"B-PRED",
+"B-PASIEN",
+"O"
+]
+
+In this example, "jemma" should be labeled as \greet while "kamu" should be labeled as \agent. This examples illustrate a tricky situation in which the model has to decide which one is \agent or \greet since both are located side by side. The model from our first experiment (WE) cannot differentiate this and thus, it predicts both "jemma" and "kamu" as \agent. We thus propose to use Neighboring Words as the additional feature. With this new feature, the machine will have the additional information from the surrounding words. In the previous example, the machine can determine that "jemma" should be labeled as \greet when it knows the following word is "kamu", which most likely will be an \agent or \patient.
+
+When we try to use Neighboring Words as the additional feature (experiment WE + N), the F1 result slightly increases from 73.12\% to 73.76\%. The most significant improvement is the label \greet whose F1 score increases from 59.21\% to 71.41\% (can be seen in Table~\ref{tab:XX}). While in the previous experiment (WE), the machine mispredicts \greet as \agent, the model from this experiment (WE + N) predicts it correctly, as presented below:
+
+  {
+	"expected": [
+	"B-GREET",
+	"B-AGEN",
+	"B-PRED",
+	"B-PASIEN",
+	"O"
+	],
+	"data": [
+	"jemma",
+	"kamu",
+	"kenal",
+	"dito",
+	"enggak"
+	],
+	"predicted": [
+	"B-GREET",
+	"B-AGEN",
+	"B-PRED",
+	"B-PASIEN",
+	"O"
+	]
+
+This proves that the surrounding words can be a helpful information to distinguish when to predict a token as \greet or \agent.
+
+Another interesting finding that we found in the results of WE experiment is presented as follows:
+
+{
+	"expected": [
+	"B-WAKTU",
+	"B-MD",
+	"B-PRED"
+	],
+	"data": [
+	"Skrg",
+	"lgi",
+	"ngpin"
+	],
+	"predicted": [
+	"O",
+	"B-MD",
+	"B-PRED"
+	]
+
+The example illustrates that the machine does not predict "skrg" (formal: "sekarang") as \timesrl, but rather labeled it as "other". This case also happens to other semantic roles including \agent, \patient, \beneficiary, \location, and \greet, where the machine mispredicts them as "other". This may be caused by the wide variety of abbreviations in informal language that the training data may not contain. This is due to the fact that our data set is relatively small (5035 instances) compared to other SRL data set in formal language (ConLL 2005 data set has XX.000+ instances). For instance, "sekarang" has a lot of informal forms such as "skrg", "skg", and "skrng". Our training data may not contain one of its informal forms, "skrg", and thus, the model mispredicts it as "other". 
+
+To address this issue, we argue that POS tags provide meaningful information to increase all semantic role results. \agent, \patient, \beneficiary, \location, \greet, and \timesrl are all \textit{nouns}. Adding the POS tag \textit{noun} information will give a hint to the model in order to determine which tokens are the candidates of these semantic roles. In the previous example, the machine may be able to predict "skrg" as \timesrl since it knows that the word's POS tag is \textit{noun}. In addition, \predicate is often in a form of \textit{verb}, though in some cases of Indonesian language, the \predicate is an \textit{adjective}. Thus, knowing that a token is a verb will help the machine to predict it as a \predicate. Lastly, \modal is mostly in a form of adverb ("akan", "lagi", "harus"). Adding information that tells a word is an adverb will help machine to predict \modal as well. Based on this rationale, we believe that POS tag will increase the performance of all semantic roles.
+
+When we add POS tag as our additional feature (experiment WE + POS), the F1 score dramatically increases from 73.12\% (WE) to 79.10\% (WE + POS). Table~\ref{tab:wevswen} shows the improvement of each semantic role in terms of F1 score when we compare experiment WE and WE + POS.
+
+WE 
+B-AGEN Evaluation
+Precision:  0.745252056655
+Recall:  0.867405902752
+F1:  0.801601402935
+----
+B-PRED Evaluation
+Precision:  0.880060259716
+Recall:  0.894626221078
+F1:  0.887212840582
+----
+B-PASIEN Evaluation
+Precision:  0.74295332464
+Recall:  0.686814790297
+F1:  0.713550355647
+----
+B-MD Evaluation
+Precision:  0.78136073735
+Recall:  0.767350801535
+F1:  0.774115624902
+----
+B-BENEFAKTOR Evaluation
+Precision:  0.686820980771
+Recall:  0.662933936503
+F1:  0.668576145212
+----
+B-LOKASI Evaluation
+Precision:  0.683145743146
+Recall:  0.556898354483
+F1:  0.612622057055
+----
+B-GREET Evaluation
+Precision:  0.691257726842
+Recall:  0.520800507736
+F1:  0.592197948979
+----
+B-WAKTU Evaluation
+Precision:  0.805847009979
+Recall:  0.736116852873
+F1:  0.768557536403
+----
+Avg Precision:  0.752087229887
+Avg Recall:  0.711618420907
+Avg F1:  0.727304238964
+----
+
+WE POS
+
+B-AGEN Evaluation
+Precision:  0.750316607232
+Recall:  0.889261638099
+F1:  0.813783934309
+----
+B-PRED Evaluation
+Precision:  0.963619724053
+Recall:  0.97068563925
+F1:  0.967131679745
+----
+B-PASIEN Evaluation
+Precision:  0.784807637555
+Recall:  0.755742600951
+F1:  0.769929787008
+----
+B-MD Evaluation
+Precision:  0.844884184099
+Recall:  0.820823443172
+F1:  0.832189410214
+----
+B-BENEFAKTOR Evaluation
+Precision:  0.739103974125
+Recall:  0.710069501968
+F1:  0.720251473836
+----
+B-LOKASI Evaluation
+Precision:  0.723486494013
+Recall:  0.676763174906
+F1:  0.69792768477
+----
+B-GREET Evaluation
+Precision:  0.712803178463
+Recall:  0.560052948843
+F1:  0.6265613535
+----
+B-WAKTU Evaluation
+Precision:  0.888725051993
+Recall:  0.86781250421
+F1:  0.877263281102
+----
+Avg Precision:  0.800968356442
+Avg Recall:  0.781401431425
+Avg F1:  0.78812982556
+----
+
+All the semantic roles with POS tag \textit{noun} (\agent, \patient, \beneficiary, \location, \greet, and \timesrl) are all having improvements in terms of the F1 scores. The most notable improvements are \timesrl (76.85\% to 87.72\%), \location (61.26\% to 69.79\%), and \beneficiary (66.85\% to 72.02\%). Referring to the previous example, the new model correctly predicts "skrg" as \timesrl rather than "other". On the other hand, the \predicate improves from 88.72\% to 96.71\% while \modal increases from 77.41\% to 83.21\%. These results prove that POS tag provides a significant contribution to increase the performance. While most of the deep learning research aims to not using hand-crafted features like POS tag, that is not the case in our work. Our experiment shows that such features are still important when the data set is relatively small. Nonetheless, building a huge data set is also costly, we therefore have to find a workaround in order to achieve competitive results by only using small data set. In this case, the workaround is to add traditional features such as POS tag.
+
+Lastly, we also try to combine both Neighboring Words and POS tag in addition to Word Embedding as the feature (experiment WE + POS + N). The F1 score slightly increase
+
+%Surprisingly, when we combine the neighboring words of the argument as in WE + WE-N, the result slightly decreases by 0.08\%, compared to only using WE feature. This is also the case when we compare WE + WE-N with WE + WE-N + POS scenarios, which decreases by 0.07\% when we used neighboring words. It shows us that neighboring words do not improve the performance at all. We suggest that this is because the CNN layer already extracts these information implicitly, by capturing surrounding information and compressed it into one vector. Hence, we do not need explicit neighboring words as part of our features. 
+
+In this feature selection scenarios, WE + POS and WE + POS + N are the top two feature combinations that output the highest results in terms of F1 score. Therefore, we use both feature combinations in the next scenario set: model selection.
 
 \subsection{Scenario 2: Model Selection}
 The experiment results of the second scenario set are presented in Table~\ref{tab:architecture_scenario}. First we show the result using the original BLSTM with F1 score of 72.29\%. On the next experiment, we added the attention mechanism on top of the BLSTM layer, with three different dimensions $K$ of weight matrix $W \in {\rm I\!R^{H \times K}}$ from the Equation~\ref{sum_weight}. The three dimensions of $K$ are 64, 128, and 256. When we experimented on the first dimension size of $K$, 64, it is notable that the F1 score increases by 0.76\%. The performance keeps increasing as we add the dimension size of $K$ until 256 with F1 score of 74.78\% which increased by 2.49\% compared to the original BLSTM. We also obtained the highest precision and recall with dimension size $K$ of 256. However, when we added more dimension above 256, the model seems to be overfitting.
@@ -43,15 +292,28 @@ The experiment results of the second scenario set are presented in Table~\ref{ta
 The results show that the CA-BLSTM architecture outperforms the original BLSTM architecture. We suggest that our proposed model can capture context information at abstract level. We believe that the attention mechanism plays an essential role to extract which word has the most significant value as a hint to predict the semantic roles of each time step.
 
 \begin{table}
-	\caption{Results of Model Architecture Scenario}
+	\caption{Results of Model Selection Scenario, in percentage}
+	\centering
 	\label{tab:architecture_scenario}
-	\begin{tabular}{llll}
-		Name			&Precision					&Recall		&F1			\\
-		BLSTM				&	74.24\%				&	71.26\%				&	72.29\%	\\
-		CA-BLSTM-64			&	73.37\%				&	73.25\%				&	73.05\%	\\
-		CA-BLSTM-128		&	76.25\%				&	73.52\%				&	74.05\%	\\
-		CA-BLSTM-256		&	\textbf{77.03\%}	&	\textbf{73.55\%}	&	\textbf{74.78\%}\\
+	\begin{tabular}{llccc}
+		\hline
+		No & Model & Precision & Recall & F1 \\
+		\hline\hline
+		1 & LSTM (+ Context) & 80.96 & 78.60 & 79.76 \\
+		2 & CNN + LSTM (+ Context) & 78.84 & 78.37 & 78.60 \\
+		3 & CNN + BLSTM (+ Context) & 78.45 & 77.96 & 78.20 \\
+		4 & LSTM & 80.09 & 78.14 & 79.10 \\
+		5 & CNN + LSTM & 79.40 & 79.61 & 79.50 \\
+		6 & CNN + BLSTM & 80.72 & 81.02 & 80.87 \\
+		7 & CNN + BLSTM + Attention & 82.01 & 81.23 & \textbf{81.62} \\
+		8 & CNN + 2 BLSTM Zhou & 75.58 & 78.17 & 76.85 \\
+		9 & 2 BLSTM Zhou & 81.52 & 81.15 & 81.33 \\
+		10 & 2 BLSTM Zhou + Attention & 82.32 & 81.62 & \textbf{81.97} \\
+		11 & 2 BLSTM Highway & 80.63 & 81.66 & 81.14 \\
+		12 & 2 BLSTM Highway + Attention & 83.07 & 82.30 & \textbf{82.68} \\
+		\hline
 	\end{tabular}
+
 \end{table}
 %\section{Metrik Evaluasi}
 %Pada eksperimen ini, untuk mendapatkan nilai akurasi dari masing-masing eksperimen \saya~menggunakan \textit{precision}, \textit{recall} dan \textit{f-measure}. \Saya~menggunakan \textit{10-cross fold validation} dalam menjalankan eksperimen. Terkait dengan penjelasan mengenai cara penghitungan dan evaluasi sudah dijelaskan pada Bab 3.
