@@ -29,20 +29,7 @@ The feature selection set consists of 4 combination scenarios, which are:
 
 In this scenario set, we use vanilla LSTM for the base architecture. Out of 4 combinations, we pick the best two to be experimented in the model selection scenario set.
 
-In model selection set, we experiment on 8 combinations of architectures including CNN, LSTM, and attention mechanism. Those combinations are:
-\begin{enumerate}
-	\item Vanilla LSTM (LSTM)
-	\item CNN + LSTM
-	\item CNN + BLSTM
-	\item CNN + BLSTM + Attention
-	\item CNN + BLSTM Zhou
-	\item BLSTM Zhou
-	\item BLSTM Zhou + Attention
-	\item BLSTM Highway
-	\item BLSTM Highway + Attention
-\end{enumerate}
-
-Each scenario in both sets are evaluated using average precision, recall and F1 of all semantic roles.
+The model selection consists of 4 scenario sets. The first set aims to find which feature combination is better when the LSTM layers are added. The next set compares the performance between BLSTM, BLSTM Zhou, and BLSTM Highway. The third set aims to see the effect of using CNN layer. Lasltly, the fourth set aims to see the impact of our proposed attention layer towards the performance.
 
 \section{Scenario 1: Feature Selection}
 Table~\ref{tab:feature_scenario} shows the results of the afore-mentioned four feature combinations. The highest result is achieved with the combination of WE + POS + N, followed by WE + POS, WE + N, and WE, with F1 scores of 79.76\%, 79.10\%, 73.76\%, and 73.12\%, respectively. 
@@ -280,41 +267,104 @@ Avg F1:  0.78812982556
 
 All the semantic roles with POS tag \textit{noun} (\agent, \patient, \beneficiary, \location, \greet, and \timesrl) are all having improvements in terms of the F1 scores. The most notable improvements are \timesrl (76.85\% to 87.72\%), \location (61.26\% to 69.79\%), and \beneficiary (66.85\% to 72.02\%). Referring to the previous example, the new model correctly predicts "skrg" as \timesrl rather than "other". On the other hand, the \predicate improves from 88.72\% to 96.71\% while \modal increases from 77.41\% to 83.21\%. These results prove that POS tag provides a significant contribution to increase the performance. While most of the deep learning research aims to not using hand-crafted features like POS tag, that is not the case in our work. Our experiment shows that such features are still important when the data set is relatively small. Nonetheless, building a huge data set is also costly, we therefore have to find a workaround in order to achieve competitive results by only using small data set. In this case, the workaround is to add traditional features such as POS tag.
 
-Lastly, we also try to combine both Neighboring Words and POS tag in addition to Word Embedding as the feature (experiment WE + POS + N). The F1 score slightly increase
+Finally, we try to add Neighboring Words in addition to experiment WE + POS. Hence, the feature combination is WE + POS + N. The F1 score slightly increases from 79.10\% (WE + POS) to 79.76\% (WE + POS + N). In this improvement, the F1 score of \greet increases from 62.65\% (WE + POS) to 75.02\% (WE + POS + N). This is the same case as the improvement that we have seen in experiment WE and WE + N. 
 
 %Surprisingly, when we combine the neighboring words of the argument as in WE + WE-N, the result slightly decreases by 0.08\%, compared to only using WE feature. This is also the case when we compare WE + WE-N with WE + WE-N + POS scenarios, which decreases by 0.07\% when we used neighboring words. It shows us that neighboring words do not improve the performance at all. We suggest that this is because the CNN layer already extracts these information implicitly, by capturing surrounding information and compressed it into one vector. Hence, we do not need explicit neighboring words as part of our features. 
 
 In this feature selection scenarios, WE + POS and WE + POS + N are the top two feature combinations that output the highest results in terms of F1 score. Therefore, we use both feature combinations in the next scenario set: model selection.
 
 \subsection{Scenario 2: Model Selection}
-The experiment results of the second scenario set are presented in Table~\ref{tab:architecture_scenario}. First we show the result using the original BLSTM with F1 score of 72.29\%. On the next experiment, we added the attention mechanism on top of the BLSTM layer, with three different dimensions $K$ of weight matrix $W \in {\rm I\!R^{H \times K}}$ from the Equation~\ref{sum_weight}. The three dimensions of $K$ are 64, 128, and 256. When we experimented on the first dimension size of $K$, 64, it is notable that the F1 score increases by 0.76\%. The performance keeps increasing as we add the dimension size of $K$ until 256 with F1 score of 74.78\% which increased by 2.49\% compared to the original BLSTM. We also obtained the highest precision and recall with dimension size $K$ of 256. However, when we added more dimension above 256, the model seems to be overfitting.
+The model selection set consists of four scenario sets, which are: a.) LSTM, BLSTM, and Stacked BLSTM; b.) DBLSTM, DBLSTM-Zhou, and DBLSTM-Highway; c.) CNN layer; and d.) Attention layer.
 
-The results show that the CA-BLSTM architecture outperforms the original BLSTM architecture. We suggest that our proposed model can capture context information at abstract level. We believe that the attention mechanism plays an essential role to extract which word has the most significant value as a hint to predict the semantic roles of each time step.
+%The experiment results of the second scenario set are presented in Table~\ref{tab:architecture_scenario}. First we show the result using the original BLSTM with F1 score of 72.29\%. On the next experiment, we added the attention mechanism on top of the BLSTM layer, with three different dimensions $K$ of weight matrix $W \in {\rm I\!R^{H \times K}}$ from the Equation~\ref{sum_weight}. The three dimensions of $K$ are 64, 128, and 256. When we experimented on the first dimension size of $K$, 64, it is notable that the F1 score increases by 0.76\%. The performance keeps increasing as we add the dimension size of $K$ until 256 with F1 score of 74.78\% which increased by 2.49\% compared to the original BLSTM. We also obtained the highest precision and recall with dimension size $K$ of 256. However, when we added more dimension above 256, the model seems to be overfitting.
+%
+%The results show that the CA-BLSTM architecture outperforms the original BLSTM architecture. We suggest that our proposed model can capture context information at abstract level. We believe that the attention mechanism plays an essential role to extract which word has the most significant value as a hint to predict the semantic roles of each time step.
+
+\subsubsection{Scenario 2a: LSTM, BLSTM and DBLSTM}
+For model selection set, we first experiment on comparing the top two feature combinations from the previous set (WE + POS and WE + POS + N) when using vanilla LSTM, BLSTM, and Stacked BLSTM (DBLSTM) architectures. Table~\ref{modelselection1} shows the results of this experiment.
 
 \begin{table}
-	\caption{Results of Model Selection Scenario, in percentage}
+	\caption{F1 scores (in \%) of WE + POS and WE + POS + NW when using vanilla LSTM (LSTM), BLSTM, and stacked BLSTM (DBLSTM) architectures.}
 	\centering
-	\label{tab:architecture_scenario}
-	\begin{tabular}{llccc}
+	\label{tab:modelselection1}
+	\begin{tabular}{lccc}
 		\hline
-		No & Model & Precision & Recall & F1 \\
-		\hline\hline
-		1 & LSTM (+ Context) & 80.96 & 78.60 & 79.76 \\
-		2 & CNN + LSTM (+ Context) & 78.84 & 78.37 & 78.60 \\
-		3 & CNN + BLSTM (+ Context) & 78.45 & 77.96 & 78.20 \\
-		4 & LSTM & 80.09 & 78.14 & 79.10 \\
-		5 & CNN + LSTM & 79.40 & 79.61 & 79.50 \\
-		6 & CNN + BLSTM & 80.72 & 81.02 & 80.87 \\
-		7 & CNN + BLSTM + Attention & 82.01 & 81.23 & \textbf{81.62} \\
-		8 & CNN + 2 BLSTM Zhou & 75.58 & 78.17 & 76.85 \\
-		9 & 2 BLSTM Zhou & 81.52 & 81.15 & 81.33 \\
-		10 & 2 BLSTM Zhou + Attention & 82.32 & 81.62 & \textbf{81.97} \\
-		11 & 2 BLSTM Highway & 80.63 & 81.66 & 81.14 \\
-		12 & 2 BLSTM Highway + Attention & 83.07 & 82.30 & \textbf{82.68} \\
+		Feature & LSTM & BLSTM & DBLSTM \\
+		\hline		\hline
+		WE + POS & 79.10 & 78.93 & 82.30 \\
+		WE + POS + N & 79.76 & 79.12 & 79.87 \\
 		\hline
-	\end{tabular}
-
+	\end{tabular}
 \end{table}
+
+When using vanilla LSTM, the F1 scores of WE + POS and WE + POS + N are 79.10\% and 79.76\%, respectively. When bi-directional LSTM (BLSTM) is used, the performances of both feature combinations slightly decrease: WE + POS decreases from 79.10\% to 78.93\%, and WE + POS + NW decreases from 79.76\%. However, when two BLSTM layers are stacked (DBLSTM), the F1 scores of both feature combinations increase compared to the vanilla LSTM architecture. While WE + POS + NW slightly increases by 0.11\% (from 79.76\% to 79.87\%), the feature combination WE + POS improves by 3.20\% (from 79.10\% to 82.30\%). According to~\cite{zhou2015end}, bi-directional LSTM architecture is able to implicitly capture the context information from the past (words on the left) and future (words on the right). Moreover, their research also shows that the stacked BLSTM architecture (DBLSTM) could enhance the model performance. In this case, we suggest that the BLSTM model, especially stacked BLSTM, does not need explicit context information such as neighboring word embeddings. Therefore, by only using WE + POS as the features, combined with stacked BLSTM, the model can achieve compelling result.
+
+Since the WE + POS feature combination and stacked BLSTM architecture outputs the highest result in this case, it will be used for the next model selection scenarios.
+
+\subsubsection{Scenario 2b: BLSTM, BLSTM-Zhou, and BLSTM-Highway}
+In this scenario set, we compare the stacked BLSTM (DBLSTM), stacked BLSTM-Zhou (DBLSTM-Zhou), and stacked BLSTM-Highway (DBLSTM-Highway). Table~\ref{tab:modelselection2} shows the precision, recall, and F1 scores of each architecture.
+
+\begin{table}
+	\caption{Precision, Recall, and F1 scores (in \%) of Stacked BLSTM (DBLSTM), Stacked BLSTM-Zhou (DBLSTM-Zhou), and Stacked BLSTM-Highway (DBLSTM-Highway)}
+	\centering
+	\label{tab:modelselection2}
+	\begin{tabular}{lccc}
+		\hline
+		Model & Precision & Recall & F1 \\
+		\hline		\hline
+		DBLSTM & 82.97 & 81.66 & 82.30 \\
+		DBLSTM-Zhou & 81.52 & 81.15 & 81.33 \\
+		DBLSTM-Highway & 80.63 & 81.66 & 81.14 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+The highest F1 score is achieved by the Stacked BLSTM architecture (82.30\%), followed by Stacked BLSTM-Zhou (81.33\%) and Stacked BLSTM-Highway (81.14\%). In their work, ~\cite{zhou2015end} did not elaborate on why the pick their proposed architecture (Stacked BLSTM-Zhou) rather than the original Stacked BLSTM. They did not compare the performances between original Stacked BLSTM and their proposed architecture. Moreover, ~\cite{he2017deep} who proposed the modification of Zhou's architecture (Stacked BLSTM-Highway) also did not explain the rationale of using Zhou's BLSTM rather than the original one. In our case, it turns out that the original Stacked BLSTM still outperforms the other BLSTM architectures. However, we are interested in using all these three architectures for the next model selection scenarios which aim to see the impact of using two additional layers: CNN and Attention layers.
+
+\subsubsection{Scenario 2c: CNN Layer}
+In this scenario set, we examine the impact of adding the additional CNN layer underneath the three afore-mentioned architectures: Stacked BLSTM, Stacked BLSTM-Zhou, and Stacked BLSTM-Highway. Table~\ref{tab:modelselection2} shows the results of this scenario set.
+
+\begin{table}
+	\caption{The precision, recall, and F1 scores of the stacked BLSTM architectures with and without CNN layer.}
+	\centering
+	\label{tab:modelselection3}
+	\begin{tabular}{|l|ccc|ccc|}
+		\hline
+		& \multicolumn{3}{c}{ Without CNN } & \multicolumn{3}{c}{ With CNN } \\
+		\hline
+		Model& Precision & Recall & F1 & Precision & Recall & F1 \\
+		\hline \hline
+		DBLSTM & 82.97 & 81.66 & 82.30 & 81.09 & 81.98 & 81.53 \\
+		DBLSTM-Zhou & 81.52 & 81.15 & 81.33 & 75.58 & 78.17 & 76.85 \\
+		DBLSTM-Highway & 80.63 & 81.66 & 81.14 & 79.47& 78.68& 79.07 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+The F1 scores of all three architectures decrease when the CNN layer is added. The Stacked BLSTM model drops by 0.77\% (from 82.30\% to 81.53\%), Stacked BLSTM-Zhou model significantly decreases by 4.48\% (from 81.33\% to 76.85\%), and Stacked BLSTM-Highway model drops by 2.07\% (from 81.14\% to 79.07\%). The rationale of using CNN layer is to capture context information from the features. However, from all these results, we suggest that the way CNN layer extracts context information may not work well with the way Stacked BLSTM architectures do. This analysis is supported by another experiment in which we found an improvement from 79.10\% to 79.50\% (F1 Score) when CNN layer is added underneath the vanilla LSTM. In this case, we believe that CNN layer works well with a simple, one layer LSTM.
+
+\subsubsection{Scenario 2d: Attention Layer}
+The last scenario set aims to see the impact of using our proposed attention layer on top of the three stacked BLSTM architectures. Table~\ref{tab:modelselection4} shows the results of this scenario set.
+
+\begin{table}
+	\caption{The precision, recall, and F1 scores of the stacked BLSTM architectures with and without attention layer.}
+	\centering
+	\label{tab:modelselection4}
+	\begin{tabular}{|l|ccc|ccc|}
+		\hline
+		& \multicolumn{3}{c}{ Without Attention } & \multicolumn{3}{c}{ With Attention } \\
+		\hline
+		Model & Precision & Recall & F1 & Precision & Recall & F1 \\
+		\hline \hline
+		DBLSTM & 82.97 & 81.66 & 82.30 & 82.36 & 82.07 & 82.21 \\
+		DBLSTM-Zhou & 81.52 & 81.15 & 81.33 & 82.32 & 81.62 & 81.97 \\
+		DBLSTM-Highway & 80.63 & 81.66 & 81.14 & \textbf{83.07} & \textbf{82.3} & \textbf{82.68} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+As we can see from the table above, the original Stacked BLSTM (DBLSTM) model slightly decreases by 0.09\% when using attention layer (from 82.30\% to 82.21\%). On the other hand, the performances of both DBLSTM-Zhou and DBLSTM-Highway models increase when attention layer is used. While DBLSTM-Zhou model increases by 0.64\% (from 81.33\% to 81.97\%), the DBLSTM-Highway model significantly increases by 1.54\% (from 81.14\% to 82.68\%). From these results, we suggest that the attention layer successfully contributes to the DBLSTM-Zhou and DBLSTM-Highway models, while the layer may not suitable to be used on top of original DBLSTM architecture.
+
 %\section{Metrik Evaluasi}
 %Pada eksperimen ini, untuk mendapatkan nilai akurasi dari masing-masing eksperimen \saya~menggunakan \textit{precision}, \textit{recall} dan \textit{f-measure}. \Saya~menggunakan \textit{10-cross fold validation} dalam menjalankan eksperimen. Terkait dengan penjelasan mengenai cara penghitungan dan evaluasi sudah dijelaskan pada Bab 3.
 
