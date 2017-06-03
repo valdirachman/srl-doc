@@ -36,44 +36,48 @@
 \contentsline {section}{\numberline {3.2}Data Gathering}{23}{section.3.2}
 \contentsline {section}{\numberline {3.3}Data Pre-Processing}{24}{section.3.3}
 \contentsline {section}{\numberline {3.4}Data Annotation}{24}{section.3.4}
-\contentsline {section}{\numberline {3.5}Model Development}{28}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Feature Extraction}{28}{subsection.3.5.1}
-\contentsline {subsubsection}{\numberline {3.5.1.1}Word Embedding}{28}{subsubsection.3.5.1.1}
-\contentsline {subsubsection}{\numberline {3.5.1.2}Part-of-Speech Tag (POS-Tag)}{29}{subsubsection.3.5.1.2}
-\contentsline {subsubsection}{\numberline {3.5.1.3}Neighboring Word Embeddings}{30}{subsubsection.3.5.1.3}
-\contentsline {subsection}{\numberline {3.5.2}Model Architecture}{30}{subsection.3.5.2}
-\contentsline {subsubsection}{\numberline {3.5.2.1}Vanilla LSTM}{31}{subsubsection.3.5.2.1}
-\contentsline {subsubsection}{\numberline {3.5.2.2}Bi-Directional LSTM (BLSTM)}{32}{subsubsection.3.5.2.2}
-\contentsline {subsubsection}{\numberline {3.5.2.3}CNN-BLSTM}{34}{subsubsection.3.5.2.3}
-\contentsline {subsubsection}{\numberline {3.5.2.4}Context-Aware BLSTM (CA-BLSTM)}{35}{subsubsection.3.5.2.4}
-\contentsline {section}{\numberline {3.6}Experiment}{37}{section.3.6}
-\contentsline {section}{\numberline {3.7}Evaluation}{38}{section.3.7}
-\contentsline {chapter}{\numberline {4}\uppercase {Implementation}}{40}{chapter.4}
-\contentsline {section}{\numberline {4.1}Computer Specification}{40}{section.4.1}
-\contentsline {section}{\numberline {4.2}Data Annotation and Pre-processing}{40}{section.4.2}
-\contentsline {section}{\numberline {4.3}Model Development}{41}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Feature Extraction}{41}{subsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.1.1}Word Embedding}{42}{subsubsection.4.3.1.1}
-\contentsline {subsubsection}{\numberline {4.3.1.2}POS Tag}{42}{subsubsection.4.3.1.2}
-\contentsline {subsubsection}{\numberline {4.3.1.3}Neighboring Word Embeddings}{43}{subsubsection.4.3.1.3}
-\contentsline {subsection}{\numberline {4.3.2}Model Architecture}{43}{subsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4.3.2.1}Vanilla LSTM (LSTM)}{44}{subsubsection.4.3.2.1}
-\contentsline {subsubsection}{\numberline {4.3.2.2}Bi-Directional LSTM (BLSTM)}{45}{subsubsection.4.3.2.2}
-\contentsline {subsubsection}{\numberline {4.3.2.3}CNN-BLSTM}{46}{subsubsection.4.3.2.3}
-\contentsline {subsubsection}{\numberline {4.3.2.4}Context-Aware BLSTM (CA-BLSTM)}{46}{subsubsection.4.3.2.4}
-\contentsline {section}{\numberline {4.4}Experiment}{47}{section.4.4}
-\contentsline {section}{\numberline {4.5}Evaluation}{47}{section.4.5}
-\contentsline {chapter}{\numberline {5}\uppercase {Experiments}}{49}{chapter.5}
-\contentsline {section}{\numberline {5.1}Data Statistics}{49}{section.5.1}
-\contentsline {section}{\numberline {5.2}Experiment Scenario}{49}{section.5.2}
-\contentsline {section}{\numberline {5.3}Scenario 1: Feature Selection}{50}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Scenario 2: Model Selection}{54}{subsection.5.3.1}
-\contentsline {subsubsection}{\numberline {5.3.1.1}Scenario 2a: LSTM, BLSTM and DBLSTM}{54}{subsubsection.5.3.1.1}
-\contentsline {subsubsection}{\numberline {5.3.1.2}Scenario 2b: BLSTM, BLSTM-Zhou, and BLSTM-Highway}{55}{subsubsection.5.3.1.2}
-\contentsline {subsubsection}{\numberline {5.3.1.3}Scenario 2c: CNN Layer}{56}{subsubsection.5.3.1.3}
-\contentsline {subsubsection}{\numberline {5.3.1.4}Scenario 2d: Attention Layer}{56}{subsubsection.5.3.1.4}
-\contentsline {chapter}{\numberline {6}\uppercase {Conclusions}}{58}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{58}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{59}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{60}{chapter*.53}
-\contentsline {chapter}{LAMPIRAN}{1}{section*.54}
+\contentsline {section}{\numberline {3.5}Feature Extraction}{28}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Word Embedding}{28}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Part-of-Speech Tag (POS Tag)}{29}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Neighboring Word Embeddings}{30}{subsection.3.5.3}
+\contentsline {section}{\numberline {3.6}Model Architecture}{30}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Main Layers}{31}{subsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.1.1}Vanilla LSTM (LSTM)}{31}{subsubsection.3.6.1.1}
+\contentsline {subsubsection}{\numberline {3.6.1.2}Bi-Directional LSTM (BLSTM)}{33}{subsubsection.3.6.1.2}
+\contentsline {subsubsection}{\numberline {3.6.1.3}Deep BLSTM (DBLSTM)}{34}{subsubsection.3.6.1.3}
+\contentsline {subsubsection}{\numberline {3.6.1.4}Deep BLSTM-Zhou (DBLSTM-Zhou)}{35}{subsubsection.3.6.1.4}
+\contentsline {subsubsection}{\numberline {3.6.1.5}Deep BLSTM-Highway (DBLSTM-Highway)}{37}{subsubsection.3.6.1.5}
+\contentsline {subsection}{\numberline {3.6.2}Additional Layers}{38}{subsection.3.6.2}
+\contentsline {subsubsection}{\numberline {3.6.2.1}Convolutional Neural Networks (CNN)}{38}{subsubsection.3.6.2.1}
+\contentsline {subsubsection}{\numberline {3.6.2.2}Attention Mechanism}{39}{subsubsection.3.6.2.2}
+\contentsline {section}{\numberline {3.7}Experiment}{41}{section.3.7}
+\contentsline {section}{\numberline {3.8}Evaluation}{41}{section.3.8}
+\contentsline {chapter}{\numberline {4}\uppercase {Implementation}}{44}{chapter.4}
+\contentsline {section}{\numberline {4.1}Computer Specification}{44}{section.4.1}
+\contentsline {section}{\numberline {4.2}Data Annotation and Pre-processing}{44}{section.4.2}
+\contentsline {section}{\numberline {4.3}Model Development}{45}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Feature Extraction}{45}{subsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.1.1}Word Embedding}{46}{subsubsection.4.3.1.1}
+\contentsline {subsubsection}{\numberline {4.3.1.2}POS Tag}{46}{subsubsection.4.3.1.2}
+\contentsline {subsubsection}{\numberline {4.3.1.3}Neighboring Word Embeddings}{47}{subsubsection.4.3.1.3}
+\contentsline {subsection}{\numberline {4.3.2}Model Architecture}{47}{subsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.2.1}Vanilla LSTM (LSTM)}{48}{subsubsection.4.3.2.1}
+\contentsline {subsubsection}{\numberline {4.3.2.2}Bi-Directional LSTM (BLSTM)}{49}{subsubsection.4.3.2.2}
+\contentsline {subsubsection}{\numberline {4.3.2.3}CNN-BLSTM}{50}{subsubsection.4.3.2.3}
+\contentsline {subsubsection}{\numberline {4.3.2.4}Context-Aware BLSTM (CA-BLSTM)}{50}{subsubsection.4.3.2.4}
+\contentsline {section}{\numberline {4.4}Experiment}{51}{section.4.4}
+\contentsline {section}{\numberline {4.5}Evaluation}{51}{section.4.5}
+\contentsline {chapter}{\numberline {5}\uppercase {Experiments}}{53}{chapter.5}
+\contentsline {section}{\numberline {5.1}Data Statistics}{53}{section.5.1}
+\contentsline {section}{\numberline {5.2}Experiment Scenario}{53}{section.5.2}
+\contentsline {section}{\numberline {5.3}Scenario 1: Feature Selection}{54}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Scenario 2: Model Selection}{58}{subsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.1.1}Scenario 2a: LSTM, BLSTM and DBLSTM}{58}{subsubsection.5.3.1.1}
+\contentsline {subsubsection}{\numberline {5.3.1.2}Scenario 2b: DBLSTM, DBLSTM-Zhou, and DBLSTM-Highway}{59}{subsubsection.5.3.1.2}
+\contentsline {subsubsection}{\numberline {5.3.1.3}Scenario 2c: CNN Layer}{60}{subsubsection.5.3.1.3}
+\contentsline {subsubsection}{\numberline {5.3.1.4}Scenario 2d: Attention Layer}{60}{subsubsection.5.3.1.4}
+\contentsline {chapter}{\numberline {6}\uppercase {Conclusions}}{62}{chapter.6}
+\contentsline {section}{\numberline {6.1}Kesimpulan}{62}{section.6.1}
+\contentsline {section}{\numberline {6.2}Saran}{63}{section.6.2}
+\contentsline {chapter}{Daftar Referensi}{64}{chapter*.62}
+\contentsline {chapter}{LAMPIRAN}{1}{section*.63}

@@ -140,6 +140,11 @@ Saeed, J. (1997).
 \newblock I. 2003. semantics.
 \newblock {\em GB: Blackwell Publishing}.
 
+\bibitem[Schuster dan Paliwal, 1997]{schuster1997bidirectional}
+Schuster, M. dan Paliwal, K.~K. (1997).
+\newblock Bidirectional recurrent neural networks.
+\newblock {\em IEEE Transactions on Signal Processing}, 45(11):2673--2681.
+
 \bibitem[Seki dan Mostafa, 2003]{seki2003probabilistic}
 Seki, K. dan Mostafa, J. (2003).
 \newblock A probabilistic model for identifying protein names and their name
@@ -151,6 +156,12 @@ Seki, K. dan Mostafa, J. (2003).
 Shen, D. dan Lapata, M. (2007).
 \newblock Using semantic roles to improve question answering.
 \newblock In {\em EMNLP-CoNLL}, pages 12--21.
+
+\bibitem[Srivastava et~al., 2015]{srivastava2015training}
+Srivastava, R.~K., Greff, K., dan Schmidhuber, J. (2015).
+\newblock Training very deep networks.
+\newblock In {\em Advances in neural information processing systems}, pages
+  2377--2385.
 
 \bibitem[Surdeanu et~al., 2003]{surdeanu2003using}
 Surdeanu, M., Harabagiu, S., Williams, J., dan Aarseth, P. (2003).

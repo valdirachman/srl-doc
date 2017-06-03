@@ -2,14 +2,14 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {algocf}{\numberline {4.1}{\ignorespaces A pseudocode for converting labels of a sentence into one-hot-vectors\relax }}{41}{algocf.4.1}
-\contentsline {algocf}{\numberline {4.2}{\ignorespaces A pseudocode to train word embedding model using Word2Vec\relax }}{42}{algocf.4.2}
-\contentsline {algocf}{\numberline {4.3}{\ignorespaces A pseudocode to transform words into vectors by word embedding model\relax }}{42}{algocf.4.3}
-\contentsline {algocf}{\numberline {4.4}{\ignorespaces A pseudocode for converting POS tags of a sentence into one hot vectors\relax }}{43}{algocf.4.4}
-\contentsline {algocf}{\numberline {4.5}{\ignorespaces A pseudocode to extract neighboring word embeddings\relax }}{44}{algocf.4.5}
-\contentsline {algocf}{\numberline {4.6}{\ignorespaces A pseudocode for building and training vanilla LSTM architecture\relax }}{45}{algocf.4.6}
-\contentsline {algocf}{\numberline {4.7}{\ignorespaces A pseudocode for building and training BLSTM architecture\relax }}{46}{algocf.4.7}
-\contentsline {algocf}{\numberline {4.8}{\ignorespaces A pseudocode for building and training CNN-BLSTM architecture\relax }}{47}{algocf.4.8}
-\contentsline {algocf}{\numberline {4.9}{\ignorespaces A pseudocode for building and training CA-BLSTM architecture\relax }}{48}{algocf.4.9}
+\contentsline {algocf}{\numberline {4.1}{\ignorespaces A pseudocode for converting labels of a sentence into one-hot-vectors\relax }}{45}{algocf.4.1}
+\contentsline {algocf}{\numberline {4.2}{\ignorespaces A pseudocode to train word embedding model using Word2Vec\relax }}{46}{algocf.4.2}
+\contentsline {algocf}{\numberline {4.3}{\ignorespaces A pseudocode to transform words into vectors by word embedding model\relax }}{46}{algocf.4.3}
+\contentsline {algocf}{\numberline {4.4}{\ignorespaces A pseudocode for converting POS tags of a sentence into one hot vectors\relax }}{47}{algocf.4.4}
+\contentsline {algocf}{\numberline {4.5}{\ignorespaces A pseudocode to extract neighboring word embeddings\relax }}{48}{algocf.4.5}
+\contentsline {algocf}{\numberline {4.6}{\ignorespaces A pseudocode for building and training vanilla LSTM architecture\relax }}{49}{algocf.4.6}
+\contentsline {algocf}{\numberline {4.7}{\ignorespaces A pseudocode for building and training BLSTM architecture\relax }}{50}{algocf.4.7}
+\contentsline {algocf}{\numberline {4.8}{\ignorespaces A pseudocode for building and training CNN-BLSTM architecture\relax }}{51}{algocf.4.8}
+\contentsline {algocf}{\numberline {4.9}{\ignorespaces A pseudocode for building and training CA-BLSTM architecture\relax }}{52}{algocf.4.9}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

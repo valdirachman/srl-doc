@@ -12,7 +12,10 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4\relax }}{33}{figure.caption.34}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4\relax }}{34}{figure.caption.35}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4\relax }}{36}{figure.caption.36}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4\relax }}{37}{figure.caption.37}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces An architecture of adding CNN underneath the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variants.\relax }}{39}{figure.caption.38}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces An architecture of adding attention mechanism on top of the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variant.\relax }}{40}{figure.caption.39}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Distribution of Semantic Roles\relax }}{49}{figure.caption.47}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Distribution of Semantic Roles\relax }}{53}{figure.caption.50}
 \addvspace {10\p@ }

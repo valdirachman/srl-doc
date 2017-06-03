@@ -11,11 +11,17 @@
 \contentsline {table}{\numberline {3.4}{\ignorespaces An example of POS Tag feature and its respective one-hot-vector\relax }}{29}{table.caption.30}
 \contentsline {table}{\numberline {3.5}{\ignorespaces An example of neighboring word embedding vectors of every time step\relax }}{30}{table.caption.31}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Server Specifications\relax }}{40}{table.caption.37}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Server Specifications\relax }}{44}{table.caption.40}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Results of Feature Selection Scenario, in percentage\relax }}{50}{table.caption.48}
-\contentsline {table}{\numberline {5.2}{\ignorespaces F1 scores (in \%) of WE + POS and WE + POS + NW when using vanilla LSTM (LSTM), BLSTM, and stacked BLSTM (DBLSTM) architectures.\relax }}{54}{table.caption.49}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Precision, Recall, and F1 scores (in \%) of Stacked BLSTM (DBLSTM), Stacked BLSTM-Zhou (DBLSTM-Zhou), and Stacked BLSTM-Highway (DBLSTM-Highway)\relax }}{55}{table.caption.50}
-\contentsline {table}{\numberline {5.4}{\ignorespaces The precision, recall, and F1 scores of the stacked BLSTM architectures with and without CNN layer.\relax }}{56}{table.caption.51}
-\contentsline {table}{\numberline {5.5}{\ignorespaces The precision, recall, and F1 scores of the stacked BLSTM architectures with and without attention layer.\relax }}{57}{table.caption.52}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Results of Feature Selection Scenario, in percentage\relax }}{54}{table.caption.51}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Precision, Recall, F1 scores of each label for scenario WE\relax }}{55}{table.caption.52}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Misprediction example of \textsc {Greet}when using only WE as the feature\relax }}{55}{table.caption.53}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Correct prediction example of \textsc {Greet}when using WE + NW as the features\relax }}{56}{table.caption.54}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Misprediction example of \textsc {Time}when using WE as the feature\relax }}{56}{table.caption.55}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Precision, Recall, F1 scores (in \%) of each label for scenario WE and WE + POS\relax }}{57}{table.caption.56}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Correct prediction example of \textsc {Time}~when using WE + POS as the features\relax }}{58}{table.caption.57}
+\contentsline {table}{\numberline {5.8}{\ignorespaces F1 scores (in \%) of WE + POS and WE + POS + NW when using vanilla LSTM (LSTM), BLSTM, and stacked BLSTM (DBLSTM) architectures.\relax }}{58}{table.caption.58}
+\contentsline {table}{\numberline {5.9}{\ignorespaces Precision, Recall, and F1 scores (in \%) of Stacked BLSTM (DBLSTM), Stacked BLSTM-Zhou (DBLSTM-Zhou), and Stacked BLSTM-Highway (DBLSTM-Highway)\relax }}{59}{table.caption.59}
+\contentsline {table}{\numberline {5.10}{\ignorespaces The precision, recall, and F1 scores of the stacked BLSTM architectures with and without CNN layer.\relax }}{60}{table.caption.60}
+\contentsline {table}{\numberline {5.11}{\ignorespaces The precision, recall, and F1 scores of the stacked BLSTM architectures with and without attention layer.\relax }}{61}{table.caption.61}
 \addvspace {10\p@ }

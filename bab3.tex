@@ -172,13 +172,12 @@ After the data has been labeled, the labels need to be encoded in a way the deep
 
 Table~\ref{tab:examplelabel} shows an example of how sentence is labeled with the one-hot vectors representations of BIO format.
 
-\section{Model Development}
-In this section, the features and model architecture are described. We firstly describe word embedding and POS Tag as the feature candidates. Following after that, the four model architectures, one of which is the new architecture we propose, are explained.
 
-\subsection{Feature Extraction}
+
+\section{Feature Extraction}
 In this step, we extract features from the data that has been annotated with semantic roles. We propose three features which will be combined later to find the best feature selection that outputs the best result. Those features are word embedding, POS-Tag, and neighboring word embeddings.
 
-\subsubsection{Word Embedding}
+\subsection{Word Embedding}
 % Apa itu word embedding
 Word embedding represents word as a vector. Word embedding has proved to be one of the most contributing features by a lot of deep learning research, such as for SRL system proposed by \cite{zhou2015end} and \cite{collobert2011natural}. The interesting characteristic of word embedding is that similar words have proved to have similar vectors. This is very important when dealing with conversational language which has a lot of slang words. For instance, pronoun "Aku" will have similar vector with its slang form, "Gue". We believe that this feature will contribute greatly to the model performance. Therefore, we utilized our embedding as one of our feature candidates.
 
@@ -214,8 +213,8 @@ In order to utilize word embedding as our features, we conduct three steps which
 
 In Table~\ref{tab:examplewe} provides an example assuming that the vector dimension is 3. This means that every word is mapped into a vector with a length of 3.
 
-\subsubsection{Part-of-Speech Tag (POS-Tag)}
-POS Tag is a feature to represent the class of each word. In this research, we use POS Tag annotation which is mainly inspired by the work of Ruli Manurung (20XX). The POS Tags that we use are: Verb (V), Noun (NN), Adjective (ADJ), Adverb (ADV), Coordinative Conjunction (CC), Subordinative Conjunction (SC), Interjection (INTJ), Question (WH), Preposition (PREP), and Negation (NEG). Before feeding the feature to the deep learning model, we encode the POS tag features as a one-hot vector. Each one-hot vector represents each POS tag uniquely.
+\subsection{Part-of-Speech Tag (POS Tag)}
+POS Tag is a feature to represent the class of each word. In this research, the POS tags used are: Verb (V), Noun (NN), Adjective (ADJ), Adverb (ADV), Coordinative Conjunction (CC), Subordinative Conjunction (SC), Interjection (INTJ), Question (WH), Preposition (PREP), and Negation (NEG). Before feeding the feature to the deep learning model, we encode the POS tag as a one-hot-vector. Each one-hot-vector represents each POS tag uniquely.
 
 The example of POS Tag features is presented in Table~\ref{tab:examplepos}
 \begin{table}
@@ -237,7 +236,7 @@ While most of the deep learning research aims for not using such feature, we arg
 
 In this work, we use gold-standard POS tag on our data as the features to prevent propagation errors from the POS tag model. This way, we can focus on analyzing errors resulting from the SRL model later in chapter 5. 
 
-\subsubsection{Neighboring Word Embeddings}
+\subsection{Neighboring Word Embeddings}
 Neighboring word embeddings are the vector representations of words located before and after the word being processed. We use specifically one word before and after the word being processed. Suppose that we are processing the word $w_{t}$ at time step $t$, the neighboring words embeddings are the vector representations of the word $w_{t-1}$ and $w_{t+1}$. We argue that this feature can be useful for capturing the context of the word by looking at the surrounding words. Suppose that the machine is processing the word \textit{"rumah"} in \textit{"aku tidur di rumah"}. By looking at the previous word, which is the preposition \textit{"di"}, it gives a hint that \textit{"rumah"} might have the semantic role \location.
 
 \begin{table}
@@ -256,10 +255,13 @@ Neighboring word embeddings are the vector representations of words located befo
 
 Table~\ref{tab:examplenwe} illustrates the neighboring word embeddings of every time step. The table shows that in every time step, it adds the word vector information from the left and right. Since the first word does not have any previous word, its left neighbor is a vector $\vec{0}$. This is also the case for the last word which does not have any subsequent word. Hence, the right neighbor of the last word is also a vector  $\vec{0}$.
 
-\subsection{Model Architecture}
-Recurrent Neural Networks (RNN) has a nature advantage for solving sequence labeling problem~\cite{zhou2015end}. ~\cite{hochreiter1997long} proposed Long Short-Term Memories (LSTM) as the specific version of RNN designed to overcome vanishing and exploding gradient problem. In this research, we experiment on various LSTM architectures, namely vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), Convolutional Neural Network BLSTM (CNN-BLSTM), and Context-Aware BLSTM (CA-BLSTM). Each architecture is built incrementally upon the previous architectures, starting from the vanilla LSTM. The last architecture, CA-BLSTM, is the one we propose in this work.
+\section{Model Architecture}
+Recurrent Neural Networks (RNN) has a nature advantage for solving sequence labeling problem~\cite{zhou2015end}. ~\cite{hochreiter1997long} proposed Long Short-Term Memories (LSTM) as the specific version of RNN designed to overcome vanishing and exploding gradient problem. In this research, we experiment on various LSTM architectures, namely vanilla LSTM, Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM-Highway. All these LSTM architectures are considered as the main layers. Moreover, there are two additional layers: Convolutional Neural Networks (CNN) and attention. CNN layer is located underneath the LSTM layer while the attention is placed on top of the LSTM. The attention layer is the one we proposed in this research. These additional layers can be used for any afore-mentioned LSTM architectures.
 
-\subsubsection{Vanilla LSTM}
+\subsection{Main Layers}
+The main layers consist of Vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM-Highway.
+
+\subsubsection{Vanilla LSTM (LSTM)}
 % Explain what is LSTM (generally)
 Vanilla LSTM is the basic, one-directional LSTM networks designed to overcome vanishing and exploding gradient problem found in RNN. To do so, it has forget gates, a gate to open or close incoming information from the previous time steps. We firstly explain the LSTM networks as the big picture for solving sequence labeling problem, followed by the details of every LSTM unit. 
 
@@ -272,11 +274,11 @@ Vanilla LSTM is the basic, one-directional LSTM networks designed to overcome va
 \end{figure}
 
 % Explain the formula based on big picture LSTM
-Figure~\ref{fig:olstm} illustrates the big picture of the vanilla LSTM networks used in this research. Suppose that we have sequence of input tensors $[\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}]$, with $n$ denotes the number of time steps. Each input tensor $\mathbf{x_{t}}$ represents features of the word in time step $t$. For every time step $t$, each input tensor $\mathbf{x_{t}}$ is fed into the LSTM layer, resulting tensor $\mathbf{f_{t}}$, as shown in Equation~\ref{eq:lstm}. 
+Figure~\ref{fig:olstm} illustrates the big picture of the vanilla LSTM networks used in this research. Suppose that we have sequence of input tensors $[\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}]$, with $n$ denotes the number of time steps. Each input tensor $\mathbf{x_{t}}$ represents features of the word in time step $t$. Suppose that we have more than one feature (for example: Word Embedding and POS Tag), the vectors of these features are concatenated. For every time step $t$, each input tensor $\mathbf{x_{t}}$ is fed into the LSTM layer, resulting tensor $\mathbf{f_{t}}$, as shown in Equation~\ref{eq:lstm}. 
 
 \begin{equation}
 \label{eq:lstm}
-\mathbf{f_{t}} = LSTM(\mathbf{x_{t}})
+\mathbf{f_{t}} = LSTM(\mathbf{x_{t}}, \mathbf{f_{t-1}})
 \end{equation}
 
 Equation~\ref{eq:softmaxout} shows that each LSTM output from every time step is then processed by the time-distributed softmax layer to produce the probabilities of every possible label.
@@ -321,7 +323,7 @@ It is worth noting that the LSTM layer is recursive, meaning that one of the inp
 \subsubsection{Bi-Directional LSTM (BLSTM)}
 \label{sec:blstm}
 % What is Bi-Directional LSTM generally, what it's for. Menurut Zhou gimana
-Bi-Directional LSTM (BLSTM) is a modification of LSTM networks. While vanilla LSTM only goes one direction, BLSTM goes both ways in order to capture context information from the past and future, as explained by~\cite{zhou2015end}. This characteristic is suitable for SRL task, since information from the right (future) might be useful to determine the label of current time step, as explained by~\cite{zhou2015end}. The idea is to have two LSTM layers, one for going forward and another for going backward, as illustrated in Figure~\ref{fig:bilstm}
+Bi-Directional LSTM (BLSTM) is a modification of LSTM networks. It was firstly introduced by \cite{schuster1997bidirectional} for the original recurrent neural networks. While vanilla LSTM only goes on one direction, BLSTM goes both ways in order to capture context information from the past and future, as explained by~\cite{zhou2015end}. The idea is to have two LSTM layers, one for going forward and another for going backward, as illustrated in Figure~\ref{fig:bilstm}.
 
 % Gambar BILSTM
 \begin{figure}
@@ -335,18 +337,17 @@ Bi-Directional LSTM (BLSTM) is a modification of LSTM networks. While vanilla LS
 Figure~\ref{fig:bilstm} shows that the input $\mathbf{x_{t}}$ in every time step $t$ is fed into two LSTM layers, the first one for going forward and the second one for going backward. These are illustrated in Equation~\ref{eq:lstmforward} and Equation~\ref{eq:lstmbackward}
 \begin{equation}
 \label{eq:lstmforward}
-\mathbf{f_{t}} = ForwardLSTM(\mathbf{x_{t}})
+\mathbf{f_{t}} = ForwardLSTM(\mathbf{x_{t}}, \mathbf{f_{t-1}})
 \end{equation}
-
 \begin{equation}
 \label{eq:lstmbackward}
-\mathbf{b_{t}} = BackwardLSTM(\mathbf{x_{t}})
+\mathbf{b_{t}} = BackwardLSTM(\mathbf{x_{t}}, \mathbf{b_{t+1}})
 \end{equation}
 
-In each time step, the result tensors $mathbf{f_{t}}$ and $mathbf{b_{t}}$ are then concatenated to be one tensor output $\mathbf{h_{t}}$, as shown in Equation~\ref{eq:lstm_concat}
+In each time step, the result tensors $\mathbf{f_{t}}$ and $\mathbf{b_{t}}$ are then concatenated to be one tensor output $\mathbf{h_{t}}$, as shown in Equation~\ref{eq:lstm_concat}
 \begin{equation}
 \label{eq:lstm_concat}
-\mathbf{h_{t}} = Concatenate(\mathbf{f_{t}}, \mathbf{g_{t}})
+\mathbf{h_{t}} = Concatenate(\mathbf{f_{t}}, \mathbf{b_{t}})
 \end{equation}
 
 Likewise in vanilla LSTM architecture, the output tensor $\mathbf{h_{t}}$ is then fed into softmax layer, as shown in Equation~\ref{eq:bilstm_softmax}
@@ -358,80 +359,183 @@ label_{t} = Softmax(\mathbf{h_{t}})
 
 After which, the output of the softmax layer will determine the final label for each time step.
 
-\subsubsection{CNN-BLSTM}
+\subsubsection{Deep BLSTM (DBLSTM)}
+Deep BLSTM (DBLSTM) is basically formed by stacking BLSTM layers. This concept was introduced by~\cite{zhou2015end}. However, they proposed a different way of building the BLSTM layer, which will be explained in the next section. This section explains the stacked version of the original BLSTM layers as explained in the previous section. In this work, we stack two BLSTM layers. Figure~\ref{fig:dblstm} illustrates the architecture of DBLSTM.
+
+% Gambar dblstm
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{images/dblstm}
+	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\label{fig:dblstm}
+\end{figure}
+
+Initially, the input tensors $\mathbf{x_{t}}$ are processed by the first BLSTM layer, resulting the output tensors $\mathbf{h_{t}}$ as explained in Equation~\ref{eq:lstmforward},~\ref{eq:lstmbackward}, and~\ref{eq:lstm_concat}. The output tensors $\mathbf{h_{t}}$ are then processed by the second BLSTM layer. These are illustrated in Equation~\ref{eq:lstmforward2} and Equation~\ref{eq:lstmbackward2}.
+\begin{equation}
+\label{eq:lstmforward2}
+\mathbf{k_{t}} = ForwardLSTM2(\mathbf{h_{t}}, \mathbf{k_{t-1}})
+\end{equation}
+\begin{equation}
+\label{eq:lstmbackward2}
+\mathbf{m_{t}} = BackwardLSTM2(\mathbf{h_{t}}, \mathbf{m_{t+1}})
+\end{equation}
+
+In each time step, the result tensors $\mathbf{k_{t}}$ and $\mathbf{m_{t}}$ are then concatenated to be one tensor output $\mathbf{p_{t}}$, as shown in Equation~\ref{eq:lstm_concat2}
+\begin{equation}
+\label{eq:lstm_concat2}
+\mathbf{p_{t}} = Concatenate(\mathbf{k_{t}}, \mathbf{m_{t}})
+\end{equation}
+
+The output tensor $\mathbf{h_{t}}$ is finally fed into the last softmax layer to output the final label of each time step $t$.
+
+\subsubsection{Deep BLSTM-Zhou (DBLSTM-Zhou)}
+\cite{zhou2015end} proposed another way of constructing the BLSTM layer. First, an LSTM layer processes the input sequence in forward direction. The output of this layer is then fed into the next LSTM layer as input, processed in backward direction. At this point, one BLSTM-Zhou layer is built. \cite{zhou2015end} then stacked the BLSTM layers and named it as the deep bi-directional LSTM. In this work, we stack two BLSTM-Zhou layers for constructing the DBLSTM-Zhou as presented in Figure~\ref{fig:dblstmzhou}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{images/dblstmzhou}
+	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\label{fig:dblstmzhou}
+\end{figure}
+
+First, the input tensor $\mathbf{x_{t}}$ is processed by the first forward LSTM layer, resulting output tensor $\mathbf{f_{t}}$. This output is then fed into the backward LSTM layer to produce the output tensor $\mathbf{b_{t}}$. These processes are presented in Equation~\ref{eq:lstmforwardzhou1} and~\ref{eq:lstmbackwardzhou1}.
+\begin{equation}
+\label{eq:lstmforwardzhou1}
+\mathbf{f_{t}} = ForwardLSTM1(\mathbf{x_{t}}, \mathbf{f_{t-1}})
+\end{equation}
+\begin{equation}
+\label{eq:lstmbackwardzhou1}
+\mathbf{b_{t}} = BackwardLSTM1(\mathbf{f_{t}}, \mathbf{b_{t+1}})
+\end{equation}
+
+The output tensor $\mathbf{b_{t}}$ is then fed into the next forward LSTM layer to produce the next output tensor $\mathbf{k_{t}}$ (Equation~\ref{eq:lstmforwardzhou2}). Finally, $\mathbf{k_{t}}$ is processed by the second backward LSTM layer to produce the output tensor $\mathbf{m_{t}}$ (Equation~\ref{eq:lstmbackwardzhou2}).
+\begin{equation}
+\label{eq:lstmforwardzhou2}
+\mathbf{k_{t}} = ForwardLSTM2(\mathbf{b_{t}}, \mathbf{k_{t-1}})
+\end{equation}
+\begin{equation}
+\label{eq:lstmbackwardzhou2}
+\mathbf{m_{t}} = BackwardLSTM2(\mathbf{k_{t}}, \mathbf{m_{t+1}})
+\end{equation}
+
+The output tensor $\mathbf{m_{t}}$ is then processed by the softmax layer to produce the final label of every time step $t$.
+
+\subsubsection{Deep BLSTM-Highway (DBLSTM-Highway)}
+The DBLSTM-Highway architecture is adapted from the work of~\cite{he2017deep}. They used the same BLSTM architecture as~\cite{zhou2015end} but added the so-called highway connections~\citep{srivastava2015training} for their DBLSTM architecture. Figure~\ref{fig:dblstmhighway} illustrates the DBLSTM-Highway architecture.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{images/dblstmhighway}
+	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\label{fig:dblstmhighway}
+\end{figure}
+
+First, the input tensor $\mathbf{x_{t}}$ is processed by the first forward LSTM layer which produces output tensor $\mathbf{f_{t}}$.
+\begin{equation}
+\label{eq:forwardhighway1}
+\mathbf{f_{t}} = ForwardLSTM1(\mathbf{x_{t}}, \mathbf{f_{t-1}})
+\end{equation}
+
+The tensor $\mathbf{f_{t}}$ is then fed into the first backward LSTM layer which outputs tensor $\mathbf{b_{t}}$. The tensors $\mathbf{b_{t}}$ and $\mathbf{f_{t}}$ are then concatenated before being processed by the sigmoid function which outputs the weight $s_{1,t}$. After that, $\mathbf{b_{t}}$ is retrieved by summing the multiplication results of $s_{1,t}$ with $\mathbf{b_{t}}$ and $(1 - s_{1,t})$ with $\mathbf{f_{t}}$
+
+\begin{equation}
+\label{eq:backwardhighway1}
+\mathbf{b_{t}} = BackwardLSTM1(\mathbf{f_{t}}, \mathbf{b_{t+1}})
+\end{equation}
+\begin{equation}
+	s_{1,t} = \sigma(W_{1} \cdot [\mathbf{b_{t}}; \mathbf{f_{t}}] + d_{1})
+\end{equation}
+\begin{equation}
+	\mathbf{b'_{t}} = s_{1,t} \cdot \mathbf{b_{t}} + (1 - s_{1,t}) \cdot \mathbf{f_{t}} 
+\end{equation}
+
+$\mathbf{k'_{t}}$ is retrieved by the same way as $\mathbf{b'_{t}}$, which we define as follows:
+\begin{equation}
+\label{eq:forwardhighway2}
+\mathbf{k_{t}} = ForwardLSTM2(\mathbf{b'_{t}}, \mathbf{k_{t-1}})
+\end{equation}
+\begin{equation}
+s_{2,t} = \sigma(W_{2} \cdot [\mathbf{k_{t}}; \mathbf{b_{t}}] + d_{2})
+\end{equation}
+\begin{equation}
+\mathbf{k'_{t}} = s_{2,t} \cdot \mathbf{k_{t}} + (1 - s_{2,t}) \cdot \mathbf{b_{t}} 
+\end{equation}
+
+Lastly, $\mathbf{m'_{t}}$ is retrieved by the same way as $\mathbf{k'_{t}}$, which we define as follows:
+\begin{equation}
+\label{eq:backwardhighway2}
+\mathbf{m_{t}} = BackwardLSTM2(\mathbf{k'_{t}}, \mathbf{m_{t+1}})
+\end{equation}
+\begin{equation}
+s_{3,t} = \sigma(W_{3} \cdot [\mathbf{m_{t}}; \mathbf{k_{t}}] + d_{3})
+\end{equation}
+\begin{equation}
+\mathbf{m'_{t}} = s_{3,t} \cdot \mathbf{m_{t}} + (1 - s_{3,t}) \cdot \mathbf{k_{t}} 
+\end{equation}
+
+The output tensor $\mathbf{m'_{t}}$ is then processed by the softmax layer to produce the final label of every time step $t$.
+
+\subsection{Additional Layers}
+The additional layers consist of Convolutional Neural Networks (CNN) and attention mechanism. These additional layers can be used in addition to any of the main layers.
+
+\subsubsection{Convolutional Neural Networks (CNN)}
 % What is CNN-BLSTM generally, what it's for.
-In addition to the BLSTM architecture, we also experiment on adding Convolutional Neural Networks (CNN) layer underneath the BLSTM layer. The rationale is to capture raw context from the neighboring input tensors. This way, CNN can implicitly extract meaningful context information. Figure ~\ref{fig:cnnblstm} illustrates the big picture of the CNN-BLSTM architecture.
+In addition to the main layer architecture, we also experiment on adding Convolutional Neural Networks (CNN) layer underneath the main layer. The rationale is to capture raw context from the neighboring input tensors. This way, CNN can implicitly extract meaningful context information. Figure ~\ref{fig:cnndblstmhighway} illustrates the big picture of adding CNN underneath the main layer. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variants explained in the previous sections. In this illustration, we use DBLSTM-Highway as the main layer.
 
 % Gambar CNN-BLSTM
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\linewidth]{images/cnnblstm}
-	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
-	\label{fig:cnnblstm}
+	\includegraphics[width=0.75\linewidth]{images/cnndblstmhighway}
+	\caption{An architecture of adding CNN underneath the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variants.}
+	\label{fig:cnndblstmhighway}
 \end{figure}
 
 % Explain the formula based on big picture CNN-BILSTM
-Instead of feeding the BLSTM with raw input tensor $\mathbf{x_{t}}$, CNN-BLSTM firstly processes it through CNN layer, resulting output tensor $\mathbf{c_{t}}$, as shown in Equation~\ref{eq:cnn}.
+Instead of feeding the main layer with raw input tensor $\mathbf{x_{t}}$, this architecture firstly processes it through CNN layer, resulting output tensor $\mathbf{c_{t}}$, as shown in Equation~\ref{eq:cnn}.
 \begin{equation}
+\label{eq:cnn}
 [\mathbf{c_{1}}; \mathbf{c_{2}}; ...; \mathbf{c_{n}}] = CNN([\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}])
 \end{equation}
 
-The result tensor $\mathbf{c_{t}}$ is then fed into the BLSTM layer, as explained in section~\ref{sec:blstm}. To simplify the notation, the BLSTM layer equation is summarized as follows.
-\begin{equation}
-\mathbf{h_{i}} = BLSTM(\mathbf{c_{i}})
-\end{equation}
+The result tensor $\mathbf{c_{t}}$ is then fed into the main layer that can be any of LSTM variants. The output of the LSTM layer is then processed by the time-distributed softmax layer to determine the final output label.
 
-As explained in section~\ref{sec:blstm}, the BLSTM's output tensor $\mathbf{h_{i}}$ is then processed by the time-distributed softmax layer to determine the final output label.
-
-\subsubsection{Context-Aware BLSTM (CA-BLSTM)}
+\subsubsection{Attention Mechanism}
 % What is CA-BLSTM generally, what it's for
-In this work, we propose a new LSTM architecture named Context-Aware Bi-Directional Long Short-Term Memory Networks (CA-BLSTM). The rationale is to add a dense yet useful high-level information containing a sentence context to every time step in order to help the machine to decide semantic roles better. With this in mind, we design an attention mechanism on top of the LSTM networks layers, as illustrated in Figure~\ref{fig:cabilstm} 
+In this work, we propose an additional attention mechanism that can be used on top the main layer. The rationale is to add a dense yet useful high-level information containing a sentence context to every time step in order to help the machine to decide semantic roles better. With this in mind, we design an attention mechanism on top of the main layer which can be any of the LSTM variant explained in the previous sections. Figure~\ref{fig:dblstmhighwayattention} illustrates the architecture in which attention mechanism is added on top of the main layer. For this illustration, the DBLSTM-Highway is used as the main layer.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\linewidth]{images/cabilstm}
-	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
-	\label{fig:cabilstm}
+	\includegraphics[width=0.75\linewidth]{images/dblstmhighwayattention}
+	\caption{An architecture of adding attention mechanism on top of the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variant.}
+	\label{fig:dblstmhighwayattention}
 \end{figure}
 
 % Explain the formula based on big picture CA-BLSTM
 The attention mechanism firstly collects the context information by multiplying trainable weights with all the vectors from every time step of the last LSTM output. We sum each element for each weighted vectors to reduce the dimension. The results are then fed into a hidden softmax layer which outputs weights with a total of 1. The original output vectors of the last LSTM output are multiplied by these distributed weights respectively. We then sum all the multiplication results as the final context information. The original LSTM outputs are concatenated with this context information before going to the last softmax layer to predict the semantic roles. 
 
-We describe the formulation of the networks from the first layer all the way to the top. Like the previous architectures, it begins with these two equations:
-\begin{equation}
-[\mathbf{c_{1}}; \mathbf{c_{2}}; ...; \mathbf{c_{n}}] = CNN([\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}])
-\end{equation}
-\begin{equation}
-\mathbf{h_{i}} = BLSTM(\mathbf{c_{i}})
-\end{equation}
+Suppose that we have $\mathbf{m_{i}}$ as the last LSTM output, it is then fed into a differentiable neural networks function $g(\mathbf{m_{i}})$ in which it is multiplied by the time-distributed matrix $\textbf{W} \in {\rm I\!R^{H \times K}}$ and all the elements in it are summed. $H$ is the vector dimension of $\mathbf{m_{i}}$, meanwhile $K$ is the dimension size that we want as an output when we multiply \textbf{$W$} with $\mathbf{m_{i}}$.
 
-$\mathbf{x_{i}}$, $\mathbf{c_{i}}$, and $\mathbf{h_{i}}$ are the input tensors, the output of CNN layer, and the output of BLSTM layer respectively, with $i$ indicating the time step. 
 \begin{equation}
 \label{sum_weight}
-g(\mathbf{h_{i}}) = Sum(\mathbf{W}.\mathbf{h_{i}})
+g(\mathbf{m_{i}}) = Sum(\mathbf{W}.\mathbf{m_{i}})
 \end{equation}
 
-$\mathbf{h_{i}}$ is then fed into a differentiable neural networks function $g(\mathbf{h_{i}})$ in which it is multiplied by the time-distributed matrix $\textbf{W} \in {\rm I\!R^{H \times K}}$ and all the elements in it are summed. $H$ is the vector dimension of $\mathbf{h_{i}}$, meanwhile $K$ is the dimension size that we want as an output when we multiply \textbf{$W$} with $\mathbf{h_{i}}$.
-\begin{equation}
-[\alpha_{1}, \alpha_{2}, ..., \alpha_{n}] = Softmax([g(\mathbf{h_{1}}); g(\mathbf{h_{2}}); ..., g(\mathbf{h_{n}})])
-\end{equation}
-\begin{equation}
-\mathbf{r_{i}} = \alpha_{i}.\mathbf{h_{i}}
-\end{equation}
-
-Once we have all the values of $[g(\mathbf{h_{1}}); g(\mathbf{h_{2}}); ...; g(\mathbf{h_{n}})]$, we make it as an input for the softmax layer, resulting weights $[\alpha_{1}; \alpha_{2}; ...; \alpha_{n}]$. All the original LSTM outputs $[\mathbf{h_{1}}; \mathbf{h_{2}}; ...; \mathbf{h_{n}}]$ are multiplied by these weights, with the results of $[\mathbf{r_{1}}; \mathbf{r_{2}}; ...; \mathbf{r_{n}}]$
+Once we have all the values of $[g(\mathbf{m_{1}}); g(\mathbf{m_{2}}); ...; g(\mathbf{m_{n}})]$, we make it as an input for the softmax layer, resulting weights $[\alpha_{1}; \alpha_{2}; ...; \alpha_{n}]$. All the original LSTM outputs $[\mathbf{m_{1}}; \mathbf{m_{2}}; ...; \mathbf{m_{n}}]$ are multiplied by these weights, with the results of $[\mathbf{r_{1}}; \mathbf{r_{2}}; ...; \mathbf{r_{n}}]$
 
 \begin{equation}
-\mathbf{z} = \mathbf{r_{1}} + \mathbf{r_{2}} + ... + \mathbf{r_{n}}
+[\alpha_{1}, \alpha_{2}, ..., \alpha_{n}] = Softmax([g(\mathbf{m_{1}}); g(\mathbf{m_{2}}); ..., g(\mathbf{m_{n}})])
 \end{equation}
 \begin{equation}
-\mathbf{j_{i}} = Concatenate(\mathbf{h_{i}}, z)
+\mathbf{r_{i}} = \alpha_{i}.\mathbf{m_{i}}
 \end{equation}
 
 We then sum all these vectors element-wise to have a context tensor $\mathbf{z}$. 
 All the original LSTM outputs are thus concatenated with tensor $\mathbf{z}$ as the additional information to predict the semantic roles.
 \begin{equation}
-label_{i} = Softmax(\mathbf{j_{i}})
+\mathbf{z} = \mathbf{r_{1}} + \mathbf{r_{2}} + ... + \mathbf{r_{n}}
+\end{equation}
+\begin{equation}
+\mathbf{j_{i}} = Concatenate(\mathbf{m\_{i}}, z)
 \end{equation}
 
 Lastly, the time-distributed softmax layer produces the final semantic roles label.
@@ -502,7 +606,7 @@ After we have the value of $TP$, $FP$, and $FN$ for the semantic role \patient, 
 \begin{align}
 Precision &= \frac{TP}{TP+FP}\\
 Recall &= \frac{TP}{TP+FN}\\
-F-Measeure &= 2 \cdot \frac{Precission \cdot Recall}{Precission + Recall}
+F1 &= 2 \cdot \frac{Precission \cdot Recall}{Precission + Recall}
 \end{align}
 
 Other semantic roles, such as \agent and \beneficiary, are also evaluated by following these rules. After we have the value of precision, recall, and F1 for every semantic role, we average them to get the average precision, recall, and F1 for the model being evaluated.
