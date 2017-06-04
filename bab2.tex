@@ -121,7 +121,7 @@ Figure~\ref{fig:lstm} illustrates a one block memory in LSTM. There are three ma
 \begin{figure}
 	\centering
 	\includegraphics[width=1.0\linewidth]{images/lstm}
-	\caption{One memory block in LSTM}
+	\caption{One memory block in LSTM~\citep{skripsiwahid}}
 	\label{fig:lstm}
 \end{figure}
 
@@ -312,23 +312,22 @@ a steady increase [INITIAL VALUE from 9.5] [FINAL VALUE to 14.3] [ITEM in divide
 a [DIFFERENCE 5\%] [ITEM dividend] increase... 
 
 As we can see from the examples above, \textit{rose}, \textit{fell}, and \textit{increase} have the same set of semantic roles under the frame change position on a scale. Instead of defining the semantic roles for each verb sense one by one, FrameNet groups predicates (not limited to verbs) that have same semantic roles as one frame.
-
-\subsection{Problem Definitions}
-Semantic Role Labeling (SRL) is one of Natural Language Processing task which aims to automatically assign semantic roles for each constituent (argument) for each predicate in a sentence~\citep{jurafsky2016speech}. Current approach to solve this task is by using supervised machine learning. Given a labeled data, the machine learns from it and builds a generalization model. Researches often used PropBank or FrameNet corpus as the sources of annotated data. In this section, we describe the approaches to define the problem of SRL task, followed by the common features used for building supervised model for SRL.
-
-There are two ways to see SRL problem, either as Classification or Sequence Labeling problem. Classification approach assigns semantic roles for each word independently. Meanwhile, Sequence Labeling approach traverses from assigning semantic role for the first word until the last one in a sentence sequentially. In Sequence Labeing, the next label (semantic role) prediction of time step t is dependent to labels predicted on previous time steps (1..t-1).
-
-In classification approach approach, suppose that we have an input of \textit{n} words $w = (w_{1}, w_{2}, ..., w_{n})$. Each vector $w_{i}$ is classified into a label $y_{i}$ that represents the semantic role. The probabilities of the label in each time step $i$ is described as follows.
-\begin{equation}
-P(y_{i}|w_{i})
-\end{equation}
-
-In sequence labeling approach, suppose that we have an input of \textit{n} words $w = (w_{1}, w_{2}, ..., w_{n})$, the goal is to find the best label sequence $y = (y_{1}, y_{2}, ..., y_{n})$, with $y_{i}$ representing the semantic roles. The probabilities of the label in each time step $i$ is described as follows.
-\begin{equation}
-P(y_{i}|w_{i-l}, ..., w_{i+l},y_{i-l}, ..., y_{i+l})
-\end{equation}
-
-whereby \textit{l} is a small number. 
+%\subsection{Problem Definitions}
+%Semantic Role Labeling (SRL) is one of Natural Language Processing task which aims to automatically assign semantic roles for each constituent (argument) for each predicate in a sentence~\citep{jurafsky2016speech}. Current approach to solve this task is by using supervised machine learning. Given a labeled data, the machine learns from it and builds a generalization model. Researches often used PropBank or FrameNet corpus as the sources of annotated data. In this section, we describe the approaches to define the problem of SRL task, followed by the common features used for building supervised model for SRL.
+%
+%There are two ways to see SRL problem, either as Classification or Sequence Labeling problem. Classification approach assigns semantic roles for each word independently. Meanwhile, Sequence Labeling approach traverses from assigning semantic role for the first word until the last one in a sentence sequentially. In Sequence Labeing, the next label (semantic role) prediction of time step t is dependent to labels predicted on previous time steps (1..t-1).
+%
+%In classification approach approach, suppose that we have an input of \textit{n} words $w = (w_{1}, w_{2}, ..., w_{n})$. Each vector $w_{i}$ is classified into a label $y_{i}$ that represents the semantic role. The probabilities of the label in each time step $i$ is described as follows.
+%\begin{equation}
+%P(y_{i}|w_{i})
+%\end{equation}
+%
+%In sequence labeling approach, suppose that we have an input of \textit{n} words $w = (w_{1}, w_{2}, ..., w_{n})$, the goal is to find the best label sequence $y = (y_{1}, y_{2}, ..., y_{n})$, with $y_{i}$ representing the semantic roles. The probabilities of the label in each time step $i$ is described as follows.
+%\begin{equation}
+%P(y_{i}|w_{i-l}, ..., w_{i+l},y_{i-l}, ..., y_{i+l})
+%\end{equation}
+%
+%whereby \textit{l} is a small number. 
 
 \subsection{Common Features for SRL}
 The first set of features for SRL is proposed by Gildea and Jurafsky (2000). They are the first ones who used supervised machine learning approach to solve SRL. Over the years, many research proposed new set of features to improve the result, but they still used the basic features proposed by Gildea and Jurafsky (2000). The common features used for solving SRL task are:

@@ -6,23 +6,22 @@
 This chapter explains the implementations of the methodology explained in chapter 3. It includes the implementation of data annotation and pre-processing, model development, experiment, as well as the evaluation.
 
 \section{Computer Specification}
-For every experiment, we use GPU-based virtual server provided by Kata.ai. The specifications of the server are explained as follows.
+Every experiment uses GPU-based virtual server provided by Kata.ai. The specifications of the server are explained as follows.
 
 \begin{table}
 	\centering
 	\caption{Server Specifications}
 	\begin{tabular}{|l|l|}
 		\hline
-		\textbf{Processor} & i7-4770S \\ \hline
-		\textbf{Number of Cores} & 8 core \\ \hline
-		\textbf{Processor Frequency} & 3.1 GHz per core \\ \hline
-		\textbf{RAM} & 8 GB \\ \hline
-		\textbf{Operating System} & Ubuntu 14 \\ \hline
+		\textbf{GPU} & Nvidia Tesla M60 \\ \hline
+		\textbf{Number of Cores} & 6 \\ \hline
+		\textbf{RAM} & 56.00 GiB \\ \hline
+		\textbf{Operating System} & Ubuntu 16.04.2 \\ \hline
 	\end{tabular}
 	\label{table:spesifikasi hardware}
 \end{table}
 
-The server uses 8-core i7 processor with 3.1 GHz per core frequency. The size of the RAM is 8 GB. We use Ubuntu 14 distribution as the operating system.
+The server uses GPU Nvidia Tesla M60 with 6 cores. The size of the RAM is 56.00 GiB. The operating system used is Ubuntu 16.04.2.
 
 \section{Data Annotation and Pre-processing}
 For data annotation, we use an in-house tool provided by Kata.ai, named \textit{kata-annotator}. The total amount of data to be annotated was 9000 sentences. The data was annotated by three linguists with each of them annotating different set of data containing 3000 sentences for 8 weeks. In order to align the annotation understanding between them, the three linguists annotated the same trial set consisting of 100 sentences before starting to annotate the real one. The annotation differences found are then discussed in order to align the understanding between them.
@@ -31,21 +30,20 @@ After 8 weeks of annotation, the total amount of data that has been annotated is
 
 \fbox{%
 	\parbox{1.0\linewidth}{%
-		[\\
-			\{\\
+		[\{\\
 				"data": ["Aku", "pengen", "makan", "ayam", "goreng", "dong"],\\
 				"label": ["B-AGENT", "B-MD", "B-PRED", "B-PATIENT", "I-PATIENT", "O"]\\
 			\},\\
 			\{\\
 				"data": ["Kamu", "gak", "tidur", ",", "Andi", "?"],\\
 				"label": ["B-AGENT", "O", "B-PRED", "O", "B-GREET", "O"]\\
-			\}\\
-		]
+			\}s]
 	}%
 }
 \\
 
-The label is then converted into a one-hot-vector representation which is presented in Pseudocode~\ref{code:labeltoone}
+It turns out that there are only 5036 sentences which contain predicate in it. These 5036 sentences are the main data set to be trained and tested.
+
 \begin{kode}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
@@ -67,17 +65,16 @@ The label is then converted into a one-hot-vector representation which is presen
 	
 	\caption{A pseudocode for converting labels of a sentence into one-hot-vectors}
 	\label{code:labeltoone}
-	
 \end{kode}
 
-It turns out there are only 5000 sentences which contain predicate in it. These 5000 sentences are the main data set to be trained and tested.
+The label is then converted into a one-hot-vector representation which is presented in Pseudocode~\ref{code:labeltoone}. The function \textit{convertLabelToOneHotVector} takes an array of labels from one sentence as an input. Each label in the array is then converted into its one-hot-vector representation. All the converted results are appended into a new array called \textit{oneHotVectorLabel}. The function finally returns the array of one-hot-vectors.
 
 \section{Feature Extraction}
-The features to be extracted are word embedding, POS tag, and neighboring word embedding.
+There are three features to be extracted including Word Embedding, POS tag, and Neighboring Word Embeddings. This section explains the implementation of each feature extraction. All codes are implemented using Python.
 
 \subsection{Word Embedding}
 % Jelasin pake gensim's word2vec. Parameter nya apa aja. Data training yang digunakan darimana.
-We use Gensim's Word2Vec as the library for training the word embedding model as well as converting words into vectors. Pseudocode~\ref{code:trainword2ve} explains on how to train the word embedding model.
+We use Gensim's Word2Vec~\citep{gensim} as the library for training the word embedding model as well as converting words into vectors. Pseudocode~\ref{code:trainword2ve} explains on how to train the word embedding model.
 \begin{kode}
 	
 	\SetKwInOut{Input}{Input}
@@ -98,7 +95,7 @@ We use Gensim's Word2Vec as the library for training the word embedding model as
 	\label{code:trainword2ve}
 \end{kode}
 
-There are two parameters, which are context window and vector dimension. Context window determines the area of interest in building the word embedding model. Vector dimension represents the length of the output vector. In this work, the context window and vector dimension used are 5 and 32, respectively.
+There are two parameters, which are context window and vector dimension. Context window determines the area of interest in building the word embedding model. Vector dimension represents the length of the output vector. In this work, the context window and vector dimension used are 5 and 64, respectively. The output is the trained word embedding model.
 
 \begin{kode}
 	
@@ -124,7 +121,7 @@ There are two parameters, which are context window and vector dimension. Context
 \end{kode}
 % jelasin kode convert word embedding
 % jelasin kode train word embedding
-From the Pseudocode~\ref{code:trainword2ve}, the output is the trained word embedding model. \ref{code:ekstraksiownword} shows how to use the model to convert words into vectors.
+Pseudocode~\ref{code:ekstraksiownword} shows on how to use the trained word embedding model to convert words into vectors. The function initially takes the trained model and an array of words from a sentence. Each word is then converted into the vector using the trained model. The converted words are appended in a new array called \textit{arrVector}. The function finally returns this new array.
 
 \subsection{POS Tag}
 For POS Tag feature, we use the gold-standard POS tag annotated by the three linguists. The annotation tool \textit{kata-annotator} is also used for annotating the POS tag. The output example of the POS tag from the tool in a form of JSON is given as follows:
@@ -153,7 +150,7 @@ The JSON file consists of an array of sentences. Each word in a sentence is labe
 	\SetKwInOut{Output}{Output}
 	
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{convertPOSTagToOneHotVector(arrPOS)}{
+	\Fn{convertPOSToOneHotVector(arrPOS)}{
 		\Input{array of POS tags of a sentence}
 		\Output{array of one hot vector}
 		\BlankLine
@@ -172,7 +169,7 @@ The JSON file consists of an array of sentences. Each word in a sentence is labe
 \end{kode}
 
 % jelasin sedikit tentang convert POS tag into one hot vector
-Each of the POS tag in a sentence is then converted into one-hot-vector. The implementation is presented in Pseudocode~\ref{code:ekstraksipostag}.
+Each of the POS tag in a sentence is then converted into one-hot-vector. The implementation is presented in Pseudocode~\ref{code:ekstraksipostag}. The function \textit{convertPOSToOneHotVector} initially takes array of POS tags from a sentence as the input. Each POS tag is converted into its respective one-hot-vector. The results are appended into a new array called \textit{posTagFeature}. The function finally returns this new array as the one-hot-vector representations of POS tags in a sentence.
 
 \subsection{Neighboring Word Embeddings}
 % jelasin ada dua, yaitu extract 1 word vector before and after. Pada sebelum token pertama dan setelah token terakhir ditambah padding vektor 0.
@@ -189,7 +186,7 @@ For neighboring word embeddings, we extract one vector on the left and one on th
 		\Output{array of neighboring word embedding vectors}
 		\BlankLine
 		
-		window = 1
+		window = 1\;
 		vectorDimension = getVectorDimension(sentenceVector)\;
 		padded = window * [vectorDimension*[0.]] + sequence + window * [vectorDimension*[0.]]\;
 		\BlankLine
@@ -197,7 +194,7 @@ For neighboring word embeddings, we extract one vector on the left and one on th
 		neighboringVectors = []\;
 		\For{i in 0...sentenceVector.length - 1}{
 			left = [item for sublist in padded[i:(i + window)] for item in sublist]\;
-			right = [item for sublist in padded[(i+ window + 1):(i + nbContexts)] for item in sublist]\;
+			right = [item for sublist in padded[(i+ window + 1):(i + (2*window + 1))] for item in sublist]\;
 			concate = left + right\;
 			neighboringVectors.append(concate)\;
 		}
@@ -210,12 +207,14 @@ For neighboring word embeddings, we extract one vector on the left and one on th
 	\label{code:neighboringwe}	
 \end{kode}
 
-The parameter here is the window. Since we only extract one word on the left and another on the right of the word being processed, the value of parameter window is 1.
+In this function, the parameter that can be set is the \textit{window}. Since we only extract one word on the left and another on the right of the word being processed, the value of parameter \textit{window} is 1.
 
 \section{Model Architecture}
-As explained in chapter 3, the model architecture consists of main layer and additional layer. The main layer choices include vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (BLSTM), DBLSTM-Zhou, and DBLSTM-Highway. On the other hand, the additional layer options include Convolutional Neural Networks (CNN) and attention mechanism. We use Keras 2.0~\citep{chollet2015} as our deep learning library with Tensorflow 1.1.0 backend for all the architectures. For constructing the model, we use the Functional API of Keras. The model in Keras only receives an input data with a fixed number of time steps for all sentences. Suppose that the maximum number of time steps in our data is $l$. Thus, all sentences in our data whose number of time steps is lower than $l$ have to be padded with vector $ \vec{0}$ in order to get a fixed number of time steps of $l$. To do the padding, we use \textit{padsequences} function available from Keras.
+As explained in chapter 3, the model architecture consists of main layer and additional layer. The main layer choices include vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (BLSTM), DBLSTM-Zhou, and DBLSTM-Highway. On the other hand, the additional layer options include Convolutional Neural Networks (CNN) and attention mechanism. 
 
-\subsection{Main Layer}
+We use Keras 2.0~\citep{chollet2015} as our deep learning library with Tensorflow 1.1.0 backend for all the architectures. For constructing the model, we use the Functional API of Keras. The model in Keras only receives an input data with a fixed number of time steps for all sentences. Suppose that the maximum number of time steps in our data is $l$. Thus, all sentences in our data whose number of time steps is lower than $l$ have to be padded with vector $ \vec{0}$ in order to get a fixed number of time steps of $l$. To do the padding, we use \textit{padsequences} function available from Keras. All codes are implemented using Python.
+
+\subsection{Main Layers}
 The main layer choices include vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (BLSTM), DBLSTM-Zhou, and DBLSTM-Highway. This section explains the implementation of each architecture.
 
 \subsubsection{Vanilla LSTM (LSTM)}
@@ -254,7 +253,7 @@ Vanilla LSTM (LSTM) consists of only one layer of forward LSTM. Pseudocode~\ref{
 
 The Pseudocode~\ref{code:olstm} takes x train, y train, number of time steps, number of features, x test and y test as the inputs. The model starts with the defining the input layer, with the input shape of (timesteps, features). The input layer is then connected to the LSTM layer thas has 128 hidden units. These hidden units are the output of the LSTM layer. We use recurrent dropout in LSTM, as recommended by~\cite{he2017deep}. The recurrent dropout used is 0.2. We also use dropout layer on top of the LSTM layer by the value of 0.2. The output of the dropout layer is connected to the time-distributed dense layer with softmax activation function. These last layer produces the labels of semantic roles. The model is trained with categorical crossentropy loss function and Adam optimizer. The number of epochs and batch size used are both 50. After the model has been trained, we use it to predict the semantic roles the x test data which later will be evaluated. The function returns the trained model as well as the prediction result of the test data.
 
-\subsection{Bi-Directional LSTM (BLSTM)}
+\subsubsection{Bi-Directional LSTM (BLSTM)}
 Bi-Directional LSTM (BLSTM) consists of two layers of LSTM. The first layer is moving forward and the other is moving backward. Pseudocode~\ref{code:blstm} shows the implementation of the BLSTM architecture.
 
 \begin{kode}
@@ -421,7 +420,7 @@ Deep BLSTM-Zhou (DBLSTM-Highway) consists of two pairs of BLSTM-Highway. To impl
 
 The input layer is first processed by the first forward LSTM layer. The output of this layer is then connected to the first dropout layer. After that, the output is processed by the first backward LSTM layer. The output of the first backward layer (\textit{backward1}) and the first dropout layer (\textit{dropout1f}) are concatenated before being processed by the time-distributed dense layer with sigmoid function. The output of the dense layer is the weight \textit{alpha2b}. In lambda function called \textit{timesAlphaSigmoid}, \textit{backward1} is multiplied by the weight \textit{alpha2b} and \textit{dropout1f} is multiplied by the weight \textit{1 - alpha2b}. The lambda function then sums both results. These steps are also done for the next forward and the backward LSTM layers. As in the previous architectures, the output of the last layer is then connected to the time-distributed dense layer with softmax activation function to predict the semantic roles.
 
-\subsection{Additional Layer}
+\subsection{Additional Layers}
 The additional layer options consist of Convolutional Neural Networks (CNN) and attention mechanism. These additional layers can be used in addition to any of the main layers.
 
 \subsubsection{Convolutional Neural Networks (CNN)}
@@ -436,12 +435,12 @@ CNN-BLSTM adds a CNN layer underneath the BLSTM layers. Pseudocode~\ref{code:cnn
 In this architecture, the CNN layer is added before the BLSTM layers. Thus, the input layer is connected with the CNN layer. The parameters of the CNN layer are filters, kernel size, and strides. Filters represent the number of output hidden layers. Kernel size defines the context window of the CNN layer. Strides define the amount of slide for every time step. The value of filters, kernel size, and strides parameters are 128, 3, and 1, respectively. The output the CNN layer is then connected to the any LSTM variant as explained in the previous sections.
 
 \subsubsection{Attention Mechanism}
-CA-BLSTM adds an attention mechanism on top of the BLSTM layers. Pseudocode~\ref{code:cablstm} shows the implementation of the CA-BLSTM architecture.
+The attention mechanism can be added on top of the any main layer variant. Pseudocode~\ref{code:cablstm} shows the implementation of the adding attention mechanism on top of the main layer architecture.
 \begin{kode}
 	outs1 = TimeDistributed(RawDense(outputDim=512))(dropout)\;
 	m = Lambda(sum)(outs1)\;
 	alpha = Dense(timesteps, activation="softmax")(m)\;
-	z = Lambda(kaliAlphaSum)([alpha, dropout])\;
+	z = Lambda(timesAlphaSum)([alpha, dropout])\;
 	dropoutZ = Dropout(0.2)(z)\;
 	repeatedZ = RepeatVector(timesteps)(dropoutZ)\;
 	outFinal = concatenate([dropout, repeatedZ])\;	
@@ -451,7 +450,7 @@ CA-BLSTM adds an attention mechanism on top of the BLSTM layers. Pseudocode~\ref
 	\label{code:cablstm}
 \end{kode}
 
-The output of the dropout layer from BLSTM is then fed into a time-distributed, raw dense layer. The output dimension of this dense layer is set to 512. The output of this layer is then summed for each time step. The result of this sum is then fed into the dense layer with softmax activation function. This dense layer outputs the weights alpha for each time step. Lambda function \textit{kaliAlphaSum} firstly multiplies the original dropout output of the BLSTM with the alpha values. The function then sums all the result element-wise in order to get a context vector z. Vector z is then duplicated by the number of time steps before it is concatenated with all the original dropout output of the BLSTM layers. These concatenated vectors are then fed into the last softmax layer to produce the output labels.
+The output of the dropout layer from last LSTM layer is first fed into a time-distributed, raw dense layer. The output dimension of this dense layer is set to 512. The output of this layer is then summed for each time step. The result of this sum is then fed into the dense layer with softmax activation function. This dense layer outputs the weights alpha for each time step. Lambda function \textit{timesAlphaSum} firstly multiplies the original dropout output of the last LSTM layer with the alpha values. The function then sums all the result element-wise in order to get a context vector z. Vector z is then duplicated by the number of time steps before it is concatenated with all the original dropout output of the last LSTM layer. These concatenated vectors are then fed into the last softmax layer to produce the output labels.
 
 %\section{Experiment}
 %

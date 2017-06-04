@@ -1,7 +1,7 @@
 \BOOKMARK [0][-]{section*.2}{TITLE PAGE}{}% 1
 \BOOKMARK [0][-]{section*.4}{LEMBAR PERNYATAAN ORISINALITAS}{}% 2
 \BOOKMARK [0][-]{section*.6}{LEMBAR PENGESAHAN}{}% 3
-\BOOKMARK [0][-]{section*.8}{Remarks}{}% 4
+\BOOKMARK [0][-]{section*.8}{Preface}{}% 4
 \BOOKMARK [0][-]{section*.10}{LEMBAR PERSETUJUAN PUBLIKASI ILMIAH}{}% 5
 \BOOKMARK [0][-]{section*.12}{ABSTRACT}{}% 6
 \BOOKMARK [0][-]{chapter*.14}{Table of Contents}{}% 7
@@ -26,58 +26,55 @@
 \BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Annotation Corpus}{section.2.3}% 26
 \BOOKMARK [3][-]{subsubsection.2.3.2.1}{2.3.2.1 Proposition Bank}{subsection.2.3.2}% 27
 \BOOKMARK [3][-]{subsubsection.2.3.2.2}{2.3.2.2 FrameNet}{subsection.2.3.2}% 28
-\BOOKMARK [2][-]{subsection.2.3.3}{2.3.3 Problem Definitions}{section.2.3}% 29
-\BOOKMARK [2][-]{subsection.2.3.4}{2.3.4 Common Features for SRL}{section.2.3}% 30
-\BOOKMARK [2][-]{subsection.2.3.5}{2.3.5 Historical Perspectives}{section.2.3}% 31
-\BOOKMARK [0][-]{chapter.3}{3 Methodology}{}% 32
-\BOOKMARK [1][-]{section.3.1}{3.1 Pipeline}{chapter.3}% 33
-\BOOKMARK [1][-]{section.3.2}{3.2 Data Gathering}{chapter.3}% 34
-\BOOKMARK [1][-]{section.3.3}{3.3 Data Pre-Processing}{chapter.3}% 35
-\BOOKMARK [1][-]{section.3.4}{3.4 Data Annotation}{chapter.3}% 36
-\BOOKMARK [1][-]{section.3.5}{3.5 Feature Extraction}{chapter.3}% 37
-\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 Word Embedding}{section.3.5}% 38
-\BOOKMARK [2][-]{subsection.3.5.2}{3.5.2 Part-of-Speech Tag \(POS Tag\)}{section.3.5}% 39
-\BOOKMARK [2][-]{subsection.3.5.3}{3.5.3 Neighboring Word Embeddings}{section.3.5}% 40
-\BOOKMARK [1][-]{section.3.6}{3.6 Model Architecture}{chapter.3}% 41
-\BOOKMARK [2][-]{subsection.3.6.1}{3.6.1 Main Layers}{section.3.6}% 42
-\BOOKMARK [3][-]{subsubsection.3.6.1.1}{3.6.1.1 Vanilla LSTM \(LSTM\)}{subsection.3.6.1}% 43
-\BOOKMARK [3][-]{subsubsection.3.6.1.2}{3.6.1.2 Bi-Directional LSTM \(BLSTM\)}{subsection.3.6.1}% 44
-\BOOKMARK [3][-]{subsubsection.3.6.1.3}{3.6.1.3 Deep BLSTM \(DBLSTM\)}{subsection.3.6.1}% 45
-\BOOKMARK [3][-]{subsubsection.3.6.1.4}{3.6.1.4 Deep BLSTM-Zhou \(DBLSTM-Zhou\)}{subsection.3.6.1}% 46
-\BOOKMARK [3][-]{subsubsection.3.6.1.5}{3.6.1.5 Deep BLSTM-Highway \(DBLSTM-Highway\)}{subsection.3.6.1}% 47
-\BOOKMARK [2][-]{subsection.3.6.2}{3.6.2 Additional Layers}{section.3.6}% 48
-\BOOKMARK [3][-]{subsubsection.3.6.2.1}{3.6.2.1 Convolutional Neural Networks \(CNN\)}{subsection.3.6.2}% 49
-\BOOKMARK [3][-]{subsubsection.3.6.2.2}{3.6.2.2 Attention Mechanism}{subsection.3.6.2}% 50
-\BOOKMARK [1][-]{section.3.7}{3.7 Experiment}{chapter.3}% 51
-\BOOKMARK [1][-]{section.3.8}{3.8 Evaluation}{chapter.3}% 52
-\BOOKMARK [0][-]{chapter.4}{4 Implementation}{}% 53
-\BOOKMARK [1][-]{section.4.1}{4.1 Computer Specification}{chapter.4}% 54
-\BOOKMARK [1][-]{section.4.2}{4.2 Data Annotation and Pre-processing}{chapter.4}% 55
-\BOOKMARK [1][-]{section.4.3}{4.3 Feature Extraction}{chapter.4}% 56
-\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Word Embedding}{section.4.3}% 57
-\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 POS Tag}{section.4.3}% 58
-\BOOKMARK [2][-]{subsection.4.3.3}{4.3.3 Neighboring Word Embeddings}{section.4.3}% 59
-\BOOKMARK [1][-]{section.4.4}{4.4 Model Architecture}{chapter.4}% 60
-\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 Main Layer}{section.4.4}% 61
-\BOOKMARK [3][-]{subsubsection.4.4.1.1}{4.4.1.1 Vanilla LSTM \(LSTM\)}{subsection.4.4.1}% 62
-\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 Bi-Directional LSTM \(BLSTM\)}{section.4.4}% 63
-\BOOKMARK [3][-]{subsubsection.4.4.2.1}{4.4.2.1 Deep BLSTM \(DBLSTM\)}{subsection.4.4.2}% 64
-\BOOKMARK [3][-]{subsubsection.4.4.2.2}{4.4.2.2 DBLSTM-Zhou}{subsection.4.4.2}% 65
-\BOOKMARK [3][-]{subsubsection.4.4.2.3}{4.4.2.3 DBLSTM-Highway}{subsection.4.4.2}% 66
-\BOOKMARK [2][-]{subsection.4.4.3}{4.4.3 Additional Layer}{section.4.4}% 67
-\BOOKMARK [3][-]{subsubsection.4.4.3.1}{4.4.3.1 Convolutional Neural Networks \(CNN\)}{subsection.4.4.3}% 68
-\BOOKMARK [3][-]{subsubsection.4.4.3.2}{4.4.3.2 Attention Mechanism}{subsection.4.4.3}% 69
-\BOOKMARK [0][-]{chapter.5}{5 Experiments}{}% 70
-\BOOKMARK [1][-]{section.5.1}{5.1 Data Statistics}{chapter.5}% 71
-\BOOKMARK [1][-]{section.5.2}{5.2 Experiment Scenario}{chapter.5}% 72
-\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 Scenario 1: Feature Selection}{section.5.2}% 73
-\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 Scenario 2: Model Selection}{section.5.2}% 74
-\BOOKMARK [3][-]{subsubsection.5.2.2.1}{5.2.2.1 Scenario 2a: LSTM, BLSTM and DBLSTM}{subsection.5.2.2}% 75
-\BOOKMARK [3][-]{subsubsection.5.2.2.2}{5.2.2.2 Scenario 2b: DBLSTM, DBLSTM-Zhou, and DBLSTM-Highway}{subsection.5.2.2}% 76
-\BOOKMARK [3][-]{subsubsection.5.2.2.3}{5.2.2.3 Scenario 2c: CNN Layer}{subsection.5.2.2}% 77
-\BOOKMARK [3][-]{subsubsection.5.2.2.4}{5.2.2.4 Scenario 2d: Attention Layer}{subsection.5.2.2}% 78
-\BOOKMARK [0][-]{chapter.6}{6 Conclusions}{}% 79
-\BOOKMARK [1][-]{section.6.1}{6.1 Kesimpulan}{chapter.6}% 80
-\BOOKMARK [1][-]{section.6.2}{6.2 Saran}{chapter.6}% 81
-\BOOKMARK [0][-]{chapter*.65}{References}{}% 82
-\BOOKMARK [0][-]{section*.66}{APPENDIX}{}% 83
+\BOOKMARK [2][-]{subsection.2.3.3}{2.3.3 Common Features for SRL}{section.2.3}% 29
+\BOOKMARK [2][-]{subsection.2.3.4}{2.3.4 Historical Perspectives}{section.2.3}% 30
+\BOOKMARK [0][-]{chapter.3}{3 Methodology}{}% 31
+\BOOKMARK [1][-]{section.3.1}{3.1 Pipeline}{chapter.3}% 32
+\BOOKMARK [1][-]{section.3.2}{3.2 Data Gathering}{chapter.3}% 33
+\BOOKMARK [1][-]{section.3.3}{3.3 Data Pre-Processing}{chapter.3}% 34
+\BOOKMARK [1][-]{section.3.4}{3.4 Data Annotation}{chapter.3}% 35
+\BOOKMARK [1][-]{section.3.5}{3.5 Feature Extraction}{chapter.3}% 36
+\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 Word Embedding}{section.3.5}% 37
+\BOOKMARK [2][-]{subsection.3.5.2}{3.5.2 Part-of-Speech Tag \(POS Tag\)}{section.3.5}% 38
+\BOOKMARK [2][-]{subsection.3.5.3}{3.5.3 Neighboring Word Embeddings}{section.3.5}% 39
+\BOOKMARK [1][-]{section.3.6}{3.6 Model Architecture}{chapter.3}% 40
+\BOOKMARK [2][-]{subsection.3.6.1}{3.6.1 Main Layers}{section.3.6}% 41
+\BOOKMARK [3][-]{subsubsection.3.6.1.1}{3.6.1.1 Vanilla LSTM \(LSTM\)}{subsection.3.6.1}% 42
+\BOOKMARK [3][-]{subsubsection.3.6.1.2}{3.6.1.2 Bi-Directional LSTM \(BLSTM\)}{subsection.3.6.1}% 43
+\BOOKMARK [3][-]{subsubsection.3.6.1.3}{3.6.1.3 Deep BLSTM \(DBLSTM\)}{subsection.3.6.1}% 44
+\BOOKMARK [3][-]{subsubsection.3.6.1.4}{3.6.1.4 Deep BLSTM-Zhou \(DBLSTM-Zhou\)}{subsection.3.6.1}% 45
+\BOOKMARK [3][-]{subsubsection.3.6.1.5}{3.6.1.5 Deep BLSTM-Highway \(DBLSTM-Highway\)}{subsection.3.6.1}% 46
+\BOOKMARK [2][-]{subsection.3.6.2}{3.6.2 Additional Layers}{section.3.6}% 47
+\BOOKMARK [3][-]{subsubsection.3.6.2.1}{3.6.2.1 Convolutional Neural Networks \(CNN\)}{subsection.3.6.2}% 48
+\BOOKMARK [3][-]{subsubsection.3.6.2.2}{3.6.2.2 Attention Mechanism}{subsection.3.6.2}% 49
+\BOOKMARK [1][-]{section.3.7}{3.7 Experiment}{chapter.3}% 50
+\BOOKMARK [1][-]{section.3.8}{3.8 Evaluation}{chapter.3}% 51
+\BOOKMARK [0][-]{chapter.4}{4 Implementation}{}% 52
+\BOOKMARK [1][-]{section.4.1}{4.1 Computer Specification}{chapter.4}% 53
+\BOOKMARK [1][-]{section.4.2}{4.2 Data Annotation and Pre-processing}{chapter.4}% 54
+\BOOKMARK [1][-]{section.4.3}{4.3 Feature Extraction}{chapter.4}% 55
+\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Word Embedding}{section.4.3}% 56
+\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 POS Tag}{section.4.3}% 57
+\BOOKMARK [2][-]{subsection.4.3.3}{4.3.3 Neighboring Word Embeddings}{section.4.3}% 58
+\BOOKMARK [1][-]{section.4.4}{4.4 Model Architecture}{chapter.4}% 59
+\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 Main Layers}{section.4.4}% 60
+\BOOKMARK [3][-]{subsubsection.4.4.1.1}{4.4.1.1 Vanilla LSTM \(LSTM\)}{subsection.4.4.1}% 61
+\BOOKMARK [3][-]{subsubsection.4.4.1.2}{4.4.1.2 Bi-Directional LSTM \(BLSTM\)}{subsection.4.4.1}% 62
+\BOOKMARK [3][-]{subsubsection.4.4.1.3}{4.4.1.3 Deep BLSTM \(DBLSTM\)}{subsection.4.4.1}% 63
+\BOOKMARK [3][-]{subsubsection.4.4.1.4}{4.4.1.4 DBLSTM-Zhou}{subsection.4.4.1}% 64
+\BOOKMARK [3][-]{subsubsection.4.4.1.5}{4.4.1.5 DBLSTM-Highway}{subsection.4.4.1}% 65
+\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 Additional Layers}{section.4.4}% 66
+\BOOKMARK [3][-]{subsubsection.4.4.2.1}{4.4.2.1 Convolutional Neural Networks \(CNN\)}{subsection.4.4.2}% 67
+\BOOKMARK [3][-]{subsubsection.4.4.2.2}{4.4.2.2 Attention Mechanism}{subsection.4.4.2}% 68
+\BOOKMARK [0][-]{chapter.5}{5 Experiments}{}% 69
+\BOOKMARK [1][-]{section.5.1}{5.1 Data Statistics}{chapter.5}% 70
+\BOOKMARK [1][-]{section.5.2}{5.2 Experiment Scenario}{chapter.5}% 71
+\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 Scenario 1: Feature Selection}{section.5.2}% 72
+\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 Scenario 2: Model Selection}{section.5.2}% 73
+\BOOKMARK [3][-]{subsubsection.5.2.2.1}{5.2.2.1 Scenario 2a: LSTM, BLSTM and DBLSTM}{subsection.5.2.2}% 74
+\BOOKMARK [3][-]{subsubsection.5.2.2.2}{5.2.2.2 Scenario 2b: DBLSTM, DBLSTM-Zhou, and DBLSTM-Highway}{subsection.5.2.2}% 75
+\BOOKMARK [3][-]{subsubsection.5.2.2.3}{5.2.2.3 Scenario 2c: CNN Layer}{subsection.5.2.2}% 76
+\BOOKMARK [3][-]{subsubsection.5.2.2.4}{5.2.2.4 Scenario 2d: Attention Layer}{subsection.5.2.2}% 77
+\BOOKMARK [0][-]{chapter.6}{6 Conclusion and Future Work}{}% 78
+\BOOKMARK [0][-]{chapter*.65}{References}{}% 79
+\BOOKMARK [0][-]{section*.66}{APPENDIX}{}% 80

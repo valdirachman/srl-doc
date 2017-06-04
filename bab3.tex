@@ -27,9 +27,11 @@ This research uses the data from one of Kata.ai's chat bots. Firstly, the data i
 	\label{fig:pipeline}
 \end{figure}
 
-There are 2 main scenarios for the experiment. The first scenario aims for finding the best set of features that output the best performance. The goal of the second scenario is to find which deep learning model architecture has the best result. In the first scenario, we have three features, which are word embedding, POS tag, and neighboring word embeddings. In the second scenario, we compare four model architectures, namely vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), CNN-BLSTM, and Context-Aware BLSTM (CA-BLSTM).
+The model development step consists of feature extraction and model architecture. The features are Word Embeddings, POS Tag, and Neighboring Word Embeddings. The model architecture consists of main and additional layer. The main layer options include vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM Highway.
 
-We use 5-fold cross validation for every experiment. Each experiment is evaluated based on precision, recall, and F1 of each semantic roles with partial match approach. The performance of a model is retrieved by averaging precision, refall, and F1 of every semantic role.  We then analyze and explain the results of each experiment scenario.
+There are 2 main scenarios for the experiment. The first scenario aims for finding the best set of features that outputs the best performance. The goal of the second scenario is to find which deep learning model architecture has the best result.
+
+We use 5-fold cross validation for every experiment. Each experiment is evaluated based on precision, recall, and F1 of each semantic roles with partial match approach~\citep{seki2003probabilistic}. The performance of a model is retrieved by averaging precision, recall, and F1 of every semantic role.  We then analyze and explain the results of each experiment scenario.
 
 \section{Data Gathering}
 In this research we use real-world data from one of Kata.ai chat bots. We firstly retrieved data consisting of 40.000 instances of text chats. We then manually deleted junk chats which contain, for example, only laugh or greeting. After that, we run a script to delete duplicate chats. The deletion process outputs a clean data with 30.000 instances in total. Finally, we randomly selected 9.000 out of 30.000 instances as the data to be annotated. This data set will be the one which is trained and tested to build the SRL system.
@@ -37,17 +39,14 @@ In this research we use real-world data from one of Kata.ai chat bots. We firstl
 It is worth to note that conversational language has unique characteristics. First, they use slangs and abbreviations. For example, one might use \textit{"u"} instead of \textit{"you"} in \textit{"I brought u a present"}. The grammars are often unstructured and thus, one cannot rely on syntactic parsers to build SRL system for conversational language. The sentences are also filled with interjections such as \textit{"haha"} and \textit{"lol"}. Lastly, since conversational sentences are really short, averaging around 5-7 words per sentence, it sometimes contains incomplete information. These are the interesting challenges the SRL system should learn and tackle.
 
 \section{Data Pre-Processing}
-After the data has been gathered, the next step is to pre-process the data so that it could be fed into the machine learning model later. In this step, each sentence is going through a process called tokenization. Tokenization splits sentence into its individual words. Traditionally, one can split sentence by \textit{space}, however, it does not work for sentences in conversational language since number or symbol are often concatenated with words, such as "makan2". It thus needs further tokenization technique, that is, splitting alphabet with number and symbol tokens. This way, "makan2" will be tokenized as "makan 2". In addition to tokenization by \textit{space}, the rules are listed as follows:
-
+After the data has been gathered, the next step is to pre-process the data so that it could be fed into the machine learning model later. In this step, each sentence is going through a process called tokenization. Tokenization splits sentence into its individual tokens. Traditionally, one can split sentence by \textit{space}, however, conversational language often contains a concatenated word with symbol such as "makan yuk!!!". It thus needs further tokenization technique, that is, splitting the alphabet with symbol tokens. This way, "makan yuk!!!" will be tokenized as "makan", "yuk", and "!!!". In addition to tokenization by \textit{space}, the rules are listed as follows:
 \begin{enumerate}
-	\item <alphabet><numeric> to be <alphabet><space><numeric>
-	\item <numeric><alphabet> to be <numeric><space><alphabet>
 	\item <alphabet><symbol> to be <alphabet><space><symbol>
 	\item <symbol><alphabet> to be <symbol><space> <alphabet>
 \end{enumerate}
 
 \section{Data Annotation}
-In this work, we create a new set of semantic roles mainly crafted for informal conversational language. The summary of semantic roles proposed with its examples are presented in Table~\ref{tab:semantic_roles}.
+In this work, we create a new set of semantic roles mainly crafted for Indonesian conversational language. The summary of semantic roles proposed with its examples are presented in Table~\ref{tab:semantic_roles}.
 
 \begin{table}
 	\centering
@@ -68,9 +67,9 @@ In this work, we create a new set of semantic roles mainly crafted for informal 
 	\end{tabular}
 \end{table}
 
-These semantic roles are mainly inspired by the work of \cite{saeed19972003}, except that \textsc{Agent} and \textsc{Patient} refer to \textsc{Proto-Agent} and \textsc{Proto-Patient} as explained by \cite{dowty1991thematic}. The main difference of this set of semantic roles compared to the previous ones is \textsc{Greet}.
+These semantic roles are mainly inspired by the work of \cite{saeed19972003}, except that \textsc{Agent} and \textsc{Patient} are adapted from \textsc{Proto-Agent} and \textsc{Proto-Patient} as explained by \cite{dowty1991thematic}. The main difference of this set of semantic roles compared to the previous ones is \textsc{Greet}.
 
-The center of all semantic roles is the \predicate. As in English, \predicate in Indonesian is usually in a form of \textit{verb}, as illustrated by the examples below:
+The center of all semantic roles is the \predicate. As in English, \predicate~in Indonesian is usually in a form of \textit{verb}, as illustrated by the examples below:
 \begin{description}
 	\item[$\bullet$] "Kemarin aku \underline{makan} di rumah"
 	\item[$\bullet$] "Aku \underline{ada} ujian nih hari Senin"
@@ -85,15 +84,8 @@ In Indonesian, however, predicate can also be an adjective. Some examples are pr
 In this section, we briefly explain each semantic roles with their respective examples.
 \begin{enumerate}
 	\item \agent\\
-	An entity is called as \agent~ if one of this following properties is fulfilled:
-	\begin{description}
-		\item Volitional involvement in event or state
-		\item Sentience (and/or perception)
-		\item Causing an event or change of state in another participant
-		\item Movement (relative to position of another participant) (exists independently of event named)
-	\end{description}
-	
-	The examples of \agent~ in a sentence are given as follows:
+	\agent is described as initiator of action or capable of volition. It can also be the one which perceives action but not in control. Usually, an \agent is the subject of a verb in active voice.
+	The examples of \agent~in a sentence are given as follows:
 	\begin{description}
 		\item[$\bullet$] "\underline{Aku} makan ayam dulu ya"
 		\item[$\bullet$] "\underline{Kamu} gak tidur?"
@@ -101,15 +93,7 @@ In this section, we briefly explain each semantic roles with their respective ex
 	\end{description}
 	
 	\item \patient\\
-	An entity is called as \patient~ if one of this following properties is fulfilled:
-	\begin{description}
-		\item Volitional involvement in event or state
-		\item Sentience (and/or perception)
-		\item Causing an event or change of state in another participant
-		\item Movement (relative to position of another participant) (exists independently of event named)
-	\end{description}
-	
-	The examples of \patient~ in a sentence are given as follows:
+	\patient~is described as an entity affected by action or undergoes change of state. It can also be an entity being located. \patient~is usually the direct object of a verb in active voice. If the predicate is in a form of adjective, the subject of it is labeled as \patient. The examples of \patient~in a sentence are given as follows:
 	\begin{description}
 		\item[$\bullet$] "Aku makan \underline{ayam} dulu ya"
 		\item[$\bullet$] "Kamu mau beliin aku \underline{pulsa}?"
@@ -117,28 +101,28 @@ In this section, we briefly explain each semantic roles with their respective ex
 	\end{description}
 
 	\item \beneficiary\\
-	\beneficiary~ is an entity which gets benefit of the predicate. It is usually in a form of indirect object. The examples of \beneficiary~ in a sentence are given as follows:
+	\beneficiary~is an entity which gets benefit of the predicate. It is usually in a form of indirect object of a predicate (can be a ditransitive verb or an adjective). The examples of \beneficiary~in a sentence are given as follows:
 	\begin{description}
 		\item[$\bullet$] "Kamu mau beliin \underline{aku} pulsa?"
 		\item[$\bullet$] "Aku pengen ngobrol sama \underline{kamu}"
 	\end{description}
 	
 	\item \greet\\
-	\greet~ is the main difference of this set of semantic roles for conversational language. \greet~ refers to an animate object, usually a person, which is being greeted in a chat. In conversational language, one often calls the name of person it is talking to. This information is useful, for instance, we can derive that \textit{"you"} refers to \textit{"Budi"} in \textit{"Halo Budi! Aku beliin kamu kado loh"}. The examples of \greet~ in a sentence are given as follows:
+	\greet~is the main difference of this set of semantic roles for conversational language. \greet~refers to an animate object, usually a person, which is being greeted in a chat. In conversational language, one often calls the name of person it is talking to. This information is useful, for instance, we can derive that \textit{"you"} refers to \textit{"Budi"} in \textit{"Halo Budi! Aku beliin kamu kado loh"}. The examples of \greet~in a sentence are given as follows:
 	\begin{description}
 		\item[$\bullet$] "Hai \underline{rizky}! kamu udah makan belum?"
 		\item[$\bullet$] "aku ga bisa tidur nih \underline{Val}"
 	\end{description}
 
 	\item \modal\\
-	\modal~ refers to \textit{modal verb} of a predicate. The word examples are \textit{"boleh, harus, pernah, sudah, udah, mesti, perlu, akan, lagi, bisa, mau, ingin, pengen, pingin"}. The examples of \modal~ in a sentence are given as follows:
+	\modal~refers to \textit{modal verb} of a predicate. The \modal~examples are \textit{"boleh, harus, pernah, sudah, udah, mesti, perlu, akan, lagi, bisa, mau, ingin, pengen, pingin"}. The examples of \modal~in a sentence are given as follows:
 	\begin{description}
 		\item[$\bullet$] "Aku \underline{mau} makan dulu ya!"
 		\item[$\bullet$] "Kamu \underline{udah} tidur belum?"
 	\end{description}
 
 	\item \location\\
-	\location~ refers to the location of a predicate. The examples of \location~ in a sentence are given as follows:
+	\location~refers to the location of a predicate. The examples of \location~in a sentence are given as follows:
 	\begin{description}
 		\item[$\bullet$] "Aku mau makan di \underline{rumah} ya!"
 		\item[$\bullet$] "Kamu gak pergi ke \underline{sekolah}?"
@@ -171,8 +155,6 @@ After the data has been labeled, the labels need to be encoded in a way the deep
 \end{table}
 
 Table~\ref{tab:examplelabel} shows an example of how sentence is labeled with the one-hot vectors representations of BIO format.
-
-
 
 \section{Feature Extraction}
 In this step, we extract features from the data that has been annotated with semantic roles. We propose three features which will be combined later to find the best feature selection that outputs the best result. Those features are word embedding, POS-Tag, and neighboring word embeddings.
@@ -269,7 +251,7 @@ Vanilla LSTM is the basic, one-directional LSTM networks designed to overcome va
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{images/olstm}
-	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\caption{An architecture of vanilla LSTM with total time step of 4}
 	\label{fig:olstm}
 \end{figure}
 
@@ -295,8 +277,8 @@ After explaining the big picture of LSTM networks, we describe the details of ev
 % Gambar single unit LSTM
 \begin{figure}
 	\centering
-	\includegraphics[width=0.85\linewidth]{images/lstm}
-	\caption{An LSTM unit in time step $t$}
+	\includegraphics[width=0.85\linewidth]{images/lstmadapted2}
+	\caption{An LSTM unit in time step $t$. Adapted from~\citep{skripsiwahid}.}
 	\label{fig:lstmunit}
 \end{figure}
 
@@ -329,7 +311,7 @@ Bi-Directional LSTM (BLSTM) is a modification of LSTM networks. It was firstly i
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{images/blstm}
-	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\caption{An architecture of Bi-Directional LSTM (BLSTM) with total time step of 4}
 	\label{fig:bilstm}
 \end{figure}
 
@@ -366,7 +348,7 @@ Deep BLSTM (DBLSTM) is basically formed by stacking BLSTM layers. This concept w
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{images/dblstm}
-	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\caption{An architecture of Deep BLSTM (DBLSTM) with total time step of 4}
 	\label{fig:dblstm}
 \end{figure}
 
@@ -394,7 +376,7 @@ The output tensor $\mathbf{h_{t}}$ is finally fed into the last softmax layer to
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{images/dblstmzhou}
-	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\caption{An architecture of DBLSTM-Zhou with total time step of 4}
 	\label{fig:dblstmzhou}
 \end{figure}
 
@@ -426,7 +408,7 @@ The DBLSTM-Highway architecture is adapted from the work of~\cite{he2017deep}. T
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{images/dblstmhighway}
-	\caption{An architecture of Context-Aware Bi-Directional Long Short Term Memories with total time step of 4}
+	\caption{An architecture of DBLSTM-Highway with total time step of 4}
 	\label{fig:dblstmhighway}
 \end{figure}
 

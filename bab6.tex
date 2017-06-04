@@ -4,11 +4,19 @@
 %-----------------------------------------------------------------------------%
 
 %-----------------------------------------------------------------------------%
-\section{Kesimpulan}
+%\section{Conclusion}
 %-----------------------------------------------------------------------------%
-Semantic Role Labeling (SRL) is an integral part of understanding semantic information of a text. One of its applications is to make chat bots understand user's chat better and thus, it can provide more engaging answers. Even though the SRL on formal language has been widely studied, the conversational language used on chatting platform is barely tapped. In this work, we introduce a new set of semantic roles for conversational language and propose a new model architecture called Context-Aware Bi-Directional Long Short-Term Memories (CA-BLSTM). CA-BLSTM adds an attention mechanism on top of the BLSTM layer, by collecting context information from all the words in a sentence and representing it as a vector that is concatenated to all the output of BLSTM.
+Semantic Role Labeling (SRL) is an integral part of understanding semantic information of a text. One of its applications is to make chat bots understand user's chat better and thus, it can provide more engaging answers. Even though the SRL on English formal language has been widely studied, only a few reports exist for informal conversational language, especially for language being used in the chatbot system. In Indonesian, both formal and conversational language are barely tapped for building SRL system. In this work, we focus on solving SRL for Indonesian conversational language. Our contributions are introducing a new set of semantic roles and proposing an attention mechanism on top of the Long Short-Term Memory Networks architecture. 
 
-We conducted two set of experiment scenarios, which are feature selection and model selection. Our experiments on feature selection show that when the size of training data is relatively small, one still needs to use traditional feature such as POS tag in addition to word embedding. The Neighboring Words feature is also useful when we only use one-directional LSTM architecture in order to capture more context. However, Neighboring Words feature is not needed when we use deeper bi-directional LSTM architectures. In model selection experiment, the results show that our proposed architecture, CA-BLSTM, can outperforms the original BLSTM. Based on the increasing result of all precision, recall, and F1, we suggest that our architecture successfully extracts context information at higher level. Since it becomes more context-aware, our analysis shows that CA-BLSTM can predict the labels more carefully.
+We view SRL as a sequence labeling problem. One of the deep learning architectures that fits to solve sequence labeling problem is Long Short-Term Memories (LSTM), a modification of Recurrent Neural Networks (RNN). In this work, we experiment on a variety of LSTM networks, including vanilla LSTM, Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM-Highway. The features used are Word Embedding (WE), Part-of-Speech Tag (POS), and Neighboring Word Embeddings (NW).
+
+We conducted two set of experiment scenarios: feature selection and model selection. Our experiments on feature selection show that when the size of training data is relatively small, one still needs to use traditional feature such as POS tag in addition to word embedding. The neighboring word embeddings feature is also useful when we only use one-directional vanilla LSTM architecture in order to capture more context. Our experiments show that word embedding and POS tag combination can produce the best result when using the DBLSTM architecture. 
+
+In model selection set, our experiments show that DBLSTM architecture can outperform vanilla LSTM and BLSTM. Furthermore, our results show that original DBLSTM can outperform its variants: DBLSTM-Zhou and DBLSTM-Highway. For the additional layers, we experiment on adding CNN layer and our proposed attention mechanism to the three afore-mentioned DBLSTM architectures. It turns out that the CNN layer is not suitable for the DBLSTM networks. In our experiment of adding the attention mechanism, the  
+
+adding CNN our proposed architecture, CA-BLSTM, can outperforms the original BLSTM. Based on the increasing result of all precision, recall, and F1, we suggest that our architecture successfully extracts context information at higher level. Since it becomes more context-aware, our analysis shows that CA-BLSTM can predict the labels more carefully.
+
+CA-BLSTM adds an attention mechanism on top of the BLSTM layer, by collecting context information from all the words in a sentence and representing it as a vector that is concatenated to all the output of BLSTM.
 
 For future works, once the SRL system is established, one can focus on building the Natural Language Generation (NLG) system for chat bots based on the semantic roles of the conversational language. This way, we can create more intelligent chat bots which understand deeper on conversational language. Another interesting work would be integrating coreference resolution on the SRL system knowing that conversational language is usually in a form of dialogues.
 
@@ -21,7 +29,7 @@ For future works, once the SRL system is established, one can focus on building 
 %LSTMs pertama tidak bisa dikatakan lebih baik dibandingkan LSTMs kedua dan begitu pula sebaliknya, karena hasil yang diperoleh mengatakan bahwa masing-masing arsitektur memiliki hasil yang lebih baik di beberapa macam entitas. Namun, arsitektur ini mampu memberikan hasil yang lebih baik dari hasil penelitian \cite{skripsiKakRadit}. Hal ini akan menarik apabila \textit{resource} semakin diperbesar, apakah tetap LSTMs 1 layer lebih baik, karena LSTMs 2 layer memiliki parameter lebih banyak, sehingga mampu menyimpan informasi yang lebih besar.
 
 %-----------------------------------------------------------------------------%
-\section{Saran}
+%\section{Future Work}
 %-----------------------------------------------------------------------------%
 %Setelah melakukan eksperimen dan menganalisis hasilnya, ada beberapa saran untuk penelitian selanjutnya, antara lain sebagai berikut.
 %

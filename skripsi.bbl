@@ -80,11 +80,6 @@ Jordan, M.~I. (1986).
 \newblock Attractor dynamics and parallellism in a connectionist sequential
   machine.
 
-\bibitem[Jurafsky and James, 2000]{jurafsky2000speech}
-Jurafsky, D. and James, H. (2000).
-\newblock Speech and language processing an introduction to natural language
-  processing, computational linguistics, and speech.
-
 \bibitem[Jurafsky and James, 2016]{jurafsky2016speech}
 Jurafsky, D. and James, H. (2016).
 \newblock Speech and language processing (3rd ed. draft).
@@ -143,6 +138,16 @@ Punyakanok, V., Roth, D., and Yih, W.-t. (2008).
 \newblock The importance of syntactic parsing and inference in semantic role
   labeling.
 \newblock {\em Computational Linguistics}, 34(2):257--287.
+
+\bibitem[Rehurek, 2013]{gensim}
+Rehurek, R. (2013).
+\newblock gensim word2vec.
+
+\bibitem[Rohman, 2017]{skripsiwahid}
+Rohman, W.~N. (2017).
+\newblock Pengenalan entitas kesehatan pada forum kesehatan online dengan
+  menggunakan recurrent neural networks.
+\newblock Bachelor's thesis, Universitas Indonesia, Kampus UI Depok.
 
 \bibitem[Saeed, 1997]{saeed19972003}
 Saeed, J. (1997).
