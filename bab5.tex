@@ -7,12 +7,12 @@ This chapter focuses on the experiments that we have conducted. Firstly, the dat
 %-----------------------------------------------------------------------------%
 
 \section{Data Statistics}
-As explained in Chapter 3, there are 8 semantic roles to be predicted, which are: \agent, \predicate, \patient, \modal, \beneficiary, \location, \greet, and \timesrl. The distribution of the semantic roles in our data set is presented in Figure~\ref{fig:srldistribution}.
+As explained in Chapter 3, there are 8 labels to be predicted, which are: \agent, \predicate, \patient, \modal, \beneficiary, \location, \greet, and \timesrl. The distribution of the labels in our data set is presented in Figure~\ref{fig:srldistribution}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\linewidth]{images/srldistribution}
-	\caption{Distribution of Semantic Roles}
+	\caption{Label Distribution}
 	\label{fig:srldistribution}
 \end{figure}
 
@@ -22,17 +22,17 @@ Our experiment consists of two scenario sets: feature selection and model select
 The feature selection set consists of 4 combination scenarios, which are:
 \begin{enumerate}
 	\item Word Embedding (WE)
-	\item Word Embedding + Neighboring Words (WE + N)
+	\item Word Embedding + Neighboring Word Embeddings (WE + NW)
 	\item Word Embedding + POS Tag (WE + POS)
-	\item Word Embedding + POS Tag + Neighboring Words (WE + POS + N)
+	\item Word Embedding + POS Tag + Neighboring Word Embeddings (WE + POS + NW)
 \end{enumerate}
 
 In this scenario set, we use vanilla LSTM for the base architecture. Out of 4 combinations, we pick the best two to be experimented in the model selection scenario set.
 
 The model selection consists of 4 scenario sets. The first set aims to find which feature combination is better when the LSTM layers are added. The next set compares the performance between BLSTM, BLSTM Zhou, and BLSTM Highway. The third set aims to see the effect of using CNN layer. Lasltly, the fourth set aims to see the impact of our proposed attention layer towards the performance.
 
-\section{Scenario 1: Feature Selection}
-Table~\ref{tab:feature_scenario} shows the results of the afore-mentioned four feature combinations. The highest result is achieved with the combination of WE + POS + N, followed by WE + POS, WE + N, and WE, with F1 scores of 79.76\%, 79.10\%, 73.76\%, and 73.12\%, respectively. 
+\subsection{Scenario 1: Feature Selection}
+Table~\ref{tab:feature_scenario} shows the results of the afore-mentioned four feature combinations. The highest result is achieved with the combination of WE + POS + NW, followed by WE + POS, WE + NW, and WE, with F1 scores of 79.76\%, 79.10\%, 73.76\%, and 73.12\%, respectively. 
 
 \begin{table}
 	\centering
@@ -43,9 +43,9 @@ Table~\ref{tab:feature_scenario} shows the results of the afore-mentioned four f
 		Feature & Precision & Recall & F1 \\
 		\hline\hline
 		WE & 75.20 & 71.16 & 73.12 \\
-		WE + Context & 76.07 & 71.58 & 73.76 \\
+		WE + NW & 76.07 & 71.58 & 73.76 \\
 		WE + POS & 80.09 & 78.14 & 79.10 \\
-		WE + POS + Context & 80.96 & 78.60 & 79.76 \\
+		WE + POS + NW & 80.96 & 78.60 & 79.76 \\
 		\hline
 	\end{tabular}
 
@@ -73,7 +73,8 @@ Our first experiment uses only word embedding (WE) as the feature. For a startin
 		\hline
 		Average & 75.21 & 71.16 & 73.12\\
 		\hline
-	\end{tabular}
+	\end{tabular}
+
 \end{table}
 
 
@@ -159,7 +160,8 @@ When we add POS tag as our additional feature (experiment WE + POS), the average
 		\hline
 		Average & 75.21 & 71.16 & 73.12 & 80.10 & 78.14 & 79.10 \\
 		\hline
-	\end{tabular}
+	\end{tabular}
+
 \end{table}
 
 All the semantic roles with POS tag \textit{noun} (\agent, \patient, \beneficiary, \location, \greet, and \timesrl) are all having improvements in terms of the F1 scores. The most notable improvements are \timesrl~(76.85\% to 87.72\%), \location~(61.26\% to 69.79\%), and \beneficiary~(66.85\% to 72.02\%). Referring to the previous example, the new model correctly predicts "skrg" as \timesrl rather than "other", as presented in Table~\ref{tab:timetrue}. On the other hand, the \predicate~improves from 88.72\% to 96.71\% while \modal~increases from 77.41\% to 83.21\%. These results prove that POS tag provides a significant contribution to increase the performance. While most of the deep learning research aims to not using hand-crafted features like POS tag, that is not the case in our work. Our experiment shows that such features are still important when the data set is relatively small. Nonetheless, building a huge data set is also costly, we therefore have to find a workaround in order to achieve competitive results by only using small data set. In this case, the workaround is to add traditional features such as POS tag.

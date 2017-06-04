@@ -1,7 +1,7 @@
 \begin{thebibliography}{}
 
 \bibitem[Baker et~al., 1998]{baker1998berkeley}
-Baker, C.~F., Fillmore, C.~J., dan Lowe, J.~B. (1998).
+Baker, C.~F., Fillmore, C.~J., and Lowe, J.~B. (1998).
 \newblock The berkeley framenet project.
 \newblock In {\em Proceedings of the 36th Annual Meeting of the Association for
   Computational Linguistics and 17th International Conference on Computational
@@ -13,8 +13,8 @@ Bengio, Y., LeCun, Y., et~al. (2007).
 \newblock Scaling learning algorithms towards ai.
 \newblock {\em Large-scale kernel machines}, 34(5).
 
-\bibitem[Carreras dan M{\`a}rquez, 2005]{carreras2005introduction}
-Carreras, X. dan M{\`a}rquez, L. (2005).
+\bibitem[Carreras and M{\`a}rquez, 2005]{carreras2005introduction}
+Carreras, X. and M{\`a}rquez, L. (2005).
 \newblock Introduction to the conll-2005 shared task: Semantic role labeling.
 \newblock In {\em Proceedings of the Ninth Conference on Computational Natural
   Language Learning}, pages 152--164. Association for Computational
@@ -26,7 +26,7 @@ Chollet, F. (2015).
 \newblock \url{https://github.com/fchollet/keras}.
 
 \bibitem[Collobert et~al., 2011]{collobert2011natural}
-Collobert, R., Weston, J., Bottou, L., Karlen, M., Kavukcuoglu, K., dan Kuksa,
+Collobert, R., Weston, J., Bottou, L., Karlen, M., Kavukcuoglu, K., and Kuksa,
   P. (2011).
 \newblock Natural language processing (almost) from scratch.
 \newblock {\em Journal of Machine Learning Research}, 12(Aug):2493--2537.
@@ -42,36 +42,36 @@ Elman, J.~L. (1990).
 \newblock {\em Cognitive science}, 14(2):179--211.
 
 \bibitem[Emanuele et~al., 2013]{emanuele2013textual}
-Emanuele, B., Castellucci, G., Croce, D., dan Basili, R. (2013).
+Emanuele, B., Castellucci, G., Croce, D., and Basili, R. (2013).
 \newblock Textual inference and meaning representation in human robot
   interaction.
 \newblock In {\em Joint Symposium on Semantic Processing.}, page~65.
 
-\bibitem[Gildea dan Jurafsky, 2002]{gildea2002automatic}
-Gildea, D. dan Jurafsky, D. (2002).
+\bibitem[Gildea and Jurafsky, 2002]{gildea2002automatic}
+Gildea, D. and Jurafsky, D. (2002).
 \newblock Automatic labeling of semantic roles.
 \newblock {\em Computational linguistics}, 28(3):245--288.
 
-\bibitem[Gildea dan Palmer, 2002]{gildea2002necessity}
-Gildea, D. dan Palmer, M. (2002).
+\bibitem[Gildea and Palmer, 2002]{gildea2002necessity}
+Gildea, D. and Palmer, M. (2002).
 \newblock The necessity of parsing for predicate argument recognition.
 \newblock In {\em Proceedings of the 40th Annual Meeting on Association for
   Computational Linguistics}, pages 239--246. Association for Computational
   Linguistics.
 
 \bibitem[Goodfellow et~al., 2016]{Goodfellow-et-al-2016-Book}
-Goodfellow, I., Bengio, Y., dan Courville, A. (2016).
+Goodfellow, I., Bengio, Y., and Courville, A. (2016).
 \newblock Deep learning.
 \newblock Book in preparation for MIT Press.
 
 \bibitem[He et~al., 2017]{he2017deep}
-He, L., Lee, K., Lewis, M., dan Zettlemoyer, L. (2017).
+He, L., Lee, K., Lewis, M., and Zettlemoyer, L. (2017).
 \newblock Deep semantic role labeling: What works and what’s next.
 \newblock In {\em Proceedings of the Annual Meeting of the Association for
   Computational Linguistics}.
 
-\bibitem[Hochreiter dan Schmidhuber, 1997]{hochreiter1997long}
-Hochreiter, S. dan Schmidhuber, J. (1997).
+\bibitem[Hochreiter and Schmidhuber, 1997]{hochreiter1997long}
+Hochreiter, S. and Schmidhuber, J. (1997).
 \newblock Long short-term memory.
 \newblock {\em Neural computation}, 9(8):1735--1780.
 
@@ -80,57 +80,66 @@ Jordan, M.~I. (1986).
 \newblock Attractor dynamics and parallellism in a connectionist sequential
   machine.
 
-\bibitem[Jurafsky dan James, 2000]{jurafsky2000speech}
-Jurafsky, D. dan James, H. (2000).
+\bibitem[Jurafsky and James, 2000]{jurafsky2000speech}
+Jurafsky, D. and James, H. (2000).
 \newblock Speech and language processing an introduction to natural language
   processing, computational linguistics, and speech.
 
-\bibitem[Kingsbury dan Palmer, 2002]{kingsbury2002treebank}
-Kingsbury, P. dan Palmer, M. (2002).
+\bibitem[Jurafsky and James, 2016]{jurafsky2016speech}
+Jurafsky, D. and James, H. (2016).
+\newblock Speech and language processing (3rd ed. draft).
+
+\bibitem[Kingsbury and Palmer, 2002]{kingsbury2002treebank}
+Kingsbury, P. and Palmer, M. (2002).
 \newblock From treebank to propbank.
 \newblock In {\em LREC}, pages 1989--1993. Citeseer.
 
 \bibitem[LeCun et~al., 2015]{lecun2015deep}
-LeCun, Y., Bengio, Y., dan Hinton, G. (2015).
+LeCun, Y., Bengio, Y., and Hinton, G. (2015).
 \newblock Deep learning.
 \newblock {\em Nature}, 521(7553):436--444.
 
-\bibitem[Liu dan Gildea, 2010]{liu2010semantic}
-Liu, D. dan Gildea, D. (2010).
+\bibitem[Liu and Gildea, 2010]{liu2010semantic}
+Liu, D. and Gildea, D. (2010).
 \newblock Semantic role features for machine translation.
 \newblock In {\em Proceedings of the 23rd International Conference on
   Computational Linguistics}, pages 716--724. Association for Computational
   Linguistics.
 
 \bibitem[Lo et~al., 2013]{lo2013improving}
-Lo, C.-k., Addanki, K., Saers, M., dan Wu, D. (2013).
+Lo, C.-k., Addanki, K., Saers, M., and Wu, D. (2013).
 \newblock Improving machine translation by training against an automatic
   semantic frame based evaluation metric.
 \newblock In {\em ACL (2)}, pages 375--381.
 
+\bibitem[Mikolov et~al., 2013]{mikolov2013efficient}
+Mikolov, T., Chen, K., Corrado, G., and Dean, J. (2013).
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}.
+
 \bibitem[Mikolov et~al., 2014]{mikolov2014word2vec}
-Mikolov, T., Chen, K., Corrado, G., dan Dean, J. (2014).
+Mikolov, T., Chen, K., Corrado, G., and Dean, J. (2014).
 \newblock word2vec.
 
 \bibitem[Moschitti et~al., 2003]{moschitti2003open}
-Moschitti, A., Morarescu, P., dan Harabagiu, S.~M. (2003).
+Moschitti, A., Morarescu, P., and Harabagiu, S.~M. (2003).
 \newblock Open domain information extraction via automatic semantic labeling.
 \newblock In {\em FLAIRS conference}, pages 397--401.
 
 \bibitem[Pennington et~al., 2014]{pennington2014glove}
-Pennington, J., Socher, R., dan Manning, C.~D. (2014).
+Pennington, J., Socher, R., and Manning, C.~D. (2014).
 \newblock Glove: Global vectors for word representation.
 \newblock In {\em EMNLP}, volume~14, pages 1532--43.
 
 \bibitem[Pradhan et~al., 2005]{pradhan2005semantic}
-Pradhan, S., Ward, W., Hacioglu, K., Martin, J.~H., dan Jurafsky, D. (2005).
+Pradhan, S., Ward, W., Hacioglu, K., Martin, J.~H., and Jurafsky, D. (2005).
 \newblock Semantic role labeling using different syntactic views.
 \newblock In {\em Proceedings of the 43rd Annual Meeting on Association for
   Computational Linguistics}, pages 581--588. Association for Computational
   Linguistics.
 
 \bibitem[Punyakanok et~al., 2008]{punyakanok2008importance}
-Punyakanok, V., Roth, D., dan Yih, W.-t. (2008).
+Punyakanok, V., Roth, D., and Yih, W.-t. (2008).
 \newblock The importance of syntactic parsing and inference in semantic role
   labeling.
 \newblock {\em Computational Linguistics}, 34(2):257--287.
@@ -140,38 +149,38 @@ Saeed, J. (1997).
 \newblock I. 2003. semantics.
 \newblock {\em GB: Blackwell Publishing}.
 
-\bibitem[Schuster dan Paliwal, 1997]{schuster1997bidirectional}
-Schuster, M. dan Paliwal, K.~K. (1997).
+\bibitem[Schuster and Paliwal, 1997]{schuster1997bidirectional}
+Schuster, M. and Paliwal, K.~K. (1997).
 \newblock Bidirectional recurrent neural networks.
 \newblock {\em IEEE Transactions on Signal Processing}, 45(11):2673--2681.
 
-\bibitem[Seki dan Mostafa, 2003]{seki2003probabilistic}
-Seki, K. dan Mostafa, J. (2003).
+\bibitem[Seki and Mostafa, 2003]{seki2003probabilistic}
+Seki, K. and Mostafa, J. (2003).
 \newblock A probabilistic model for identifying protein names and their name
   boundaries.
 \newblock In {\em Bioinformatics Conference, 2003. CSB 2003. Proceedings of the
   2003 IEEE}, pages 251--258. IEEE.
 
-\bibitem[Shen dan Lapata, 2007]{shen2007using}
-Shen, D. dan Lapata, M. (2007).
+\bibitem[Shen and Lapata, 2007]{shen2007using}
+Shen, D. and Lapata, M. (2007).
 \newblock Using semantic roles to improve question answering.
 \newblock In {\em EMNLP-CoNLL}, pages 12--21.
 
 \bibitem[Srivastava et~al., 2015]{srivastava2015training}
-Srivastava, R.~K., Greff, K., dan Schmidhuber, J. (2015).
+Srivastava, R.~K., Greff, K., and Schmidhuber, J. (2015).
 \newblock Training very deep networks.
 \newblock In {\em Advances in neural information processing systems}, pages
   2377--2385.
 
 \bibitem[Surdeanu et~al., 2003]{surdeanu2003using}
-Surdeanu, M., Harabagiu, S., Williams, J., dan Aarseth, P. (2003).
+Surdeanu, M., Harabagiu, S., Williams, J., and Aarseth, P. (2003).
 \newblock Using predicate-argument structures for information extraction.
 \newblock In {\em Proceedings of the 41st Annual Meeting on Association for
   Computational Linguistics-Volume 1}, pages 8--15. Association for
   Computational Linguistics.
 
-\bibitem[Zhou dan Xu, 2015]{zhou2015end}
-Zhou, J. dan Xu, W. (2015).
+\bibitem[Zhou and Xu, 2015]{zhou2015end}
+Zhou, J. and Xu, W. (2015).
 \newblock End-to-end learning of semantic role labeling using recurrent neural
   networks.
 \newblock In {\em ACL (1)}, pages 1127--1137.

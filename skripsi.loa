@@ -9,7 +9,10 @@
 \contentsline {algocf}{\numberline {4.5}{\ignorespaces A pseudocode to extract neighboring word embeddings\relax }}{48}{algocf.4.5}
 \contentsline {algocf}{\numberline {4.6}{\ignorespaces A pseudocode for building and training vanilla LSTM architecture\relax }}{49}{algocf.4.6}
 \contentsline {algocf}{\numberline {4.7}{\ignorespaces A pseudocode for building and training BLSTM architecture\relax }}{50}{algocf.4.7}
-\contentsline {algocf}{\numberline {4.8}{\ignorespaces A pseudocode for building and training CNN-BLSTM architecture\relax }}{51}{algocf.4.8}
-\contentsline {algocf}{\numberline {4.9}{\ignorespaces A pseudocode for building and training CA-BLSTM architecture\relax }}{52}{algocf.4.9}
+\contentsline {algocf}{\numberline {4.8}{\ignorespaces A pseudocode for building and training DBLSTM architecture\relax }}{51}{algocf.4.8}
+\contentsline {algocf}{\numberline {4.9}{\ignorespaces A pseudocode for building and training DBLSTM-Zhou architecture\relax }}{52}{algocf.4.9}
+\contentsline {algocf}{\numberline {4.10}{\ignorespaces A pseudocode for building and training DBLSTM-Highway architecture\relax }}{53}{algocf.4.10}
+\contentsline {algocf}{\numberline {4.11}{\ignorespaces A pseudocode for adding CNN layer underneath the main layer\relax }}{54}{algocf.4.11}
+\contentsline {algocf}{\numberline {4.12}{\ignorespaces A pseudocode for adding attention mechanism on top of the main layer architecture\relax }}{55}{algocf.4.12}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

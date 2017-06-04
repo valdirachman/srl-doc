@@ -7,7 +7,6 @@ A level-1 auxiliary file: orisinal.aux
 A level-1 auxiliary file: pengesahan_sidang.aux
 A level-1 auxiliary file: pengantar.aux
 A level-1 auxiliary file: persetujuan_publikasi.aux
-A level-1 auxiliary file: abstrak.aux
 A level-1 auxiliary file: abstract.aux
 A level-1 auxiliary file: bab1.aux
 A level-1 auxiliary file: bab2.aux
@@ -20,45 +19,46 @@ A level-1 auxiliary file: markLampiran.aux
 Database file #1: skripsi.bib
 Warning--empty journal in jordan1986attractor
 Warning--empty journal in jurafsky2000speech
-You've used 31 entries,
+Warning--empty note in jurafsky2016speech
+You've used 33 entries,
             1961 wiz_defined-function locations,
-            674 strings with 9057 characters,
-and the built_in function-call counts, 14109 in all, are:
-= -- 1452
-> -- 498
-< -- 33
-+ -- 172
-- -- 164
-* -- 1080
-:= -- 2266
-add.period$ -- 98
-call.type$ -- 31
-change.case$ -- 236
-chr.to.int$ -- 31
-cite$ -- 33
-duplicate$ -- 621
-empty$ -- 1025
-format.name$ -- 217
-if$ -- 2938
+            678 strings with 9220 characters,
+and the built_in function-call counts, 14754 in all, are:
+= -- 1512
+> -- 534
+< -- 34
++ -- 184
+- -- 176
+* -- 1135
+:= -- 2391
+add.period$ -- 103
+call.type$ -- 33
+change.case$ -- 252
+chr.to.int$ -- 33
+cite$ -- 36
+duplicate$ -- 643
+empty$ -- 1059
+format.name$ -- 233
+if$ -- 3054
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 28
-newline$ -- 155
-num.names$ -- 93
-pop$ -- 259
+missing$ -- 29
+newline$ -- 164
+num.names$ -- 99
+pop$ -- 272
 preamble$ -- 1
-purify$ -- 236
+purify$ -- 252
 quote$ -- 0
-skip$ -- 492
+skip$ -- 511
 stack$ -- 0
-substring$ -- 1054
-swap$ -- 167
+substring$ -- 1078
+swap$ -- 168
 text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 186
-warning$ -- 2
-while$ -- 122
+type$ -- 198
+warning$ -- 3
+while$ -- 126
 width$ -- 0
-write$ -- 401
-(There were 2 warnings)
+write$ -- 423
+(There were 3 warnings)

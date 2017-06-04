@@ -1,9 +1,8 @@
-\select@language {bahasa}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Arsitektur Word2Vec\relax }}{8}{figure.caption.19}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces A simple Recurrent Neural Networks (RNN). (left) folded RNN. (right) unfolded RNN\relax }}{9}{figure.caption.20}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces A Recurrent Neural Networks (RNN). (left) folded RNN. (right) unfolded RNN\relax }}{11}{figure.caption.21}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces CBOW and Skip-gram architectures\nobreakspace {}\citep {mikolov2013efficient}\relax }}{8}{figure.caption.19}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces A simple Recurrent Neural Networks (RNN)\nobreakspace {}\citep {Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN\relax }}{9}{figure.caption.20}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces A Complete RNN on how it is being trained\nobreakspace {}\citep {Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN\relax }}{11}{figure.caption.21}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces One memory block in LSTM\relax }}{13}{figure.caption.22}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Methodology Pipeline\relax }}{23}{figure.caption.26}
@@ -17,5 +16,5 @@
 \contentsline {figure}{\numberline {3.9}{\ignorespaces An architecture of adding attention mechanism on top of the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variant.\relax }}{40}{figure.caption.39}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Distribution of Semantic Roles\relax }}{53}{figure.caption.50}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Label Distribution\relax }}{56}{figure.caption.53}
 \addvspace {10\p@ }

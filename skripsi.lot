@@ -1,9 +1,9 @@
-\select@language {bahasa}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces An example predicate and its arguments\relax }}{14}{table.caption.23}
-\contentsline {table}{\numberline {2.2}{\ignorespaces An example predicate and its deep roles\relax }}{15}{table.caption.24}
-\contentsline {table}{\numberline {2.3}{\ignorespaces Examples of thematic roles\relax }}{16}{table.caption.25}
+\contentsline {table}{\numberline {2.1}{\ignorespaces An example of a sentence and the POS tags for each word\relax }}{6}{table.caption.18}
+\contentsline {table}{\numberline {2.2}{\ignorespaces An example predicate and its arguments\relax }}{14}{table.caption.23}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Examples of a predicate and its deep roles\relax }}{15}{table.caption.24}
+\contentsline {table}{\numberline {2.4}{\ignorespaces Examples of thematic roles\nobreakspace {}\citep {jurafsky2016speech}\relax }}{15}{table.caption.25}
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces Set of Semantic Roles for Conversational Language\relax }}{25}{table.caption.27}
 \contentsline {table}{\numberline {3.2}{\ignorespaces Set of Semantic Roles for Conversational Language\relax }}{27}{table.caption.28}
@@ -13,15 +13,15 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {4.1}{\ignorespaces Server Specifications\relax }}{44}{table.caption.40}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Results of Feature Selection Scenario, in percentage\relax }}{54}{table.caption.51}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Precision, Recall, F1 scores of each label for scenario WE\relax }}{55}{table.caption.52}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Misprediction example of \textsc {Greet}when using only WE as the feature\relax }}{55}{table.caption.53}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Correct prediction example of \textsc {Greet}when using WE + NW as the features\relax }}{56}{table.caption.54}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Misprediction example of \textsc {Time}when using WE as the feature\relax }}{56}{table.caption.55}
-\contentsline {table}{\numberline {5.6}{\ignorespaces Precision, Recall, F1 scores (in \%) of each label for scenario WE and WE + POS\relax }}{57}{table.caption.56}
-\contentsline {table}{\numberline {5.7}{\ignorespaces Correct prediction example of \textsc {Time}~when using WE + POS as the features\relax }}{58}{table.caption.57}
-\contentsline {table}{\numberline {5.8}{\ignorespaces F1 scores (in \%) of WE + POS and WE + POS + NW when using vanilla LSTM (LSTM), BLSTM, and stacked BLSTM (DBLSTM) architectures.\relax }}{58}{table.caption.58}
-\contentsline {table}{\numberline {5.9}{\ignorespaces Precision, Recall, and F1 scores (in \%) of Stacked BLSTM (DBLSTM), Stacked BLSTM-Zhou (DBLSTM-Zhou), and Stacked BLSTM-Highway (DBLSTM-Highway)\relax }}{59}{table.caption.59}
-\contentsline {table}{\numberline {5.10}{\ignorespaces The precision, recall, and F1 scores of the stacked BLSTM architectures with and without CNN layer.\relax }}{60}{table.caption.60}
-\contentsline {table}{\numberline {5.11}{\ignorespaces The precision, recall, and F1 scores of the stacked BLSTM architectures with and without attention layer.\relax }}{61}{table.caption.61}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Results of Feature Selection Scenario, in percentage\relax }}{57}{table.caption.54}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Precision, Recall, F1 scores of each label for scenario WE\relax }}{58}{table.caption.55}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Misprediction example of \textsc {Greet}when using only WE as the feature\relax }}{58}{table.caption.56}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Correct prediction example of \textsc {Greet}when using WE + NW as the features\relax }}{59}{table.caption.57}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Misprediction example of \textsc {Time}when using WE as the feature\relax }}{59}{table.caption.58}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Precision, Recall, F1 scores (in \%) of each label for scenario WE and WE + POS\relax }}{60}{table.caption.59}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Correct prediction example of \textsc {Time}\nobreakspace {}when using WE + POS as the features\relax }}{61}{table.caption.60}
+\contentsline {table}{\numberline {5.8}{\ignorespaces F1 scores (in \%) of WE + POS and WE + POS + NW when using vanilla LSTM (LSTM), BLSTM, and stacked BLSTM (DBLSTM) architectures.\relax }}{61}{table.caption.61}
+\contentsline {table}{\numberline {5.9}{\ignorespaces Precision, Recall, and F1 scores (in \%) of Stacked BLSTM (DBLSTM), Stacked BLSTM-Zhou (DBLSTM-Zhou), and Stacked BLSTM-Highway (DBLSTM-Highway)\relax }}{62}{table.caption.62}
+\contentsline {table}{\numberline {5.10}{\ignorespaces The precision, recall, and F1 scores of the stacked BLSTM architectures with and without CNN layer.\relax }}{63}{table.caption.63}
+\contentsline {table}{\numberline {5.11}{\ignorespaces The precision, recall, and F1 scores of the stacked BLSTM architectures with and without attention layer.\relax }}{64}{table.caption.64}
 \addvspace {10\p@ }

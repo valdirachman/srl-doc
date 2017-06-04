@@ -8,8 +8,22 @@ This chapter focuses on literature study on three aspects including language mod
 This section explains the language models usually used in Natural Language Processing (NLP) applications. We first describe the traditional yet important language model, Part-of-Speech tag (POS tag), followed by the so-called word embedding that is often used in recent NLP systems.
 
 \subsection{Part-of-Speech Tag (POS Tag)}
-Part-of-Speech (POS) tag defines the class of a word. Some examples of POS tag are noun, verb, adverb, and adjective. POS tags are useful because of the large amount of information they give about a word and
-its neighbors. Knowing whether a word is a noun or a verb tells us a lot about likely neighboring words (nouns are preceded by determiners and adjectives, verbs by nouns) and about the syntactic structure around the word (nouns are generally part of noun phrases).
+Part-of-Speech (POS) tag defines the class of a word. Some examples of POS tag are noun, verb, adverb, and adjective. POS tags are useful because of the large amount of information they give about a word and its neighbors~\citep{jurafsky2016speech}. For instance, knowing whether a word is a noun tells us about likely neighboring words since nouns are usually preceded by determiners or adjectives. It also tells us about the syntactic structure around the word as nouns are generally part of noun phrases. Table~\ref{tab:examplepostheory} shows an example of a sentence and the POS tags for each word. PRP, VBP, DET, and NN refer to personal pronoun, present verb, determiner, and singular noun, respectively.
+
+\begin{table}
+	\centering
+	\caption{An example of a sentence and the POS tags for each word}
+	\label{tab:examplepostheory}
+	\begin{tabular}{|lccccc|}
+		\hline
+		\textbf{Sentence} 				& I & eat & a &chicken & rice \\
+		\hline
+		\textbf{POS tag}		& PRP & VBP & DET & NN & NN \\
+		\hline
+	\end{tabular}
+\end{table}
+
+The computational methods for assigning POS tags to words is called POS tagging~\citep{jurafsky2016speech}. POS tagging can be trained using supervised approaches such as Hidden Markov Model and the Maximum Entropy Markov Model~\citep{jurafsky2016speech}. 
 
 \subsection{Word Embedding}
 Word representation is an important feature when one wants to build deep learning model for NLP tasks. The idea is to convert words into vectors. There are two approaches for this vector representation, which are traditional and word embedding approach. Traditional approach uses one-hot vectors for the representation, meanwhile word embedding approach uses real values vectors that contain information about the words.
@@ -20,16 +34,16 @@ This approach, however, has a drawback since the vector representation is sparse
 
 To address this issue, there is another better word representation approach: the so-called word embedding. Word embedding is designed to represent word with a dense, low dimension, real-values vector. For example, the word \textit{chicken} is mapped into a vector [0.28, 0.31, -0.17, ..., 0.89]. With this representation, word embedding transforms similar words to similar vectors. From the previous example, the word \textit{chicken} and \textit{beef} will most likely have vectors that are close to each other.
 
-There has been a lot of research on word embedding, such as Word2Vec~\citep{mikolov2014word2vec} and Glove~\citep{pennington2014glove}. In this section, we only explain Word2Vec since we will use this later in our research. Word2Vec uses unsupervised approach so that we only need a lot of unlabeled data for building word embedding model. Basically, Word2Vec uses neural networks architecture to train the unsupervised data. Word2Vec is able to learn and classify words based on their similarity and represent it in the vector space.
+There has been a lot of research on word embedding, such as Word2Vec~\citep{mikolov2014word2vec} and Glove~\citep{pennington2014glove}. In this section, we only explain Word2Vec since we will use this later in our research. Word2Vec uses unsupervised approach so that we only need a lot of unlabeled data for building word embedding model~\citep{mikolov2013efficient}. Basically, Word2Vec uses neural networks architecture to train the unlabeled data. Word2Vec is able to learn and classify words based on their similarity and represent it in the vector space.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.85\linewidth]{images/word2vec}
-	\caption{Arsitektur Word2Vec}
+	\caption{CBOW and Skip-gram architectures~\citep{mikolov2013efficient}}
 	\label{fig:word2vec}
 \end{figure}
 
-Word2Vec has two architectures, namely Context Bags of Words (CBOW) and Skipgram, as illustrated in Figure~\ref{fig:word2vec}. In CBOW, the model learns to predict a word based on its neighboring words. Therefore, the input layer is represented with the bag-of-words. In contrast, Skipgram architecture aims to predict the neighbouring words based on a given word. The advantage of CBOW is that it can be used for training a huge amount of data, while Skipgram is best for capturing the average co-occurance from two words from the data.
+Word2Vec has two architectures, namely Continuous Bags of Words (CBOW) and Skip-gram~\citep{mikolov2013efficient}, as illustrated in Figure~\ref{fig:word2vec}. In CBOW, the model learns to predict a word based on its neighboring words. Therefore, the input layer is represented with the bag-of-words. In contrast, Skip-gram architecture aims to predict the neighboring words based on a given word. The advantage of CBOW is that it can be used for training a huge amount of data, while Skipgram is best for capturing the average co-occurance from two words from the data.
 
 Both architectures mainly aims to build language model, however, one does not need the whole trained model for having the word embedding representation. Instead, we only need to extract the weight matrix used for converting words into vectors from the model. This weight matrix is the word embedding model that we use for transforming the words into the dense vectors.
 
@@ -46,7 +60,7 @@ Recurrent Neural Networks, shortened as RNN, is one of deep learning models desi
 \begin{figure}
 	\centering
 	\includegraphics[width=0.80\linewidth]{images/simplernn}
-	\caption{A simple Recurrent Neural Networks (RNN). (left) folded RNN. (right) unfolded RNN}
+	\caption{A simple Recurrent Neural Networks (RNN)~\citep{Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN}
 	\label{fig:simplernn}
 \end{figure}
 
@@ -80,7 +94,7 @@ Figure~\ref{fig:fulrnn} illustrates a more complete RNN model on how it is being
 \begin{figure}
 	\centering
 	\includegraphics[width=0.80\linewidth]{images/fullrnn}
-	\caption{A Recurrent Neural Networks (RNN). (left) folded RNN. (right) unfolded RNN}
+	\caption{A Complete RNN on how it is being trained~\citep{Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN}
 	\label{fig:fulrnn}
 \end{figure}
 
@@ -102,14 +116,14 @@ To address this issue, there are solutions proposed such as leaky units (Mozer, 
 
 The modification added in LSTM to address the issue is by using gates. It is basically RNN, but the nonlinear units in the hidden layer is replaced by the memory blocks. One nonlinear unit $tanh$ in RNN is replaced by more complex memory blocks in LSTM. Besides the hidden layer $\vec{h(t)}$, LSTM also has $\vec{m(t)}$ which is called memory cells.  The idea of LSTM is to learn when to forget or remember the memory from previous time steps through multiplicative gates. It thus prevents the vanishing and exploding gradient problem. For example, if the input gate is closed, then the memory will be unchanged.
 
+Figure~\ref{fig:lstm} illustrates a one block memory in LSTM. There are three main gates, which are forget gate, input gate, and output gate. These gates are responsible to determine whether an information is added, kept, or deleted in a cell. Each gate has sigmoid layer and element-wise operations. The sigmoid layer converts the input into a probability between 0 and 1. This probability describes the gate behavior towards the input, whether to accept it (probability close to 1) or not (probability close to 0). 
+
 \begin{figure}
 	\centering
 	\includegraphics[width=1.0\linewidth]{images/lstm}
 	\caption{One memory block in LSTM}
 	\label{fig:lstm}
 \end{figure}
-
-Figure~\ref{fig:lstm} illustrates a one block memory in LSTM. There are three main gates, which are forget gate, input gate, and output gate. These gates are responsible to determine whether an information is added, kept, or deleted in a cell. Each gate has sigmoid layer and element-wise operations. The sigmoid layer converts the input into a probability between 0 and 1. This probability describes the gate behavior towards the input, whether to accept it (probability close to 1) or not (probability close to 0). 
 
 The equations of the sigmoid layers for each of the gates are explained as follows:
 \begin{enumerate}
@@ -145,7 +159,7 @@ h_{t}=\gamma_{t} (\times) tanh(m_{t})
 Semantic role labeling (SRL) is a task in Natural Language Processing to assign semantic roles for each argument for each predicate in given input sentence. In this section, the definition of semantic roles and the most commonly used annotation corpus for SRL are explained. In the end, the details on the semantic role labeling task are described.
 
 \subsection{Semantic Roles}
-Semantic roles are the representations that express the abstract role of the arguments of a predicate can take in the event~\citep{jurafsky2000speech}. When it comes to understanding natural language, one would want to understand the events and their participants of a given input sentence. In this case, the events refer to the predicate and the participants refer to the argument. Table~\ref{tab:examplesrl1} illustrates the connection between a predicate and its arguments.
+Semantic roles are the representations that express the abstract role of the arguments of a predicate can take in the event~\citep{jurafsky2016speech}. When it comes to understanding natural language, one would want to understand the events and their participants of a given input sentence. In this case, the events refer to the predicate and the participants refer to the argument. Table~\ref{tab:examplesrl1} illustrates the connection between a predicate and its arguments.
 
 \begin{table}
 	\centering
@@ -154,39 +168,39 @@ Semantic roles are the representations that express the abstract role of the arg
 	\begin{tabular}{|ccc|}
 		\hline
 		\underline{Andy} & \underline{eats} & \underline{fried chicken} \\
-		Argument & Predicate & Argument \\
+		\textsc{Argument} & \textsc{Predicate} & \textsc{Argument} \\
 		\hline
 	\end{tabular}
 \end{table}
 
-In this example, eat is the predicate with Andy and fried chicken as its argument. With this point of view, the predicate can be seen as the center of the sentence, followed by the arguments that depend on it.
+In this example, "eat" is the predicate with "Andy" and "fried chicken" as its argument. With this point of view, the predicate can be seen as the center of the sentence, followed by the arguments that depend on it.
 
-Knowing the predicate and its arguments is not enough to understand the sentence since the roles of the arguments towards the predicate are unknown. In the previous example, it will be more meaningful to differentiate that Andy is the Eater and fried chicken is the EatenThing. Eater and thing eaten are the examples of semantic roles for the predicate eat. These semantic roles could be used to identify the roles of the arguments regardless its position in the sentence. The previous example could be represented in two ways, as presented in Table~\ref{tab:examplesrl2}
+Knowing the predicate and its arguments is not enough to understand the sentence since the roles of the arguments towards the predicate are unknown. In the previous example, it will be more meaningful to differentiate that "Andy" is the \textsc{Eater} and fried chicken is the \textsc{EatenThing}. \textsc{Eater} and \textsc{EatenThing} are the examples of semantic roles for the predicate "eat". These semantic roles could be used to identify the roles of the arguments regardless its position in the sentence. The previous example could be represented in two ways, as presented in Table~\ref{tab:examplesrl2}
 
 \begin{table}
 	\centering
-	\caption{An example predicate and its deep roles}
+	\caption{Examples of a predicate and its deep roles}
 	\label{tab:examplesrl2}
 	\begin{tabular}{|ccc|}
 		\hline
 		\underline{Andy} & \underline{eats} & \underline{fried chicken} \\
-		Eater & Predicate & EatenThing \\
+		\textsc{Eater} & \textsc{Predicate} & \textsc{EatenThing} \\
 		\hline
 		\underline{The fried chicken} & is \underline{eaten} & by \underline{Andy} \\
-		EatenThing & Predicate &  Eater \\
+		\textsc{EatenThing} & \textsc{Predicate} & \textsc{Eater} \\
 		\hline
 	\end{tabular}
 \end{table}
 
-Both sentences represent the role of Andy and fried chicken as eater and thing eaten respectively, regardless of their position in the sentence as a subject or object.
+Both sentences represent the role of "Andy" and "fried chicken" as \textsc{Eater} and \textsc{EatenThing} respectively, regardless of their position in the sentence as a subject or object.
 
-There are many ways to define such semantic roles. From the examples above, the semantic roles are very specific for its predicate, known as deep roles~\citep{jurafsky2000speech}. Eater and ThingEaten are semantic roles for the predicate eat, Kicker and KickedThing are semantic roles for the predicate kick, and so on. In order to further knowing more about the semantics of these arguments, these semantic roles could be generalized into more abstract roles. Eater and Kicker have something in common: they are volitional actors having direct causal responsibility for the predicate. For this reason, thematic roles are introduced as a set of semantic roles designed to capture semantic commonality between Eater and Kicker~\citep{jurafsky2000speech}. With this in mind, Kicker and Eater can be represented as AGENT, which represents the abstract concept that is a volitional causer of an event (or predicate). On the other hand, EatenThing and KickedThing both represent the direct objects that are affected by the event. The semantic role for EatenThing and KickedThing is THEME.
+There are many ways to define such semantic roles. From the examples above, the semantic roles are very specific for its predicate, known as deep roles~\citep{jurafsky2016speech}. \textsc{Eater} and \textsc{EatenThing} are semantic roles for the predicate "eat", \textsc{Kicker} and \textsc{KickedThing} are semantic roles for the predicate "kick", and so on. In order to further knowing more about the semantics of these arguments, the semantic roles could be generalized into more abstract roles. \textsc{Eater} and \textsc{Kicker} have something in common: they are volitional actors having direct causal responsibility for the predicate. For this reason, thematic roles are introduced as a set of semantic roles designed to capture semantic commonality between \textsc{Eater} and \textsc{Kicker}~\citep{jurafsky2016speech}. With this in mind, \textsc{Eater} and \textsc{Kicker} can be represented as AGENT, which represents the abstract concept that is a volitional causer of an event (or predicate). On the other hand, \textsc{EatenThing} and \textsc{KickedThing} both represent the direct objects that are affected by the event. The semantic role for \textsc{EatenThing} and \textsc{KickedThing} is THEME.
 
-Table~\ref{tab:examplesrl3} shows the thematic roles often used across computational papers~\citep{jurafsky2000speech}
+Table~\ref{tab:examplesrl3} describes the thematic roles often used across computational papers~\citep{jurafsky2016speech}
 \begin{table}
 	\scriptsize
 	\centering
-	\caption{Examples of thematic roles}
+	\caption{Examples of thematic roles~\citep{jurafsky2016speech}}
 	\label{tab:examplesrl3}
 	\begin{tabular}{lll}
 		\hline
@@ -206,6 +220,8 @@ Table~\ref{tab:examplesrl3} shows the thematic roles often used across computati
 	\end{tabular}
 
 \end{table}
+
+AGENT and EXPERIENCER represent the volitonal causer of an event and the experiencer of an event, respectively. While AGENT is volitional, the non-volitional causer of an event is called FORCE. Furthermore, THEME and RESULT are the participant directly affected by an event and the end product of an event, respectively. BENEFICIARY represents the beneficiary of an event. CONTENT describes the content of a propositional event. An instrument used in an event is called INSTRUMENT. For location, there are SOURCE and GOAL which represent the origin and the destination of an object of a transfer event.
 
 
 \subsection{Annotation Corpus}
@@ -298,7 +314,7 @@ a [DIFFERENCE 5\%] [ITEM dividend] increase...
 As we can see from the examples above, \textit{rose}, \textit{fell}, and \textit{increase} have the same set of semantic roles under the frame change position on a scale. Instead of defining the semantic roles for each verb sense one by one, FrameNet groups predicates (not limited to verbs) that have same semantic roles as one frame.
 
 \subsection{Problem Definitions}
-Semantic Role Labeling (SRL) is one of Natural Language Processing task which aims to automatically assign semantic roles for each constituent (argument) for each predicate in a sentence~\citep{jurafsky2000speech}. Current approach to solve this task is by using supervised machine learning. Given a labeled data, the machine learns from it and builds a generalization model. Researches often used PropBank or FrameNet corpus as the sources of annotated data. In this section, we describe the approaches to define the problem of SRL task, followed by the common features used for building supervised model for SRL.
+Semantic Role Labeling (SRL) is one of Natural Language Processing task which aims to automatically assign semantic roles for each constituent (argument) for each predicate in a sentence~\citep{jurafsky2016speech}. Current approach to solve this task is by using supervised machine learning. Given a labeled data, the machine learns from it and builds a generalization model. Researches often used PropBank or FrameNet corpus as the sources of annotated data. In this section, we describe the approaches to define the problem of SRL task, followed by the common features used for building supervised model for SRL.
 
 There are two ways to see SRL problem, either as Classification or Sequence Labeling problem. Classification approach assigns semantic roles for each word independently. Meanwhile, Sequence Labeling approach traverses from assigning semantic role for the first word until the last one in a sentence sequentially. In Sequence Labeing, the next label (semantic role) prediction of time step t is dependent to labels predicted on previous time steps (1..t-1).
 
