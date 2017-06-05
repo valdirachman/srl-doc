@@ -44,8 +44,8 @@ Table~\ref{tab:feature_scenario} shows the results of the afore-mentioned four f
 		\hline\hline
 		WE & 75.20 & 71.16 & 73.12 \\
 		WE + NW & 76.07 & 71.58 & 73.76 \\
-		WE + POS & 80.09 & 78.14 & 79.10 \\
-		WE + POS + NW & 80.96 & 78.60 & 79.76 \\
+		WE + POS & \textbf{80.09} & \textbf{78.14} & \textbf{79.10} \\
+		WE + POS + NW & \textbf{80.96} & \textbf{78.60} & \textbf{79.76} \\
 		\hline
 	\end{tabular}
 
@@ -155,7 +155,7 @@ When we add POS tag as our additional feature (experiment WE + POS), the average
 		\modal & 78.14 & 76.74 & 77.43 & 84.49 & 82.08 & 83.27 \\
 		\beneficiary & 68.68 & 66.29 & 67.47 & 73.91 & 71.01 & 72.43 \\
 		\location & 68.31 & 55.69 & 61.36 & 72.35 & 67.68 & 69.93 \\
-		\greet & 69.13 & 52.08 & 59.4 & 71.28 & 56.01 & 62.73 \\
+		\greet & 69.13 & 52.08 & 59.40 & 71.28 & 56.01 & 62.73 \\
 		\timesrl & 80.58 & 73.61 & 76.94 & 88.87 & 86.78 & 87.81 \\
 		\hline
 		Average & 75.21 & 71.16 & 73.12 & 80.10 & 78.14 & 79.10 \\
@@ -214,6 +214,35 @@ For model selection set, we first experiment on comparing the top two feature co
 
 When using vanilla LSTM, the F1 scores of WE + POS and WE + POS + N are 79.10\% and 79.76\%, respectively. When bi-directional LSTM (BLSTM) is used, the performances of both feature combinations slightly decrease: WE + POS decreases from 79.10\% to 78.93\%, and WE + POS + NW decreases from 79.76\%. However, when two BLSTM layers are stacked (DBLSTM), the F1 scores of both feature combinations increase compared to the vanilla LSTM architecture. While WE + POS + NW slightly increases by 0.11\% (from 79.76\% to 79.87\%), the feature combination WE + POS improves by 3.20\% (from 79.10\% to 82.30\%). According to~\cite{zhou2015end}, bi-directional LSTM architecture is able to implicitly capture the context information from the past (words on the left) and future (words on the right). Moreover, their research also shows that the stacked BLSTM architecture (DBLSTM) could enhance the model performance. In this case, we suggest that the BLSTM model, especially stacked BLSTM, does not need explicit context information such as neighboring word embeddings. Therefore, by only using WE + POS as the features, combined with DBLSTM, the model can achieve compelling result.
 
+Table~\ref{tab:lstmdblstm} shows the result comparison between using vanilla LSTM and DBLSTM architecture when WE + POS features are used.
+
+\begin{table}
+	\centering
+	\caption{Result comparison between using vanilla LSTM and DBLSTM architecture when WE + POS features are used.}
+	\label{tab:lstmdblstm}
+	\begin{tabular}{|l|ccc|ccc|}
+		\hline
+		& \multicolumn{3}{c}{ LSTM } & \multicolumn{3}{c}{ DBLSTM } \\
+		\hline
+		Label & Precision & Recall & F1 & Precision & Recall & F1 \\
+		\hline\hline
+		\agent & 75.03 & 88.93 & 81.39 & 89.50 & 89.67 & 89.59 \\
+		\predicate & 96.36 & 97.07 & 96.71 & 97.76 & 97.76 & 97.76 \\
+		\patient  & 78.48 & 75.57 & 77.00 & 82.17 & 88.2 & 85.07 \\
+		\modal & 84.49 & 82.08 & 83.27 & 89.82 & 83.17 & 86.37 \\
+		\beneficiary & 73.91 & 71.01 & 72.43 & 69.76 & 68.53 & 69.14 \\
+		\location  & 72.35 & 67.68 & 69.93 & 72.24 & 64.29 & 68.03 \\
+		\greet  & 71.28 & 56.01 & 62.73 & 74.97 & 75.6 & 75.29 \\
+		\timesrl  & 88.87 & 86.78 & 87.81 & 87.57 & 86.12 & 86.84 \\
+		\hline
+		Average & 80.10 & 78.14 & 79.10 & 82.97 & 81.67 & 82.30 \\
+		\hline
+	\end{tabular}
+	
+\end{table}
+
+As we can see from the table above, \agent, \patient, and \greet~gain significant improvements. The F1 score of \agent~increases by 8.2\% (from 81.39\% to 89.59\%) while \patient~improves by 8.07\% (from 77.00\% to 85.07\%). On the other hand, \greet's F1 score dramatically increases by 12.56\% (from 62.73\% to 75.29\%).
+
 Since the WE + POS feature combination and DBLSTM architecture outputs the highest result in this case, it will be used for the next model selection scenarios.
 
 \subsubsection{Scenario 2b: DBLSTM, DBLSTM-Zhou, and DBLSTM-Highway}
@@ -235,7 +264,36 @@ In this scenario set, we compare the Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLST
 
 \end{table}
 
-The highest F1 score is achieved by the DBLSTM architecture (82.30\%), followed by DBLSTM-Zhou (81.33\%) and DBLSTM-Highway (81.14\%). In their work, ~\cite{zhou2015end} did not elaborate on why they picked their proposed architecture (DBLSTM-Zhou) rather than the original DBLSTM. They did not compare the performances between original DBLSTM and their proposed architecture. Moreover, ~\cite{he2017deep} who proposed the modification of Zhou's architecture (DBLSTM-Highway) also did not explain the rationale of using Zhou's BLSTM rather than the original one. In our case, it turns out that the original DBLSTM still outperforms the other BLSTM architectures. However, we are interested in using all these three architectures for the next model selection scenarios which aim to see the impact of using two additional layers: CNN and Attention layers.
+The highest F1 score is achieved by the DBLSTM architecture (82.30\%), followed by DBLSTM-Zhou (81.33\%) and DBLSTM-Highway (81.14\%). In their work, ~\cite{zhou2015end} did not elaborate on why they picked their proposed architecture (DBLSTM-Zhou) rather than the original DBLSTM. They did not compare the performances between original DBLSTM and their proposed architecture. Moreover, ~\cite{he2017deep} who proposed the modification of Zhou's architecture (DBLSTM-Highway) also did not explain the rationale of using Zhou's BLSTM rather than the original one. In our case, it turns out that the original DBLSTM still outperforms the other BLSTM architectures. 
+
+\begin{table}
+	\centering
+	\caption{Result comparison between using DBLSTM and DBLSTM-Highway architecture for every semantic role}
+	\label{tab:dblstmdblstmhighway}
+	\begin{tabular}{|l|ccc|ccc|}
+		\hline
+		& \multicolumn{3}{c}{ DBLSTM } & \multicolumn{3}{c}{ DBLSTM-Highway } \\
+		\hline
+		Label & Precision & Recall & F1 & Precision & Recall & F1 \\
+		\hline\hline
+		\agent & 89.50 & 89.67 & 89.59 & 84.29 & 89.24 & 86.70\\
+		\predicate & 97.76 & 97.76 & 97.76 & 96.57 & 97.20 & 96.88\\
+		\patient  & 82.17 & 88.2 & 85.07 & 80.64 & 85.58 & 83.04\\
+		\modal & 89.82 & 83.17 & 86.37 & 84.02 & 84.97 & 84.49\\
+		\beneficiary & 69.76 & 68.53 & 69.14 & 65.15 & 73.58 & 69.11\\
+		\location  & 72.24 & 64.29 & 68.03 & 69.92 & 67.69 & 68.79\\
+		\greet  & 74.97 & 75.6 & 75.29 & 75.17 & 65.95 & 70.26\\
+		\timesrl  & 87.57 & 86.12 & 86.84 & 89.31 & 89.11 & 89.21\\
+		\hline
+		Average & 82.97 & 81.67 & 82.30 & 80.63 & 81.66 & 81.15\\
+		\hline
+	\end{tabular}
+	
+\end{table}
+
+Table~\ref{tab:dblstmdblstmhighway} presented the result comparison between using DBLSTM and DBLSTM-Highway architecture for every semantic role. The results show that all semantic roles except \timesrl~are decreasing when DBLSTM-Highway is used. It shows that original DBLSTM still outperforms the DBLSTM-Highway in our case.
+
+Nonetheless, we are interested in using all these three architectures for the next model selection scenarios which aim to see the impact of using two additional layers: CNN and Attention layers.
 
 \subsubsection{Scenario 2c: CNN Layer}
 In this scenario set, we examine the impact of adding the additional CNN layer underneath the three afore-mentioned architectures: DBLSTM, DBLSTM-Zhou, and DBLSTM-Highway. Table~\ref{tab:modelselection2} shows the results of this scenario set.
@@ -282,6 +340,33 @@ The last scenario set aims to see the impact of using our proposed attention lay
 \end{table}
 
 As we can see from the table above, the original DBLSTM (DBLSTM) model slightly decreases by 0.09\% when using attention layer (from 82.30\% to 82.21\%). On the other hand, the performances of both DBLSTM-Zhou and DBLSTM-Highway models increase when attention layer is used. While DBLSTM-Zhou model increases by 0.64\% (from 81.33\% to 81.97\%), the DBLSTM-Highway model significantly increases by 1.54\% (from 81.14\% to 82.68\%). From these results, we suggest that the attention layer successfully contributes to the DBLSTM-Zhou and DBLSTM-Highway models, while the layer may not suitable to be used on top of original DBLSTM architecture.
+
+\begin{table}
+	\centering
+	\caption{Result comparison between using DBLSTM-Highway and DBLSTM-Highway + Attention architecture for every semantic role}
+	\label{tab:dblstmhighwayattention}
+	\begin{tabular}{|l|ccc|ccc|}
+		\hline
+		& \multicolumn{3}{c}{ DBLSTM-Highway } & \multicolumn{3}{c}{ DBLSTM-Highway + Attention} \\
+		\hline
+		Label & Precision & Recall & F1 & Precision & Recall & F1 \\
+		\hline\hline
+		\agent & 84.29 & 89.24 & 86.70 & 88.06 & 90.99 & 89.50\\
+		\predicate & 96.57 & 97.20 & 96.88 & 97.43 & 97.87 & 97.65\\
+		\patient  & 80.64 & 85.58 & 83.04 & 82.29 & 88.24 & 85.16 \\
+		\modal & 84.02 & 84.97 & 84.49 & 86.52 & 83.36 & 84.91\\
+		\beneficiary & 65.15 & 73.58 & 69.11 & 70.87 & 71.39 & 71.13\\
+		\location & 69.92 & 67.69 & 68.79 & 73.81 & 65.64 & 69.48\\
+		\greet  & 75.17 & 65.95 & 70.26 & 77.01 & 74.60 & 75.78\\
+		\timesrl & 89.31 & 89.11 & 89.21 & 88.60 & 86.40 & 87.49\\
+		\hline
+		Average & 80.63 & 81.66 & 81.15 & 83.07& 82.31& 82.68\\
+		\hline
+	\end{tabular}
+	
+\end{table}
+
+Table~\ref{tab:dblstmhighwayattention} presented the result comparison between using DBLSTM-Highway and DBLSTM-Highway + Attention architecture for every semantic role. The most notable improvement is \greet~whose F1 score increases from 70.26\% to 75.78\%. Furthermore, the F1 score of \agent~increases from 86.70\% to 89.50\% while \patient~improves from 83.04\% to 85.16\%. \beneficiary's F1 score also increases from 69.11\% to 71.13\%. The results show that the attention layer is suitable for enhancing the performance of DBLSTM-Highway architecture.
 
 %\section{Metrik Evaluasi}
 %Pada eksperimen ini, untuk mendapatkan nilai akurasi dari masing-masing eksperimen \saya~menggunakan \textit{precision}, \textit{recall} dan \textit{f-measure}. \Saya~menggunakan \textit{10-cross fold validation} dalam menjalankan eksperimen. Terkait dengan penjelasan mengenai cara penghitungan dan evaluasi sudah dijelaskan pada Bab 3.

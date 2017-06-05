@@ -7,7 +7,7 @@
 \contentsline {chapter}{Table of Contents}{vii}{chapter*.14}
 \contentsline {chapter}{List of Figures}{x}{chapter*.15}
 \contentsline {chapter}{List of Tables}{xi}{chapter*.16}
-\contentsline {chapter}{List of Pseudocodes}{xii}{chapter*.17}
+\contentsline {chapter}{List of Pseudocodes}{xiii}{chapter*.17}
 \contentsline {chapter}{\numberline {1}\uppercase {Introduction}}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Problem Statement}{3}{section.1.2}
@@ -72,9 +72,11 @@
 \contentsline {subsection}{\numberline {5.2.1}Scenario 1: Feature Selection}{55}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5.2.2}Scenario 2: Model Selection}{59}{subsection.5.2.2}
 \contentsline {subsubsection}{\numberline {5.2.2.1}Scenario 2a: LSTM, BLSTM and DBLSTM}{59}{subsubsection.5.2.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2.2}Scenario 2b: DBLSTM, DBLSTM-Zhou, and DBLSTM-Highway}{60}{subsubsection.5.2.2.2}
-\contentsline {subsubsection}{\numberline {5.2.2.3}Scenario 2c: CNN Layer}{61}{subsubsection.5.2.2.3}
-\contentsline {subsubsection}{\numberline {5.2.2.4}Scenario 2d: Attention Layer}{61}{subsubsection.5.2.2.4}
-\contentsline {chapter}{\numberline {6}\uppercase {Conclusion and Future Work}}{63}{chapter.6}
-\contentsline {chapter}{References}{65}{chapter*.65}
-\contentsline {chapter}{APPENDIX}{1}{section*.66}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Scenario 2b: DBLSTM, DBLSTM-Zhou, and DBLSTM-Highway}{61}{subsubsection.5.2.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.3}Scenario 2c: CNN Layer}{62}{subsubsection.5.2.2.3}
+\contentsline {subsubsection}{\numberline {5.2.2.4}Scenario 2d: Attention Layer}{62}{subsubsection.5.2.2.4}
+\contentsline {chapter}{\numberline {6}\uppercase {Conclusion and Future Work}}{65}{chapter.6}
+\contentsline {chapter}{References}{67}{chapter*.68}
+\contentsline {chapter}{APPENDIX}{1}{section*.69}
+\contentsline {section}{\numberline {.1}Mapping from BIO Label to One-Hot-Vector}{1}{section.Alph0.1}
+\contentsline {section}{\numberline {.2}Mapping from POS Tag to One-Hot-Vector}{2}{section.Alph0.2}

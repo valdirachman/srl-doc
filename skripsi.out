@@ -76,5 +76,7 @@
 \BOOKMARK [3][-]{subsubsection.5.2.2.3}{5.2.2.3 Scenario 2c: CNN Layer}{subsection.5.2.2}% 76
 \BOOKMARK [3][-]{subsubsection.5.2.2.4}{5.2.2.4 Scenario 2d: Attention Layer}{subsection.5.2.2}% 77
 \BOOKMARK [0][-]{chapter.6}{6 Conclusion and Future Work}{}% 78
-\BOOKMARK [0][-]{chapter*.65}{References}{}% 79
-\BOOKMARK [0][-]{section*.66}{APPENDIX}{}% 80
+\BOOKMARK [0][-]{chapter*.68}{References}{}% 79
+\BOOKMARK [0][-]{section*.69}{APPENDIX}{}% 80
+\BOOKMARK [1][-]{section.Alph0.1}{.1 Mapping from BIO Label to One-Hot-Vector}{section*.69}% 81
+\BOOKMARK [1][-]{section.Alph0.2}{.2 Mapping from POS Tag to One-Hot-Vector}{section*.69}% 82
