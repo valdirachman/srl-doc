@@ -4,10 +4,10 @@
 %-----------------------------------------------------------------------------%
 %-----------------------------------------------------------------------------%
 % Ide, model matematik, rumus, fitur, jangan m=ngomongin teknologi (java, keras, dll), word2vec boleh %
-In this chapter, we describe the methodology used in this research. It consists of data gathering, data pre-processing, data annotation, experiment, and evaluation. Before we describe each part in details, we explain the big picture of the methodology in a form of pipeline.
+This chapter describes the methodology used in this research. It consists of data gathering, data pre-processing, data annotation, experiment, and evaluation. Before we describe each part in details, we explain the big picture of the methodology in a form of pipeline.
 
 \section{Pipeline}
-The goal of this research is to build a model that predicts the semantic roles of each Indonesian sentence. In other languages such as English, there are already semantic role corpus from which the SRL system is built. Unfortunately, that is not the case for Indonesian, since there is no annotated corpus available yet. We therefore create our own with the annotation guideline crafted for Indonesian conversational language. In this research, we focus on building SRL system for the conversational Indonesian language. 
+The goal of this research is to build a model that predicts the semantic roles of each Indonesian conversational sentence. In other languages such as English, there are already semantic role corpus from which the SRL system is built. Unfortunately, that is not the case for Indonesian, since there is no annotated corpus available yet. We therefore create our own with the annotation guideline crafted for Indonesian conversational language. In this research, we focus on building SRL system for the conversational Indonesian language. 
 
 We view SRL as a sequence labeling problem. Suppose that we have an input of \textit{n} words $w = (w_{1}, w_{2}, ..., w_{n})$, the goal is to find the best label sequence $y = (y_{1}, y_{2}, ..., y_{n})$, with $y_{i}$ representing the semantic roles. The probabilities of the label in each time step $i$ is described as follows.
 \begin{equation}
@@ -16,7 +16,7 @@ P(y_{i}|w_{i-l}, ..., w_{i+l},y_{i-l}, ..., y_{i+l})
 
 whereby \textit{l} is a small number. 
 
-In this section, we explain our research methodology including the data annotation, features used, and the proposed model architecture. Figure~\ref{fig:pipeline} shows the pipeline of this research.
+In this section, we explain our research methodology including the data gathering, data annotation, data pre-processing, model development, experiment, and evaluation. Figure~\ref{fig:pipeline} shows the pipeline of this research.
 
 This research uses the data from one of Kata.ai's chat bots. Firstly, the data is pre-processed before going into the next steps. After that, the data is then annotated with semantic roles based on the annotation guideline proposed by us for Indonesian conversational language.
 
@@ -27,7 +27,7 @@ This research uses the data from one of Kata.ai's chat bots. Firstly, the data i
 	\label{fig:pipeline}
 \end{figure}
 
-The model development step consists of feature extraction and model architecture. The features are Word Embeddings, POS Tag, and Neighboring Word Embeddings. The model architecture consists of main and additional layer. The main layer options include vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM Highway.
+The model development step consists of feature extraction and model architecture. The features are Word Embedding, POS Tag, and Neighboring Word Embeddings. The model architecture consists of main and additional layer. The main layer options include vanilla Long Short-Term Memories (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM Highway. The additional layer choices include Convolutional Neural Networks (CNN) and our proposed attention mechanism.
 
 There are 2 main scenarios for the experiment. The first scenario aims for finding the best set of features that outputs the best performance. The goal of the second scenario is to find which deep learning model architecture has the best result.
 
@@ -36,7 +36,7 @@ We use 5-fold cross validation for every experiment. Each experiment is evaluate
 \section{Data Gathering}
 In this research we use real-world data from one of Kata.ai chat bots. We firstly retrieved data consisting of 40.000 instances of text chats. We then manually deleted junk chats which contain, for example, only laugh or greeting. After that, we run a script to delete duplicate chats. The deletion process outputs a clean data with 30.000 instances in total. Finally, we randomly selected 9.000 out of 30.000 instances as the data to be annotated. This data set will be the one which is trained and tested to build the SRL system.
 
-It is worth to note that conversational language has unique characteristics. First, they use slangs and abbreviations. For example, one might use \textit{"u"} instead of \textit{"you"} in \textit{"I brought u a present"}. The grammars are often unstructured and thus, one cannot rely on syntactic parsers to build SRL system for conversational language. The sentences are also filled with interjections such as \textit{"haha"} and \textit{"lol"}. Lastly, since conversational sentences are really short, averaging around 5-7 words per sentence, it sometimes contains incomplete information. These are the interesting challenges the SRL system should learn and tackle.
+It is worth to note that conversational language has unique characteristics. First, they use slangs and abbreviations. For example, one might use \textit{"gue"} instead of \textit{"aku"} in \textit{"gue beliin kado deh"}. The grammars are often unstructured and thus, one cannot rely on syntactic parsers to build SRL system for conversational language. The sentences are also filled with interjections such as \textit{"haha"} and \textit{"wkwk"}. Lastly, since conversational sentences are really short, averaging around 5-7 words per sentence, it sometimes contains incomplete information. These are the interesting challenges the SRL system should learn and tackle.
 
 \section{Data Pre-Processing}
 After the data has been gathered, the next step is to pre-process the data so that it could be fed into the machine learning model later. In this step, each sentence is going through a process called tokenization. Tokenization splits sentence into its individual tokens. Traditionally, one can split sentence by \textit{space}, however, conversational language often contains a concatenated word with symbol such as "makan yuk!!!". It thus needs further tokenization technique, that is, splitting the alphabet with symbol tokens. This way, "makan yuk!!!" will be tokenized as "makan", "yuk", and "!!!". In addition to tokenization by \textit{space}, the rules are listed as follows:
@@ -84,7 +84,7 @@ In Indonesian, however, predicate can also be an adjective. Some examples are pr
 In this section, we briefly explain each semantic roles with their respective examples.
 \begin{enumerate}
 	\item \agent\\
-	\agent is described as initiator of action or capable of volition. It can also be the one which perceives action but not in control. Usually, an \agent is the subject of a verb in active voice.
+	\agent~is described as initiator of action or capable of volition. It can also be the one which perceives action but not in control. Usually, an \agent~is the subject of a verb in active voice.
 	The examples of \agent~in a sentence are given as follows:
 	\begin{description}
 		\item[$\bullet$] "\underline{Aku} makan ayam dulu ya"
@@ -108,7 +108,7 @@ In this section, we briefly explain each semantic roles with their respective ex
 	\end{description}
 	
 	\item \greet\\
-	\greet~is the main difference of this set of semantic roles for conversational language. \greet~refers to an animate object, usually a person, which is being greeted in a chat. In conversational language, one often calls the name of person it is talking to. This information is useful, for instance, we can derive that \textit{"you"} refers to \textit{"Budi"} in \textit{"Halo Budi! Aku beliin kamu kado loh"}. The examples of \greet~in a sentence are given as follows:
+	\greet~is the main difference of this set of semantic roles for conversational language. \greet~refers to an animate object, usually a person, which is being greeted in a chat. In conversational language, one often calls the name of person it is talking to. This information is useful, for instance, we can derive that \textit{"kamu"} refers to \textit{"Budi"} in \textit{"Halo Budi! Aku beliin kamu kado loh"}. The examples of \greet~in a sentence are given as follows:
 	\begin{description}
 		\item[$\bullet$] "Hai \underline{rizky}! kamu udah makan belum?"
 		\item[$\bullet$] "aku ga bisa tidur nih \underline{Val}"
@@ -136,12 +136,12 @@ In this section, we briefly explain each semantic roles with their respective ex
 	\end{description}
 \end{enumerate}
 
-Following Collobert et al., all the labels are tagged using BIO (Begin Inside Outside) tagging~\cite{collobert2011natural}. Suppose that a label \patient consists of more than one word, such as \textit{"ayam goreng"} in "Aku makan \textit{ayam goreng}", "ayam" and "goreng" are tagged as "B-Patient" and "I-Patient", respectively. If the label has only one word, than it is tagged as "B-Patient". Word that does not have any label is thus tagged as "O" which means "Others".
+Following ~\cite{collobert2011natural}, all the labels are tagged using BIO (Begin Inside Outside) tagging. Suppose that a label \patient~consists of more than one word, such as \textit{"ayam goreng"} in "Aku makan \textit{ayam goreng}", "ayam" and "goreng" are tagged as "B-Patient" and "I-Patient", respectively. If the label has only one word, it is then tagged as "B-Patient". Word that does not have any label is thus tagged as "O" which means "Others".
 
 After the data has been labeled, the labels need to be encoded in a way the deep learning model understands. To do so, the labels are then transformed into \textit{one-hot-vector}. Each label is mapped into a unique one-hot-vector, hence the relation is 1-to-1.
 \begin{table}
 	\centering
-	\caption{Set of Semantic Roles for Conversational Language}
+	\caption{An example of semantic roles with the respective one-hot-vectors}
 	\label{tab:examplelabel}
 	\begin{tabular}{|lcccc|}
 		\hline
@@ -161,10 +161,10 @@ In this step, we extract features from the data that has been annotated with sem
 
 \subsection{Word Embedding}
 % Apa itu word embedding
-Word embedding represents word as a vector. Word embedding has proved to be one of the most contributing features by a lot of deep learning research, such as for SRL system proposed by \cite{zhou2015end} and \cite{collobert2011natural}. The interesting characteristic of word embedding is that similar words have proved to have similar vectors. This is very important when dealing with conversational language which has a lot of slang words. For instance, pronoun "Aku" will have similar vector with its slang form, "Gue". We believe that this feature will contribute greatly to the model performance. Therefore, we utilized our embedding as one of our feature candidates.
+Word embedding represents word as a vector. Word embedding has proved to be one of the most contributing features by a lot of deep learning research, such as for SRL system proposed by \cite{zhou2015end} and \cite{collobert2011natural}. The interesting characteristic of word embedding is that similar words have proved to have similar vectors~\citep{mikolov2013efficient}. This is very important when dealing with conversational language which has a lot of slang words. For instance, pronoun "Aku" will have similar vector with its slang form, "Gue". We believe that this feature will contribute greatly to the model performance. Therefore, we utilize word embedding as one of our feature candidates.
 
 % Cara mendapat word embedding model
-In order to utilize word embedding as our features, we conduct three steps which consist of: 1.) data gathering for building word embedding model, 2.) training the word embedding model, and 3.) converting words into vectors with the trained word embedding model.
+In order to utilize word embedding as one of our features, we conduct three steps which consist of: 1.) data gathering for building word embedding model, 2.) training the word embedding model, and 3.) converting words into vectors with the trained word embedding model.
 
 \begin{enumerate}
 	\item Data gathering for building word embedding model\\
@@ -214,7 +214,7 @@ The example of POS Tag features is presented in Table~\ref{tab:examplepos}
 	\end{tabular}
 \end{table}
 
-While most of the deep learning research aims for not using such feature, we argue that POS tag is still important for building a robust model in our case. This is because of the fact that size of our corpus is relatively small compared to the huge English-based SRL corpus such as ConLL 2015 by~\cite{carreras2005introduction}. We argue that having Verb as one of our POS Tag will help to determine which one is the predicate, since predicate is usually in a form of verb, though some can also be adjectives. As the arguments having semantic role are mostly in a form of Noun, POS Tag Noun will be a helpful information as well. Other POS tags will help to determine which word that obviously does not have any semantic role.
+While most of the deep learning research aims for not using such feature, we argue that POS tag is still important for building a robust model in our case. This is because of the fact that size of our corpus is relatively small compared to the huge English-based SRL corpus such as ConLL 2005 by~\cite{carreras2005introduction}. We argue that having Verb as one of our POS Tag will help to determine which one is the predicate, since predicate is usually in a form of verb, though some can also be adjective. As the arguments having semantic role are mostly in a form of Noun, POS Tag Noun will be a helpful information as well. Other POS tags will help to determine which word that obviously does not have any semantic role.
 
 In this work, we use gold-standard POS tag on our data as the features to prevent propagation errors from the POS tag model. This way, we can focus on analyzing errors resulting from the SRL model later in chapter 5. 
 
@@ -238,7 +238,7 @@ Neighboring word embeddings are the vector representations of words located befo
 Table~\ref{tab:examplenwe} illustrates the neighboring word embeddings of every time step. The table shows that in every time step, it adds the word vector information from the left and right. Since the first word does not have any previous word, its left neighbor is a vector $\vec{0}$. This is also the case for the last word which does not have any subsequent word. Hence, the right neighbor of the last word is also a vector  $\vec{0}$.
 
 \section{Model Architecture}
-Recurrent Neural Networks (RNN) has a nature advantage for solving sequence labeling problem~\cite{zhou2015end}. ~\cite{hochreiter1997long} proposed Long Short-Term Memories (LSTM) as the specific version of RNN designed to overcome vanishing and exploding gradient problem. In this research, we experiment on various LSTM architectures, namely vanilla LSTM, Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM-Highway. All these LSTM architectures are considered as the main layers. Moreover, there are two additional layers: Convolutional Neural Networks (CNN) and attention. CNN layer is located underneath the LSTM layer while the attention is placed on top of the LSTM. The attention layer is the one we proposed in this research. These additional layers can be used for any afore-mentioned LSTM architectures.
+Recurrent Neural Networks (RNN) has a nature advantage for solving sequence labeling problem~\citep{zhou2015end}. ~\cite{hochreiter1997long} proposed Long Short-Term Memories (LSTM) as the specific version of RNN designed to overcome vanishing and exploding gradient problem. In this research, we experiment on various LSTM architectures, namely vanilla LSTM, Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM-Highway. All these LSTM architectures are considered as the main layers. Moreover, there are two additional layers: Convolutional Neural Networks (CNN) and attention. CNN layer is located underneath the main layer while the attention is placed on top of the main layer. The attention layer is the one we proposed in this research. These additional layers can be used for any afore-mentioned LSTM architectures.
 
 \subsection{Main Layers}
 The main layers consist of Vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM-Highway.
@@ -256,7 +256,7 @@ Vanilla LSTM is the basic, one-directional LSTM networks designed to overcome va
 \end{figure}
 
 % Explain the formula based on big picture LSTM
-Figure~\ref{fig:olstm} illustrates the big picture of the vanilla LSTM networks used in this research. Suppose that we have sequence of input tensors $[\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}]$, with $n$ denotes the number of time steps. Each input tensor $\mathbf{x_{t}}$ represents features of the word in time step $t$. Suppose that we have more than one feature (for example: Word Embedding and POS Tag), the vectors of these features are concatenated. For every time step $t$, each input tensor $\mathbf{x_{t}}$ is fed into the LSTM layer, resulting tensor $\mathbf{f_{t}}$, as shown in Equation~\ref{eq:lstm}. 
+Figure~\ref{fig:olstm} illustrates the big picture of the vanilla LSTM networks used in this research. Suppose that we have sequence of input vectors $[\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}]$, with $n$ denotes the number of time steps. Each input vector $\mathbf{x_{t}}$ represents features of the word in time step $t$. Suppose that we have more than one feature (for example: Word Embedding and POS Tag), the vectors of these features are concatenated. For every time step $t$, each input vector $\mathbf{x_{t}}$ is fed into the LSTM layer, resulting vector $\mathbf{f_{t}}$, as shown in Equation~\ref{eq:lstm}. 
 
 \begin{equation}
 \label{eq:lstm}
@@ -272,7 +272,7 @@ label_{t} = Softmax(\mathbf{f_{t}})
 
 In each time step, label with highest probability among others will be the final output. This way, we have all the predicted labels for every time step.
 
-After explaining the big picture of LSTM networks, we describe the details of every LSTM unit in time step $t$ shown in Equation~\ref{eq:lstm}. That is, given an input tensor $\mathbf{x_{t}}$, each LSTM unit will output tensor $\mathbf{f_{t}}$. Figure~\ref{fig:lstmunit} illustrates the architecture of one LSTM unit in time step $t$.
+After explaining the big picture of LSTM networks, we describe the details of every LSTM unit in time step $t$ shown in Equation~\ref{eq:lstm}. That is, given an input vector $\mathbf{x_{t}}$, each LSTM unit will output vector $\mathbf{f_{t}}$. Figure~\ref{fig:lstmunit} illustrates the architecture of one LSTM unit in time step $t$.
 
 % Gambar single unit LSTM
 \begin{figure}
@@ -283,7 +283,7 @@ After explaining the big picture of LSTM networks, we describe the details of ev
 \end{figure}
 
 % Explain the formula based on single cell LSTM
-The LSTM unit in time step $t$ requires an input tensor $a_{t}$. As explained in subchapter X, the equations to produce output tensor $\mathbf{f_{t}}$ are presented as follows:
+The LSTM unit in time step $t$ requires an input vector $x_{t}$. As explained in subchapter X, the equations to produce output vector $\mathbf{f_{t}}$ are presented as follows:
 
 \begin{equation}\label{eq:lstmm}
 \mathbf{m_{t}}=\alpha_{t}\cdot~\mathbf{m_{t-1}} + \beta_{t}\cdot~tanh(W_{xm} \cdot \mathbf{x_{t}} + W_{fm} \cdot \mathbf{f_{t-1}})
@@ -326,13 +326,13 @@ Figure~\ref{fig:bilstm} shows that the input $\mathbf{x_{t}}$ in every time step
 \mathbf{b_{t}} = BackwardLSTM(\mathbf{x_{t}}, \mathbf{b_{t+1}})
 \end{equation}
 
-In each time step, the result tensors $\mathbf{f_{t}}$ and $\mathbf{b_{t}}$ are then concatenated to be one tensor output $\mathbf{h_{t}}$, as shown in Equation~\ref{eq:lstm_concat}
+In each time step, the result vectors $\mathbf{f_{t}}$ and $\mathbf{b_{t}}$ are then concatenated to be one vector output $\mathbf{h_{t}}$, as shown in Equation~\ref{eq:lstm_concat}
 \begin{equation}
 \label{eq:lstm_concat}
 \mathbf{h_{t}} = Concatenate(\mathbf{f_{t}}, \mathbf{b_{t}})
 \end{equation}
 
-Likewise in vanilla LSTM architecture, the output tensor $\mathbf{h_{t}}$ is then fed into softmax layer, as shown in Equation~\ref{eq:bilstm_softmax}
+Likewise in vanilla LSTM architecture, the output vector $\mathbf{h_{t}}$ is then fed into softmax layer, as shown in Equation~\ref{eq:bilstm_softmax}
 
 \begin{equation}
 \label{eq:bilstm_softmax}
@@ -352,7 +352,7 @@ Deep BLSTM (DBLSTM) is basically formed by stacking BLSTM layers. This concept w
 	\label{fig:dblstm}
 \end{figure}
 
-Initially, the input tensors $\mathbf{x_{t}}$ are processed by the first BLSTM layer, resulting the output tensors $\mathbf{h_{t}}$ as explained in Equation~\ref{eq:lstmforward},~\ref{eq:lstmbackward}, and~\ref{eq:lstm_concat}. The output tensors $\mathbf{h_{t}}$ are then processed by the second BLSTM layer. These are illustrated in Equation~\ref{eq:lstmforward2} and Equation~\ref{eq:lstmbackward2}.
+Initially, the input vectors $\mathbf{x_{t}}$ are processed by the first BLSTM layer, resulting the output vectors $\mathbf{h_{t}}$ as explained in Equation~\ref{eq:lstmforward},~\ref{eq:lstmbackward}, and~\ref{eq:lstm_concat}. The output vectors $\mathbf{h_{t}}$ are then processed by the second BLSTM layer. These are illustrated in Equation~\ref{eq:lstmforward2} and Equation~\ref{eq:lstmbackward2}.
 \begin{equation}
 \label{eq:lstmforward2}
 \mathbf{k_{t}} = ForwardLSTM2(\mathbf{h_{t}}, \mathbf{k_{t-1}})
@@ -362,13 +362,13 @@ Initially, the input tensors $\mathbf{x_{t}}$ are processed by the first BLSTM l
 \mathbf{m_{t}} = BackwardLSTM2(\mathbf{h_{t}}, \mathbf{m_{t+1}})
 \end{equation}
 
-In each time step, the result tensors $\mathbf{k_{t}}$ and $\mathbf{m_{t}}$ are then concatenated to be one tensor output $\mathbf{p_{t}}$, as shown in Equation~\ref{eq:lstm_concat2}
+In each time step, the result vectors $\mathbf{k_{t}}$ and $\mathbf{m_{t}}$ are then concatenated to be one vector output $\mathbf{p_{t}}$, as shown in Equation~\ref{eq:lstm_concat2}
 \begin{equation}
 \label{eq:lstm_concat2}
 \mathbf{p_{t}} = Concatenate(\mathbf{k_{t}}, \mathbf{m_{t}})
 \end{equation}
 
-The output tensor $\mathbf{h_{t}}$ is finally fed into the last softmax layer to output the final label of each time step $t$.
+The output vector $\mathbf{p_{t}}$ is finally fed into the last softmax layer to output the final label of each time step $t$.
 
 \subsubsection{Deep BLSTM-Zhou (DBLSTM-Zhou)}
 \cite{zhou2015end} proposed another way of constructing the BLSTM layer. First, an LSTM layer processes the input sequence in forward direction. The output of this layer is then fed into the next LSTM layer as input, processed in backward direction. At this point, one BLSTM-Zhou layer is built. \cite{zhou2015end} then stacked the BLSTM layers and named it as the deep bi-directional LSTM. In this work, we stack two BLSTM-Zhou layers for constructing the DBLSTM-Zhou as presented in Figure~\ref{fig:dblstmzhou}.
@@ -380,7 +380,7 @@ The output tensor $\mathbf{h_{t}}$ is finally fed into the last softmax layer to
 	\label{fig:dblstmzhou}
 \end{figure}
 
-First, the input tensor $\mathbf{x_{t}}$ is processed by the first forward LSTM layer, resulting output tensor $\mathbf{f_{t}}$. This output is then fed into the backward LSTM layer to produce the output tensor $\mathbf{b_{t}}$. These processes are presented in Equation~\ref{eq:lstmforwardzhou1} and~\ref{eq:lstmbackwardzhou1}.
+First, the input vector $\mathbf{x_{t}}$ is processed by the first forward LSTM layer, resulting output vector $\mathbf{f_{t}}$. This output is then fed into the backward LSTM layer to produce the output vector $\mathbf{b_{t}}$. These processes are presented in Equation~\ref{eq:lstmforwardzhou1} and~\ref{eq:lstmbackwardzhou1}.
 \begin{equation}
 \label{eq:lstmforwardzhou1}
 \mathbf{f_{t}} = ForwardLSTM1(\mathbf{x_{t}}, \mathbf{f_{t-1}})
@@ -390,7 +390,7 @@ First, the input tensor $\mathbf{x_{t}}$ is processed by the first forward LSTM 
 \mathbf{b_{t}} = BackwardLSTM1(\mathbf{f_{t}}, \mathbf{b_{t+1}})
 \end{equation}
 
-The output tensor $\mathbf{b_{t}}$ is then fed into the next forward LSTM layer to produce the next output tensor $\mathbf{k_{t}}$ (Equation~\ref{eq:lstmforwardzhou2}). Finally, $\mathbf{k_{t}}$ is processed by the second backward LSTM layer to produce the output tensor $\mathbf{m_{t}}$ (Equation~\ref{eq:lstmbackwardzhou2}).
+The output vector $\mathbf{b_{t}}$ is then fed into the next forward LSTM layer to produce the next output vector $\mathbf{k_{t}}$ (Equation~\ref{eq:lstmforwardzhou2}). Finally, $\mathbf{k_{t}}$ is processed by the second backward LSTM layer to produce the output vector $\mathbf{m_{t}}$ (Equation~\ref{eq:lstmbackwardzhou2}).
 \begin{equation}
 \label{eq:lstmforwardzhou2}
 \mathbf{k_{t}} = ForwardLSTM2(\mathbf{b_{t}}, \mathbf{k_{t-1}})
@@ -400,7 +400,7 @@ The output tensor $\mathbf{b_{t}}$ is then fed into the next forward LSTM layer 
 \mathbf{m_{t}} = BackwardLSTM2(\mathbf{k_{t}}, \mathbf{m_{t+1}})
 \end{equation}
 
-The output tensor $\mathbf{m_{t}}$ is then processed by the softmax layer to produce the final label of every time step $t$.
+The output vector $\mathbf{m_{t}}$ is then processed by the softmax layer to produce the final label of every time step $t$.
 
 \subsubsection{Deep BLSTM-Highway (DBLSTM-Highway)}
 The DBLSTM-Highway architecture is adapted from the work of~\cite{he2017deep}. They used the same BLSTM architecture as~\cite{zhou2015end} but added the so-called highway connections~\citep{srivastava2015training} for their DBLSTM architecture. Figure~\ref{fig:dblstmhighway} illustrates the DBLSTM-Highway architecture.
@@ -412,20 +412,20 @@ The DBLSTM-Highway architecture is adapted from the work of~\cite{he2017deep}. T
 	\label{fig:dblstmhighway}
 \end{figure}
 
-First, the input tensor $\mathbf{x_{t}}$ is processed by the first forward LSTM layer which produces output tensor $\mathbf{f_{t}}$.
+First, the input vector $\mathbf{x_{t}}$ is processed by the first forward LSTM layer which produces output vector $\mathbf{f_{t}}$.
 \begin{equation}
 \label{eq:forwardhighway1}
 \mathbf{f_{t}} = ForwardLSTM1(\mathbf{x_{t}}, \mathbf{f_{t-1}})
 \end{equation}
 
-The tensor $\mathbf{f_{t}}$ is then fed into the first backward LSTM layer which outputs tensor $\mathbf{b_{t}}$. The tensors $\mathbf{b_{t}}$ and $\mathbf{f_{t}}$ are then concatenated before being processed by the sigmoid function which outputs the weight $s_{1,t}$. After that, $\mathbf{b_{t}}$ is retrieved by summing the multiplication results of $s_{1,t}$ with $\mathbf{b_{t}}$ and $(1 - s_{1,t})$ with $\mathbf{f_{t}}$
+The vector $\mathbf{f_{t}}$ is then fed into the first backward LSTM layer which outputs vector $\mathbf{b_{t}}$. The vectors $\mathbf{b_{t}}$ and $\mathbf{f_{t}}$ are then concatenated before being processed by the sigmoid function which outputs the weight $s_{1,t}$. After that, $\mathbf{b_{t}}$ is retrieved by summing the multiplication results of $s_{1,t}$ with $\mathbf{b_{t}}$ and $(1 - s_{1,t})$ with $\mathbf{f_{t}}$
 
 \begin{equation}
 \label{eq:backwardhighway1}
 \mathbf{b_{t}} = BackwardLSTM1(\mathbf{f_{t}}, \mathbf{b_{t+1}})
 \end{equation}
 \begin{equation}
-	s_{1,t} = \sigma(W_{1} \cdot [\mathbf{b_{t}}; \mathbf{f_{t}}] + d_{1})
+	s_{1,t} = \sigma(W_{1} \cdot [\mathbf{b_{t}}, \mathbf{f_{t}}] + d_{1})
 \end{equation}
 \begin{equation}
 	\mathbf{b'_{t}} = s_{1,t} \cdot \mathbf{b_{t}} + (1 - s_{1,t}) \cdot \mathbf{f_{t}} 
@@ -437,7 +437,7 @@ $\mathbf{k'_{t}}$ is retrieved by the same way as $\mathbf{b'_{t}}$, which we de
 \mathbf{k_{t}} = ForwardLSTM2(\mathbf{b'_{t}}, \mathbf{k_{t-1}})
 \end{equation}
 \begin{equation}
-s_{2,t} = \sigma(W_{2} \cdot [\mathbf{k_{t}}; \mathbf{b_{t}}] + d_{2})
+s_{2,t} = \sigma(W_{2} \cdot [\mathbf{k_{t}}, \mathbf{b_{t}}] + d_{2})
 \end{equation}
 \begin{equation}
 \mathbf{k'_{t}} = s_{2,t} \cdot \mathbf{k_{t}} + (1 - s_{2,t}) \cdot \mathbf{b_{t}} 
@@ -449,20 +449,20 @@ Lastly, $\mathbf{m'_{t}}$ is retrieved by the same way as $\mathbf{k'_{t}}$, whi
 \mathbf{m_{t}} = BackwardLSTM2(\mathbf{k'_{t}}, \mathbf{m_{t+1}})
 \end{equation}
 \begin{equation}
-s_{3,t} = \sigma(W_{3} \cdot [\mathbf{m_{t}}; \mathbf{k_{t}}] + d_{3})
+s_{3,t} = \sigma(W_{3} \cdot [\mathbf{m_{t}}, \mathbf{k_{t}}] + d_{3})
 \end{equation}
 \begin{equation}
 \mathbf{m'_{t}} = s_{3,t} \cdot \mathbf{m_{t}} + (1 - s_{3,t}) \cdot \mathbf{k_{t}} 
 \end{equation}
 
-The output tensor $\mathbf{m'_{t}}$ is then processed by the softmax layer to produce the final label of every time step $t$.
+The output vector $\mathbf{m'_{t}}$ is then processed by the softmax layer to produce the final label of every time step $t$.
 
 \subsection{Additional Layers}
 The additional layers consist of Convolutional Neural Networks (CNN) and attention mechanism. These additional layers can be used in addition to any of the main layers.
 
 \subsubsection{Convolutional Neural Networks (CNN)}
 % What is CNN-BLSTM generally, what it's for.
-In addition to the main layer architecture, we also experiment on adding Convolutional Neural Networks (CNN) layer underneath the main layer. The rationale is to capture raw context from the neighboring input tensors. This way, CNN can implicitly extract meaningful context information. Figure ~\ref{fig:cnndblstmhighway} illustrates the big picture of adding CNN underneath the main layer. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variants explained in the previous sections. In this illustration, we use DBLSTM-Highway as the main layer.
+In addition to the main layer architecture, we also experiment on adding Convolutional Neural Networks (CNN) layer underneath the main layer. The rationale is to capture raw context from the neighboring input vectors. This way, CNN can implicitly extract meaningful context information. Figure ~\ref{fig:cnndblstmhighway} illustrates the big picture of adding CNN underneath the main layer. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variants explained in the previous sections. In this illustration, we use DBLSTM-Highway as the main layer.
 
 % Gambar CNN-BLSTM
 \begin{figure}
@@ -473,13 +473,13 @@ In addition to the main layer architecture, we also experiment on adding Convolu
 \end{figure}
 
 % Explain the formula based on big picture CNN-BILSTM
-Instead of feeding the main layer with raw input tensor $\mathbf{x_{t}}$, this architecture firstly processes it through CNN layer, resulting output tensor $\mathbf{c_{t}}$, as shown in Equation~\ref{eq:cnn}.
+Instead of feeding the main layer with raw input vector $\mathbf{x_{t}}$, this architecture firstly processes it through CNN layer, resulting output vector $\mathbf{c_{t}}$, as shown in Equation~\ref{eq:cnn}.
 \begin{equation}
 \label{eq:cnn}
 [\mathbf{c_{1}}; \mathbf{c_{2}}; ...; \mathbf{c_{n}}] = CNN([\mathbf{x_{1}}; \mathbf{x_{2}}; ...; \mathbf{x_{n}}])
 \end{equation}
 
-The result tensor $\mathbf{c_{t}}$ is then fed into the main layer that can be any of LSTM variants. The output of the LSTM layer is then processed by the time-distributed softmax layer to determine the final output label.
+The result vector $\mathbf{c_{t}}$ is then fed into the main layer that can be any of LSTM variants. The output of the LSTM layer is then processed by the time-distributed softmax layer to determine the final output label.
 
 \subsubsection{Attention Mechanism}
 % What is CA-BLSTM generally, what it's for
@@ -511,13 +511,13 @@ Once we have all the values of $[g(\mathbf{m_{1}}); g(\mathbf{m_{2}}); ...; g(\m
 \mathbf{r_{i}} = \alpha_{i}.\mathbf{m_{i}}
 \end{equation}
 
-We then sum all these vectors element-wise to have a context tensor $\mathbf{z}$. 
-All the original LSTM outputs are thus concatenated with tensor $\mathbf{z}$ as the additional information to predict the semantic roles.
+We then sum all these vectors element-wise to have a context vector $\mathbf{z}$. 
+All the original LSTM outputs are thus concatenated with vector $\mathbf{z}$ as the additional information to predict the semantic roles.
 \begin{equation}
 \mathbf{z} = \mathbf{r_{1}} + \mathbf{r_{2}} + ... + \mathbf{r_{n}}
 \end{equation}
 \begin{equation}
-\mathbf{j_{i}} = Concatenate(\mathbf{m\_{i}}, z)
+\mathbf{j_{i}} = Concatenate(\mathbf{m_{i}}, z)
 \end{equation}
 
 Lastly, the time-distributed softmax layer produces the final semantic roles label.
@@ -526,7 +526,7 @@ Lastly, the time-distributed softmax layer produces the final semantic roles lab
 We use 5-fold cross validation for out experiments and thus, the data set is firstly split into 5 sets. These 5 sets are divided into training and testing sets with the ratio of 4:1. After that, we train the model using the training set and evaluate it using the testing set. This process is done 5 times until every set of data is tested.
 
 \section{Evaluation}
-In each scenario, we evaluate the trained model in order to see how good it predicts the semantic roles as expected. The metrics for our evaluation are precision, recall, and F1. These metrics is applied to all semantic role labels. We then average each metrics from all semantic role labels to get the average precision, recall, and F1 of a model. The evaluation approach used is partial match in which a set of predicted labels is counted right if there is an intersection with the gold-standard \citep{seki2003probabilistic}. 
+In each scenario, we evaluate the trained model in order to see how good it predicts the semantic roles as expected. The metrics for our evaluation are precision, recall, and F1. These metrics are applied to all semantic role labels. We then average each metrics from all semantic role labels to get the average precision, recall, and F1 of a model. The evaluation approach used is partial match in which a set of predicted labels is counted right if there is an intersection with the gold-standard \citep{seki2003probabilistic}. 
 
 Suppose that we are evaluating the semantic role \patient. The rules for evaluation using partial match for semantic role \patient are explained as follows.
 
@@ -537,7 +537,7 @@ Suppose that we are evaluating the semantic role \patient. The rules for evaluat
 	
 	\fbox{%
 		\parbox{1.0\linewidth}{%
-			Gold-standard: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
+			Expected: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
 			Predicted.1: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
 			Predicted.2: Aku pengen makan <Patient>\textbf{ayam}</Patient> goreng deh\\
 			Predicted.3: Aku pengen makan <Patient>\textbf{ayam goreng deh} </Patient>\\
@@ -558,13 +558,13 @@ Suppose that we are evaluating the semantic role \patient. The rules for evaluat
 	
 	\fbox{%
 		\parbox{1.0\linewidth}{%
-			Gold-standard: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
+			Expected: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
 			Predicted.1: <Patient>Aku</Patient> pengen makan ayam goreng deh\\
 		}%
 	}
 	\\
 	
-	From the example above, "Aku" is predicted as \patient, while it should not be predicted as \patient according to the gold-standard. This will add the value of $FP$ by 1.
+	From the example above, "Aku" is predicted as \patient, while it should not be predicted as \patient~according to the gold-standard. This will add the value of $FP$ by 1.
 	\\
 	
 	\item Counting \textit{False Negative} (FN)\\
@@ -573,7 +573,7 @@ Suppose that we are evaluating the semantic role \patient. The rules for evaluat
 	
 	\fbox{%
 		\parbox{1.0\linewidth}{%
-			Gold-standard: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
+			Expected: Aku pengen makan <Patient>\textbf{ayam goreng}</Patient> deh\\
 			Predicted.1: Aku pengen makan <Agent>\textbf{ayam goreng}</Agent> deh\\
 			Predicted.2: Aku pengen makan ayam goreng deh
 		}%
@@ -591,5 +591,5 @@ Recall &= \frac{TP}{TP+FN}\\
 F1 &= 2 \cdot \frac{Precission \cdot Recall}{Precission + Recall}
 \end{align}
 
-Other semantic roles, such as \agent and \beneficiary, are also evaluated by following these rules. After we have the value of precision, recall, and F1 for every semantic role, we average them to get the average precision, recall, and F1 for the model being evaluated.
+Other semantic roles, such as \agent~and \beneficiary, are also evaluated by following these rules. After we have the value of precision, recall, and F1 for every semantic role, we average them to get the average precision, recall, and F1 for the model being evaluated.
 	

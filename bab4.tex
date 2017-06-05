@@ -3,7 +3,7 @@
 \chapter{\babEmpat} \label{eksperimen}
 %-----------------------------------------------------------------------------%
 
-This chapter explains the implementations of the methodology explained in chapter 3. It includes the implementation of data annotation and pre-processing, model development, experiment, as well as the evaluation.
+This chapter explains the implementations of the methodology explained in chapter 3. It includes the implementation of data annotation and pre-processing, feature extraction, and model architecture.
 
 \section{Computer Specification}
 Every experiment uses GPU-based virtual server provided by Kata.ai. The specifications of the server are explained as follows.
@@ -37,7 +37,7 @@ After 8 weeks of annotation, the total amount of data that has been annotated is
 			\{\\
 				"data": ["Kamu", "gak", "tidur", ",", "Andi", "?"],\\
 				"label": ["B-AGENT", "O", "B-PRED", "O", "B-GREET", "O"]\\
-			\}s]
+			\}]
 	}%
 }
 \\
@@ -218,7 +218,7 @@ We use Keras 2.0~\citep{chollet2015} as our deep learning library with Tensorflo
 The main layer choices include vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (BLSTM), DBLSTM-Zhou, and DBLSTM-Highway. This section explains the implementation of each architecture.
 
 \subsubsection{Vanilla LSTM (LSTM)}
-Vanilla LSTM (LSTM) consists of only one layer of forward LSTM. Pseudocode~\ref{olstm} shows the implementation of the LSTM architecture.
+Vanilla LSTM (LSTM) consists of only one layer of forward LSTM. Pseudocode~\ref{code:olstm} shows the implementation of the LSTM architecture.
 
 \begin{kode}
 	\SetKwInOut{Input}{Input}

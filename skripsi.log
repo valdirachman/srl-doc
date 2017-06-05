@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.2.7)  4 JUN 2017 23:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.2.7)  5 JUN 2017 08:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -859,6 +859,11 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 
 
 (./pengesahan_sidang.tex
+Underfull \hbox (badness 2409) in paragraph at lines 20--21
+[]|\T1/ptm/m/n/12 Semantic Role Labeling for Indonesian Conver-
+ []
+
+
 Overfull \hbox (14.74275pt too wide) in paragraph at lines 14--22
 [] 
  []
@@ -871,6 +876,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--22
 
 Underfull \hbox (badness 10000) in paragraph at lines 25--29
 
+ []
+
+
+Overfull \hbox (14.62624pt too wide) in paragraph at lines 36--46
+[][] 
  []
 
 
@@ -966,14 +976,9 @@ th
  []
 
 
-Underfull \hbox (badness 1147) in paragraph at lines 24--24
- [][] [][]\T1/ptm/m/n/12 Precision, Recall, and F1 scores (in %) of Stacked BLS
-TM 
- []
+Underfull \hbox (badness 2671) in paragraph at lines 24--24
+ [][] [][]\T1/ptm/m/n/12 Precision, Recall, and F1 scores (in %) of Deep BLSTM 
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 24--24
- \T1/ptm/m/n/12 (DBLSTM), Stacked BLSTM-Zhou (DBLSTM-Zhou), and 
  []
 
 )
@@ -1068,7 +1073,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--39
 []\T1/ptm/m/n/12 There has been a lot of research on word embedding, such as
  []
 
-<images/word2vec.png, id=698, 575.90157pt x 359.84438pt>
+<images/word2vec.png, id=722, 575.90157pt x 359.84438pt>
 File: images/word2vec.png Graphic file (type png)
 
 <use images/word2vec.png>
@@ -1089,7 +1094,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [8 <./images/word2vec.png>]
-<images/simplernn.png, id=732, 526.21594pt x 188.20313pt>
+<images/simplernn.png, id=756, 526.21594pt x 188.20313pt>
 File: images/simplernn.png Graphic file (type png)
 
 <use images/simplernn.png>
@@ -1103,7 +1108,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9 <./images/simplernn.png>]
-<images/fullrnn.png, id=748, 518.3114pt x 337.63641pt>
+<images/fullrnn.png, id=773, 518.3114pt x 337.63641pt>
 File: images/fullrnn.png Graphic file (type png)
 
 <use images/fullrnn.png>
@@ -1124,12 +1129,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [11 <./images/fullrnn.png>]
-Underfull \hbox (badness 1320) in paragraph at lines 116--117
-[]\T1/ptm/m/n/12 To address this issue, there are solutions proposed such as le
-aky units
- []
-
-<images/lstm.png, id=771, 1020.81375pt x 727.96968pt>
+<images/lstm.png, id=812, 1020.81375pt x 727.96968pt>
 File: images/lstm.png Graphic file (type png)
  <use images/lstm.png>
 Package pdftex.def Info: images/lstm.png used on input line 124.
@@ -1149,6 +1149,17 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [13 <./images/lstm.png>]
+Underfull \hbox (badness 1308) in paragraph at lines 160--161
+\T1/ptm/m/n/12 Semantic role labeling (SRL) is a task in Natural Language Proce
+ssing to
+ []
+
+
+Underfull \hbox (badness 1430) in paragraph at lines 160--161
+\T1/ptm/m/n/12 assign semantic roles for each argument for each predicate in gi
+ven input
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -1182,12 +1193,6 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [15]
-Underfull \hbox (badness 1067) in paragraph at lines 229--230
-\T1/ptm/m/n/12 There are available annotated corpus for SRL consists of sentenc
-es labeled
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 248--248
 
  []
@@ -1256,22 +1261,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 269--277
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--296
+Underfull \hbox (badness 10000) in paragraph at lines 295--295
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--296
+Underfull \hbox (badness 10000) in paragraph at lines 295--295
 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 278--298
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 278--297
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 278--298
+Underfull \hbox (badness 10000) in paragraph at lines 278--297
 
  []
 
@@ -1311,7 +1316,7 @@ Chapter 3.
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\uppercase' on input line 3.
 
-<images/pipeline.png, id=880, 885.3075pt x 419.5675pt>
+<images/pipeline.png, id=934, 885.3075pt x 419.5675pt>
 File: images/pipeline.png Graphic file (type png)
 
 <use images/pipeline.png>
@@ -1396,7 +1401,7 @@ Underfull \hbox (badness 2343) in paragraph at lines 244--245
 STM
  []
 
-<images/olstm.png, id=956, 604.2575pt x 305.14pt>
+<images/olstm.png, id=1013, 604.2575pt x 305.14pt>
 File: images/olstm.png Graphic file (type png)
  <use images/olstm.png>
 Package pdftex.def Info: images/olstm.png used on input line 253.
@@ -1409,7 +1414,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [29 <./images/olstm.png>]
-<images/lstmadapted2.png, id=968, 510.40688pt x 363.98485pt>
+<images/lstmadapted2.png, id=1024, 510.40688pt x 363.98485pt>
 File: images/lstmadapted2.png Graphic file (type png)
 
 <use images/lstmadapted2.png>
@@ -1427,7 +1432,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [30 <./images/lstmadapted2.png>]
-<images/blstm.png, id=987, 644.4075pt x 467.7475pt>
+<images/blstm.png, id=1042, 644.4075pt x 467.7475pt>
 File: images/blstm.png Graphic file (type png)
  <use images/blstm.png>
 Package pdftex.def Info: images/blstm.png used on input line 313.
@@ -1440,7 +1445,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [31 <./images/blstm.png>]
-<images/dblstm.png, id=1007, 966.61125pt x 1093.08376pt>
+<images/dblstm.png, id=1062, 966.61125pt x 1093.08376pt>
 File: images/dblstm.png Graphic file (type png)
 
 <use images/dblstm.png>
@@ -1461,7 +1466,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [33 <./images/dblstm.png>]
-<images/dblstmzhou.png, id=1035, 906.38625pt x 888.31876pt>
+<images/dblstmzhou.png, id=1090, 906.38625pt x 888.31876pt>
 File: images/dblstmzhou.png Graphic file (type png)
 
 <use images/dblstmzhou.png>
@@ -1475,7 +1480,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [34 <./images/dblstmzhou.png>]
-<images/dblstmhighway.png, id=1055, 1144.275pt x 1162.3425pt>
+<images/dblstmhighway.png, id=1111, 1144.275pt x 1162.3425pt>
 File: images/dblstmhighway.png Graphic file (type png)
 
 <use images/dblstmhighway.png>
@@ -1495,7 +1500,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[36] <images/cnndblstmhighway.png, id=1080, 1258.7025pt x 1394.20876pt>
+[36] <images/cnndblstmhighway.png, id=1136, 1258.7025pt x 1394.20876pt>
 File: images/cnndblstmhighway.png Graphic file (type png)
 
 <use images/cnndblstmhighway.png>
@@ -1509,7 +1514,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [37 <./images/cnndblstmhighway.png>]
-<images/dblstmhighwayattention.png, id=1090, 1312.905pt x 1701.35625pt>
+<images/dblstmhighwayattention.png, id=1145, 1312.905pt x 1701.35625pt>
 File: images/dblstmhighwayattention.png Graphic file (type png)
 
 <use images/dblstmhighwayattention.png>
@@ -1667,8 +1672,9 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [45]
-
-LaTeX Warning: Reference `olstm' on page 46 undefined on input line 221.
+Underfull \hbox (badness 5578) in paragraph at lines 221--222
+\T1/ptm/m/n/12 Vanilla LSTM (LSTM) consists of only one layer of forward LSTM.
+ []
 
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
@@ -1745,7 +1751,7 @@ Chapter 5.
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\uppercase' on input line 3.
 
-<images/srldistribution.png, id=1333, 606.39047pt x 384.31078pt>
+<images/srldistribution.png, id=1390, 606.39047pt x 384.31078pt>
 File: images/srldistribution.png Graphic file (type png)
 
 <use images/srldistribution.png>
@@ -1799,16 +1805,6 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [59]
-Underfull \hbox (badness 1005) in paragraph at lines 220--221
-\T1/ptm/m/n/12 Zhou (DBLSTM-Zhou), and stacked BLSTM-Highway (DBLSTM-Highway).
- []
-
-
-Underfull \hbox (badness 1062) in paragraph at lines 238--239
-\T1/ptm/m/n/12 followed by Stacked BLSTM-Zhou (81.33%) and Stacked BLSTM-Highwa
-y
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -1822,13 +1818,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[61]
-Underfull \hbox (badness 1845) in paragraph at lines 284--285
-\T1/ptm/m/n/12 DBLSTM-Zhou model increases by 0.64% (from 81.33% to 81.97%), th
-e
- []
-
-)
+[61])
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
@@ -1859,7 +1849,7 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
 
 
 ]
-Underfull \hbox (badness 1077) in paragraph at lines 93--96
+Underfull \hbox (badness 1077) in paragraph at lines 121--124
 []\T1/ptm/m/n/12 LeCun, Y., Bengio, Y., and Hinton, G. (2015).  Deep learning. 
  \T1/ptm/m/it/12 Nature\T1/ptm/m/n/12 ,
  []
@@ -1870,14 +1860,21 @@ Package Fancyhdr Warning: \headheight is too small (0.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[66])
+[66]
 
 Package Fancyhdr Warning: \headheight is too small (0.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[67]
+[67])
+
+Package Fancyhdr Warning: \headheight is too small (0.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[68]
 \openout2 = `markLampiran.aux'.
 
  (./markLampiran.texpdfTeX warning (ext4): destination with the same identifier
@@ -2067,9 +2064,6 @@ markLampiran.tex
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 164.
 Package rerunfilecheck Info: File `skripsi.out' has not changed.
 (rerunfilecheck)             Checksum: 4BD7D0E8977A8BAE321F3B3B2A91F776;5989.
-
-LaTeX Warning: There were undefined references.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 164.
  )
 (\end occurred inside a group at level 1)
@@ -2077,13 +2071,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 164.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 16679 strings out of 493013
- 232222 string characters out of 6136994
- 390695 words of memory out of 5000000
- 19269 multiletter control sequences out of 15000+600000
+ 16707 strings out of 493013
+ 232853 string characters out of 6136994
+ 390917 words of memory out of 5000000
+ 19289 multiletter control sequences out of 15000+600000
  93863 words of font info for 134 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,15n,51p,1416b,10844s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,15n,51p,1527b,10844s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2016
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2016/texmf-dis
@@ -2095,10 +2089,10 @@ exmf-dist/fonts/type1/urw/symbol/usyr.pfb><c:/texlive/2016/texmf-dist/fonts/typ
 e1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmbi
 8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive
 /2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on skripsi.pdf (81 pages, 1417955 bytes).
+Output written on skripsi.pdf (82 pages, 1422105 bytes).
 PDF statistics:
- 1570 PDF objects out of 1728 (max. 8388607)
- 1418 compressed objects within 15 object streams
- 478 named destinations out of 1000 (max. 500000)
+ 1631 PDF objects out of 1728 (max. 8388607)
+ 1478 compressed objects within 15 object streams
+ 486 named destinations out of 1000 (max. 500000)
  716 words of extra memory for PDF output out of 10000 (max. 10000000)
 
