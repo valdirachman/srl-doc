@@ -7,7 +7,7 @@
 This chapter describes the methodology used in this research. It consists of data gathering, data pre-processing, data annotation, experiment, and evaluation. Before we describe each part in details, we explain the big picture of the methodology in a form of pipeline.
 
 \section{Pipeline}
-The goal of this research is to build a model that predicts the semantic roles of each Indonesian conversational sentence. In other languages such as English, there are already semantic role corpus from which the SRL system is built. Unfortunately, that is not the case for Indonesian, since there is no annotated corpus available yet. We therefore create our own with the annotation guideline crafted for Indonesian conversational language. In this research, we focus on building SRL system for the conversational Indonesian language. 
+The goal of this research is to build a model that predicts the semantic roles of each Indonesian conversational sentence. In other languages such as English, there are already semantic role corpora from which the SRL system is built. Unfortunately, that is not the case for Indonesian, since there is no annotated corpus available yet. We therefore create our own with the annotation guideline crafted for Indonesian conversational language. In this research, we focus on building SRL system for the conversational Indonesian language. 
 
 We view SRL as a sequence labeling problem. Suppose that we have an input of \textit{n} words $w = (w_{1}, w_{2}, ..., w_{n})$, the goal is to find the best label sequence $y = (y_{1}, y_{2}, ..., y_{n})$, with $y_{i}$ representing the semantic roles. The probabilities of the label in each time step $i$ is described as follows.
 \begin{equation}
@@ -371,7 +371,7 @@ In each time step, the result vectors $\mathbf{k_{t}}$ and $\mathbf{m_{t}}$ are 
 The output vector $\mathbf{p_{t}}$ is finally fed into the last softmax layer to output the final label of each time step $t$.
 
 \subsubsection{Deep BLSTM-Zhou (DBLSTM-Zhou)}
-\cite{zhou2015end} proposed another way of constructing the BLSTM layer. First, an LSTM layer processes the input sequence in forward direction. The output of this layer is then fed into the next LSTM layer as input, processed in backward direction. At this point, one BLSTM-Zhou layer is built. \cite{zhou2015end} then stacked the BLSTM layers and named it as the deep bi-directional LSTM. In this work, we stack two BLSTM-Zhou layers for constructing the DBLSTM-Zhou as presented in Figure~\ref{fig:dblstmzhou}.
+\cite{zhou2015end} proposed another way of constructing the BLSTM layer. First, an LSTM layer processes the input sequence in a forward direction. The output of this layer is then fed into the next LSTM layer as input, processed in backward direction. At this point, one BLSTM-Zhou layer is built. \cite{zhou2015end} then stacked the BLSTM layers and named it as the deep bi-directional LSTM. In this work, we stack two BLSTM-Zhou layers for constructing the DBLSTM-Zhou as presented in Figure~\ref{fig:dblstmzhou}.
 
 \begin{figure}
 	\centering

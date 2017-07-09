@@ -137,7 +137,7 @@ The example illustrates that the machine does not predict "skrg" (formal: "sekar
 
 To address this issue, we argue that POS tags provide meaningful information to increase all semantic role results. \agent, \patient, \beneficiary, \location, \greet, and \timesrl~are all \textit{nouns}. Adding the POS tag \textit{noun} information will give a hint to the model in order to determine which tokens are the candidates of these semantic roles. In the previous example, the machine may predict "skrg" as \timesrl~if it knows that the word's POS tag is \textit{noun}. In addition, \predicate~is often in a form of \textit{verb}, though in some cases of Indonesian language, the \predicate~is an \textit{adjective}. Therefore, knowing that a token is a verb will help the machine to predict it as a \predicate. Lastly, \modal~is mostly in a form of adverb ("akan", "lagi", "harus"). Adding information that tells a word is an adverb will help the model to predict \modal~as well. Based on this rationale, we believe that POS tag will increase the performance of all semantic roles.
 
-When we add POS tag as our additional feature (experiment WE + POS), the average F1 score dramatically increases from 73.12\% (WE) to 79.10\% (WE + POS) as presented in Table~\ref{tab:feature_scenario}. The improvements of all semantic roles when we compare experiment WE and WE + POS are presented in Table~\ref{tab:wevswepos}.
+When we add POS tag as our additional feature (experiment WE + POS), the average F1 score increases from 73.12\% (WE) to 79.10\% (WE + POS) as presented in Table~\ref{tab:feature_scenario}. The improvements of all semantic roles when we compare experiment WE and WE + POS are presented in Table~\ref{tab:wevswepos}.
 
 \begin{table}
 	\centering
@@ -241,7 +241,7 @@ Table~\ref{tab:lstmdblstm} shows the result comparison between using vanilla LST
 	
 \end{table}
 
-As we can see from the table above, \agent, \patient, and \greet~gain improvements. The F1 score of \agent~increases by 8.2\% (from 81.39\% to 89.59\%) while \patient~improves by 8.07\% (from 77.00\% to 85.07\%). On the other hand, \greet's F1 score dramatically increases by 12.56\% (from 62.73\% to 75.29\%).
+As we can see from the table above, \agent, \patient, and \greet~gain improvements. The F1 score of \agent~increases by 8.2\% (from 81.39\% to 89.59\%) while \patient~improves by 8.07\% (from 77.00\% to 85.07\%). On the other hand, \greet's F1 score increases by 12.56\% (from 62.73\% to 75.29\%).
 
 Since the WE + POS feature combination and DBLSTM architecture outputs the highest result in this case, it will be used for the next model selection scenarios.
 

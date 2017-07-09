@@ -6,7 +6,7 @@
 This chapter explains the implementations of the methodology explained in chapter 3. It includes the implementation of data annotation and pre-processing, feature extraction, and model architecture.
 
 \section{Computer Specification}
-Every experiment uses GPU-based virtual server provided by Kata.ai. The specifications of the server are explained as follows.
+Every experiment uses a GPU-based virtual server provided by Kata.ai. The specifications of the server are explained as follows.
 
 \begin{table}
 	\centering
@@ -24,7 +24,7 @@ Every experiment uses GPU-based virtual server provided by Kata.ai. The specific
 The server uses GPU Nvidia Tesla M60 with 6 cores. The size of the RAM is 56.00 GiB. The operating system used is Ubuntu 16.04.2.
 
 \section{Data Annotation and Pre-processing}
-For data annotation, we use an in-house tool provided by Kata.ai, named \textit{kata-annotator}. The total amount of data to be annotated was 9000 sentences. The data was annotated by three linguists with each of them annotating different set of data containing 3000 sentences for 8 weeks. In order to align the annotation understanding between them, the three linguists annotated the same trial set consisting of 100 sentences before starting to annotate the real one. The annotation differences found are then discussed in order to align the understanding between them.
+For data annotation, we use an in-house tool provided by Kata.ai, named \textit{kata-annotator}. The total amount of data to be annotated was 9000 sentences. The data was annotated by three linguists with each of them annotating a different set of data containing 3000 sentences for 8 weeks. In order to align the annotation understanding between them, the three linguists annotated the same trial set consisting of 100 sentences before starting to annotate the real one. The annotation differences found are then discussed in order to align the understanding between them.
 
 After 8 weeks of annotation, the total amount of data that has been annotated is 8000 sentences. The other 1000 sentences missing is due to one annotator that could not complete the annotation on time. After finish annotating, the tool outputs the tokenized annotation result as JSON in BIO format. An example is given as follows:
 
@@ -67,7 +67,7 @@ It turns out that there are only 5036 sentences which contain predicate in it. T
 	\label{code:labeltoone}
 \end{kode}
 
-The label is then converted into a one-hot-vector representation which is presented in Pseudocode~\ref{code:labeltoone}. The function \textit{convertLabelToOneHotVector} takes an array of labels from one sentence as an input. Each label in the array is then converted into its one-hot-vector representation. All the converted results are appended into a new array called \textit{oneHotVectorLabel}. The function finally returns the array of one-hot-vectors.
+The label is then converted into a one-hot-vector representation which is presented in Pseudocode~\ref{code:labeltoone}. The function \textit{convertLabelToOneHotVector} takes an array of labels from one sentence as an input. Each label in the array is then converted into its one-hot-vector representation. All the converted results are appended to a new array called \textit{oneHotVectorLabel}. The function finally returns the array of one-hot-vectors.
 
 \section{Feature Extraction}
 There are three features to be extracted including Word Embedding, POS tag, and Neighboring Word Embeddings. This section explains the implementation of each feature extraction. All codes are implemented using Python.
@@ -210,7 +210,7 @@ For neighboring word embeddings, we extract one vector on the left and one on th
 In this function, the parameter that can be set is the \textit{window}. Since we only extract one word on the left and another on the right of the word being processed, the value of parameter \textit{window} is 1.
 
 \section{Model Architecture}
-As explained in chapter 3, the model architecture consists of main layer and additional layer. The main layer choices include vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (BLSTM), DBLSTM-Zhou, and DBLSTM-Highway. On the other hand, the additional layer options include Convolutional Neural Networks (CNN) and attention mechanism. 
+As explained in Chapter 3, the model architecture consists of main layer and additional layer. The main layer choices include vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (BLSTM), DBLSTM-Zhou, and DBLSTM-Highway. On the other hand, the additional layer options include Convolutional Neural Networks (CNN) and attention mechanism. 
 
 We use Keras 2.0~\citep{chollet2015} as our deep learning library with Tensorflow 1.1.0 backend for all the architectures. For constructing the model, we use the Functional API of Keras. The model in Keras only receives an input data with a fixed number of time steps for all sentences. Suppose that the maximum number of time steps in our data is $l$. Thus, all sentences in our data whose number of time steps is lower than $l$ have to be padded with vector $ \vec{0}$ in order to get a fixed number of time steps of $l$. To do the padding, we use \textit{padsequences} function available from Keras. All codes are implemented using Python.
 
@@ -251,7 +251,7 @@ Vanilla LSTM (LSTM) consists of only one layer of forward LSTM. Pseudocode~\ref{
 	\label{code:olstm}
 \end{kode}
 
-The Pseudocode~\ref{code:olstm} takes x train, y train, number of time steps, number of features, x test and y test as the inputs. The model starts with the defining the input layer, with the input shape of (timesteps, features). The input layer is then connected to the LSTM layer thas has 128 hidden units. These hidden units are the output of the LSTM layer. We use recurrent dropout in LSTM, as recommended by~\cite{he2017deep}. The recurrent dropout used is 0.2. We also use dropout layer on top of the LSTM layer by the value of 0.2. The output of the dropout layer is connected to the time-distributed dense layer with softmax activation function. These last layer produces the labels of semantic roles. The model is trained with categorical crossentropy loss function and Adam optimizer. The number of epochs and batch size used are both 50. After the model has been trained, we use it to predict the semantic roles the x test data which later will be evaluated. The function returns the trained model as well as the prediction result of the test data.
+The Pseudocode~\ref{code:olstm} takes x train, y train, number of time steps, number of features, x test and y test as the inputs. The model starts with the defining the input layer, with the input shape of (timesteps, features). The input layer is then connected to the LSTM layer thas has 128 hidden units. These hidden units are the output of the LSTM layer. We use recurrent dropout in LSTM, as recommended by~\cite{he2017deep}. The recurrent dropout used is 0.2. We also use dropout layer on top of the LSTM layer by the value of 0.2. The output of the dropout layer is connected to the time-distributed dense layer with softmax activation function. This last layer produces the labels of semantic roles. The model is trained with categorical cross-entropy loss function and Adam optimizer. The number of epochs and batch size used are both 50. After the model has been trained, we use it to predict the semantic roles the x test data which later will be evaluated. The function returns the trained model as well as the prediction result of the test data.
 
 \subsubsection{Bi-Directional LSTM (BLSTM)}
 Bi-Directional LSTM (BLSTM) consists of two layers of LSTM. The first layer is moving forward and the other is moving backward. Pseudocode~\ref{code:blstm} shows the implementation of the BLSTM architecture.
@@ -291,7 +291,7 @@ Bi-Directional LSTM (BLSTM) consists of two layers of LSTM. The first layer is m
 	\label{code:blstm}
 \end{kode}
 
-The Pseudocode~\ref{code:blstm} takes x train, y train, number of time steps, number of features, x test and y test as the inputs. The model starts with the defining the input layer, with the input shape of (timesteps, features). The input layer is then connected to two LSTM layers: forward layer and backward layer. Both forward and backward LSTM layers have 128 hidden units. The recurrent dropout used is 0.2. The output of both forward and backward layers are concatenated, resulting a vector whose length is 256. We also use dropout layer on top of the concatenated layer by the value of 0.2. The output of the dropout layer is connected to the time-distributed dense layer with softmax activation function. This last layer produces the labels of semantic roles. The model is trained with categorical crossentropy loss function and Adam optimizer. The number of epochs and batch size used are 50 and 150, respectively. After the model has been trained, we use it to predict the semantic roles the x test data which later will be evaluated. The function returns the trained model as well as the prediction result of the test data.
+The Pseudocode~\ref{code:blstm} takes x train, y train, number of time steps, number of features, x test and y test as the inputs. The model starts with the defining the input layer, with the input shape of (timesteps, features). The input layer is then connected to two LSTM layers: forward layer and backward layer. Both forward and backward LSTM layers have 128 hidden units. The recurrent dropout used is 0.2. The output of both forward and backward layers are concatenated, producing a vector whose length is 256. We also use dropout layer on top of the concatenated layer by the value of 0.2. The output of the dropout layer is connected to the time-distributed dense layer with softmax activation function. This last layer produces the labels of semantic roles. The model is trained with categorical cross-entropy loss function and Adam optimizer. The number of epochs and batch size used are 50 and 150, respectively. After the model has been trained, we use it to predict the semantic roles the x test data which later will be evaluated. The function returns the trained model as well as the prediction result of the test data.
 
 \subsubsection{Deep BLSTM (DBLSTM)}
 Deep BLSTM (BLSTM) consists of two pairs of BLSTM. Pseudocode~\ref{code:dblstm} shows the implementation of the BLSTM architecture.
@@ -337,7 +337,7 @@ Deep BLSTM (BLSTM) consists of two pairs of BLSTM. Pseudocode~\ref{code:dblstm} 
 	\label{code:dblstm}
 \end{kode}
 
-The input layer is first connected to two LSTM layers, the first one for going forward and another for going backward. Both forward and backward LSTM layers have 128 hidden units. The recurrent dropout used is 0.2. The output of both forward and backward layers are concatenated, resulting a vector whose length is 256. We also use dropout layer on top of the concatenated layer by the value of 0.2. The output of the dropout layer is then processed by the next two LSTM layers using the same way as the previous steps. The output of both layers are also concatenated and processed by the dropout layer. The output of the final dropout layer is connected to the time-distributed dense layer with softmax activation function. This last layer produces the labels of semantic roles. Likewise in the previous architectures, the function returns the trained model as well as the prediction result of the test data.
+The input layer is first connected to two LSTM layers, the first one for going forward and another for going backward. Both forward and backward LSTM layers have 128 hidden units. The recurrent dropout used is 0.2. The output of both forward and backward layers are concatenated, producing a vector whose length is 256. We also use dropout layer on top of the concatenated layer by the value of 0.2. The output of the dropout layer is then processed by the next two LSTM layers using the same way as the previous steps. The outputs of both layers are also concatenated and processed by the dropout layer. The output of the final dropout layer is connected to the time-distributed dense layer with softmax activation function. This last layer produces the labels of semantic roles. Likewise in the previous architectures, the function returns the trained model as well as the prediction result of the test data.
 
 \subsubsection{DBLSTM-Zhou}
 Deep BLSTM-Zhou (DBLSTM-Zhou) consists of two pairs of BLSTM-Zhou. Pseudocode~\ref{code:dblstmzhou} shows the implementation of the DBLSTM-Zhou architecture.
@@ -418,7 +418,7 @@ Deep BLSTM-Zhou (DBLSTM-Highway) consists of two pairs of BLSTM-Highway. To impl
 	\label{code:dblstmhighway}
 \end{kode}
 
-The input layer is first processed by the first forward LSTM layer. The output of this layer is then connected to the first dropout layer. After that, the output is processed by the first backward LSTM layer. The output of the first backward layer (\textit{backward1}) and the first dropout layer (\textit{dropout1f}) are concatenated before being processed by the time-distributed dense layer with sigmoid function. The output of the dense layer is the weight \textit{alpha2b}. In lambda function called \textit{timesAlphaSigmoid}, \textit{backward1} is multiplied by the weight \textit{alpha2b} and \textit{dropout1f} is multiplied by the weight \textit{1 - alpha2b}. The lambda function then sums both results. These steps are also done for the next forward and the backward LSTM layers. As in the previous architectures, the output of the last layer is then connected to the time-distributed dense layer with softmax activation function to predict the semantic roles.
+The input layer is first processed by the first forward LSTM layer. The output of this layer is then connected to the first dropout layer. After that, the output is processed by the first backward LSTM layer. The output of the first backward layer (\textit{backward1}) and the first dropout layer (\textit{dropout1f}) are concatenated before being processed by the time-distributed dense layer with a sigmoid function. The output of the dense layer is the weight \textit{alpha2b}. In lambda function called \textit{timesAlphaSigmoid}, \textit{backward1} is multiplied by the weight \textit{alpha2b} and \textit{dropout1f} is multiplied by the weight \textit{1 - alpha2b}. The lambda function then sums both results. These steps are also done for the next forward and the backward LSTM layers. As in the previous architectures, the output of the last layer is then connected to the time-distributed dense layer with softmax activation function to predict the semantic roles.
 
 \subsection{Additional Layers}
 The additional layer options consist of Convolutional Neural Networks (CNN) and attention mechanism. These additional layers can be used in addition to any of the main layers.
@@ -432,10 +432,10 @@ CNN-BLSTM adds a CNN layer underneath the BLSTM layers. Pseudocode~\ref{code:cnn
 	\label{code:cnnblstm}
 \end{kode}
 
-In this architecture, the CNN layer is added before the BLSTM layers. Thus, the input layer is connected with the CNN layer. The parameters of the CNN layer are filters, kernel size, and strides. Filters represent the number of output hidden layers. Kernel size defines the context window of the CNN layer. Strides define the amount of slide for every time step. The value of filters, kernel size, and strides parameters are 128, 3, and 1, respectively. The output the CNN layer is then connected to the any LSTM variant as explained in the previous sections.
+In this architecture, the CNN layer is added before the BLSTM layers. Thus, the input layer is connected to the CNN layer. The parameters of the CNN layer are filters, kernel size, and strides. Filters represent the number of output hidden layers. Kernel size defines the context window of the CNN layer. Strides define the amount of slide for every time step. The value of filters, kernel size, and strides parameters are 128, 3, and 1, respectively. The output the CNN layer is then connected to any LSTM variant as explained in the previous sections.
 
 \subsubsection{Attention Mechanism}
-The attention mechanism can be added on top of the any main layer variant. Pseudocode~\ref{code:cablstm} shows the implementation of the adding attention mechanism on top of the main layer architecture.
+The attention mechanism can be added on top of any main layer variant. Pseudocode~\ref{code:cablstm} shows the implementation of the adding attention mechanism on top of the main layer architecture.
 \begin{kode}
 	outs1 = TimeDistributed(RawDense(outputDim=512))(dropout)\;
 	m = Lambda(sum)(outs1)\;
