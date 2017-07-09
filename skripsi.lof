@@ -1,20 +1,20 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces CBOW and Skip-gram architectures\nobreakspace {}\citep {mikolov2013efficient}\relax }}{8}{figure.caption.19}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces A simple Recurrent Neural Networks (RNN)\nobreakspace {}\citep {Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN\relax }}{9}{figure.caption.20}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces A Complete RNN on how it is being trained\nobreakspace {}\citep {Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN\relax }}{11}{figure.caption.21}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces One memory block in LSTM\nobreakspace {}\citep {skripsiwahid}\relax }}{13}{figure.caption.22}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces CBOW and Skip-gram architectures\nobreakspace {}\citep {mikolov2013efficient}\relax }}{8}{figure.caption.20}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces A simple Recurrent Neural Networks (RNN)\nobreakspace {}\citep {Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN\relax }}{9}{figure.caption.21}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces A Complete RNN on how it is being trained\nobreakspace {}\citep {Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN\relax }}{11}{figure.caption.22}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces One memory block in LSTM\nobreakspace {}\citep {skripsiwahid}\relax }}{13}{figure.caption.23}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Methodology Pipeline\relax }}{22}{figure.caption.26}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces An architecture of vanilla LSTM with total time step of 4\relax }}{29}{figure.caption.32}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces An LSTM unit in time step $t$. Adapted from\nobreakspace {}\citep {skripsiwahid}.\relax }}{30}{figure.caption.33}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces An architecture of Bi-Directional LSTM (BLSTM) with total time step of 4\relax }}{31}{figure.caption.34}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces An architecture of Deep BLSTM (DBLSTM) with total time step of 4\relax }}{33}{figure.caption.35}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces An architecture of DBLSTM-Zhou with total time step of 4\relax }}{34}{figure.caption.36}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces An architecture of DBLSTM-Highway with total time step of 4\relax }}{35}{figure.caption.37}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces An architecture of adding CNN underneath the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variants.\relax }}{37}{figure.caption.38}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces An architecture of adding attention mechanism on top of the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variant.\relax }}{38}{figure.caption.39}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Methodology Pipeline\relax }}{22}{figure.caption.27}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces An architecture of vanilla LSTM with total time step of 4\relax }}{29}{figure.caption.33}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces An LSTM unit in time step $t$. Adapted from\nobreakspace {}\citep {skripsiwahid}.\relax }}{30}{figure.caption.34}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces An architecture of Bi-Directional LSTM (BLSTM) with total time step of 4\relax }}{31}{figure.caption.35}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces An architecture of Deep BLSTM (DBLSTM) with total time step of 4\relax }}{33}{figure.caption.36}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces An architecture of DBLSTM-Zhou with total time step of 4\relax }}{34}{figure.caption.37}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces An architecture of DBLSTM-Highway with total time step of 4\relax }}{35}{figure.caption.38}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces An architecture of adding CNN underneath the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variants.\relax }}{37}{figure.caption.39}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces An architecture of adding attention mechanism on top of the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variant.\relax }}{38}{figure.caption.40}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Label Distribution\relax }}{54}{figure.caption.53}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Label Distribution\relax }}{54}{figure.caption.54}
 \addvspace {10\p@ }

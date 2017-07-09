@@ -4,10 +4,10 @@
 \BOOKMARK [0][-]{section*.8}{Preface}{}% 4
 \BOOKMARK [0][-]{section*.10}{LEMBAR PERSETUJUAN PUBLIKASI ILMIAH}{}% 5
 \BOOKMARK [0][-]{section*.12}{ABSTRACT}{}% 6
-\BOOKMARK [0][-]{chapter*.14}{Table of Contents}{}% 7
-\BOOKMARK [0][-]{chapter*.15}{List of Figures}{}% 8
-\BOOKMARK [0][-]{chapter*.16}{List of Tables}{}% 9
-\BOOKMARK [0][-]{chapter*.17}{List of Pseudocodes}{}% 10
+\BOOKMARK [0][-]{chapter*.15}{Table of Contents}{}% 7
+\BOOKMARK [0][-]{chapter*.16}{List of Figures}{}% 8
+\BOOKMARK [0][-]{chapter*.17}{List of Tables}{}% 9
+\BOOKMARK [0][-]{chapter*.18}{List of Pseudocodes}{}% 10
 \BOOKMARK [0][-]{chapter.1}{1 Introduction}{}% 11
 \BOOKMARK [1][-]{section.1.1}{1.1 Background}{chapter.1}% 12
 \BOOKMARK [1][-]{section.1.2}{1.2 Problem Statement}{chapter.1}% 13
@@ -76,7 +76,7 @@
 \BOOKMARK [3][-]{subsubsection.5.2.2.3}{5.2.2.3 Scenario 2c: CNN Layer}{subsection.5.2.2}% 76
 \BOOKMARK [3][-]{subsubsection.5.2.2.4}{5.2.2.4 Scenario 2d: Attention Layer}{subsection.5.2.2}% 77
 \BOOKMARK [0][-]{chapter.6}{6 Conclusion and Future Work}{}% 78
-\BOOKMARK [0][-]{chapter*.68}{References}{}% 79
-\BOOKMARK [0][-]{section*.69}{APPENDIX}{}% 80
-\BOOKMARK [1][-]{section.Alph0.1}{.1 Mapping from BIO Label to One-Hot-Vector}{section*.69}% 81
-\BOOKMARK [1][-]{section.Alph0.2}{.2 Mapping from POS Tag to One-Hot-Vector}{section*.69}% 82
+\BOOKMARK [0][-]{chapter*.69}{References}{}% 79
+\BOOKMARK [0][-]{section*.70}{APPENDIX}{}% 80
+\BOOKMARK [1][-]{section.Alph0.1}{.1 Mapping from BIO Label to One-Hot-Vector}{section*.70}% 81
+\BOOKMARK [1][-]{section.Alph0.2}{.2 Mapping from POS Tag to One-Hot-Vector}{section*.70}% 82

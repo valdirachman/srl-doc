@@ -16,39 +16,42 @@ A level-1 auxiliary file: bab5.aux
 A level-1 auxiliary file: bab6.aux
 The style file: apalikerd.bst
 A level-1 auxiliary file: markLampiran.aux
+A level-1 auxiliary file: lampiran.aux
+A level-1 auxiliary file: lampiran_disease.aux
 Database file #1: skripsi.bib
+Warning--empty journal in skripsidewi
 Warning--empty journal in jordan1986attractor
 Warning--empty note in jurafsky2016speech
 You've used 41 entries,
             1961 wiz_defined-function locations,
-            716 strings with 10362 characters,
-and the built_in function-call counts, 17412 in all, are:
-= -- 1782
+            719 strings with 10494 characters,
+and the built_in function-call counts, 17543 in all, are:
+= -- 1807
 > -- 634
 < -- 39
 + -- 218
 - -- 208
 * -- 1352
-:= -- 2887
-add.period$ -- 127
+:= -- 2912
+add.period$ -- 141
 call.type$ -- 41
 change.case$ -- 308
 chr.to.int$ -- 41
-cite$ -- 43
-duplicate$ -- 741
-empty$ -- 1234
+cite$ -- 44
+duplicate$ -- 743
+empty$ -- 1237
 format.name$ -- 275
-if$ -- 3554
+if$ -- 3583
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 33
-newline$ -- 204
+missing$ -- 34
+newline$ -- 218
 num.names$ -- 123
-pop$ -- 306
+pop$ -- 296
 preamble$ -- 1
 purify$ -- 308
 quote$ -- 0
-skip$ -- 592
+skip$ -- 593
 stack$ -- 0
 substring$ -- 1245
 swap$ -- 173
@@ -56,8 +59,8 @@ text.length$ -- 17
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 246
-warning$ -- 2
+warning$ -- 3
 while$ -- 148
 width$ -- 0
-write$ -- 529
-(There were 2 warnings)
+write$ -- 554
+(There were 3 warnings)

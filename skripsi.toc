@@ -4,10 +4,10 @@
 \contentsline {chapter}{\uppercase {Preface}}{iv}{section*.8}
 \contentsline {chapter}{LEMBAR PERSETUJUAN PUBLIKASI ILMIAH}{v}{section*.10}
 \contentsline {chapter}{ABSTRACT}{vi}{section*.12}
-\contentsline {chapter}{Table of Contents}{vii}{chapter*.14}
-\contentsline {chapter}{List of Figures}{x}{chapter*.15}
-\contentsline {chapter}{List of Tables}{xi}{chapter*.16}
-\contentsline {chapter}{List of Pseudocodes}{xiii}{chapter*.17}
+\contentsline {chapter}{Table of Contents}{viii}{chapter*.15}
+\contentsline {chapter}{List of Figures}{xi}{chapter*.16}
+\contentsline {chapter}{List of Tables}{xii}{chapter*.17}
+\contentsline {chapter}{List of Pseudocodes}{xiv}{chapter*.18}
 \contentsline {chapter}{\numberline {1}\uppercase {Introduction}}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Problem Statement}{3}{section.1.2}
@@ -76,7 +76,7 @@
 \contentsline {subsubsection}{\numberline {5.2.2.3}Scenario 2c: CNN Layer}{62}{subsubsection.5.2.2.3}
 \contentsline {subsubsection}{\numberline {5.2.2.4}Scenario 2d: Attention Layer}{62}{subsubsection.5.2.2.4}
 \contentsline {chapter}{\numberline {6}\uppercase {Conclusion and Future Work}}{65}{chapter.6}
-\contentsline {chapter}{References}{67}{chapter*.68}
-\contentsline {chapter}{APPENDIX}{1}{section*.69}
+\contentsline {chapter}{References}{67}{chapter*.69}
+\contentsline {chapter}{APPENDIX}{1}{section*.70}
 \contentsline {section}{\numberline {.1}Mapping from BIO Label to One-Hot-Vector}{1}{section.Alph0.1}
 \contentsline {section}{\numberline {.2}Mapping from POS Tag to One-Hot-Vector}{2}{section.Alph0.2}

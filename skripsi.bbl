@@ -17,6 +17,7 @@ Bengio, Y., LeCun, Y., et~al. (2007).
 Bengio, Y., Simard, P., and Frasconi, P. (1994).
 \newblock Learning long-term dependencies with gradient descent is difficult.
 \newblock {\em IEEE transactions on neural networks}, 5(2):157--166.
+\newblock IEEE.
 
 \bibitem[Carreras and M{\`a}rquez, 2005]{carreras2005introduction}
 Carreras, X. and M{\`a}rquez, L. (2005).
@@ -29,6 +30,7 @@ Carreras, X. and M{\`a}rquez, L. (2005).
 Chollet, F. (2015).
 \newblock keras.
 \newblock \url{https://github.com/fchollet/keras}.
+\newblock GitHub.
 
 \bibitem[Collobert et~al., 2011]{collobert2011natural}
 Collobert, R., Weston, J., Bottou, L., Karlen, M., Kavukcuoglu, K., and Kuksa,
@@ -40,17 +42,19 @@ Collobert, R., Weston, J., Bottou, L., Karlen, M., Kavukcuoglu, K., and Kuksa,
 Dewi (2013).
 \newblock Semantic role labeling for indonesian sentences using support vector
   machines method.
-\newblock Bachelor's thesis, Universitas Indonesia, Kampus UI Depok.
+\newblock Master's thesis, Universitas Indonesia, Kampus UI Depok.
 
 \bibitem[Dowty, 1991]{dowty1991thematic}
 Dowty, D. (1991).
 \newblock Thematic proto-roles and argument selection.
-\newblock {\em language}, pages 547--619.
+\newblock {\em Language}, pages 547--619.
+\newblock JSTOR.
 
 \bibitem[Elman, 1990]{elman1990finding}
 Elman, J.~L. (1990).
 \newblock Finding structure in time.
 \newblock {\em Cognitive science}, 14(2):179--211.
+\newblock Elsevier.
 
 \bibitem[Emanuele et~al., 2013]{emanuele2013textual}
 Emanuele, B., Castellucci, G., Croce, D., and Basili, R. (2013).
@@ -62,6 +66,7 @@ Emanuele, B., Castellucci, G., Croce, D., and Basili, R. (2013).
 Gildea, D. and Jurafsky, D. (2002).
 \newblock Automatic labeling of semantic roles.
 \newblock {\em Computational linguistics}, 28(3):245--288.
+\newblock MIT Press.
 
 \bibitem[Gildea and Palmer, 2002]{gildea2002necessity}
 Gildea, D. and Palmer, M. (2002).
@@ -73,11 +78,11 @@ Gildea, D. and Palmer, M. (2002).
 \bibitem[Goodfellow et~al., 2016]{Goodfellow-et-al-2016-Book}
 Goodfellow, I., Bengio, Y., and Courville, A. (2016).
 \newblock Deep learning.
-\newblock Book in preparation for MIT Press.
+\newblock Book in preparation for MIT Press. http://www.deeplearningbook.org.
 
 \bibitem[He et~al., 2017]{he2017deep}
 He, L., Lee, K., Lewis, M., and Zettlemoyer, L. (2017).
-\newblock Deep semantic role labeling: What works and what’s next.
+\newblock Deep semantic role labeling: What works and what's next.
 \newblock In {\em Proceedings of the Annual Meeting of the Association for
   Computational Linguistics}.
 
@@ -85,21 +90,24 @@ He, L., Lee, K., Lewis, M., and Zettlemoyer, L. (2017).
 Hochreiter, S. and Schmidhuber, J. (1997).
 \newblock Long short-term memory.
 \newblock {\em Neural computation}, 9(8):1735--1780.
+\newblock MIT Press.
 
 \bibitem[Indrawati, 2009]{skripsinur}
 Indrawati, N. (2009).
 \newblock Semantic role labeling of indonesian sentence as preprocessing on
   text mining.
-\newblock Bachelor's thesis, Telkom University, Kampus UI Depok.
+\newblock Bachelor's thesis, Telkom University.
 
 \bibitem[Jordan, 1986]{jordan1986attractor}
 Jordan, M.~I. (1986).
 \newblock Attractor dynamics and parallellism in a connectionist sequential
   machine.
+\newblock Lawrence Erlbaum Associates.
 
 \bibitem[Jurafsky and James, 2016]{jurafsky2016speech}
 Jurafsky, D. and James, H. (2016).
 \newblock Speech and language processing (3rd ed. draft).
+  \url{https://web.stanford.edu/~jurafsky/slp3/}.
 
 \bibitem[Kingma and Ba, 2014]{kingma2014adam}
 Kingma, D. and Ba, J. (2014).
@@ -116,11 +124,13 @@ Lang, K.~J., Waibel, A.~H., and Hinton, G.~E. (1990).
 \newblock A time-delay neural network architecture for isolated word
   recognition.
 \newblock {\em Neural networks}, 3(1):23--43.
+\newblock Elsevier.
 
 \bibitem[LeCun et~al., 2015]{lecun2015deep}
 LeCun, Y., Bengio, Y., and Hinton, G. (2015).
 \newblock Deep learning.
 \newblock {\em Nature}, 521(7553):436--444.
+\newblock Nature Publishing Group.
 
 \bibitem[Liu and Gildea, 2010]{liu2010semantic}
 Liu, D. and Gildea, D. (2010).
@@ -143,6 +153,7 @@ Mikolov, T., Chen, K., Corrado, G., and Dean, J. (2013).
 \bibitem[Mikolov et~al., 2014]{mikolov2014word2vec}
 Mikolov, T., Chen, K., Corrado, G., and Dean, J. (2014).
 \newblock word2vec.
+\newblock \url{https://code.google.com/p/word2vec}.
 
 \bibitem[Moschitti et~al., 2003]{moschitti2003open}
 Moschitti, A., Morarescu, P., and Harabagiu, S.~M. (2003).
@@ -166,10 +177,12 @@ Punyakanok, V., Roth, D., and Yih, W.-t. (2008).
 \newblock The importance of syntactic parsing and inference in semantic role
   labeling.
 \newblock {\em Computational Linguistics}, 34(2):257--287.
+\newblock MIT Press.
 
 \bibitem[Rehurek, 2013]{gensim}
 Rehurek, R. (2013).
 \newblock gensim word2vec.
+\newblock \url{https://radimrehurek.com/gensim/models/word2vec.html}.
 
 \bibitem[Rohman, 2017]{skripsiwahid}
 Rohman, W.~N. (2017).
@@ -186,11 +199,13 @@ Saeed, J. (1997).
 Schmidhuber, J., Wierstra, D., Gagliolo, M., and Gomez, F. (2007).
 \newblock Training recurrent networks by evolino.
 \newblock {\em Neural computation}, 19(3):757--779.
+\newblock MIT Press.
 
 \bibitem[Schuster and Paliwal, 1997]{schuster1997bidirectional}
 Schuster, M. and Paliwal, K.~K. (1997).
 \newblock Bidirectional recurrent neural networks.
 \newblock {\em IEEE Transactions on Signal Processing}, 45(11):2673--2681.
+\newblock IEEE.
 
 \bibitem[Seki and Mostafa, 2003]{seki2003probabilistic}
 Seki, K. and Mostafa, J. (2003).

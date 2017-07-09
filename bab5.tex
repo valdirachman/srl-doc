@@ -97,7 +97,7 @@ As we can see from the table above, the top three semantic roles with the highes
 
 In this example, "jemma" should be labeled as \greet~while "kamu" should be labeled as \agent. This example illustrates a tricky situation in which the model has to decide which one is the \agent~or \greet~since both are located side by side. The model from our first experiment (WE) cannot differentiate this and therefore, it predicts both "jemma" and "kamu" as \agent. We thus propose to use Neighboring Word Embeddings (NW) as the additional feature. With this new feature, the machine will have the additional information from the surrounding words. In the previous example, the machine can determine that "jemma" should be labeled as \greet~when it knows that the following word is "kamu", which most likely will be an \agent~or \patient in a sentence.
 
-When we try to use Neighboring Word Embeddings (NW) as the additional feature (experiment WE + NW), the F1 result slightly increases from 73.12\% to 73.76\%. The most significant improvement is the label \greet~whose F1 score increases from 59.40\% to 71.41\%. While in the previous experiment (WE), the model mispredicts \greet~as \agent, the model from this experiment (WE + NW) predicts it correctly, as presented in Table~\ref{tab:contohgreetagenttrue}:
+When we try to use Neighboring Word Embeddings (NW) as the additional feature (experiment WE + NW), the F1 result slightly increases from 73.12\% to 73.76\%. The most notable improvement is the label \greet~whose F1 score increases from 59.40\% to 71.41\%. While in the previous experiment (WE), the model mispredicts \greet~as \agent, the model from this experiment (WE + NW) predicts it correctly, as presented in Table~\ref{tab:contohgreetagenttrue}:
 
 \begin{table}
 	\centering
@@ -164,7 +164,7 @@ When we add POS tag as our additional feature (experiment WE + POS), the average
 
 \end{table}
 
-All the semantic roles with POS tag \textit{noun} (\agent, \patient, \beneficiary, \location, \greet, and \timesrl) are all having improvements in terms of the F1 scores. The most notable improvements are \timesrl~(76.85\% to 87.72\%), \location~(61.26\% to 69.79\%), and \beneficiary~(66.85\% to 72.02\%). Referring to the previous example, the new model correctly predicts "skrg" as \timesrl rather than "other", as presented in Table~\ref{tab:timetrue}. On the other hand, the \predicate~improves from 88.72\% to 96.71\% while \modal~increases from 77.41\% to 83.21\%. These results prove that POS tag provides a significant contribution to increase the performance. While most of the deep learning research aims not to use hand-crafted features like POS tag, that is not the case in our work. Our experiment shows that such features are still important when the data set is relatively small. Nonetheless, building a huge data set is also costly, we therefore have to find a workaround in order to achieve competitive results by only using small data set. In this case, the workaround is to add traditional features such as POS tag.
+All the semantic roles with POS tag \textit{noun} (\agent, \patient, \beneficiary, \location, \greet, and \timesrl) are all having improvements in terms of the F1 scores. The most notable improvements are \timesrl~(76.85\% to 87.72\%), \location~(61.26\% to 69.79\%), and \beneficiary~(66.85\% to 72.02\%). Referring to the previous example, the new model correctly predicts "skrg" as \timesrl rather than "other", as presented in Table~\ref{tab:timetrue}. On the other hand, the \predicate~improves from 88.72\% to 96.71\% while \modal~increases from 77.41\% to 83.21\%. These results prove that POS tag provides a contribution to increase the performance. While most of the deep learning research aims not to use hand-crafted features like POS tag, that is not the case in our work. Our experiment shows that such features are still important when the data set is relatively small. Nonetheless, building a huge data set is also costly, we therefore have to find a workaround in order to achieve competitive results by only using small data set. In this case, the workaround is to add traditional features such as POS tag.
 
 \begin{table}
 	\centering
@@ -241,7 +241,7 @@ Table~\ref{tab:lstmdblstm} shows the result comparison between using vanilla LST
 	
 \end{table}
 
-As we can see from the table above, \agent, \patient, and \greet~gain significant improvements. The F1 score of \agent~increases by 8.2\% (from 81.39\% to 89.59\%) while \patient~improves by 8.07\% (from 77.00\% to 85.07\%). On the other hand, \greet's F1 score dramatically increases by 12.56\% (from 62.73\% to 75.29\%).
+As we can see from the table above, \agent, \patient, and \greet~gain improvements. The F1 score of \agent~increases by 8.2\% (from 81.39\% to 89.59\%) while \patient~improves by 8.07\% (from 77.00\% to 85.07\%). On the other hand, \greet's F1 score dramatically increases by 12.56\% (from 62.73\% to 75.29\%).
 
 Since the WE + POS feature combination and DBLSTM architecture outputs the highest result in this case, it will be used for the next model selection scenarios.
 
@@ -316,7 +316,7 @@ In this scenario set, we examine the impact of adding the additional CNN layer u
 
 \end{table}
 
-The F1 scores of all three architectures decrease when the CNN layer is added. The DBLSTM model drops by 0.77\% (from 82.30\% to 81.53\%), DBLSTM-Zhou model significantly decreases by 4.48\% (from 81.33\% to 76.85\%), and DBLSTM-Highway model drops by 2.07\% (from 81.14\% to 79.07\%). The rationale of using CNN layer is to capture context information from the features. However, from all these results, we suggest that the way CNN layer extracts context information may not work well with the way DBLSTM architectures do. This analysis is supported by another experiment in which we found an improvement from 79.10\% to 79.50\% (F1 Score) when CNN layer is added underneath the vanilla LSTM. In this case, we believe that CNN layer works well with a simple, one layer LSTM.
+The F1 scores of all three architectures decrease when the CNN layer is added. The DBLSTM model drops by 0.77\% (from 82.30\% to 81.53\%), DBLSTM-Zhou model decreases by 4.48\% (from 81.33\% to 76.85\%), and DBLSTM-Highway model drops by 2.07\% (from 81.14\% to 79.07\%). The rationale of using CNN layer is to capture context information from the features. However, from all these results, we suggest that the way CNN layer extracts context information may not work well with the way DBLSTM architectures do. This analysis is supported by another experiment in which we found an improvement from 79.10\% to 79.50\% (F1 Score) when CNN layer is added underneath the vanilla LSTM. In this case, we believe that CNN layer works well with a simple, one layer LSTM.
 
 \subsubsection{Scenario 2d: Attention Layer}
 The last scenario set aims to see the impact of using our proposed attention layer on top of the three DBLSTM architectures. Table~\ref{tab:modelselection4} shows the results of this scenario set.
@@ -339,7 +339,7 @@ The last scenario set aims to see the impact of using our proposed attention lay
 
 \end{table}
 
-As we can see from the table above, the original DBLSTM (DBLSTM) model slightly decreases by 0.09\% when using attention layer (from 82.30\% to 82.21\%). On the other hand, the performances of both DBLSTM-Zhou and DBLSTM-Highway models increase when attention layer is used. While DBLSTM-Zhou model increases by 0.64\% (from 81.33\% to 81.97\%), the DBLSTM-Highway model significantly increases by 1.54\% (from 81.14\% to 82.68\%). From these results, we suggest that the attention layer successfully contributes to the DBLSTM-Zhou and DBLSTM-Highway models, while the layer may not suitable to be used on top of original DBLSTM architecture.
+As we can see from the table above, the original DBLSTM (DBLSTM) model slightly decreases by 0.09\% when using attention layer (from 82.30\% to 82.21\%). On the other hand, the performances of both DBLSTM-Zhou and DBLSTM-Highway models increase when attention layer is used. While DBLSTM-Zhou model increases by 0.64\% (from 81.33\% to 81.97\%), the DBLSTM-Highway model increases by 1.54\% (from 81.14\% to 82.68\%). From these results, we suggest that the attention layer successfully contributes to the DBLSTM-Zhou and DBLSTM-Highway models, while the layer may not suitable to be used on top of original DBLSTM architecture.
 
 \begin{table}
 	\centering
