@@ -32,9 +32,9 @@
 \algnewcommand\Output{\item[\algorithmicoutput]}
 \usepackage[ruled,vlined,linesnumbered,resetcount,algochapter]{algorithm2e}
 \newcommand{\listofalgorithmes}{\tocfile{\listalgorithmcfname}{loa}}
-\renewcommand{\listalgorithmcfname}{Daftar Kode}
+\renewcommand{\listalgorithmcfname}{List of Pseudocodes}
 \newenvironment{kode}[1][htb]
-	{\renewcommand{\algorithmcfname}{Kode}% Update algorithm name
+	{\renewcommand{\algorithmcfname}{Pseudocode}% Update algorithm name
 		\begin{algorithm}[#1]%
 	}{\end{algorithm}}
 
@@ -49,10 +49,10 @@
 % Load konfigurasi khusus untuk laporan yang sedang dibuat
 \input{laporan_setting}
 % Daftar pemenggalan suku kata dan istilah dalam LaTeX
-\usepackage[bahasa]{babel}
-\addto\captionsbahasa{\renewcommand\bibname{Daftar Referensi}}
-\hyphenrules{bahasa}
-\input{hype.indonesia}
+%\usepackage[bahasa]{babel}
+%\addto\captionsbahasa{\renewcommand\bibname{Daftar Referensi}}
+%\hyphenrules{bahasa}
+%\input{hype.indonesia}
 % Daftar istilah yang mungkin perlu ditandai 
 \input{istilah}
 
@@ -73,7 +73,7 @@
 
 %
 % load halaman judul dalam
-\addChapter{HALAMAN JUDUL}
+\addChapter{TITLE PAGE}
 \include{judul_dalam}
 
 %
@@ -103,7 +103,7 @@
 %
 % 
 \singlespacing
-\addChapter{ABSTRAK}
+\addChapter{ABSTRACT}
 \include{abstrak}
 %
 %
@@ -156,9 +156,9 @@
 	\include{markLampiran}
  	\include{lampiran}
  	\include{lampiran_disease}
- 	\include{lampiran_symptom}
- 	\include{lampiran_treatment}
- 	\include{lampiran_drug}
+% 	\include{lampiran_symptom}
+% 	\include{lampiran_treatment}
+% 	\include{lampiran_drug}
  \end{appendix}
 
 \end{document}

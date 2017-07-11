@@ -13,18 +13,19 @@
 \noindent \begin{tabular}{l l p{10cm}}
 	Nama&: & \penulis \\
 	Program Studi&: & \program \\
-	Judul&: & \judul \\
+	Judul&: & Semantic Role Labeling untuk Bahasa Indonesia Percakapan dengan Menggunakan Deep Learning \\
 \end{tabular} \\ 
 
 \vspace*{0.5cm}
 
-\noindent
-Saat ini, seseorang dapat memanfaatkan forum kesehatan \textit{online} untuk mencari tahu perihal penyakit tanpa perlu tatap muka dengan dokter.  Melalui forum tersebut, seseorang hanya perlu menuliskan keluhan dan pertanyaan pada formulir yang tersedia. Banyak sekali informasi bermanfaat yang dapat diperoleh dari forum tersebut seperti keluhan, obat atau langkah penyembuhan. Penelitian ini mencoba untuk melakukan ekstraksi entitas \textit{disease, symptom, treatment} dan \textit{drug} secara otomatis. \Saya~memandang permasalahan ini sebagai permasalahan \textit{sequence labeling} sehingga \saya~mengusulkan penggunaan teknik \textit{Deep Learning} dengan menggunakan \textit{Recurrent Neural Networks} (RNNs), karena RNNs merupakan \textit{state-of-the-art} untuk permasalahan \textit{sequence labeling}. \Saya~mengusulkan fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, POS-Tag, frasa kata (nomina dan verba), kata sebelum dan kata sesudah. Selain itu \saya~juga mengusulkan dua arsitektur RNNs, yaitu LSTMs 1 layer dan LSTMs 2 layer multi-\textit{input}. Hasil eksperimen menunjukkan bawah model yang diusulkan mampu memberikan hasil yang cukup baik. Berdasarkan eksperimen dengan kombinasi fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, frasa kata (nomina dan verba), 1 kata sebelum dan 1 kata sesudah dengan arsitektur LSTMs 1 layer mampu mencapai rata-rata \textit{f-measure} $ 63.06\% $ dan LSTMs 2 layer mampu menghasilkan rata-rata \textit{f-measure} $ 62.14\% $. Hasil tersebut lebih baik dibandingkan dengan \textit{baseline} yang digunakan, yaitu penelitian \cite{skripsiKakRadit} dengan \textit{f-measure} $ 54.09\% $.
+\noindent 
+
+\textit{Semantic Role Labeling} (SRL) telah diteliti cukup dalam, terutama untuk Bahasa Inggris yang formal. Akan tetapi, hanya terdapat sedikit riset untuk bahasa percakapan informal, terutama untuk bahasa yang digunakan dalam sistem \textit{chatbot}. Dalam Bahasa Indonesia, kedua jenis bahasa formal dan percakapan masih sedikit diteliti untuk membangun sistem SRL. Pada riset ini, kami berfokus pada menyelesaikan permasalahan SRL untuk Bahasa Indonesia percakapan. Kontribusi kami adalah memperkenalkan set \textit{semantic roles} baru dan mengajukan \textit{attention mechanism} di atas arsitektur \textit{Long Short-Term Memory Networks}. Tantangan dalam Bahasa Indonesia percakapan adalah \textit{slang} dan singkatan, kalimat pendek, dan struktur yang tidak beraturan. Walaupun riset ini merupakan \textit{pilot task}, kami memperoleh hasil yang menjanjikan dengan nilai F1 82.68\%.
 
 
 \vspace*{0.2cm}
 
-\noindent Kata Kunci: \\ 
-\noindent \mer, RNNs, \textit{disease}, \textit{symptom}, \textit{treatment}, \textit{drug} \\ 
+\noindent Keywords: \\ 
+\noindent Semantic Role Labeling, deep learning, bahasa percakapan, RNNs \\ 
 
 \newpage

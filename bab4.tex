@@ -3,202 +3,109 @@
 \chapter{\babEmpat} \label{eksperimen}
 %-----------------------------------------------------------------------------%
 
-Bab ini akan membahas mengenai implementasi pada penelitian yang terdiri atas tahap pengumpulan data, pra-pemrosesan, pengembangan model, eksperimen dan evaluasi. Setiap fitur yang \saya~usulkan pada Bab 3 juga akan dijelaskan langkah pengimplementasian pada bab ini.
+This chapter explains the implementations of the methodology explained in chapter 3. It includes the implementation of data annotation and pre-processing, feature extraction, and model architecture.
 
-\section{Perangkat Pendukung}
-Dalam melakukan eksperimen, \saya~menggunakan perangkat komputer yang disediakan di lab. Perangkat komputer tersebut memiliki spesifikasi seperti pada tabel \ref{table:spesifikasi hardware}.
+\section{Computer Specification}
+Every experiment uses a GPU-based virtual server provided by Kata.ai. The specifications of the server are explained as follows.
 
 \begin{table}
 	\centering
-	\caption{Spesifikasi \f{Hardware}}
-	\begin{tabular}{|c|c|}
+	\caption{Server Specifications}
+	\begin{tabular}{|l|l|}
 		\hline
-		Processor & i7-4770S \\ \hline
-		Banyak Core & 8 core \\ \hline
-		Frekuensi Processor & 3.1 GHz per core \\ \hline
-		RAM & 8 GB \\ \hline
+		\textbf{GPU} & Nvidia Tesla M60 \\ \hline
+		\textbf{Number of Cores} & 6 \\ \hline
+		\textbf{RAM} & 56.00 GiB \\ \hline
+		\textbf{Operating System} & Ubuntu 16.04.2 \\ \hline
 	\end{tabular}
 	\label{table:spesifikasi hardware}
 \end{table}
 
-Berikut merupakan detail dari sistem operasi yang terpasang pada komputer di atas.
-\begin{table}
-	\centering
-	\caption{Spesifikasi Sistem Operasi}
-	\begin{tabular}{|c|c|}
-		\hline
-		Distributor ID & Ubuntu \\ \hline
-		Deskripsi & Ubuntu 13.10 \\ \hline
-		Versi rilis & 13.10 \\ \hline
-		Nama kode & saucy \\ \hline
-	\end{tabular}
-	\label{table:spesifikasi os}
-\end{table}
+The server uses GPU Nvidia Tesla M60 with 6 cores. The size of the RAM is 56.00 GiB. The operating system used is Ubuntu 16.04.2.
 
-\section{Pengumpulan Data}
-\Saya~melakukan pengumpulan data dengan menggunakan ide implementasi dari \cite{skripsiKakRadit} yang kemudian \saya~modifikasi sesuai dengan kebutuhan. Bahasa program yang \saya~gunakan untuk melakukan pengumpulan data ini adalah Java, dengan menggunakan library JSoup untuk mengunduh isi forum sebuah situs. Hasil dari pengumpulan data ini \saya~gabungkan dengan data penelitian milik \cite{skripsiKakRadit}.
+\section{Data Annotation and Pre-processing}
+For data annotation, we use an in-house tool provided by Kata.ai, named \textit{kata-annotator}. The total amount of data to be annotated was 9000 sentences. The data was annotated by three linguists with each of them annotating a different set of data containing 3000 sentences for 8 weeks. In order to align the annotation understanding between them, the three linguists annotated the same trial set consisting of 100 sentences before starting to annotate the real one. The annotation differences found are then discussed in order to align the understanding between them.
 
-\begin{kode}\label{(kode_crawling)}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{downloadPage(link)}{
-		\Input{link of an online health forum}
-		\Output{content of forum}
-		\BlankLine
-		
-		sql = selectFromDB(link)\;
-		res = execOnDB(sql)\;
-		\BlankLine
-		
-		\If{res != empty}{
-			insertToDB(sql)\;
-			doc = JSoup.connect(link)\;
-			writeToFile(doc.getJudulKeluhan())\;
-			writeToFile(doc.getIsiKeluhan())\;
-			writeToFile(doc.getJawaban)\;
-		}
-	}
-	\label{code:crawl}	
-	\caption{\textit{Pseudocode} untuk melakukan pengumpulan data}	
-\end{kode}
+After 8 weeks of annotation, the total amount of data that has been annotated is 8000 sentences. The other 1000 sentences missing is due to one annotator that could not complete the annotation on time. After finish annotating, the tool outputs the tokenized annotation result as JSON in BIO format. An example is given as follows:
 
-Hasil dari pengumpulan data ini yaitu \saya~mendapatkan 2065 \textit{post} dari forum kesehatan \textit{online} pada situs \textit{www.tanyadok.com}.
+\fbox{%
+	\parbox{1.0\linewidth}{%
+		[\{\\
+				"data": ["Aku", "pengen", "makan", "ayam", "goreng", "dong"],\\
+				"label": ["B-AGENT", "B-MD", "B-PRED", "B-PATIENT", "I-PATIENT", "O"]\\
+			\},\\
+			\{\\
+				"data": ["Kamu", "gak", "tidur", ",", "Andi", "?"],\\
+				"label": ["B-AGENT", "O", "B-PRED", "O", "B-GREET", "O"]\\
+			\}]
+	}%
+}
+\\
 
-\section{Pra-Pemrosesan}
-Tahap selanjutnya yaitu tahap pra-pemrosesan. Seperti yang telah dijelaskan pada bab metodologi, \saya~melakukan tiga buah pekerjaan di tahap ini, yaitu melakukan pembersihan data, tokenisasi dan pemotongan kalimat. Berikut merupakan penjelasan dari masing-masing pekerjaan tersebut:
-
-\subsection{Pembersihan Data}
-Tahap pembersihan data bertujuan untuk menghilangkan karakter yang bukan merupakan ASCII. Hal ini \saya~lakukan supaya dalam tahap ekstraksi fitur POS \textit{Tagging} tidak memiliki masalah karena terdapat karakter bukan ASCII. Selain itu, di dalam dokumen terdapat banyak \textit{email} dan \textit{url} yang unik sehingga mengakibatkan sistem akan menganggap token-token tersebut merupakan token yang unik dan berbeda. Untuk menangani hal tersebut \saya~melakukan normalisasi dengan mengubah semua token \textit{email} dan \textit{url} menjadi kata "email" dan "url" sehingga tetap mempertahankan keberadaan kedua token tersebut. Selain itu \saya~juga mengganti beberapa karakter yang bukan alfanumerik menjadi beberapa token dalam representasi kata, seperti karakter "\&" menjadi "dan", "\textless" dan "\textgreater" menjadi token "kurang dari" dan "lebih dari". Hal ini \saya~lakukan karena korpus yang \saya~gunakan dalam bentuk berkas \textit{xml} yang tidak mengizinkan adanya ketiga karakter tersebut. Kemudian \saya~juga mengubah karakter "/" menjadi "atau" supaya mudah dalam ekstraksi fitur kata itu sendiri dengan menggunakan \textit{word embedding}. Kode \ref{code:cleaning} merupakan \textit{pseudocode} untuk melakukan pembersihan data yang \saya~gunakan.
-
+It turns out that there are only 5036 sentences which contain predicate in it. These 5036 sentences are the main data set to be trained and tested.
 
 \begin{kode}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{downloadPage(sentence)}{
-		\Input{sentence before cleaning}
-		\Output{sentence which has cleaned}
+	\Fn{convertLabelToOneHotVector(arrLabel)}{
+		\Input{array of labels of a sentence}
+		\Output{array of one hot vectors}
 		\BlankLine
 		
-		sentence.removeByRegex(non-ASCII regex)\;
-		sentence.replace(email-regex, "email")\;
-		sentence.replace(url-regex, "url")\;
-		sentence.replace(\&, "dan")\;
-		sentence.replace(\textless, "kurang dari")\;
-		sentence.replace(\textgreater, "lebih dari")\;
-		sentence.replace(/, "atau")\;
-		\BlankLine
-		
-		\Return sentence;
-	}
-	
-	\caption{\textit{Pseudocode} untuk melakukan pembersihan data}
-	\label{code:cleaning}
-\end{kode}
-
-\subsection{Tokenisasi}
-Pada tahap tokenisasi \saya~melakukan pemisahan antar kata dan antar token yang berbeda jenis, seperti token alfabet dengan numerik, alfanumerik dengan non-alfanumerik dan menghilangkan karakter spasi yang berlebih. Dalam mengimplementasikan tahap ini, \saya~menggunakan bahasa pemrograman Ruby. Berikut merupakan \textit{pseudocode} untuk melakukan tokenisasi.
-
-\begin{kode}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{tokenization(sentence)}{
-		\Input{sentence before tokenization}
-		\Output{sentence which has tokenized}
-		\BlankLine
-		
-		sentence.replaceByRegex([alfabet][numerik], [alfabet] [numerik])\;
-		sentence.replaceByRegex([numerik][alfabet], [numerik] [alfabet])\;
-		sentence.replaceByRegex([alfanumerik][non-alfanumerik], [alfanumerik] [non-alfanumerik])\;
-		sentence.replaceByRegex([non-alfanumerik][alfanumerik], [non-alfanumerik] [alfanumerik])\;
-		sentence.replaceByRegex([\textbackslash s]+, " ")\;
-		\BlankLine
-		
-		\Return sentence;
-	}
-	\caption{\textit{Pseudocode} untuk melakukan tokenisasi}
-	\label{code:tokenisasi}
-\end{kode}
-
-\subsection{Pemotongan Kalimat}
-Implementasi yang \saya~lakukan tahap ini bertujuan untuk mendapatkan sebuah \textit{instance} sebagai \textit{input} dari program RNNs di tahap eksperimen. Pemotongan dilakukan pada masing-masing \textit{post}. Pada pemotongan kalimat ini, penulis menerapkan aturan berbeda yang telah dijelaskan pada bab 3 karena jumlah kata pada sebuah kalimat yang dipisahkan dengan tanda baca ".", "!" dan "?" sangat jauh berbeda. Dengan implementasi pemotongan kalimat ini, \saya~berupaya untuk menghindari kasus kalimat yang \textit{sparse}, yaitu adanya kalimat yang memiliki jumlah token sangat renggang. Kode \ref{code:potong} merupakan \textit{pseudocode} untuk melakukan pemotongan kalimat.
-
-\begin{kode}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{sentenceSplitting(post, limit)}{
-		\Input{post, minimal limit number of word in a sentence}
-		\Output{array of sentence}
-		\BlankLine
-		
-		arrSentence = post.splitByRegex([?\.!,])\;
-		temp = []\;
-		arrResult = []\;
-		\ForEach{sentence in arrSentence}{
-			\uIf{len(temp) > limit}{
-				arrResult.append(temp)\;
-				temp = []\;
-			}
-			\Else{
-				temp += sentence
-			}
+		oneHotVectorLabel = []\;
+		\ForEach{label in arrLabel}{
+			oneHotVectorLabel.append(label.convertToOneHotVector())
 		}
 		\BlankLine
 		
-		\Return arrResult;
+		\Return oneHotVectorLabel;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan pemotongan kalimat}
-	\label{code:potong}
+	\caption{A pseudocode for converting labels of a sentence into one-hot-vectors}
+	\label{code:labeltoone}
 \end{kode}
 
-\section{Pelabelan}
-Pada tahap ini \saya~melakukan pelabelan pada data baru yang telah diunduh. Sebelumnya, \cite{skripsiKakRadit} telah melabeli 200 buah \textit{post} dan pada penelitian ini \saya~melakukan pelabelan terhadap 109 buah \textit{post} yang \saya~pilih dari hasil pengumpulan data. \Saya~melakukan pemilihan berdasarkan banyaknya kalimat dalam sebuah \textit{post}. Untuk aturan pelabelan, \saya~mengikuti atuan pelabelan yang dilakukan oleh \cite{skripsiKakRadit} dalam penelitiannya. Pelabelan ini dilakukan selama 2 minggu.
+The label is then converted into a one-hot-vector representation which is presented in Pseudocode~\ref{code:labeltoone}. The function \textit{convertLabelToOneHotVector} takes an array of labels from one sentence as an input. Each label in the array is then converted into its one-hot-vector representation. All the converted results are appended to a new array called \textit{oneHotVectorLabel}. The function finally returns the array of one-hot-vectors.
 
-\section{Pengembangan Model}
-\subsection{Ekstraksi Fitur}
-Ekstraksi fitur dilakukan dengan menggunakan program yang diimplementasikan dalam bahasa Python. Keluaran dari ekstraksi fitur ini adalah vektor kata untuk masing-masing kalimat yang disimpan dalam format JSON. Masing-masing kalimat dalam sebuah \textit{post} disimpan dalam sebuah \textit{array} yang kemudian keseluruhan \textit{post} disimpan dalam \textit{hash} dengan indeks yang telah didefinisikan pada saat tahap pengumpulan data.
+\section{Feature Extraction}
+There are three features to be extracted including Word Embedding, POS tag, and Neighboring Word Embeddings. This section explains the implementation of each feature extraction. All codes are implemented using Python.
 
-\subsubsection{Fitur Kata Itu Sendiri}
-Dalam melakukan ekstraksi fitur kata itu sendiri, \saya~menggunakan \textit{library} gensim \citep{rehurek_lrec} yang disediakan secara gratis. Gensim mengimplementasikan \textit{word embedding} melalui \textit{library} bernama word2vec. Sebelum melakukan ekstraksi fitur, \saya~melakukan \textit{training} model \textit{word embedding} dengan data yang \saya~unduh dari berbagai artikel kesehatan di beberapa situs (\textit{https://www.kaskus.co.id/forum/94/health, http://archive.kaskus.co.id/forum/94}). Dalam melakukan \textit{training}, terdapat beberapa parameter yang perlu diberikan yaitu panjang \textit{windows} dan panjang vektor yang dihasilkan. Kedua parameter tersebut merupakan parameter bebas, sehingga dapat diisi dengan angka positif yang bebas. Dalam penelitian ini, \saya~menggunakan panjang \textit{window} yaitu $ 5 $ dan panjang vektor yaitu $ 128 $. Kode \ref{code:trainword2ve} merupakan kode untuk membuat dan melakukan \textit{training} Word2Vec.
+\subsection{Word Embedding}
+% Jelasin pake gensim's word2vec. Parameter nya apa aja. Data training yang digunakan darimana.
+We use Gensim's Word2Vec~\citep{gensim} as the library for training the word embedding model as well as converting words into vectors. Pseudocode~\ref{code:trainword2ve} explains on how to train the word embedding model.
 \begin{kode}
 	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{trainWwordToVector(corpus, windowsSize, vectSize)}{
-		\Input{corpus of sentences for training, length of window, size of vector}
-		\Output{model Word2Vec}
+	\Fn{trainWordEmbeddingModel(corpus, contextWindow, vectorDimension)}{
+		\Input{training corpus, context window, vector dimension}
+		\Output{Word2Vec model}
 		
 		\BlankLine
-		model = Word2Vec.createModel(corpus, windowsSize, vectSize)
+		model = Word2Vec.createModel(corpus, contextWindow, vectorDimension)
 		
 		\BlankLine
 		\Return model;
 	}
 	
-	\caption{\textit{Pseudocode} untuk membuat model dan melakukan training Word2Vec}
+	\caption{A pseudocode to train word embedding model using Word2Vec}
 	\label{code:trainword2ve}
 \end{kode}
 
-Setelah model didapatkan, \saya~melakukan ekstraksi dari masing-masing kata pada korpus. Kode \ref{code:ekstraksiownword} merupakan \textit{pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri.
+There are two parameters, which are context window and vector dimension. Context window determines the area of interest in building the word embedding model. Vector dimension represents the length of the output vector. In this work, the context window and vector dimension used are 5 and 64, respectively. The output is the trained word embedding model.
 
 \begin{kode}
-
+	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	\SetKwProg{Fn}{Function}{ is}{end}
 	\Fn{wordToVector(model, arrWord)}{
-		\Input{model word embedding, array of word in a sentence}
-		\Output{array of word vector}
-	
+		\Input{trained word embedding model, array of words of a sentence}
+		\Output{array of word vectors}
+		
 		\BlankLine
 		arrVector = []\;
 		\ForEach{word in arrWord}{
@@ -209,148 +116,64 @@ Setelah model didapatkan, \saya~melakukan ekstraksi dari masing-masing kata pada
 		\Return arrVector;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kata itu sendiri}
+	\caption{A pseudocode to transform words into vectors by word embedding model}
 	\label{code:ekstraksiownword}
 \end{kode}
+% jelasin kode convert word embedding
+% jelasin kode train word embedding
+Pseudocode~\ref{code:ekstraksiownword} shows on how to use the trained word embedding model to convert words into vectors. The function initially takes the trained model and an array of words from a sentence. Each word is then converted into the vector using the trained model. The converted words are appended in a new array called \textit{arrVector}. The function finally returns this new array.
 
-\subsubsection{Ekstraksi Fitur Kamus Kesehatan}
-Pada dasarnya implementasi ekstraksi fitur kamus kesehatan mirip dengan implementasi ekstraksi fitur \textit{stop word}. Perbedaanya yaitu pada penggunaan \textit{resource}, yang mana ekstraksi fitur \textit{stop words} \saya~lakukan dengan menggunakan kamus \textit{stop word}, sedangkan pada fitur ini \saya~menggunakan kamus kesehatan. Kamus kesehatan yang \saya~gunakan sama dengan kamus pada penelitian \cite{skripsiKakRadit}, yang mana terdapat 4 kamus, yaitu kamus \textit{disease}, \textit{symptom}, \textit{treatment} dan \textit{drug}.
+\subsection{POS Tag}
+For POS Tag feature, we use the gold-standard POS tag annotated by the three linguists. The annotation tool \textit{kata-annotator} is also used for annotating the POS tag. The output example of the POS tag from the tool in a form of JSON is given as follows:
 
-\begin{kode}
-	
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetAlgoLined
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{dictExtract(dictionary, sentence)}{
-		\Input{dictionary of stop word,sentence}
-		\Output{array of one hot vector}
-		\BlankLine
-		
-		dictFeature = []\;
-		\ForEach{word in sentence}{
-			dictFeature.append(dictionary.isExist(word))
-		}
-		\BlankLine
-		
-		\Return dictFeature;
-		
-	}
-	\BlankLine
-	
-	\Fn{dictExtractAll(sentence)}{
-		\Input{dictionary of stop word,sentence}
-		\Output{array of one hot vector}
-		\BlankLine
-		
-		dictExtract(symptomDict, sentence)\;
-		dictExtract(diseaseDict, sentence)\;
-		dictExtract(treatmentDict, sentence)\;
-		dictExtract(drugDict, sentence)\;
-		\BlankLine
-		
-	}
-	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur kamus kesehatan}
-	\label{code:ekstraksikamus}	
-\end{kode}
+\fbox{%
+	\parbox{1.0\linewidth}{%
+		[\\
+		\{\\
+		"data": ["Aku", "pengen", "makan", "ayam", "goreng", "dong"],\\
+		"label": ["NN", "ADV", "V", "NN", "V", "INTJ"]\\
+		\},\\
+		\{\\
+		"data": ["Kamu", "gak", "tidur", ",", "Andi", "?"],\\
+		"label": ["NN", "NEG", "V", "O", "NN", "O"]\\
+		\}\\
+		]
+	}%
+}
+\\
 
-Setiap kata yang terdaftar di dalam kamus kesehatan memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan Python dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ini dapat dilihat pada kode \ref{code:ekstraksikamus}.
-
-
-\subsubsection{Ekstraksi Fitur Stop Word}
-\Saya~melakukan ekstraksi fitur \textit{stop word} dengan menggunakan kamus \textit{stop word} yang digunakan oleh Taufik (2015) dalam melakukan pengenalan entitas bernama. Setiap kata yang merupakan \textit{stop word} memiliki nilai fitur [ 0.0, 1.0 ] dan kata yang bukan merupakan \textit{stop word} memiliki nilai fitur [ 1.0, 0.0 ]. \Saya~menggunakan Python dalam mengimplementasikan ekstraksi fitur ini. \textit{Pseudocode} untuk melakukan ekstraksi fitur ni dapat dilihat pada kode \ref{code:ekstraksistopword}.
-
-\begin{kode}
-	
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{stopWordExtract(dictionary, sentence)}{
-		\Input{dictionary of stop word,sentence}
-		\Output{array of one hot vector}
-		
-		\BlankLine
-		stopWordFeature = []\;
-		\ForEach{word in tagOnly}{
-			posTagFeature.append(dictionary.isExist(word))
-		}
-		\BlankLine
-		
-		\Return stopWordFeature;
-	}
-	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur \textit{stop word}}
-	\label{code:ekstraksistopword}	
-\end{kode}
+% jelasin sedikit tentang contoh output tools nya
+The JSON file consists of an array of sentences. Each word in a sentence is labeled with the POS tag accordingly.
 
 \begin{kode}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{posTagExtract(model, sentence)}{
-		\Input{tagger of POS Tag,sentence}
+	\Fn{convertPOSToOneHotVector(arrPOS)}{
+		\Input{array of POS tags of a sentence}
 		\Output{array of one hot vector}
 		\BlankLine
 		
-		sentenceTagged = model.tagSentence(sentence)\;
-		tagOnly = getTagOnly(sentenceTagged)\;
 		posTagFeature = []\;
-		\ForEach{tag in tagOnly}{
-			posTagFeature.append(tag.convertToOneHotVector())
+		\ForEach{pos in arrPOS}{
+			posTagFeature.append(pos.convertToOneHotVector())
 		}
 		\BlankLine
 		
 		\Return posTagFeature;
 	}
 	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur POS-Tag}
+	\caption{A pseudocode for converting POS tags of a sentence into one hot vectors}
 	\label{code:ekstraksipostag}
 \end{kode}
 
-\subsubsection{Ekstraksi Fitur Part of Speech Tag}
-\Saya~menggunakan \textit{tools} Stanford POS Tagger \citep{toutanova2000enriching} dan model POS \textit{tagger} yang dikembangkan oleh \cite{dinakaramani2014designing}. \Saya~melakukan pemberian tag pada setiap kalimat di dalam korpus, kemudian mengubah hasil tag tersebut menjadi bentuk \textit{one-hot-vector}. Kode \ref{code:ekstraksipostag} merupakan \textit{pseudocode} dalam melakukan ekstraksi fitur POS Tag untuk sebuah kalimat yang \saya~lakukan.
+% jelasin sedikit tentang convert POS tag into one hot vector
+Each of the POS tag in a sentence is then converted into one-hot-vector. The implementation is presented in Pseudocode~\ref{code:ekstraksipostag}. The function \textit{convertPOSToOneHotVector} initially takes array of POS tags from a sentence as the input. Each POS tag is converted into its respective one-hot-vector. The results are appended into a new array called \textit{posTagFeature}. The function finally returns this new array as the one-hot-vector representations of POS tags in a sentence.
 
-\subsubsection{Ekstraksi Frasa Kata Benda dan Kata Kerja}
-Dalam mengimplementasikan ektraksi fitur kata benda, \saya~menggunakan \textit{library} NLTK \citep{bird2009nltk} yang mengimplementasikan \textit{chunking}, yang merupakan proses segmentasi dan pelabelan pada \textit{multi-token sequences}. Untuk mengimplementasikannya, \saya~menggunakan informasi POS-Tag yang didapatkan pada implementasi fitur POS-Tag, kemudian menentukan \textit{rule} pada proses \textit{chunking} ini. \textit{Rule} yang \saya~gunakan sudah dijelaskan pada Bab 3. Keluaran dari ekstraksi fitur ini yaitu \textit{array} yang berisi \textit{array of one-hot-vector} dari masing-masing kata dalam 1 kalimat, yang apabila suatu kata merupakan bagian dari frasa kata benda akan bernilai [0.0, 1.0], sedangkan yang bukan akan bernilai [1.0, 0.0]. \textit{Pseudocode} untuk melakukan ekstraksi fitur ini dalam 1 kalimat dapat dilihat pada kode \ref{code:ekstraksinp}.
-
-\begin{kode}
-
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetAlgoLined
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{phraseExtract(chunker, sentence, label)}{
-		\Input{chunker for a sentence, sentence, label of chunking}
-		\BlankLine
-		
-		chunkedSentence = chunker.chunk(sentence)\;
-		chunkFeature = []\;
-		\ForEach{token in chunkedSentence}{
-			\If{token.isLabel(label)}
-			{
-				chunkFeature.append([0.0, 1.0])\;
-			}
-			\Else(){
-				chunkFeature.append([1.0, 0.0])\;
-			}
-		}
-		\BlankLine
-		
-		\Return chunkFeature;
-		
-	}
-	\BlankLine	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur frasa}
-	\label{code:ekstraksinp}	
-\end{kode}
-
-\subsubsection{Ekstraksi Fitur 1 Kata Sebelum}
-Ekstraksi fitur ini \saya~lakukan dengan mengambil vektor kata dengan indeks saat ini dikurangi satu. Untuk awal kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. Kode \ref{code:ekstraksi1wordbef} merupakan implementasi dari ekstraksi fitur 1 kata sebelum.
+\subsection{Neighboring Word Embeddings}
+% jelasin ada dua, yaitu extract 1 word vector before and after. Pada sebelum token pertama dan setelah token terakhir ditambah padding vektor 0.
+For neighboring word embeddings, we extract one vector on the left and one on the right of the word being processed. Pseudocode~\ref{code:neighboringwe} shows the implementation of extracting neighboring word embeddings.
 
 \begin{kode}	
 	\SetKwInOut{Input}{Input}
@@ -358,269 +181,401 @@ Ekstraksi fitur ini \saya~lakukan dengan mengambil vektor kata dengan indeks saa
 	
 	\SetAlgoLined
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{oneWordBeforeExtract(sentenceVector)}{
-		\Input{array of vector in a sentence}
-		\Output{array of vector}
+	\Fn{extractNeighboringWordEmbedding(sentenceVector)}{
+		\Input{array of word embedding vectors of a sentence}
+		\Output{array of neighboring word embedding vectors}
 		\BlankLine
 		
-		oneWordBeforeFeature = []\;
-		oneWordBeforeFeature.append(zeroth)\;
-		\For{i in 1...sentenceVector.length}{
-			oneWordBeforeFeature.append(sentenceVector[i-1])\;
-		}
+		window = 1\;
+		vectorDimension = getVectorDimension(sentenceVector)\;
+		padded = window * [vectorDimension*[0.]] + sequence + window * [vectorDimension*[0.]]\;
 		\BlankLine
 		
-		\Return oneWordBeforeFeature;
-		
-	}
-	
-	\BlankLine
-	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sebelum}
-	\label{code:ekstraksi1wordbef}	
-\end{kode}
-
-\subsubsection{Ekstraksi Fitur 1 Kata Sesudah}
-Ekstraksi fitur 1 kata sesudah yang \saya~lakukan ini mirip dengan ekstraksi fitur 1 kata sebelum, perbedaannya pada indeks yang diambil dalam pada saat ekstraksi. Untuk masing-masing kata, \saya~mengambil vektor kata dengan indeks 1 kata setelahnya. Untuk vektor kata di akhir kalimat, \saya~memberikan vektor $ \vec{0} $ dimana setiap elemen di dalam \textit{array} merupakan bilangan nol. Kode \ref{code:ekstraksi1wordaft} merupakan implementasi dari ekstraksi fitur 1 kata sesudah.
-
-\begin{kode}
-	
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetAlgoLined
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{oneWordBeforeExtract(sentenceVector)}{
-		\Input{array of vector in a sentence}
-		\Output{array of vector}
-		\BlankLine
-		
-		oneWordAfterFeature = []\;
+		neighboringVectors = []\;
 		\For{i in 0...sentenceVector.length - 1}{
-			oneWordAfterFeature.append(sentenceVector[i+1])\;
-		}
-		oneWordAfterFeature.append(zeroth)\;
-		\BlankLine
-		
-		\Return oneWordAfterFeature;
-		
-	}
-	
-	\BlankLine	
-	\caption{\textit{Pseudocode} untuk melakukan ekstraksi fitur 1 kata sesudah}
-	\label{code:ekstraksi1wordaft}
-\end{kode}
-
-\subsection{Pengusulan Arsitektur RNNs}
-Sesuai dengan yang telah dijelaskan pada Bab 3, \saya~mengusulkan dua arsitektur RNNs yang akan digunakan pada tahap eksperimen. Pada bagian ini \saya~akan menjelaskan implementasi dari masing-masing arsitektur tersebut. Dalam melakukan implementasi RNNs, \saya~menggunakan \textit{library} Keras \citep{chollet2015keras} dalam bahasa Python. Keras sendiri dapat berjalan di atas dua \textit{library deep learning} lain, yaitu Theano dan Tensorflow, namun dalam penelitian ini \saya~menggunakan Theano. \Saya~menggunakan \textit{Sequential model} yang merupakan layer \textit{linear stack} dalam mengembangkan model dan jenis RNNs yang \saya~gunakan dalam penelitian ini adalah LSTMs. Terkait dengan jumlah \textit{timesteps}, LSTMs membutuhkan jumlah yang tedefinisi dari awal. Oleh karena itu, jumlah \textit{timestep} merupakan jumlah kata dari kalimat terpanjang di dalam korpus ($ l $). Apabila terdapat kalimat yang panjangnya kurang dari $ l $, vektor dari kalimat tersebut akan di-\textit{padding} atau ditambahkan vektor $ \vec{0} $ sampai panjangnya $ l $. Dalam melakukan \textit{padding}, \saya~menggunakan fungsi \textit{padsequences} yang sudah terdapat di dalam Keras.
-
-\subsubsection{LSTMs 1 layer}
-LSTMs 1 layer yang dimaksud adalah model yang digunakan memiliki satu layer LSTMs saja dan semua fitur yang menjadi input program digabung terlebih dahulu menjadi satu buah \textit{array}.
-
-\begin{kode}
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{lstm1(arrTraining, arrTesting)}{
-		\Input{training data, testing data}
-		\Output{predicted label}
-		\BlankLine
-		
-		doPadSequences(arrTraining)\;
-		doPadSequences(arrTesting)\;
-		shape = arrTraning.shape()\;
-		\BlankLine
-		
-		model = Sequential()\;
-		model.add(Masking(input\char`_shape:shape))]\;
-		model.add(LSTM(output = shape/2))\;
-		model.add(TimeDistributed(Dense(output = 9)))\;
-		\BlankLine
-		
-		model.input(arrTraining)\;
-		prediction = model.predict(arrTesting)\;
-		\BlankLine
-		
-		\Return prediction;
-	}
-	
-	\caption{\textit{Pseudocode} untuk arsitektur LSTMs 1 layer}
-	\label{code:lstm1}
-\end{kode}
-
-Seperti yang telah dijelaskan pada Bab 3, susunan layer yang \saya~gunakan terdiri dari \textit{Masking Layer}, LSTMs Layer, dan \textit{Time Distributed Layer} yang masing-masing \textit{timestep} berisi \textit{Dense Layer}. Untuk \textit{Masking Layer}, dimensi yang menjadi parameter tergantung dari \textit{array} yang menjadi masukan, untuk LSTMs Layer, dimensi masukan sama dengan dimensi \textit{Masking Layer} dan dimensi keluaran untuk masing-masing \textit{timesteps} adalah panjang input dalam satu \textit{timestep} dibagi 2. Untuk masing-masing Dense Layer, dimensi masukan yang diminta sama dengan dimensi keluaran pada LSTMs Layer dan dimensi keluaran sesuai dengan jumlah kelas yang telah didefinisikan.
-
-Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm1} merupakan kode untuk mengimplementasikan model ini.
-
-\subsubsection{LSTMs 2 Layer Multi-Input}
-LSTMs 2 layer yang dimaksud yaitu terdapat dua layer, layer pertama untuk menerima \textit{input} yang setiap kelompok fitur menjadi \textit{input} bagi LSTMs masing-masing. Misalnya terdapat 3 kelompok fitur, masing-masing kelompok tadi akan menjadi input bagi layer LSTMs masing-masing. Layer kedua sebagai penggabung hasil dari tingkat pertama.
-
-\begin{kode}
-	
-	\SetKwInOut{Input}{Input}
-	\SetKwInOut{Output}{Output}
-	
-	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{lstm2(groupOfArrTraining, groupOfArrTraining)}{
-		\Input{grop of training data, group of testing data}
-		\Output{predicted label}
-		\BlankLine
-		
-		doPadSequences(groupOfArrTraining)\;
-		doPadSequences(groupOfArrTraining)\;
-		\BlankLine
-		
-		modelArr = []\;
-		\ForEach{groupFeature in groupOfArrTraining}{
-			shape = arrTraning.shape()\;
-			model = Sequential()\;
-			model.add(Masking(input\char`_shape:shape))]\;
-			model.add(LSTM(output = shape/2))\;
-			modelArr.append(model)\;
+			left = [item for sublist in padded[i:(i + window)] for item in sublist]\;
+			right = [item for sublist in padded[(i+ window + 1):(i + (2*window + 1))] for item in sublist]\;
+			concate = left + right\;
+			neighboringVectors.append(concate)\;
 		}
 		\BlankLine
 		
-		mainModel = Sequential()\;
-		mainModel.add(Merge(mode='concat', modelArr))]\;
-		mainModel.add(LSTM(output = 32))\;
-		mainModel.add(TimeDistributed(Dense(output = 9)))\;
-		\BlankLine
+		\Return neighboringVectors;
 		
-		mainModel.input(groupOfArrTraining)\;
-		prediction = mainModel.predict(groupOfArrTraining)\;
-		\BlankLine
-		
-		\Return prediction;
-	}
-	
-	\caption{\textit{Pseudocode} untuk arsitektur LSTMs 2 layer multi-\textit{input}}
-	\label{code:lstm2}	
+	}	
+	\caption{A pseudocode to extract neighboring word embeddings}
+	\label{code:neighboringwe}	
 \end{kode}
 
-Layer pada tingkat pertama terdiri dari \textit{Masking Layer} dan sebuah Layer LSTMs. Untuk dimensi \textit{input} dan \textit{output} \textit{Masking Layer} secara otomatis mengikuti dimensi dari data masukan. Dimensi \textit{output} dari Layer LSTMs yaitu dimensi awal dibagi 2. Pada layer tingkat kedua, layer tersebut terdiri dari \textit{Merge Layer}, \textit{Time Distributed} dengan masing-masing \textit{timestep} merupakan \textit{Dense Layer} dan sebuah Layer LSTMs. Keluaran dari \textit{Merge Layer} sesuai dengan total dimensi \textit{output} dari masing-masing LSTMs di tingkat 1. Dimensi keluaran dari masing-masing \textit{Dense Layer} yaitu sesuai jumlah kelas.
-Masukan yang diminta yaitu \textit{array} yang masing-masing elemennya merupakan \textit{array} dari vektor fitur dan sudah digabung menjadi satu. Keluaran yang diminta merupakan hasil dari pelabelan otomatis dari program ini. Kode \ref{code:lstm2} merupakan kode untuk mengimplementasikan model ini.
+In this function, the parameter that can be set is the \textit{window}. Since we only extract one word on the left and another on the right of the word being processed, the value of parameter \textit{window} is 1.
 
-\section{Eksperimen}
-Pada tahap ini \saya~melakukan eksperimen model yang dikembangkan pada tahap sebelumnya. Sebelum masuk ke tahap eksperimen, \saya~melakukan beberapa tahap pra-eksperimen seperti melakukan pemecahan data sebagai implementasi \textit{cross-fold validation}. \Saya~memecah data menjadi 10 bagian dan disimpan dalam sebuah \textit{array} untuk masing-masing fitur. Berikut merupakan \textit{pseudocode} untuk melakukan pemecahan data
+\section{Model Architecture}
+As explained in Chapter 3, the model architecture consists of main layer and additional layer. The main layer choices include vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (BLSTM), DBLSTM-Zhou, and DBLSTM-Highway. On the other hand, the additional layer options include Convolutional Neural Networks (CNN) and attention mechanism. 
+
+We use Keras 2.0~\citep{chollet2015} as our deep learning library with Tensorflow 1.1.0 backend for all the architectures. For constructing the model, we use the Functional API of Keras. The model in Keras only receives an input data with a fixed number of time steps for all sentences. Suppose that the maximum number of time steps in our data is $l$. Thus, all sentences in our data whose number of time steps is lower than $l$ have to be padded with vector $ \vec{0}$ in order to get a fixed number of time steps of $l$. To do the padding, we use \textit{padsequences} function available from Keras. All codes are implemented using Python.
+
+\subsection{Main Layers}
+The main layer choices include vanilla LSTM (LSTM), Bi-Directional LSTM (BLSTM), Deep BLSTM (BLSTM), DBLSTM-Zhou, and DBLSTM-Highway. This section explains the implementation of each architecture.
+
+\subsubsection{Vanilla LSTM (LSTM)}
+Vanilla LSTM (LSTM) consists of only one layer of forward LSTM. Pseudocode~\ref{code:olstm} shows the implementation of the LSTM architecture.
 
 \begin{kode}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
 
+	\SetKwProg{Fn}{Function}{ is}{end}
+	\Fn{lstm(xTrain, yTrain, timesteps, features, xTest, yTest)}{
+		\Input{x train, y train, number of time steps, number of features, x test, y test}
+		\Output{trained model, testing prediction result}
+		\BlankLine
+		
+		input = Input(shape=(timesteps, features))\;
+		forward = LSTM(units=128, returnSequences=True, recurrentDropout=0.2)(input)\;
+		dropout = Dropout(0.2)(forward)\;
+		output = TimeDistributed(Dense(units=17, activation='softmax'))(dropout)\;
+		model = Model(inputs=[input], outputs=[output])\;
+		\BlankLine
+		
+		model.compile(loss='categoricalCrossentropy', optimizer='adam')\;
+		\BlankLine
+		
+		model.fit(xTrain, yTrain, epochs=50, batchSize=150)\;		
+		prediction = model.predict(xTest)\;
+		\BlankLine
+		
+		\Return model, prediction\;
+	}
+	
+	\caption{A pseudocode for building and training vanilla LSTM architecture}
+	\label{code:olstm}
+\end{kode}
+
+The Pseudocode~\ref{code:olstm} takes x train, y train, number of time steps, number of features, x test and y test as the inputs. The model starts with the defining the input layer, with the input shape of (timesteps, features). The input layer is then connected to the LSTM layer thas has 128 hidden units. These hidden units are the output of the LSTM layer. We use recurrent dropout in LSTM, as recommended by~\cite{he2017deep}. The recurrent dropout used is 0.2. We also use dropout layer on top of the LSTM layer by the value of 0.2. The output of the dropout layer is connected to the time-distributed dense layer with softmax activation function. This last layer produces the labels of semantic roles. The model is trained with categorical cross-entropy loss function and Adam optimizer. The number of epochs and batch size used are both 50. After the model has been trained, we use it to predict the semantic roles the x test data which later will be evaluated. The function returns the trained model as well as the prediction result of the test data.
+
+\subsubsection{Bi-Directional LSTM (BLSTM)}
+Bi-Directional LSTM (BLSTM) consists of two layers of LSTM. The first layer is moving forward and the other is moving backward. Pseudocode~\ref{code:blstm} shows the implementation of the BLSTM architecture.
+
+\begin{kode}
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
 	\SetKwProg{Fn}{Function}{ is}{end}
-	\Fn{splitting(featureArr)}{
-		\Input{array of feature}
-		\Output{splitted array of feature}
+	\Fn{blstm(xTrain, yTrain, timesteps, features, xTest, yTest)}{
+		\Input{x train, y train, number of time steps, number of features, x test, y test}
+		\Output{trained model, testing prediction result}
 		\BlankLine
 		
-		lenSplit = len(featureArr)/10\;
-		arrSplitted = []\;
-		\For{i=0; i<10;i++}{
-			start = i * lenSplit\;
-			end = (i+1) * lenSplit\;
-			arrSplitted.append[start:end]\;
-		}
+		input = Input(shape=(timesteps, features))\;
 		\BlankLine
 		
-		\Return arrSplitted;
+		forward = LSTM(units=128, returnSequences=True, recurrentDropout=0.2)(input)\;
+		backward = LSTM(units=128, returnSequences=True, goBackwards=True, recurrentDropout=0.2)(input)\;
+		merged = Concatenate([forward, backward])\;
+		dropout = Dropout(0.2)(merged)\;
+		\BlankLine
+		
+		output = TimeDistributed(Dense(units=17, activation='softmax'))(dropout)\;
+		\BlankLine
+		
+		model = Model(inputs=[input], outputs=[output])\;
+		model.compile(loss='categoricalCrossentropy', optimizer='adam')\;
+		model.fit(xTrain, yTrain, epochs=50, batchSize=150)\;		
+		prediction = model.predict(xTest)\;
+		\BlankLine
+		
+		\Return model, prediction\;
 	}
 	
-	\caption{\textit{Pseudocode} untuk memecah \textit{data} menjadi 10 bagian}	
-	\label{code:split}
+	\caption{A pseudocode for building and training BLSTM architecture}
+	\label{code:blstm}
 \end{kode}
 
-Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabungan antar fitur sebagai \textit{input} untuk melakukan eksperimen. Seperti yang dijelaskan pada tahap sebelumnya, \saya~menggunakan dua arsitektur RNNs. Hasil dari eksperimen tersebut ditulis dalam sebuah berkas dengan format JSON yang nantinya akan menjadi \textit{input} pada tahap evaluasi. Berikut merupakan implementasi eksperimen dengan masing-masing arsitektur tersebut.
+The Pseudocode~\ref{code:blstm} takes x train, y train, number of time steps, number of features, x test and y test as the inputs. The model starts with the defining the input layer, with the input shape of (timesteps, features). The input layer is then connected to two LSTM layers: forward layer and backward layer. Both forward and backward LSTM layers have 128 hidden units. The recurrent dropout used is 0.2. The output of both forward and backward layers are concatenated, producing a vector whose length is 256. We also use dropout layer on top of the concatenated layer by the value of 0.2. The output of the dropout layer is connected to the time-distributed dense layer with softmax activation function. This last layer produces the labels of semantic roles. The model is trained with categorical cross-entropy loss function and Adam optimizer. The number of epochs and batch size used are 50 and 150, respectively. After the model has been trained, we use it to predict the semantic roles the x test data which later will be evaluated. The function returns the trained model as well as the prediction result of the test data.
+
+\subsubsection{Deep BLSTM (DBLSTM)}
+Deep BLSTM (BLSTM) consists of two pairs of BLSTM. Pseudocode~\ref{code:dblstm} shows the implementation of the BLSTM architecture.
 
 \begin{kode}
-	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
 	\SetKwProg{Fn}{Function}{ is}{end}
-	arrAllFeature = []\;
-	\ForEach{feature in arrSplitted}{
-		arrAllFeature.join(feature)\;
+	\Fn{blstm(xTrain, yTrain, timesteps, features, xTest, yTest)}{
+		\Input{x train, y train, number of time steps, number of features, x test, y test}
+		\Output{trained model, testing prediction result}
+		\BlankLine
+		
+		input = Input(shape=(timesteps, features))\;
+		\BlankLine
+		
+		forward1 = LSTM(units=128, returnSequences=True, recurrentDropout=0.2)(input)\;
+		backward1 = LSTM(units=128, returnSequences=True, goBackwards=True, recurrentDropout=0.2)(input)\;
+		merged1 = Concatenate([forward, backward])\;
+		dropout1 = Dropout(0.2)(merged)\;
+		\BlankLine
+		
+		forward2 = LSTM(units=128, returnSequences=True, recurrentDropout=0.2)(dropout1)\;
+		backward2 = LSTM(units=128, returnSequences=True, goBackwards=True, recurrentDropout=0.2)(dropout1)\;
+		merged2 = Concatenate([forward2, backward2])\;
+		dropout2 = Dropout(0.2)(merged2)\;
+		\BlankLine
+		
+		output = TimeDistributed(Dense(units=17, activation='softmax'))(dropout2)\;
+		\BlankLine
+		
+		model = Model(inputs=[input], outputs=[output])\;
+		model.compile(loss='categoricalCrossentropy', optimizer='adam')\;
+		model.fit(xTrain, yTrain, epochs=50, batchSize=150)\;		
+		prediction = model.predict(xTest)\;
+		\BlankLine
+		
+		\Return model, prediction\;
 	}
-	\BlankLine
 	
-	\For{i=0; i<10;i++}{
-		training = arrSplitted[0:i] + arrSplitted[i+1:10]
-		testing = arrSplitted[i]\;
-		
-		\BlankLine
-		result1 = lstm1(training, testing)\;
-		result2 = lstm2(training, testing)\;
-		
-		\BlankLine
-		writeToJSON(result1)\;
-		writeToJSON(result2)\;
-	}
-	\caption{\textit{Pseudocode} untuk melakukan eksperimen}
-	\label{code:eksperimen}	
+	\caption{A pseudocode for building and training DBLSTM architecture}
+	\label{code:dblstm}
 \end{kode}
 
-\section{Evaluasi}
-Dalam melakukan implementasi pada tahap evaluasi, \saya~menghitung nilai \textit{prescision, recall} dan \textit{F-Measure} untuk mengukur tingkat keakuratan model yang dikembangkan pada tahap sebelumnya. \Saya~menggunakan aturan yang telah dijelaskan pada Bab 3. Berikut merupakan implementasi kode untuk melakukan evaluasi.
+The input layer is first connected to two LSTM layers, the first one for going forward and another for going backward. Both forward and backward LSTM layers have 128 hidden units. The recurrent dropout used is 0.2. The output of both forward and backward layers are concatenated, producing a vector whose length is 256. We also use dropout layer on top of the concatenated layer by the value of 0.2. The output of the dropout layer is then processed by the next two LSTM layers using the same way as the previous steps. The outputs of both layers are also concatenated and processed by the dropout layer. The output of the final dropout layer is connected to the time-distributed dense layer with softmax activation function. This last layer produces the labels of semantic roles. Likewise in the previous architectures, the function returns the trained model as well as the prediction result of the test data.
+
+\subsubsection{DBLSTM-Zhou}
+Deep BLSTM-Zhou (DBLSTM-Zhou) consists of two pairs of BLSTM-Zhou. Pseudocode~\ref{code:dblstmzhou} shows the implementation of the DBLSTM-Zhou architecture.
 
 \begin{kode}
-	
 	\SetKwInOut{Input}{Input}
 	\SetKwInOut{Output}{Output}
 	
 	\SetKwProg{Fn}{Function}{ is}{end}
-	resultTag = load(resultRNN)\;
-	originalTag = load(originalTag)\;
-	\BlankLine
+	\Fn{blstm(xTrain, yTrain, timesteps, features, xTest, yTest)}{
+		\Input{x train, y train, number of time steps, number of features, x test, y test}
+		\Output{trained model, testing prediction result}
+		\BlankLine
+		
+		input = Input(shape=(timesteps, features))\;
+		\BlankLine
+		
+		forward1 = LSTM(units=128, returnSequences=True, recurrentDropout=0.2)(input)\;
+		dropout1f = Dropout(0.2)(forward1)\;
+		backward1 = LSTM(units=128, returnSequences=True, goBackwards=True, recurrentDropout=0.2)(dropout1f)\;
+		dropout1b = Dropout(0.2)(backward1)\;
+		\BlankLine
+		
+		forward2 = LSTM(units=128, returnSequences=True, recurrentDropout=0.2)(input)\;
+		dropout2f = Dropout(0.2)(forward2)\;
+		backward2 = LSTM(units=128, returnSequences=True, goBackwards=True, recurrentDropout=0.2)(dropout2f)\;
+		dropout2b = Dropout(0.2)(backward2)\;
+		\BlankLine
+		
+		output = TimeDistributed(Dense(units=17, activation='softmax'))(dropout2b)\;
+		\BlankLine
+		
+		model = Model(inputs=[input], outputs=[output])\;
+		model.compile(loss='categoricalCrossentropy', optimizer='adam')\;
+		model.fit(xTrain, yTrain, epochs=50, batchSize=150)\;		
+		prediction = model.predict(xTest)\;
+		\BlankLine
+		
+		\Return model, prediction\;
+	}
 	
-	TP = newHash()\;
-	FP = newHash()\;
-	FN = newHash()\;
-	\For{i = 0; i < len(resultTag); i++}{
-		sentenceResult = resultTag[i]\;
-		sentenceOriginal = originalTag[i]\;
-		\For{j = 0; j < len(sentenceOriginal); i++}{
-			wordResult = sentenceResult[j]\;
-			wordOri = sentenceOriginal[j]\;
-			\uIf{wordOri != O}{
-				\uIf{wordResult != O}{
-					\uIf{wordOri == wordResult}{
-						TP[wordOri] += 1\;
-					}
-					\Else{
-						FN[wordOri] += 1\;
-					}
-				}
-				\Else{
-					FN[wordOri] += 1\;
-				}
-			}
-			\Else{
-				\uIf{wordResult != O}{
-					FP[wordOri] += 1\;
-				}
-			}
-		}
-	}
-	\BlankLine
-
-	prec = newHash()\;
-	rec = newHash()\;
-	fMeas = newHash()\;
-	\ForEach{label in TP}{
-		prec[label] = TP[label] / (TP[label] + FP[label])\;
-		rec[label] = TP[label] / (TP[label] + FN[label])\;
-		fMeas[label] = 2 * 	(prec[label] * rec[label]) / (prec[label] + rec[label])\;
-	}
-	\BlankLine
-	
-	\ForEach{label in prec}{
-		print "Precission", label, prec[label]\;
-		print "Recall", label, rec[label]\;
-		print "F-Measure", label, fmeas[label]\;
-	}
-	\BlankLine
-	\caption{\textit{Pseudocode} untuk melakukan evaluasi}	
-	\label{code:evaluasi}
+	\caption{A pseudocode for building and training DBLSTM-Zhou architecture}
+	\label{code:dblstmzhou}
 \end{kode}
+
+The input layer is first processed by the first forward LSTM layer. The output of this layer is then connected to the first dropout layer. After that, the dropout output is processed by the first backward LSTM layer, followed by the second dropout layer. At this point, one pair of BLSTM-Zhou is built. These processes are done one more time to build the second stack of BLSTM-Zhou. The output of the last layer is then connected to the time-distributed dense layer with softmax activation function. This last layer produces the labels of semantic roles. As in the previous functions, this function also returns the trained model as well as the prediction result of the test data.
+
+\subsubsection{DBLSTM-Highway}
+Deep BLSTM-Zhou (DBLSTM-Highway) consists of two pairs of BLSTM-Highway. To implement the DBLSTM-Highway, line 3 to 10 in Pseudocode~\ref{code:dblstmzhou} are changed into the codes presented in Pseudocode~\ref{code:dblstmhighway}.
+
+\begin{kode}
+		forward1 = LSTM(units=128, returnSequences=True, recurrentDropout=0.2)(input)\;
+		dropout1f = Dropout(0.2)(forward1)\;
+		\BlankLine
+		
+		backward1 = LSTM(units=128, returnSequences=True, goBackwards=True, recurrentDropout=0.2)(dropout1f)\;
+		merged1b = Concatenate([backward1, dropout1f])\;
+		alpha1b = TimeDistributed(Dense(1, activation='sigmoid'))(merged1b)\;
+		out1b = Lambda(timesAlphaSigmoid)([alpha1b, backward1, dropout1f])\;
+		dropout1b = Dropout(0.2)(out1b)\;
+		\BlankLine
+		
+		forward2 = LSTM(units=128, returnSequences=True, goBackwards=True, recurrentDropout=0.2)(dropout1b)\;
+		merged2f = Concatenate([forward2, backward1])\;
+		alpha2f = TimeDistributed(Dense(1, activation='sigmoid'))(merged2f)\;
+		out2f = Lambda(timesAlphaSigmoid)([alpha2f, forward2, backward1])\;
+		dropout2f = Dropout(0.2)(out2f)\;
+		\BlankLine
+		
+		backward2 = LSTM(units=128, returnSequences=True, goBackwards=True, recurrentDropout=0.2)(dropout2f)\;
+		merged2b = Concatenate([backward2, forward2])\;
+		alpha2b = TimeDistributed(Dense(1, activation='sigmoid'))(merged2b)\;
+		out2b = Lambda(timesAlphaSigmoid
+		)([alpha2b, backward2, forward2])\;
+		dropout2b = Dropout(0.2)(out2b)\;
+	
+	\caption{A pseudocode for building and training DBLSTM-Highway architecture}
+	\label{code:dblstmhighway}
+\end{kode}
+
+The input layer is first processed by the first forward LSTM layer. The output of this layer is then connected to the first dropout layer. After that, the output is processed by the first backward LSTM layer. The output of the first backward layer (\textit{backward1}) and the first dropout layer (\textit{dropout1f}) are concatenated before being processed by the time-distributed dense layer with a sigmoid function. The output of the dense layer is the weight \textit{alpha2b}. In lambda function called \textit{timesAlphaSigmoid}, \textit{backward1} is multiplied by the weight \textit{alpha2b} and \textit{dropout1f} is multiplied by the weight \textit{1 - alpha2b}. The lambda function then sums both results. These steps are also done for the next forward and the backward LSTM layers. As in the previous architectures, the output of the last layer is then connected to the time-distributed dense layer with softmax activation function to predict the semantic roles.
+
+\subsection{Additional Layers}
+The additional layer options consist of Convolutional Neural Networks (CNN) and attention mechanism. These additional layers can be used in addition to any of the main layers.
+
+\subsubsection{Convolutional Neural Networks (CNN)}
+CNN-BLSTM adds a CNN layer underneath the BLSTM layers. Pseudocode~\ref{code:cnnblstm} shows the implementation of the CNN-BLSTM architecture.
+\begin{kode}
+	inputLayer = Input(shape=(timesteps, features))\;
+	cnnLayer = Conv1D(filters=128, kernelSize=3, padding='same', activation='relu', strides=1)(inputLayer)\;
+	\caption{A pseudocode for adding CNN layer underneath the main layer}
+	\label{code:cnnblstm}
+\end{kode}
+
+In this architecture, the CNN layer is added before the BLSTM layers. Thus, the input layer is connected to the CNN layer. The parameters of the CNN layer are filters, kernel size, and strides. Filters represent the number of output hidden layers. Kernel size defines the context window of the CNN layer. Strides define the amount of slide for every time step. The value of filters, kernel size, and strides parameters are 128, 3, and 1, respectively. The output the CNN layer is then connected to any LSTM variant as explained in the previous sections.
+
+\subsubsection{Attention Mechanism}
+The attention mechanism can be added on top of any main layer variant. Pseudocode~\ref{code:cablstm} shows the implementation of the adding attention mechanism on top of the main layer architecture.
+\begin{kode}
+	outs1 = TimeDistributed(RawDense(outputDim=512))(dropout)\;
+	m = Lambda(sum)(outs1)\;
+	alpha = Dense(timesteps, activation="softmax")(m)\;
+	z = Lambda(timesAlphaSum)([alpha, dropout])\;
+	dropoutZ = Dropout(0.2)(z)\;
+	repeatedZ = RepeatVector(timesteps)(dropoutZ)\;
+	outFinal = concatenate([dropout, repeatedZ])\;	
+	output = TimeDistributed(Dense(units=17, activation='softmax'))(outFinal)\;
+	
+	\caption{A pseudocode for adding attention mechanism on top of the main layer architecture}
+	\label{code:cablstm}
+\end{kode}
+
+The output of the dropout layer from last LSTM layer is first fed into a time-distributed, raw dense layer. The output dimension of this dense layer is set to 512. The output of this layer is then summed for each time step. The result of this sum is then fed into the dense layer with softmax activation function. This dense layer outputs the weights alpha for each time step. Lambda function \textit{timesAlphaSum} firstly multiplies the original dropout output of the last LSTM layer with the alpha values. The function then sums all the result element-wise in order to get a context vector z. Vector z is then duplicated by the number of time steps before it is concatenated with all the original dropout output of the last LSTM layer. These concatenated vectors are then fed into the last softmax layer to produce the output labels.
+
+%\section{Experiment}
+%
+%\section{Evaluation}
+
+%\section{Eksperimen}
+%Pada tahap ini \saya~melakukan eksperimen model yang dikembangkan pada tahap sebelumnya. Sebelum masuk ke tahap eksperimen, \saya~melakukan beberapa tahap pra-eksperimen seperti melakukan pemecahan data sebagai implementasi \textit{cross-fold validation}. \Saya~memecah data menjadi 10 bagian dan disimpan dalam sebuah \textit{array} untuk masing-masing fitur. Berikut merupakan \textit{pseudocode} untuk melakukan pemecahan data
+%
+%\begin{kode}
+%
+%	\SetKwInOut{Input}{Input}
+%	\SetKwInOut{Output}{Output}
+%	
+%	\SetKwProg{Fn}{Function}{ is}{end}
+%	\Fn{splitting(featureArr)}{
+%		\Input{array of feature}
+%		\Output{splitted array of feature}
+%		\BlankLine
+%		
+%		lenSplit = len(featureArr)/10\;
+%		arrSplitted = []\;
+%		\For{i=0; i<10;i++}{
+%			start = i * lenSplit\;
+%			end = (i+1) * lenSplit\;
+%			arrSplitted.append[start:end]\;
+%		}
+%		\BlankLine
+%		
+%		\Return arrSplitted;
+%	}
+%	
+%	\caption{\textit{Pseudocode} untuk memecah \textit{data} menjadi 10 bagian}	
+%	\label{code:split}
+%\end{kode}
+%
+%Setelah masing-masing fitur dipecah menjadi 10 bagian, \saya~melakukan penggabungan antar fitur sebagai \textit{input} untuk melakukan eksperimen. Seperti yang dijelaskan pada tahap sebelumnya, \saya~menggunakan dua arsitektur RNNs. Hasil dari eksperimen tersebut ditulis dalam sebuah berkas dengan format JSON yang nantinya akan menjadi \textit{input} pada tahap evaluasi. Berikut merupakan implementasi eksperimen dengan masing-masing arsitektur tersebut.
+%
+%\begin{kode}
+%	
+%	\SetKwInOut{Input}{Input}
+%	\SetKwInOut{Output}{Output}
+%	
+%	\SetKwProg{Fn}{Function}{ is}{end}
+%	arrAllFeature = []\;
+%	\ForEach{feature in arrSplitted}{
+%		arrAllFeature.join(feature)\;
+%	}
+%	\BlankLine
+%	
+%	\For{i=0; i<10;i++}{
+%		training = arrSplitted[0:i] + arrSplitted[i+1:10]
+%		testing = arrSplitted[i]\;
+%		
+%		\BlankLine
+%		result1 = lstm1(training, testing)\;
+%		result2 = lstm2(training, testing)\;
+%		
+%		\BlankLine
+%		writeToJSON(result1)\;
+%		writeToJSON(result2)\;
+%	}
+%	\caption{\textit{Pseudocode} untuk melakukan eksperimen}
+%	\label{code:eksperimen}	
+%\end{kode}
+%
+%\section{Evaluasi}
+%Dalam melakukan implementasi pada tahap evaluasi, \saya~menghitung nilai \textit{prescision, recall} dan \textit{F-Measure} untuk mengukur tingkat keakuratan model yang dikembangkan pada tahap sebelumnya. \Saya~menggunakan aturan yang telah dijelaskan pada Bab 3. Berikut merupakan implementasi kode untuk melakukan evaluasi.
+%
+%\begin{kode}
+%	
+%	\SetKwInOut{Input}{Input}
+%	\SetKwInOut{Output}{Output}
+%	
+%	\SetKwProg{Fn}{Function}{ is}{end}
+%	resultTag = load(resultRNN)\;
+%	originalTag = load(originalTag)\;
+%	\BlankLine
+%	
+%	TP = newHash()\;
+%	FP = newHash()\;
+%	FN = newHash()\;
+%	\For{i = 0; i < len(resultTag); i++}{
+%		sentenceResult = resultTag[i]\;
+%		sentenceOriginal = originalTag[i]\;
+%		\For{j = 0; j < len(sentenceOriginal); i++}{
+%			wordResult = sentenceResult[j]\;
+%			wordOri = sentenceOriginal[j]\;
+%			\uIf{wordOri != O}{
+%				\uIf{wordResult != O}{
+%					\uIf{wordOri == wordResult}{
+%						TP[wordOri] += 1\;
+%					}
+%					\Else{
+%						FN[wordOri] += 1\;
+%					}
+%				}
+%				\Else{
+%					FN[wordOri] += 1\;
+%				}
+%			}
+%			\Else{
+%				\uIf{wordResult != O}{
+%					FP[wordOri] += 1\;
+%				}
+%			}
+%		}
+%	}
+%	\BlankLine
+%
+%	prec = newHash()\;
+%	rec = newHash()\;
+%	fMeas = newHash()\;
+%	\ForEach{label in TP}{
+%		prec[label] = TP[label] / (TP[label] + FP[label])\;
+%		rec[label] = TP[label] / (TP[label] + FN[label])\;
+%		fMeas[label] = 2 * 	(prec[label] * rec[label]) / (prec[label] + rec[label])\;
+%	}
+%	\BlankLine
+%	
+%	\ForEach{label in prec}{
+%		print "Precission", label, prec[label]\;
+%		print "Recall", label, rec[label]\;
+%		print "F-Measure", label, fmeas[label]\;
+%	}
+%	\BlankLine
+%	\caption{\textit{Pseudocode} untuk melakukan evaluasi}	
+%	\label{code:evaluasi}
+%\end{kode}

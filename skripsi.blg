@@ -1,11 +1,12 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: skripsi.aux
+This is BibTeX, Version 0.99d (TeX Live 2016/W32TeX)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: skripsi.aux
 A level-1 auxiliary file: sampul.aux
 A level-1 auxiliary file: judul_dalam.aux
 A level-1 auxiliary file: orisinal.aux
 A level-1 auxiliary file: pengesahan_sidang.aux
 A level-1 auxiliary file: pengantar.aux
 A level-1 auxiliary file: persetujuan_publikasi.aux
-A level-1 auxiliary file: abstrak.aux
 A level-1 auxiliary file: abstract.aux
 A level-1 auxiliary file: bab1.aux
 A level-1 auxiliary file: bab2.aux
@@ -16,6 +17,50 @@ A level-1 auxiliary file: bab6.aux
 The style file: apalikerd.bst
 A level-1 auxiliary file: markLampiran.aux
 A level-1 auxiliary file: lampiran.aux
+A level-1 auxiliary file: lampiran_disease.aux
 Database file #1: skripsi.bib
+Warning--empty journal in skripsidewi
 Warning--empty journal in jordan1986attractor
-(There was 1 warning)
+Warning--empty note in jurafsky2016speech
+You've used 41 entries,
+            1961 wiz_defined-function locations,
+            719 strings with 10494 characters,
+and the built_in function-call counts, 17543 in all, are:
+= -- 1807
+> -- 634
+< -- 39
++ -- 218
+- -- 208
+* -- 1352
+:= -- 2912
+add.period$ -- 141
+call.type$ -- 41
+change.case$ -- 308
+chr.to.int$ -- 41
+cite$ -- 44
+duplicate$ -- 743
+empty$ -- 1237
+format.name$ -- 275
+if$ -- 3583
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 34
+newline$ -- 218
+num.names$ -- 123
+pop$ -- 296
+preamble$ -- 1
+purify$ -- 308
+quote$ -- 0
+skip$ -- 593
+stack$ -- 0
+substring$ -- 1245
+swap$ -- 173
+text.length$ -- 17
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 246
+warning$ -- 3
+while$ -- 148
+width$ -- 0
+write$ -- 554
+(There were 3 warnings)

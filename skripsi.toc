@@ -1,107 +1,82 @@
-\select@language {bahasa}
-\contentsline {chapter}{HALAMAN JUDUL}{i}{section*.2}
+\contentsline {chapter}{TITLE PAGE}{i}{section*.2}
 \contentsline {chapter}{LEMBAR PERNYATAAN ORISINALITAS}{ii}{section*.4}
 \contentsline {chapter}{LEMBAR PENGESAHAN}{iii}{section*.6}
-\contentsline {chapter}{\uppercase {Kata Pengantar}}{iv}{section*.8}
-\contentsline {chapter}{LEMBAR PERSETUJUAN PUBLIKASI ILMIAH}{vi}{section*.10}
-\contentsline {chapter}{ABSTRAK}{vii}{section*.12}
-\contentsline {chapter}{Daftar Isi}{ix}{chapter*.15}
-\contentsline {chapter}{Daftar Gambar}{xii}{chapter*.16}
-\contentsline {chapter}{Daftar Tabel}{xiv}{chapter*.17}
-\contentsline {chapter}{Daftar Kode}{xv}{chapter*.18}
-\contentsline {chapter}{\numberline {1}\uppercase {Pendahuluan}}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Latar Belakang}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Perumusan Masalah}{3}{section.1.2}
-\contentsline {section}{\numberline {1.3}Tujuan dan Manfaat Penelitian}{3}{section.1.3}
-\contentsline {section}{\numberline {1.4}Metodologi Penelitian}{4}{section.1.4}
-\contentsline {section}{\numberline {1.5}Ruang Lingkup Penelitian}{5}{section.1.5}
-\contentsline {section}{\numberline {1.6}Sistematika Penulisan}{6}{section.1.6}
-\contentsline {chapter}{\numberline {2}\uppercase {Landasan Teori}}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}Pengenalan Entitas Kesehatan}{7}{section.2.1}
-\contentsline {section}{\numberline {2.2}Deep Learning}{9}{section.2.2}
-\contentsline {section}{\numberline {2.3}Recurrent Neural Networks}{10}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Long Short Term Memories (LSTMs)}{12}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Penerapan RNNs untuk MER}{14}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Word Embedding}{15}{section.2.4}
-\contentsline {chapter}{\numberline {3}\uppercase {Metodologi}}{18}{chapter.3}
-\contentsline {section}{\numberline {3.1}Gambaran Umum Pengembangan Metodologi}{18}{section.3.1}
-\contentsline {section}{\numberline {3.2}Pengumpulan Data}{19}{section.3.2}
-\contentsline {section}{\numberline {3.3}Pra-Pemrosesan}{19}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Pembersihan data}{20}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Tokenisasi}{21}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Pemotongan kalimat}{21}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}Pelabelan}{22}{section.3.4}
-\contentsline {section}{\numberline {3.5}Pengembangan Model}{25}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Ekstrasi Fitur}{25}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}Pengusulan Arsitektur RNNs}{34}{subsection.3.5.2}
-\contentsline {section}{\numberline {3.6}Eksperimen}{40}{section.3.6}
-\contentsline {section}{\numberline {3.7}Evaluasi}{41}{section.3.7}
-\contentsline {chapter}{\numberline {4}\uppercase {Implementasi}}{44}{chapter.4}
-\contentsline {section}{\numberline {4.1}Perangkat Pendukung}{44}{section.4.1}
-\contentsline {section}{\numberline {4.2}Pengumpulan Data}{44}{section.4.2}
-\contentsline {section}{\numberline {4.3}Pra-Pemrosesan}{45}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Pembersihan Data}{45}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Tokenisasi}{46}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Pemotongan Kalimat}{47}{subsection.4.3.3}
-\contentsline {section}{\numberline {4.4}Pelabelan}{47}{section.4.4}
-\contentsline {section}{\numberline {4.5}Pengembangan Model}{48}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Ekstraksi Fitur}{48}{subsection.4.5.1}
-\contentsline {subsubsection}{\numberline {4.5.1.1}Fitur Kata Itu Sendiri}{48}{subsubsection.4.5.1.1}
-\contentsline {subsubsection}{\numberline {4.5.1.2}Ekstraksi Fitur Kamus Kesehatan}{49}{subsubsection.4.5.1.2}
-\contentsline {subsubsection}{\numberline {4.5.1.3}Ekstraksi Fitur Stop Word}{50}{subsubsection.4.5.1.3}
-\contentsline {subsubsection}{\numberline {4.5.1.4}Ekstraksi Fitur Part of Speech Tag}{50}{subsubsection.4.5.1.4}
-\contentsline {subsubsection}{\numberline {4.5.1.5}Ekstraksi Frasa Kata Benda dan Kata Kerja}{51}{subsubsection.4.5.1.5}
-\contentsline {subsubsection}{\numberline {4.5.1.6}Ekstraksi Fitur 1 Kata Sebelum}{51}{subsubsection.4.5.1.6}
-\contentsline {subsubsection}{\numberline {4.5.1.7}Ekstraksi Fitur 1 Kata Sesudah}{52}{subsubsection.4.5.1.7}
-\contentsline {subsection}{\numberline {4.5.2}Pengusulan Arsitektur RNNs}{52}{subsection.4.5.2}
-\contentsline {subsubsection}{\numberline {4.5.2.1}LSTMs 1 layer}{53}{subsubsection.4.5.2.1}
-\contentsline {subsubsection}{\numberline {4.5.2.2}LSTMs 2 Layer Multi-Input}{54}{subsubsection.4.5.2.2}
-\contentsline {section}{\numberline {4.6}Eksperimen}{55}{section.4.6}
-\contentsline {section}{\numberline {4.7}Evaluasi}{56}{section.4.7}
-\contentsline {chapter}{\numberline {5}\uppercase {Eksperimen}}{58}{chapter.5}
-\contentsline {section}{\numberline {5.1}Metrik Evaluasi}{58}{section.5.1}
-\contentsline {section}{\numberline {5.2}Visualisasi Data}{58}{section.5.2}
-\contentsline {section}{\numberline {5.3}Desain Eksperimen}{61}{section.5.3}
-\contentsline {section}{\numberline {5.4}Skenario 1: \textit {Baseline} Eksperimen \cite {skripsiKakRadit}}{62}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Hasil Eksperimen}{63}{subsection.5.4.1}
-\contentsline {section}{\numberline {5.5}Skenario 2: Skenario Pengujian Fitur}{63}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Eksperimen 2.1: Fitur Kata}{63}{subsection.5.5.1}
-\contentsline {subsubsection}{\numberline {5.5.1.1}Hasil Eksperimen}{64}{subsubsection.5.5.1.1}
-\contentsline {subsubsection}{\numberline {5.5.1.2}Analisis}{64}{subsubsection.5.5.1.2}
-\contentsline {subsection}{\numberline {5.5.2}Eksperimen 2.2: Fitur Kata dan Kamus Kesehatan (\textit {Disease, Symptom, Treatment} dan \textit {Drug})}{66}{subsection.5.5.2}
-\contentsline {subsubsection}{\numberline {5.5.2.1}Hasil Eksperimen}{66}{subsubsection.5.5.2.1}
-\contentsline {subsubsection}{\numberline {5.5.2.2}Analisis}{67}{subsubsection.5.5.2.2}
-\contentsline {subsection}{\numberline {5.5.3}Eksperimen 2.3: Fitur Kata, Kamus Kesehatan dan \textit {Stopword}}{68}{subsection.5.5.3}
-\contentsline {subsubsection}{\numberline {5.5.3.1}Hasil Eksperimen}{68}{subsubsection.5.5.3.1}
-\contentsline {subsubsection}{\numberline {5.5.3.2}Analisis}{69}{subsubsection.5.5.3.2}
-\contentsline {subsection}{\numberline {5.5.4}Eksperimen 2.4: Fitur Kata, Kamus Kesehatan, \textit {Stopword} dan POS-Tag}{70}{subsection.5.5.4}
-\contentsline {subsubsection}{\numberline {5.5.4.1}Hasil Eksperimen}{70}{subsubsection.5.5.4.1}
-\contentsline {subsubsection}{\numberline {5.5.4.2}Analisis}{71}{subsubsection.5.5.4.2}
-\contentsline {subsection}{\numberline {5.5.5}Eksperimen 2.5: Fitur Kata, Kamus Kesehatan, \textit {Stopword}, POS-Tag dan Frasa Kata}{72}{subsection.5.5.5}
-\contentsline {subsubsection}{\numberline {5.5.5.1}Hasil Eksperimen}{72}{subsubsection.5.5.5.1}
-\contentsline {subsubsection}{\numberline {5.5.5.2}Analisis}{73}{subsubsection.5.5.5.2}
-\contentsline {subsection}{\numberline {5.5.6}Eksperimen 2.6: Fitur Kata, Kamus Kesehatan, \textit {Stopword} dan Frasa Kata}{74}{subsection.5.5.6}
-\contentsline {subsubsection}{\numberline {5.5.6.1}Hasil Eksperimen}{75}{subsubsection.5.5.6.1}
-\contentsline {subsubsection}{\numberline {5.5.6.2}Analisis}{75}{subsubsection.5.5.6.2}
-\contentsline {subsection}{\numberline {5.5.7}Eksperimen 2.7: Fitur Kata, Kamus Kesehatan, \textit {Stopword}, Frasa Kata dan Kata Sebelum}{76}{subsection.5.5.7}
-\contentsline {subsubsection}{\numberline {5.5.7.1}Hasil Eksperimen}{76}{subsubsection.5.5.7.1}
-\contentsline {subsubsection}{\numberline {5.5.7.2}Analisis}{77}{subsubsection.5.5.7.2}
-\contentsline {subsection}{\numberline {5.5.8}Eksperimen 2.8: Fitur Kata, Kamus Kesehatan, \textit {Stopword}, Frasa Kata, Kata Sebelum dan Kata Sesudah}{78}{subsection.5.5.8}
-\contentsline {subsubsection}{\numberline {5.5.8.1}Hasil Eksperimen}{78}{subsubsection.5.5.8.1}
-\contentsline {subsubsection}{\numberline {5.5.8.2}Analisis}{79}{subsubsection.5.5.8.2}
-\contentsline {section}{\numberline {5.6}Skenario 3: Skenario Pengujian Arsitektur RNNs}{79}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Eksperimen 3.1: Menguji Arsitektur LSTMs 1 Layer}{79}{subsection.5.6.1}
-\contentsline {subsubsection}{\numberline {5.6.1.1}Hasil Eksperimen}{80}{subsubsection.5.6.1.1}
-\contentsline {subsubsection}{\numberline {5.6.1.2}Analisis}{80}{subsubsection.5.6.1.2}
-\contentsline {subsection}{\numberline {5.6.2}Eksperimen 3.2: Menguji Arsitektur LSTMs 2 Layer Multi-Input}{81}{subsection.5.6.2}
-\contentsline {subsubsection}{\numberline {5.6.2.1}Hasil Eksperimen}{81}{subsubsection.5.6.2.1}
-\contentsline {subsubsection}{\numberline {5.6.2.2}Analisis}{82}{subsubsection.5.6.2.2}
-\contentsline {chapter}{\numberline {6}\uppercase {Kesimpulan dan Saran}}{83}{chapter.6}
-\contentsline {section}{\numberline {6.1}Kesimpulan}{83}{section.6.1}
-\contentsline {section}{\numberline {6.2}Saran}{84}{section.6.2}
-\contentsline {chapter}{Daftar Referensi}{85}{chapter*.94}
-\contentsline {chapter}{LAMPIRAN}{1}{section*.95}
-\contentsline {section}{\numberline {.1}PART OF SPEECH TAG BAHASA INDONESIA}{1}{section.Alph0.1}
-\contentsline {section}{\numberline {.2}KAMUS DISEASE}{4}{section.Alph0.2}
-\contentsline {section}{\numberline {.3}KAMUS SYMPTOM}{14}{section.Alph0.3}
-\contentsline {section}{\numberline {.4}KAMUS SYMPTOM}{18}{section.Alph0.4}
+\contentsline {chapter}{\uppercase {Preface}}{iv}{section*.8}
+\contentsline {chapter}{LEMBAR PERSETUJUAN PUBLIKASI ILMIAH}{v}{section*.10}
+\contentsline {chapter}{ABSTRACT}{vi}{section*.12}
+\contentsline {chapter}{Table of Contents}{viii}{chapter*.15}
+\contentsline {chapter}{List of Figures}{xi}{chapter*.16}
+\contentsline {chapter}{List of Tables}{xii}{chapter*.17}
+\contentsline {chapter}{List of Pseudocodes}{xiv}{chapter*.18}
+\contentsline {chapter}{\numberline {1}\uppercase {Introduction}}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Background}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Problem Statement}{4}{section.1.2}
+\contentsline {section}{\numberline {1.3}Objectives and Contributions}{4}{section.1.3}
+\contentsline {section}{\numberline {1.4}Methodology}{4}{section.1.4}
+\contentsline {section}{\numberline {1.5}Organization}{5}{section.1.5}
+\contentsline {chapter}{\numberline {2}\uppercase {Literature Review}}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Language Models}{6}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Part-of-Speech Tag (POS Tag)}{6}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Word Embedding}{7}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Deep Learning}{8}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Recurrent Neural Networks}{9}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Long Short-Term Memories}{11}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Semantic Role Labeling}{14}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Semantic Roles}{14}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Annotation Corpus}{16}{subsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Proposition Bank}{16}{subsubsection.2.3.2.1}
+\contentsline {subsubsection}{\numberline {2.3.2.2}FrameNet}{17}{subsubsection.2.3.2.2}
+\contentsline {subsection}{\numberline {2.3.3}Common Features for SRL}{19}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Historical Perspectives}{20}{subsection.2.3.4}
+\contentsline {chapter}{\numberline {3}\uppercase {Methodology}}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}Pipeline}{21}{section.3.1}
+\contentsline {section}{\numberline {3.2}Data Gathering}{22}{section.3.2}
+\contentsline {section}{\numberline {3.3}Data Pre-Processing}{23}{section.3.3}
+\contentsline {section}{\numberline {3.4}Data Annotation}{23}{section.3.4}
+\contentsline {section}{\numberline {3.5}Feature Extraction}{26}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Word Embedding}{26}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Part-of-Speech Tag (POS Tag)}{27}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Neighboring Word Embeddings}{28}{subsection.3.5.3}
+\contentsline {section}{\numberline {3.6}Model Architecture}{29}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Main Layers}{29}{subsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.1.1}Vanilla LSTM (LSTM)}{29}{subsubsection.3.6.1.1}
+\contentsline {subsubsection}{\numberline {3.6.1.2}Bi-Directional LSTM (BLSTM)}{31}{subsubsection.3.6.1.2}
+\contentsline {subsubsection}{\numberline {3.6.1.3}Deep BLSTM (DBLSTM)}{32}{subsubsection.3.6.1.3}
+\contentsline {subsubsection}{\numberline {3.6.1.4}Deep BLSTM-Zhou (DBLSTM-Zhou)}{34}{subsubsection.3.6.1.4}
+\contentsline {subsubsection}{\numberline {3.6.1.5}Deep BLSTM-Highway (DBLSTM-Highway)}{35}{subsubsection.3.6.1.5}
+\contentsline {subsection}{\numberline {3.6.2}Additional Layers}{36}{subsection.3.6.2}
+\contentsline {subsubsection}{\numberline {3.6.2.1}Convolutional Neural Networks (CNN)}{36}{subsubsection.3.6.2.1}
+\contentsline {subsubsection}{\numberline {3.6.2.2}Attention Mechanism}{37}{subsubsection.3.6.2.2}
+\contentsline {section}{\numberline {3.7}Experiment}{39}{section.3.7}
+\contentsline {section}{\numberline {3.8}Evaluation}{40}{section.3.8}
+\contentsline {chapter}{\numberline {4}\uppercase {Implementation}}{42}{chapter.4}
+\contentsline {section}{\numberline {4.1}Computer Specification}{42}{section.4.1}
+\contentsline {section}{\numberline {4.2}Data Annotation and Pre-processing}{42}{section.4.2}
+\contentsline {section}{\numberline {4.3}Feature Extraction}{43}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Word Embedding}{43}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}POS Tag}{44}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Neighboring Word Embeddings}{45}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Model Architecture}{46}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Main Layers}{46}{subsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.1.1}Vanilla LSTM (LSTM)}{47}{subsubsection.4.4.1.1}
+\contentsline {subsubsection}{\numberline {4.4.1.2}Bi-Directional LSTM (BLSTM)}{47}{subsubsection.4.4.1.2}
+\contentsline {subsubsection}{\numberline {4.4.1.3}Deep BLSTM (DBLSTM)}{49}{subsubsection.4.4.1.3}
+\contentsline {subsubsection}{\numberline {4.4.1.4}DBLSTM-Zhou}{50}{subsubsection.4.4.1.4}
+\contentsline {subsubsection}{\numberline {4.4.1.5}DBLSTM-Highway}{51}{subsubsection.4.4.1.5}
+\contentsline {subsection}{\numberline {4.4.2}Additional Layers}{52}{subsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.2.1}Convolutional Neural Networks (CNN)}{52}{subsubsection.4.4.2.1}
+\contentsline {subsubsection}{\numberline {4.4.2.2}Attention Mechanism}{52}{subsubsection.4.4.2.2}
+\contentsline {chapter}{\numberline {5}\uppercase {Experiments}}{54}{chapter.5}
+\contentsline {section}{\numberline {5.1}Data Statistics}{54}{section.5.1}
+\contentsline {section}{\numberline {5.2}Experiment Scenario}{54}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Scenario 1: Feature Selection}{55}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Scenario 2: Model Selection}{59}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.1}Scenario 2a: LSTM, BLSTM and DBLSTM}{59}{subsubsection.5.2.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2.2}Scenario 2b: DBLSTM, DBLSTM-Zhou, and DBLSTM-Highway}{61}{subsubsection.5.2.2.2}
+\contentsline {subsubsection}{\numberline {5.2.2.3}Scenario 2c: CNN Layer}{62}{subsubsection.5.2.2.3}
+\contentsline {subsubsection}{\numberline {5.2.2.4}Scenario 2d: Attention Layer}{62}{subsubsection.5.2.2.4}
+\contentsline {chapter}{\numberline {6}\uppercase {Conclusion and Future Work}}{65}{chapter.6}
+\contentsline {chapter}{References}{67}{chapter*.70}
+\contentsline {chapter}{APPENDIX}{1}{section*.71}
+\contentsline {section}{\numberline {.1}Mapping from BIO Label to One-Hot-Vector}{1}{section.Alph0.1}
+\contentsline {section}{\numberline {.2}Mapping from POS Tag to One-Hot-Vector}{2}{section.Alph0.2}

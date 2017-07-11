@@ -1,32 +1,32 @@
-\select@language {bahasa}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces An example of a sentence and the POS tags for each word\relax }}{6}{table.caption.20}
+\contentsline {table}{\numberline {2.2}{\ignorespaces An example predicate and its arguments\relax }}{14}{table.caption.25}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Examples of a predicate and its deep roles\relax }}{15}{table.caption.26}
+\contentsline {table}{\numberline {2.4}{\ignorespaces Examples of thematic roles\nobreakspace {}\citep {jurafsky2016speech}\relax }}{15}{table.caption.27}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Tabel Pemetaan Label dengan Representasi \textit {One-Hot-Vector}\relax }}{24}{table.caption.30}
-\contentsline {table}{\numberline {3.2}{\ignorespaces Tabel Pemetaan POS-Tag dengan Representasi \textit {One-Hot-Vector}\relax }}{31}{table.caption.38}
+\contentsline {table}{\numberline {3.1}{\ignorespaces Set of Semantic Roles for Conversational Language\relax }}{23}{table.caption.29}
+\contentsline {table}{\numberline {3.2}{\ignorespaces An example of semantic roles with the respective one-hot-vectors\relax }}{26}{table.caption.30}
+\contentsline {table}{\numberline {3.3}{\ignorespaces An example of word embedding vector representation with dimension of 3\relax }}{27}{table.caption.31}
+\contentsline {table}{\numberline {3.4}{\ignorespaces An example of POS Tag feature and its respective one-hot-vector\relax }}{27}{table.caption.32}
+\contentsline {table}{\numberline {3.5}{\ignorespaces An example of neighboring word embedding vectors of every time step\relax }}{28}{table.caption.33}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Spesifikasi \textit {Hardware}\relax }}{44}{table.caption.48}
-\contentsline {table}{\numberline {4.2}{\ignorespaces Spesifikasi Sistem Operasi\relax }}{44}{table.caption.49}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Server Specifications\relax }}{42}{table.caption.42}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Tabel Beberapa Entitas \textit {Disease} pada Korpus dan Jumlahnya\relax }}{59}{table.caption.68}
-\contentsline {table}{\numberline {5.2}{\ignorespaces Tabel Beberapa Entitas \textit {Symptom} pada Korpus dan Jumlahnya\relax }}{60}{table.caption.69}
-\contentsline {table}{\numberline {5.3}{\ignorespaces Tabel Beberapa Entitas \textit {Treatment} pada Korpus dan Jumlahnya\relax }}{60}{table.caption.70}
-\contentsline {table}{\numberline {5.4}{\ignorespaces Tabel Beberapa Entitas \textit {Drug} pada Korpus dan Jumlahnya\relax }}{61}{table.caption.71}
-\contentsline {table}{\numberline {5.5}{\ignorespaces Tabel Hasil Eksperimen dari Penelitian \cite {skripsiKakRadit} (\textit {Baseline})\relax }}{63}{table.caption.72}
-\contentsline {table}{\numberline {5.6}{\ignorespaces Tabel Hasil Eksperimen 2.1 dibandigkan dengan \textit {Baseline}\relax }}{64}{table.caption.74}
-\contentsline {table}{\numberline {5.7}{\ignorespaces Tabel Hasil Eksperimen 2.2 dibandigkan dengan \textit {Baseline}\relax }}{66}{table.caption.76}
-\contentsline {table}{\numberline {5.8}{\ignorespaces Tabel Hasil Eksperimen 2.3 dibandigkan dengan \textit {Baseline}\relax }}{69}{table.caption.78}
-\contentsline {table}{\numberline {5.9}{\ignorespaces Tabel Hasil Eksperimen 2.4 dibandigkan dengan \textit {Baseline}\relax }}{70}{table.caption.80}
-\contentsline {table}{\numberline {5.10}{\ignorespaces Tabel Hasil Eksperimen 2.5 dibandigkan dengan \textit {Baseline}\relax }}{72}{table.caption.82}
-\contentsline {table}{\numberline {5.11}{\ignorespaces Tabel Hasil Eksperimen 2.6 dibandigkan dengan \textit {Baseline}\relax }}{75}{table.caption.84}
-\contentsline {table}{\numberline {5.12}{\ignorespaces Tabel Hasil Eksperimen 2.7 dibandigkan dengan \textit {Baseline}\relax }}{77}{table.caption.86}
-\contentsline {table}{\numberline {5.13}{\ignorespaces Tabel Hasil Eksperimen 2.8 dibandigkan dengan \textit {Baseline}\relax }}{78}{table.caption.88}
-\contentsline {table}{\numberline {5.14}{\ignorespaces Tabel Hasil Eksperimen 3.1 dibandigkan dengan \textit {Baseline}\relax }}{80}{table.caption.90}
-\contentsline {table}{\numberline {5.15}{\ignorespaces Tabel Hasil Eksperimen 3.2 dibandigkan dengan \textit {Baseline}\relax }}{81}{table.caption.92}
+\contentsline {table}{\numberline {5.1}{\ignorespaces Results (in \%) of Feature Selection Scenario\relax }}{55}{table.caption.56}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Precision, Recall, F1 scores (in \%) of each label for scenario WE\relax }}{56}{table.caption.57}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Misprediction example of \textsc {Greet}\nobreakspace {}when using only WE as the feature\relax }}{56}{table.caption.58}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Correct prediction example of \textsc {Greet}when using WE + NW as the features\relax }}{57}{table.caption.59}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Misprediction example of \textsc {Time}\nobreakspace {}when using WE as the feature\relax }}{57}{table.caption.60}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Precision, Recall, F1 scores (in \%) of each label for scenario WE and WE + POS\relax }}{58}{table.caption.61}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Correct prediction example of \textsc {Time}\nobreakspace {}when using WE + POS as the features\relax }}{59}{table.caption.62}
+\contentsline {table}{\numberline {5.8}{\ignorespaces F1 scores (in \%) of WE + POS and WE + POS + NW when using vanilla LSTM (LSTM), BLSTM, and Deep BLSTM (DBLSTM) architectures.\relax }}{59}{table.caption.63}
+\contentsline {table}{\numberline {5.9}{\ignorespaces Result comparison between using vanilla LSTM and DBLSTM architecture when WE + POS features are used.\relax }}{60}{table.caption.64}
+\contentsline {table}{\numberline {5.10}{\ignorespaces Precision, Recall, and F1 scores (in \%) of Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM-Highway\relax }}{61}{table.caption.65}
+\contentsline {table}{\numberline {5.11}{\ignorespaces Result comparison between using DBLSTM and DBLSTM-Highway architecture for every semantic role\relax }}{61}{table.caption.66}
+\contentsline {table}{\numberline {5.12}{\ignorespaces The precision, recall, and F1 scores (in \%) of the DBLSTM architectures with and without CNN layer.\relax }}{62}{table.caption.67}
+\contentsline {table}{\numberline {5.13}{\ignorespaces The precision, recall, and F1 scores (in \%) of the DBLSTM architectures with and without attention layer.\relax }}{63}{table.caption.68}
+\contentsline {table}{\numberline {5.14}{\ignorespaces Result comparison between using DBLSTM-Highway and DBLSTM-Highway + Attention architecture for every semantic role\relax }}{63}{table.caption.69}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1}{\ignorespaces Daftar POSTAG Bahasa Indonesia\relax }}{1}{table.Alph0.1}
-\contentsline {table}{\numberline {1}{\ignorespaces Daftar POSTAG Bahasa Indonesia\relax }}{2}{table.Alph0.1}
-\contentsline {table}{\numberline {1}{\ignorespaces Daftar POSTAG Bahasa Indonesia\relax }}{3}{table.Alph0.1}
-\contentsline {table}{\numberline {2}{\ignorespaces Daftar Kata dalam Kamus \textit {Disease}\relax }}{4}{table.Alph0.2}
-\contentsline {table}{\numberline {3}{\ignorespaces Daftar Kata dalam Kamus \textit {Symptom}\relax }}{14}{table.Alph0.3}
-\contentsline {table}{\numberline {4}{\ignorespaces Daftar Kata dalam Kamus \textit {Symptom}\relax }}{18}{table.Alph0.4}
+\contentsline {table}{\numberline {1}{\ignorespaces Mapping between semantic role labels (in BIO format) to their respective One-Hot-Vectors\relax }}{1}{table.caption.72}
+\contentsline {table}{\numberline {2}{\ignorespaces Mapping between POS tags to their respective One-Hot-Vectors\relax }}{2}{table.caption.73}

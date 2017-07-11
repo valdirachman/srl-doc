@@ -5,110 +5,148 @@
 
 
 %-----------------------------------------------------------------------------%
-\section{Latar Belakang}
+\section{Background}
 %-----------------------------------------------------------------------------%
 	
-	Saat ini, perkembangan teknologi semakin mempermudah berbagai kegiatan manusia yang dilakukan sehari-hari. Sebagai contoh, ketika seseorang mengalami permasalahan kesehatan dan ingin berkonsultasi kepada para dokter, ia dapat memanfaatkan forum kesehatan \textit{online} yang dapat memungkinkan terjadinya interaksi antara pasien dan dokter tanpa perlu tatap muka.  Melalui forum tersebut, seseorang hanya perlu menuliskan keluhan dan pertanyaan pada formulir yang tersedia. Kemudian, dokter yang memiliki akun di forum kesehatan \textit{online} tersebut dapat memberikan jawaban atas pertanyaan orang tersebut.
-	
-	Banyak sekali informasi bermanfaat yang dapat diperoleh dari forum kesehatan \textit{online}. Informasi tersebut meliputi informasi keluhan yang dialami pasien, obat yang sebaiknya digunakan atau langkah penyembuhan yang dapat dilakukan. Orang lain dapat mencari obat atau langkah penyembuhan dari forum tersebut melalui pertanyaan yang sudah diajukan sebelumnya. Oleh karena itu, akan sangat baik apabila ada sebuah model atau sistem yang mampu mengekstrak secara otomatis informasi-informasi tersebut. Tantangan utama dari pengembangan model ini adalah \textit{post} atau isi dari forum yang tidak terstruktur. Dokumen \textit{post} tidak dibagi menjadi beberapa bagian seperti bagian keluhan, penyakit, obat dan lain sebagainya, namun hanya menjadi satu bagian saja. Misalnya ketika seseorang menanyakan tentang keluhannya, orang tersebut hanya diberikan dua buah isian berupa judul dan isi pertanyaan. Jawaban yang diberikan oleh dokter juga sama, hanya menjadi satu bagian saja. Jawaban yang diberikan tidak terstruktur seperti memiliki bagian langkah penyembuhan, nama penyakit dan obat secara terpisah. Hal ini menyebabkan orang sulit melakukan ekstraksi informasi dari dokumen tersebut.
-	
-	Dari permasalahan tersebut, terdapat sebuah solusi untuk melakukan ekstraksi informasi penyakit dalam suatu dokumen, yaitu dengan menggunakan sistem Pengenalan Entitas Kesehatan (\textit{Medical Entity Recognition}) atau disingkat MER. Sistem \mer~ini dapat mengenali entitas kesehatan dalam sebuah dokumen. Apabila diberikan sebuah dokumen, sistem ini akan mengembalikan dokumen yang telah mendapatkan label pada masing-masing entitas kesehatan di dalamnya.
-	
-	Penelitian dalam rangka mengembangkan sistem \mer~sudah banyak dilakukan oleh beberapa peneliti. Salah satu penelitian tersebut dilakukan oleh \cite{abacha2011medical} dengan menggunakan dokumen medis rumah sakit berbahasa Inggris. Entitas yang mendapatkan label pada penelitian tersebut adalah \textit{treatment}, \textit{problem} dan \textit{test}. Terdapat tiga pendekatan yang digunakan, yaitu pendekatan \textit{machine learning}, pendekatan \textit{rule based} dan pendekatan \textit{hybrid}. Kesimpulan yang dicapai pada penelitian tersebut adalah pendekatan \textit{hybrid} memberikan hasil terbaik, yaitu dengan \textit{precision} $ 72.18\% $, \textit{recall} $ 83.78\% $ dan \textit{F-Measure} $ 77.55\% $.
-		
-	Pada dokumen berbahasa Indonesia, pengembangan sistem \mer~masih belum banyak dilakukan. Ada beberapa penelitian terkait sistem \mer, namun hasil yang diberikan belum memuaskan. Salah satu penelitian terkait \mer~dilakukan oleh \cite{skripsiKakRadit} yang menggunakan dokumen forum kesehatan \textit{online} berbahasa Indonesia dari beberapa situs. Tujuan dari penelitian tersebut adalah untuk mencari kombinasi fitur yang dapat menghasilkan akurasi terbaik. \cite{skripsiKakRadit} menggunakan algoritma \textit{Conditional Random Fields} dengan hasil akhir yaitu \textit{precission}~70.97\%, \textit{recall}~57.83\% dan \textit{f-measure}~63.69\%. Fitur-fitur yang membuat model memiliki akurasi terbaik yaitu fitur kata itu sendiri, frasa, kamus (\textit{symptom, disease, treatment, drug}), \textit{window feature (previous word)} dan panjang kata.
-	
-	Dalam penelitian ini \saya~memandang permasalahan pelabelan dokumen kesehatan sebagai permasalahan \textit{sequence labeling}. \Saya~mengusulkan penggunaan teknik \textit{Deep Learning} dengan menggunakan \textit{Recurrent Neural Networks} (RNNs), karena RNNs merupakan \textit{state-of-the-art} untuk permasalahan \textit{sequence labeling} seperti permasalahan pada penelitian ini. Sebelumnya penelitian terkait hal ini pernah dikerjakan oleh \cite{mujiono2016new}, dengan jenis entitas yang digunakan adalah entitas \textit{Drug} saja. Peneliti tersebut menggunakan model RNNs untuk melabeli dokumen secara otomatis. Dengan menggunakan fitur vektor kata yang menggunakan \textit{word embedding} saja, \textit{f-measure} yang diberikan mencapai 86.45\%. Oleh karena itu, \saya~mengusulkan model RNNs pada penelitian ini.
-		
-	\Saya~berharap bahwa penelitian ini akan memberikan banyak manfaat. Sistem \mer~yang dihasilkan dapat digunakan untuk membuat aplikasi lain. Misalnya dengan adanya \mer~pada dokumen bahasa Indonesia, dapat dibuat sistem untuk melakukan \textit{indexing} dokumen forum sehingga pencarian dokumen kesehatan dapat dilakukan dengan lebih efisien. Selain itu, keluaran dari \mer~juga dapat digunakan untuk mengidentifikasi tren penyakit pada waktu tertentu dari suatu sumber, sehingga pihak terkait mampu melakukan langkah dan kebijakan yang tepat. Sistem \mer~juga dapat digunakan pada aplikasi \textit{Question Answering} \citep{abacha2011medical} dengan cara memanfaatkan hasil pelabelan untuk melakukan identifikasi entitas yang ditanyakan. Gambar \ref{fig:merforqa} merupakan contoh penggunaan \mer~pada aplikasi \textit{question answering} dalam bidang kesehatan.
-	
-	\begin{figure}
-		\centering
-		\includegraphics[width=\linewidth]{images/merforqa}
-		\caption{Diagram Penggunaan MER pada aplikasi \textit{Question Answering}}
-		\label{fig:merforqa}
-	\end{figure}
-	
-	\Saya~berharap bahwa penelitian \mer~pada dokumen berbahasa Indonesia ini dapat dilanjutkan sehingga dapat menghasilkan model yang lebih baik dan membuat suatu aplikasi yang memanfaatkan keluaran dari penelitian ini. Masih banyak manfaat lain yang didapatkan dengan adanya sistem \mer~yang memiliki hasil akurat. 
+Semantic Role Labeling (SRL) is a task in Natural Language Processing (NLP) which aims to automatically assign semantic roles to each argument for each predicate in a given input sentence~\citep{jurafsky2016speech}. As for a brief definition, given an input sentence, SRL system will give an output of \textit{"Who did what to whom"} with \textit{what} as the predicate and \textit{who} and \textit{whom} being the argument of the predicate. SRL is an integral part of understanding natural language as it helps the machine to retrieve semantic information from the input. In practice, SRL has been widely used as one of the intermediate steps for many NLP tasks, some of which are information extraction~\citep{emanuele2013textual, surdeanu2003using}, machine translation~\citep{liu2010semantic, lo2013improving}, and question-answering~\citep{shen2007using, moschitti2003open}.
+
+A chat bot system consists of three steps as shown in Figure~\ref{fig:botpipeline}, starting from understanding the incoming message from a user using Natural Language Understanding (NLU) system, tracking the dialogue using Dialogue State Tracking (DST), and finally generating a response using Natural Language Generation (NLG) system.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\linewidth]{images/botpipeline2}
+	\caption{Chat bot system pipeline}
+	\label{fig:botpipeline}
+\end{figure}
+
+In the chat bot system, SRL can be a useful part of the chat bot pipeline under the NLU step in order to extract the semantic representation of the user's text. To illustrate, suppose that the user sends a message to the chat bot for ordering a food as presented bellow.
+\\
+\\
+\texttt{\textbf{Input:} 
+	\textit{"Please buy me a burger at 1 PM"}}
+\\
+
+Using the SRL system under NLU pipeline, the chatbot system extracts the semantic information of the chat as follows.
+\\
+\\
+\texttt{\textbf{Roles:}}
+
+\texttt{Predicate: \textit{buy}}
+
+\texttt{Patient: \textit{burger}}
+
+\texttt{Beneficiary: \textit{me}}
+
+\texttt{When: \textit{12 PM}}
+\\
+
+The system detects that the predicate is \textit{"buy"}, followed by \textit{"burger"} as the patient, or the thing being bought. The beneficiary, or the recipient, is \textit{"me"}. Lastly, the time is \textit{"12 AM"}. With this information, the bot can track the required information using DST to find the missing information of the order such as the flavor of the burger and the restaurant to buy it. After that, the bot can then processes the order to buy the burger for the user, followed by replying the user with a response using NLG system.
+
+%the bots need to understand semantic information of the user's text in order to generate more personalized response. To illustrate, suppose that the user send a text chat to the bot and the SRL system extracts the semantic roles as presented bellow.
+%\\
+%
+%\texttt{\textbf{Input:} 
+%\textit{"I just ate chicken rice! Haha"}}
+%
+%\texttt{\textbf{Roles:}}
+%
+%\texttt{Predicate: \textit{eat}}
+%
+%\texttt{Agent: \textit{I}}
+%
+%\texttt{Patient: \textit{chicken rice}}
+%\\
+%
+%By knowing that the user just ate a chicken rice, the bot can thus response with \textit{"That's great! how was the chicken?"}. This way, the user will be more engaged to the conversation with the bot.
+
+SRL has been extensively studied for English formal language. Most of the traditional SRL systems are built based on language-dependent features such as syntactic parsers~\citep{gildea2002automatic, gildea2002necessity, pradhan2005semantic}. This syntactic information plays a pivotal role in solving SRL problem for traditional systems as it addresses SRL's long distance dependency~\citep{zhou2015end}. Unfortunately, this approach hardly depends on the linguistic experts experience assigning the correct syntactic information to the training data, which is costly~\citep{zhou2015end}. Moreover, if we want to build such system for another language, we have to define the syntactic information all over again~\citep{zhou2015end}. In order to address such problem, ~\cite{zhou2015end} proposed an end-to-end learning of SRL using Recurrent Neural Networks (RNN). In their research, they used Deep Bi-Directional Long Short-Term Memory (DB-LSTM) as the approach for RNN. The advantage of their system is that it only needs words of sentences as the input feature, and does not need any syntactic parsing since LSTM approach addresses the long distance relationship property of SRL problem. The research result outperforms the previous state-of-the-art traditional SRL systems as it achieved an F1 score of 81,07\%. One of other works involving deep learning for SRL is done by~\cite{collobert2011natural} who used Convolutional Neural Networks (CNN) as the main architecture.
+
+On the other hand, the number of research focusing on SRL for Indonesian language (next, will be called as \textit{Indonesian}) is still low. One example would be a research done by~\cite{skripsidewi}, which proposed SRL for Indonesian using Support Vector Machine. They used the TreeBank data (in English) translated to Indonesian language using Google Translate. The research result opens a window of improvement as the best result consists of 61,6\% precision and 66,8\% recall. Another work focusing on SRL for Indonesian was done~\cite{skripsinur}, which used case grammar theory for SRL. However, the research concludes that not all sentences could be labeled as it did not cover all types of verbs in Indonesian. These facts open an opportunity to explore a more robust approach for Indonesian SRL as well as the need for a more reliable data.
+
+This research is supported by Kata.ai, a technology company focusing on Artificial Intelligence (AI) and NLP development in Indonesian language. Its goal is to empower businesses by leveraging the power of AI and NLP towards customer engagement in a form of chat-bot. In order to achieve it, there has been an ongoing research project by the company focusing on Indonesian NLP. Since it uses chatting platforms as the medium, the scope of the project is for Indonesian conversational language. Conversational language is the most natural way people use to communicate in their daily life and thus, it is important to understand the language better through SRL.
+
+Telling from the characteristics, Indonesian conversational language has its own challenges. It has many slang words for daily conversations. For example, the verb 'belikan' ('buy') has its informal form which is 'beliin'. Another example would be 'berbicara' ('talk') as 'ngobrol'. It happens to many words in Indonesian. Not to mention the variety of ways to express pronoun 'aku' ('I') such as 'gw', 'gue', and 'aq'. Yet, they have many kinds of interjection such as 'eh', 'duuh', 'dong', 'kok' which complexify the sentence structure. Moreover, the grammars of conversational language are often unstructured. These are the challenges that the SRL system should tackle in dealing with Indonesian conversational language.
+
+Based on the fact that we still lack Indonesian SRL research, it is an interesting opportunity to build SRL system for Indonesian. Moreover, there is an industrial need from Kata.ai for understanding Indonesian conversational language. Our main contribution in this work is solving SRL problem on Indonesian conversational language. We will deep dive into the semantic role characteristics found in the language. After that, we will use deep learning as the state-of-the-art approach that has been emerging in NLP field for doing the SRL task. There is a wide variety of features and model architectures that can be used to train the SRL model. It is thus important for us to find the best feature combinations and model architecture for solving SRL on Indonesian conversational language.
+%While many of the previous works studied SRL on formal language, our research aims to explore SRL on conversational language, which is still under-resourced. Following Zhou et al.~\cite{zhou2015end}, we view SRL as a sequence labeling problem. We thus introduce a new set of semantic roles for this language type. Furthermore, we propose a new architecture named Context-Aware Bi-Directional Long Short-Term Memories, designed with attention mechanism in order to capture context information of the sentence at a higher level.
+
+%This work explores the SRL on conversational language, including creating a new set of semantic roles and proposing a new architecture, the so-called Context-Aware Bi-Directional Long Short-Term Memory Networks. We utilized word embedding and linguistic components as our main features. The SRL task was mainly evaluated on Indonesian conversational language used on chatting platform. Although this is a pilot task, we obtained a really promising result with F1 score of 74.78\%.
 
 %-----------------------------------------------------------------------------%
-\section{Perumusan Masalah}
+\section{Problem Statement}
 %-----------------------------------------------------------------------------%
-Berdasarkan latar belakang di atas, dalam penelitian ini \saya~ mengajukan rumusan masalah sebagai berikut:
+Based on the motivation described in the background, the following problem statements are proposed:
 \begin{enumerate}
 	% Bagaimana --- %
-	\item Bagaimana performa RNNs dibandingkan dengan CRFs (\textit{baseline}) untuk sistem \mer~yang dikembangkan?
-	\item Fitur apa saja yang membuat sistem \mer~memiliki performa terbaik?
+	\item How to solve SRL for Indonesian conversational language with sequence labeling approach using deep learning? 
+	\item Which feature combination outputs the best performance?
+	\item Which deep learning model architecture gives the best result?
 \end{enumerate}
 
 %-----------------------------------------------------------------------------%
-\section{Tujuan dan Manfaat Penelitian}
+\section{Objectives and Contributions}
 %-----------------------------------------------------------------------------%
-Penelitian ini bertujuan untuk membangun sistem yang mampu melakukan ekstraksi entitas kesehatan dari forum \textit{online}. Sebenarnya, pada penelitan yang dilakukan oleh \cite{skripsiKakRadit} sudah menghasilkan sebuah sistem yang sama. Namun, fokus penelitian ini yaitu mencoba menggunakan metode yang berbeda. Metode tersebut yaitu dengan menggunakan RNNs dengan harapan mampu memberikan hasil yang lebih baik. Penelitian ini juga bertujuan untuk mendapatkan fitur-fitur yang membuat sistem memiliki performa terbaik. Selain itu, penelitian ini juga bertujuan untuk mendapatkan informasi baru terkait pembuatan sistem \mer~berbahasa Indonesia.
-
-Manfaat dari penelitian ini adalah menghasilkan rancangan sistem dan metode yang dapat digunakan sebagai bahan penelitian lanjutan. Saat ini, sistem dan metode yang dihasilkan hanya mampu mengenali entitas kesehatan saja. Hal ini dapat digunakan untuk membuat sistem informasi tentang suatu jenis penyakit lengkap dengan gejala, obat dan cara penyembuhannya. Selama ini, masyarakat yang menanyakan suatu penyakit melalui forum \ol~tidak membaca terlebih dahulu riwayat pertanyaan yang telah ditanyakan oleh orang lain. Oleh karena itu, diharapkan dengan sistem informasi tersebut, calon penanya hanya perlu mencari penyakit yang akan ditanyakan pada sistem informasi tersebut. Apabila tidak ada, penanya dapat mengajukan pertanyaan, kemudian pertanyaan dan jawaban yang diberikan akan terindeks oleh sistem dan menambah informasi. 
-
-Selain itu, hasil penelitian ini juga dapat digunakan untuk membangun sistem yang mengenali tren penyakit pada masyarakat, sehingga pihak terkait mampu menentukan langkah strategis yang tepat. Sistem \mer~juga dapat digunakan pada aplikasi \textit{Question Answering} \citep{abacha2011medical} dengan cara memanfaatkan hasil pelabelan untuk melakukan identifikasi entitas yang ditanyakan.
+%The objectives of this research includes understanding the semantic role characteristics of informal Indonesian short text and performing Semantic Role Labeling for informal Indonesian short text using deep learning approaches.
+This research aims to build an SRL system for Indonesian conversational language. The main contributions of this work include creating a new set of semantic roles for Indonesian conversational language as well as proposing features and architectures for solving the SRL problem.
 
 %-----------------------------------------------------------------------------%
-\section{Metodologi Penelitian}
+\section{Methodology}
 %-----------------------------------------------------------------------------%
-Berikut merupakan metode penelitian yang \saya~lakukan.
+The methodology of this work consists of literature review, data gathering, model development, experiment, evaluations and analysis, and conclusion.
+
 \begin{enumerate}
-	\item Studi Literatur\\
-	Pada tahapan ini \saya~mencari literatur yang terkait dengan penelitian ini. Literatur ini digunakan sebagai bahan pemelajaran dan untuk mendukung penelitian yang \saya~lakukan. Literatur yang \saya~gunakan memiliki keterkaitan terhadap kasus \mer, \textit{Sequence Labeling} dan \rnn.
+	\item Literature Review\\
+	In this step, we did a comprehensive study on Natural Language Processing (NLP) and Machine Learning (ML) aspects. The NLP aspect includes language model and semantic role labeling. For machine learning, we learned deep learning approaches such as recurrent neural networks and convolutional neural networks. These knowledge are the basis to support our research
 	
-	\item Pengumpulan Data \\
-	Pada tahapan ini, \saya~mengumpulkan data percobaan yang diperlukan. \Saya~mengumpulkan dokumen teks dari forum kesehatan \textit{online} dan dari penelitian \cite{skripsiKakRadit}. Setelah dokumen terkumpul, \saya~melakukan langkah-langkah pra-pemrosesan baik pada dokumen yang \saya~dapatkan dari forum maupun korpus dari penelitian \cite{skripsiKakRadit}. Tujuan langkah tersebut yaitu untuk menghilangkan beberapa karakter yang mengganggu tahapan selanjutnya, melakukan normalisasi pada beberapa kasus token, dan lain sebagainya. Setelah itu \saya~melakukan tokenisasi dan melakukan pemecahan kalimat dengan menggunakan beberapa aturan, kemudian \saya~memberikan label pada dokumen yang \saya~dapat dari forum secara manual. 
+	\item Data Gathering\\
+	Since there seems to be no available corpus for SRL on Indonesian, especially conversational language, we annotated our own corpus. We retrieved the real word data from one of Kata.ai's chat bots. For this annotation, we build a new set of semantic roles crafted for Indonesian conversational language.
 	
-	\item Pengembangan Model\\
-	Pada tahapan ini, \saya~melakukan perancangan eksperimen yang akan dilakukan. \Saya~mendefinisikan fitur-fitur yang akan diuji pada penelitian ini dan arsitektur RNNs yang juga akan diuji.
+	\item Model Development\\
+	After we gathered our corpus, we then design the model for the experiment in this research. We define the feature extractions and the deep learning model architecture that will be tested. In this section, we also propose our own architecture.
 		
-	\item Eksperimen \\
-	Tahapan ini merupakan bagian inti dari penelitian. \saya~melakukan langkah eksperimen dengan tujuan mendapatkan jawaban dari pertanyaan yang telah dirumuskan pada rumusan masalah. Sebelum masuk di tahap ini, \saya~melakukan pemecahan data menjadi 10 bagian untuk mengimplementasikan \textit{10-cross fold validation}. Setelah itu, data disusun sedemikian sehingga siap digunakan sebagai \textit{resource} eksperimen.
+	\item Experiment \\
+	In this step, we design our experiment scenarios. There are two set of scenarios consisting of feature and architecture experiments. The first one aims to find which feature combination outputs the best result, meanwhile the later focuses on finding the deep learning architecture that produces the highest performance.
 	
-	\item Evaluasi dan Analisis Hasil \\
-	Pada tahapan ini \saya~melakukan evaluasi dan analisis dari hasil eksperimen. Untuk mengukur akurasi dari masing-masing fitur dan arsitektur RNNs yang \saya~usulkan, \saya~menggunakan \textit{precision}, \textit{recall} dan \textit{f-measure}.
-		
-	\item Penarikan Kesimpulan \\
-	Tahap ini merupakan tahap terakhir dari penelitian. Setelah melakukan serangkaian eksperimen, evaluasi dan analisis, \saya~memberikan kesimpulan dan informasi penting terkait penelitian ini. Selain itu \saya~juga memberikan saran untuk penelitian selanjutnya.
+	\item Evaluation and Analysis \\
+	The experiment results are then to be evaluated and analyzed. We use precision, recall, and F1 as the metrics for the evaluation. We also conduct error analysis to get a deeper insight on the results.
+	
+	\item Conclusion \\
+	In the end, we conclude our findings in our research based on the evaluations and analyses of the experiments. We then describe some future works that can be done following the results of this research.
 \end{enumerate}
 
 %-----------------------------------------------------------------------------%
-\section{Ruang Lingkup Penelitian}
-Pada penelitian ini terdapat beberapa batasan yang \saya~tentukan, yaitu:
-\begin{enumerate}
-\item{\bf Entitas Kesehatan}\\
-Pengenalan entitas kesehatan pada penelitian ini berfokus pada pengenalan nama penyakit (\disease), gejala-gejala penyakit (\symptom), nama obat (\drug) dan langkah pengobatan (\treatment),
-
-\item{\bf Domain Pengenalan}\\
-Pengenalan entitas kesehatan dilakukan pada bagian judul pertanyaan, isi pertanyaan/keluhan dan isi jawaban dari dokter.
-\end{enumerate}
-
+%\section{Scope}
+%We scope our research to these kinds of sentences:
+%\begin{enumerate}
+%	\item Single predicate in a form of verb.
+%	\item Single predicate in a form of adjective.
+%\end{enumerate}
 %-----------------------------------------------------------------------------%
 
 %-----------------------------------------------------------------------------%
-\section{Sistematika Penulisan}
+\section{Organization}
 %-----------------------------------------------------------------------------%
-Sistematika penulisan dalam laporan penelitian ini sebagai berikut:
-\begin{itemize}
+This report is organized as follows. In Chapter 2, literature review on the language models, deep learning architectures, and semantic role labeling will be shown. The methodology of this research is described in Chapter 3, including the features and the model architectures being used. This chapter will also provide the new idea of contribution for this research. In Chapter 4, the implementations of our methodology are described with the details of tools used and the measurement setup. The experiment scenarios, results, and analyses are presented in Chapter 5. Lastly, the conclusion and possible future works are described in Chapter 6.
 
-	\item Bab 1 \babSatu \\
-	Pada bab ini \saya~menjelaskan mengenai motivasi dalam melakukan penelitian ini dan komponen-komponen utama penelitian seperi latar belakang, perumusan masalah, tujuan dan manfaat penelitian, metodologi penelitian, ruang lingkup penelitian dan sistematika penulisan.
-	
-	\item Bab 2 \babDua \\
-	Pada bab ini \saya~melakukan studi literatur mengenai beberapa teori dan penelitian yang dilakukan oleh penulis lain. 
-		
-	\item Bab 3 \babTiga \\
-	Pada bab ini \saya~menjelaskan alur dari penelitian ini, yaitu pengumpulan data, pra-pemrosesan, pelabelan, pengembangan model, eksperimen dan evaluasi.
-		
-	\item Bab 4 \babEmpat \\
-	Pada bab ini \saya~menjelaskan proses implementasi sistem dan eksperimen berdasarkan rancangan yang telah \penulis~tentukan pada bab sebelumnya. Selain itu \saya~juga menjelaskan implementasi dari masing-masing tahapan yang dilakukan.
-		
-	\item Bab 5 \babLima \\
-	Pada bab ini \saya~menjelaskan analisis dari hasil eksperimen yang telah \saya~kerjakan pada tahap sebelumnya. Hasil eksperimen \saya~sajikan dalam bentuk tabel dan grafik.
-	
-	\item Bab 6 \babEnam \\
-	Pada bab ini \saya~memberikan kesimpulan berdasarkan hasil eksperimen dan analisis yang telah dilakukan pada penelitian ini. Selain itu \saya~juga memberikan saran dan masukan untuk penelitian dan pengembangan sistem mengenai \mer~berbahasa Indonesia selanjutnya.
-	
-\end{itemize}
+%This report is organized as follows. We first explain the previous works on SRL systems in section 2. In section 3, the methodology of the research is described, . The results and analysis are then explained in section 4. Finally, we report our conclusion and potential future works in the last section.
+%\begin{itemize}
+%
+%	\item Chapter 1 \babSatu \\
+%	Pada bab ini \saya~menjelaskan mengenai motivasi dalam melakukan penelitian ini dan komponen-komponen utama penelitian seperi latar belakang, perumusan masalah, tujuan dan manfaat penelitian, metodologi penelitian, ruang lingkup penelitian dan sistematika penulisan.
+%	
+%	\item Chapter 2 \babDua \\
+%	Pada bab ini \saya~melakukan studi literatur mengenai beberapa teori dan penelitian yang dilakukan oleh penulis lain. 
+%		
+%	\item Chapter 3 \babTiga \\
+%	Pada bab ini \saya~menjelaskan alur dari penelitian ini, yaitu pengumpulan data, pra-pemrosesan, pelabelan, pengembangan model, eksperimen dan evaluasi.
+%		
+%	\item Chapter 4 \babEmpat \\
+%	Pada bab ini \saya~menjelaskan proses implementasi sistem dan eksperimen berdasarkan rancangan yang telah \penulis~tentukan pada bab sebelumnya. Selain itu \saya~juga menjelaskan implementasi dari masing-masing tahapan yang dilakukan.
+%		
+%	\item Chapter 5 \babLima \\
+%	Pada bab ini \saya~menjelaskan analisis dari hasil eksperimen yang telah \saya~kerjakan pada tahap sebelumnya. Hasil eksperimen \saya~sajikan dalam bentuk tabel dan grafik.
+%	
+%	\item Chapter 6 \babEnam \\
+%	Pada bab ini \saya~memberikan kesimpulan berdasarkan hasil eksperimen dan analisis yang telah dilakukan pada penelitian ini. Selain itu \saya~juga memberikan saran dan masukan untuk penelitian dan pengembangan sistem mengenai \mer~berbahasa Indonesia selanjutnya.
+%	
+%\end{itemize}

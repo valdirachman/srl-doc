@@ -4,33 +4,51 @@
 %-----------------------------------------------------------------------------%
 
 %-----------------------------------------------------------------------------%
-\section{Kesimpulan}
+%\section{Conclusion}
 %-----------------------------------------------------------------------------%
-Terkait dengan rumusan masalah pertama, setelah dilakukan penelitian secara garis besar didapatkan kesimpulan bahwa model RNNs yang dihasilkan mampu memberikan performa yang lebih baik dibandingkan dengan model CRF (\textit{baseline}) pada penelitian \cite{skripsiKakRadit}. Dari penggunaan fitur kata itu sendiri saja, model RNNs sudah memberikan performa yang lebih baik dengan nilai \textit{F-Measure} dan \textit{recall} yang lebih tinggi.
+Semantic Role Labeling (SRL) is an integral part of understanding semantic information of a text. One of its applications is to make chat bots understand user's chat better. Even though the SRL on English formal language has been widely studied, only a few reports exist for the informal conversational language, especially for language being used in the chatbot system. In Indonesian, both formal and conversational language are barely tapped for building SRL system. In this work, we focus on solving SRL for Indonesian conversational language. Our contributions are introducing a new set of semantic roles and proposing an attention mechanism on top of the Long Short-Term Memory Networks architecture. 
 
-Terkait dengan rumusan masalah kedua, didapatkan kesimpulan lain bahwa fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, frasa Kata,  1 kata sebelum dan 1 kata sesudah memberikan hasil yang terbaik, yaitu dengan rata-rata \textit{f-measure} $ 63.06\% $ (\textit{disease} $ 68.17\% $, \textit{symptom} $ 61.42\% $, \textit{treatment} $ 68.17\% $ dan \textit{drug} $ 68.17\% $).
+We view SRL as a sequence labeling problem. One of the deep learning architectures that fits to solve sequence labeling problem is Long Short-Term Memories (LSTM), a modification of Recurrent Neural Networks (RNN). In this work, we experiment with a variety of LSTM networks, including vanilla LSTM, Bi-Directional LSTM (BLSTM), Deep BLSTM (DBLSTM), DBLSTM-Zhou, and DBLSTM-Highway. The features used are Word Embedding (WE), Part-of-Speech Tag (POS), and Neighboring Word Embeddings (NW).
 
-Dua arsitektur yang diusulkan memiliki kelebihan masing-masing. Untuk arsitektur LSTMs dengan 1 layer, \textit{f-measure} sama dengan percobaan untuk mendapatkan fitur terbaik, karena eksperimen tersebut menggunakn arsitektur LSTMs yang sama. Sedangkan untuk arsitektur kedua (LSTMs 2 layer), rata-rata \textit{f-measure} yang didapatkan adalah $ 62.14\% $. LSTMs pertama memiliki nilai \textit{f-measure} pada entitas \textit{disease} dan \textit{drug} yang lebih bagus, yaitu masing-masing $ 68.17\% $ dan $ 69.82\% $. Sedangkan LSTMs kedua memiliki nilai \textit{f-measure} pada entitas \textit{symptom} $ 62.13\% $ dan \textit{treatment} $ 56.51\% $. Namun, apabila dilihat dari waktu komputasi, LSTMs pertama lebih baik dibandingkan LSTMs kedua.
+We conducted two sets of experiment scenarios: feature selection and model selection. Our experiments on feature selection show that when the size of training data is relatively small, one still needs to use a traditional feature such as POS tag in addition to word embedding. The neighboring word embeddings feature can slightly improve the results, especially for the label \greet. By using vanilla LSTM, the top two best feature combinations are WE + POS + NW and WE + POS with the F1 scores of 79.76\% and 79.10\%, respectively.
 
-LSTMs pertama tidak bisa dikatakan lebih baik dibandingkan LSTMs kedua dan begitu pula sebaliknya, karena hasil yang diperoleh mengatakan bahwa masing-masing arsitektur memiliki hasil yang lebih baik di beberapa macam entitas. Namun, arsitektur ini mampu memberikan hasil yang lebih baik dari hasil penelitian \cite{skripsiKakRadit}. Hal ini akan menarik apabila \textit{resource} semakin diperbesar, apakah tetap LSTMs 1 layer lebih baik, karena LSTMs 2 layer memiliki parameter lebih banyak, sehingga mampu menyimpan informasi yang lebih besar.
+%is also useful when we only use one-directional vanilla LSTM architecture in order to capture more context.
+
+In model selection set, our experiments show that DBLSTM architecture can outperform the vanilla LSTM and BLSTM. The results also show that when using DBLSTM, the feature combination WE + POS can outperform the WE + POS + NW combination. Furthermore, our results show that the original DBLSTM can outperform its variants: DBLSTM-Zhou and DBLSTM-Highway. For the additional layers, we experiment on adding CNN layer and our proposed attention mechanism to the three afore-mentioned DBLSTM architectures. It turns out that the CNN layer is not suitable for the DBLSTM networks. In our experiment of adding the attention mechanism, the DBLSTM architecture's performance slightly decreases while the results of both DBLSTM-Zhou and DBLSTM-Highway improve. The highest result is achieved by using DBLSTM-Highway with the attention mechanism with an F1 score of 82.68\%.
+
+For future works, there is a lot of possibilities to design the architectures. For example, instead of putting the attention layer on top of the main layer, one can add it right after the input layer. Another interesting architecture design would be combining the output of CNN layer and the original input before going to the main layer. Beside architectures, one can experiment with many features such as word shape, prefix, suffix, and neighboring POS tags to enhance the performance. Once the SRL system is established, one can focus on building the Natural Language Generation (NLG) system for chat bots based on the semantic roles of the Indonesian conversational language. This way, one can create more intelligent chat bots which understand deeper on conversational language. Another interesting work would be integrating coreference resolution on the SRL system knowing that conversational language is usually in a form of dialogue.
+
+%is also useful when we only use one-directional vanilla LSTM architecture in order to capture more context.
+%adding CNN our proposed architecture, CA-BLSTM, can outperforms the original BLSTM. Based on the increasing result of all precision, recall, and F1, we suggest that our architecture successfully extracts context information at higher level. Since it becomes more context-aware, our analysis shows that CA-BLSTM can predict the labels more carefully.
+
+%CA-BLSTM adds an attention mechanism on top of the BLSTM layer, by collecting context information from all the words in a sentence and representing it as a vector that is concatenated to all the output of BLSTM.
+
+
+%Terkait dengan rumusan masalah pertama, setelah dilakukan penelitian secara garis besar didapatkan kesimpulan bahwa model RNNs yang dihasilkan mampu memberikan performa yang lebih baik dibandingkan dengan model CRF (\textit{baseline}) pada penelitian \cite{skripsiKakRadit}. Dari penggunaan fitur kata itu sendiri saja, model RNNs sudah memberikan performa yang lebih baik dengan nilai \textit{F-Measure} dan \textit{recall} yang lebih tinggi.
+%
+%Terkait dengan rumusan masalah kedua, didapatkan kesimpulan lain bahwa fitur kata itu sendiri, kamus kesehatan, \textit{stop word}, frasa Kata,  1 kata sebelum dan 1 kata sesudah memberikan hasil yang terbaik, yaitu dengan rata-rata \textit{f-measure} $ 63.06\% $ (\textit{disease} $ 68.17\% $, \textit{symptom} $ 61.42\% $, \textit{treatment} $ 68.17\% $ dan \textit{drug} $ 68.17\% $).
+%
+%Dua arsitektur yang diusulkan memiliki kelebihan masing-masing. Untuk arsitektur LSTMs dengan 1 layer, \textit{f-measure} sama dengan percobaan untuk mendapatkan fitur terbaik, karena eksperimen tersebut menggunakn arsitektur LSTMs yang sama. Sedangkan untuk arsitektur kedua (LSTMs 2 layer), rata-rata \textit{f-measure} yang didapatkan adalah $ 62.14\% $. LSTMs pertama memiliki nilai \textit{f-measure} pada entitas \textit{disease} dan \textit{drug} yang lebih bagus, yaitu masing-masing $ 68.17\% $ dan $ 69.82\% $. Sedangkan LSTMs kedua memiliki nilai \textit{f-measure} pada entitas \textit{symptom} $ 62.13\% $ dan \textit{treatment} $ 56.51\% $. Namun, apabila dilihat dari waktu komputasi, LSTMs pertama lebih baik dibandingkan LSTMs kedua.
+%
+%LSTMs pertama tidak bisa dikatakan lebih baik dibandingkan LSTMs kedua dan begitu pula sebaliknya, karena hasil yang diperoleh mengatakan bahwa masing-masing arsitektur memiliki hasil yang lebih baik di beberapa macam entitas. Namun, arsitektur ini mampu memberikan hasil yang lebih baik dari hasil penelitian \cite{skripsiKakRadit}. Hal ini akan menarik apabila \textit{resource} semakin diperbesar, apakah tetap LSTMs 1 layer lebih baik, karena LSTMs 2 layer memiliki parameter lebih banyak, sehingga mampu menyimpan informasi yang lebih besar.
 
 %-----------------------------------------------------------------------------%
-\section{Saran}
+%\section{Future Work}
 %-----------------------------------------------------------------------------%
-Setelah melakukan eksperimen dan menganalisis hasilnya, ada beberapa saran untuk penelitian selanjutnya, antara lain sebagai berikut.
-
-\begin{enumerate}
-  \item Penelitian ini hanya menggunakan 309 \textit{post} forum kesehatan \textit{online} sehingga perlu penambahan data \textit{training} dan \textit{testing} mengingat \textit{deep learning} membutuhkan data yang besar dalam melakukan \textit{training} untuk mendapatkan model yang baik.
-  
-  \item Terdapat beberapa parameter bebas seperti dalam pembuatan model \textit{word embedding} yaitu panjang \textit{window} dan \textit{vector}. Hal ini bisa menjadi bahan penelitian lanjutan untuk mendapatkan panjang \textit{window} dan \textit{vector} yang tepat supaya model mampu memberikan akurasi yang lebih baik.
-  
-  \item Dalam menentukan label entitas, \saya~tidak mempertimbangkan konteks kalimat yang berada di sekitarnya. Padahal kalimat di sekitarnya akan memberikan informasi lebih terkait hubungan antar entitas. Misalnya pada kalimat pertama dokter menjelaskan penyakit yang dialami. Pada kalimat selanjutnya dokter tersebut menjelaskan cara penyembuhan dari penyakit tersebut. Oleh karena itu, \saya~menyarankan untuk mempertimbangkan fitur konteks kalimat pada penelitian selanjutnya.
-  
-
-  \item Perlu dibuat korpus dengan jumlah masing-masing entitas yang seimbang, sehingga hasil yang diberikan tidak bias.
-  
-  \item Sebaiknya, pelabelan dokumen secara manual melibatkan pihak yang ahli di bidangnya (dalam hal ini dokter, perawat, apoteker, atau mahasiswa di bidang kesehatan) supaya label yang diberikan lebih tepat.
-  
-  \item Sama seperti pada penelitian \cite{skripsiKakRadit}, sebaiknya dibuat model POS-Tagger yang khusus di bidang kesehatan, sehingga pemberian tag pada dokumen kesehatan lebih tepat.
-
-\end{enumerate}
+%Setelah melakukan eksperimen dan menganalisis hasilnya, ada beberapa saran untuk penelitian selanjutnya, antara lain sebagai berikut.
+%
+%\begin{enumerate}
+%  \item Penelitian ini hanya menggunakan 309 \textit{post} forum kesehatan \textit{online} sehingga perlu penambahan data \textit{training} dan \textit{testing} mengingat \textit{deep learning} membutuhkan data yang besar dalam melakukan \textit{training} untuk mendapatkan model yang baik.
+%  
+%  \item Terdapat beberapa parameter bebas seperti dalam pembuatan model \textit{word embedding} yaitu panjang \textit{window} dan \textit{vector}. Hal ini bisa menjadi bahan penelitian lanjutan untuk mendapatkan panjang \textit{window} dan \textit{vector} yang tepat supaya model mampu memberikan akurasi yang lebih baik.
+%  
+%  \item Dalam menentukan label entitas, \saya~tidak mempertimbangkan konteks kalimat yang berada di sekitarnya. Padahal kalimat di sekitarnya akan memberikan informasi lebih terkait hubungan antar entitas. Misalnya pada kalimat pertama dokter menjelaskan penyakit yang dialami. Pada kalimat selanjutnya dokter tersebut menjelaskan cara penyembuhan dari penyakit tersebut. Oleh karena itu, \saya~menyarankan untuk mempertimbangkan fitur konteks kalimat pada penelitian selanjutnya.
+%  
+%
+%  \item Perlu dibuat korpus dengan jumlah masing-masing entitas yang seimbang, sehingga hasil yang diberikan tidak bias.
+%  
+%  \item Sebaiknya, pelabelan dokumen secara manual melibatkan pihak yang ahli di bidangnya (dalam hal ini dokter, perawat, apoteker, atau mahasiswa di bidang kesehatan) supaya label yang diberikan lebih tepat.
+%  
+%  \item Sama seperti pada penelitian \cite{skripsiKakRadit}, sebaiknya dibuat model POS-Tagger yang khusus di bidang kesehatan, sehingga pemberian tag pada dokumen kesehatan lebih tepat.
+%
+%\end{enumerate}
