@@ -60,33 +60,33 @@ Recurrent Neural Networks, shortened as RNN, is one of deep learning architectur
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.80\linewidth]{images/simplernn}
-	\caption{A simple Recurrent Neural Networks (RNN)~\citep{Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN}
+	\includegraphics[width=0.80\linewidth]{images/RNNNew}
+	\caption{A simple Recurrent Neural Networks (RNN). (left) folded RNN. (right) unfolded RNN}
 	\label{fig:simplernn}
 \end{figure}
 
 The left picture illustrates the folded RNN model applied to all time steps. Note that the black rectangle represents one time step delay, meaning that that input is coming from the output of the previous time step. 
 
-The right picture shows the unfolded RNN that is more intuitive since it visualizes the time steps. There are three layers in every time step t, which are input, hidden, and output layers. The input layer is for the input representations. In the hidden layer, it contains information from the input layer as well as those coming from hidden layers in the previous time steps. The output layer consists of the output of the model. These three layers are in a form of vectors. In every time step $t$, RNN has an input layer $ \mathbf{x(t)} \in {\rm I\!R^{A}} $, hidden layer $ \mathbf{h(t)} \in {\rm I\!R^{H}} $, and output layer $ \mathbf{o(t)} \in {\rm I\!R^{B}} $. The values of $A$, $H$, and $B$ represent the length of the input vector, the number of unit in a hidden layer, and the length of the output vector, respectively. There are three parameters that will be trained, which are $U$, $V$, and $W.$ These parameters are the weight matrices for connecting two layers. $ U \in {\rm I\!R^{H \times A }}$ connects input layer with hidden layer (input-hidden), $ W \in {\rm I\!R^{H \times H}}$ connects hidden layer with the previous hidden layer (hidden-hidden), and $ V \in {\rm I\!R^{B \times H}}$ connects hidden layer with output layer (hidden-ouput). These parameters are time-distributed, meaning that they are shared across time steps. 
+The right picture shows the unfolded RNN that is more intuitive since it visualizes the time steps. There are three layers in every time step t, which are input, hidden, and output layers. The input layer is for the input representations. In the hidden layer, it contains information from the input layer as well as those coming from hidden layers in the previous time steps. The output layer consists of the output of the model. These three layers are in a form of vectors. In every time step $t$, RNN has an input layer $ \mathbf{x_{t}} \in {\rm I\!R^{A}} $, hidden layer $ \mathbf{h_{t}} \in {\rm I\!R^{H}} $, and output layer $ \mathbf{o_{t}} \in {\rm I\!R^{B}} $. The values of $A$, $H$, and $B$ represent the length of the input vector, the number of unit in a hidden layer, and the length of the output vector, respectively. There are three parameters that will be trained, which are $U$, $V$, and $W.$ These parameters are the weight matrices for connecting two layers. $ U \in {\rm I\!R^{H \times A }}$ connects input layer with hidden layer (input-hidden), $ W \in {\rm I\!R^{H \times H}}$ connects hidden layer with the previous hidden layer (hidden-hidden), and $ V \in {\rm I\!R^{B \times H}}$ connects hidden layer with output layer (hidden-ouput). These parameters are time-distributed, meaning that they are shared across time steps. 
 
-Every input layer $ \mathbf{x(t)} $ is mapped into output layer $ \mathbf{o(t)} $ in every time step $t$. In the middle of the process, the model calculates the hidden layer $ \mathbf{h(t)} $ from two layers, $ \mathbf{x(t)} $ and $ \mathbf{h(t-1)} $. The output layer $ \mathbf{o(t)} $ is then retrieved by performing a function to the hidden layer h(t). The general equations for RNN are presented as follows:
+Every input layer $ \mathbf{x_{t}} $ is mapped into output layer $ \mathbf{o_{t}} $ in every time step $t$. In the middle of the process, the model calculates the hidden layer $ \mathbf{h_{t}} $ from two layers, $ \mathbf{x_{t}} $ and $ \mathbf{h_{t-1}} $. The output layer $ \mathbf{o_{t}} $ is then retrieved by performing a function to the hidden layer $\mathbf{h_{t}}$. The general equations for RNN are presented as follows:
 \begin{equation}
 \label{eq:rnnot}
-\mathbf{o(t)} = f2(V \cdot \mathbf{h(t)} + \mathbf{c})
+\mathbf{o_{t}} = f2(V \cdot \mathbf{h_{t}} + \mathbf{c})
 \end{equation}
 
 \begin{equation}
 \label{eq:rnnht}
-\mathbf{h(t)} = f1(U \cdot \mathbf{x(t)} + W \cdot \mathbf{h(t-1)} + \mathbf{b})
+\mathbf{h_{t}} = f1(U \cdot \mathbf{x_{t}} + W \cdot \mathbf{h_{t-1}} + \mathbf{b})
 \end{equation}
 
-Where $ \mathbf{h(0)} = f1(U \cdot \mathbf{x(0)}) $.
+Where $ \mathbf{h_{0}} = f1(U \cdot \mathbf{x_{0}}) $.
 
-Note that there are two additional parameters to train, which are the bias vectors $\mathbf{b}$ and $\mathbf{c}$. In Equation~\ref{eq:rnnht}, the input $\mathbf{x(t)}$ and $\mathbf{h(t-1)}$ are weighted by matrices $U$ and $W$ respectively, added by a bias vector $\mathbf{b}$. The result is then inserted to an activation function $f1$ in order to produce hidden layer $\mathbf{h(t)}$. In the Equation~\ref{eq:rnnot}, $\mathbf{h(t)}$ is multiplied by the weight matrix $V$ and added by a bias vector $\mathbf{c}$ before being processed by the activation function $f2$ to produce $\mathbf{o(t)}$. The examples of activation function $f1$ and $f2$ are tanh and softmax.
+Note that there are two additional parameters to train, which are the bias vectors $\mathbf{b}$ and $\mathbf{c}$. In Equation~\ref{eq:rnnht}, the input $\mathbf{x_{t}}$ and $\mathbf{h_{t-1}}$ are weighted by matrices $U$ and $W$ respectively, added by a bias vector $\mathbf{b}$. The result is then inserted to an activation function $f1$ in order to produce hidden layer $\mathbf{h_{t}}$. In the Equation~\ref{eq:rnnot}, $\mathbf{h_{t}}$ is multiplied by the weight matrix $V$ and added by a bias vector $\mathbf{c}$ before being processed by the activation function $f2$ to produce $\mathbf{o_{t}}$. The examples of activation function $f1$ and $f2$ are tanh and softmax.
 
 Based on this illustration, there are two main characteristics of RNN:
 \begin{enumerate}
-	\item It has a cycle in the graph for every time step. Hidden layer $\mathbf{h(t-1)}$  will be one of the inputs for forming $\mathbf{h(t)}$ .
+	\item It has a cycle in the graph for every time step. Hidden layer $\mathbf{h_{t-1}}$  will be one of the inputs for forming $\mathbf{h_{t}}$ .
 	\item It has shared parameters across time steps.
 \end{enumerate}
 
@@ -94,14 +94,14 @@ Figure~\ref{fig:fulrnn} illustrates a more complete RNN model on how it is being
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.80\linewidth]{images/fullrnn}
-	\caption{A Complete RNN on how it is being trained~\citep{Goodfellow-et-al-2016-Book}. (left) folded RNN. (right) unfolded RNN}
+	\includegraphics[width=0.80\linewidth]{images/RNNUnfoldNew}
+	\caption{A Complete RNN on how it is being trained. (left) folded RNN. (right) unfolded RNN}
 	\label{fig:fulrnn}
 \end{figure}
 
-The goal of training the model is to find the estimated values of parameters $W$, $U$, $V$, $\mathbf{b}$, and $\mathbf{c}$ which produce output $\mathbf{o(t)}$ as close as the expected output $\mathbf{y(t)}$ in the training data. 
+The goal of training the model is to find the estimated values of parameters $W$, $U$, $V$, $\mathbf{b}$, and $\mathbf{c}$ which produce output $\mathbf{o_{t}}$ as close as the expected output $\mathbf{y_{t}}$ in the training data. 
 
-The loss function $L$ measures the difference between the predicted output $\mathbf{o(t)}$ and the expected output $\mathbf{y(t)}$ in every time step t. The smaller the difference, the better the model. The machine thus has to minimize the result of loss function as small as possible. The parameters $W$, $U$, $V$, $\mathbf{b}$, and $\mathbf{c}$ are unknown in the beginning. At first, these parameters are initiated randomly. For every iteration, called epoch, the machine aims to learn the best values for each parameter.
+The loss function $L$ measures the difference between the predicted output $\mathbf{o_{t}}$ and the expected output $\mathbf{y_{t}}$ in every time step t. The smaller the difference, the better the model. The machine thus has to minimize the result of loss function as small as possible. The parameters $W$, $U$, $V$, $\mathbf{b}$, and $\mathbf{c}$ are unknown in the beginning. At first, these parameters are initiated randomly. For every iteration, called epoch, the machine aims to learn the best values for each parameter.
 
 The way to do so is by computing the gradient for each iteration. The idea behind computing the gradient values is to tell the model which parameter setting that brings it into smaller loss function result. By having this information, the machine then sets the better values for each parameter in the next iteration in order to reduce the loss function. From one iteration into another, the machine will find better parameter values to minimize the loss function. The learning method based on the gradient information is called optimization algorithm. Some optimization algorithms available are Adam~\citep{kingma2014adam}, and RMSProp~\citep{tieleman2012lecture}.
 
@@ -115,7 +115,7 @@ The eigenvalues $\lambda$ in $diag(\lambda)$ will either vanish if they are less
 
 To address this issue, there are solutions proposed such as simulated annealing and discrete error propagation~\citep{bengio1994learning}, time delays~\citep{lang1990time}, and hierarchical sequence compression~\citep{schmidhuber2007training}. Among these approaches, one of the most robust solutions is the Long Short Term Memories (LSTM)~\citep{hochreiter1997long}. 
 
-The modification added in LSTM to address the issue is by using gates. It is basically RNN, but the nonlinear units in the hidden layer is replaced by the memory blocks. One nonlinear unit $tanh$ in RNN is replaced by more complex memory blocks in LSTM. Besides the hidden layer $\mathbf{h(t)}$, LSTM also has $\mathbf{m(t)}$ which is called memory cells.  The idea of LSTM is to learn when to forget or remember the memory from previous time steps through multiplicative gates. It thus prevents the vanishing and exploding gradient problem. For example, if the input gate is closed, then the memory will be unchanged.
+The modification added in LSTM to address the issue is by using gates. It is basically RNN, but the nonlinear units in the hidden layer is replaced by the memory blocks. One nonlinear unit $tanh$ in RNN is replaced by more complex memory blocks in LSTM. Besides the hidden layer $\mathbf{h_{t}}$, LSTM also has $\mathbf{m_{t}}$ which is called memory cells.  The idea of LSTM is to learn when to forget or remember the memory from previous time steps through multiplicative gates. It thus prevents the vanishing and exploding gradient problem. For example, if the input gate is closed, then the memory will be unchanged.
 
 Figure~\ref{fig:lstm} illustrates a one block memory in LSTM. There are three main gates, which are forget gate, input gate, and output gate. These gates are responsible to determine whether an information is added, kept, or deleted in a cell. Each gate has sigmoid layer and element-wise operations. The sigmoid layer converts the input into a probability between 0 and 1. This probability describes the gate behavior towards the input, whether to accept it (probability close to 1) or not (probability close to 0). 
 
@@ -131,29 +131,29 @@ The equations of the sigmoid layers for each of the gates are explained as follo
 	\item \textit{Forget Gate}\\
 	This gate is responsible to determine how much the information from the past should be kept in the memory. The equation of the forget gate is given as follows:
 	\begin{equation}\label{eq:forget_lstm}
-	\alpha_{t}=\sigma(W_{x\alpha}\cdot x_{t}+W_{h\alpha}\cdot~h_{t-1}+W_{m\alpha}\cdot~m_{t-1})
+	\alpha_{t}=\sigma(W_{x\alpha}\cdot \mathbf{x_{t}}+W_{h\alpha}\cdot~\mathbf{h_{t-1}}+W_{m\alpha}\cdot~\mathbf{m_{t-1}})
 	\end{equation}
 	
 	\item \textit{Input Gate}\\
 	This gate is responsible to determine how much the current information x(t) should be kept in the memory. The equation of the input gate is given as follows:
 	\begin{equation}\label{eq:input_lstm}
-	\beta_{t}=\sigma(W_{x\beta}\cdot x_{t}+W_{h\beta}\cdot~h_{t-1}+W_{m\beta}\cdot~m_{t-1})
+	\beta_{t}=\sigma(W_{x\beta}\cdot \mathbf{x_{t}}+W_{h\beta}\cdot~\mathbf{h_{t-1}}+W_{m\beta}\cdot~\mathbf{m_{t-1}})
 	\end{equation}
 	
 	\item \textit{Output Gate}\\
 	This gate is responsible to determine the output of a time step based on current cell state. The equation of the output gate is given as follows:
 	\begin{equation}\label{eq:output_lstm}
-	\gamma_{t}=\sigma(W_{x\gamma}\cdot x_{t}+W_{h\gamma}\cdot~h_{t-1}+W_{m\gamma}\cdot~m_{t-1})
+	\gamma_{t}=\sigma(W_{x\gamma}\cdot \mathbf{x_{t}}+W_{h\gamma}\cdot~\mathbf{h_{t-1}}+W_{m\gamma}\cdot~\mathbf{m_{t-1}})
 	\end{equation}
 	
 \end{enumerate}
 
-In every time step $t$, the equations for computing cell state $m(t)$ and hidden layer $h(t)$ are presented as follows:
+In every time step $t$, the equations for computing cell state $\mathbf{m_{t}}$ and hidden layer $\mathbf{h_{t}}$ are presented as follows:
 \begin{equation}\label{eq:mt}
-m_{t}=\alpha_{t} (\times) m_{t-1} + \beta_{t} (\times) tanh(W_{xm} \cdot x_{t} + W_{hm} \cdot h_{t-1}))
+\mathbf{m_{t}}=\alpha_{t} (\times) \mathbf{m_{t-1}} + \beta_{t} (\times) tanh(W_{xm} \cdot \mathbf{x_{t}} + W_{hm} \cdot \mathbf{h_{t-1}}))
 \end{equation}
 \begin{equation}\label{eq:ht}
-h_{t}=\gamma_{t} (\times) tanh(m_{t})
+\mathbf{h_{t}}=\gamma_{t} (\times) tanh(\mathbf{m_{t}})
 \end{equation}
 
 \section{Semantic Role Labeling}
@@ -195,7 +195,7 @@ Knowing the predicate and its arguments is not enough to understand the sentence
 
 Both sentences represent the role of "Andy" and "fried chicken" as \textsc{Eater} and \textsc{EatenThing} respectively, regardless of their position in the sentence as a subject or object.
 
-There are many ways to define such semantic roles. From the example above, the semantic roles are very specific for its predicate, known as deep roles~\citep{jurafsky2016speech}. \textsc{Eater} and \textsc{EatenThing} are the semantic roles for the predicate "eat", \textsc{Kicker} and \textsc{KickedThing} are the semantic roles for the predicate "kick", and so on. In order to further knowing more about the semantics of these arguments, the semantic roles could be generalized into more abstract roles. \textsc{Eater} and \textsc{Kicker} have something in common: they are volitional actors having direct causal responsibility for the predicate. For this reason, thematic roles are introduced as a set of semantic roles designed to capture semantic commonality between \textsc{Eater} and \textsc{Kicker}~\citep{jurafsky2016speech}. With this in mind, \textsc{Eater} and \textsc{Kicker} can be represented as AGENT, which represents the abstract concept that is a volitional causer of an event (or predicate). On the other hand, \textsc{EatenThing} and \textsc{KickedThing} both represent the direct objects that are affected by the event. The thematic role for \textsc{EatenThing} and \textsc{KickedThing} is THEME.
+There are many ways to define such semantic roles. From the example above, the semantic roles are very specific for its predicate, known as deep roles~\citep{jurafsky2016speech}. \textsc{Eater} and \textsc{EatenThing} are the semantic roles for the predicate "eat", \textsc{Kicker} and \textsc{KickedThing} are the semantic roles for the predicate "kick", and so on. In order to further knowing more about the semantics of these arguments, the semantic roles could be generalized into more abstract roles. \textsc{Eater} and \textsc{Kicker} have something in common: they are volitional actors having direct causal responsibility for the predicate. Volitional means that the actors have the willing to decide on and commit to a particular action that they do. For this reason, thematic roles are introduced as a set of semantic roles designed to capture semantic commonality between \textsc{Eater} and \textsc{Kicker}~\citep{jurafsky2016speech}. With this in mind, \textsc{Eater} and \textsc{Kicker} can be represented as AGENT, which represents the abstract concept that is a volitional causer of an event (or predicate). On the other hand, \textsc{EatenThing} and \textsc{KickedThing} both represent the direct objects that are affected by the event. The thematic role for \textsc{EatenThing} and \textsc{KickedThing} is THEME.
 
 Table~\ref{tab:examplesrl3} describes the thematic roles often used across computational papers~\citep{jurafsky2016speech}
 \begin{table}
@@ -230,6 +230,8 @@ There are available annotated corpus for SRL consisting of sentences labeled wit
 
 \subsubsection{Proposition Bank}
 Proposition Bank~\citep{kingsbury2002treebank}, shortened as PropBank, is a corpus in which sentences are annotated with semantic roles. PropBank corpus is available for many languages, such as English, Chinese, Hindi, Arabic, Finnish, and Portuguese. The main approach used for its semantic roles grouping is based on proto-roles and verb-specific semantic roles. Every verb sense has its set of semantic roles with argument numbers rather than names, for example: Arg0, Arg1. Arg2, etc. Usually, Arg0 represents PROTO-AGENT while Arg1 represents PROTO-PATIENT. Other argument number representations may vary based on each verb sense.
+
+Both PROTO-AGENT and PROTO-PATIENT are generalized roles that describe roughly agent-like and roughly patient-like meanings, respectively~\citep{jurafsky2016speech}. Both roles are defined by heuristic features that describe more agent-like or more patient-like meanings. For instance, when the argument has more agent-like properties (causing an event, causing a change of state of other participant, being volitionally involved in the event) the likelihood that the argument can be labeled as PROTO-AGENT will be greater. On the other hand, the more an argument has patient-like properties (causally affected by another participant, undergoing change of state), the bigger the likelihood that the argument to be labeled as PROTO-PATIENT. 
 
 The PropBank entries are called frame files. One example of the frame files for one sense of verb eat is presented as follows.
 \\

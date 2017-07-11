@@ -283,7 +283,7 @@ After explaining the big picture of LSTM networks, we describe the details of ev
 \end{figure}
 
 % Explain the formula based on single cell LSTM
-The LSTM unit in time step $t$ requires an input vector $x_{t}$. As explained in subchapter X, the equations to produce output vector $\mathbf{f_{t}}$ are presented as follows:
+The LSTM unit in time step $t$ requires an input vector $\mathbf{x_{t}}$. The equations to produce output vector $\mathbf{f_{t}}$ are presented as follows:
 
 \begin{equation}\label{eq:lstmm}
 \mathbf{m_{t}}=\alpha_{t}\cdot~\mathbf{m_{t-1}} + \beta_{t}\cdot~tanh(W_{xm} \cdot \mathbf{x_{t}} + W_{fm} \cdot \mathbf{f_{t-1}})
@@ -418,7 +418,7 @@ First, the input vector $\mathbf{x_{t}}$ is processed by the first forward LSTM 
 \mathbf{f_{t}} = ForwardLSTM1(\mathbf{x_{t}}, \mathbf{f_{t-1}})
 \end{equation}
 
-The vector $\mathbf{f_{t}}$ is then fed into the first backward LSTM layer which outputs vector $\mathbf{b_{t}}$. The vectors $\mathbf{b_{t}}$ and $\mathbf{f_{t}}$ are then concatenated before being processed by the sigmoid function which outputs the weight $s_{1,t}$. After that, $\mathbf{b_{t}}$ is retrieved by summing the multiplication results of $s_{1,t}$ with $\mathbf{b_{t}}$ and $(1 - s_{1,t})$ with $\mathbf{f_{t}}$
+The vector $\mathbf{f_{t}}$ is then fed into the first backward LSTM layer which outputs vector $\mathbf{b_{t}}$. The vectors $\mathbf{b_{t}}$ and $\mathbf{f_{t}}$ are then concatenated before being processed by the sigmoid function which outputs the weight $s_{1,t}$. After that, $\mathbf{b'_{t}}$ is retrieved by summing the multiplication results of $s_{1,t}$ with $\mathbf{b_{t}}$ and $(1 - s_{1,t})$ with $\mathbf{f_{t}}$
 
 \begin{equation}
 \label{eq:backwardhighway1}
@@ -443,7 +443,7 @@ s_{2,t} = \sigma(W_{2} \cdot [\mathbf{k_{t}}, \mathbf{b_{t}}] + d_{2})
 \mathbf{k'_{t}} = s_{2,t} \cdot \mathbf{k_{t}} + (1 - s_{2,t}) \cdot \mathbf{b_{t}} 
 \end{equation}
 
-Lastly, $\mathbf{m'_{t}}$ is retrieved by the same way as $\mathbf{k'_{t}}$, which we define as follows:
+Lastly, $\mathbf{m'_{t}}$ is retrieved by the same way as $\mathbf{k'_{t}}$, which is defined as follows:
 \begin{equation}
 \label{eq:backwardhighway2}
 \mathbf{m_{t}} = BackwardLSTM2(\mathbf{k'_{t}}, \mathbf{m_{t+1}})
@@ -487,7 +487,7 @@ In this work, we propose an additional attention mechanism that can be used on t
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.75\linewidth]{images/dblstmhighwayattention}
+	\includegraphics[width=0.75\linewidth]{images/BLSTMAttentionNew}
 	\caption{An architecture of adding attention mechanism on top of the main layer with total time step of 4. The main layer is illustrated by the shaded architecture inside the rectangle. The main layer can be changed into any LSTM variant.}
 	\label{fig:dblstmhighwayattention}
 \end{figure}
@@ -495,20 +495,20 @@ In this work, we propose an additional attention mechanism that can be used on t
 % Explain the formula based on big picture CA-BLSTM
 The attention mechanism firstly collects the context information by multiplying trainable weights with all the vectors from every time step of the last LSTM output. We sum each element for each weighted vectors to reduce the dimension. The results are then fed into a hidden softmax layer which outputs weights with a total of 1. The original output vectors of the last LSTM output are multiplied by these distributed weights respectively. We then sum all the multiplication results as the final context information. The original LSTM outputs are concatenated with this context information before going to the last softmax layer to predict the semantic roles. 
 
-Suppose that we have $\mathbf{m_{i}}$ as the last LSTM output, it is then fed into a differentiable neural networks function $g(\mathbf{m_{i}})$ in which it is multiplied by the time-distributed matrix $\textbf{W} \in {\rm I\!R^{H \times K}}$ and all the elements in it are summed. $H$ is the vector dimension of $\mathbf{m_{i}}$, meanwhile $K$ is the dimension size that we want as an output when we multiply \textbf{$W$} with $\mathbf{m_{i}}$.
+Suppose that we have $\mathbf{s_{i}}$ as the last LSTM output, it is then fed into a differentiable neural networks function $g(\mathbf{s_{i}})$ in which it is multiplied by the time-distributed matrix $\textbf{W} \in {\rm I\!R^{H \times K}}$ and all the elements in it are summed. $H$ is the vector dimension of $\mathbf{s_{i}}$, meanwhile $K$ is the dimension size that we want as an output when we multiply \textbf{$W$} with $\mathbf{s_{i}}$.
 
 \begin{equation}
 \label{sum_weight}
-g(\mathbf{m_{i}}) = Sum(\mathbf{W}.\mathbf{m_{i}})
+g(\mathbf{s_{i}}) = Sum(\mathbf{W}.\mathbf{s_{i}})
 \end{equation}
 
-Once we have all the values of $[g(\mathbf{m_{1}}); g(\mathbf{m_{2}}); ...; g(\mathbf{m_{n}})]$, we make it as an input for the softmax layer, resulting weights $[\alpha_{1}; \alpha_{2}; ...; \alpha_{n}]$. All the original LSTM outputs $[\mathbf{m_{1}}; \mathbf{m_{2}}; ...; \mathbf{m_{n}}]$ are multiplied by these weights, with the results of $[\mathbf{r_{1}}; \mathbf{r_{2}}; ...; \mathbf{r_{n}}]$
+Once we have all the values of $[g(\mathbf{s_{1}}); g(\mathbf{s_{2}}); ...; g(\mathbf{s_{n}})]$, we make it as an input for the softmax layer, resulting weights $[\alpha_{1}; \alpha_{2}; ...; \alpha_{n}]$. All the original LSTM outputs $[\mathbf{s_{1}}; \mathbf{s_{2}}; ...; \mathbf{s_{n}}]$ are multiplied by these weights, with the results of $[\mathbf{r_{1}}; \mathbf{r_{2}}; ...; \mathbf{r_{n}}]$
 
 \begin{equation}
-[\alpha_{1}, \alpha_{2}, ..., \alpha_{n}] = Softmax([g(\mathbf{m_{1}}); g(\mathbf{m_{2}}); ..., g(\mathbf{m_{n}})])
+[\alpha_{1}; \alpha_{2}; ...; \alpha_{n}] = Softmax([g(\mathbf{s_{1}}); g(\mathbf{s_{2}}); ..., g(\mathbf{s_{n}})])
 \end{equation}
 \begin{equation}
-\mathbf{r_{i}} = \alpha_{i}.\mathbf{m_{i}}
+\mathbf{r_{i}} = \alpha_{i}.\mathbf{s_{i}}
 \end{equation}
 
 We then sum all these vectors element-wise to have a context vector $\mathbf{z}$. 
@@ -517,7 +517,7 @@ All the original LSTM outputs are thus concatenated with vector $\mathbf{z}$ as 
 \mathbf{z} = \mathbf{r_{1}} + \mathbf{r_{2}} + ... + \mathbf{r_{n}}
 \end{equation}
 \begin{equation}
-\mathbf{j_{i}} = Concatenate(\mathbf{m_{i}}, z)
+\mathbf{j_{i}} = Concatenate(\mathbf{s_{i}}, \mathbf{z})
 \end{equation}
 
 Lastly, the time-distributed softmax layer produces the final semantic roles label.
